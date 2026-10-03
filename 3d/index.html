@@ -1,0 +1,100 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>고우리 가을 모션 카드뉴스 · 설명 쇼릴</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#fafafa;font-family:Pretendard,-apple-system,sans-serif;color:#111}
+.wrap{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;border-left:1px solid #eee;border-right:1px solid #eee}
+.rep{padding:18px 16px 10px;border-bottom:1px solid #efefef}
+.rep h1{font-size:17px;font-weight:800;letter-spacing:-.4px}.rep p{font-size:12.5px;color:#737373;margin-top:4px;line-height:1.5}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;border-bottom:1px solid #efefef;scrollbar-width:none}
+.tabs button{flex:none;border:1px solid #dbdbdb;background:#fff;border-radius:99px;padding:8px 14px;font:600 13px Pretendard;cursor:pointer}
+.tabs button.on{background:#111;color:#fff;border-color:#111}
+.prof{display:flex;align-items:center;gap:18px;padding:18px 16px 8px}
+.av{width:78px;height:78px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);flex:none}
+.av div{width:100%;height:100%;border-radius:50%;border:3px solid #fff;background:#F0EEE9;display:flex;align-items:center;justify-content:center;font:800 20px Pretendard;color:#2F5BEA}
+.un{font-size:17px;font-weight:700}.st{display:flex;gap:18px;margin-top:8px;font-size:13px}.st b{font-weight:700}
+.bio{padding:4px 16px 12px;font-size:13px;line-height:1.5}.bio span{color:#737373}
+.gtabs{display:flex;border-top:1px solid #efefef}.gtabs div{flex:1;text-align:center;padding:12px 0;font-size:12px;font-weight:700;letter-spacing:1px;color:#737373}.gtabs .on{color:#111;border-top:1px solid #111;margin-top:-1px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.tile{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:#eee}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile svg{position:absolute;right:8px;top:8px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+.hint{padding:14px 16px 28px;font-size:12px;color:#8e8e8e;text-align:center}
+/* post */
+.post{position:fixed;inset:0;background:#fff;z-index:10;display:none;overflow-y:auto}
+.post.open{display:block}
+.pin{max-width:480px;margin:0 auto}
+.ph{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #efefef;position:sticky;top:0;background:#fff;z-index:2}
+.ph .sav{width:32px;height:32px;border-radius:50%;background:#F0EEE9;display:flex;align-items:center;justify-content:center;font:800 11px Pretendard;color:#2F5BEA;border:1px solid #eee}
+.ph b{font-size:14px}.ph small{display:block;font-size:11.5px;color:#737373}
+.x{margin-left:auto;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;padding:4px 8px}
+.media{position:relative}
+.car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;aspect-ratio:3/4;background:#000}
+.car::-webkit-scrollbar{display:none}
+.car video{flex:none;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;display:block}
+.cnt{position:absolute;right:12px;top:12px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;font-weight:600;padding:4px 9px;border-radius:99px}
+.snd{position:absolute;right:12px;bottom:12px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:14px;cursor:pointer}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.85);font-size:16px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.nav.l{left:10px}.nav.r{right:10px}
+.dots{display:flex;justify-content:center;gap:4px;padding:10px 0 4px}.dots i{width:6px;height:6px;border-radius:50%;background:#c7c7c7}.dots i.on{background:#0095f6}
+.acts{display:flex;gap:14px;padding:4px 14px 6px;font-size:22px}
+.cap{padding:2px 14px 30px;font-size:13.5px;line-height:1.55;white-space:pre-wrap;word-break:break-word}.cap b{font-weight:700}
+@media(hover:none) and (max-width:899px){.nav{display:none}}
+@media(min-width:900px){
+ html,body{background:#fff}
+ .wrap{max-width:1100px;border:0}
+ .rep{padding:34px 40px 18px;text-align:center}.rep h1{font-size:26px}.rep p{font-size:14.5px}
+ .tabs{justify-content:center;padding:16px 40px}.tabs button{font-size:15px;padding:10px 22px}
+ .prof{max-width:935px;margin:0 auto;gap:80px;padding:40px 60px 10px}
+ .av{width:150px;height:150px}.av div{font-size:38px;border-width:5px}
+ .un{font-size:22px}.st{font-size:16px;gap:34px;margin-top:18px}
+ .bio{max-width:935px;margin:0 auto;padding:0 60px 34px 290px;font-size:15px}
+ .gtabs{max-width:935px;margin:0 auto}
+ .grid{max-width:935px;margin:0 auto;gap:4px}
+ .hint{font-size:14px}
+ .post{background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:30px}
+ .post.open{display:flex}
+ .pin{max-width:none;width:auto;height:min(88vh,1000px);display:grid;grid-template-columns:auto 400px;grid-template-rows:auto 1fr auto auto;background:#fff;border-radius:6px;overflow:hidden}
+ .ph{grid-column:2;grid-row:1;position:static}
+ .media{grid-column:1;grid-row:1/5;height:min(88vh,1000px);aspect-ratio:3/4}
+ .car{height:100%;aspect-ratio:auto}
+ .cap{grid-column:2;grid-row:2;overflow-y:auto;padding:16px 18px;font-size:14.5px}
+ .dots{grid-column:2;grid-row:3;justify-content:flex-start;padding:10px 18px 0}
+ .acts{grid-column:2;grid-row:4;padding:10px 18px 18px;border-top:1px solid #efefef}
+ .nav{display:block!important;width:36px;height:36px;font-size:20px}
+ .x{position:fixed;right:26px;top:14px;color:#fff;font-size:40px}
+}
+</style></head><body><div class="wrap">
+<div class="rep"><h1>고우리 가을 모션 카드뉴스 · 설명 쇼릴</h1><p>게시물을 누르면 인스타처럼 옆으로 넘겨 볼 수 있어요. 게시물마다 15초 영상 5장(음악·효과음 포함): 실사 얼굴 핀 · 실제 제품 3D · 피부 단면 모식도. 그리드는 커버 3장이 한 장의 사진으로 이어집니다.</p></div>
+<div class="tabs" id="tabs"></div>
+<div class="prof"><div class="av"><div>BB</div></div><div><div class="un" id="un"></div><div class="st"><div><b>3</b> 게시물</div><div><b>고우리</b> 가을 시리즈</div></div></div></div>
+<div class="bio"><b>뷰티블라썸의원 · Beauty Blossom Clinic</b><br><span id="bl"></span></div>
+<div class="gtabs"><div class="on">▦ 게시물</div><div>▶ 릴스</div><div>☺ 태그됨</div></div>
+<div class="grid" id="grid"></div>
+<div class="hint">왼쪽부터 1구간 · 2구간 · 3구간 (업로드는 3 → 2 → 1 순서)</div>
+</div>
+<div class="post" id="post"><div class="pin">
+ <div class="ph"><div class="sav">BB</div><div><b id="pu"></b><small id="pt"></small></div><button class="x" id="x" aria-label="닫기">×</button></div>
+ <div class="media"><div class="car" id="car"></div><div class="cnt" id="cnt">1/5</div><button class="snd" id="snd" aria-label="소리">🔇</button><button class="nav l" id="pl">‹</button><button class="nav r" id="pr">›</button></div>
+ <div class="dots" id="dots"></div>
+ <div class="acts">♡ &nbsp;💬 &nbsp;➤</div>
+ <div class="cap" id="cap"></div>
+</div></div>
+<script>
+var D=[{"code": "R", "label": "고우리 GOURI · 3D 스튜디오 쇼릴", "desc": "Blender 3D 스튜디오(실제 제품 인쇄 텍스처·피부 단면 모식도 디졸브) · 재생성 모델 액자 핀 · 키네틱 타이포 / 128BPM", "acct": "beautyblossom_clinic", "sets": [{"cover": "c_R_1.png", "vids": ["v_R_1_1.mp4", "v_R_1_2.mp4", "v_R_1_3.mp4", "v_R_1_4.mp4", "v_R_1_5.mp4"], "cap": "가을엔 왜 얼굴에 힘이 빠질까 — 고우리, 쉽게 설명해 드릴게요 🍂 홍대 고우리\n눈밑·볼·입가부터 인상이 달라 보이는 계절. 채우는 쪽(필러)과 스스로 만드는 쪽(고우리)이 무엇이 다른지, 실제 제품과 피부 단면 모식도로 차근차근 짚었습니다.\n\n✔ 필러: 필요한 부위의 볼륨과 윤곽을 보완\n✔ 고우리: 액상형 PCL 콜라겐 스티뮬레이터 — 액상 제형이 조직에 분포해 피부 자체의 콜라겐 생성을 유도\n✔ 변화 정도와 경과는 개인차가 있습니다 (단면 장면은 이해를 돕는 모식도예요)\n\n💡 어떤 변화가 필요한지는 진료에서 함께 확인합니다\n📌 저장해 두고 거울 앞에서 다시 꺼내 보세요 / 궁금한 건 댓글로 ⬇️\n\n📍 뷰티블라썸의원 · 합정역 3번 출구 바로 앞 (접수 6층)\n☎ 02-336-7511 · 카카오톡 '뷰티블라썸의원' · 평일 10-20 / 주말 10-16:30 · 점심시간 없이 진료\n\n#홍대고우리 #합정스킨부스터 #고우리 #액상PCL #뷰티블라썸의원"}, {"cover": "c_R_2.png", "vids": ["v_R_2_1.mp4", "v_R_2_2.mp4", "v_R_2_3.mp4", "v_R_2_4.mp4", "v_R_2_5.mp4"], "cap": "스킨부스터는 두 갈래예요 — 알갱이와 액상, 홍대 스킨부스터 제형 노트 ✨\n입자형과 액상형 시린지를 나란히 비교하고, 고우리(액상형 PCL)의 3단계(주입 → 분포 → 콜라겐 생성 유도)를 피부 단면 모식도로 따라갑니다.\n\n✔ 고우리: PCL(폴리카프로락톤)을 액상형으로 구현한 콜라겐 스티뮬레이터 (제조사 덱스레보 CESABP 기술)\n✔ 액상 제형이 조직에 분포하고, PCL이 서서히 분해되며 콜라겐 생성을 유도\n✔ 필러는 볼륨·윤곽, 고우리는 콜라겐 생성 유도 — 목표가 다르면 고르는 기준도 다릅니다\n\n💡 단면 장면은 이해를 돕는 모식도예요. 개인차가 있습니다\n📌 상담 전에 저장해 두세요 / 궁금한 건 댓글로 ⬇️\n\n📍 뷰티블라썸의원 · 합정역 3번 출구 바로 앞 (접수 6층)\n☎ 02-336-7511 · 카카오톡 '뷰티블라썸의원' · 평일 10-20 / 주말 10-16:30 · 점심시간 없이 진료\n\n#홍대스킨부스터 #합정고우리 #고우리 #콜라겐스티뮬레이터 #뷰티블라썸의원"}, {"cover": "c_R_3.png", "vids": ["v_R_3_1.mp4", "v_R_3_2.mp4", "v_R_3_3.mp4", "v_R_3_4.mp4", "v_R_3_5.mp4"], "cap": "받은 뒤 14일의 기록 📅 홍대 고우리 경과 노트\n당일의 일시적 반응부터 이후 수 주의 변화, 병원에 알려야 할 신호까지 시간 순서로 정리했습니다. 직후 붓기를 최종 결과로 보지 않습니다.\n\n✔ 당일: 붉어짐·부기·멍·통증이 있을 수 있습니다. 세안·화장·운동은 안내받은 대로\n✔ 이후 수 주: 제조사 해외 안내는 초기 변화가 약 1~2주부터 보일 수 있다고 설명합니다. 경과는 개인차가 있습니다\n✔ 만져지는 덩어리나 불편감이 이어지면 참지 말고 병원에 알려 주세요\n\n💡 경과를 보고 간격과 횟수를 정합니다. 병행 상담도 가능하지만 모든 분께 필요한 것은 아닙니다\n📌 시술 전에 저장해 두세요 / 궁금한 건 댓글로 ⬇️\n\n📍 뷰티블라썸의원 · 합정역 3번 출구 바로 앞 (접수 6층)\n☎ 02-336-7511 · 카카오톡 '뷰티블라썸의원' · 평일 10-20 / 주말 10-16:30 · 점심시간 없이 진료\n\n#홍대고우리 #합정스킨부스터 #고우리 #시술후관리 #뷰티블라썸의원"}]}];
+var TT=["가을 탄력", "알갱이 vs 액상", "받고 나면"];
+var cur=0,muted=true,idx=0;
+function $(i){return document.getElementById(i)}
+function tabs(){var h='';D.forEach(function(d,i){h+='<button class="'+(i==cur?'on':'')+'" data-i="'+i+'">'+d.label+'</button>'});$('tabs').innerHTML=h;[].forEach.call($('tabs').children,function(b){b.onclick=function(){cur=+b.dataset.i;render()}})}
+function render(){tabs();var d=D[cur];$('un').textContent=d.acct;$('bl').textContent=d.desc+' · 합정역 3번 출구 바로 앞';var h='';d.sets.forEach(function(s,i){h+='<div class="tile" data-i="'+i+'"><img src="'+s.cover+'" alt="'+TT[i]+'" loading="lazy"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="6" y="2" width="15" height="15" rx="3" fill="none" stroke="#fff" stroke-width="2"/><path d="M3 7v12a2 2 0 002 2h12" fill="none" stroke="#fff" stroke-width="2"/></svg></div>'});$('grid').innerHTML=h;[].forEach.call($('grid').children,function(t){t.onclick=function(){open(+t.dataset.i)}})}
+function open(i){var d=D[cur],s=d.sets[i];$('pu').textContent=d.acct;$('pt').textContent=d.label.split(' · ')[0]+' · '+(i+1)+'구간 '+TT[i];var h='';s.vids.forEach(function(v,k){h+='<video src="'+v+'" playsinline loop preload="'+(k<2?'auto':'metadata')+'" '+(muted?'muted':'')+'></video>'});$('car').innerHTML=h;$('car').scrollLeft=0;$('cap').innerHTML='<b>'+d.acct+'</b> '+s.cap;var dh='';for(var k=0;k<5;k++)dh+='<i></i>';$('dots').innerHTML=dh;$('post').classList.add('open');document.body.style.overflow='hidden';idx=-1;setTimeout(sync,50)}
+function close(){[].forEach.call($('car').querySelectorAll('video'),function(v){v.pause()});$('car').innerHTML='';$('post').classList.remove('open');document.body.style.overflow=''}
+function sync(){var c=$('car');var k=Math.round(c.scrollLeft/c.clientWidth);if(k===idx)return;idx=k;$('cnt').textContent=(k+1)+'/5';[].forEach.call($('dots').children,function(e,j){e.className=j==k?'on':''});[].forEach.call(c.querySelectorAll('video'),function(v,j){if(j==k){v.muted=muted;v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})}
+$('car').addEventListener('scroll',function(){clearTimeout(window.__st);window.__st=setTimeout(sync,80)});
+$('pl').onclick=function(){var c=$('car');c.scrollTo({left:Math.max(0,idx-1)*c.clientWidth,behavior:'smooth'})};
+$('pr').onclick=function(){var c=$('car');c.scrollTo({left:Math.min(4,idx+1)*c.clientWidth,behavior:'smooth'})};
+$('snd').onclick=function(){muted=!muted;this.textContent=muted?'🔇':'🔊';[].forEach.call($('car').querySelectorAll('video'),function(v,j){v.muted=muted;if(j==idx&&!muted)v.play()})};
+$('x').onclick=close;$('post').addEventListener('click',function(e){if(e.target===this)close()});document.addEventListener('keydown',function(e){if(!$('post').classList.contains('open'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')$('pr').click();if(e.key=='ArrowLeft')$('pl').click()});
+render();
+</script></body></html>
