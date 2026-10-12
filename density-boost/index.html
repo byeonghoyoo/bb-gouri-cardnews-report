@@ -1,0 +1,100 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>덴서티 BOOST NOTE · 모션 카드뉴스 보고</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#fafafa;font-family:Pretendard,-apple-system,sans-serif;color:#111}
+.wrap{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;border-left:1px solid #eee;border-right:1px solid #eee}
+.rep{padding:18px 16px 10px;border-bottom:1px solid #efefef}
+.rep h1{font-size:17px;font-weight:800;letter-spacing:-.4px}.rep p{font-size:12.5px;color:#737373;margin-top:4px;line-height:1.5}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;border-bottom:1px solid #efefef;scrollbar-width:none}
+.tabs button{flex:none;border:1px solid #dbdbdb;background:#fff;border-radius:99px;padding:8px 14px;font:600 13px Pretendard;cursor:pointer}
+.tabs button.on{background:#111;color:#fff;border-color:#111}
+.prof{display:flex;align-items:center;gap:18px;padding:18px 16px 8px}
+.av{width:78px;height:78px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);flex:none}
+.av div{width:100%;height:100%;border-radius:50%;border:3px solid #fff;background:#F0EEE9;display:flex;align-items:center;justify-content:center;font:800 20px Pretendard;color:#2F5BEA}
+.un{font-size:17px;font-weight:700}.st{display:flex;gap:18px;margin-top:8px;font-size:13px}.st b{font-weight:700}
+.bio{padding:4px 16px 12px;font-size:13px;line-height:1.5}.bio span{color:#737373}
+.gtabs{display:flex;border-top:1px solid #efefef}.gtabs div{flex:1;text-align:center;padding:12px 0;font-size:12px;font-weight:700;letter-spacing:1px;color:#737373}.gtabs .on{color:#111;border-top:1px solid #111;margin-top:-1px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.tile{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:#eee}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile svg{position:absolute;right:8px;top:8px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+.hint{padding:14px 16px 28px;font-size:12px;color:#8e8e8e;text-align:center}
+/* post */
+.post{position:fixed;inset:0;background:#fff;z-index:10;display:none;overflow-y:auto}
+.post.open{display:block}
+.pin{max-width:480px;margin:0 auto}
+.ph{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #efefef;position:sticky;top:0;background:#fff;z-index:2}
+.ph .sav{width:32px;height:32px;border-radius:50%;background:#F0EEE9;display:flex;align-items:center;justify-content:center;font:800 11px Pretendard;color:#2F5BEA;border:1px solid #eee}
+.ph b{font-size:14px}.ph small{display:block;font-size:11.5px;color:#737373}
+.x{margin-left:auto;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;padding:4px 8px}
+.media{position:relative}
+.car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;aspect-ratio:3/4;background:#000}
+.car::-webkit-scrollbar{display:none}
+.car video{flex:none;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;display:block}
+.cnt{position:absolute;right:12px;top:12px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;font-weight:600;padding:4px 9px;border-radius:99px}
+.snd{position:absolute;right:12px;bottom:12px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:14px;cursor:pointer}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.85);font-size:16px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.nav.l{left:10px}.nav.r{right:10px}
+.dots{display:flex;justify-content:center;gap:4px;padding:10px 0 4px}.dots i{width:6px;height:6px;border-radius:50%;background:#c7c7c7}.dots i.on{background:#0095f6}
+.acts{display:flex;gap:14px;padding:4px 14px 6px;font-size:22px}
+.cap{padding:2px 14px 30px;font-size:13.5px;line-height:1.55;white-space:pre-wrap;word-break:break-word}.cap b{font-weight:700}
+@media(hover:none) and (max-width:899px){.nav{display:none}}
+@media(min-width:900px){
+ html,body{background:#fff}
+ .wrap{max-width:1100px;border:0}
+ .rep{padding:34px 40px 18px;text-align:center}.rep h1{font-size:26px}.rep p{font-size:14.5px}
+ .tabs{justify-content:center;padding:16px 40px}.tabs button{font-size:15px;padding:10px 22px}
+ .prof{max-width:935px;margin:0 auto;gap:80px;padding:40px 60px 10px}
+ .av{width:150px;height:150px}.av div{font-size:38px;border-width:5px}
+ .un{font-size:22px}.st{font-size:16px;gap:34px;margin-top:18px}
+ .bio{max-width:935px;margin:0 auto;padding:0 60px 34px 290px;font-size:15px}
+ .gtabs{max-width:935px;margin:0 auto}
+ .grid{max-width:935px;margin:0 auto;gap:4px}
+ .hint{font-size:14px}
+ .post{background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:30px}
+ .post.open{display:flex}
+ .pin{max-width:none;width:auto;height:min(88vh,1000px);display:grid;grid-template-columns:auto 400px;grid-template-rows:auto 1fr auto auto;background:#fff;border-radius:6px;overflow:hidden}
+ .ph{grid-column:2;grid-row:1;position:static}
+ .media{grid-column:1;grid-row:1/5;height:min(88vh,1000px);aspect-ratio:3/4}
+ .car{height:100%;aspect-ratio:auto}
+ .cap{grid-column:2;grid-row:2;overflow-y:auto;padding:16px 18px;font-size:14.5px}
+ .dots{grid-column:2;grid-row:3;justify-content:flex-start;padding:10px 18px 0}
+ .acts{grid-column:2;grid-row:4;padding:10px 18px 18px;border-top:1px solid #efefef}
+ .nav{display:block!important;width:36px;height:36px;font-size:20px}
+ .x{position:fixed;right:26px;top:14px;color:#fff;font-size:40px}
+}
+</style></head><body><div class="wrap">
+<div class="rep"><h1>덴서티 BOOST NOTE · 모션 카드뉴스</h1><p>게시물을 누르면 인스타처럼 옆으로 넘겨 볼 수 있어요. 게시물마다 15초 영상 5장(음악·효과음 포함): Blender 3D 키워드·실물 팁 3D · Google Flow 피부 단면·모델 영상 · Pikimov 편집. 모든 영상은 0초부터 움직이고 15초 끝이 처음과 이어집니다. 그리드는 커버 3장이 한 장으로 이어집니다(업로드 01→02→03).</p></div>
+<div class="tabs" id="tabs"></div>
+<div class="prof"><div class="av"><div>BB</div></div><div><div class="un" id="un"></div><div class="st"><div><b>3</b> 게시물</div><div><b>덴서티</b> BOOST NOTE</div></div></div></div>
+<div class="bio"><b>뷰티블라썸의원 · Beauty Blossom Clinic</b><br><span id="bl"></span></div>
+<div class="gtabs"><div class="on">▦ 게시물</div><div>▶ 릴스</div><div>☺ 태그됨</div></div>
+<div class="grid" id="grid"></div>
+<div class="hint">왼쪽부터 1구간 · 2구간 · 3구간 (업로드는 3 → 2 → 1 순서)</div>
+</div>
+<div class="post" id="post"><div class="pin">
+ <div class="ph"><div class="sav">BB</div><div><b id="pu"></b><small id="pt"></small></div><button class="x" id="x" aria-label="닫기">×</button></div>
+ <div class="media"><div class="car" id="car"></div><div class="cnt" id="cnt">1/5</div><button class="snd" id="snd" aria-label="소리">🔇</button><button class="nav l" id="pl">‹</button><button class="nav r" id="pr">›</button></div>
+ <div class="dots" id="dots"></div>
+ <div class="acts">♡ &nbsp;💬 &nbsp;➤</div>
+ <div class="cap" id="cap"></div>
+</div></div>
+<script>
+var D=[{"code": "V3", "label": "덴서티 BOOST NOTE · 3D 모션", "desc": "Blender 3D 포스터·Google Flow 영상·Pikimov 편집", "acct": "beautyblossom_clinic", "sets": [{"cover": "c_V3_1.png", "vids": ["v_V3_1_1.mp4", "v_V3_1_2.mp4", "v_V3_1_3.mp4", "v_V3_1_4.mp4", "v_V3_1_5.mp4"], "cap": "피부 시술, 이제 ‘층’을 고른다 🧩 덴서티 부스트 팁\n장비마다 겨냥하는 깊이와 역할이 달라요. 요즘은 윤곽만큼 피부 자체의 완성도(잔주름·결·탄력·모공·광채)에 관심이 넓어지고 있고, 그 마지막 한 층(진피 상부 1-2mm)을 맡도록 설계된 덴서티 부스트 팁이 새로 나왔어요.\n\n✔ 깊이별 역할: HIFU 약 4.5mm SMAS층 / RF 진피층 / RFMN 원하는 깊이\n✔ 구조 → 재생 → 마무리\n✔ 결과와 느낌은 개인차가 있어요 (피부 단면 장면은 이해를 돕는 모식도예요)\n\n💡 나에게 맞는지는 상담에서 함께 확인합니다\n📌 저장해 두고 다음 편(부스트 팁, 뭐가 달라?)도 확인해 보세요\n\n📍 뷰티블라썸의원 · 합정역 3번 출구 바로 앞 (접수 6층)\n☎ 02-336-7511 · 카카오톡 '뷰티블라썸의원' · 평일 10-20 / 주말 10-16:30 · 점심시간 없이 진료\n\n#덴서티 #덴서티부스트팁 #홍대덴서티 #합정피부과 #뷰티블라썸의원"}, {"cover": "c_V3_2.png", "vids": ["v_V3_2_1.mp4", "v_V3_2_2.mp4", "v_V3_2_3.mp4", "v_V3_2_4.mp4", "v_V3_2_5.mp4"], "cap": "부스트 팁, 뭐가 달라? ⚡ 덴서티 부스트 팁\n바이폴라 전용 전극으로 진피 상부 1-2mm에 열 영역이 수평으로 고르게 형성되도록 설계됐어요. 찍는 방식(스탬핑)에 움직이는 방식(무빙)이 더해졌고, 열을 겹겹이 쌓아 목표층 온도를 단계적으로 올려요.\n\n✔ 600샷 기준 시술 시간: 스탬핑 약 8:45 → 무빙 약 6:12 (제조사 측정 예시)\n✔ 쿨링 레벨 5단계 · 실시간 온도 확인 · 전용 커플링 플루이드\n✔ 느낌은 사람마다 달라서 상담 때 조절해요\n\n💡 제조사(제이시스메디칼) 설명자료 기준이며 실제 시간과 결과는 부위·피부 상태에 따라 달라요\n📌 다음 편: 알파와 부스트, 어떻게 나눠 쓸까?\n\n📍 뷰티블라썸의원 · 합정역 3번 출구 바로 앞 (접수 6층)\n☎ 02-336-7511 · 카카오톡 '뷰티블라썸의원' · 평일 10-20 / 주말 10-16:30 · 점심시간 없이 진료\n\n#덴서티 #부스트팁 #홍대덴서티 #합정피부과 #뷰티블라썸의원"}, {"cover": "c_V3_3.png", "vids": ["v_V3_3_1.mp4", "v_V3_3_2.mp4", "v_V3_3_3.mp4", "v_V3_3_4.mp4", "v_V3_3_5.mp4"], "cap": "알파는 기반, 부스트는 마무리 ✨ 덴서티 알파 + 부스트\n알파 팁은 모노폴라+바이폴라로 깊은 진피부터 진피 상부까지 폭넓게, 부스트 팁은 진피 상부 1-2mm에 집중하도록 설계됐어요. 서로 대신하는 게 아니라 역할을 나눠요.\n\n✔ 중요한 일정이 있다면 상담 때 미리 알려 주세요\n✔ 조합과 시점은 피부 상태·원하는 변화·일정을 함께 보고 정해요\n✔ 결과와 느낌은 개인차가 있어요\n\n💡 “ALPHA builds the foundation. BOOST perfects the finish.”는 제조사 표현이에요\n📌 프로필 링크에서 상담 예약\n\n📍 뷰티블라썸의원 · 합정역 3번 출구 바로 앞 (접수 6층)\n☎ 02-336-7511 · 카카오톡 '뷰티블라썸의원' · 평일 10-20 / 주말 10-16:30 · 점심시간 없이 진료\n\n#덴서티 #덴서티알파 #덴서티부스트팁 #합정피부과 #뷰티블라썸의원"}]}];
+var TT=["층을 고른다", "부스트 팁", "알파와 부스트"];
+var cur=0,muted=true,idx=0;
+function $(i){return document.getElementById(i)}
+function tabs(){var h='';D.forEach(function(d,i){h+='<button class="'+(i==cur?'on':'')+'" data-i="'+i+'">'+d.label+'</button>'});$('tabs').innerHTML=h;[].forEach.call($('tabs').children,function(b){b.onclick=function(){cur=+b.dataset.i;render()}})}
+function render(){tabs();var d=D[cur];$('un').textContent=d.acct;$('bl').textContent=d.desc+' · 합정역 3번 출구 바로 앞';var h='';d.sets.forEach(function(s,i){h+='<div class="tile" data-i="'+i+'"><img src="'+s.cover+'" alt="'+TT[i]+'" loading="lazy"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="6" y="2" width="15" height="15" rx="3" fill="none" stroke="#fff" stroke-width="2"/><path d="M3 7v12a2 2 0 002 2h12" fill="none" stroke="#fff" stroke-width="2"/></svg></div>'});$('grid').innerHTML=h;[].forEach.call($('grid').children,function(t){t.onclick=function(){open(+t.dataset.i)}})}
+function open(i){var d=D[cur],s=d.sets[i];$('pu').textContent=d.acct;$('pt').textContent=d.label.split(' · ')[0]+' · '+(i+1)+'구간 '+TT[i];var h='';s.vids.forEach(function(v,k){h+='<video src="'+v+'" playsinline loop preload="'+(k<2?'auto':'metadata')+'" '+(muted?'muted':'')+'></video>'});$('car').innerHTML=h;$('car').scrollLeft=0;$('cap').innerHTML='<b>'+d.acct+'</b> '+s.cap;var dh='';for(var k=0;k<5;k++)dh+='<i></i>';$('dots').innerHTML=dh;$('post').classList.add('open');document.body.style.overflow='hidden';idx=-1;setTimeout(sync,50)}
+function close(){[].forEach.call($('car').querySelectorAll('video'),function(v){v.pause()});$('car').innerHTML='';$('post').classList.remove('open');document.body.style.overflow=''}
+function sync(){var c=$('car');var k=Math.round(c.scrollLeft/c.clientWidth);if(k===idx)return;idx=k;$('cnt').textContent=(k+1)+'/5';[].forEach.call($('dots').children,function(e,j){e.className=j==k?'on':''});[].forEach.call(c.querySelectorAll('video'),function(v,j){if(j==k){v.muted=muted;v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})}
+$('car').addEventListener('scroll',function(){clearTimeout(window.__st);window.__st=setTimeout(sync,80)});
+$('pl').onclick=function(){var c=$('car');c.scrollTo({left:Math.max(0,idx-1)*c.clientWidth,behavior:'smooth'})};
+$('pr').onclick=function(){var c=$('car');c.scrollTo({left:Math.min(4,idx+1)*c.clientWidth,behavior:'smooth'})};
+$('snd').onclick=function(){muted=!muted;this.textContent=muted?'🔇':'🔊';[].forEach.call($('car').querySelectorAll('video'),function(v,j){v.muted=muted;if(j==idx&&!muted)v.play()})};
+$('x').onclick=close;$('post').addEventListener('click',function(e){if(e.target===this)close()});document.addEventListener('keydown',function(e){if(!$('post').classList.contains('open'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')$('pr').click();if(e.key=='ArrowLeft')$('pl').click()});
+render();
+</script></body></html>
