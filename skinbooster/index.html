@@ -1,0 +1,100 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>스킨부스터 3종 · 모션 카드뉴스 (연습)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#fafafa;font-family:Pretendard,-apple-system,sans-serif;color:#111}
+.wrap{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;border-left:1px solid #eee;border-right:1px solid #eee}
+.rep{padding:18px 16px 10px;border-bottom:1px solid #efefef}
+.rep h1{font-size:17px;font-weight:800;letter-spacing:-.4px}.rep p{font-size:12.5px;color:#737373;margin-top:4px;line-height:1.5}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;border-bottom:1px solid #efefef;scrollbar-width:none}
+.tabs button{flex:none;border:1px solid #dbdbdb;background:#fff;border-radius:99px;padding:8px 14px;font:600 13px Pretendard;cursor:pointer}
+.tabs button.on{background:#111;color:#fff;border-color:#111}
+.prof{display:flex;align-items:center;gap:18px;padding:18px 16px 8px}
+.av{width:78px;height:78px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);flex:none}
+.av div{width:100%;height:100%;border-radius:50%;border:3px solid #fff;background:#F0EEE9;display:flex;align-items:center;justify-content:center;font:800 20px Pretendard;color:#2F5BEA}
+.un{font-size:17px;font-weight:700}.st{display:flex;gap:18px;margin-top:8px;font-size:13px}.st b{font-weight:700}
+.bio{padding:4px 16px 12px;font-size:13px;line-height:1.5}.bio span{color:#737373}
+.gtabs{display:flex;border-top:1px solid #efefef}.gtabs div{flex:1;text-align:center;padding:12px 0;font-size:12px;font-weight:700;letter-spacing:1px;color:#737373}.gtabs .on{color:#111;border-top:1px solid #111;margin-top:-1px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.tile{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;background:#eee}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile svg{position:absolute;right:8px;top:8px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+.hint{padding:14px 16px 28px;font-size:12px;color:#8e8e8e;text-align:center}
+/* post */
+.post{position:fixed;inset:0;background:#fff;z-index:10;display:none;overflow-y:auto}
+.post.open{display:block}
+.pin{max-width:480px;margin:0 auto}
+.ph{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #efefef;position:sticky;top:0;background:#fff;z-index:2}
+.ph .sav{width:32px;height:32px;border-radius:50%;background:#F0EEE9;display:flex;align-items:center;justify-content:center;font:800 11px Pretendard;color:#2F5BEA;border:1px solid #eee}
+.ph b{font-size:14px}.ph small{display:block;font-size:11.5px;color:#737373}
+.x{margin-left:auto;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;padding:4px 8px}
+.media{position:relative}
+.car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;aspect-ratio:3/4;background:#000}
+.car::-webkit-scrollbar{display:none}
+.car video{flex:none;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;display:block}
+.cnt{position:absolute;right:12px;top:12px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;font-weight:600;padding:4px 9px;border-radius:99px}
+.snd{position:absolute;right:12px;bottom:12px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:14px;cursor:pointer}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.85);font-size:16px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.nav.l{left:10px}.nav.r{right:10px}
+.dots{display:flex;justify-content:center;gap:4px;padding:10px 0 4px}.dots i{width:6px;height:6px;border-radius:50%;background:#c7c7c7}.dots i.on{background:#0095f6}
+.acts{display:flex;gap:14px;padding:4px 14px 6px;font-size:22px}
+.cap{padding:2px 14px 30px;font-size:13.5px;line-height:1.55;white-space:pre-wrap;word-break:break-word}.cap b{font-weight:700}
+@media(hover:none) and (max-width:899px){.nav{display:none}}
+@media(min-width:900px){
+ html,body{background:#fff}
+ .wrap{max-width:1100px;border:0}
+ .rep{padding:34px 40px 18px;text-align:center}.rep h1{font-size:26px}.rep p{font-size:14.5px}
+ .tabs{justify-content:center;padding:16px 40px}.tabs button{font-size:15px;padding:10px 22px}
+ .prof{max-width:935px;margin:0 auto;gap:80px;padding:40px 60px 10px}
+ .av{width:150px;height:150px}.av div{font-size:38px;border-width:5px}
+ .un{font-size:22px}.st{font-size:16px;gap:34px;margin-top:18px}
+ .bio{max-width:935px;margin:0 auto;padding:0 60px 34px 290px;font-size:15px}
+ .gtabs{max-width:935px;margin:0 auto}
+ .grid{max-width:935px;margin:0 auto;gap:4px}
+ .hint{font-size:14px}
+ .post{background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:30px}
+ .post.open{display:flex}
+ .pin{max-width:none;width:auto;height:min(88vh,1000px);display:grid;grid-template-columns:auto 400px;grid-template-rows:auto 1fr auto auto;background:#fff;border-radius:6px;overflow:hidden}
+ .ph{grid-column:2;grid-row:1;position:static}
+ .media{grid-column:1;grid-row:1/5;height:min(88vh,1000px);aspect-ratio:3/4}
+ .car{height:100%;aspect-ratio:auto}
+ .cap{grid-column:2;grid-row:2;overflow-y:auto;padding:16px 18px;font-size:14.5px}
+ .dots{grid-column:2;grid-row:3;justify-content:flex-start;padding:10px 18px 0}
+ .acts{grid-column:2;grid-row:4;padding:10px 18px 18px;border-top:1px solid #efefef}
+ .nav{display:block!important;width:36px;height:36px;font-size:20px}
+ .x{position:fixed;right:26px;top:14px;color:#fff;font-size:40px}
+}
+</style></head><body><div class="wrap">
+<div class="rep"><h1>스킨부스터 3종 · 모션 카드뉴스 (연습)</h1><p>게시물을 누르면 인스타처럼 옆으로 넘겨 볼 수 있어요. 게시물마다 15초 영상 5장(음악·효과음 포함). 코드 모션(HTML/SVG/Canvas, 레퍼런스 기법 카드당 3개 이상) + Blender 3D(실물 제품·3D 키워드) + GPT 이미지. 0초부터 움직이고 15초 끝이 처음과 이어집니다.</p></div>
+<div class="tabs" id="tabs"></div>
+<div class="prof"><div class="av"><div>BB</div></div><div><div class="un" id="un"></div><div class="st"><div><b>3</b> 게시물</div><div><b>스킨부스터</b> 3종</div></div></div></div>
+<div class="bio"><b>뷰티블라썸의원 · Beauty Blossom Clinic</b><br><span id="bl"></span></div>
+<div class="gtabs"><div class="on">▦ 게시물</div><div>▶ 릴스</div><div>☺ 태그됨</div></div>
+<div class="grid" id="grid"></div>
+<div class="hint">왼쪽부터 1세트 · 2세트 · 3세트 (업로드는 3 → 2 → 1 순서)</div>
+</div>
+<div class="post" id="post"><div class="pin">
+ <div class="ph"><div class="sav">BB</div><div><b id="pu"></b><small id="pt"></small></div><button class="x" id="x" aria-label="닫기">×</button></div>
+ <div class="media"><div class="car" id="car"></div><div class="cnt" id="cnt">1/5</div><button class="snd" id="snd" aria-label="소리">🔇</button><button class="nav l" id="pl">‹</button><button class="nav r" id="pr">›</button></div>
+ <div class="dots" id="dots"></div>
+ <div class="acts">♡ &nbsp;💬 &nbsp;➤</div>
+ <div class="cap" id="cap"></div>
+</div></div>
+<script>
+var D=[{"code": "S", "label": "스킨부스터 3종 · 연습", "desc": "리쥬란 · 쥬베룩 · 스킨바이브", "acct": "beautyblossom_clinic", "sets": [{"cover": "c_S_1.png", "vids": ["v_S_1_1.mp4", "v_S_1_2.mp4", "v_S_1_3.mp4", "v_S_1_4.mp4", "v_S_1_5.mp4"], "cap": "홍대 스킨부스터, 리쥬란·쥬베룩·스킨바이브 성분 비교 | 합정 뷰티블라썸의원\n\n이름은 다 '스킨부스터'인데\n안에 든 성분은 셋 다 달라요.\n\nPN · 리쥬란 — 피부결·보습·재생 목적\nPLA + HA · 쥬베룩 — PLA 미세입자 + 히알루론산\nHA · 스킨바이브 — 리도카인을 담은 지속형 히알루론산 겔\n\n이름보다 성분부터 보면 고르기 쉬워져요.\n저장해 두고 비교해 보세요.\n\n📍 합정역 3번 출구 앞 · 접수 6층\n☎ 02-336-7511\n\n※ 성분 설명은 각 제품 안내 기준이에요. 시술 결과와 느낌, 유지 기간은 개인차가 있어요.\n※ 모델 사진은 연출 이미지예요.\n\n#홍대스킨부스터 #합정피부과 #리쥬란 #쥬베룩 #스킨바이브"}, {"cover": "c_S_2.png", "vids": ["v_S_2_1.mp4", "v_S_2_2.mp4", "v_S_2_3.mp4", "v_S_2_4.mp4", "v_S_2_5.mp4"], "cap": "홍대 스킨부스터 추천, 피부 고민별로 고르는 법 | 합정 뷰티블라썸의원\n\n화장이 들뜨고 결이 거칠다면 → 리쥬란(PN)\n탄력·모공이 신경 쓰인다면 → 쥬베룩 스킨(작은 입자)\n뺨 잔주름·거칠기가 고민이라면 → 스킨바이브(HA + 리도카인)\n\n고민이 겹친다면 상담에서 피부 두께와 컨디션을 먼저 보고 같이 정해요.\n\n📍 합정역 3번 출구 앞 · 접수 6층\n☎ 02-336-7511\n\n※ 시술 결과와 느낌, 유지 기간은 개인차가 있어요.\n※ 모델 사진은 연출 이미지예요.\n\n#홍대피부과 #스킨부스터추천 #리쥬란 #쥬베룩스킨 #스킨바이브"}, {"cover": "c_S_3.png", "vids": ["v_S_3_1.mp4", "v_S_3_2.mp4", "v_S_3_3.mp4", "v_S_3_4.mp4", "v_S_3_5.mp4"], "cap": "스킨부스터 시술 전 체크, 마취·회복·간격 | 홍대 합정 뷰티블라썸의원\n\n① 마취: 리쥬란 HB plus·스킨바이브는 리도카인 포함, 쥬베룩은 마취크림 도포 후 시술\n② 회복: 리쥬란 엠보싱·멍 대부분 3~5일, 쥬베룩 부기 1~3일 내, 스킨바이브 붓기·홍반 대부분 수일 내\n③ 간격: 리쥬란 초기 2~4주 간격, 쥬베룩 4주 간격 3회 이상, 스킨바이브 1회 약 6개월 유지 안내\n\n촬영·결혼식처럼 중요한 날이 있다면 날짜를 먼저 알려 주세요. 회복 기간까지 넣어 일정을 잡아요.\n알레르기나 복용 중인 약이 있다면 미리 말씀해 주세요.\n\n📍 합정역 3번 출구 앞 · 접수 6층\n☎ 02-336-7511\n\n※ 안내 기간은 각 제품 페이지 기준이며, 피부 두께·부위·주입량에 따라 개인차가 있어요.\n\n#홍대스킨부스터 #합정피부과 #리쥬란 #쥬베룩 #스킨바이브"}]}];
+var TT=["성분 비교", "고민별 매칭", "시술 전 준비"];
+var cur=0,muted=true,idx=0;
+function $(i){return document.getElementById(i)}
+function tabs(){var h='';D.forEach(function(d,i){h+='<button class="'+(i==cur?'on':'')+'" data-i="'+i+'">'+d.label+'</button>'});$('tabs').innerHTML=h;[].forEach.call($('tabs').children,function(b){b.onclick=function(){cur=+b.dataset.i;render()}})}
+function render(){tabs();var d=D[cur];$('un').textContent=d.acct;$('bl').textContent=d.desc+' · 합정역 3번 출구 바로 앞';var h='';d.sets.forEach(function(s,i){h+='<div class="tile" data-i="'+i+'"><img src="'+s.cover+'" alt="'+TT[i]+'" loading="lazy"><svg width="22" height="22" viewBox="0 0 24 24"><rect x="6" y="2" width="15" height="15" rx="3" fill="none" stroke="#fff" stroke-width="2"/><path d="M3 7v12a2 2 0 002 2h12" fill="none" stroke="#fff" stroke-width="2"/></svg></div>'});$('grid').innerHTML=h;[].forEach.call($('grid').children,function(t){t.onclick=function(){open(+t.dataset.i)}})}
+function open(i){var d=D[cur],s=d.sets[i];$('pu').textContent=d.acct;$('pt').textContent=d.label+' · '+(i+1)+'세트 '+TT[i];var h='';s.vids.forEach(function(v,k){h+='<video src="'+v+'" playsinline loop preload="'+(k<2?'auto':'metadata')+'" '+(muted?'muted':'')+'></video>'});$('car').innerHTML=h;$('car').scrollLeft=0;$('cap').innerHTML='<b>'+d.acct+'</b> '+s.cap;var dh='';for(var k=0;k<5;k++)dh+='<i></i>';$('dots').innerHTML=dh;$('post').classList.add('open');document.body.style.overflow='hidden';idx=-1;setTimeout(sync,50)}
+function close(){[].forEach.call($('car').querySelectorAll('video'),function(v){v.pause()});$('car').innerHTML='';$('post').classList.remove('open');document.body.style.overflow=''}
+function sync(){var c=$('car');var k=Math.round(c.scrollLeft/c.clientWidth);if(k===idx)return;idx=k;$('cnt').textContent=(k+1)+'/5';[].forEach.call($('dots').children,function(e,j){e.className=j==k?'on':''});[].forEach.call(c.querySelectorAll('video'),function(v,j){if(j==k){v.muted=muted;v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})}
+$('car').addEventListener('scroll',function(){clearTimeout(window.__st);window.__st=setTimeout(sync,80)});
+$('pl').onclick=function(){var c=$('car');c.scrollTo({left:Math.max(0,idx-1)*c.clientWidth,behavior:'smooth'})};
+$('pr').onclick=function(){var c=$('car');c.scrollTo({left:Math.min(4,idx+1)*c.clientWidth,behavior:'smooth'})};
+$('snd').onclick=function(){muted=!muted;this.textContent=muted?'🔇':'🔊';[].forEach.call($('car').querySelectorAll('video'),function(v,j){v.muted=muted;if(j==idx&&!muted)v.play()})};
+$('x').onclick=close;$('post').addEventListener('click',function(e){if(e.target===this)close()});document.addEventListener('keydown',function(e){if(!$('post').classList.contains('open'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')$('pr').click();if(e.key=='ArrowLeft')$('pl').click()});
+render();
+</script></body></html>
