@@ -1,0 +1,86 @@
+.review-editable [data-copy]{cursor:text}.review-editable [data-copy]:hover{outline:1px dashed #fff;background-color:#fffae622}.review-dialog{position:fixed;width:min(520px,92vw);max-width:92vw;border:1px solid #dfd4d9;border-radius:16px;padding:24px;color:#242026;background:#fff;box-shadow:0 18px 80px #0004;font:16px/1.6 Pretendard,sans-serif}.review-dialog::backdrop{background:#15101866}.review-dialog h2{font:700 20px/1.3 Pretendard,sans-serif;margin:0 0 16px}.review-dialog label{display:block}.review-dialog textarea{display:block;width:100%;min-height:130px;margin:8px 0 12px;padding:12px;border:1px solid #bdb4ba;border-radius:8px;font:16px/1.5 Pretendard,sans-serif;color:#202026;resize:vertical}.edit-info{font-size:13px;color:#6b5964;white-space:normal}.edit-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}.edit-actions button{padding:10px 18px;border-radius:8px;background:#fff;border:1px solid #c9bdc5;font:600 15px Pretendard,sans-serif;cursor:pointer}.edit-actions button:last-child{color:white;background:#9c285c;border-color:#9c285c}.edit-actions button:disabled{opacity:.5;cursor:wait}
+html:not([data-locale="KO"]) .hero-first,html:not([data-locale="KO"]) .hero-title,html:not([data-locale="KO"]) .hero-intro,html:not([data-locale="KO"]) .hero-intro-bold{max-width:87%}
+html:not([data-locale="KO"]) .pricing-first,html:not([data-locale="KO"]) .pricing-title{max-width:83%}
+html:not([data-locale="KO"]) .price-heading{max-width:88%}
+html:not([data-locale="KO"]) .item-name,html:not([data-locale="KO"]) .item-desc{max-width:42%}
+html:not([data-locale="KO"]) .quantity{max-width:18%}
+html:not([data-locale="KO"]) .old-price{width:17%;text-align:right;font-size:1.65cqw;right:18.4%;padding-right:.7cqw}
+html:not([data-locale="KO"]) .sale-price{max-width:18%;font-size:2.65cqw;letter-spacing:-.05cqw}
+html:not([data-locale="KO"]) .row-7 .item-name,html:not([data-locale="KO"]) .row-7 .item-desc{max-width:34%}
+html:not([data-locale="KO"]) .row-7 .quantity{max-width:25%}
+html:not([data-locale="KO"]) .quantity.multi span{max-width:100%}
+html:not([data-locale="KO"]) .booking-text{max-width:52%;font-size:1.35cqw}
+html:not([data-locale="KO"]) .booking-label{max-width:48%}
+html:not([data-locale="KO"]) .offer-seal>span{font-size:1.35cqw;line-height:1.12;overflow-wrap:anywhere}
+html[data-locale="JP"] body{font-family:'Yu Gothic','Meiryo',Pretendard,sans-serif}
+html[data-locale="CN"] body{font-family:'Microsoft YaHei',Pretendard,sans-serif}
+html[data-locale="TW"] body,html[data-locale="HK"] body{font-family:'Microsoft JhengHei',Pretendard,sans-serif}
+html[data-locale="TH"] body{font-family:Tahoma,Pretendard,sans-serif}
+
+@media(max-width:900px){
+ html,body{width:100%;min-width:0;overflow-x:hidden}
+ main{width:100%;max-width:none;margin:0}
+ .panel{container-type:normal;width:100%;height:auto;aspect-ratio:auto;overflow:hidden}
+ .hero{display:flex;flex-direction:column;min-height:0;padding:0 24px 32px;background:#8b2455}
+ .hero-photo{position:relative;inset:auto;width:calc(100% + 48px);height:clamp(360px,65vw,560px);margin:0 -24px;flex:none;object-fit:cover;object-position:center top}
+ .hero-shade{inset:0 0 auto;height:clamp(360px,65vw,560px);background:linear-gradient(180deg,transparent 48%,rgba(107,23,64,.18) 72%,#8b2455 100%)}
+ .brand{left:50%;top:18px;width:min(230px,35%);height:26px;transform:translateX(-50%)}
+ .period{right:18px;top:20px;font-size:16px;line-height:1.2}
+ .product-corner{left:-12px;top:0;width:min(310px,39%);height:190px}
+ .product-front{left:18px;top:clamp(240px,44vw,390px);width:min(310px,42%);height:120px;filter:drop-shadow(0 10px 16px rgba(41,12,58,.18))}
+ .benefit{border-radius:999px;font-size:15px;line-height:1.2;padding:10px 16px;white-space:normal}
+ .benefit-firm{left:auto;right:48%;top:clamp(180px,31vw,270px);min-width:0}
+ .benefit-line{right:5%;top:clamp(250px,43vw,375px);min-width:0}
+ .face-focus{left:48%;top:clamp(150px,25vw,220px);width:105px;height:82px}
+ .face-focus i{width:13px;height:13px}.face-focus i:nth-child(1){border-width:2px 0 0 2px}.face-focus i:nth-child(2){border-width:2px 2px 0 0}.face-focus i:nth-child(3){border-width:0 0 2px 2px}.face-focus i:nth-child(4){border-width:0 2px 2px 0}.face-focus b{width:16px;height:16px}.face-focus b:before,.face-focus b:after{width:2px}
+ .hero-first,.hero-title,.hero-intro,.hero-intro-bold,.pricing-first,.pricing-title{position:relative;left:auto;top:auto;width:auto;max-width:none!important;white-space:normal;overflow-wrap:anywhere;z-index:2}
+ .hero-first{margin-top:26px;font-size:clamp(30px,5.2vw,40px);line-height:1.18;letter-spacing:-.5px}
+ .hero-title{margin-top:4px;font-size:clamp(42px,7vw,58px);line-height:1.12;letter-spacing:0}
+ .hero-intro{margin-top:22px;font-size:18px;line-height:1.42;letter-spacing:0}
+ .hero-intro-bold{margin-top:3px;font-size:20px;line-height:1.38;letter-spacing:0}
+ .contact{position:relative;left:auto;bottom:auto;width:100%;margin-top:30px;font-size:16px;line-height:1.4;white-space:normal;z-index:2}
+ .pricing{min-height:0;padding:clamp(245px,39vw,330px) 20px 38px;background:linear-gradient(160deg,#912552 0%,#a32b64 42%,#7e174d 100%)}
+ .pricing-photo{left:0;top:0;width:100%;height:clamp(235px,37vw,315px);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 95%,transparent)}
+ .pricing-photo img{left:28%;top:-5%;width:78%;height:auto}
+ .pricing-light{background:radial-gradient(ellipse at 2% 16%,rgba(255,235,241,.9),transparent 35%),radial-gradient(ellipse at 98% 82%,rgba(255,211,226,.9),transparent 24%)}
+ .pricing .product-corner{width:min(240px,31%);height:165px}
+ .pricing-first{font-size:clamp(28px,4.5vw,38px);line-height:1.2;letter-spacing:0;text-shadow:0 2px 3px rgba(76,10,43,.95),0 0 16px rgba(76,10,43,.78)}
+ .pricing-title{margin-top:4px;font-size:clamp(38px,6vw,52px);line-height:1.14;letter-spacing:0}
+ .price-card{position:relative;left:auto;top:auto;width:100%;height:auto;margin-top:24px;padding:22px 18px 10px;border-radius:24px}
+ .price-heading{position:relative;left:auto;top:auto;max-width:none!important;margin:0 0 8px;font-size:18px;line-height:1.4;white-space:normal}
+ .price-row,.row-1,.row-2,.row-3,.row-4,.row-5,.row-6,.row-7{position:relative;left:auto;right:auto;top:auto;width:100%;height:auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'name old' 'desc sale' 'qty sale';column-gap:18px;row-gap:7px;padding:16px 2px;border-bottom:1px solid #f1e5ea;align-items:start}
+ .row-7{border-bottom:0;padding-bottom:18px}
+ .item-name,.row-7 .item-name{position:relative;left:auto;top:auto;grid-area:name;max-width:none!important;font-size:18px;line-height:1.3;letter-spacing:0;white-space:normal;overflow-wrap:anywhere}
+ .item-desc,.row-7 .item-desc{position:relative;left:auto;top:auto;grid-area:desc;max-width:none!important;font-size:15px;line-height:1.42;letter-spacing:0;color:#59525b;white-space:normal;overflow-wrap:anywhere}
+ .quantity,.quantity.multi,.row-7 .quantity{position:relative;left:auto;top:auto;grid-area:qty;max-width:none!important;font-size:16px;line-height:1.42;letter-spacing:0;white-space:normal;overflow-wrap:anywhere}
+ .quantity.multi span,.row-7 .quantity span{white-space:normal}
+ .old-price,.row-7 .old-price{position:relative;right:auto;top:auto;grid-area:old;align-self:start;justify-self:end;padding-right:12px;font-size:16px;line-height:1.3;letter-spacing:0;white-space:nowrap}
+ .old-price:after{right:0;top:27%;border-top-width:5px;border-bottom-width:5px;border-left-width:7px}
+ .sale-price,.row-7 .sale-price{position:relative;right:auto;top:auto;grid-area:sale;align-self:center;justify-self:end;max-width:none!important;font-size:clamp(28px,4vw,34px);line-height:1.05;letter-spacing:-.5px;white-space:nowrap}
+ .sale-price .unit{font-size:16px;letter-spacing:-.5px}
+ .offer-seal{right:18px;top:clamp(170px,26vw,220px);width:100px}
+ .offer-seal>span,html:not([data-locale="KO"]) .offer-seal>span{font-size:12px;line-height:1.12}
+ .offer-seal .seal-line{font-size:12px}.offer-seal .seal-line:last-child{font-size:14px}.offer-seal .seal-line.seal-strong{font-size:17px}
+ .vat{position:relative;right:auto;top:auto;margin:12px 4px 0;text-align:right;font-size:15px;line-height:1.3;white-space:normal}
+ .booking-card{position:relative;left:auto;top:auto;width:100%;height:auto;min-height:132px;margin-top:18px;padding:18px;display:grid;grid-template-columns:76px minmax(0,1fr);grid-template-areas:'qr label' 'qr text' 'mark mark';gap:9px 16px;border-radius:14px}
+ .qr-link{position:relative;left:auto;top:auto;grid-area:qr;width:76px;height:76px;border-radius:6px}
+ .booking-label{position:relative;left:auto;top:auto;grid-area:label;align-self:end;width:max-content;max-width:100%;padding:8px 16px;border-radius:999px;font-size:15px;line-height:1.2;white-space:normal}
+ .booking-text,html:not([data-locale="KO"]) .booking-text{position:relative;left:auto;top:auto;grid-area:text;max-width:none!important;font-size:15px;line-height:1.42;white-space:normal;overflow-wrap:anywhere}
+ .aptos-mark{position:relative;right:auto;top:auto;grid-area:mark;justify-self:end;width:min(190px,42%);height:30px;object-fit:contain}
+ .pricing>.contact{margin-top:24px}
+ html:not([data-locale="KO"]) .hero-first,html:not([data-locale="KO"]) .hero-title,html:not([data-locale="KO"]) .hero-intro,html:not([data-locale="KO"]) .hero-intro-bold,html:not([data-locale="KO"]) .pricing-first,html:not([data-locale="KO"]) .pricing-title,html:not([data-locale="KO"]) .price-heading,html:not([data-locale="KO"]) .item-name,html:not([data-locale="KO"]) .item-desc,html:not([data-locale="KO"]) .quantity,html:not([data-locale="KO"]) .sale-price,html:not([data-locale="KO"]) .booking-text,html:not([data-locale="KO"]) .booking-label{max-width:none}
+ html:not([data-locale="KO"]) .old-price{width:auto;right:auto;padding-right:12px;font-size:16px}
+ html:not([data-locale="KO"]) .sale-price{font-size:clamp(28px,4vw,34px);letter-spacing:-.5px}
+}
+@media(max-width:520px){
+ .hero{padding-left:20px;padding-right:20px}.hero-photo{width:calc(100% + 40px);margin-left:-20px;margin-right:-20px}
+ .brand{left:51%;width:34%;height:22px}.period{right:12px;top:16px;font-size:14px}.product-corner{width:42%;height:140px}.product-front{left:10px;top:250px;width:46%;height:100px}
+ .benefit{font-size:14px;padding:8px 12px}.benefit-firm{right:43%;top:180px}.benefit-line{right:4%;top:265px}.face-focus{left:49%;top:148px;width:82px;height:66px}
+ .hero-first{font-size:30px}.hero-title{font-size:42px}.hero-intro{font-size:17px}.hero-intro-bold{font-size:19px}
+ .pricing{padding:245px 14px 32px}.pricing-photo{height:235px}.pricing-photo img{left:12%;width:100%}.pricing .product-corner{width:36%;height:130px}.offer-seal{right:8px;top:160px;width:100px}.offer-seal>span{width:78%}
+ .pricing-first{font-size:28px}.pricing-title{font-size:38px}
+ .price-card{padding:20px 14px 8px;border-radius:20px}
+ .price-row,.row-1,.row-2,.row-3,.row-4,.row-5,.row-6,.row-7{grid-template-columns:1fr;grid-template-areas:'name' 'desc' 'qty' 'old' 'sale';row-gap:6px;padding:17px 0}
+ .old-price,.row-7 .old-price,.sale-price,.row-7 .sale-price{justify-self:end}
+ .booking-card{grid-template-columns:68px minmax(0,1fr);padding:16px;gap:8px 12px}.qr-link{width:68px;height:68px}.aptos-mark{width:48%}
+}
