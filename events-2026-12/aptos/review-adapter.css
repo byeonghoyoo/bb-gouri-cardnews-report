@@ -4,8 +4,8 @@ html:not([data-locale="KO"]) .pricing-first,html:not([data-locale="KO"]) .pricin
 html:not([data-locale="KO"]) .price-heading{max-width:88%}
 html:not([data-locale="KO"]) .item-name,html:not([data-locale="KO"]) .item-desc{max-width:42%}
 html:not([data-locale="KO"]) .quantity{max-width:18%}
-html:not([data-locale="KO"]) .old-price{width:17%;text-align:right;font-size:1.65cqw;right:18.4%;padding-right:.7cqw}
-html:not([data-locale="KO"]) .sale-price{max-width:18%;font-size:2.65cqw;letter-spacing:-.05cqw}
+html:not([data-locale="KO"]) .old-price{width:34%;text-align:right;font-size:1.65cqw;right:0;top:6%;padding-right:.7cqw}
+html:not([data-locale="KO"]) .sale-price{width:34%;max-width:34%;right:0;top:44%;font-size:28px!important;letter-spacing:-.05cqw;text-align:right}
 html:not([data-locale="KO"]) .row-7 .item-name,html:not([data-locale="KO"]) .row-7 .item-desc{max-width:34%}
 html:not([data-locale="KO"]) .row-7 .quantity{max-width:25%}
 html:not([data-locale="KO"]) .quantity.multi span{max-width:100%}
@@ -70,7 +70,7 @@ html[data-locale="TH"] body{font-family:Tahoma,Pretendard,sans-serif}
  .pricing>.contact{margin-top:24px}
  html:not([data-locale="KO"]) .hero-first,html:not([data-locale="KO"]) .hero-title,html:not([data-locale="KO"]) .hero-intro,html:not([data-locale="KO"]) .hero-intro-bold,html:not([data-locale="KO"]) .pricing-first,html:not([data-locale="KO"]) .pricing-title,html:not([data-locale="KO"]) .price-heading,html:not([data-locale="KO"]) .item-name,html:not([data-locale="KO"]) .item-desc,html:not([data-locale="KO"]) .quantity,html:not([data-locale="KO"]) .sale-price,html:not([data-locale="KO"]) .booking-text,html:not([data-locale="KO"]) .booking-label{max-width:none}
  html:not([data-locale="KO"]) .old-price{width:auto;right:auto;padding-right:12px;font-size:16px}
- html:not([data-locale="KO"]) .sale-price{font-size:clamp(28px,4vw,34px);letter-spacing:-.5px}
+ html:not([data-locale="KO"]) .sale-price{width:auto;font-size:clamp(28px,4vw,34px)!important;letter-spacing:-.5px}
 }
 @media(max-width:520px){
  .hero{padding-left:20px;padding-right:20px}.hero-photo{width:calc(100% + 40px);margin-left:-20px;margin-right:-20px}

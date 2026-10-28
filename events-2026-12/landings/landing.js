@@ -14,7 +14,7 @@
   var ASSET_LOGO = '../aptos/assets/brand.png'; // compatibility mirror of assets/brand/wordmark-coral.png
   var ASSET_EMBLEM = '../assets/brand/emblem-pink.png';
   var ASSET_QR = '../aptos/assets/reservation-qr.png';
-  var ALLOWED = /^(?:title|subtitle|body|heroEyebrow|brand|location|contact|booking_title|booking_text|currency|price_heading|alt_hero|condition2|condition3|offer[1-5]_(?:title|detail|price|vat))$/;
+  var ALLOWED = /^(?:title|subtitle|body|heroEyebrow|brand|location|contact|booking_title|booking_text|currency|price_heading|alt_hero|condition2|condition3|story_(?:question|title|body)|feature[1-3]_(?:title|body)|guide_(?:title|body)|care_(?:title|intro)|care[1-5]_(?:title|body)|cta_title|offer[1-5]_(?:title|detail|price|vat))$/;
   var REQUIRED = ['brand', 'title', 'subtitle', 'body', 'heroEyebrow', 'currency', 'contact', 'booking_title', 'booking_text', 'alt_hero'];
   var LAYOUTS = { lifting: 'rows', winter: 'trio', booster: 'quad', pore: 'steps', toning: 'visits', exam: 'exam' };
 
@@ -38,13 +38,26 @@
     return out;
   }
 
+  function v2Asset(src) {
+    return typeof src === 'string' && /^assets\/[A-Za-z0-9_./-]+\.(?:avif|webp|png|jpe?g)$/i.test(src) && src.indexOf('..') < 0 ? '../' + src : null;
+  }
+
   function offerImagesFor(item, n) {
     var map = item && item.offerImages;
     var raw = map && map[String(n)];
     var list = Array.isArray(raw) ? raw : typeof raw === 'string' ? [raw] : [];
-    return list.filter(function (src) {
-      return typeof src === 'string' && /^assets\/[A-Za-z0-9_./-]+\.(?:avif|webp|png|jpe?g)$/i.test(src) && src.indexOf('..') < 0;
-    }).slice(0, 2).map(function (src) { return '../' + src; });
+    return list.map(v2Asset).filter(Boolean).slice(0, 2);
+  }
+
+  function productsFor(item) {
+    var list = item && item.v2 && Array.isArray(item.v2.products) ? item.v2.products : [];
+    return list.filter(function (p) { return p && typeof p.name === 'string' && p.name.trim() && v2Asset(p.src); })
+      .map(function (p) { return { name: p.name, src: v2Asset(p.src) }; });
+  }
+
+  function miriAsset(item, key) {
+    var miri = item && item.v2 && item.v2.miri;
+    return miri && Object.prototype.hasOwnProperty.call(miri, key) ? v2Asset(miri[key]) : null;
   }
 
   function clampFrameHeight(value) {
@@ -144,7 +157,7 @@
     }
 
     /* ---- build ---- */
-    function signature() { return Object.keys(st.fields).sort().join('|') + '#' + (st.item.image || '') + '#' + JSON.stringify(st.item.offerImages || {}) + '#' + st.item.theme; }
+    function signature() { return Object.keys(st.fields).sort().join('|') + '#' + (st.item.image || '') + '#' + JSON.stringify(st.item.offerImages || {}) + '#' + JSON.stringify(st.item.v2 || {}) + '#' + st.item.theme; }
 
     function slot(tag, key, cls) {
       if (!(key in st.fields) && REQUIRED.indexOf(key) < 0 && !/^offer[1-5]_(title|price)$/.test(key)) return null;
@@ -152,8 +165,8 @@
       st.copyEls.push(el);
       return el;
     }
-    function img(src, cls, altKey) {
-      var el = H('img', { class: cls, src: src, 'data-alt': altKey });
+    function img(src, cls, altKey, literalAlt) {
+      var el = H('img', { class: cls, src: src, 'data-alt': altKey, 'data-alt-literal': literalAlt || null });
       st.altEls.push(el);
       return el;
     }
@@ -168,7 +181,7 @@
 
     function build() {
       st.copyEls = []; st.altEls = []; st.linkEls = []; st.photo = null; st.imageProblem = null;
-      var f = st.fields; var offers = collectOffers(f); var it = st.item;
+      var f = st.fields; var offers = collectOffers(f); var it = st.item; var layout = layoutFor(it.theme);
       var figure = H('figure', { class: 'hero-figure' });
       st.missingBox = H('div', { class: 'image-missing', role: 'alert', hidden: true });
       if (it.image) {
@@ -184,16 +197,47 @@
         H('div', { class: 'rep' }, [slot('span', 'offer' + first + '_title', 'rep-name'), priceBlock(first, 'rep-price')]),
       ]);
       var heroMedia = H('div', { class: 'hero-media' }, [
-        H('span', { class: 'photo-index', 'aria-hidden': 'true' }),
-        figure,
+        H('span', { class: 'photo-index', 'aria-hidden': 'true' }), figure,
         H('span', { class: 'photo-rule', 'aria-hidden': 'true' }),
       ]);
       var hero = H('section', { class: 'panel hero' }, [
         H('header', { class: 'topbar' }, [img(ASSET_LOGO, 'logo', 'brand'), slot('span', 'heroEyebrow', 'eyebrow')]),
         H('div', { class: 'hero-stage' }, [heroCopy, heroMedia]),
       ]);
-      var grid = H('div', { class: 'offer-grid count-' + offers.length }, offers.map(function (o) {
-        var sources = offerImagesFor(it, o.n);
+
+      var products = productsFor(it);
+      if (!products.length) offers.forEach(function (o) {
+        offerImagesFor(it, o.n).forEach(function (src) {
+          if (!products.some(function (p) { return p.src === src; })) products.push({ name: f['offer' + o.n + '_title'] || '', src: src, altKey: 'offer' + o.n + '_title' });
+        });
+      });
+      var productGallery = H('div', { class: 'product-gallery' }, products.map(function (p, index) {
+        var shot = img(p.src, 'product-shot product-shot-' + (index + 1), p.altKey || 'alt_hero', p.name);
+        shot.addEventListener('load', scheduleSize);
+        shot.addEventListener('error', function () { shot.hidden = true; scheduleSize(); });
+        return H('figure', { class: 'product-figure' }, [shot]);
+      }));
+      var features = [];
+      for (var featureN = 1; featureN <= 3; featureN++) {
+        var ft = 'feature' + featureN + '_title'; var fb = 'feature' + featureN + '_body';
+        if (ft in f || fb in f) features.push(H('article', { class: 'feature-chip feature-' + featureN }, [slot('h3', ft, 'feature-title'), slot('p', fb, 'feature-body')]));
+      }
+      var miriKeys = ['seal', 'bubble', 'note', 'tape', 'winterType', 'examType'];
+      var miri = H('div', { class: 'miri-layer', 'aria-hidden': 'true' }, miriKeys.map(function (key) {
+        var src = miriAsset(it, key); return src ? img(src, 'miri miri-' + key, 'title') : null;
+      }));
+      var story = H('section', { class: 'panel story-intro' }, [
+        miri,
+        H('header', { class: 'story-copy' }, [slot('p', 'story_question', 'story-question'), slot('h2', 'story_title', 'story-title'), slot('p', 'story_body', 'story-body')]),
+        H('div', { class: 'product-stage' }, [productGallery, H('div', { class: 'feature-orbit' }, features)]),
+        H('div', { class: 'summary-strip' }, [
+          'guide_title' in f ? slot('strong', 'guide_title', 'guide-title') : null,
+          'guide_body' in f ? slot('p', 'guide_body', 'guide-body') : null,
+        ]),
+      ]);
+
+      function offerCard(o, suppressMedia) {
+        var sources = suppressMedia ? [] : offerImagesFor(it, o.n);
         var media = sources.length ? H('figure', { class: 'offer-media image-count-' + sources.length }, sources.map(function (src) {
           var visual = img(src, 'offer-visual', 'offer' + o.n + '_title');
           visual.addEventListener('load', scheduleSize);
@@ -204,16 +248,95 @@
           });
           return visual;
         })) : null;
-        return H('div', { class: 'offer', 'data-n': String(o.n) }, [
+        return H('article', { class: 'offer price-panel', 'data-n': String(o.n) }, [
           media,
-          slot('h3', 'offer' + o.n + '_title', 'offer-title'),
-          'offer' + o.n + '_detail' in f ? slot('p', 'offer' + o.n + '_detail', 'offer-detail') : null,
-          priceBlock(o.n, 'price'),
+          H('div', { class: 'offer-copy' }, [slot('h3', 'offer' + o.n + '_title', 'offer-title'), 'offer' + o.n + '_detail' in f ? slot('p', 'offer' + o.n + '_detail', 'offer-detail') : null]),
+          priceBlock(o.n, 'price price-amount'),
         ]);
-      }));
-      var offerPanel = H('section', { class: 'panel offers' }, [
-        'price_heading' in f ? slot('h2', 'price_heading', 'price-heading') : null, grid,
-      ]);
+      }
+      var sharedWinterMedia = null;
+      if (layout === 'trio' && products.length) {
+        var sharedWinterVisual = img(products[0].src, 'offer-visual', products[0].altKey || 'alt_hero', products[0].name);
+        sharedWinterVisual.addEventListener('load', scheduleSize);
+        sharedWinterVisual.addEventListener('error', function () { sharedWinterVisual.hidden = true; scheduleSize(); });
+        sharedWinterMedia = H('figure', { class: 'winter-shared-product' }, [sharedWinterVisual]);
+      }
+      var offerCards = offers.map(function (o) { return offerCard(o, layout === 'trio'); }); var structure;
+      if (layout === 'rows') structure = H('div', { class: 'pairing-map offer-grid count-' + offers.length }, offerCards);
+      else if (layout === 'trio') structure = H('div', { class: 'winter-counts offer-grid count-' + offers.length }, offerCards);
+      else if (layout === 'quad') structure = H('div', { class: 'vial-scale offer-grid count-' + offers.length }, offerCards);
+      else if (layout === 'steps') structure = H('div', { class: 'device-branches offer-grid count-' + offers.length }, offerCards);
+      else if (layout === 'visits') structure = H('div', { class: 'visit-track offer-grid count-' + offers.length }, offerCards);
+      else structure = H('div', { class: 'exam-notebook offer-grid count-' + offers.length }, offerCards);
+      var offerPanel = H('section', { class: 'panel offers' }, ['price_heading' in f ? slot('h2', 'price_heading', 'price-heading') : null, sharedWinterMedia, structure]);
+
+      var guide = ('guide_title' in f || 'guide_body' in f) ? H('section', { class: 'panel guide-section' }, [
+        slot('h2', 'guide_title', 'guide-heading'), slot('p', 'guide_body', 'guide-copy'),
+      ]) : null;
+
+      function careVisuals(max, filter) {
+        var list = products.slice();
+        if (filter) {
+          var matched = list.filter(filter);
+          if (matched.length) list = matched;
+        }
+        return H('div', { class: 'care-visuals' }, list.slice(0, max).map(function (p, index) {
+          var visual = img(p.src, 'care-visual care-visual-' + (index + 1), p.altKey || 'alt_hero', p.name);
+          visual.addEventListener('load', scheduleSize);
+          visual.addEventListener('error', function () { visual.hidden = true; scheduleSize(); });
+          return visual;
+        }));
+      }
+      function careEntry(n, cls, tag) {
+        return H(tag || 'article', { class: cls, 'data-step': String(n) }, [
+          slot('h3', 'care' + n + '_title', 'care-item-title'),
+          slot('p', 'care' + n + '_body', 'care-item-body'),
+        ]);
+      }
+      var careCount = layout === 'trio' ? 5 : 3;
+      var careEntries = [];
+      for (var careN = 1; careN <= careCount; careN++) careEntries.push(careN);
+      var careBody;
+      if (layout === 'rows') {
+        careBody = H('div', { class: 'care-layout care-units' }, [
+          careVisuals(4),
+          H('div', { class: 'care-unit-list' }, careEntries.map(function (n) { return careEntry(n, 'care-unit'); })),
+        ]);
+      } else if (layout === 'trio') {
+        careBody = H('div', { class: 'care-layout care-track-five' }, [
+          H('ol', { class: 'care-step-track' }, careEntries.map(function (n) { return careEntry(n, 'care-step', 'li'); })),
+          H('aside', { class: 'care-product-point' }, [careVisuals(1)]),
+        ]);
+      } else if (layout === 'quad') {
+        careBody = H('div', { class: 'care-layout care-consult-notes' }, [
+          H('aside', { class: 'care-product-rack' }, [careVisuals(3)]),
+          H('div', { class: 'care-note-stack' }, careEntries.map(function (n) { return careEntry(n, 'care-note'); })),
+        ]);
+      } else if (layout === 'steps') {
+        careBody = H('div', { class: 'care-layout care-option-checks' }, [
+          careVisuals(1, function (p) { return /JUVELOOK/i.test(p.name); }),
+          H('ul', { class: 'care-option-list' }, careEntries.map(function (n) { return careEntry(n, 'care-option', 'li'); })),
+        ]);
+      } else if (layout === 'visits') {
+        careBody = H('div', { class: 'care-layout care-life-memos' }, [
+          H('div', { class: 'care-equipment-ribbon' }, [careVisuals(2)]),
+          H('div', { class: 'care-memo-list' }, careEntries.map(function (n) { return careEntry(n, 'care-memo'); })),
+        ]);
+      } else {
+        careBody = H('div', { class: 'care-layout care-exam-order' }, [
+          H('ol', { class: 'care-exam-list' }, careEntries.map(function (n) { return careEntry(n, 'care-exam-step', 'li'); })),
+          H('aside', { class: 'care-exam-stamp' }, [careVisuals(1)]),
+        ]);
+      }
+      var care = ('care_title' in f || 'care_intro' in f) ? H('section', { class: 'panel care-section' }, [
+        H('header', { class: 'care-header' }, [slot('h2', 'care_title', 'care-title'), slot('p', 'care_intro', 'care-intro')]),
+        careBody,
+      ]) : null;
+      var ctaKey = 'cta_title' in f ? 'cta_title' : 'booking_title';
+      var ctaLink = link(slot('a', 'booking_title', 'v2-cta-link'), 'booking');
+      ctaLink.setAttribute('target', '_blank'); ctaLink.setAttribute('rel', 'noopener noreferrer');
+      var cta = H('section', { class: 'panel v2-cta' }, [slot('h2', ctaKey, 'cta-title'), ctaLink]);
+
       var conds = ['condition2', 'condition3'].filter(function (k) { return k in f; });
       var qr = link(H('a', { class: 'qr-link', target: '_blank', rel: 'noopener noreferrer' }, [img(ASSET_QR, 'qr', 'booking_title')]), 'booking');
       var bookingTitle = link(slot('a', 'booking_title', 'booking-title'), 'booking');
@@ -225,7 +348,7 @@
         link(slot('a', 'contact', 'contact'), 'phone'),
         H('div', { class: 'foot-brand' }, [img(ASSET_EMBLEM, 'foot-emblem', 'brand')]),
       ]);
-      var page = H('div', { class: 'landing', 'data-item': it.id, 'data-theme': it.theme || '', 'data-layout': layoutFor(it.theme) }, [hero, offerPanel, info]);
+      var page = H('main', { class: 'landing', 'data-item': it.id, 'data-theme': it.theme || '', 'data-layout': layout }, [hero, story, offerPanel, guide, care, cta, info]);
       st.page = page; st.sig = signature();
       ui.root.replaceChildren(ui.errorHost, page, ui.dialog);
       if (!it.image) { st.imageProblem = 'item.image 경로가 없습니다 (이미지 누락)'; showMissing('item.image 경로가 없습니다.'); }
@@ -260,7 +383,7 @@
         else el.textContent = typeof v === 'string' ? v : '';
         if (st.editable) el.setAttribute('title', '더블클릭하여 수정'); else el.removeAttribute('title');
       });
-      st.altEls.forEach(function (el) { el.alt = st.fields[el.getAttribute('data-alt')] || ''; });
+      st.altEls.forEach(function (el) { el.alt = el.getAttribute('data-alt-literal') || st.fields[el.getAttribute('data-alt')] || ''; });
       st.linkEls.forEach(function (el) { var href = st.links[el.getAttribute('data-link')]; if (href) el.setAttribute('href', href); else el.removeAttribute('href'); });
       if (typeof st.fields.title === 'string') doc.title = st.fields.title;
       renderBanner(problems());
@@ -385,6 +508,7 @@
 
   return {
     isAllowedField: isAllowedField, parseQuery: parseQuery, layoutFor: layoutFor, collectOffers: collectOffers,
-    offerImagesFor: offerImagesFor, clampFrameHeight: clampFrameHeight, missingFields: missingFields, createLanding: createLanding, boot: boot,
+    offerImagesFor: offerImagesFor, productsFor: productsFor, v2Asset: v2Asset, miriAsset: miriAsset,
+    clampFrameHeight: clampFrameHeight, missingFields: missingFields, createLanding: createLanding, boot: boot,
   };
 });

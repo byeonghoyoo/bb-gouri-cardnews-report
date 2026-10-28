@@ -1,5 +1,6 @@
 (()=>{'use strict';
-let fields={...window.LANDING_COPY.text}, locale='KO', editable=false, editField=null, pending=false, tapEdit=false, lastHeight=0;
+const STORY_KEYS=['story_question','story_title','story_body','feature1_title','feature1_body','feature2_title','feature2_body','feature3_title','feature3_body','guide_title','guide_body','cta_title','care_title','care_intro','care1_title','care1_body','care2_title','care2_body','care3_title','care3_body'];
+let fields={...window.LANDING_COPY.text,...Object.fromEntries(STORY_KEYS.map(key=>[key,'']))}, locale='KO', editable=false, editField=null, pending=false, tapEdit=false, lastHeight=0;
 const languages={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
 const dlg=document.createElement('dialog');dlg.className='review-dialog';
 const form=document.createElement('form');form.method='dialog';
@@ -46,6 +47,9 @@ function render(){
  const seal=document.querySelector('[data-copy="badge"]'),parts=fields.badge.match(/^(\S+ )(.*% )(\S+)$/);
  if(parts){seal.replaceChildren();for(let i=1;i<parts.length;i++){const line=document.createElement('span');line.className='seal-line'+(i===2?' seal-strong':'');line.textContent=parts[i];seal.append(line);}}
  }
+ for(const el of document.querySelectorAll('.optional-copy'))el.classList.toggle('is-empty',!String(fields[el.dataset.copy]??'').trim());
+ for(const section of document.querySelectorAll('.optional-section'))section.hidden=![...section.querySelectorAll('.optional-copy')].some(el=>!el.classList.contains('is-empty'));
+ document.documentElement.classList.toggle('has-v2-story',STORY_KEYS.some(key=>String(fields[key]??'').trim()));
  document.title=fields.title_main||'NAMICA';
  requestAnimationFrame(()=>{fit();reportSize();});document.fonts.ready.then(()=>{fit();reportSize();});
  document.documentElement.dataset.reviewReady='true';
@@ -60,7 +64,7 @@ window.addEventListener('message',event=>{
  if(event.source !== parent||event.origin!==location.origin)return;
  const msg=event.data;if(!msg||typeof msg!=='object')return;
  if(msg.type==='aptos-data'&&languages[msg.locale]&&msg.fields&&typeof msg.fields==='object'){
-  for(const key of Object.keys(window.LANDING_COPY.text))if(typeof msg.fields[key]==='string')fields[key]=msg.fields[key];
+  for(const key of [...Object.keys(window.LANDING_COPY.text),...STORY_KEYS])if(typeof msg.fields[key]==='string')fields[key]=msg.fields[key];
   locale=msg.locale;editable=msg.editable===true;tapEdit=msg.editMode===true;render();
  }else if(msg.type==='aptos-save-result'&&msg.field===editField){
   pending=false;save.disabled=false;cancel.disabled=false;
