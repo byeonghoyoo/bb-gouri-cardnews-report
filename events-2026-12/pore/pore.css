@@ -52,6 +52,8 @@ h1,h2,h3,.check-note,.route-note,.notes p{text-wrap:balance}
 .eyebrow span{display:inline-block;border:max(1.5px,calc(2*var(--px))) solid var(--mint);color:var(--mint-l);border-radius:999px;padding:.32em .95em;font-weight:700;font-size:max(12px,calc(19*var(--px)))}
 .type{display:inline-block;margin-top:calc(28*var(--px));background:#fff;padding:calc(12*var(--px)) calc(18*var(--px)) calc(9*var(--px));box-shadow:calc(8*var(--px)) calc(8*var(--px)) 0 rgba(95,191,159,.55)}
 .type-img{width:calc(430*var(--px))}
+/* Miricanvas ruler sits under the type inside the white label (dark ticks need a light ground) */
+.type .ruler{position:static;display:block;width:calc(430*var(--px));margin-top:calc(8*var(--px))}
 .type-fallback{display:block;font-family:var(--f-mono);font-weight:600;letter-spacing:.14em;color:var(--ink);font-size:max(15px,calc(36*var(--px)));line-height:1.15;
   background:linear-gradient(transparent 60%,rgba(95,191,159,.42) 60%,rgba(95,191,159,.42) 94%,transparent 94%);padding:0 .1em}
 .title{margin-top:calc(30*var(--px));font-family:var(--f-serif);color:#fff;font-weight:600;line-height:1.14}
@@ -251,6 +253,7 @@ html[data-locale=TH] .sum-title,html[data-locale=TH] .sec-title,html[data-locale
   .cover-grid{grid-template-columns:1fr;row-gap:30px;margin-top:24px}
   .type{margin-top:18px;padding:8px 12px 6px;box-shadow:5px 5px 0 rgba(95,191,159,.55)}
   .type-img{width:min(100%,280px)}
+  .type .ruler{width:min(100%,280px);margin-top:5px}
   .title{margin-top:20px}
   .lead{max-width:none}
   .cover-photo{--fp:10px;--iw:calc(100cqw - 36px - 20px);justify-self:center}
@@ -261,15 +264,16 @@ html[data-locale=TH] .sum-title,html[data-locale=TH] .sec-title,html[data-locale
   .sec{padding:60px 18px}
   .check{padding-top:66px}
   .sec-head{gap:12px}
-  .check-grid{grid-template-columns:1fr;gap:40px;margin-top:28px}
+  .check-grid{grid-template-columns:1fr;gap:66px;margin-top:28px}
   .map{width:84%;justify-self:center;padding:8px;box-shadow:-9px 9px 0 var(--mint-p),0 10px 22px rgba(23,54,46,.14)}
   .map-grid{inset:8px}
   .map-label{left:16px;top:16px}
-  .loupe-ic{width:70px;right:-22px;bottom:-24px}
+  /* phone: the loupe moves to the left so it never meets the CHECKED stamp on the sheet below */
+  .loupe-ic{width:70px;left:-20px;right:auto;bottom:-26px}
   .check-sheet{padding:20px 18px 22px;box-shadow:8px 8px 0 var(--mint)}
   .checks li{grid-template-columns:18px 26px minmax(0,1fr);gap:10px;padding:15px 0}
   .checks li:first-child{padding-right:58px}
-  .stamp{right:-8px;top:-56px}
+  .stamp{right:-8px;top:-44px}
   .route{margin-top:34px}
   .route + .route{margin-top:30px}
   .route-tab{padding:8px 16px;border-radius:8px 8px 0 0}

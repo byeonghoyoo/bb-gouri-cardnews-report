@@ -1,0 +1,157 @@
+/* 12월 올리지오 XM (OXM12) renderer + review-board protocol (aptos-* messages, same as site/exam/exam.js).
+   Every visible word comes from copy-data.js and is edited in place through ../inline-edit.js. */
+(()=>{'use strict';
+const DATA=window.PAGE_COPY;
+if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
+const KEYS=Object.keys(DATA.locales.KO);
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const G='https://fonts.googleapis.com/css2?';
+const FONT_CSS={
+ JP:G+'family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap',
+ CN:G+'family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap',
+ TW:G+'family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap',
+ HK:G+'family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap',
+ TH:G+'family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap'
+};
+const qs=new URLSearchParams(location.search);
+let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
+let fields={...DATA.locales[locale]};
+let editable=false,editMode=false,lastHeight=0;
+const root=document.documentElement;
+
+function reply(message){if(parent!==window)parent.postMessage(message,location.origin);}
+const IE=window.BBInlineEdit?window.BBInlineEdit.create({doc:document,raw:k=>fields[k]??'',send:m=>reply(m),refit:()=>{fit();report();},rerender:()=>render()}):null;
+
+function report(){
+ const main=document.querySelector('main');if(!main)return;
+ const h=Math.max(300,Math.min(25000,Math.ceil(main.getBoundingClientRect().height)));
+ if(h===lastHeight)return;lastHeight=h;reply({type:'aptos-size',height:h});
+}
+function setFonts(){
+ let l=document.getElementById('locale-fonts');const href=FONT_CSS[locale]||'';
+ if(!href){if(l)l.remove();return;}
+ if(!l){l=document.createElement('link');l.id='locale-fonts';l.rel='stylesheet';document.head.append(l);
+  l.addEventListener('load',()=>document.fonts.ready.then(()=>{fit();report();}));}
+ if(l.getAttribute('href')!==href)l.setAttribute('href',href);
+}
+
+/* money: the number large, the unit small (display only; the stored text stays exactly as typed) */
+function setMoney(el,v){
+ el.textContent='';
+ const m=/^(\D*?)(\d[\d,.]*)(.*)$/.exec(v||'');
+ if(!m){el.textContent=v||'';return;}
+ if(m[1]){const p=document.createElement('span');p.className='u pre';p.textContent=m[1];el.append(p);}
+ const n=document.createElement('span');n.className='n';n.textContent=m[2];el.append(n);
+ if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
+}
+/* widow guard: the last two words (CJK: last three characters) stay together; the phone number never breaks */
+const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy]';
+function setText(el,v){
+ if(el.classList.contains('money')){setMoney(el,v);return;}
+ if(!v||!el.matches(GUARD)){el.textContent=v;return;}
+ let m=null;
+ if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\uff09)\]\u00b7]*)$/u);
+ else if(locale!=='TH')m=v.match(/(\S+[ \t]+\S+)$/);
+ if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
+ if(!m||m[1].length>=v.length){el.textContent=v;return;}
+ const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
+ el.textContent='';el.append(document.createTextNode(v.slice(0,v.length-m[1].length)),tail);
+}
+
+function isPhone(){const m=document.querySelector('main');return !!m&&m.clientWidth<=600;}
+function fitTo(el,limit,min){
+ el.style.removeProperty('--fit');
+ for(let f=1,i=0;i<40&&el.scrollWidth>limit+1&&f>min;i++){f-=.02;el.style.setProperty('--fit',f.toFixed(3));}
+ return el.scrollWidth<=limit+1;
+}
+function fit(){
+ for(const el of document.querySelectorAll('.t-main'))fitTo(el,el.parentElement.clientWidth,.55);
+ const phone=isPhone();
+ for(const el of document.querySelectorAll('.grp-title')){
+  el.classList.remove('wrap');
+  if(phone){el.style.removeProperty('--fit');continue;}
+  if(!fitTo(el,el.clientWidth,.78))el.classList.add('wrap');
+ }
+ for(const el of document.querySelectorAll('.row .name')){
+  el.classList.remove('wrap');
+  if(phone){el.style.removeProperty('--fit');continue;}
+  if(!fitTo(el,el.clientWidth,.72))el.classList.add('wrap');
+ }
+}
+
+function render(){
+ root.lang=LANG[locale]||'ko';root.dataset.locale=locale;
+ root.classList.toggle('is-editable',editable);
+ root.classList.toggle('is-editmode',editable&&editMode);
+ setFonts();
+ for(const el of document.querySelectorAll('[data-copy]')){
+  if(IE&&IE.holds(el))continue; /* never overwrite the copy someone is typing in */
+  const v=fields[el.dataset.copy]??'';setText(el,v);
+  const empty=!String(v).trim();el.classList.toggle('is-empty',empty);
+  if(el.hasAttribute('data-optional'))el.hidden=empty&&!(editable&&editMode);
+ }
+ for(const g of document.querySelectorAll('[data-optional-group]'))g.hidden=[...g.querySelectorAll('[data-optional]')].every(e=>e.hidden);
+ for(const el of document.querySelectorAll('[data-alt]'))el.alt=fields[el.dataset.alt]??'';
+ document.title=[fields.ox_title_main||'oligio xm',fields.ox_brand||'BEAUTY BLOSSOM'].join(' \u00b7 ');
+ if(IE)IE.sync(editable);
+ typeSwap();
+ requestAnimationFrame(()=>{fit();report();});
+ document.fonts.ready.then(()=>{fit();report();});
+ root.dataset.reviewReady='true';
+}
+
+/* Miricanvas typography: the image replaces the live text only while the on-screen text equals the text drawn in the image,
+   for the listed locales, and not while someone is typing in it. Any edit falls back to the live text automatically. */
+const typeLoaded={};
+const norm=s=>String(s||'').replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim();
+function typeSwap(){
+ for(const el of document.querySelectorAll('[data-type-src]')){
+  const src=el.dataset.typeSrc;
+  if(!(src in typeLoaded)){typeLoaded[src]=null;const im=new Image();im.onload=()=>{typeLoaded[src]=im.naturalWidth>0;typeSwap();report();};im.onerror=()=>{typeLoaded[src]=false;};im.src=src;}
+  if(!el.style.getPropertyValue('--type'))el.style.setProperty('--type','url("'+src+'")');
+  const locs=(el.dataset.typeLocales||'*').split(',');
+  const keys=(el.dataset.typeKeys||el.dataset.copy||'').split('|');
+  const want=(el.dataset.typeText||'').split('|');
+  const shown=keys.map(k=>{const t=el.dataset.copy===k?el:el.querySelector('[data-copy="'+k+'"]');return t?norm(t.textContent):null;});
+  const same=keys.length===want.length&&shown.every((v,i)=>v!==null&&v===norm(want[i]));
+  const typing=el.contains(document.activeElement)&&document.activeElement.isContentEditable;
+  el.classList.toggle('typed',typeLoaded[src]===true&&(locs.includes('*')||locs.includes(locale))&&same&&!typing&&!el.hidden);
+ }
+}
+document.addEventListener('focusin',()=>typeSwap());
+document.addEventListener('focusout',()=>setTimeout(typeSwap,0));
+
+/* Miricanvas decorations: shown when the file exists, otherwise the code-drawn fallback stays */
+function miri(){
+ for(const img of document.querySelectorAll('img.miri')){
+  const w=img.parentElement;
+  const ok=()=>{w.classList.add('ok');const sec=w.closest('section');if(sec&&w.dataset.kind)sec.classList.add('has-'+w.dataset.kind);report();};
+  const bad=()=>{img.remove();};
+  if(img.complete){if(img.naturalWidth)ok();else bad();}
+  else{img.addEventListener('load',ok,{once:true});img.addEventListener('error',bad,{once:true});}
+ }
+}
+
+window.addEventListener('message',event=>{
+ if(event.source!==parent||event.origin!==location.origin)return;
+ const msg=event.data;if(!msg||typeof msg!=='object')return;
+ if(msg.type==='aptos-data'&&DATA.locales[msg.locale]&&msg.fields&&typeof msg.fields==='object'){
+  if(msg.locale!==locale){locale=msg.locale;fields={...DATA.locales[locale]};}
+  for(const k of KEYS)if(typeof msg.fields[k]==='string')fields[k]=msg.fields[k];
+  editable=msg.editable===true;editMode=msg.editMode===true;render();
+ }else if(msg.type==='aptos-save-result'){
+  if(IE)IE.saveResult(msg);
+ }else if(msg.type==='aptos-start-edit'&&typeof msg.field==='string'){
+  if(IE)IE.start(msg.field);
+ }
+});
+
+window.addEventListener('resize',()=>{fit();report();});
+if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',()=>{fit();report();});
+const main=document.querySelector('main');
+if(main&&'ResizeObserver' in window)new ResizeObserver(report).observe(main);
+for(const img of document.images){if(!img.complete){img.addEventListener('load',report,{once:true});img.addEventListener('error',report,{once:true});}}
+render();miri();
+window.__OXM12__={get locale(){return locale;},get editable(){return editable;},get editMode(){return editMode;},get inline(){return !!IE;},keys:KEYS};
+reply(IE?{type:'aptos-ready',inline:true}:{type:'aptos-ready'});
+})();

@@ -16,6 +16,7 @@
   var MAX_LEN = 2000;
   var POLL_MS = 15000;
   var AUTHOR_KEY = 'bb-review-author';
+  var FOLD_KEY = 'bb-review-folded';
   var EXPECTED_ITEMS = ['aptos', 'D1', 'D2', 'D3', 'D4', 'D5', 'EXAM'];
   var PLAN_REQUIRED = ['heroEyebrow', 'title', 'subtitle', 'body'];
   var FIELD_RE = /^[A-Za-z0-9_]+$/;
@@ -356,10 +357,52 @@
       }));
     }
     function itemErrorCount(id) { return state.errors.filter(function (e) { return e.indexOf(id + ' ') === 0 || e.indexOf(id + ':') === 0; }).length; }
+    /* ---- project groups (folding) ---- */
+    function groupsOf() {
+      var g = state.data && Array.isArray(state.data.groups) ? state.data.groups : [];
+      return g.filter(function (x) { return isObj(x) && typeof x.id === 'string' && Array.isArray(x.items); });
+    }
+    function loadFolded() {
+      if (state.folded) return state.folded;
+      state.folded = {};
+      try { var s = env.storage && env.storage.getItem(FOLD_KEY); if (s) { var o = JSON.parse(s); if (isObj(o)) state.folded = o; } } catch (e) { /* ignore */ }
+      return state.folded;
+    }
+    function isFolded(g) { var f = loadFolded(); return typeof f[g.id] === 'boolean' ? f[g.id] : g.folded === true; }
+    function setFolded(id, v) {
+      loadFolded()[id] = v;
+      try { if (env.storage) env.storage.setItem(FOLD_KEY, JSON.stringify(state.folded)); } catch (e) { /* ignore */ }
+    }
+    function toggleGroup(g) { setFolded(g.id, !isFolded(g)); renderSidebar(); }
+    function unfoldFor(itemId) { groupsOf().forEach(function (g) { if (g.items.indexOf(itemId) >= 0 && isFolded(g)) setFolded(g.id, false); }); }
+
     function renderSidebar() {
       var loc = state.locale;
       ui.sideTitle.textContent = '검토 항목 ' + state.data.items.length + '개';
-      ui.list.replaceChildren.apply(ui.list, state.data.items.map(function (it) {
+      var groups = groupsOf();
+      if (!groups.length) { ui.list.replaceChildren.apply(ui.list, state.data.items.map(itemRow)); return; }
+      var byId = {}, used = {}, out = [];
+      state.data.items.forEach(function (it) { byId[it.id] = it; });
+      groups.forEach(function (g) {
+        var members = g.items.map(function (id) { used[id] = true; return byId[id]; }).filter(Boolean);
+        if (!members.length) return;
+        var folded = isFolded(g);
+        var selCount = members.filter(function (it) { return store.isSelected(it.id, loc); }).length;
+        out.push(H('li', { class: 'group-row' + (folded ? ' folded' : '') }, [
+          H('button', { type: 'button', class: 'group-btn', 'data-group-id': g.id, 'aria-expanded': folded ? 'false' : 'true', onclick: function () { toggleGroup(g); } }, [
+            H('span', { class: 'group-chev', 'aria-hidden': 'true', text: folded ? '▸' : '▾' }),
+            H('span', { class: 'group-label', text: g.label || g.id }),
+            H('span', { class: 'group-count', text: members.length + '개' + (selCount ? ' · 선택 ' + selCount : '') + (folded ? ' · 접힘' : '') }),
+          ]),
+        ]));
+        if (!folded) members.forEach(function (it) { out.push(itemRow(it)); });
+      });
+      state.data.items.forEach(function (it) { if (!used[it.id]) out.push(itemRow(it)); });
+      ui.list.replaceChildren.apply(ui.list, out);
+    }
+
+    function itemRow(it) {
+        var loc = state.locale;
         var sel = store.isSelected(it.id, loc);
         var errs = itemErrorCount(it.id);
         return H('li', { class: 'item-row' + (it.id === state.itemId ? ' current' : '') + (sel ? ' selected' : '') }, [
@@ -370,7 +413,6 @@
             errs ? H('span', { class: 'err-tag', text: '오류 ' + errs }) : null,
           ]),
         ]);
-      }));
     }
 
     /* ---- navigation ---- */
@@ -382,7 +424,7 @@
       state.editor = null; return true;
     }
     function pushHash() { if (env.replaceHash) env.replaceHash('#' + state.itemId + '/' + state.locale); }
-    function selectItem(id) { if (id === state.itemId || !canNavigate()) return; state.itemId = id; pushHash(); renderAll(); }
+    function selectItem(id) { if (id === state.itemId || !canNavigate()) return; state.itemId = id; unfoldFor(id); pushHash(); renderAll(); }
     function selectLocale(id) { if (id === state.locale || !canNavigate()) return; state.locale = id; pushHash(); renderAll(); }
     function renderAll() { renderErrors(); renderTabs(); renderSidebar(); renderPreview(); renderStatus(); }
 
@@ -566,7 +608,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3b' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3c' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
@@ -682,7 +724,10 @@
       var m = /^#?([A-Za-z0-9]+)\/([A-Z]{2})$/.exec((env.location && env.location.hash) || '');
       var it = m && state.data.items.filter(function (i) { return i.id === m[1]; })[0];
       var loc = m && state.data.locales.filter(function (l) { return l.id === m[2]; })[0];
-      state.itemId = (it || state.data.items[0]).id;
+      /* without a link to a specific item, open the first item of the first group that is not folded */
+      var open = !it && groupsOf().filter(function (g) { return !isFolded(g); }).map(function (g) { return state.data.items.filter(function (i) { return g.items.indexOf(i.id) >= 0; })[0]; }).filter(Boolean)[0];
+      state.itemId = (it || open || state.data.items[0]).id;
+      if (it) unfoldFor(it.id);
       state.locale = (loc || state.data.locales[0]).id;
     }
 

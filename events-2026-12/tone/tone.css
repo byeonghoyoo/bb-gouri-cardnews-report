@@ -106,7 +106,8 @@ h1,h2,h3,.hero-title,.sec-body,.a,.q,.book-title{text-wrap:balance}
 .stay-grid{display:grid;grid-template-columns:calc(318*var(--px)) minmax(0,1fr);gap:calc(28*var(--px));align-items:stretch;margin-top:calc(58*var(--px))}
 .stay-photo{position:relative;z-index:1;margin:0;min-height:100%}
 .stay-photo>img:first-child{width:100%;height:100%;object-fit:cover;object-position:46% 40%;border-radius:calc(175*var(--px)) calc(175*var(--px)) calc(36*var(--px)) calc(36*var(--px));border:calc(8*var(--px)) solid rgba(255,255,255,.75);box-shadow:0 calc(24*var(--px)) calc(50*var(--px)) rgba(20,70,140,.22)}
-.case{width:calc(150*var(--px));left:calc(-30*var(--px));bottom:calc(-34*var(--px));transform:rotate(-8deg);filter:drop-shadow(0 calc(10*var(--px)) calc(14*var(--px)) rgba(20,70,140,.25))}
+/* the delivered suitcase includes a tall handle (about 1:2), so it stays small and hangs mostly outside the photo frame */
+.case{width:calc(104*var(--px));left:calc(-48*var(--px));bottom:calc(-40*var(--px));transform:rotate(-8deg);filter:drop-shadow(0 calc(10*var(--px)) calc(14*var(--px)) rgba(20,70,140,.25))}
 .board{position:relative;z-index:1;border-radius:calc(38*var(--px));padding:calc(30*var(--px)) calc(34*var(--px)) calc(26*var(--px));background:#FAFCFF;border:1px solid #fff;box-shadow:0 calc(24*var(--px)) calc(56*var(--px)) rgba(20,70,140,.18)}
 .b-group+.b-group{margin-top:calc(26*var(--px))}
 .b-label{display:flex;align-items:center;flex-wrap:wrap;gap:.3em .7em;padding-bottom:calc(12*var(--px));border-bottom:2px solid var(--ink)}
@@ -277,7 +278,7 @@ h1,h2,h3,.hero-title,.sec-body,.a,.q,.book-title{text-wrap:balance}
   .stay-grid{grid-template-columns:minmax(0,1fr);gap:22px;margin-top:28px}
   .stay-photo{width:78%;justify-self:center}
   .stay-photo>img:first-child{aspect-ratio:4/4.6;height:auto;border-width:5px;border-radius:200px 200px 24px 24px}
-  .case{width:70px;left:-22px;bottom:-16px}
+  .case{width:52px;left:-30px;bottom:-18px}
   .board{border-radius:24px;padding:16px 16px 14px}
   .b-label{padding-bottom:9px}
   .row{grid-template-columns:40px minmax(0,1fr);grid-template-areas:"icon main" "icon price";column-gap:12px;row-gap:6px;padding:14px 0}
@@ -313,8 +314,7 @@ h1,h2,h3,.hero-title,.sec-body,.a,.q,.book-title{text-wrap:balance}
   .qa-item{padding:20px 18px;border-radius:22px}
   .book{margin-top:70px;padding:58px 14px 44px}
   .book-sun{width:62px;right:10px;top:6px}
-  .cl-f{width:180px;left:-70px;bottom:120px}
-  .cl-g{width:120px;right:-34px;bottom:24px}
+  .cl-f,.cl-g{display:none}
   .book-card{grid-template-columns:31% minmax(0,1fr);gap:14px;margin-top:24px;padding:16px;border-radius:24px}
   .book-photo{grid-row:1;border-radius:14px}
   .bk-row{grid-template-columns:minmax(0,1fr);gap:6px;padding:9px 0}

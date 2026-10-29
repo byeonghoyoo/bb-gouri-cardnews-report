@@ -54,7 +54,9 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
   border-top:1px solid rgba(201,169,106,.55);border-bottom:1px solid rgba(201,169,106,.55);padding:.42em .2em;white-space:nowrap}
 .hero-dec{margin:calc(48*var(--px)) auto 0;width:calc(300*var(--px))}
 .hero-dec .type-fallback{font-size:calc(58*var(--px));font-weight:500;color:var(--gold-hi)}
-.hero-type{position:relative;margin:calc(4*var(--px)) auto 0;width:calc(840*var(--px))}
+.hero-type{position:relative;margin:calc(18*var(--px)) auto 0;width:calc(820*var(--px))}
+/* Miricanvas gold type: a soft shadow and a touch of light keep the darker lower half of the foil readable on navy */
+.type-img{filter:brightness(1.07) drop-shadow(0 2px 6px rgba(0,0,0,.42))}
 .hero-type .type-fallback{font-size:calc(132*var(--px));white-space:nowrap}
 .sp1{width:calc(92*var(--px));right:calc(-34*var(--px));top:calc(-30*var(--px))}
 .hero-title{margin-top:calc(26*var(--px));font-family:var(--f-serif);font-weight:600;font-size:max(22px,calc(46*var(--px)));line-height:1.3;color:var(--ivory)}
@@ -137,6 +139,7 @@ html[data-locale=EN] .plate-price .from,html[data-locale=TH] .plate-price .from{
 .card-head{display:flex;flex-direction:column;align-items:center;text-align:center}
 .card-en{font-family:var(--f-deco);font-style:italic;font-weight:600;font-size:max(30px,calc(62*var(--px)));line-height:1;color:var(--gold-ink)}
 .card-head .divider,.card-head .rule{margin:calc(20*var(--px)) auto calc(8*var(--px))}
+.card-head .divider{filter:brightness(.8) saturate(1.2)} /* the same gold, one step deeper on ivory to match the menu title */
 .card-head .rule::before,.card-head .rule::after{background:linear-gradient(90deg,transparent,var(--gold-lo) 30%,var(--gold-lo) 70%,transparent)}
 .card-head .rule i{border-color:var(--gold-lo)}
 .courses{list-style:none;margin-top:calc(14*var(--px))}
@@ -229,7 +232,7 @@ html[data-locale=EN] .plate-price .from,html[data-locale=TH] .plate-price .from{
   .kicker{font-size:11px;letter-spacing:.04em}
   .hero-dec{margin-top:30px;width:150px}
   .hero-dec .type-fallback{font-size:30px}
-  .hero-type{width:96%}
+  .hero-type{width:94%;margin-top:10px}
   .hero-type .type-fallback{font-size:clamp(40px,12.6cqw,62px)}
   .sp1{width:38px;right:-6px;top:-18px}
   .hero-title{margin-top:16px;font-size:23px}
