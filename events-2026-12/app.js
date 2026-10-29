@@ -564,7 +564,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-exam3' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261028-care1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-exam4' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261028-care1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale };
       return H('div', { class: 'aptos-shell' }, [
         H('p', { class: 'aptos-note', text: typeof it.note === 'string' && it.note ? it.note : it.kind === 'aptos' ? '문구·금액을 더블클릭하면 수정할 수 있습니다. 원문의 ‘최대 49%’ 배지는 표시 가격과 계산이 맞지 않아 확인이 필요합니다. 기존 행사 기간은 10/21~11/30입니다.' : '검토용 디자인입니다. 문구·금액을 더블클릭하면 공유 저장됩니다. 행사 가격·기간·적용 조건은 최종 확인 대상입니다.' }),
