@@ -115,6 +115,8 @@
       sizeEnabled: false, sizeObserver: null, sizeQueued: false, lastHeight: null,
     };
     var ui = {};
+    /* in-place editing (../inline-edit.js, passed in by boot); without it the dialog stays the editor */
+    var IE = null;
 
     function origin() { return (env.location && env.location.origin) || ''; }
     function post(msg) {
@@ -377,12 +379,14 @@
       if (doc.documentElement) doc.documentElement.setAttribute('lang', lang);
       st.page.classList.toggle('editable', st.editable); st.page.classList.toggle('edit-mode', st.editable && st.editMode);
       st.copyEls.forEach(function (el) {
+        if (IE && IE.holds(el)) return; /* never overwrite the copy someone is typing in */
         var key = el.getAttribute('data-copy'); var v = st.fields[key];
         el.classList.toggle('is-missing', typeof v !== 'string');
         if (key === 'booking_text') renderBooking(el);
         else el.textContent = typeof v === 'string' ? v : '';
-        if (st.editable) el.setAttribute('title', '더블클릭하여 수정'); else el.removeAttribute('title');
+        if (!IE) { if (st.editable) el.setAttribute('title', '더블클릭하여 수정'); else el.removeAttribute('title'); }
       });
+      if (IE) IE.sync(st.editable);
       st.altEls.forEach(function (el) { el.alt = el.getAttribute('data-alt-literal') || st.fields[el.getAttribute('data-alt')] || ''; });
       st.linkEls.forEach(function (el) { var href = st.links[el.getAttribute('data-link')]; if (href) el.setAttribute('href', href); else el.removeAttribute('href'); });
       if (typeof st.fields.title === 'string') doc.title = st.fields.title;
@@ -427,6 +431,7 @@
     function closestLink(t) { for (var n = t; n; n = n.parentNode) if (n.tag === 'a' || n.tagName === 'A') return n; return null; }
 
     function onDblClick(e) {
+      if (IE) return;
       var hit = closestCopy(e.target);
       if (st.editable && hit) { e.preventDefault(); startEdit(hit.getAttribute('data-copy')); }
     }
@@ -434,6 +439,7 @@
       if (!st.editable) return;
       var hit = closestCopy(e.target); var a = closestLink(e.target);
       if (hit || a) e.preventDefault();
+      if (IE) return;
       if (hit && st.editMode) startEdit(hit.getAttribute('data-copy'));
     }
 
@@ -447,18 +453,26 @@
         st.fields = Object.assign(pickAllowed(st.item.fields[msg.locale]), pickAllowed(msg.fields));
         st.editable = msg.editable === true; st.editMode = msg.editMode === true;
         render();
+      } else if (msg.type === 'aptos-save-result' && IE) {
+        IE.saveResult(msg);
       } else if (msg.type === 'aptos-save-result' && msg.field === st.editField) {
         st.pending = false; ui.save.disabled = false; ui.cancel.disabled = false;
         if (msg.ok) { ui.dialog.close(); st.editField = null; }
         else ui.info.textContent = (msg.error || '저장되지 않았습니다.') + ' 최신 문구: ' + (st.fields[st.editField] || '');
       } else if (msg.type === 'aptos-start-edit' && typeof msg.field === 'string') {
-        startEdit(msg.field);
+        if (IE) IE.start(msg.field); else startEdit(msg.field);
       }
     }
 
     /* ---- start ---- */
     function start() {
       ui.root = env.root; ui.errorHost = H('div', { class: 'error-host' });
+      if (env.inlineEdit && typeof env.inlineEdit.create === 'function') {
+        IE = env.inlineEdit.create({
+          doc: doc, isAllowed: isAllowedField, send: post, refit: scheduleSize, rerender: render,
+          raw: function (k) { return typeof st.fields[k] === 'string' ? st.fields[k] : ''; },
+        });
+      }
       buildDialog();
       ui.root.replaceChildren(ui.errorHost, ui.dialog);
       if (typeof env.ResizeObserver === 'function') {
@@ -484,7 +498,7 @@
         st.links = (data.links && typeof data.links === 'object' ? data.links : env.fallbackLinks) || {};
         st.fields = pickAllowed(item.fields[q.lang]);
         render(); st.started = true;
-        post({ type: 'aptos-ready' });
+        post(IE ? { type: 'aptos-ready', inline: true } : { type: 'aptos-ready' });
       }, function (e) { fatal('data.json을 불러오지 못했습니다 (' + (e && e.message || e) + ').'); });
     }
 
@@ -500,6 +514,7 @@
       addMessageListener: function (fn) { win.addEventListener('message', fn); },
       ResizeObserver: win.ResizeObserver, requestAnimationFrame: win.requestAnimationFrame && win.requestAnimationFrame.bind(win),
       fallbackLinks: win.LANDING_COPY && win.LANDING_COPY.links,
+      inlineEdit: win.BBInlineEdit,
     });
     win.__landing = app;
     app.start();

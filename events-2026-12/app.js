@@ -227,7 +227,7 @@
     var setTimer = env.setTimeout || function (fn, ms) { return setTimeout(fn, ms); };
     var state = {
       data: null, errors: [], fatal: null, itemId: null, locale: null, author: '', editor: null,
-      saving: 0, aptos: null, previewKey: null, toastTimer: null, started: false,
+      saving: 0, aptos: null, frames: [], previewKey: null, toastTimer: null, started: false,
     };
     var ui = {};
 
@@ -374,7 +374,8 @@
 
     /* ---- navigation ---- */
     function canNavigate() {
-      if(state.aptos && state.aptos.editing){toast('압토스 수정창을 먼저 저장하거나 닫아 주세요.','error');return false;}
+      /* in-place editing pages save on blur, and their late save message is still handled after the page changes (state.frames) */
+      if(state.aptos && state.aptos.editing && !state.aptos.inline){toast('압토스 수정창을 먼저 저장하거나 닫아 주세요.','error');return false;}
       var ed = state.editor;
       if (ed && (ed.draft !== ed.original || ed.status !== 'idle')) { toast('수정 중인 내용을 먼저 저장하거나 취소해 주세요.', 'error'); return false; }
       state.editor = null; return true;
@@ -564,10 +565,11 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-exam4' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261028-care1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
-      state.aptos = { el: frame, itemId: it.id, locale: state.locale };
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-exam5' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
+      state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
-        H('p', { class: 'aptos-note', text: typeof it.note === 'string' && it.note ? it.note : it.kind === 'aptos' ? '문구·금액을 더블클릭하면 수정할 수 있습니다. 원문의 ‘최대 49%’ 배지는 표시 가격과 계산이 맞지 않아 확인이 필요합니다. 기존 행사 기간은 10/21~11/30입니다.' : '검토용 디자인입니다. 문구·금액을 더블클릭하면 공유 저장됩니다. 행사 가격·기간·적용 조건은 최종 확인 대상입니다.' }),
+        H('p', { class: 'aptos-note', text: typeof it.note === 'string' && it.note ? it.note : it.kind === 'aptos' ? '글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 원문의 ‘최대 49%’ 배지는 표시 가격과 계산이 맞지 않아 확인이 필요합니다. 기존 행사 기간은 10/21~11/30입니다.' : '검토용 디자인입니다. 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 행사 가격·기간·적용 조건은 최종 확인 대상입니다.' }),
         frame,
       ]);
     }
@@ -603,9 +605,17 @@
 
     /* ---- aptos iframe protocol ---- */
     function targetOrigin() { var o = origin(); return !o || o === 'null' ? '*' : o; }
-    function postToFrame(msg) {
-      var a = state.aptos; var win = a && a.el.contentWindow;
-      if (win && win.postMessage) win.postMessage(msg, targetOrigin());
+    function postToFrame(msg) { postTo(state.aptos, msg); }
+    function postTo(a, msg) {
+      var win = a && (a.el.contentWindow || a.win);
+      try { if (win && win.postMessage) win.postMessage(msg, targetOrigin()); } catch (e) { /* page already closed */ }
+    }
+    /* the frame a message came from: the open page, or a page just replaced while its in-place edit was saving */
+    function frameOf(src) {
+      var a = state.aptos;
+      if (a && a.el.contentWindow && src === a.el.contentWindow) { a.win = src; return a; }
+      for (var i = state.frames.length - 1; i >= 0; i--) if (state.frames[i].win && state.frames[i].win === src) return state.frames[i];
+      return null;
     }
     function aptosItem() { return state.aptos && state.data.items.filter(function (i) { return i.id === state.aptos.itemId; })[0]; }
     function postAptosData() {
@@ -613,11 +623,17 @@
       postToFrame({ type: 'aptos-data', locale: a.locale, fields: effectiveFields(it, a.locale, store), editable: store.canEdit(), editMode: ui.app.className.split(/\s+/).indexOf('edit-mode') >= 0 });
     }
     function onMessage(e) {
-      var a = state.aptos;
-      if (!a || !a.el.contentWindow || e.source !== a.el.contentWindow) return;
+      var a = frameOf(e.source);
+      if (!a) return;
       if (e.origin !== origin()) return;
       var d = e.data;
       if (!isObj(d)) return;
+      if (a !== state.aptos) {
+        if (d.type === 'aptos-edit') handleAptosEdit(a, d);
+        else if (d.type === 'aptos-edit-cancel') a.editing = null;
+        return;
+      }
+      if (d.type === 'aptos-ready') a.inline = d.inline === true;
       if (d.type === 'aptos-size' && Number.isFinite(d.height) && d.height >= 300 && d.height <= 25000) a.el.style.height = Math.ceil(d.height) + 'px';
       else if (d.type === 'aptos-ready') postAptosData();
       else if(d.type==='aptos-editing' && typeof d.field==='string'){var k=cellKey(a.itemId,a.locale,d.field);var c=store.get(k);a.editing={field:d.field,key:k,baseRevision:c?c.revision:0};}
@@ -625,23 +641,24 @@
       else if (d.type === 'aptos-edit') handleAptosEdit(a, d);
     }
     function handleAptosEdit(a, d) {
-      var it = aptosItem();
+      var it = state.data.items.filter(function (i) { return i.id === a.itemId; })[0];
+      var live = a === state.aptos;
       var ack = function (ok, error) {
         var m = { type: 'aptos-save-result', field: typeof d.field === 'string' ? d.field : '', ok: ok };
         if (error) m.error = error;
-        postToFrame(m);
+        postTo(a, m);
       };
       var defs = it && it.fields[a.locale];
-      if (!defs || typeof d.field !== 'string' || !Object.prototype.hasOwnProperty.call(defs, d.field) || typeof d.value !== 'string') { postAptosData(); ack(false, '알 수 없는 필드이거나 값 형식이 올바르지 않습니다.'); return Promise.resolve(); }
-      if (d.value.length > MAX_LEN) { postAptosData(); ack(false, '2000자를 넘어 저장할 수 없습니다.'); return Promise.resolve(); }
+      if (!defs || typeof d.field !== 'string' || !Object.prototype.hasOwnProperty.call(defs, d.field) || typeof d.value !== 'string') { if (live) postAptosData(); ack(false, '알 수 없는 필드이거나 값 형식이 올바르지 않습니다.'); return Promise.resolve(); }
+      if (d.value.length > MAX_LEN) { if (live) postAptosData(); ack(false, '2000자를 넘어 저장할 수 없습니다.'); return Promise.resolve(); }
       var key = cellKey(it.id, a.locale, d.field);
       state.saving++; renderStatus();
       return store.save(key, d.value, by(), a.editing && a.editing.field===d.field ? {baseRevision: a.editing.baseRevision} : {}).then(function (r) {
         state.saving--;
-        if (r.ok) {a.editing=null;toast('서버에 저장되었습니다.', 'ok');}
+        if (r.ok) {if(!a.inline||(a.editing&&a.editing.field===d.field))a.editing=null;toast('서버에 저장되었습니다.', 'ok');}
         else if (r.reason === 'conflict') { store.adopt(key, r.current); if(a.editing)a.editing.baseRevision=r.current.revision; toast('다른 사람이 먼저 수정했습니다. 최신 문구를 불러왔습니다.', 'error'); }
         else toast('서버에 저장되지 않았습니다.', 'error');
-        postAptosData();
+        if (a === state.aptos) postAptosData(); else if (r.ok) renderSidebar();
         ack(r.ok, r.ok ? null : reasonMessage(r));
         renderStatus();
       });

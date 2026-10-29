@@ -19,6 +19,8 @@ let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])l
 let fields={...DATA.locales[locale]};
 let editable=false,editMode=false,editField=null,pending=false,lastHeight=0;
 const root=document.documentElement;
+/* in-place editing (../inline-edit.js): tap a copy, type, Enter or tap elsewhere saves. Without it the dialog below is the editor. */
+const IE=window.BBInlineEdit?window.BBInlineEdit.create({doc:document,raw:k=>fields[k]??'',send:m=>reply(m),refit:()=>{fit();report();},rerender:()=>render()}):null;
 
 /* "YOU DID IT!" type image: fall back to live text if the PNG is missing */
 for(const img of document.querySelectorAll('.type-img')){
@@ -86,12 +88,14 @@ function render(){
  root.classList.toggle('is-editmode',editable&&editMode);
  setFonts();
  for(const el of document.querySelectorAll('[data-copy]')){
+  if(IE&&IE.holds(el))continue; /* never overwrite the copy someone is typing in */
   const v=fields[el.dataset.copy]??'';setText(el,v);
   const empty=!String(v).trim();el.classList.toggle('is-empty',empty);
   if(el.hasAttribute('data-optional'))el.hidden=empty&&!(editable&&editMode);
-  if(editable)el.title='더블클릭하여 수정';else el.removeAttribute('title');
+  if(!IE){if(editable)el.title='더블클릭하여 수정';else el.removeAttribute('title');}
  }
  for(const g of document.querySelectorAll('[data-optional-group]'))g.hidden=[...g.querySelectorAll('[data-optional]')].every(e=>e.hidden);
+ if(IE)IE.sync(editable);
  for(const el of document.querySelectorAll('[data-alt]'))el.alt=fields[el.dataset.alt]??'';
  for(const a of document.querySelectorAll('a[data-link]')){
   const href=DATA.links[a.dataset.link];if(href)a.href=href;
@@ -126,8 +130,8 @@ cancel.addEventListener('click',()=>dlg.close());
 dlg.addEventListener('close',()=>{if(editField)reply({type:'aptos-edit-cancel'});editField=null;pending=false;});
 dlg.addEventListener('cancel',e=>{if(pending)e.preventDefault();});
 input.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();submit();}});
-document.addEventListener('dblclick',e=>{const el=e.target.closest('[data-copy]');if(el&&editable){e.preventDefault();startEdit(el);}});
-document.addEventListener('click',e=>{const el=e.target.closest('[data-copy]');if(el&&editable&&editMode){e.preventDefault();startEdit(el);}});
+document.addEventListener('dblclick',e=>{if(IE)return;const el=e.target.closest('[data-copy]');if(el&&editable){e.preventDefault();startEdit(el);}});
+document.addEventListener('click',e=>{if(IE)return;const el=e.target.closest('[data-copy]');if(el&&editable&&editMode){e.preventDefault();startEdit(el);}});
 
 window.addEventListener('message',event=>{
  if(event.source!==parent||event.origin!==location.origin)return;
@@ -136,11 +140,14 @@ window.addEventListener('message',event=>{
   if(msg.locale!==locale){locale=msg.locale;fields={...DATA.locales[locale]};}
   for(const k of KEYS)if(typeof msg.fields[k]==='string')fields[k]=msg.fields[k];
   editable=msg.editable===true;editMode=msg.editMode===true;render();
+ }else if(msg.type==='aptos-save-result'&&IE){
+  IE.saveResult(msg);
  }else if(msg.type==='aptos-save-result'&&msg.field===editField){
   pending=false;save.disabled=false;cancel.disabled=false;
   if(msg.ok){const f=editField;editField=null;dlg.close();void f;}
   else info.textContent=(msg.error||'저장되지 않았습니다.')+' 최신 문구: '+(fields[editField]||'');
  }else if(msg.type==='aptos-start-edit'&&typeof msg.field==='string'){
+  if(IE){IE.start(msg.field);return;}
   const el=[...document.querySelectorAll('[data-copy]')].find(x=>x.dataset.copy===msg.field);if(el)startEdit(el);
  }
 });
@@ -153,6 +160,6 @@ const main=document.querySelector('main');
 if(main&&'ResizeObserver' in window)new ResizeObserver(report).observe(main);
 for(const img of document.images){if(!img.complete){img.addEventListener('load',report,{once:true});img.addEventListener('error',report,{once:true});}}
 render();
-window.__EXAM_REVIEW__={get locale(){return locale;},get editable(){return editable;},get editMode(){return editMode;},keys:KEYS};
-reply({type:'aptos-ready'});
+window.__EXAM_REVIEW__={get locale(){return locale;},get editable(){return editable;},get editMode(){return editMode;},get inline(){return !!IE;},keys:KEYS};
+reply(IE?{type:'aptos-ready',inline:true}:{type:'aptos-ready'});
 })();
