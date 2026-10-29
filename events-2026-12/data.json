@@ -4353,15 +4353,15 @@
     },
     {
       "id": "OXM12",
-      "label": "12월 올리지오 XM",
+      "label": "올리지오 XM · 겨울 시즌",
       "kind": "landing",
       "page": "oligio12/index.html",
-      "note": "5장 캐러셀: 1 히어로 · 2 금액(현재 팀 디자인의 구성·금액 그대로, 톤앤매너만 12월 겨울밤) · 3 어떤 장비인가요 · 4 어떻게 받나요 · 5 병원 소개(예약·위치) + 확인해 주세요. 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 12월 기간 칸과 추가 안내 칸은 편집 모드에서만 보입니다.",
+      "note": "5장 캐러셀: 1 히어로 · 2 금액(현재 팀 디자인의 구성·금액 그대로, 톤앤매너만 겨울밤(12~2월 같은 가격)) · 3 어떤 장비인가요 · 4 어떻게 받나요 · 5 병원 소개(예약·위치) + 확인해 주세요. 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 기간 칸과 추가 안내 칸은 편집 모드에서만 보입니다.",
       "fields": {
         "KO": {
           "ox_brand": "BEAUTY::BLOSSOM",
           "ox_period": "",
-          "ox_season": "December",
+          "ox_season": "Winter",
           "ox_hook1": "고주파와 초음파를 하나로,",
           "ox_hook2": "한 번에 받는 리프팅",
           "ox_title_pre": "올리지오의 진화,",
@@ -4496,7 +4496,7 @@
         "EN": {
           "ox_brand": "BEAUTY::BLOSSOM",
           "ox_period": "",
-          "ox_season": "December",
+          "ox_season": "Winter",
           "ox_hook1": "RF and ultrasound in one,",
           "ox_hook2": "lifting in a single session",
           "ox_title_pre": "The evolution of Oligio,",
@@ -4631,7 +4631,7 @@
         "JP": {
           "ox_brand": "BEAUTY::BLOSSOM",
           "ox_period": "",
-          "ox_season": "December",
+          "ox_season": "Winter",
           "ox_hook1": "高周波と超音波をひとつに、",
           "ox_hook2": "1回で受けるリフティング",
           "ox_title_pre": "オリジオの進化、",
@@ -4766,7 +4766,7 @@
         "CN": {
           "ox_brand": "BEAUTY::BLOSSOM",
           "ox_period": "",
-          "ox_season": "December",
+          "ox_season": "Winter",
           "ox_hook1": "射频与超声波合二为一，",
           "ox_hook2": "一次完成的提升",
           "ox_title_pre": "Oligio的进化，",
@@ -4901,7 +4901,7 @@
         "TW": {
           "ox_brand": "BEAUTY::BLOSSOM",
           "ox_period": "",
-          "ox_season": "December",
+          "ox_season": "Winter",
           "ox_hook1": "射頻與超音波合而為一，",
           "ox_hook2": "一次完成的拉提",
           "ox_title_pre": "Oligio的進化，",
@@ -5036,7 +5036,7 @@
         "TH": {
           "ox_brand": "BEAUTY::BLOSSOM",
           "ox_period": "",
-          "ox_season": "December",
+          "ox_season": "Winter",
           "ox_hook1": "รวมคลื่นวิทยุและอัลตราซาวด์ไว้ด้วยกัน",
           "ox_hook2": "ลิฟติ้งในครั้งเดียว",
           "ox_title_pre": "วิวัฒนาการของ Oligio",
@@ -5171,7 +5171,7 @@
         "HK": {
           "ox_brand": "BEAUTY::BLOSSOM",
           "ox_period": "",
-          "ox_season": "December",
+          "ox_season": "Winter",
           "ox_hook1": "射頻與超聲波合而為一，",
           "ox_hook2": "一次完成的提拉",
           "ox_title_pre": "Oligio的進化，",
@@ -5307,10 +5307,10 @@
     },
     {
       "id": "APT12",
-      "label": "12월 압토스",
+      "label": "압토스 · 겨울 시즌",
       "kind": "landing",
       "page": "aptos12/index.html",
-      "note": "검토용 디자인입니다. 팀 미리캔버스 현재 버전(1 히어로·2 금액)에서 12월 톤앤매너만 바꾸고, 3·4 시술 설명과 5 병원 소개를 더한 5장 카드입니다(각 1080×1350). 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 편집 모드에서는 비어 있는 기간·추가 안내 칸이 표시됩니다.",
+      "note": "검토용 디자인입니다. 팀 미리캔버스 현재 버전(1 히어로·2 금액)에서 톤앤매너만 겨울 시즌으로 바꾸고(12~2월 같은 가격), 3·4 시술 설명과 5 병원 소개를 더한 5장 카드입니다(각 1080×1350). 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 편집 모드에서는 비어 있는 기간·추가 안내 칸이 표시됩니다.",
       "fields": {
         "KO": {
           "ap_period": "",
@@ -6339,7 +6339,7 @@
     },
     {
       "id": "dec-launch",
-      "label": "12월 런칭 톤앤매너 · 올리지오 XM · 압토스",
+      "label": "겨울 시즌(12~2월) 톤앤매너 · 올리지오 XM · 압토스",
       "items": [
         "OXM12",
         "APT12"
