@@ -45,17 +45,29 @@ function setMoney(el,v){
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
 /* widow guard: the last two words (CJK: last three characters) stay together; the phone number never breaks */
-const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy]';
+const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.addr [data-copy],.hours [data-copy],.loc-sub,.bk-links [data-copy]';
+/* names that must never break inside (display only: wrapped in nowrap spans, the stored text is unchanged) */
+const KEEP=/(\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07|Beauty Blossom|Oligio XM|02-336-7511)/g;
+function appendKept(el,s){
+ let last=0;
+ for(const m of s.matchAll(KEEP)){
+  if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));
+  const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;
+ }
+ if(last<s.length)el.append(document.createTextNode(s.slice(last)));
+}
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
+ if(v&&!el.matches(GUARD)&&KEEP.test(v)){KEEP.lastIndex=0;el.textContent='';appendKept(el,v);return;}
+ KEEP.lastIndex=0;
  if(!v||!el.matches(GUARD)){el.textContent=v;return;}
  let m=null;
  if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\uff09)\]\u00b7]*)$/u);
  else if(locale!=='TH')m=v.match(/(\S+[ \t]+\S+)$/);
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
- if(!m||m[1].length>=v.length){el.textContent=v;return;}
+ if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
- el.textContent='';el.append(document.createTextNode(v.slice(0,v.length-m[1].length)),tail);
+ el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);
 }
 
 function isPhone(){const m=document.querySelector('main');return !!m&&m.clientWidth<=600;}
@@ -92,6 +104,10 @@ function render(){
  }
  for(const g of document.querySelectorAll('[data-optional-group]'))g.hidden=[...g.querySelectorAll('[data-optional]')].every(e=>e.hidden);
  for(const el of document.querySelectorAll('[data-alt]'))el.alt=fields[el.dataset.alt]??'';
+ for(const a of document.querySelectorAll('a[data-link]')){
+  const href=DATA.links&&DATA.links[a.dataset.link];if(href)a.href=href;
+  if(a.dataset.link!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
+ }
  document.title=[fields.ox_title_main||'oligio xm',fields.ox_brand||'BEAUTY BLOSSOM'].join(' \u00b7 ');
  if(IE)IE.sync(editable);
  typeSwap();
