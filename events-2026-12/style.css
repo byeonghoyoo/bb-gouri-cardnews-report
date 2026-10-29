@@ -218,3 +218,7 @@ button:disabled { cursor: not-allowed; opacity: .55; }
 .group-label { flex: 1; min-width: 0; }
 .group-count { flex: none; font-size: 12px; font-weight: 500; color: var(--ink-2); white-space: nowrap; }
 .group-row.folded .group-btn { background: #fafafa; color: var(--ink-2); }
+/* test section marker (2026-10-29: the first 7 landings are a test section) */
+.group-test { flex: none; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: #d97706; color: #fff; }
+.kind-tag.kind-test, .kind-badge.kind-test { background: #d97706; }
+.test-note { margin: 8px 0 0; padding: 7px 11px; font-size: 13px; line-height: 1.5; color: #92400e; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 8px; }

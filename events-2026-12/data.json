@@ -6324,7 +6324,7 @@
   "groups": [
     {
       "id": "dec-landing",
-      "label": "12월 이벤트 · 수능 랜딩 7종 (완료)",
+      "label": "이벤트 랜딩 7종 (수능 포함)",
       "items": [
         "aptos",
         "D1",
@@ -6334,7 +6334,8 @@
         "D5",
         "EXAM"
       ],
-      "folded": true
+      "folded": true,
+      "test": true
     },
     {
       "id": "dec-launch",

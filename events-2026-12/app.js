@@ -368,6 +368,7 @@
       try { var s = env.storage && env.storage.getItem(FOLD_KEY); if (s) { var o = JSON.parse(s); if (isObj(o)) state.folded = o; } } catch (e) { /* ignore */ }
       return state.folded;
     }
+    function isTestItem(itemId) { return groupsOf().some(function (g) { return g.test === true && g.items.indexOf(itemId) >= 0; }); }
     function isFolded(g) { var f = loadFolded(); return typeof f[g.id] === 'boolean' ? f[g.id] : g.folded === true; }
     function setFolded(id, v) {
       loadFolded()[id] = v;
@@ -391,6 +392,7 @@
         out.push(H('li', { class: 'group-row' + (folded ? ' folded' : '') }, [
           H('button', { type: 'button', class: 'group-btn', 'data-group-id': g.id, 'aria-expanded': folded ? 'false' : 'true', onclick: function () { toggleGroup(g); } }, [
             H('span', { class: 'group-chev', 'aria-hidden': 'true', text: folded ? '▶' : '▼' }),
+            g.test === true ? H('span', { class: 'group-test', text: '테스트 구간' }) : null,
             H('span', { class: 'group-label', text: g.label || g.id }),
             H('span', { class: 'group-count', text: members.length + '개' + (selCount ? ' · 선택 ' + selCount : '') + (folded ? ' · 접힘' : '') }),
           ]),
@@ -409,7 +411,7 @@
           H('input', { type: 'checkbox', class: 'select-box', 'data-select-for': it.id, 'aria-label': it.label + ' 선택 (' + loc + ')', checked: sel, disabled: !store.canEdit(), onchange: function (e) { onSelectChange(it.id, loc, !!e.target.checked); } }),
           H('button', { type: 'button', class: 'item-btn', 'data-item-id': it.id, 'aria-current': it.id === state.itemId ? 'true' : null, onclick: function () { selectItem(it.id); } }, [
             H('span', { class: 'item-label', text: it.label }),
-            H('span', { class: 'kind-tag kind-' + it.kind, text: it.kind === 'plan' ? '기획' : '완성' }),
+            isTestItem(it.id) ? H('span', { class: 'kind-tag kind-test', text: '테스트' }) : H('span', { class: 'kind-tag kind-' + it.kind, text: it.kind === 'plan' ? '기획' : '완성' }),
             errs ? H('span', { class: 'err-tag', text: '오류 ' + errs }) : null,
           ]),
         ]);
@@ -556,8 +558,11 @@
       state.previewCb = cb;
       return H('div', { class: 'preview-head' }, [
         H('div', null, [
-          H('span', { class: 'kind-badge kind-' + it.kind, text: it.kind === 'aptos' ? '완성 디자인 · 압토스' : it.kind === 'landing' ? '완성 디자인 · 공유 검토' : '기획 검토 시안 · 확정 아님' }),
+          isTestItem(it.id)
+            ? H('span', { class: 'kind-badge kind-test', text: '테스트 구간' })
+            : H('span', { class: 'kind-badge kind-' + it.kind, text: it.kind === 'aptos' ? '완성 디자인 · 압토스' : it.kind === 'landing' ? '완성 디자인 · 공유 검토' : '기획 검토 시안 · 확정 아님' }),
           H('h2', { class: 'preview-title', text: it.label + ' · ' + state.locale }),
+          isTestItem(it.id) ? H('p', { class: 'test-note', text: '테스트 구간 항목입니다. 연습용으로 만든 랜딩 7종(수능 포함)이며 실제 진행 작업과 구분됩니다.' }) : null,
         ]),
         H('label', { class: 'preview-select' }, [cb, H('span', { text: state.locale + ' 언어판 선택' })]),
       ]);
@@ -608,7 +613,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3d' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3e' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
