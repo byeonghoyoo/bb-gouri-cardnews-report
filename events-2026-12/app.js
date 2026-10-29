@@ -86,6 +86,7 @@
           else if (typeof f[k] !== 'string') errs.push(tag + '문자열이 아닌 값 ' + k);
         });
         if (it.kind !== 'plan' && it.kind !== 'landing') return;
+        if (typeof it.page === 'string' && it.page) return; /* own-page designs (EXAM, V3) use their own copy keys */
         PLAN_REQUIRED.forEach(function (k) { if (!(k in f)) errs.push(tag + '필수 필드 누락 ' + k); });
         var offers = collectOffers(f);
         if (offers.length < 3) errs.push(tag + '오퍼가 3개 미만입니다 (' + offers.length + '개)');
@@ -565,7 +566,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-exam5' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3a' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
