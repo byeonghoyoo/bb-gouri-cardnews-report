@@ -2,9 +2,9 @@
    Design width 1080. Sizes scale with --px (container width / 1080); text keeps a readable minimum.
    Palette: deep navy / near-black, champagne gold, ivory menu card. */
 :root{
-  --night:#090D17;--navy:#0F182B;--navy-2:#16223B;--navy-3:#1C2B4A;
+  --night:#0B1120;--navy:#131D34;--navy-2:#1A2844;--navy-3:#22345B;
   --gold:#C9A96A;--gold-hi:#E8D6A8;--gold-lo:#94743F;--gold-ink:#7A5E30;
-  --ivory:#F6F0E4;--ivory-2:#EDE3CF;--ink:#191C25;--ink-2:#4B4F5C;--mist:#B7BDCB;--mist-2:#8D94A6;
+  --ivory:#F6F0E4;--ivory-2:#EDE3CF;--ink:#191C25;--ink-2:#4B4F5C;--mist:#C7CDD9;--mist-2:#9CA4B6;
   /* Latin glyphs always come from Noto Serif: the CJK/Thai serif files are sliced, and mixing slices inside a brand name renders "Sofw|ave" */
   --f-serif:'Noto Serif','Noto Serif KR',serif;
   --f-body:'Pretendard Variable',Pretendard,system-ui,sans-serif;
@@ -44,15 +44,15 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
   background:linear-gradient(180deg,#F1E3BC 0%,#D9BC7E 45%,#B08A4C 75%,#E3CB93 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* ---------- 1. HERO ---------- */
-.hero{position:relative;text-align:center;padding:calc(32*var(--px)) calc(48*var(--px)) calc(92*var(--px));
-  background:radial-gradient(110% 70% at 50% 0%,#20335A 0%,#131F38 42%,#0B111F 78%,var(--night) 100%)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(40% 26% at 50% 56%,rgba(232,214,168,.10),transparent 70%);pointer-events:none}
+.hero{position:relative;text-align:center;padding:calc(32*var(--px)) calc(48*var(--px)) calc(62*var(--px));
+  background:radial-gradient(110% 72% at 50% 0%,#2B4373 0%,#1A2A4B 42%,#121D35 80%,#0F1829 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(46% 30% at 50% 58%,rgba(232,214,168,.16),transparent 72%);pointer-events:none}
 .hero>*{position:relative}
 .hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .hero-top .logo{height:max(12px,calc(21*var(--px)));width:auto}
 .kicker{font-family:var(--f-serif);font-weight:600;font-size:max(11px,calc(17*var(--px)));letter-spacing:.08em;color:var(--gold-hi);
   border-top:1px solid rgba(201,169,106,.55);border-bottom:1px solid rgba(201,169,106,.55);padding:.42em .2em;white-space:nowrap}
-.hero-dec{margin:calc(70*var(--px)) auto 0;width:calc(300*var(--px))}
+.hero-dec{margin:calc(48*var(--px)) auto 0;width:calc(300*var(--px))}
 .hero-dec .type-fallback{font-size:calc(58*var(--px));font-weight:500;color:var(--gold-hi)}
 .hero-type{position:relative;margin:calc(4*var(--px)) auto 0;width:calc(840*var(--px))}
 .hero-type .type-fallback{font-size:calc(132*var(--px));white-space:nowrap}
@@ -62,7 +62,7 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
 .hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:calc(12*var(--px));margin-top:calc(22*var(--px))}
 .pill{border:1px solid rgba(201,169,106,.6);color:var(--gold-hi);border-radius:999px;padding:.4em 1.2em;font-weight:600;font-size:max(13px,calc(20*var(--px)))}
 
-.hero-stage{position:relative;margin-top:calc(48*var(--px));display:flex;flex-direction:column;align-items:center}
+.hero-stage{position:relative;margin-top:calc(40*var(--px));display:flex;flex-direction:column;align-items:center}
 .arch{position:relative;width:calc(560*var(--px));padding:calc(12*var(--px));border:1px solid rgba(201,169,106,.7);border-radius:calc(292*var(--px)) calc(292*var(--px)) 0 0;border-bottom:0}
 .arch::after{content:'';position:absolute;inset:calc(-12*var(--px)) calc(-12*var(--px)) 0;border:1px solid rgba(201,169,106,.28);border-bottom:0;border-radius:calc(304*var(--px)) calc(304*var(--px)) 0 0;pointer-events:none}
 .arch-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:calc(280*var(--px)) calc(280*var(--px)) 0 0}
@@ -73,25 +73,27 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
 .price b{font-weight:700}
 .price .unit{font-family:var(--f-serif);font-weight:600;margin-left:.08em}
 .plate-price{margin-top:calc(12*var(--px));font-size:calc(max(34px,calc(68*var(--px)))*var(--fit,1));color:var(--navy)}
-.plate-price .unit{font-size:.42em}
-.plate-price .from{font-family:var(--f-serif);font-weight:600;font-size:.4em;color:var(--gold-ink);margin-left:.25em}
+/* "원부터", "ウォンから", "韩元起" read as one word; only English and Thai keep a space ("KRW and up") */
+.plate-price .unit,.plate-price .from{font-size:.42em;color:var(--gold-ink)}
+.plate-price .from{font-family:var(--f-serif);font-weight:600}
+html[data-locale=EN] .plate-price .from,html[data-locale=TH] .plate-price .from{margin-left:.3em}
 .plate-vat{margin-top:calc(12*var(--px));font-size:max(12px,calc(17*var(--px)));color:var(--ink-2);letter-spacing:.04em}
-.hero-lead{max-width:calc(760*var(--px));margin:calc(40*var(--px)) auto 0;font-size:max(15px,calc(23*var(--px)));line-height:1.7;color:var(--mist)}
+.hero-lead{max-width:calc(800*var(--px));margin:calc(32*var(--px)) auto 0;font-size:max(15px,calc(23*var(--px)));line-height:1.7;color:var(--mist);white-space:pre-line}
 
 /* ---------- 2. WHY PAIRING / DEPTH CHART ---------- */
-.depth{position:relative;padding:calc(120*var(--px)) calc(64*var(--px)) calc(110*var(--px));background:linear-gradient(180deg,var(--night) 0%,#0D1526 40%,var(--navy) 100%)}
+.depth{position:relative;padding:calc(80*var(--px)) calc(64*var(--px)) calc(72*var(--px));background:linear-gradient(180deg,#0F1829 0%,#141F38 45%,#17243F 100%)}
 .why{display:grid;grid-template-columns:calc(380*var(--px)) minmax(0,1fr);gap:calc(60*var(--px));align-items:center}
 .why-photo{margin:0;padding:calc(10*var(--px));border:1px solid rgba(201,169,106,.6)}
 .why-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .why-body{font-size:max(15px,calc(22*var(--px)));line-height:1.78;color:var(--mist);white-space:pre-line}
 
-.chart{margin-top:calc(90*var(--px));--cols:40fr 32fr 28fr}
+.chart{margin-top:calc(60*var(--px));--cols:40fr 32fr 28fr}
 .chart-head,.dev{display:grid;grid-template-columns:calc(150*var(--px)) calc(260*var(--px)) minmax(0,1fr);column-gap:calc(26*var(--px))}
 .chart-head{align-items:end;padding-bottom:calc(14*var(--px));border-bottom:1px solid rgba(201,169,106,.5)}
 .ch-label{grid-column:1/3;font-family:var(--f-serif);font-weight:600;font-size:max(13px,calc(21*var(--px)));color:var(--gold-hi)}
 .ch-cols{display:grid;grid-template-columns:var(--cols);text-align:center;font-size:max(11px,calc(17*var(--px)));font-weight:600;color:var(--mist);letter-spacing:.02em}
 .ch-cols>span{padding:0 .3em}
-.dev{grid-template-areas:"img name track" "img name depth";align-items:center;padding:calc(22*var(--px)) 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.dev{grid-template-areas:"img name track" "img name depth";align-items:center;padding:calc(16*var(--px)) 0;border-bottom:1px solid rgba(255,255,255,.09)}
 .dev-img{grid-area:img;margin:0;width:calc(150*var(--px));aspect-ratio:1;border-radius:50%;
   background:radial-gradient(closest-side,rgba(246,240,228,.16),rgba(246,240,228,.05) 70%,transparent);display:grid;place-items:center}
 .dev-img img{width:90%;height:90%;object-fit:contain;filter:drop-shadow(0 calc(8*var(--px)) calc(10*var(--px)) rgba(0,0,0,.4))}
@@ -116,15 +118,15 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
 .chart-note{margin-top:calc(22*var(--px));font-size:max(11px,calc(16*var(--px)));color:var(--mist-2)}
 
 /* ---------- 3. PAIRING MENU ---------- */
-.menu-sec{position:relative;padding:calc(120*var(--px)) calc(64*var(--px)) calc(110*var(--px));
-  background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 2px,transparent 2px 6px),radial-gradient(90% 60% at 50% 0%,#162441 0%,#0D1526 60%,#0A0F1C 100%)}
-.menu-intro{display:grid;grid-template-columns:minmax(0,1fr) calc(360*var(--px));gap:calc(56*var(--px));align-items:end}
-.menu-head{padding-bottom:calc(150*var(--px))}
+.menu-sec{position:relative;padding:calc(80*var(--px)) calc(64*var(--px)) calc(76*var(--px));
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.014) 0 2px,transparent 2px 6px),radial-gradient(90% 60% at 50% 0%,#203259 0%,#16223D 60%,#121C33 100%)}
+.menu-intro{display:grid;grid-template-columns:minmax(0,1fr) calc(320*var(--px));gap:calc(56*var(--px));align-items:end}
+.menu-head{padding-bottom:calc(132*var(--px))}
 .menu-lead{margin-top:calc(22*var(--px));font-size:max(15px,calc(22*var(--px)));line-height:1.7;color:var(--mist)}
 .menu-photo{margin:0;padding:calc(10*var(--px));border:1px solid rgba(201,169,106,.6);border-radius:calc(190*var(--px)) calc(190*var(--px)) 0 0;border-bottom:0}
 .menu-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;border-radius:calc(180*var(--px)) calc(180*var(--px)) 0 0}
 
-.card{position:relative;z-index:2;margin-top:calc(-110*var(--px));background:var(--ivory);color:var(--ink);padding:calc(74*var(--px)) calc(84*var(--px)) calc(58*var(--px));
+.card{position:relative;z-index:2;margin-top:calc(-100*var(--px));background:var(--ivory);color:var(--ink);padding:calc(74*var(--px)) calc(84*var(--px)) calc(58*var(--px));
   box-shadow:0 calc(34*var(--px)) calc(70*var(--px)) rgba(0,0,0,.55)}
 .card::before{content:'';position:absolute;inset:calc(16*var(--px));border:1px solid rgba(148,116,63,.55);pointer-events:none}
 .corner{width:calc(92*var(--px))}
@@ -153,7 +155,7 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
 .c-pair .pl::before{content:'';width:.5em;height:.5em;border:1px solid currentColor;transform:rotate(45deg)}
 .card-vat{margin-top:calc(18*var(--px));text-align:right;font-size:max(12px,calc(16*var(--px)));color:var(--ink-2);letter-spacing:.04em}
 
-.sig{position:relative;margin-top:calc(60*var(--px));text-align:center;padding:calc(58*var(--px)) calc(70*var(--px)) calc(54*var(--px));
+.sig{position:relative;margin-top:calc(44*var(--px));text-align:center;padding:calc(58*var(--px)) calc(70*var(--px)) calc(54*var(--px));
   background:radial-gradient(100% 120% at 50% 0%,#1D2D50 0%,#121D35 55%,#0C1426 100%);border:1px solid rgba(201,169,106,.75);
   box-shadow:inset 0 0 0 calc(8*var(--px)) rgba(12,20,38,.0),inset 0 0 0 calc(9*var(--px)) rgba(201,169,106,.28),0 calc(30*var(--px)) calc(60*var(--px)) rgba(0,0,0,.5)}
 .sp2{width:calc(84*var(--px));right:calc(54*var(--px));top:calc(36*var(--px))}
@@ -169,15 +171,18 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
 .sig-vat{margin-top:calc(12*var(--px));font-size:max(12px,calc(16*var(--px)));color:var(--mist-2);letter-spacing:.04em}
 
 /* ---------- 4. Q&A ---------- */
-.qa{padding:calc(110*var(--px)) calc(64*var(--px)) calc(100*var(--px));background:linear-gradient(180deg,#0A0F1C,var(--navy))}
-.qas{margin-top:calc(44*var(--px));border-top:1px solid rgba(201,169,106,.45)}
-.qa-item{padding:calc(30*var(--px)) 0;border-bottom:1px solid rgba(201,169,106,.22)}
-.qa-item dt{display:flex;align-items:baseline;gap:calc(16*var(--px));font-family:var(--f-serif);font-weight:600;font-size:max(16px,calc(27*var(--px)));line-height:1.4;color:var(--ivory)}
-.qa-item dt b{font-family:var(--f-deco);font-style:italic;font-weight:600;font-size:1.3em;color:var(--gold);flex:none}
-.qa-item dd{margin:calc(12*var(--px)) 0 0 calc(56*var(--px));font-size:max(14px,calc(20*var(--px)));line-height:1.72;color:var(--mist)}
+/* the back page of the menu: ivory paper between the dark sections */
+.qa{padding:calc(72*var(--px)) calc(64*var(--px)) calc(68*var(--px));background:linear-gradient(180deg,#F7F1E6 0%,#F1E8D6 100%);color:var(--ink)}
+.qa .eyebrow{color:var(--gold-ink)}
+.qa .sec-title{color:var(--ink)}
+.qas{margin-top:calc(34*var(--px));border-top:1px solid rgba(148,116,63,.5)}
+.qa-item{padding:calc(24*var(--px)) 0;border-bottom:1px solid rgba(148,116,63,.26)}
+.qa-item dt{display:flex;align-items:baseline;gap:calc(16*var(--px));font-family:var(--f-serif);font-weight:700;font-size:max(16px,calc(27*var(--px)));line-height:1.4;color:var(--ink)}
+.qa-item dt b{font-family:var(--f-deco);font-style:italic;font-weight:600;font-size:1.3em;color:var(--gold-lo);flex:none}
+.qa-item dd{margin:calc(10*var(--px)) 0 0 calc(56*var(--px));font-size:max(14px,calc(20*var(--px)));line-height:1.72;color:var(--ink-2)}
 
 /* ---------- 5. RESERVATION ---------- */
-.rsv-sec{padding:calc(110*var(--px)) calc(64*var(--px)) calc(96*var(--px));background:radial-gradient(80% 60% at 50% 30%,#18264A 0%,#0F182B 55%,var(--night) 100%)}
+.rsv-sec{padding:calc(80*var(--px)) calc(64*var(--px)) calc(68*var(--px));background:radial-gradient(80% 60% at 50% 30%,#24385F 0%,#16223C 55%,#101A2E 100%)}
 .rsv{position:relative;max-width:calc(880*var(--px));margin:0 auto;background:var(--ivory);color:var(--ink);text-align:center;padding:calc(58*var(--px)) calc(66*var(--px)) calc(50*var(--px));
   box-shadow:0 calc(30*var(--px)) calc(60*var(--px)) rgba(0,0,0,.5)}
 .rsv::before{content:'';position:absolute;inset:calc(14*var(--px));border:1px solid rgba(148,116,63,.55);pointer-events:none}
@@ -185,10 +190,11 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
 .rsv-en{font-family:var(--f-label);font-weight:600;font-size:max(10px,calc(15*var(--px)));letter-spacing:.42em;color:var(--gold-ink)}
 .rsv-title{margin-top:calc(12*var(--px));font-family:var(--f-serif);font-weight:700;font-size:max(21px,calc(40*var(--px)));line-height:1.3}
 .rsv-body{position:relative;display:grid;grid-template-columns:minmax(0,1fr) calc(200*var(--px));gap:calc(44*var(--px));align-items:center;text-align:left;margin-top:calc(34*var(--px));padding-top:calc(30*var(--px));border-top:1px solid rgba(148,116,63,.4)}
-.rsv-rows{display:grid;gap:calc(18*var(--px))}
-.rsv-row{display:grid;grid-template-columns:calc(96*var(--px)) minmax(0,1fr);gap:calc(14*var(--px));align-items:baseline}
-.rsv-row dt{font-weight:700;font-size:max(12px,calc(17*var(--px)));color:var(--gold-ink);letter-spacing:.06em}
-.rsv-row dd{font-size:max(14px,calc(21*var(--px)));line-height:1.5;color:var(--ink)}
+/* labels take exactly their own width in every language, so "Location" or "お問い合わせ" never breaks */
+.rsv-rows{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:calc(24*var(--px));row-gap:calc(18*var(--px));align-items:baseline}
+.rsv-row{display:contents}
+.rsv-row dt{font-weight:700;font-size:max(12px,calc(17*var(--px)));color:var(--gold-ink);letter-spacing:.06em;white-space:nowrap}
+.rsv-row dd{min-width:0;font-size:max(14px,calc(21*var(--px)));line-height:1.5;color:var(--ink)}
 .rsv-row dd a{display:inline-block;max-width:100%;white-space:nowrap;font-size:calc(1em*var(--fit,1));text-underline-offset:.2em}
 .rsv-row dd a.wrap{white-space:normal}
 .rsv-row .sep{margin:0 .45em;color:var(--mist-2)}
@@ -202,7 +208,7 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
 .btn-kakao{background:#FEE500;color:#191919}
 
 /* ---------- 6. NOTICE + FOOTER ---------- */
-.notice{padding:calc(70*var(--px)) calc(64*var(--px)) calc(46*var(--px));background:var(--night);color:var(--mist)}
+.notice{padding:calc(56*var(--px)) calc(64*var(--px)) calc(40*var(--px));background:#0F1829;color:var(--mist)}
 .notice-title{font-family:var(--f-serif);font-weight:600;font-size:max(15px,calc(24*var(--px)));color:var(--ivory)}
 .notice ul{list-style:none;margin-top:calc(16*var(--px));display:grid;gap:calc(8*var(--px))}
 .notice li{position:relative;padding-left:1.2em;font-size:max(12px,calc(18*var(--px)));line-height:1.6}
@@ -219,9 +225,9 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
 
 /* ---------- small screens ---------- */
 @container lf (max-width: 640px){
-  .hero{padding:18px 18px 56px}
+  .hero{padding:18px 18px 42px}
   .kicker{font-size:11px;letter-spacing:.04em}
-  .hero-dec{margin-top:40px;width:150px}
+  .hero-dec{margin-top:30px;width:150px}
   .hero-dec .type-fallback{font-size:30px}
   .hero-type{width:96%}
   .hero-type .type-fallback{font-size:clamp(40px,12.6cqw,62px)}
@@ -234,19 +240,19 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
   .plate-price{font-size:calc(36px*var(--fit,1))}
   .hero-lead{margin-top:26px;font-size:15px;max-width:none}
 
-  .depth{padding:70px 18px 64px}
+  .depth{padding:50px 18px 44px}
   .why{grid-template-columns:1fr;gap:30px}
   .why-photo{width:72%;justify-self:center;padding:7px}
   .divider,.rule{width:180px;margin:16px 0}
-  .chart{margin-top:52px}
+  .chart{margin-top:38px}
   .chart-head{grid-template-columns:1fr;row-gap:12px}
   .ch-label{grid-column:1}
-  .dev{grid-template-columns:72px minmax(0,1fr);grid-template-areas:"img name" "track track" "depth depth";column-gap:14px;padding:16px 0}
-  .dev-img{width:72px}
+  .dev{grid-template-columns:104px minmax(0,1fr);grid-template-areas:"img name" "track track" "depth depth";column-gap:16px;padding:14px 0}
+  .dev-img{width:104px}
   .track{margin-top:12px;height:28px}
   .dev-depth{margin-top:8px}
 
-  .menu-sec{padding:70px 16px 64px}
+  .menu-sec{padding:50px 16px 46px}
   .menu-intro{grid-template-columns:1fr;gap:28px}
   .menu-head{padding-bottom:0}
   .menu-photo{width:66%;justify-self:center;padding:7px}
@@ -261,7 +267,7 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
   .c-price{font-size:20px}
   .c-items{font-size:14px}
   .c-pair{font-size:13px}
-  .sig{margin-top:36px;padding:34px 18px 32px}
+  .sig{margin-top:28px;padding:34px 18px 32px}
   .sp2{width:40px;right:16px;top:16px}
   .sig-type{width:220px}
   .sig-type .type-fallback{font-size:52px}
@@ -269,24 +275,27 @@ h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.sig-lead,dd,.c-items{text-
   .sig-lead,.sig-items{font-size:14px}
   .sig-price{font-size:calc(36px*var(--fit,1))}
 
-  .qa{padding:66px 18px 60px}
+  .qa{padding:46px 18px 40px}
   .qa-item{padding:20px 0}
   .qa-item dt{font-size:17px;gap:10px}
   .qa-item dd{margin-left:30px;font-size:15px}
 
-  .rsv-sec{padding:66px 14px 60px}
+  .rsv-sec{padding:48px 14px 42px}
   .rsv{padding:36px 18px 30px}
   .rsv::before{inset:7px}
   .cloche{width:66px}
   .rsv-title{font-size:22px}
   .rsv-body{grid-template-columns:1fr;gap:24px;margin-top:24px;padding-top:22px}
-  .rsv-row{grid-template-columns:52px minmax(0,1fr);gap:10px}
+  /* phones: label above its value, so long labels and values both get the full width */
+  .rsv-rows{grid-template-columns:minmax(0,1fr);row-gap:14px}
+  .rsv-row{display:grid;grid-template-columns:minmax(0,1fr);gap:3px}
+  .rsv-row dt{font-size:12px}
   .rsv-row dd{font-size:15px}
   .rsv-qr{flex-direction:row;justify-content:center;gap:14px}
   .qr{width:110px;padding:6px}
   .cta{grid-template-columns:1fr;gap:10px;margin-top:20px}
   .btn{min-height:54px;font-size:16px;border-radius:6px}
 
-  .notice{padding:44px 18px 30px}
+  .notice{padding:34px 18px 26px}
   .notice li{font-size:13px}
 }

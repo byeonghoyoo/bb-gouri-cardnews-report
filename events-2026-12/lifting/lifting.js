@@ -64,15 +64,32 @@ function fit(){
 /* widow guard: keep the last two words (CJK: last two characters) together. Text content stays identical. */
 const GUARD='h1,h2,h3,.hero-title,.hero-lead,.why-body,.menu-lead,.c-items,.c-pair,.sig-lead,.sig-items,.qa-item dt,.qa-item dd,.notice li,.dev-depth,.dev-name,.chart-note,.rsv-row dd,.plate-label';
 const ONE_PIECE=['lf_d_sof_name','lf_d_thm_name','lf_d_ond_name','lf_d_ult_name','lf_c1_name','lf_c2_name','lf_c3_name','lf_c4_name','lf_sig_name','lf_c3_extra'];
+/* display only (the stored text never changes): keep meaningful units on one line */
+function display(v){
+ if(!v)return v;
+ v=v.replace(/ ([\u00b7\u30fb+×])/g,'\u00a0$1')      /* a middle dot, plus or times never starts a line */
+  .replace(/(\d) (?=[^\s\d+·×])/g,'$1\u00a0')       /* a number stays with its unit ("50 pulses") */
+  .replace(/([\p{L}\p{M}]) (?=\d)/gu,'$1\u00a0');      /* a device stays with its count ("소프웨이브 100펄스") */
+ if(locale==='KO')v=v.replace(/(^|[\s\u00a0])(한|두|세|네|다섯|여섯) (?=\S)/g,'$1$2\u00a0'); /* "네 가지", "두 장비를" */
+ /* device and course names stay in one piece ("울쎄라피 프라임", "Thermage FLX") */
+ for(const k of ONE_PIECE){const n=fields[k];if(n&&n.includes(' ')&&n.length<=28&&v.includes(n))v=v.split(n).join(n.replace(/ /g,'\u00a0'));}
+ return v;
+}
+/* hyphenated words ("year-end", "One-Day", the phone number) never break at the hyphen: they go into a no-wrap span */
+const HYPHEN=/[^\s\u00a0-]+(?:-[^\s\u00a0-]+)+/g;
+function appendText(el,txt){
+ let last=0;
+ for(const m of txt.matchAll(HYPHEN)){
+  if(m.index>last)el.append(document.createTextNode(txt.slice(last,m.index)));
+  const s=document.createElement('span');s.className='nw';s.textContent=m[0];el.append(s);last=m.index+m[0].length;
+ }
+ if(last<txt.length)el.append(document.createTextNode(txt.slice(last)));
+}
 function setText(el,v){
  el.textContent='';
- if(v){
-  /* display only: a middle dot or plus never starts a new line, a number stays with its unit */
-  v=v.replace(/ ([\u00b7\u30fb+×])/g,'\u00a0$1').replace(/(\d) (?=[^\s\d+·×])/g,'$1\u00a0');
-  /* display only: device and course names stay in one piece ("울쎄라피 프라임", "Thermage FLX") */
-  for(const k of ONE_PIECE){const n=fields[k];if(n&&n.includes(' ')&&n.length<=28&&v.includes(n)&&el.dataset.copy!==k)v=v.split(n).join(n.replace(/ /g,'\u00a0'));}
- }
- if(!v||!el.closest(GUARD)){el.textContent=v;return;}
+ v=display(v);
+ if(!v)return;
+ if(!el.closest(GUARD)){appendText(el,v);return;}
  let m=null;
  if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\u300d\u300f\uff09)\]\u00b7~\u301c]*)$/u);
  else if(locale!=='TH'){
@@ -80,9 +97,9 @@ function setText(el,v){
   const last=(v.match(/(\S+)$/)||[])[1]||'',core=last.replace(/[.,!?'"’”)\]~\-…]/g,'');
   if(core.length<=(locale==='KO'?2:4))m=v.match(/(\S+[ \t]+\S+)$/);
  }
- if(!m||m[1].length>=v.length){el.textContent=v;return;}
- const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
- el.append(document.createTextNode(v.slice(0,v.length-m[1].length)),tail);
+ if(!m||m[1].length>=v.length){appendText(el,v);return;}
+ appendText(el,v.slice(0,v.length-m[1].length));
+ const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];el.append(tail);
 }
 function render(){
  root.lang=LANG[locale]||'ko';root.dataset.locale=locale;

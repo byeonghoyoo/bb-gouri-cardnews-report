@@ -64,22 +64,43 @@ function fit(){
  for(const a of document.querySelectorAll('.bk-row dd a')){a.classList.remove('wrap');if(!fitTo(a,a.parentElement.clientWidth,.8)){a.style.removeProperty('--fit');a.classList.add('wrap');}}
 }
 
-/* widow guard: keep the last two words (CJK: last three characters) together. Text content stays identical. */
+/* line breaks (display only; the text itself never changes, so editing and saving see the same words):
+   - widow guard: the last two words (CJK: last three characters) stay together
+   - product, device and laser-mode names stay in one piece ("듀얼피코 슈어토닝", "V Redness")
+   - a dot-separated list never starts a line with the dot ("피코포커스·" stays with its word)
+   - hyphenated words stay whole ("1-session", "V-Laser")
+   - a few short phrases read badly when split ("모드 1가지를", "올 수 있다면") */
 const GUARD='h1,h2,h3,.hero-title,.sec-body,.w-note,.r-detail,.q,.a,.g-card p,.h-text,.bk-row dd,.notice li,.foot p,.dev figcaption';
-const KEEP=['tn_offer1_name','tn_offer2_name','tn_offer3_name','tn_offer4_name','tn_dev_pico','tn_dev_v','tn_step1_title'];
+const KEEP=['tn_offer1_name','tn_offer2_name','tn_offer3_name','tn_offer4_name','tn_dev_pico','tn_dev_v','tn_step1_title','tn_mode1','tn_mode2','tn_mode3','tn_mode4','tn_mode5','tn_mode6'];
+const PHRASES={KO:['모드 1가지를','올 수 있다면','레이저 2가지','1회 메뉴를','5회 메뉴를'],EN:['(1 mode)','5 sessions','5 times'],TH:['(เลือก 1 โหมด)','1 โหมด']};
+/* [start,end,wbrAfter]: a list dot is glued only to the character before it and gets an explicit break chance after it,
+   so a long dot list ("PicoSure·Pico Focus·…") never turns into one unbreakable run */
+function nowrapRanges(v){
+ const R=[];
+ for(const m of v.matchAll(/[^\s\u00a0][\u00b7\u30fb](?=[^\s\u00a0])/g))R.push([m.index,m.index+2,true]);
+ for(const m of v.matchAll(/[0-9A-Za-z]+(?:-[0-9A-Za-z]+)+/g))R.push([m.index,m.index+m[0].length,false]);
+ return R;
+}
 function setText(el,v){
  el.textContent='';
- /* display only: a middle dot never starts a new line */
- if(v)v=v.replace(/ ([\u00b7\u30fb])/g,'\u00a0$1');
- /* display only: product and device names stay in one piece ("듀얼피코 슈어토닝", "3D 피부진단") */
- if(v)for(const k of KEEP){const n=fields[k];if(n&&n.includes(' ')&&n.length<=26&&v.includes(n))v=v.split(n).join(n.replace(/ /g,'\u00a0'));}
- if(!v||!el.closest(GUARD)||el.closest('.chip')){el.textContent=v;return;}
- let m=null;
- if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\u300d\u300f\uff09)\]\u00b7~\u301c]*)$/u);
- else if(locale!=='TH')m=v.match(/(\S+[ \t]+\S+)$/);
- if(!m||m[1].length>=v.length||m[1].length>24){el.textContent=v;return;}
- const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
- el.append(document.createTextNode(v.slice(0,v.length-m[1].length)),tail);
+ if(!v)return;
+ v=v.replace(/ ([\u00b7\u30fb])/g,'\u00a0$1');
+ for(const k of KEEP){const n=fields[k];if(n&&n.includes(' ')&&n.length<=26&&v.includes(n))v=v.split(n).join(n.replace(/ /g,'\u00a0'));}
+ for(const p of PHRASES[locale]||[])if(v.includes(p))v=v.split(p).join(p.replace(/ /g,'\u00a0'));
+ if(el.closest('.chip')){el.textContent=v;return;}
+ const R=nowrapRanges(v);
+ if(el.closest(GUARD)){
+  let m=null;
+  if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\u300d\u300f\uff09)\]\u00b7~\u301c]*)$/u);
+  else if(locale!=='TH')m=v.match(/(\S+[ \t]+\S+)$/);
+  if(m&&m[1].length<v.length&&m[1].length<=24)R.push([v.length-m[1].length,v.length,false]);
+ }
+ /* merge only overlapping ranges: touching ones stay separate so the line can still break between them */
+ R.sort((a,b)=>a[0]-b[0]);const M=[];
+ for(const r of R){const last=M[M.length-1];if(last&&r[0]<last[1]){if(r[1]>=last[1])last[2]=r[2];last[1]=Math.max(last[1],r[1]);}else M.push([r[0],r[1],r[2]]);}
+ let pos=0;
+ for(const [s,e,wbr] of M){if(s>pos)el.append(document.createTextNode(v.slice(pos,s)));const sp=document.createElement('span');sp.className='nw';sp.textContent=v.slice(s,e);el.append(sp);if(wbr&&e<v.length)el.append(document.createElement('wbr'));pos=e;}
+ if(pos<v.length)el.append(document.createTextNode(v.slice(pos)));
 }
 function render(){
  root.lang=LANG[locale]||'ko';root.dataset.locale=locale;

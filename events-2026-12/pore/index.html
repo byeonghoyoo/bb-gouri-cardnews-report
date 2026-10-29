@@ -10,47 +10,67 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link id="locale-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
-<link rel="stylesheet" href="pore.css?v=20261029-pore1">
-<script src="copy-data.js?v=20261029-pore1" defer></script>
-<script src="../inline-edit.js?v=20261029-pore1" defer></script>
-<script src="pore.js?v=20261029-pore1" defer></script>
+<link rel="stylesheet" href="pore.css?v=20261029-pore2">
+<script src="copy-data.js?v=20261029-pore2" defer></script>
+<script src="../inline-edit.js?v=20261029-pore2" defer></script>
+<script src="pore.js?v=20261029-pore2" defer></script>
 </head>
 <body>
 <main class="rp" id="rp">
 <div class="sheet">
 
-  <!-- 1. COVER -->
+  <!-- 1. COVER: dark report cover + three route prices -->
   <section class="cover" aria-labelledby="cover-title">
-    <header class="cover-top">
-      <img class="logo" src="assets/logo-wordmark.png" alt="BEAUTY BLOSSOM" width="975" height="111">
-      <span class="meta">NO.04 · PORE CARE</span>
-    </header>
-    <div class="cover-grid">
-      <div class="cover-text">
-        <p class="eyebrow"><span data-copy="tx_eyebrow"></span></p>
-        <div class="type"><img class="type-img" src="assets/miri/type_texture_report.webp" alt="TEXTURE REPORT"></div>
-        <h1 class="title" id="cover-title"><span class="t1" data-copy="tx_title1"></span><span class="t2"><span class="hl" data-copy="tx_title2"></span></span></h1>
-        <p class="lead" data-copy="tx_lead"></p>
-        <div class="pills" data-optional-group>
-          <span class="pill" data-copy="tx_period" data-optional data-placeholder="기간 입력 (예: 12.1 – 12.31)"></span>
-          <span class="pill" data-copy="tx_target" data-optional data-placeholder="대상·조건 입력"></span>
-        </div>      </div>
-      <figure class="cover-photo">
-        <span class="frame">
-          <img class="ph" src="assets/hero.jpg" data-alt="tx_alt_hero" alt="" width="1000" height="1250">
-          <span class="crop c1" aria-hidden="true"></span><span class="crop c2" aria-hidden="true"></span><span class="crop c3" aria-hidden="true"></span><span class="crop c4" aria-hidden="true"></span>
-          <svg class="callout" aria-hidden="true" focusable="false"><line x1="62.2%" y1="36.7%" x2="21%" y2="78%"/></svg>
-          <span class="target" aria-hidden="true"></span>
-          <span class="lens" aria-hidden="true"><img src="assets/hero.jpg" alt="" width="1000" height="1250"></span>
-          <span class="lens-ring" aria-hidden="true"></span>
-          <span class="zoom-tag" aria-hidden="true">ZOOM ×2.4</span>
-        </span>
-      </figure>
-      <div class="entry">
-        <img class="deco ruler" src="assets/miri/ruler_strip.webp" alt="">
-        <p class="entry-label"><span class="dot" aria-hidden="true"></span><span data-copy="tx_entry_label"></span></p>
-        <p class="entry-name" data-copy="tx_entry_name"></p>
+    <div class="cover-band">
+      <header class="cover-top">
+        <img class="logo" src="assets/logo-wordmark.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+        <span class="meta">NO.04 · PORE CARE</span>
+      </header>
+      <div class="cover-grid">
+        <div class="cover-text">
+          <p class="eyebrow"><span data-copy="tx_eyebrow"></span></p>
+          <div class="type"><img class="type-img" src="assets/miri/type_texture_report.webp" alt="TEXTURE REPORT"></div>
+          <h1 class="title" id="cover-title"><span class="t1" data-copy="tx_title1"></span><span class="t2"><span class="hl" data-copy="tx_title2"></span></span></h1>
+          <p class="lead" data-copy="tx_lead"></p>
+          <div class="pills" data-optional-group>
+            <span class="pill" data-copy="tx_period" data-optional data-placeholder="기간 입력 (예: 12.1 – 12.31)"></span>
+            <span class="pill" data-copy="tx_target" data-optional data-placeholder="대상·조건 입력"></span>
+          </div>
+        </div>
+        <figure class="cover-photo">
+          <span class="frame">
+            <img class="ph" src="assets/hero.jpg" data-alt="tx_alt_hero" alt="" width="1000" height="1250">
+            <span class="crop c1" aria-hidden="true"></span><span class="crop c2" aria-hidden="true"></span><span class="crop c3" aria-hidden="true"></span><span class="crop c4" aria-hidden="true"></span>
+            <svg class="callout" aria-hidden="true" focusable="false"><line x1="62.2%" y1="36.7%" x2="21%" y2="78%"/></svg>
+            <span class="target" aria-hidden="true"></span>
+            <span class="lens" aria-hidden="true"><img src="assets/hero.jpg" alt="" width="1000" height="1250"></span>
+            <span class="lens-ring" aria-hidden="true"></span>
+            <span class="zoom-tag" aria-hidden="true">ZOOM ×2.4</span>
+          </span>
+        </figure>
+      </div>
+    </div>
+    <div class="summary">
+      <div class="sum sa">
+        <p class="sum-flag"><span data-copy="tx_entry_label"></span></p>
+        <p class="sum-head"><span class="lab">ROUTE A</span><b data-copy="tx_ra_tag"></b></p>
+        <p class="sum-title" data-copy="tx_ra_title"></p>
+        <p class="sum-item"><span data-copy="tx_ra1_name"></span> <span class="sum-detail" data-copy="tx_ra1_detail"></span></p>
         <p class="price fit"><b data-copy="tx_ra1_price"></b><span class="unit" data-copy="tx_unit"></span></p>
+        <p class="tax" data-copy="tx_tax"></p>
+      </div>
+      <div class="sum sb">
+        <p class="sum-head"><span class="lab">ROUTE B</span><b data-copy="tx_rb_tag"></b></p>
+        <p class="sum-title" data-copy="tx_rb_title"></p>
+        <p class="sum-item"><span data-copy="tx_rb1_name"></span> <span class="sum-detail" data-copy="tx_rb1_detail"></span></p>
+        <p class="price fit"><b data-copy="tx_rb1_price"></b><span class="unit" data-copy="tx_unit"></span></p>
+        <p class="tax" data-copy="tx_tax"></p>
+      </div>
+      <div class="sum sc">
+        <p class="sum-head"><span class="lab">ROUTE C</span><b data-copy="tx_rc_tag"></b></p>
+        <p class="sum-title" data-copy="tx_rc_title"></p>
+        <p class="sum-item"><span data-copy="tx_rc1_name"></span></p>
+        <p class="price fit"><b data-copy="tx_rc1_price"></b><span class="unit" data-copy="tx_unit"></span></p>
         <p class="tax" data-copy="tx_tax"></p>
       </div>
     </div>
@@ -81,7 +101,7 @@
     </div>
   </section>
   <!-- 3. ROUTES -->
-  <section class="routes sec" aria-labelledby="routes-title">
+  <section class="routes sec band-mint" aria-labelledby="routes-title">
     <div class="sec-head"><span class="sec-no">02</span><h2 class="sec-title" id="routes-title" data-copy="tx_routes_title"></h2></div>
 
     <article class="route ra">
@@ -125,7 +145,7 @@
   </section>
 
   <!-- 4. KIT -->
-  <section class="kit sec" aria-labelledby="kit-title">
+  <section class="kit sec band-dark" aria-labelledby="kit-title">
     <div class="sec-head"><span class="sec-no">03</span><h2 class="sec-title" id="kit-title" data-copy="tx_prod_title"></h2></div>
     <div class="kit-row">
       <figure class="kit-item"><span class="sample">SAMPLE 01</span><span class="kit-ph"><img class="cut" src="assets/prod-potenza.webp" data-alt="tx_alt_prod1" alt="" width="1000" height="1000"></span><figcaption><b data-copy="tx_prod1"></b><span class="kit-note" data-copy="tx_prod1_note"></span></figcaption></figure>
@@ -151,7 +171,7 @@
   </section>
 
   <!-- 6. FAQ -->
-  <section class="faq sec" aria-labelledby="faq-title">
+  <section class="faq sec band-mint" aria-labelledby="faq-title">
     <div class="sec-head"><span class="sec-no">05</span><h2 class="sec-title" id="faq-title" data-copy="tx_faq_title"></h2></div>
     <div class="qa-grid">
       <article class="qa"><p class="q"><b>Q</b><span data-copy="tx_q1"></span></p><p class="a" data-copy="tx_a1"></p></article>

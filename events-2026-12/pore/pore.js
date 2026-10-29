@@ -64,7 +64,7 @@ function fit(){
 }
 
 /* widow guard: keep the last two words (CJK: last few characters) together. Text content stays identical. */
-const GUARD='h1 .t1,h1 .hl,.sec-title,.lead,.entry-name,.check-note,.ct,.spec-desc,.route-title,.route-hook,.route-desc,.route-note,.notes p,.q span,.a,.sign-title,.sign-row dd,.notice li,.kit-note';
+const GUARD='h1 .t1,h1 .hl,.sec-title,.lead,.sum-title,.check-note,.ct,.spec-desc,.route-title,.route-hook,.route-desc,.route-note,.notes p,.q span,.a,.sign-title,.sign-row dd,.notice li,.kit-note';
 const KEEP=['tx_ra1_name','tx_ra2_name','tx_ra3_name','tx_rb1_name','tx_rb2_name','tx_rb3_name','tx_prod1','tx_prod2','tx_prod3','tx_prod4','tx_rc_title'];
 function setText(el,v){
  el.textContent='';

@@ -62,7 +62,7 @@ function fitTo(el,limit,min=.6){
  return el.scrollWidth<=limit+1;
 }
 function fit(){
- for(const el of document.querySelectorAll('.fit'))fitTo(el,el.clientWidth);
+ for(const el of document.querySelectorAll('.fit'))fitTo(el,el.clientWidth,.5);
  for(const s of document.querySelectorAll('.steps li>span'))fitTo(s,s.parentElement.clientWidth,.72);
  for(const a of document.querySelectorAll('.ct-row dd a')){a.classList.remove('wrap');if(!fitTo(a,a.parentElement.clientWidth,.8)){a.style.removeProperty('--fit');a.classList.add('wrap');}}
 }

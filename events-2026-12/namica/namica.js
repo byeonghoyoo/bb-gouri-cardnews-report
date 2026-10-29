@@ -68,18 +68,39 @@ function fit(){
  for(const a of document.querySelectorAll('.rsvp-rows dd a')){a.classList.remove('wrap');if(!fitTo(a,a.parentElement.clientWidth,.8)){a.style.removeProperty('--fit');a.classList.add('wrap');}}
 }
 
+/* words that must never be split across lines (display only, text content stays identical):
+   Thai transliterations and compounds have no dictionary break points, CJK terms read badly when split */
+const KEEP={
+ ALL:['P(LA/CL)'],
+ TH:['ไฮยาลูรอนิก','แอซิด','เจเนอเรชัน','ไบโอลิฟติ้ง','ลิฟติ้ง','ร่วมกัน','ความกระชับ','ไหมละลาย','ความยาวไหม','กรอบหน้า','ใบหน้า','ส่วนกลาง','หย่อนคล้อย','โปรแกรม','คอมโบ','สกินโบท็อกซ์','ผลิตภัณฑ์','ปรึกษา','เปิดตัว','คำเชิญ','ตอบรับ','สถานี','ฮับจอง','แตกต่าง','ดูแล','ได้แก่','ความหย่อนคล้อย','ด้วยกัน','ระยะพักฟื้น','แผนกต้อนรับ'],
+ CN:['玻尿酸','可吸收线','下颌线','中下面部','第四代','埋线','产品线','组合方案','紧致','轮廓','脸颊','新品首发','首发','肌肤','皮肤肉毒','线长','咨询','合井站','分为','单项方案','脸部结构','恢复','注入'],
+ TW:['玻尿酸','可吸收線','下顎線','中下臉','第四代','埋線','拉提','組合方案','緊緻','輪廓','臉頰','新品首發','首發','肌膚','皮膚肉毒','線長','線材','諮詢','合井站','分為','單項方案','臉部結構','恢復'],
+ HK:['透明質酸','可吸收線','下顎線','中下面部','第四代','埋線','組合療程','緊緻','輪廓','臉頰','新品首發','首發','肌膚','皮膚肉毒','線長','諮詢','合井站','分為','單項療程','面部結構','恢復','注入了'],
+ JP:['ヒアルロン酸','フェイスライン','バイオリフティング','リフティング','プログラム','カウンセリング','ローンチ','スキンボトックス','コアトックス','中・下顔面','溶ける糸','ハプチョン駅','ヒアルロン酸（HA）を']
+};
+const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const keepRe=loc=>{const l=[...KEEP.ALL,...(KEEP[loc]||[])].sort((a,b)=>b.length-a.length);return l.length?new RegExp(l.map(esc).join('|'),'gu'):null;};
+function appendKeep(parent,s){
+ const re=keepRe(locale);let last=0;
+ if(re)for(const m of s.matchAll(re)){if(m.index>last)parent.append(document.createTextNode(s.slice(last,m.index)));const k=document.createElement('span');k.className='nw';k.textContent=m[0];parent.append(k);last=m.index+m[0].length;}
+ if(last<s.length)parent.append(document.createTextNode(s.slice(last)));
+}
 /* widow guard: keep the last two words (CJK: last three characters) together. Text content stays identical. */
 const GUARD='h1,h2,h3,.inv-sub,.letter-body,.letter-to,.sec-body,.line-desc,.combo-desc,.q,.a,.notice li,.qr-label,.rsvp-rows dd,.foot p';
 function setText(el,v){
  el.textContent='';
  if(v)v=v.replace(/ ([\u00b7\u30fb])/g,'\u00a0$1');
- if(!v||!el.closest(GUARD)){el.textContent=v;return;}
+ if(!v){el.textContent=v;return;}
+ if(!el.closest(GUARD)){appendKeep(el,v);return;}
  let m=null;
  if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\u300d\u300f\uff09)\]\u00b7~\u301c]*)$/u);
  else if(locale!=='TH')m=v.match(/(\S+[ \t]+\S+)$/);
- if(!m||m[1].length>=v.length){el.textContent=v;return;}
- const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
- el.append(document.createTextNode(v.slice(0,v.length-m[1].length)),tail);
+ if(!m||m[1].length>=v.length){appendKeep(el,v);return;}
+ /* a protected word that straddles the tail start joins the tail */
+ let cut=v.length-m[1].length;const re=keepRe(locale);
+ if(re)for(const k of v.matchAll(re))if(k.index<cut&&k.index+k[0].length>cut)cut=k.index;
+ appendKeep(el,v.slice(0,cut));
+ const tail=document.createElement('span');tail.className='nw';appendKeep(tail,v.slice(cut));el.append(tail);
 }
 function render(){
  root.lang=LANG[locale]||'ko';root.dataset.locale=locale;
