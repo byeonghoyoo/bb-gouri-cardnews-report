@@ -45,9 +45,9 @@ function setMoney(el,v){
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
 /* widow guard: the last two words (CJK: last three characters) stay together; the phone number never breaks */
-const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.vr-v[data-copy],.vr-hours [data-copy],.loc-sub,.bk-links [data-copy]';
+const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr,.hrs-note,.bk-links [data-copy]';
 /* names that must never break inside (display only: wrapped in nowrap spans, the stored text is unchanged) */
-const KEEP=/(\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07|Beauty Blossom|Oligio XM|02-336-7511)/g;
+const KEEP=/(\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07|Beauty Blossom|Oligio XM|02-336-7511|\u30d3\u30e5\u30fc\u30c6\u30a3\u30fc\u30d6\u30ed\u30c3\u30b5\u30e0|\u30ab\u30ab\u30aa\u30c8\u30fc\u30af|Head Director|Chat on WhatsApp|\u0e1c\u0e39\u0e49\u0e2d\u0e33\u0e19\u0e27\u0e22\u0e01\u0e32\u0e23\u0e04\u0e25\u0e34\u0e19\u0e34\u0e01)/g; /* 2026-10-30b: card 5 only (these words do not occur on cards 1-4): JP clinic name, KakaoTalk, the director's title */
 function appendKept(el,s){
  let last=0;
  for(const m of s.matchAll(KEEP)){
@@ -56,15 +56,26 @@ function appendKept(el,s){
  }
  if(last<s.length)el.append(document.createTextNode(s.slice(last)));
 }
+/* card 5 hours: the day label and the time are styled apart (display only; the stored text stays exactly as typed) */
+function setHours(el,v){
+ el.textContent='';
+ const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
+ if(!m){el.textContent=v||'';return;}
+ const d=document.createElement('span');d.className='hd';d.textContent=m[1];
+ const t=document.createElement('span');t.className='ht';t.textContent=m[3];
+ el.append(d,document.createTextNode(m[2]),t);
+}
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
+ if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
  if(v&&!el.matches(GUARD)&&KEEP.test(v)){KEEP.lastIndex=0;el.textContent='';appendKept(el,v);return;}
  KEEP.lastIndex=0;
  if(!v||!el.matches(GUARD)){el.textContent=v;return;}
  let m=null;
  if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\uff09)\]\u00b7]*)$/u);
- else if(locale!=='TH')m=v.match(/(\S+[ \t]+\S+)$/);
+ else if(locale!=='TH')m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/); /* card 5 title: only a very short last word is kept with the previous one, so the Korean title breaks before '뷰티블라썸' */
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
+ if(m&&el.closest('.p5')){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;} /* card 5: never split a kept word at the widow cut */
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
  el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);
@@ -75,6 +86,11 @@ function fitTo(el,limit,min){
  el.style.removeProperty('--fit');
  for(let f=1,i=0;i<40&&el.scrollWidth>limit+1&&f>min;i++){f-=.02;el.style.setProperty('--fit',f.toFixed(3));}
  return el.scrollWidth<=limit+1;
+}
+function fitLines(el,lines,min){
+ el.style.removeProperty('--fit');
+ const lh=()=>parseFloat(getComputedStyle(el).lineHeight)||0;
+ for(let f=1,i=0;i<30&&(el.getBoundingClientRect().height>lh()*lines+2||el.scrollWidth>el.clientWidth+1)&&f>min;i++){f-=.02;el.style.setProperty('--fit',f.toFixed(3));}
 }
 function fit(){
  for(const el of document.querySelectorAll('.t-main'))fitTo(el,el.parentElement.clientWidth,.55);
@@ -89,6 +105,8 @@ function fit(){
   if(phone){el.style.removeProperty('--fit');continue;}
   if(!fitTo(el,el.clientWidth,.72))el.classList.add('wrap');
  }
+ /* card 5 (desktop): the title and the strength titles shrink to at most two lines */
+ for(const el of document.querySelectorAll('.ab-title,.ab-strengths .at')){if(phone){el.style.removeProperty('--fit');continue;}fitLines(el,2,.74);}
  /* 49% seal: each line shrinks to the inner circle */
  for(const el of document.querySelectorAll('.seal .sl'))fitTo(el,el.parentElement.clientWidth,.6);
 }

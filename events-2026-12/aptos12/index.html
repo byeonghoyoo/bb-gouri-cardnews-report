@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link id="locale-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&amp;display=swap">
-  <link rel="stylesheet" href="aptos12.css?v=20261029-aptos127">
-  <script src="copy-data.js?v=20261029-aptos127" defer></script>
-  <script src="../inline-edit.js?v=20261029-aptos127" defer></script>
-  <script src="aptos12.js?v=20261029-aptos127" defer></script>
+  <link rel="stylesheet" href="aptos12.css?v=20261029-aptos128">
+  <script src="copy-data.js?v=20261029-aptos128" defer></script>
+  <script src="../inline-edit.js?v=20261029-aptos128" defer></script>
+  <script src="aptos12.js?v=20261029-aptos128" defer></script>
 </head>
 <body>
 <main>
@@ -203,45 +203,65 @@
     </section>
 
 
-    <!-- 5장 · 병원 소개 + 오시는 길 + 예약 (v4/_shared/HOSPITAL_INTRO.md 추천 구성, 사용 가능 사실·사진만) -->
+    <!-- 5장 · 병원 소개 + 찾아오시는 길 + 진료시간 + 예약 안내 (2026-10-30 팀 2차 요청 v4/REVISION_20261030b.md: 참고 시안의 벤토 그리드 구성, 색은 압토스 자두빛·샴페인 골드)
+         A 위 큰 판(제목·소개 / 대표원장 / 병원 사진 넓게·좁게·넓게 / 강점 4칸 점선 연결) · B 찾아오시는 길(지도) · C 진료시간 · D 예약 안내 -->
     <section class="panel p5" aria-labelledby="ap-c5-title">
       <div class="snow" aria-hidden="true"></div>
       <img class="deco snowdust" src="assets/miri/snow_dust.webp" alt="" data-fb="hide">
-      <div class="c-head">
-        <img class="type-img lbl lbl-wide" src="assets/miri/type_about_bb.webp" alt="ABOUT BEAUTY BLOSSOM">
-        <h2 class="c-title c5-title" id="ap-c5-title" data-copy="ap_c5_title"></h2>
-        <p class="c5-slogan" data-copy="ap_c5_slogan"></p>
-      </div>
-      <ul class="c5-photos">
-        <li><figure><img class="c5-ph" src="assets/clinic-reception-6f.jpg" data-alt="ap_alt_clinic1" alt="" width="960" height="450"><img class="deco c5-frame" src="assets/miri/frame_photo_gold.webp" alt="" data-fb="hide"><figcaption data-copy="ap_c5_cap1"></figcaption></figure></li>
-        <li><figure><img class="c5-ph" src="assets/clinic-care-room.jpg" data-alt="ap_alt_clinic2" alt="" width="600" height="280"><img class="deco c5-frame" src="assets/miri/frame_photo_gold.webp" alt="" data-fb="hide"><figcaption data-copy="ap_c5_cap2"></figcaption></figure></li>
-        <li><figure><img class="c5-ph" src="assets/clinic-treatment-6f.jpg" data-alt="ap_alt_clinic3" alt="" width="960" height="450"><img class="deco c5-frame" src="assets/miri/frame_photo_gold.webp" alt="" data-fb="hide"><figcaption data-copy="ap_c5_cap3"></figcaption></figure></li>
-      </ul>
-      <ul class="c5-strengths">
-        <li><img class="c5-ico" src="assets/miri/icon_genuine.webp" alt="" data-fb="dotc"><p class="c5-t" data-copy="ap_c5_s1_t"></p><p class="c5-d" data-copy="ap_c5_s1_d"></p></li>
-        <li><img class="c5-ico" src="assets/miri/icon_chat.webp" alt="" data-fb="dotc"><p class="c5-t" data-copy="ap_c5_s2_t"></p><p class="c5-d" data-copy="ap_c5_s2_d"></p></li>
-        <li><img class="c5-ico" src="assets/miri/icon_calendar.webp" alt="" data-fb="dotc"><p class="c5-t" data-copy="ap_c5_s3_t"></p><p class="c5-d" data-copy="ap_c5_s3_d"></p></li>
-        <li><img class="c5-ico" src="assets/miri/icon_globe.webp" alt="" data-fb="dotc"><p class="c5-t" data-copy="ap_c5_s4_t"></p><p class="c5-d" data-copy="ap_c5_s4_d"></p></li>
-      </ul>
-      <div class="c5-loc">
-        <div class="loc-head"><img class="type-img loc-type" src="assets/miri/type_location.webp" alt="LOCATION"><p class="loc-sub" data-copy="ap_c5_loc_sub"></p></div>
-        <ol class="way">
-          <li><img class="way-ico" src="assets/miri/icon_subway.webp" alt="" data-fb="hide"><span data-copy="ap_c5_way1"></span></li>
-          <li><img class="way-ico" src="assets/miri/icon_pin.webp" alt="" data-fb="hide"><span data-copy="ap_c5_way3"></span></li>
-        </ol>
-        <dl class="vr">
-          <div><dt data-copy="ap_c5_addr_lbl"></dt><dd class="vr-v" data-copy="ap_c5_addr"></dd></div>
-          <div><dt data-copy="ap_c5_hours_lbl"></dt><dd class="vr-v vr-hours"><span data-copy="ap_c5_hours1"></span><span data-copy="ap_c5_hours2"></span><span data-copy="ap_c5_hours3"></span></dd></div>
-        </dl>
-      </div>
-      <div class="booking c5-booking">
-        <img class="qr" src="assets/naver-booking-qr.png" data-qr data-alt="ap_alt_qr" alt="" width="424" height="424">
-        <div class="bk-main">
-          <span class="pill" data-copy="ap_bk_pill"></span>
-          <p class="bk-text"><img class="ico" src="assets/miri/icon_calendar.webp" alt="" data-fb="hide"><a data-link="booking"><span data-copy="ap_bk_naver"></span></a><span class="bk-alt" data-bk-alt> / <img class="ico" src="assets/miri/icon_chat.webp" alt="" data-fb="hide"><a data-link="kakao"><span data-copy="ap_bk_kakao"></span></a></span></p>
-          <p class="bk-phone"><img class="ico ico-phone-dark" src="assets/miri/icon_phone.webp" alt="" data-fb="hide"><span data-copy="ap_contact_label"></span> <a data-link="phone"><span data-copy="ap_phone"></span></a></p>
+      <div class="b5-top">
+        <div class="b5-head">
+          <div class="b5-lead">
+            <p class="b5-about" data-copy="ap_c5_about"></p>
+            <h2 class="c5-title" id="ap-c5-title" data-copy="ap_c5_title"></h2>
+            <p class="b5-intro"><span data-copy="ap_c5_intro1"></span><span data-copy="ap_c5_intro2"></span></p>
+          </div>
+          <p class="b5-dr-cap"><span class="b5-dr-name" data-copy="ap_c5_dr_name"></span><span class="b5-dr-quote" data-copy="ap_c5_dr_quote"></span></p>
+          <img class="b5-dr" src="assets/director-lee.webp" data-alt="ap_alt_director" alt="" width="640" height="640">
         </div>
-        <img class="bk-wordmark" src="assets/logo-wordmark.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+        <ul class="b5-photos">
+          <li class="wide"><figure><img src="assets/clinic-reception-6f.jpg" data-alt="ap_alt_clinic1" alt="" width="960" height="450"><figcaption data-copy="ap_c5_cap1"></figcaption></figure></li>
+          <li class="narrow"><figure><img src="assets/clinic-care-room.jpg" data-alt="ap_alt_clinic2" alt="" width="600" height="280"><figcaption data-copy="ap_c5_cap2"></figcaption></figure></li>
+          <li class="wide"><figure><img src="assets/clinic-treatment-6f.jpg" data-alt="ap_alt_clinic3" alt="" width="960" height="450"><figcaption data-copy="ap_c5_cap3"></figcaption></figure></li>
+        </ul>
+        <ul class="b5-str">
+          <li><span class="b5-ico" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><path d="M24 5.5 38.5 10.8V22.6c0 9.3-6.2 16.6-14.5 20-8.3-3.4-14.5-10.7-14.5-20V10.8Z"/><path d="m17 24.4 5 5 9.2-10"/></svg></span><p class="c5-t" data-copy="ap_c5_s1_t"></p><p class="c5-d" data-copy="ap_c5_s1_d"></p></li>
+          <li><span class="b5-ico" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><path d="M7.5 12.8c0-2.6 2.1-4.8 4.8-4.8h16.6c2.6 0 4.8 2.1 4.8 4.8v9.6c0 2.6-2.1 4.8-4.8 4.8H18.6l-6.6 5.6v-5.7c-2.6-.2-4.5-2.3-4.5-4.7Z"/><path d="M38.2 17.6h1c2.2 0 4 1.8 4 4v8.6c0 2.2-1.8 4-4 4h-.6v5.1l-5.7-5.1h-6.6c-2.2 0-4-1.8-4-4v-.8"/><path d="M14.6 17.6h.01M20.6 17.6h.01M26.6 17.6h.01"/></svg></span><p class="c5-t" data-copy="ap_c5_s2_t"></p><p class="c5-d" data-copy="ap_c5_s2_d"></p></li>
+          <li><span class="b5-ico" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="22" cy="26" r="15"/><path d="M22 17.5V26l6 3.8"/><path d="M38.6 5.8a6.2 6.2 0 1 0 4.6 10.1 5.1 5.1 0 0 1-4.6-10.1Z"/></svg></span><p class="c5-t" data-copy="ap_c5_s3_t"></p><p class="c5-d" data-copy="ap_c5_s3_d"></p></li>
+          <li><span class="b5-ico" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="17"/><path d="M7 24h34M10.2 15.5h27.6M10.2 32.5h27.6"/><path d="M24 7c5.2 4.7 7.6 10.6 7.6 17S29.2 36.3 24 41c-5.2-4.7-7.6-10.6-7.6-17S18.8 11.7 24 7Z"/></svg></span><p class="c5-t" data-copy="ap_c5_s4_t"></p><p class="c5-d" data-copy="ap_c5_s4_d"></p></li>
+        </ul>
+      </div>
+      <div class="b5-grid">
+        <div class="b5-box b5-loc">
+          <h3 class="b5-h" data-copy="ap_c5_loc_title"></h3>
+          <div class="b5-map">
+            <img class="b5-map-img" src="assets/map-osm-dark.webp" data-alt="ap_alt_map" alt="" width="820" height="480">
+            <span class="b5-map-tint" aria-hidden="true"></span>
+            <span class="b5-pin" aria-hidden="true"><svg viewBox="0 0 40 52" focusable="false"><defs><linearGradient id="ap-pin-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf0d6"/><stop offset=".5" stop-color="#ecd4a4"/><stop offset="1" stop-color="#b48a46"/></linearGradient></defs><path d="M20 1.5C9.8 1.5 1.5 9.8 1.5 20c0 13.5 18.5 30.5 18.5 30.5S38.5 33.5 38.5 20C38.5 9.8 30.2 1.5 20 1.5Z" fill="url(#ap-pin-g)" stroke="#6f4f1c" stroke-width="1.4"/><circle cx="20" cy="19.5" r="7.2" fill="#3a1442"/></svg></span>
+            <span class="b5-pin-lbl" data-copy="ap_c5_map_pin"></span>
+            <a class="b5-osm" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" lang="en">© OpenStreetMap contributors</a>
+          </div>
+          <p class="b5-station"><svg class="b5-st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.2c-4.3 0-7.8 3.4-7.8 7.7 0 5.6 7.8 12 7.8 12s7.8-6.4 7.8-12c0-4.3-3.5-7.7-7.8-7.7Z"/><circle cx="12" cy="9.9" r="2.9"/></svg><span class="b5-st-name" data-copy="ap_c5_station"></span><span class="b5-pill" data-copy="ap_c5_lines"></span></p>
+          <p class="b5-addr" data-copy="ap_c5_addr"></p>
+          <p class="b5-recep" data-copy="ap_c5_reception"></p>
+        </div>
+        <div class="b5-box b5-hours">
+          <h3 class="b5-h" data-copy="ap_c5_hours_lbl"></h3>
+          <div class="b5-hrs">
+            <p class="b5-hr" data-copy="ap_c5_hours1"></p>
+            <p class="b5-hr" data-copy="ap_c5_hours2"></p>
+            <p class="b5-note" data-copy="ap_c5_hours3"></p>
+          </div>
+        </div>
+        <div class="b5-box b5-book">
+          <h3 class="b5-h" data-copy="ap_bk_pill"></h3>
+          <div class="b5-bk">
+            <img class="qr" src="assets/naver-booking-qr.png" data-qr data-alt="ap_alt_qr" alt="" width="424" height="424">
+            <div class="bk-main">
+              <p class="bk-text"><img class="ico" src="assets/miri/icon_calendar.webp" alt="" data-fb="hide"><a data-link="booking"><span data-copy="ap_bk_naver"></span></a><span class="bk-alt" data-bk-alt> / <img class="ico" src="assets/miri/icon_chat.webp" alt="" data-fb="hide"><a data-link="kakao"><span data-copy="ap_bk_kakao"></span></a></span></p>
+              <p class="bk-phone"><img class="ico" src="assets/miri/icon_phone.webp" alt="" data-fb="hide"><span data-copy="ap_contact_label"></span> <a data-link="phone"><span data-copy="ap_phone"></span></a></p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
