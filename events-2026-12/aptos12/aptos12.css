@@ -142,7 +142,7 @@ html[data-locale=JP] .list-title,html[data-locale=CN] .list-title,html[data-loca
 .qty-lines{margin-top:.45em;font-size:max(11px,calc(17*var(--px)));font-weight:600;line-height:1.45;color:var(--plum-m)}
 .qty-lines.stack > span{display:block}
 .prices{grid-area:price;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:flex-end;column-gap:.45em;row-gap:0;text-align:right}
-.old{font-size:max(11px,calc(18*var(--px)));color:#9a8aa0;white-space:nowrap}
+.old{font-size:max(11px,calc(18*var(--px)));color:#725f79;white-space:nowrap}
 .arrow{font-size:max(11px,calc(18*var(--px)));color:#b6a6bc}
 .sale{font-family:var(--f-serif);font-style:italic;font-weight:700;font-variant-numeric:lining-nums;font-size:calc(max(23px,calc(50*var(--px)))*var(--fit,1));line-height:1.05;color:var(--berry);white-space:nowrap;margin-left:.15em}
 .sale .unit{font-family:var(--f-body);font-style:normal;font-weight:700;font-size:max(11px,.38em);margin-left:.1em;letter-spacing:0}
