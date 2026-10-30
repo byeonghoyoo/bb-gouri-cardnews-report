@@ -54,9 +54,6 @@ html[data-locale=TH] .title{line-height:1.3}
 /* CSS stand-ins for Miricanvas ornaments that have not been delivered */
 .fb-spark{display:inline-block;background:radial-gradient(circle,#fff 0 18%,var(--champ) 30%,rgba(236,212,164,0) 70%);clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%)}
 .fb-flake{display:block;background:radial-gradient(circle,#fff 0 30%,rgba(232,224,255,.85) 60%,rgba(232,224,255,.4) 100%);clip-path:polygon(50% 0,53.5% 43.9%,93.3% 25%,57% 50%,93.3% 75%,53.5% 56.1%,50% 100%,46.5% 56.1%,6.7% 75%,43% 50%,6.7% 25%,46.5% 43.9%)}
-.fb-bauble{display:block}
-.fb-bauble::before{content:'';position:absolute;left:41%;top:0;width:18%;height:14%;border-radius:calc(4*var(--px));background:linear-gradient(180deg,#f3dfb4,#b8904f)}
-.fb-bauble::after{content:'';position:absolute;left:4%;right:4%;top:12%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff 0 4%,#c78bbd 10%,#7a2770 42%,#3e0f3d 78%);box-shadow:0 calc(10*var(--px)) calc(24*var(--px)) rgba(19,6,26,.35)}
 
 /* ---------- 1장 · poster ---------- */
 .p1{display:flex;flex-direction:column;min-height:calc(1350*var(--px));background:var(--plum-d)}
@@ -66,21 +63,18 @@ html[data-locale=TH] .title{line-height:1.3}
   linear-gradient(to top,rgba(19,6,26,.97) 0%,rgba(19,6,26,.9) 16%,rgba(19,6,26,.62) 30%,rgba(19,6,26,.18) 45%,rgba(19,6,26,0) 54%),
   linear-gradient(to right,rgba(19,6,26,.5) 0%,rgba(19,6,26,0) 34%),
   linear-gradient(to bottom,rgba(19,6,26,.45) 0%,rgba(19,6,26,0) 12%)}
-.p1 .snow{-webkit-mask-image:radial-gradient(ellipse 25% 23% at 63% 38%,transparent 70%,#000 100%);mask-image:radial-gradient(ellipse 25% 23% at 63% 38%,transparent 70%,#000 100%)}
-.p1 .snowdust{-webkit-mask-image:radial-gradient(ellipse 25% 23% at 63% 38%,transparent 70%,#000 100%);mask-image:radial-gradient(ellipse 25% 23% at 63% 38%,transparent 70%,#000 100%)}
+/* 2026-10-30: no falling snow over the model. The snow stays left of a slanted line running from 42% (top) to 17% (bottom)
+   of the card width, clear of her hair (from 47%), hand (from 37%) and left shoulder (from 21%); 4:5 card, so 101.3deg. */
+.p1 .snow,.p1 .snowdust{-webkit-mask-image:linear-gradient(101.3deg,#000 0%,#000 28%,transparent 33%);mask-image:linear-gradient(101.3deg,#000 0%,#000 28%,transparent 33%)}
 .frost-frame{position:absolute;inset:calc(22*var(--px));z-index:3;border:1px solid rgba(255,255,255,.3);border-radius:calc(14*var(--px));pointer-events:none;box-shadow:inset 0 0 calc(46*var(--px)) rgba(226,206,255,.1)}
 .chip1{left:22.5%;top:33.5%}
 .chip2{right:5%;top:50.5%}
-.box-a{width:calc(380*var(--px));left:calc(-46*var(--px));top:calc(196*var(--px));transform:rotate(-14deg)}
-.box-b{width:calc(350*var(--px));left:calc(18*var(--px));top:calc(642*var(--px));transform:rotate(9deg)}
+/* 2026-10-30: new-angle NAMICA cutout, both floating boxes the same size */
+.box-a{width:calc(340*var(--px));left:calc(-38*var(--px));top:calc(196*var(--px));transform:rotate(-9deg)}
+.box-b{width:calc(340*var(--px));left:calc(22*var(--px));top:calc(650*var(--px));transform:rotate(7deg)}
 .f1{z-index:4;width:calc(92*var(--px));left:calc(56*var(--px));top:calc(112*var(--px));opacity:.95}
 .p1-copy{position:relative;z-index:6;margin-top:auto;padding:0 calc(78*var(--px)) 0}
-.dec{width:calc(330*var(--px));margin:0 0 calc(4*var(--px)) calc(-8*var(--px))}
-.type-fallback.dec{display:block;width:auto;white-space:nowrap;font-family:var(--f-serif);font-style:italic;font-weight:600;font-size:calc(94*var(--px));line-height:1;color:var(--champ);letter-spacing:.01em;margin:0 0 calc(10*var(--px));text-shadow:0 0 calc(18*var(--px)) rgba(236,212,164,.35)}
-/* "Winter Edition" label (top bar, left) */
-.topbar .ed{grid-column:1;grid-row:1;justify-self:start;width:calc(236*var(--px));height:auto}
-.type-fallback.ed{width:auto;font-family:var(--f-serif);font-weight:700;font-size:max(11px,calc(19*var(--px)));letter-spacing:.24em;text-transform:uppercase;color:var(--champ);white-space:nowrap}
-.type-fallback.ed::before{content:'\2726';margin-right:.6em;letter-spacing:0}
+/* 2026-10-30: the 'Winter' script and the 'Winter Edition' label were removed at the team's request */
 /* corner filigree on the frost frame, garland across the top (Miricanvas only) */
 .corner{z-index:4;width:calc(118*var(--px))}
 .c-tl{left:calc(14*var(--px));top:calc(14*var(--px))}
@@ -109,26 +103,32 @@ html[data-locale=TH] .title{line-height:1.3}
 .p2-photo{position:absolute;right:0;top:0;width:66%;height:100%;object-fit:cover;object-position:72% 28%;z-index:0;
   -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 100%),linear-gradient(to top,transparent 0%,#000 26%);mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 100%);-webkit-mask-composite:source-in;mask-composite:intersect}
 .p2-head::after{content:'';position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;background:linear-gradient(to top,#2a0d33 0%,rgba(42,13,51,0) 100%);pointer-events:none}
-.box-c{width:calc(330*var(--px));left:calc(-56*var(--px));top:calc(26*var(--px));transform:rotate(-11deg);z-index:3}
-.p2-title{position:relative;z-index:5;max-width:70%;padding:calc(84*var(--px)) 0 0 calc(76*var(--px))}
+.box-c{width:calc(320*var(--px));left:calc(-48*var(--px));top:calc(30*var(--px));transform:rotate(-8deg);z-index:3}
+/* 2026-10-30: 'Price List' script removed; the title block moves down to stay centred in the head */
+.p2-title{position:relative;z-index:5;max-width:70%;padding:calc(122*var(--px)) 0 0 calc(76*var(--px))}
 .t2{font-size:max(24px,calc(60*var(--px)));margin-top:calc(4*var(--px))}
-.p2-title .pl{width:calc(250*var(--px));height:auto;margin:0 0 calc(2*var(--px)) calc(-4*var(--px))}
-.type-fallback.pl{display:block;width:auto;white-space:nowrap;font-family:var(--f-serif);font-style:italic;font-weight:600;font-size:calc(58*var(--px));line-height:1;color:var(--champ);margin:0 0 calc(6*var(--px));text-shadow:0 0 calc(16*var(--px)) rgba(236,212,164,.3)}
 .namica-wm{z-index:2;left:calc(40*var(--px));top:calc(150*var(--px));width:calc(640*var(--px));opacity:.16}
 .p2 .kicker{font-size:max(14px,calc(38*var(--px)))}
 
 .card{position:relative;z-index:5;margin:0 calc(64*var(--px));padding:calc(30*var(--px)) calc(44*var(--px)) calc(12*var(--px));background:var(--frost);border-radius:calc(28*var(--px));color:var(--ink);
   box-shadow:0 calc(26*var(--px)) calc(60*var(--px)) rgba(8,0,14,.45),inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 0 calc(6*var(--px)) rgba(236,212,164,.18)}
 .branch{width:calc(300*var(--px));left:calc(-40*var(--px));top:calc(-62*var(--px));z-index:6}
-.bauble{width:calc(108*var(--px));height:calc(150*var(--px));right:calc(36*var(--px));top:calc(-64*var(--px));z-index:6}
-img.bauble{height:auto}
+/* 2026-10-30 team request: '의료법상 최대 49% 할인' seal where the plum ornament hung. Champagne gold, drawn in SVG; the three lines are editable copy. */
+.seal{position:absolute;z-index:7;right:calc(26*var(--px));top:calc(-102*var(--px));width:calc(164*var(--px));aspect-ratio:1;filter:drop-shadow(0 calc(10*var(--px)) calc(16*var(--px)) rgba(19,6,26,.4))}
+.seal-art{position:absolute;inset:0;display:block;width:100%;height:100%}
+.seal-txt{position:absolute;inset:15%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(2*var(--px));text-align:center;color:var(--plum-d);line-height:1.08;letter-spacing:-.01em}
+.seal-txt span{display:block;white-space:nowrap}
+.seal-l1{font-size:max(11px,calc(18*var(--px)));font-weight:600}
+.seal-l2{font-size:max(14px,calc(27*var(--px)));font-weight:800;letter-spacing:-.02em}
+.seal-l3{font-size:max(12px,calc(23*var(--px)));font-weight:800}
+.is-editmode .seal [data-optional].is-empty{display:block;min-width:3.2em;min-height:1.1em}
 .bow{z-index:7;left:50%;top:calc(-104*var(--px));width:calc(170*var(--px));transform:translateX(-50%)}
 .r-name-line{display:flex;flex-wrap:wrap;align-items:center;gap:calc(6*var(--px)) calc(10*var(--px))}
 .badge{display:inline-block;height:calc(28*var(--px));min-height:16px;width:auto}
 .fb-badge-sig,.fb-badge-dual{display:inline-block;font-family:var(--f-serif);font-weight:700;font-size:max(11px,calc(14*var(--px)));letter-spacing:.16em;line-height:1.2;color:var(--champ);background:linear-gradient(90deg,var(--plum-d),var(--plum));border:1px solid var(--champ-d);border-radius:99px;padding:.22em .8em .16em}
 .fb-badge-sig::before{content:'\2726  SIGNATURE'}
 .fb-badge-dual::before{content:'DUAL'}
-.list-title{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:max(15px,calc(34*var(--px)));letter-spacing:.005em;color:var(--berry);line-height:1.2;padding-right:calc(120*var(--px));margin-bottom:calc(10*var(--px))}
+.list-title{font-family:var(--f-serif);font-style:italic;font-weight:700;font-size:max(15px,calc(34*var(--px)));letter-spacing:.005em;color:var(--berry);line-height:1.2;padding-right:calc(168*var(--px));margin-bottom:calc(10*var(--px))}
 html[data-locale=JP] .list-title,html[data-locale=CN] .list-title,html[data-locale=TW] .list-title,html[data-locale=HK] .list-title,html[data-locale=TH] .list-title{font-family:var(--f-body);font-style:normal;font-weight:700;font-size:max(14px,calc(28*var(--px)))}
 .rows{list-style:none;padding:0}
 .row{display:grid;grid-template-columns:minmax(0,1fr) calc(150*var(--px)) calc(330*var(--px));grid-template-areas:"main qty price";align-items:center;column-gap:calc(16*var(--px));padding:calc(10*var(--px)) 0;border-top:1px solid var(--line)}
@@ -253,21 +253,20 @@ html[data-locale=TH] .c-title{line-height:1.32}
   .panel{border-radius:0}
   .pg{gap:12px}
   .topbar{padding:18px 18px 0;gap:8px}
-  .topbar .ed{display:none}
   .period{font-size:11px}
-  .box-a{width:calc(400*var(--px));top:calc(210*var(--px))}
-  .box-b{width:calc(370*var(--px))}
+  .box-a{width:calc(380*var(--px));top:calc(206*var(--px))}
+  .box-b{width:calc(380*var(--px))}
   .p1-copy{padding:0 20px}
   .sub{font-size:13.5px}
   .p1 .contact{padding:18px 0 20px}
   .p2-head{padding-bottom:18px}
-  .p2-title{max-width:62%;padding:calc(120*var(--px)) 0 0 20px}
+  .p2-title{max-width:62%;padding:calc(150*var(--px)) 0 0 20px}
   .card{margin:0 14px;padding:18px 16px 10px;border-radius:16px}
-  .list-title{padding-right:44px}
+  .list-title{padding-right:82px}
   .row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"main main" "qty price";row-gap:6px;padding:12px 0}
   .row.wide{grid-template-areas:"main main" "price price"}
   .qty{text-align:left;align-self:end}
-  .bauble{right:12px;width:44px;height:62px;top:-26px}
+  .seal{right:8px;width:86px;top:-26px}
   .branch{width:130px;left:-14px;top:-26px}
   .vat{margin:10px 18px 0}
   .booking{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"qr main" "qr logo";row-gap:8px;margin:18px 14px 0;padding:12px 14px 12px 12px;border-radius:14px;background:linear-gradient(100deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.92) 60%,rgba(255,255,255,.5) 100%)}
@@ -295,7 +294,9 @@ html[data-locale=TH] .c-title{line-height:1.32}
   .c4-mid{grid-template-columns:1fr;gap:16px;margin-top:18px}
   .c4-photo{width:62%;justify-self:center}
   .c4-info{margin-top:18px;padding:16px 14px;border-radius:16px}
-  .info-grid{grid-template-columns:1fr 1fr;gap:12px}`n  .steps li{grid-template-columns:34px minmax(0,1fr);gap:10px}`n  .st-no{width:30px;height:30px;font-size:13px}
+  .info-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .steps li{grid-template-columns:34px minmax(0,1fr);gap:10px}
+  .st-no{width:30px;height:30px;font-size:13px}
   .p2-foot{margin:12px 18px 0}
 }
 /* ---------- 5장 · 병원 소개 + 오시는 길 + 예약 ---------- */
@@ -331,7 +332,9 @@ html[data-locale=TH] .c-title{line-height:1.32}
 .vr dt{font-size:max(11px,calc(18*var(--px)));font-weight:700;letter-spacing:.04em;color:var(--champ)}
 .vr-v{margin:0;font-size:max(12px,calc(21*var(--px)));line-height:1.5;color:#fff}
 .vr-hours span{display:inline-block;margin-right:1.2em}
-.c5-booking{margin:calc(34*var(--px)) 0 0;padding:calc(22*var(--px)) calc(40*var(--px)) calc(22*var(--px)) calc(22*var(--px))}`n.c5-booking .qr{width:calc(130*var(--px))}`n.c5-booking .bk-text{font-size:max(12px,calc(22*var(--px)))}
+.c5-booking{margin:calc(34*var(--px)) 0 0;padding:calc(22*var(--px)) calc(40*var(--px)) calc(22*var(--px)) calc(22*var(--px))}
+.c5-booking .qr{width:calc(130*var(--px))}
+.c5-booking .bk-text{font-size:max(12px,calc(22*var(--px)))}
 .bk-wordmark{grid-area:logo;width:calc(220*var(--px));min-width:90px;height:auto}
 .bk-phone{margin-top:.35em;font-size:max(13px,calc(28*var(--px)));font-weight:600;line-height:1.3;color:var(--ink)}
 .bk-phone a{font-weight:800;color:var(--berry-d)}
@@ -362,6 +365,11 @@ html[data-locale=TH] .c-title{line-height:1.32}
   html[data-locale=EN] .c5-loc,html[data-locale=TH] .c5-loc{margin-top:calc(18*var(--px));padding:calc(20*var(--px)) calc(26*var(--px))}
   html[data-locale=EN] .c5-booking,html[data-locale=TH] .c5-booking{margin-top:calc(18*var(--px))}
   html[data-locale=EN] .c5-booking .bk-text,html[data-locale=TH] .c5-booking .bk-text{font-size:calc(20*var(--px))}
+  /* 2026-10-30: JP '一人ひとりに合わせたカウンセリング' (personalized consultation) needs two clean lines in a quarter column */
+  html[data-locale=JP] .c5-t{font-size:max(13px,calc(20*var(--px)))}
+  html[data-locale=JP] .c5-title{font-size:calc(50*var(--px))}
 }
 /* 2026-10-29: never split the phone number across lines (overseas locales use +82-2-336-7511) */
 a[data-link="phone"]{white-space:nowrap}
+/* 2026-10-30: JP card 5 ran 7px past the card at 768 once the mobile/QR rules were restored; tighten JP gaps like EN/TH (desktop and tablet only) */
+@media (min-width: 600px){html[data-locale=JP] .c5-strengths{margin-top:calc(24*var(--px))}html[data-locale=JP] .c5-loc{margin-top:calc(22*var(--px))}html[data-locale=JP] .c5-booking{margin-top:calc(22*var(--px))}}

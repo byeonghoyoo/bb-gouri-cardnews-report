@@ -45,7 +45,7 @@ function setMoney(el,v){
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
 /* widow guard: the last two words (CJK: last three characters) stay together; the phone number never breaks */
-const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.addr [data-copy],.hours [data-copy],.loc-sub,.bk-links [data-copy]';
+const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.vr-v[data-copy],.vr-hours [data-copy],.loc-sub,.bk-links [data-copy]';
 /* names that must never break inside (display only: wrapped in nowrap spans, the stored text is unchanged) */
 const KEEP=/(\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07|Beauty Blossom|Oligio XM|02-336-7511)/g;
 function appendKept(el,s){
@@ -89,6 +89,8 @@ function fit(){
   if(phone){el.style.removeProperty('--fit');continue;}
   if(!fitTo(el,el.clientWidth,.72))el.classList.add('wrap');
  }
+ /* 49% seal: each line shrinks to the inner circle */
+ for(const el of document.querySelectorAll('.seal .sl'))fitTo(el,el.parentElement.clientWidth,.6);
 }
 
 function render(){
@@ -114,6 +116,7 @@ function render(){
  document.title=[fields.ox_title_main||'oligio xm',fields.ox_brand||'BEAUTY BLOSSOM'].join(' \u00b7 ');
  if(IE)IE.sync(editable);
  typeSwap();
+ logoSwap();
  requestAnimationFrame(()=>{fit();report();});
  document.fonts.ready.then(()=>{fit();report();});
  root.dataset.reviewReady='true';
@@ -137,8 +140,21 @@ function typeSwap(){
   el.classList.toggle('typed',typeLoaded[src]===true&&(locs.includes('*')||locs.includes(locale))&&same&&!typing&&!el.hidden);
  }
 }
-document.addEventListener('focusin',()=>typeSwap());
-document.addEventListener('focusout',()=>setTimeout(typeSwap,0));
+/* 2026-10-30: the 'oligio xm' titles show the official white logo (img alt 'oligio xm') while the text reads exactly 'oligio xm'.
+   The editable text stays on top of the logo; while someone types, or after the name is edited, the live text is shown instead. */
+function logoSwap(){
+ for(const img of document.querySelectorAll('img.t-logo')){
+  const wrap=img.parentElement,main=wrap&&wrap.querySelector('.t-main');if(!main)continue;
+  const same=norm(main.textContent)===norm(img.dataset.logoText||'oligio xm');
+  const typing=main.contains(document.activeElement)&&document.activeElement.isContentEditable;
+  const on=img.complete&&img.naturalWidth>0&&same&&!typing;
+  if(wrap.classList.contains('is-logo')!==on){wrap.classList.toggle('is-logo',on);requestAnimationFrame(()=>{fit();report();});}
+  if(on&&!main.isContentEditable)main.setAttribute('aria-hidden','true');else main.removeAttribute('aria-hidden');
+  if(!img.complete)img.addEventListener('load',logoSwap,{once:true});
+ }
+}
+document.addEventListener('focusin',()=>{typeSwap();logoSwap();});
+document.addEventListener('focusout',()=>setTimeout(()=>{typeSwap();logoSwap();},0));
 
 /* Miricanvas decorations: shown when the file exists, otherwise the code-drawn fallback stays */
 function miri(){

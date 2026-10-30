@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link id="locale-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&amp;display=swap">
-  <link rel="stylesheet" href="aptos12.css?v=20261029-aptos126">
-  <script src="copy-data.js?v=20261029-aptos126" defer></script>
-  <script src="../inline-edit.js?v=20261029-aptos126" defer></script>
-  <script src="aptos12.js?v=20261029-aptos126" defer></script>
+  <link rel="stylesheet" href="aptos12.css?v=20261029-aptos127">
+  <script src="copy-data.js?v=20261029-aptos127" defer></script>
+  <script src="../inline-edit.js?v=20261029-aptos127" defer></script>
+  <script src="aptos12.js?v=20261029-aptos127" defer></script>
 </head>
 <body>
 <main>
@@ -21,7 +21,7 @@
     <!-- 1장 · 포스터 (현재 버전과 같은 구성: 상단 띠 → 모델·제품 → 제목 → 문의) -->
     <section class="panel p1" aria-labelledby="ap-title">
       <div class="p1-photo">
-        <img class="ph" src="assets/poster.jpg" data-alt="ap_alt_poster" alt="" width="1080" height="1350">
+        <img class="ph" src="assets/poster-rv1.jpg" data-alt="ap_alt_poster" alt="" width="1080" height="1350">
         <span class="chip chip1" data-copy="ap_chip1"></span>
         <span class="chip chip2" data-copy="ap_chip2"></span>
       </div>
@@ -34,15 +34,14 @@
       <img class="deco corner c-br" src="assets/miri/corner_filigree.webp" alt="" data-fb="hide">
       <img class="deco garland" src="assets/miri/garland_lights.webp" alt="" data-fb="hide">
       <header class="topbar">
-        <img class="type-img ed" src="assets/miri/type_winter_edition.webp" alt="Winter Edition">
         <img class="wordmark" src="assets/logo-wordmark.png" alt="BEAUTY BLOSSOM" width="975" height="111">
         <span class="period" data-copy="ap_period" data-optional data-placeholder="이벤트 기간"></span>
       </header>
-      <img class="box box-a" src="assets/prod-namica-visage.webp" data-alt="ap_alt_box1" alt="" width="913" height="270">
-      <img class="box box-b" src="assets/prod-namica-nano.webp" data-alt="ap_alt_box3" alt="" width="915" height="268">
+      <!-- 2026-10-30: both floating boxes use the new-angle NAMICA cutout (v3/products/namica-34), same size; the second one is decorative -->
+      <img class="box box-a" src="assets/prod-namica-34.webp" data-alt="ap_alt_box1" alt="" width="929" height="310">
+      <img class="box box-b" src="assets/prod-namica-34.webp" alt="" aria-hidden="true" width="929" height="310">
       <img class="deco flake f1" src="assets/miri/snowflake_crystal.webp" alt="" data-fb="flake">
       <div class="p1-copy">
-        <img class="type-img dec" src="assets/miri/type_winter.webp" alt="Winter">
         <p class="kicker" data-copy="ap_kicker"></p>
         <h1 class="title" id="ap-title"><span data-copy="ap_title"></span><img class="deco spark sp1" src="assets/miri/sparkle_star.webp" alt="" data-fb="spark"></h1>
         <p class="sub" data-copy="ap_sub"></p>
@@ -55,15 +54,14 @@
       <div class="snow" aria-hidden="true"></div>
       <img class="deco snowdust" src="assets/miri/snow_dust.webp" alt="" data-fb="hide">
       <div class="p2-head">
-        <img class="p2-photo" src="assets/top.jpg" data-alt="ap_alt_top" alt="" width="1200" height="675">
+        <img class="p2-photo" src="assets/top-rv1.jpg" data-alt="ap_alt_top" alt="" width="1200" height="675">
         <img class="deco namica-wm" src="assets/miri/type_namica.webp" alt="" data-fb="hide">
         <header class="topbar">
           <img class="wordmark" src="assets/logo-wordmark.png" alt="BEAUTY BLOSSOM" width="975" height="111">
           <span class="period" data-copy="ap_period" data-optional data-placeholder="이벤트 기간"></span>
         </header>
-        <img class="box box-c" src="assets/prod-namica-visage-s.webp" data-alt="ap_alt_box2" alt="" width="924" height="273">
+        <img class="box box-c" src="assets/prod-namica-34.webp" data-alt="ap_alt_box1" alt="" width="929" height="310">
         <div class="p2-title">
-          <img class="type-img pl" src="assets/miri/type_price_list.webp" alt="Price List">
           <p class="kicker" data-copy="ap_kicker"></p>
           <p class="title t2" data-copy="ap_title"></p>
         </div>
@@ -71,7 +69,19 @@
 
       <div class="card">
         <img class="deco branch" src="assets/miri/frost_branch.webp" alt="" data-fb="hide">
-        <img class="deco bauble" src="assets/miri/ornament_bauble.webp" alt="" data-fb="bauble">
+        <!-- 2026-10-30 team request: '의료법상 최대 49% 할인' seal where the plum ornament hung (code-drawn champagne gold, editable text) -->
+        <div class="seal">
+          <svg class="seal-art" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="ap-seal-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf0d6"/><stop offset=".45" stop-color="#ecd4a4"/><stop offset=".8" stop-color="#cda969"/><stop offset="1" stop-color="#a77f40"/></linearGradient>
+              <radialGradient id="ap-seal-face" cx=".36" cy=".3" r=".85"><stop offset="0" stop-color="#fff8e9"/><stop offset=".5" stop-color="#f2deb3"/><stop offset="1" stop-color="#d8b578"/></radialGradient>
+            </defs>
+            <polygon fill="url(#ap-seal-rim)" points="100.0,1.0 108.0,8.8 117.2,2.5 123.7,11.6 133.9,7.0 138.7,17.1 149.5,14.3 152.5,25.0 163.6,24.2 164.7,35.3 175.8,36.4 175.0,47.5 185.7,50.5 182.9,61.3 193.0,66.1 188.4,76.3 197.5,82.8 191.2,92.0 199.0,100.0 191.2,108.0 197.5,117.2 188.4,123.7 193.0,133.9 182.9,138.7 185.7,149.5 175.0,152.5 175.8,163.6 164.7,164.7 163.6,175.8 152.5,175.0 149.5,185.7 138.7,182.9 133.9,193.0 123.7,188.4 117.2,197.5 108.0,191.2 100.0,199.0 92.0,191.2 82.8,197.5 76.3,188.4 66.1,193.0 61.3,182.9 50.5,185.7 47.5,175.0 36.4,175.8 35.3,164.7 24.2,163.6 25.0,152.5 14.3,149.5 17.1,138.7 7.0,133.9 11.6,123.7 2.5,117.2 8.8,108.0 1.0,100.0 8.8,92.0 2.5,82.8 11.6,76.3 7.0,66.1 17.1,61.3 14.3,50.5 25.0,47.5 24.2,36.4 35.3,35.3 36.4,24.2 47.5,25.0 50.5,14.3 61.3,17.1 66.1,7.0 76.3,11.6 82.8,2.5 92.0,8.8"/>
+            <circle cx="100" cy="100" r="80" fill="url(#ap-seal-face)" stroke="#a77f40" stroke-width="1.6"/>
+            <circle cx="100" cy="100" r="73" fill="none" stroke="#b38c4f" stroke-width="1" stroke-dasharray="1.4 3" opacity=".85"/>
+          </svg>
+          <p class="seal-txt"><span class="seal-l1" data-copy="ap_badge_l1"></span><span class="seal-l2" data-copy="ap_badge_l2"></span><span class="seal-l3" data-copy="ap_badge_l3" data-optional data-placeholder="셋째 줄"></span></p>
+        </div>
         <img class="deco bow" src="assets/miri/ribbon_bow.webp" alt="" data-fb="hide">
         <h2 class="list-title" id="ap-list" data-copy="ap_list_title"></h2>
         <ol class="rows">
@@ -171,7 +181,7 @@
         <p class="c-lead" data-copy="ap_c4_lead"></p>
       </div>
       <div class="c4-mid">
-        <figure class="c4-photo"><img src="assets/card4.jpg" data-alt="ap_alt_card4" alt="" width="880" height="1100"></figure>
+        <figure class="c4-photo"><img src="assets/card4-rv1.jpg" data-alt="ap_alt_card4" alt="" width="880" height="1100"></figure>
         <ol class="steps">
           <li><span class="st-no" aria-hidden="true">01</span><div><p class="st-t" data-copy="ap_c4_s1_t"></p><p class="st-d" data-copy="ap_c4_s1_d"></p></div></li>
           <li><span class="st-no" aria-hidden="true">02</span><div><p class="st-t" data-copy="ap_c4_s2_t"></p><p class="st-d" data-copy="ap_c4_s2_d"></p></div></li>
@@ -203,9 +213,9 @@
         <p class="c5-slogan" data-copy="ap_c5_slogan"></p>
       </div>
       <ul class="c5-photos">
-        <li><figure><img class="c5-ph" src="assets/clinic-reception.jpg" data-alt="ap_alt_clinic1" alt="" width="600" height="280"><img class="deco c5-frame" src="assets/miri/frame_photo_gold.webp" alt="" data-fb="hide"><figcaption data-copy="ap_c5_cap1"></figcaption></figure></li>
+        <li><figure><img class="c5-ph" src="assets/clinic-reception-6f.jpg" data-alt="ap_alt_clinic1" alt="" width="960" height="450"><img class="deco c5-frame" src="assets/miri/frame_photo_gold.webp" alt="" data-fb="hide"><figcaption data-copy="ap_c5_cap1"></figcaption></figure></li>
         <li><figure><img class="c5-ph" src="assets/clinic-care-room.jpg" data-alt="ap_alt_clinic2" alt="" width="600" height="280"><img class="deco c5-frame" src="assets/miri/frame_photo_gold.webp" alt="" data-fb="hide"><figcaption data-copy="ap_c5_cap2"></figcaption></figure></li>
-        <li><figure><img class="c5-ph" src="assets/clinic-treatment-room.jpg" data-alt="ap_alt_clinic3" alt="" width="600" height="280"><img class="deco c5-frame" src="assets/miri/frame_photo_gold.webp" alt="" data-fb="hide"><figcaption data-copy="ap_c5_cap3"></figcaption></figure></li>
+        <li><figure><img class="c5-ph" src="assets/clinic-treatment-6f.jpg" data-alt="ap_alt_clinic3" alt="" width="960" height="450"><img class="deco c5-frame" src="assets/miri/frame_photo_gold.webp" alt="" data-fb="hide"><figcaption data-copy="ap_c5_cap3"></figcaption></figure></li>
       </ul>
       <ul class="c5-strengths">
         <li><img class="c5-ico" src="assets/miri/icon_genuine.webp" alt="" data-fb="dotc"><p class="c5-t" data-copy="ap_c5_s1_t"></p><p class="c5-d" data-copy="ap_c5_s1_d"></p></li>
@@ -217,7 +227,6 @@
         <div class="loc-head"><img class="type-img loc-type" src="assets/miri/type_location.webp" alt="LOCATION"><p class="loc-sub" data-copy="ap_c5_loc_sub"></p></div>
         <ol class="way">
           <li><img class="way-ico" src="assets/miri/icon_subway.webp" alt="" data-fb="hide"><span data-copy="ap_c5_way1"></span></li>
-          <li><span data-copy="ap_c5_way2"></span></li>
           <li><img class="way-ico" src="assets/miri/icon_pin.webp" alt="" data-fb="hide"><span data-copy="ap_c5_way3"></span></li>
         </ol>
         <dl class="vr">

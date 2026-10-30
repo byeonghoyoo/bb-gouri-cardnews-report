@@ -42,6 +42,11 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .t-main{display:inline-block;font-family:var(--f-mark);font-weight:700;line-height:.98;letter-spacing:-.025em;white-space:nowrap;padding:0 .04em .06em 0;
   background:linear-gradient(180deg,#ffffff 28%,#e1f1ff 56%,#a9d5fa 100%);-webkit-background-clip:text;background-clip:text;color:transparent;caret-color:#fff;
   filter:drop-shadow(0 0 calc(16*var(--px)) rgba(150,210,255,.55))}
+/* 2026-10-30 team request: the 'oligio xm' titles show the official white logo while the text reads 'oligio xm' (oligio12.js logoSwap).
+   The editable text sits on top of the logo (transparent), so a click still edits it; never wider than 1.3x the logo file (414px -> 538px). */
+.t-logo{display:none}
+.t-wrap.is-logo .t-logo{display:block;width:var(--logo-w);max-width:min(100%,538px);height:auto;pointer-events:none;filter:drop-shadow(0 0 calc(14*var(--px)) rgba(150,210,255,.42))}
+.t-wrap.is-logo .t-main{position:absolute;left:0;top:0;width:var(--logo-w);max-width:100%;height:100%;padding:0;overflow:hidden;color:transparent;background:none;filter:none}
 .spark{position:absolute;background:var(--spark) center/contain no-repeat;filter:drop-shadow(0 0 calc(10*var(--px)) rgba(170,225,255,.95))}
 .spark.ok{background:none;filter:none}
 .flake{position:absolute;z-index:3;background:var(--flake) center/contain no-repeat;opacity:.85;filter:drop-shadow(0 0 calc(8*var(--px)) rgba(170,225,255,.8))}
@@ -76,10 +81,12 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .beam.b1{left:calc(470*var(--px));top:calc(470*var(--px))}
 .beam.b2{left:calc(560*var(--px));top:calc(650*var(--px));height:calc(34*var(--px));opacity:.75}
 .p1.has-light .beam{display:none}
-.m-light{position:absolute;z-index:1;right:calc(-60*var(--px));top:calc(360*var(--px));width:calc(760*var(--px));height:calc(560*var(--px));mix-blend-mode:screen}
-.m-light:not(.ok),.m-bokeh:not(.ok),.m-light2:not(.ok),.ribbon:not(.ok){display:none}
-.p1 .snow{-webkit-mask-image:radial-gradient(ellipse 34% 30% at 24% 44%,transparent 0 55%,#000 100%);mask-image:radial-gradient(ellipse 34% 30% at 24% 44%,transparent 0 55%,#000 100%)}
-.m-bokeh{position:absolute;inset:0;z-index:2;opacity:.8;-webkit-mask-image:radial-gradient(ellipse 34% 30% at 24% 44%,transparent 0 55%,#000 100%);mask-image:radial-gradient(ellipse 34% 30% at 24% 44%,transparent 0 55%,#000 100%)}
+.m-light{position:absolute;z-index:1;right:calc(-60*var(--px));top:calc(360*var(--px));width:calc(760*var(--px));height:calc(560*var(--px));mix-blend-mode:screen;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0 40%,#000 60%);mask-image:linear-gradient(90deg,transparent 0 40%,#000 60%)}
+.m-light:not(.ok),.m-bokeh:not(.ok),.m-light2:not(.ok){display:none}
+/* 2026-10-30 team request: no snow on the model. Falling snow, bokeh and the light streak stay on the right half (device side) only. */
+.p1 .snow{-webkit-mask-image:linear-gradient(90deg,transparent 0 56%,#000 74%);mask-image:linear-gradient(90deg,transparent 0 56%,#000 74%)}
+.m-bokeh{position:absolute;inset:0;z-index:2;opacity:.8;-webkit-mask-image:linear-gradient(90deg,transparent 0 56%,#000 74%);mask-image:linear-gradient(90deg,transparent 0 56%,#000 74%)}
 .m-bokeh img{object-fit:cover}
 .p1-shade{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,transparent 54%,rgba(8,18,38,.70) 75%,rgba(6,14,30,.95) 100%)}
 .p1-glow{position:absolute;z-index:3;right:calc(-70*var(--px));bottom:calc(110*var(--px));width:calc(620*var(--px));height:calc(880*var(--px));pointer-events:none;
@@ -102,7 +109,10 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .p1-title{position:absolute;z-index:6;left:calc(64*var(--px));right:calc(40*var(--px));bottom:calc(118*var(--px));font-weight:600}
 .p1-title .t-pre{font-size:max(16px,calc(52*var(--px)));line-height:1.2;margin-bottom:calc(6*var(--px))}
 .p1-title .t-main{font-size:calc(188*var(--px)*var(--fit,1))}
+.p1-title{--logo-w:calc(520*var(--px))}
+.p1-title .t-wrap.is-logo{margin-top:calc(14*var(--px))}
 .sp1{width:calc(60*var(--px));height:calc(60*var(--px));left:calc(660*var(--px));top:calc(-8*var(--px))}
+.p1-title .is-logo .sp1{left:calc(var(--logo-w) - 34*var(--px));top:calc(-40*var(--px))}
 .p1-contact{position:absolute;z-index:6;left:0;right:0;bottom:calc(46*var(--px));text-align:center;font-size:max(11px,calc(20*var(--px)));letter-spacing:.04em;color:rgba(232,242,255,.92)}
 
 /* ---------- 2 / 2 price list ---------- */
@@ -124,11 +134,13 @@ html[data-locale=KO] .sheet{word-break:keep-all}
   background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(176,226,255,.55),transparent 70%)}
 .p2-device{position:absolute;left:calc(214*var(--px));bottom:calc(-4*var(--px));height:calc(258*var(--px));width:auto;
   filter:drop-shadow(0 0 calc(2*var(--px)) rgba(210,236,255,.75)) drop-shadow(0 0 calc(18*var(--px)) rgba(150,210,255,.5))}
-.fl4{width:calc(46*var(--px));height:calc(46*var(--px));left:calc(-14*var(--px));top:calc(-16*var(--px));transform:rotate(14deg)}
 .p2-title{color:#fff;padding-bottom:calc(14*var(--px))}
 .p2-title .t-pre{font-size:max(14px,calc(40*var(--px)));line-height:1.2;margin-bottom:calc(4*var(--px))}
 .p2-title .t-main{font-size:calc(146*var(--px)*var(--fit,1))}
+.p2-title{--logo-w:calc(400*var(--px))}
+.p2-title .t-wrap.is-logo{margin-top:calc(10*var(--px))}
 .sp2{width:calc(46*var(--px));height:calc(46*var(--px));right:calc(30*var(--px));top:calc(-14*var(--px))}
+.p2-title .is-logo .sp2{right:auto;left:calc(var(--logo-w) - 22*var(--px));top:calc(-34*var(--px))}
 
 .card{position:relative;flex:1;min-height:0;margin-top:calc(30*var(--px));border-radius:calc(24*var(--px));
   padding:calc(30*var(--px)) calc(46*var(--px)) calc(16*var(--px));
@@ -142,7 +154,16 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .c-tr{right:calc(-16*var(--px));top:calc(-16*var(--px));transform:scaleX(-1)}
 .c-bl{left:calc(-16*var(--px));bottom:calc(-16*var(--px));transform:scaleY(-1)}
 .c-br{right:calc(-16*var(--px));bottom:calc(-16*var(--px));transform:scale(-1,-1)}
-.ribbon{position:absolute;z-index:2;left:50%;top:calc(-52*var(--px));width:calc(150*var(--px));height:calc(100*var(--px));transform:translateX(-50%)}
+/* 2026-10-30 team request: '의료법상 최대 49% 할인' seal where the silver ribbon was (silver / ice-blue medal in SVG, three editable lines) */
+.seal{position:absolute;z-index:4;right:calc(14*var(--px));top:calc(-112*var(--px));width:calc(172*var(--px));height:calc(172*var(--px));display:grid;place-items:center;transform:rotate(-8deg);
+  filter:drop-shadow(0 calc(10*var(--px)) calc(16*var(--px)) rgba(2,10,30,.42))}
+.seal-art{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.seal-tx{position:relative;z-index:1;width:62%;display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.1;color:#0e2a52;margin-top:calc(-6*var(--px))}
+.seal .sl{display:block;max-width:100%;white-space:nowrap}
+.seal .s1{font-size:max(11px,calc(17*var(--px)*var(--fit,1)));font-weight:700;letter-spacing:.01em;color:#22436c}
+.seal .s2{margin:calc(3*var(--px)) 0 calc(2*var(--px));font-family:var(--f-num);font-size:max(12px,calc(31*var(--px)*var(--fit,1)));font-weight:800;letter-spacing:-.015em}
+.seal .s3{font-size:max(11px,calc(21*var(--px)*var(--fit,1)));font-weight:800;letter-spacing:.06em}
+.card .grp:first-of-type .grp-head{padding-right:calc(150*var(--px))}
 .grp{position:relative;z-index:1}
 .grp + .grp{margin-top:calc(14*var(--px))}
 .grp-head{display:flex;align-items:center;gap:calc(10*var(--px));margin-bottom:calc(4*var(--px))}
@@ -226,7 +247,7 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .c4-photo{position:relative;min-height:0;border-radius:calc(28*var(--px));overflow:hidden;border:calc(3*var(--px)) solid rgba(222,238,255,.88);
   box-shadow:0 0 0 calc(9*var(--px)) rgba(160,215,255,.12),0 calc(18*var(--px)) calc(40*var(--px)) rgba(0,0,0,.45)}
 .c4-photo > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 26%}
-.fl6{width:calc(48*var(--px));height:calc(48*var(--px));right:calc(14*var(--px));top:calc(14*var(--px))}
+.fl6{width:calc(54*var(--px));height:calc(54*var(--px));right:calc(78*var(--px));top:calc(150*var(--px));transform:rotate(-10deg)}
 .steps{list-style:none;padding:0;display:flex;flex-direction:column;justify-content:space-between}
 .steps li{display:grid;grid-template-columns:calc(68*var(--px)) minmax(0,1fr);gap:calc(18*var(--px));align-items:center;padding:calc(12*var(--px)) 0;border-bottom:calc(1.5*var(--px)) dashed rgba(159,216,255,.28)}
 .steps li:last-child{border-bottom:0}
@@ -278,17 +299,19 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .loc-type{font-family:var(--f-num);font-weight:700;font-size:max(18px,calc(38*var(--px)));letter-spacing:.18em;line-height:1.1;color:#fff}
 .loc-type.typed{min-width:calc(300*var(--px));height:calc(46*var(--px))}
 .loc-sub{font-size:max(12px,calc(19*var(--px)));font-weight:600;color:var(--ice)}
-.loc-body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:calc(22*var(--px));margin-top:calc(14*var(--px));align-items:start}
-.route{list-style:none;padding:0;display:flex;align-items:center;flex-wrap:wrap;gap:calc(8*var(--px))}
-.route li{display:inline-flex;align-items:center;gap:calc(8*var(--px));font-size:max(12px,calc(19*var(--px)));font-weight:700}
-.route li span{padding:.36em .8em;border-radius:999px;background:linear-gradient(180deg,#eef7ff,#a6d3f6);color:#0e2a52;white-space:nowrap}
-.route li + li::before{content:'';width:calc(22*var(--px));height:calc(2*var(--px));background:rgba(159,216,255,.8);box-shadow:0 0 calc(6*var(--px)) rgba(159,216,255,.8)}
-.addr,.hours li{display:flex;align-items:flex-start;gap:.5em;font-size:max(12px,calc(19*var(--px)));line-height:1.45;color:rgba(232,242,255,.92)}
-.addr{margin-top:calc(14*var(--px))}
-.li{flex:none;width:1.1em;height:1.1em;margin-top:.15em;background:var(--flake) center/contain no-repeat;opacity:.85}
+/* 2026-10-30: LOCATION has the same structure as aptos12: two route pills with an arrow, then address / hours label rows */
+.route{list-style:none;padding:0;margin-top:calc(16*var(--px));display:flex;align-items:center;flex-wrap:wrap;gap:calc(10*var(--px)) calc(44*var(--px))}
+.route li{position:relative;display:inline-flex;align-items:center;gap:.45em;padding:.42em 1.05em;border-radius:999px;background:rgba(159,216,255,.13);
+  box-shadow:inset 0 0 0 calc(1.5*var(--px)) rgba(159,216,255,.55);font-size:max(12px,calc(21*var(--px)));font-weight:700;line-height:1.3;color:#fff;white-space:nowrap}
+.route li + li::before{content:'\2192';position:absolute;left:calc(-32*var(--px));top:50%;transform:translateY(-50%);font-weight:700;color:var(--ice)}
+.li{flex:none;width:1.1em;height:1.1em;background:var(--flake) center/contain no-repeat;opacity:.9}
 .li.ok{background:none;opacity:1}
-.hours{list-style:none;padding:0;display:grid;gap:calc(4*var(--px))}
-.hsp{flex:none;width:1.1em}
+.vr{margin:calc(18*var(--px)) 0 0;display:grid;gap:calc(10*var(--px))}
+.vr > div{display:grid;grid-template-columns:calc(120*var(--px)) minmax(0,1fr);column-gap:calc(14*var(--px));align-items:baseline}
+.vr dt{font-size:max(11px,calc(18*var(--px)));font-weight:700;letter-spacing:.04em;color:var(--ice)}
+.vr-v{margin:0;font-size:max(12px,calc(20*var(--px)));line-height:1.5;color:rgba(236,244,255,.95)}
+.vr-hours span{display:inline-block;margin-right:1.2em}
+.vr-hours span:last-child{margin-right:0}
 .ab-book{position:relative;margin-top:calc(18*var(--px));display:grid;grid-template-columns:calc(132*var(--px)) minmax(0,1fr) auto;gap:calc(22*var(--px));align-items:center;
   padding:calc(16*var(--px)) calc(24*var(--px));border-radius:calc(20*var(--px));color:var(--ink);background:linear-gradient(180deg,#fdfeff,#eef6fd);border:calc(2*var(--px)) solid rgba(200,225,250,.95)}
 .qr{margin:0;text-align:center}
@@ -373,13 +396,19 @@ html[data-locale=KO] .sheet{word-break:keep-all}
   .ab-strengths li{grid-template-columns:36px minmax(0,1fr);padding:10px 12px}
   .ai{width:36px;height:36px}
   .ab-loc{padding:14px 14px}
-  .loc-body{grid-template-columns:1fr;gap:12px}
-  .route li span{white-space:normal}
+  .route{flex-direction:column;align-items:flex-start;gap:16px;margin-top:12px}
+  .route li{white-space:normal}
+  .route li + li::before{content:'\2193';left:1.3em;top:-15px;transform:none;line-height:1}
+  .vr{margin-top:14px;gap:8px}
+  .vr > div{grid-template-columns:68px minmax(0,1fr);column-gap:10px}
+  .p2-title{--logo-w:140px}
+  .seal{width:96px;height:96px;right:2px;top:-34px}
+  .seal .s2{font-size:max(12px,calc(15px*var(--fit,1)))}
+  .card .grp:first-of-type .grp-head{padding-right:88px}
   .ab-book{grid-template-columns:96px minmax(0,1fr);gap:14px;padding:14px}
   .bk-mark{grid-column:1 / -1;justify-self:end}
 }
-/* 2026-10-29 review: the Miricanvas light streak crossed headings on cards 2-5; keep it only behind the device on card 1. Ribbon moved off the group title. */
+/* 2026-10-29 review: the Miricanvas light streak crossed headings on cards 2-5; keep it only behind the device on card 1. */
 .m-light2,.m-light3{display:none!important}
-.ribbon{left:auto;right:calc(56*var(--px));transform:none}
 /* 2026-10-29: never split the phone number across lines (overseas locales use +82-2-336-7511) */
 a[data-link="phone"]{white-space:nowrap}
