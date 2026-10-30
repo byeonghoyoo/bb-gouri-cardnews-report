@@ -4501,7 +4501,7 @@
           "ox_hook2": "lifting in a single session",
           "ox_title_pre": "The evolution of Oligio,",
           "ox_title_main": "oligio xm",
-          "ox_contact": "Booking & inquiries 02-336-7511",
+          "ox_contact": "Booking & inquiries +82-2-336-7511",
           "ox_vat": "*Prices exclude 10% VAT",
           "ox_g1_title": "Oligio XM launch in Hongdae · Hapjeong",
           "ox_r1_name": "Firming RF 300 shots",
@@ -4610,10 +4610,10 @@
           "ox_ab_h1": "Weekdays 10:00–20:00",
           "ox_ab_h2": "Weekends & substitute holidays 10:00–16:30",
           "ox_ab_h3": "Open through lunch",
-          "ox_ab_bk_naver": "Naver booking",
-          "ox_ab_bk_kakao": "KakaoTalk '뷰티블라썸의원'",
-          "ox_ab_phone": "02-336-7511",
-          "ox_ab_qr": "Naver booking QR",
+          "ox_ab_bk_naver": "Chat on WhatsApp",
+          "ox_ab_bk_kakao": "KakaoTalk",
+          "ox_ab_phone": "+82-2-336-7511",
+          "ox_ab_qr": "WhatsApp QR",
           "ox_note_title": "Please note",
           "ox_cond1": "All prices shown exclude 10% VAT.",
           "ox_cond2": "The plan and areas are decided at your consultation. Reactions such as redness or swelling and recovery time vary by procedure and person.",
@@ -4626,7 +4626,7 @@
           "ox_alt_ph1": "Beauty Blossom reception desk",
           "ox_alt_ph2": "Care room bed behind curtains",
           "ox_alt_ph3": "Treatment room with two chairs",
-          "ox_alt_qr": "QR code linking to Naver booking"
+          "ox_alt_qr": "QR code that opens a WhatsApp chat with Beauty Blossom"
         },
         "JP": {
           "ox_brand": "BEAUTY::BLOSSOM",
@@ -4636,7 +4636,7 @@
           "ox_hook2": "1回で受けるリフティング",
           "ox_title_pre": "オリジオの進化、",
           "ox_title_main": "oligio xm",
-          "ox_contact": "ご予約・お問い合わせ 02-336-7511",
+          "ox_contact": "ご予約・お問い合わせ +82-2-336-7511",
           "ox_vat": "*VAT10%別途",
           "ox_g1_title": "ホンデ・ハプチョン オリジオXM ローンチ",
           "ox_r1_name": "ハリRF 300ショット",
@@ -4745,10 +4745,10 @@
           "ox_ab_h1": "平日 10:00–20:00",
           "ox_ab_h2": "週末・振替休日 10:00–16:30",
           "ox_ab_h3": "昼休みなしで診療しています",
-          "ox_ab_bk_naver": "NAVER予約",
-          "ox_ab_bk_kakao": "カカオトーク「뷰티블라썸의원」",
-          "ox_ab_phone": "02-336-7511",
-          "ox_ab_qr": "NAVER予約QR",
+          "ox_ab_bk_naver": "LINEで予約・相談",
+          "ox_ab_bk_kakao": "カカオトーク",
+          "ox_ab_phone": "+82-2-336-7511",
+          "ox_ab_qr": "LINE QRコード",
           "ox_note_title": "ご確認ください",
           "ox_cond1": "表示金額はすべてVAT10%別です。",
           "ox_cond2": "施術の内容と部位はカウンセリングで決めます。赤み・むくみなどの反応や回復期間は、施術と個人によって異なります。",
@@ -4761,7 +4761,7 @@
           "ox_alt_ph1": "ビューティーブロッサムの受付",
           "ox_alt_ph2": "カーテンで仕切られたケアルームのベッド",
           "ox_alt_ph3": "チェア2台のある施術室",
-          "ox_alt_qr": "NAVER予約につながるQRコード"
+          "ox_alt_qr": "ビューティーブロッサムのLINE公式アカウントにつながるQRコード"
         },
         "CN": {
           "ox_brand": "BEAUTY::BLOSSOM",
@@ -4771,7 +4771,7 @@
           "ox_hook2": "一次完成的提升",
           "ox_title_pre": "Oligio的进化，",
           "ox_title_main": "oligio xm",
-          "ox_contact": "预约及咨询 02-336-7511",
+          "ox_contact": "预约及咨询 +82-2-336-7511",
           "ox_vat": "*VAT 10% 另计",
           "ox_g1_title": "弘大·合井 Oligio XM 上市",
           "ox_r1_name": "紧致射频 300发",
@@ -4880,10 +4880,10 @@
           "ox_ab_h1": "工作日 10:00–20:00",
           "ox_ab_h2": "周末·补休日 10:00–16:30",
           "ox_ab_h3": "午休时间照常接诊",
-          "ox_ab_bk_naver": "Naver预约",
-          "ox_ab_bk_kakao": "KakaoTalk「뷰티블라썸의원」",
-          "ox_ab_phone": "02-336-7511",
-          "ox_ab_qr": "Naver预约二维码",
+          "ox_ab_bk_naver": "微信 ID：BBS20250102",
+          "ox_ab_bk_kakao": "",
+          "ox_ab_phone": "+82-2-336-7511",
+          "ox_ab_qr": "微信扫码咨询",
           "ox_note_title": "温馨提示",
           "ox_cond1": "标示金额均不含10% VAT。",
           "ox_cond2": "项目组合与部位将在咨询时决定。泛红、肿胀等反应和恢复时间因项目和个人而异。",
@@ -4896,7 +4896,7 @@
           "ox_alt_ph1": "Beauty Blossom前台",
           "ox_alt_ph2": "用帘子隔开的护理室床位",
           "ox_alt_ph3": "放有两张治疗椅的治疗室",
-          "ox_alt_qr": "连接Naver预约的二维码"
+          "ox_alt_qr": "添加 Beauty Blossom 微信的二维码"
         },
         "TW": {
           "ox_brand": "BEAUTY::BLOSSOM",
@@ -4906,7 +4906,7 @@
           "ox_hook2": "一次完成的拉提",
           "ox_title_pre": "Oligio的進化，",
           "ox_title_main": "oligio xm",
-          "ox_contact": "預約及諮詢 02-336-7511",
+          "ox_contact": "預約及諮詢 +82-2-336-7511",
           "ox_vat": "*VAT 10% 另計",
           "ox_g1_title": "弘大·合井 Oligio XM 上市",
           "ox_r1_name": "緊緻射頻 300發",
@@ -5015,10 +5015,10 @@
           "ox_ab_h1": "平日 10:00–20:00",
           "ox_ab_h2": "週末・補假日 10:00–16:30",
           "ox_ab_h3": "午休時間照常看診",
-          "ox_ab_bk_naver": "Naver預約",
-          "ox_ab_bk_kakao": "KakaoTalk「뷰티블라썸의원」",
-          "ox_ab_phone": "02-336-7511",
-          "ox_ab_qr": "Naver預約QR碼",
+          "ox_ab_bk_naver": "LINE 預約諮詢",
+          "ox_ab_bk_kakao": "",
+          "ox_ab_phone": "+82-2-336-7511",
+          "ox_ab_qr": "LINE QR Code",
           "ox_note_title": "請留意",
           "ox_cond1": "標示金額皆為未稅價格（VAT 10% 另計）。",
           "ox_cond2": "療程組合與部位會在諮詢時決定。泛紅、腫脹等反應與恢復期，依療程與個人而有所不同。",
@@ -5031,7 +5031,7 @@
           "ox_alt_ph1": "Beauty Blossom櫃台",
           "ox_alt_ph2": "以布簾隔開的護理室床位",
           "ox_alt_ph3": "設有兩張治療椅的療程室",
-          "ox_alt_qr": "連結Naver預約的QR碼"
+          "ox_alt_qr": "連到 Beauty Blossom LINE 官方帳號的 QR Code"
         },
         "TH": {
           "ox_brand": "BEAUTY::BLOSSOM",
@@ -5041,7 +5041,7 @@
           "ox_hook2": "ลิฟติ้งในครั้งเดียว",
           "ox_title_pre": "วิวัฒนาการของ Oligio",
           "ox_title_main": "oligio xm",
-          "ox_contact": "จองและสอบถาม 02-336-7511",
+          "ox_contact": "จองและสอบถาม +82-2-336-7511",
           "ox_vat": "*ราคายังไม่รวม VAT 10%",
           "ox_g1_title": "เปิดตัว Oligio XM ที่ฮงแด·ฮับจอง",
           "ox_r1_name": "RF กระชับ 300 ช็อต",
@@ -5150,10 +5150,10 @@
           "ox_ab_h1": "วันธรรมดา 10:00–20:00",
           "ox_ab_h2": "เสาร์–อาทิตย์และวันหยุดชดเชย 10:00–16:30",
           "ox_ab_h3": "เปิดตลอดไม่พักกลางวัน",
-          "ox_ab_bk_naver": "จองผ่าน Naver",
-          "ox_ab_bk_kakao": "KakaoTalk '뷰티블라썸의원'",
-          "ox_ab_phone": "02-336-7511",
-          "ox_ab_qr": "QR จอง Naver",
+          "ox_ab_bk_naver": "จองคิวผ่าน LINE",
+          "ox_ab_bk_kakao": "WhatsApp",
+          "ox_ab_phone": "+82-2-336-7511",
+          "ox_ab_qr": "QR LINE",
           "ox_note_title": "ข้อควรทราบ",
           "ox_cond1": "ราคาที่แสดงทั้งหมดยังไม่รวม VAT 10%",
           "ox_cond2": "รายการและบริเวณที่ทำจะกำหนดตอนปรึกษา อาการแดง บวม และระยะพักฟื้นแตกต่างกันไปตามหัตถการและแต่ละบุคคล",
@@ -5166,7 +5166,7 @@
           "ox_alt_ph1": "เคาน์เตอร์ต้อนรับ Beauty Blossom",
           "ox_alt_ph2": "เตียงห้องดูแลผิวที่กั้นด้วยม่าน",
           "ox_alt_ph3": "ห้องทำหัตถการที่มีเก้าอี้สองตัว",
-          "ox_alt_qr": "QR โค้ดสำหรับจองผ่าน Naver"
+          "ox_alt_qr": "คิวอาร์โค้ดสำหรับเพิ่มเพื่อน LINE ของ Beauty Blossom"
         },
         "HK": {
           "ox_brand": "BEAUTY::BLOSSOM",
@@ -5176,7 +5176,7 @@
           "ox_hook2": "一次完成的提拉",
           "ox_title_pre": "Oligio的進化，",
           "ox_title_main": "oligio xm",
-          "ox_contact": "預約及查詢 02-336-7511",
+          "ox_contact": "預約及查詢 +82-2-336-7511",
           "ox_vat": "*VAT 10% 另計",
           "ox_g1_title": "弘大·合井 Oligio XM 登場",
           "ox_r1_name": "緊緻射頻 300發",
@@ -5285,10 +5285,10 @@
           "ox_ab_h1": "平日 10:00–20:00",
           "ox_ab_h2": "週末及補假 10:00–16:30",
           "ox_ab_h3": "午膳時間照常應診",
-          "ox_ab_bk_naver": "Naver預約",
-          "ox_ab_bk_kakao": "KakaoTalk「뷰티블라썸의원」",
-          "ox_ab_phone": "02-336-7511",
-          "ox_ab_qr": "Naver預約QR碼",
+          "ox_ab_bk_naver": "WhatsApp 預約諮詢",
+          "ox_ab_bk_kakao": "",
+          "ox_ab_phone": "+82-2-336-7511",
+          "ox_ab_qr": "WhatsApp 二維碼",
           "ox_note_title": "請注意",
           "ox_cond1": "所示金額均不含10% VAT。",
           "ox_cond2": "療程組合及部位會於諮詢時決定。泛紅、腫脹等反應及恢復期因療程及個人而異。",
@@ -5301,16 +5301,16 @@
           "ox_alt_ph1": "Beauty Blossom登記處",
           "ox_alt_ph2": "以布簾分隔的護理室床位",
           "ox_alt_ph3": "設有兩張治療椅的療程室",
-          "ox_alt_qr": "連結Naver預約的QR碼"
+          "ox_alt_qr": "開啟 Beauty Blossom WhatsApp 對話的二維碼"
         }
       }
     },
     {
       "id": "APT12",
-      "label": "12월 압토스",
+      "label": "압토스 · 겨울 시즌",
       "kind": "landing",
       "page": "aptos12/index.html",
-      "note": "검토용 디자인입니다. 팀 미리캔버스 현재 버전(1 히어로·2 금액)에서 12월 톤앤매너만 바꾸고, 3·4 시술 설명과 5 병원 소개를 더한 5장 카드입니다(각 1080×1350). 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 편집 모드에서는 비어 있는 기간·추가 안내 칸이 표시됩니다.",
+      "note": "검토용 디자인입니다. 팀 미리캔버스 현재 버전(1 히어로·2 금액)에서 톤앤매너만 겨울 시즌으로 바꾸고(12~2월 같은 가격), 3·4 시술 설명과 5 병원 소개를 더한 5장 카드입니다(각 1080×1350). 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 편집 모드에서는 비어 있는 기간·추가 안내 칸이 표시됩니다.",
       "fields": {
         "KO": {
           "ap_period": "",
@@ -5447,7 +5447,8 @@
           "ap_c5_hours3": "점심시간 없이 진료해요",
           "ap_alt_clinic1": "뷰티블라썸의원 리셉션 데스크",
           "ap_alt_clinic2": "관리실 베드",
-          "ap_alt_clinic3": "시술실 체어"
+          "ap_alt_clinic3": "시술실 체어",
+          "ap_alt_qr": "네이버 예약으로 연결되는 QR 코드"
         },
         "EN": {
           "ap_period": "",
@@ -5457,7 +5458,7 @@
           "ap_chip1": "Firmness care",
           "ap_chip2": "Contour care",
           "ap_contact_label": "Booking & inquiries",
-          "ap_phone": "02-336-7511",
+          "ap_phone": "+82-2-336-7511",
           "ap_list_title": "APTOS NAMICA Bio-lifting Launch Event",
           "ap_r1_name": "NAMICA 19",
           "ap_r1_desc": "A long thread used from the jawline to the lower-mid face",
@@ -5500,8 +5501,8 @@
           "ap_unit": "KRW",
           "ap_vat": "*VAT not included",
           "ap_bk_pill": "Booking",
-          "ap_bk_naver": "Naver Booking",
-          "ap_bk_kakao": "Ask on KakaoTalk 'Beauty Blossom Clinic'",
+          "ap_bk_naver": "Chat on WhatsApp",
+          "ap_bk_kakao": "Ask on KakaoTalk",
           "ap_note_title": "Please note",
           "ap_cond1": "All prices shown exclude VAT.",
           "ap_cond2": "The plan and areas are decided at your consultation. Reactions such as redness or swelling and recovery time vary by procedure and person.",
@@ -5584,7 +5585,8 @@
           "ap_c5_hours3": "No lunch break",
           "ap_alt_clinic1": "Beauty Blossom reception desk",
           "ap_alt_clinic2": "Care room bed",
-          "ap_alt_clinic3": "Treatment room chairs"
+          "ap_alt_clinic3": "Treatment room chairs",
+          "ap_alt_qr": "QR code that opens a WhatsApp chat with Beauty Blossom"
         },
         "JP": {
           "ap_period": "",
@@ -5594,7 +5596,7 @@
           "ap_chip1": "ハリケア",
           "ap_chip2": "輪郭ケア",
           "ap_contact_label": "ご予約・お問い合わせ",
-          "ap_phone": "02-336-7511",
+          "ap_phone": "+82-2-336-7511",
           "ap_list_title": "アプトス NAMICA バイオリフティング ローンチイベント",
           "ap_r1_name": "NAMICA 19",
           "ap_r1_desc": "フェイスラインから中・下顔面まで使う長い糸",
@@ -5637,8 +5639,8 @@
           "ap_unit": "万ウォン",
           "ap_vat": "*VAT別",
           "ap_bk_pill": "ご予約案内",
-          "ap_bk_naver": "NAVER予約",
-          "ap_bk_kakao": "カカオトーク「ビューティーブロッサム医院」でお問い合わせ",
+          "ap_bk_naver": "LINEで予約・相談",
+          "ap_bk_kakao": "カカオトークで相談",
           "ap_note_title": "ご確認ください",
           "ap_cond1": "表示金額はすべてVAT別です。",
           "ap_cond2": "施術の内容と部位はカウンセリングで決めます。赤み・むくみなどの反応や回復期間は、施術と個人によって異なります。",
@@ -5721,7 +5723,8 @@
           "ap_c5_hours3": "昼休みなしで診療します",
           "ap_alt_clinic1": "ビューティーブロッサム医院の受付",
           "ap_alt_clinic2": "ケアルームのベッド",
-          "ap_alt_clinic3": "施術室のチェア"
+          "ap_alt_clinic3": "施術室のチェア",
+          "ap_alt_qr": "ビューティーブロッサムのLINE公式アカウントにつながるQRコード"
         },
         "CN": {
           "ap_period": "",
@@ -5731,7 +5734,7 @@
           "ap_chip1": "紧致护理",
           "ap_chip2": "轮廓护理",
           "ap_contact_label": "预约及咨询",
-          "ap_phone": "02-336-7511",
+          "ap_phone": "+82-2-336-7511",
           "ap_list_title": "APTOS NAMICA 生物提升首发活动",
           "ap_r1_name": "NAMICA 19",
           "ap_r1_desc": "用于下颌线到中下面部的长线",
@@ -5774,8 +5777,8 @@
           "ap_unit": "万韩元",
           "ap_vat": "*不含VAT",
           "ap_bk_pill": "预约指南",
-          "ap_bk_naver": "Naver预约",
-          "ap_bk_kakao": "KakaoTalk“Beauty Blossom诊所”咨询",
+          "ap_bk_naver": "微信 ID：BBS20250102",
+          "ap_bk_kakao": "",
           "ap_note_title": "温馨提示",
           "ap_cond1": "标示金额均不含VAT。",
           "ap_cond2": "项目组合与部位将在咨询时决定。泛红、肿胀等反应和恢复时间因项目和个人而异。",
@@ -5858,7 +5861,8 @@
           "ap_c5_hours3": "不设午休",
           "ap_alt_clinic1": "Beauty Blossom诊所前台",
           "ap_alt_clinic2": "护理室床位",
-          "ap_alt_clinic3": "诊疗室座椅"
+          "ap_alt_clinic3": "诊疗室座椅",
+          "ap_alt_qr": "添加 Beauty Blossom 微信的二维码"
         },
         "TW": {
           "ap_period": "",
@@ -5868,7 +5872,7 @@
           "ap_chip1": "緊緻照護",
           "ap_chip2": "輪廓照護",
           "ap_contact_label": "預約及諮詢",
-          "ap_phone": "02-336-7511",
+          "ap_phone": "+82-2-336-7511",
           "ap_list_title": "APTOS NAMICA 生物拉提首發活動",
           "ap_r1_name": "NAMICA 19",
           "ap_r1_desc": "用於下顎線到中下臉的長線",
@@ -5911,8 +5915,8 @@
           "ap_unit": "萬韓元",
           "ap_vat": "*未稅",
           "ap_bk_pill": "預約指南",
-          "ap_bk_naver": "Naver預約",
-          "ap_bk_kakao": "KakaoTalk「Beauty Blossom診所」諮詢",
+          "ap_bk_naver": "LINE 預約諮詢",
+          "ap_bk_kakao": "",
           "ap_note_title": "請留意",
           "ap_cond1": "標示金額皆為未稅價格。",
           "ap_cond2": "療程組合與部位會在諮詢時決定。泛紅、腫脹等反應與恢復期，依療程與個人而有所不同。",
@@ -5995,7 +5999,8 @@
           "ap_c5_hours3": "中午不休息",
           "ap_alt_clinic1": "Beauty Blossom診所櫃檯",
           "ap_alt_clinic2": "護理室床位",
-          "ap_alt_clinic3": "療程室座椅"
+          "ap_alt_clinic3": "療程室座椅",
+          "ap_alt_qr": "連到 Beauty Blossom LINE 官方帳號的 QR Code"
         },
         "TH": {
           "ap_period": "",
@@ -6005,7 +6010,7 @@
           "ap_chip1": "ดูแลความกระชับ",
           "ap_chip2": "ดูแลรูปหน้า",
           "ap_contact_label": "จองและสอบถาม",
-          "ap_phone": "02-336-7511",
+          "ap_phone": "+82-2-336-7511",
           "ap_list_title": "อีเวนต์เปิดตัวไบโอลิฟติ้ง APTOS NAMICA",
           "ap_r1_name": "NAMICA 19",
           "ap_r1_desc": "ไหมยาว ใช้ตั้งแต่กรอบหน้าถึงใบหน้าส่วนกลางและล่าง",
@@ -6048,8 +6053,8 @@
           "ap_unit": "วอน",
           "ap_vat": "*ไม่รวม VAT",
           "ap_bk_pill": "ข้อมูลการจอง",
-          "ap_bk_naver": "Naver Booking",
-          "ap_bk_kakao": "สอบถามทาง KakaoTalk 'Beauty Blossom Clinic'",
+          "ap_bk_naver": "จองคิวผ่าน LINE",
+          "ap_bk_kakao": "WhatsApp",
           "ap_note_title": "ข้อควรทราบ",
           "ap_cond1": "ราคาที่แสดงทั้งหมดยังไม่รวม VAT",
           "ap_cond2": "รายการและบริเวณที่ทำจะกำหนดตอนปรึกษา อาการแดง บวม และระยะพักฟื้นแตกต่างกันไปตามหัตถการและแต่ละบุคคล",
@@ -6132,7 +6137,8 @@
           "ap_c5_hours3": "ไม่มีพักกลางวัน",
           "ap_alt_clinic1": "เคาน์เตอร์ต้อนรับ Beauty Blossom",
           "ap_alt_clinic2": "เตียงห้องดูแลผิว",
-          "ap_alt_clinic3": "เก้าอี้ห้องทำหัตถการ"
+          "ap_alt_clinic3": "เก้าอี้ห้องทำหัตถการ",
+          "ap_alt_qr": "คิวอาร์โค้ดสำหรับเพิ่มเพื่อน LINE ของ Beauty Blossom"
         },
         "HK": {
           "ap_period": "",
@@ -6142,7 +6148,7 @@
           "ap_chip1": "緊緻護理",
           "ap_chip2": "輪廓護理",
           "ap_contact_label": "預約及查詢",
-          "ap_phone": "02-336-7511",
+          "ap_phone": "+82-2-336-7511",
           "ap_list_title": "APTOS NAMICA 生物提升首發活動",
           "ap_r1_name": "NAMICA 19",
           "ap_r1_desc": "用於下顎線至中下面部的長線",
@@ -6185,8 +6191,8 @@
           "ap_unit": "萬韓元",
           "ap_vat": "*不含VAT",
           "ap_bk_pill": "預約指南",
-          "ap_bk_naver": "Naver預約",
-          "ap_bk_kakao": "KakaoTalk「Beauty Blossom 診所」查詢",
+          "ap_bk_naver": "WhatsApp 預約諮詢",
+          "ap_bk_kakao": "",
           "ap_note_title": "請注意",
           "ap_cond1": "所示金額均不含VAT。",
           "ap_cond2": "療程組合及部位會於諮詢時決定。泛紅、腫脹等反應及恢復期因療程及個人而異。",
@@ -6269,7 +6275,8 @@
           "ap_c5_hours3": "不設午休",
           "ap_alt_clinic1": "Beauty Blossom診所接待處",
           "ap_alt_clinic2": "護理室床位",
-          "ap_alt_clinic3": "療程室座椅"
+          "ap_alt_clinic3": "療程室座椅",
+          "ap_alt_qr": "開啟 Beauty Blossom WhatsApp 對話的二維碼"
         }
       }
     }

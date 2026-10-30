@@ -363,3 +363,5 @@ html[data-locale=TH] .c-title{line-height:1.32}
   html[data-locale=EN] .c5-booking,html[data-locale=TH] .c5-booking{margin-top:calc(18*var(--px))}
   html[data-locale=EN] .c5-booking .bk-text,html[data-locale=TH] .c5-booking .bk-text{font-size:calc(20*var(--px))}
 }
+/* 2026-10-29: never split the phone number across lines (overseas locales use +82-2-336-7511) */
+a[data-link="phone"]{white-space:nowrap}

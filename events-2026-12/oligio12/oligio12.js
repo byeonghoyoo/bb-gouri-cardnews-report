@@ -104,10 +104,13 @@ function render(){
  }
  for(const g of document.querySelectorAll('[data-optional-group]'))g.hidden=[...g.querySelectorAll('[data-optional]')].every(e=>e.hidden);
  for(const el of document.querySelectorAll('[data-alt]'))el.alt=fields[el.dataset.alt]??'';
+ const CH=(DATA.channels&&DATA.channels[locale])||null; /* 2026-10-29: per-locale consultation channels (v4/_shared/channels/CHANNELS.json) */
  for(const a of document.querySelectorAll('a[data-link]')){
-  const href=DATA.links&&DATA.links[a.dataset.link];if(href)a.href=href;
-  if(a.dataset.link!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
+  const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');
+  if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
+ for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
+ for(const w of document.querySelectorAll('[data-bk-alt]')){const lab=w.querySelector('[data-copy]');w.hidden=!String((lab&&fields[lab.dataset.copy])??'').trim()&&!(editable&&editMode);}
  document.title=[fields.ox_title_main||'oligio xm',fields.ox_brand||'BEAUTY BLOSSOM'].join(' \u00b7 ');
  if(IE)IE.sync(editable);
  typeSwap();

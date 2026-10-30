@@ -381,3 +381,5 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 /* 2026-10-29 review: the Miricanvas light streak crossed headings on cards 2-5; keep it only behind the device on card 1. Ribbon moved off the group title. */
 .m-light2,.m-light3{display:none!important}
 .ribbon{left:auto;right:calc(56*var(--px));transform:none}
+/* 2026-10-29: never split the phone number across lines (overseas locales use +82-2-336-7511) */
+a[data-link="phone"]{white-space:nowrap}
