@@ -45,7 +45,7 @@ function setMoney(el,v){
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
 /* widow guard: the last two words (CJK: last three characters) stay together; the phone number never breaks */
-const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr,.hrs-note,.bk-links [data-copy]';
+const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy]';
 /* names that must never break inside (display only: wrapped in nowrap spans, the stored text is unchanged) */
 const KEEP=/(\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07|Beauty Blossom|Oligio XM|02-336-7511|\u30d3\u30e5\u30fc\u30c6\u30a3\u30fc\u30d6\u30ed\u30c3\u30b5\u30e0|\u30ab\u30ab\u30aa\u30c8\u30fc\u30af|Head Director|Chat on WhatsApp|\u0e1c\u0e39\u0e49\u0e2d\u0e33\u0e19\u0e27\u0e22\u0e01\u0e32\u0e23\u0e04\u0e25\u0e34\u0e19\u0e34\u0e01)/g; /* 2026-10-30b: card 5 only (these words do not occur on cards 1-4): JP clinic name, KakaoTalk, the director's title */
 function appendKept(el,s){
@@ -130,6 +130,9 @@ function render(){
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
+ /* 2026-10-30c: card-5 Google map, this locale's own capture for every width tier (copy-data gmap; the picture sources pick the tier) */
+ const GM=(DATA.gmap&&DATA.gmap[locale])||null;
+ for(const el of document.querySelectorAll('[data-gmap]')){const u=GM&&GM[el.dataset.gmap];if(!u)continue;const a=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(a)!==u)el.setAttribute(a,u);}
  for(const w of document.querySelectorAll('[data-bk-alt]')){const lab=w.querySelector('[data-copy]');w.hidden=!String((lab&&fields[lab.dataset.copy])??'').trim()&&!(editable&&editMode);}
  document.title=[fields.ox_title_main||'oligio xm',fields.ox_brand||'BEAUTY BLOSSOM'].join(' \u00b7 ');
  if(IE)IE.sync(editable);

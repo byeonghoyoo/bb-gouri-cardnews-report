@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link id="locale-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&amp;display=swap">
-  <link rel="stylesheet" href="aptos12.css?v=20261029-aptos128">
-  <script src="copy-data.js?v=20261029-aptos128" defer></script>
-  <script src="../inline-edit.js?v=20261029-aptos128" defer></script>
-  <script src="aptos12.js?v=20261029-aptos128" defer></script>
+  <link rel="stylesheet" href="aptos12.css?v=20261029-aptos129">
+  <script src="copy-data.js?v=20261029-aptos129" defer></script>
+  <script src="../inline-edit.js?v=20261029-aptos129" defer></script>
+  <script src="aptos12.js?v=20261029-aptos129" defer></script>
 </head>
 <body>
 <main>
@@ -233,12 +233,14 @@
       <div class="b5-grid">
         <div class="b5-box b5-loc">
           <h3 class="b5-h" data-copy="ap_c5_loc_title"></h3>
+          <!-- 2026-10-30 user: Google Maps capture with its original colours, nothing on top (Google marker, name, logo and attribution are in the image).
+               aptos12.js sets the files for ?lang= from PAGE_COPY.maps; the media queries pick the width tier. -->
           <div class="b5-map">
-            <img class="b5-map-img" src="assets/map-osm-dark.webp" data-alt="ap_alt_map" alt="" width="820" height="480">
-            <span class="b5-map-tint" aria-hidden="true"></span>
-            <span class="b5-pin" aria-hidden="true"><svg viewBox="0 0 40 52" focusable="false"><defs><linearGradient id="ap-pin-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf0d6"/><stop offset=".5" stop-color="#ecd4a4"/><stop offset="1" stop-color="#b48a46"/></linearGradient></defs><path d="M20 1.5C9.8 1.5 1.5 9.8 1.5 20c0 13.5 18.5 30.5 18.5 30.5S38.5 33.5 38.5 20C38.5 9.8 30.2 1.5 20 1.5Z" fill="url(#ap-pin-g)" stroke="#6f4f1c" stroke-width="1.4"/><circle cx="20" cy="19.5" r="7.2" fill="#3a1442"/></svg></span>
-            <span class="b5-pin-lbl" data-copy="ap_c5_map_pin"></span>
-            <a class="b5-osm" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" lang="en">© OpenStreetMap contributors</a>
+            <picture>
+              <source data-map-tier="desk" media="(min-width: 1024px)" width="880" height="514">
+              <source data-map-tier="tab" media="(min-width: 768px)" width="732" height="428">
+              <img class="b5-map-img" data-map-tier="mob" data-alt="ap_alt_map" alt="" width="1002" height="588">
+            </picture>
           </div>
           <p class="b5-station"><svg class="b5-st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.2c-4.3 0-7.8 3.4-7.8 7.7 0 5.6 7.8 12 7.8 12s7.8-6.4 7.8-12c0-4.3-3.5-7.7-7.8-7.7Z"/><circle cx="12" cy="9.9" r="2.9"/></svg><span class="b5-st-name" data-copy="ap_c5_station"></span><span class="b5-pill" data-copy="ap_c5_lines"></span></p>
           <p class="b5-addr" data-copy="ap_c5_addr"></p>

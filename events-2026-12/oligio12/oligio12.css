@@ -284,7 +284,7 @@ html[data-locale=KO] .sheet{word-break:keep-all}
   background:linear-gradient(180deg,#fdfeff 0%,#f1f7fe 100%);border:calc(2*var(--px)) solid rgba(200,225,250,.95);
   box-shadow:0 calc(18*var(--px)) calc(40*var(--px)) rgba(0,6,20,.42),0 0 0 calc(6*var(--px)) rgba(160,215,255,.08)}
 .bt-about{grid-column:1 / -1;grid-row:1;padding:calc(22*var(--px)) calc(28*var(--px)) calc(22*var(--px))}
-.bt-loc{grid-column:1;grid-row:2 / 4;display:flex;flex-direction:column}
+.bt-loc{grid-column:1;grid-row:2 / 4;display:flex;flex-direction:column;padding:calc(16*var(--px)) calc(25*var(--px)) calc(14*var(--px))}
 .bt-hours{grid-column:2;grid-row:2;display:flex;flex-direction:column}
 .bt-book{grid-column:2;grid-row:3;display:flex;flex-direction:column}
 .bt-k{font-family:var(--f-num);font-weight:700;font-size:max(11px,calc(14*var(--px)));letter-spacing:.26em;line-height:1.3;color:var(--blue)}
@@ -319,24 +319,26 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .ab-strengths li:last-child .dots{display:none}
 .ad{display:block;margin-top:calc(10*var(--px));padding-right:calc(12*var(--px));font-size:max(11px,calc(16*var(--px)));line-height:1.45;color:#5a6f90}
 
-/* B */
-.map{position:relative;flex:1 1 auto;min-height:calc(220*var(--px));margin:calc(14*var(--px)) 0 0;border-radius:calc(18*var(--px));overflow:hidden;background:#d4e8fb;border:calc(1.5*var(--px)) solid rgba(159,200,240,.75)}
-.map-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60.49% 50%;mix-blend-mode:multiply}
-.map-pin{position:absolute;left:60.49%;top:50%;width:0;height:0}
-.map-pin::before{content:'';position:absolute;left:calc(-12*var(--px));top:calc(-4*var(--px));width:calc(24*var(--px));height:calc(8*var(--px));border-radius:50%;background:rgba(10,40,90,.28);filter:blur(calc(2*var(--px)))}
-.pin{position:absolute;left:calc(-17*var(--px));bottom:0;width:calc(34*var(--px));height:calc(44*var(--px));filter:drop-shadow(0 calc(3*var(--px)) calc(5*var(--px)) rgba(10,40,90,.35))}
-.map-lbl{position:absolute;left:0;top:calc(8*var(--px));transform:translateX(-50%);padding:.25em .75em;border-radius:999px;background:#fff;box-shadow:0 calc(2*var(--px)) calc(8*var(--px)) rgba(10,40,90,.28);
-  font-size:max(11px,calc(14*var(--px)));font-weight:800;line-height:1.3;color:#12223f;white-space:nowrap}
-.map-credit{position:absolute;right:calc(6*var(--px));bottom:calc(6*var(--px));padding:.12em .55em;border-radius:6px;background:rgba(255,255,255,.9);font-size:11px;font-weight:600;line-height:1.45;color:#33476a}
-.map-credit a{color:inherit;text-decoration:none}
-.way{display:flex;align-items:flex-start;gap:calc(14*var(--px));margin-top:calc(16*var(--px))}
+/* B. 2026-10-30c: the Google Maps capture is shown exactly as captured: no tint, blend, filter, opacity or overlay. The box keeps the
+   image ratio per width tier (same media queries as the picture sources: desk 460/425 from 1024px, tab 384/355 601-1023px, mob 332/200 up to 600px = the stacked layout), so nothing is
+   cropped or stretched; only the top corners are rounded, so Google's logo and attribution strip at the bottom are never clipped. */
+.loc-head{display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0 calc(12*var(--px))}
+.loc-head .bt-t{margin-top:0}
+.loc-body{display:flex;flex-direction:column;margin:auto 0;padding-top:calc(10*var(--px))}
+.map{position:relative;flex:none;width:calc(460*var(--px));max-width:100%;margin:0;aspect-ratio:460/425;overflow:hidden;border-radius:6px 6px 4px 4px;
+  box-shadow:0 0 0 calc(1.5*var(--px)) rgba(159,200,240,.75)}
+.map picture{display:block;width:100%;height:100%}
+.map-img{display:block;width:100%;height:100%;object-fit:fill}
+@media (max-width:1023px){.map{aspect-ratio:384/355}}
+@media (max-width:600px){.map{aspect-ratio:332/200}} /* = the stacked layout (@container max-width:600px on main.ox, which spans the viewport up to 1080px) */
+.way{display:flex;align-items:flex-start;gap:calc(14*var(--px));margin-top:calc(12*var(--px))}
 .way-pin{flex:none;width:calc(40*var(--px));height:calc(50*var(--px))}
 .way-tx{min-width:0}
 .way-top{display:flex;align-items:center;flex-wrap:wrap;gap:calc(6*var(--px)) calc(10*var(--px))}
 .way-st{font-size:max(15px,calc(26*var(--px)));font-weight:800;line-height:1.25;letter-spacing:-.01em;color:#12223f}
 .way-line{display:inline-block;padding:.2em .8em;border-radius:999px;background:var(--blue);font-size:max(11px,calc(14*var(--px)));font-weight:700;line-height:1.35;color:#fff;white-space:nowrap}
 .way-addr{margin-top:calc(6*var(--px));font-size:max(12px,calc(16*var(--px)));line-height:1.5;color:#40577a}
-.way-desk{margin-top:calc(2*var(--px));font-size:max(12px,calc(16*var(--px)));font-weight:800;line-height:1.5;color:var(--blue)}
+.way-desk{margin-left:.55em;font-weight:800;color:var(--blue);white-space:nowrap}
 .way-desk::before{content:'\2192\00a0'}
 
 /* C */
@@ -371,6 +373,13 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .notes .dot{flex:none;width:.36em;height:.36em;margin-top:.64em;border-radius:50%;background:#9fd8ff;box-shadow:0 0 .4em rgba(159,216,255,.7)}
 
 /* ---------- phones: the poster keeps its composition, the price list flows ---------- */
+/* 2026-10-30c: 601-767px container (desktop-style layout on small tablets, e.g. 744 iPad mini portrait, with the tab map): card 5 keeps
+   at least the 4:5 height but may grow when long locales need it, instead of clipping its cells. Cards 1-4 are not affected. */
+@container (min-width:601px) and (max-width:767px){
+  .p5{aspect-ratio:auto;min-height:calc(1350*var(--px));display:flex;flex-direction:column}
+  .p5 .cx-in{position:relative;inset:auto;flex:1 0 auto}
+  .p5 .bento{min-height:auto}
+}
 @container (max-width:600px){
   .p1-device{height:calc(720*var(--px));bottom:calc(120*var(--px));right:calc(50*var(--px))}
   .p1-glow{bottom:calc(130*var(--px))}
@@ -443,10 +452,8 @@ html[data-locale=KO] .sheet{word-break:keep-all}
   .dots{display:none}
   .si{width:30px;height:30px}
   .ad{padding-right:0}
-  .map{flex:none;height:200px;min-height:0}
-  .map-pin::before{left:-9px;top:-3px;width:18px;height:6px}
-  .pin{left:-12px;width:24px;height:31px}
-  .map-lbl{top:6px}
+  .loc-body{padding-top:12px}
+  .map{width:100%}
   .way-pin{width:26px;height:33px}
   .bk-row{grid-template-columns:96px minmax(0,1fr);gap:14px}
   .p2-title{--logo-w:140px}

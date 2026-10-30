@@ -120,6 +120,9 @@ function render(){
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
+ /* 2026-10-30: card 5 map = Google Maps capture for this locale (PAGE_COPY.maps); the <picture> media queries pick the width tier */
+ const MAPS=(DATA.maps&&DATA.maps[locale])||null;
+ for(const el of document.querySelectorAll('[data-map-tier]')){const f=MAPS&&MAPS[el.dataset.mapTier];if(!f)continue;const at=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(at)!==f)el.setAttribute(at,f);}
  for(const w of document.querySelectorAll('[data-bk-alt]')){const lab=w.querySelector('[data-copy]');w.hidden=!String((lab&&fields[lab.dataset.copy])??'').trim()&&!(editable&&editMode);}
  if(IE)IE.sync(editable);
  document.title=[fields.ap_title,fields.ap_kicker].filter(Boolean).join(' · ')+' · BEAUTY BLOSSOM';

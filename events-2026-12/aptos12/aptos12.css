@@ -332,19 +332,19 @@ html[data-locale=TH] .c5-title{line-height:1.32}
 .b5-grid{position:relative;z-index:5;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto 1fr;grid-template-areas:"loc hours" "loc book";gap:calc(18*var(--px))}
 .b5-box{position:relative;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:calc(24*var(--px)) calc(26*var(--px));border-radius:calc(26*var(--px));color:#fff;
   background:linear-gradient(160deg,rgba(91,35,101,.66),rgba(32,10,40,.86));box-shadow:inset 0 0 0 1px rgba(236,212,164,.45),0 calc(18*var(--px)) calc(40*var(--px)) rgba(8,0,14,.35)}
-.b5-loc{grid-area:loc;justify-content:flex-start}
+.b5-loc{grid-area:loc;justify-content:safe center;padding-left:calc(25.5*var(--px));padding-right:calc(25.5*var(--px))} /* 25.5: the map is exactly 440 CSS px (its capture size) on a 1080 card */
 .b5-hours{grid-area:hours}
 .b5-book{grid-area:book}
-.b5-h{font-size:max(17px,calc(30*var(--px)));font-weight:800;letter-spacing:-.01em;line-height:1.2;color:var(--champ);text-align:center;margin-bottom:calc(14*var(--px))}
-.b5-map{position:relative;aspect-ratio:820/480;border-radius:calc(16*var(--px));overflow:hidden;box-shadow:0 0 0 1px rgba(236,212,164,.35);--pin-w:max(24px,calc(34*var(--px)))}
-/* the 820x480 tile image is shown about 1:1 (box width 186%) so street names stay readable; its clinic point (496,240 = 60.49% 50%) sits at the box centre */
-.b5-map-img{position:absolute;left:50%;top:50%;display:block;width:186%;max-width:none;height:auto;transform:translate(-60.49%,-50%)}
-/* plum tone on the dark OpenStreetMap tiles; roads and names stay readable */
-.b5-map-tint{position:absolute;inset:0;background:linear-gradient(135deg,#8a3a80,#3a1442);mix-blend-mode:color;opacity:.85;pointer-events:none}
-.b5-pin{position:absolute;left:50%;top:50%;width:var(--pin-w);transform:translate(-50%,-100%);filter:drop-shadow(0 3px 5px rgba(0,0,0,.5))}
-.b5-pin svg{display:block;width:100%;height:auto}
-.b5-pin-lbl{position:absolute;left:50%;top:50%;transform:translate(-50%,calc(-100% - var(--pin-w)*1.3 - 6px));white-space:nowrap;font-size:max(11px,calc(15*var(--px)));font-weight:800;line-height:1.2;color:#2a0d33;background:var(--champ);padding:.3em .75em;border-radius:99px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
-.b5-osm{position:absolute;right:calc(8*var(--px));bottom:calc(8*var(--px));font-size:max(11px,calc(12*var(--px)));line-height:1.2;color:#f1e6f4;background:rgba(19,6,26,.8);padding:.2em .55em;border-radius:6px}
+.b5-h{font-size:max(17px,calc(30*var(--px)));font-weight:800;letter-spacing:-.01em;line-height:1.2;color:var(--champ);text-align:center;margin:0 0 calc(14*var(--px))} /* margin-top 0: no browser h3 margin */
+/* 2026-10-30 user: the map is the Google Maps image with its original colours. No blend, filter, opacity, tint, pseudo-element or
+   anything on top; the light map sits on the plum panel inside a thin champagne frame drawn outside the box (box-shadow).
+   The box ratio equals each width tier's capture (mob 334x196, tab 366x214, desk 440x257 CSS px) so nothing is cropped or
+   stretched, and the 3px radius never reaches the Google attribution strip. Tier breakpoints match the <picture> sources. */
+.b5-map{aspect-ratio:334/196;border-radius:3px;box-shadow:0 0 0 1px rgba(236,212,164,.6),0 calc(10*var(--px)) calc(22*var(--px)) rgba(8,0,14,.35)}
+.b5-map picture{display:contents}
+.b5-map-img{display:block;width:100%;height:100%;max-width:none;object-fit:fill;border-radius:3px}
+@media (min-width:768px){.b5-map{aspect-ratio:366/214}}
+@media (min-width:1024px){.b5-map{aspect-ratio:440/257}}
 .b5-station{display:flex;align-items:center;flex-wrap:wrap;gap:calc(8*var(--px)) calc(10*var(--px));margin-top:calc(16*var(--px));font-size:max(15px,calc(23*var(--px)));font-weight:800;line-height:1.25;color:#fff}
 .b5-st-ico{flex:none;width:max(18px,calc(26*var(--px)));height:auto;fill:none;stroke:var(--champ);stroke-width:2;stroke-linejoin:round}
 .b5-pill{font-size:max(11px,calc(15*var(--px)));font-weight:800;color:#2a0d33;background:var(--champ);padding:.25em .8em;border-radius:99px;white-space:nowrap}
@@ -371,7 +371,7 @@ html[data-locale=TH] .c5-title{line-height:1.32}
   html[data-locale=EN] .c5-d,html[data-locale=TH] .c5-d{font-size:max(11px,calc(15*var(--px)))}
   /* JP '一人ひとりに合わせたカウンセリング' keeps two clean lines in a quarter column */
   html[data-locale=JP] .c5-t{font-size:max(13px,calc(20*var(--px)))}
-  html[data-locale=JP] .c5-title{font-size:calc(42*var(--px))}
+  html[data-locale=JP] .c5-title{font-size:calc(35*var(--px))} /* the long JP title stays on two lines */
 }
 /* phone: the panels stack */
 @container (max-width:640px){
