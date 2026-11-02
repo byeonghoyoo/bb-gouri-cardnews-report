@@ -621,7 +621,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3m' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3n' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
@@ -797,7 +797,7 @@
           f.style.cssText = 'position:fixed;left:0;top:0;width:' + CAP.frameW + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
           var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000);
           f.addEventListener('load', function () { win.clearTimeout(t); resolve(); });
-          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261029-v3m' + '&capture=1';
+          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261029-v3n' + '&capture=1';
           cap.el = f; doc.body.appendChild(f);
         });
       }).then(function () {
