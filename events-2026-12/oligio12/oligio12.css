@@ -12,10 +12,11 @@
   --flake-ice:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%239cc9ee' stroke-width='3.4' stroke-linecap='round'%3E%3Cpath d='M50 8v84M13.6 29l72.8 42M13.6 71l72.8-42'/%3E%3Cpath d='M50 22l-9-9M50 22l9-9M50 78l-9 9M50 78l9 9M25.8 36l-12.4-1.6M25.8 36l-4.6-11.6M74.2 64l12.4 1.6M74.2 64l4.6 11.6M25.8 64l-12.4 1.6M25.8 64l-4.6 11.6M74.2 36l12.4-1.6M74.2 36l4.6-11.6'/%3E%3C/g%3E%3C/svg%3E");
   --spark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C52.6 36 64 47.4 100 50C64 52.6 52.6 64 50 100C47.4 64 36 52.6 0 50C36 47.4 47.4 36 50 0Z' fill='%23ffffff'/%3E%3C/svg%3E");
 }
-html[data-locale=JP]{--f-text:'Noto Sans JP','Pretendard Variable',sans-serif}
-html[data-locale=CN]{--f-text:'Noto Sans SC','Pretendard Variable',sans-serif}
-html[data-locale=TW],html[data-locale=HK]{--f-text:'Noto Sans TC','Pretendard Variable',sans-serif}
-html[data-locale=TH]{--f-text:'Noto Sans Thai','Pretendard Variable',sans-serif}
+/* 2026-11-02: locale fonts also after Outfit/Quicksand, so CJK/Thai letters inside number/mark styles (card 3 mode names) use the page web font, not a system font */
+html[data-locale=JP]{--f-text:'Noto Sans JP','Pretendard Variable',sans-serif;--f-num:'Outfit','Noto Sans JP','Pretendard Variable',sans-serif;--f-mark:'Quicksand','Outfit','Noto Sans JP',sans-serif}
+html[data-locale=CN]{--f-text:'Noto Sans SC','Pretendard Variable',sans-serif;--f-num:'Outfit','Noto Sans SC','Pretendard Variable',sans-serif;--f-mark:'Quicksand','Outfit','Noto Sans SC',sans-serif}
+html[data-locale=TW],html[data-locale=HK]{--f-text:'Noto Sans TC','Pretendard Variable',sans-serif;--f-num:'Outfit','Noto Sans TC','Pretendard Variable',sans-serif;--f-mark:'Quicksand','Outfit','Noto Sans TC',sans-serif}
+html[data-locale=TH]{--f-text:'Noto Sans Thai','Pretendard Variable',sans-serif;--f-num:'Outfit','Noto Sans Thai','Pretendard Variable',sans-serif;--f-mark:'Quicksand','Outfit','Noto Sans Thai',sans-serif}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{margin:0;background:#050b16}

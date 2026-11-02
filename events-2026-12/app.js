@@ -77,8 +77,12 @@
       if (!isObj(it) || !ID_RE.test(it.id || '')) { errs.push('items[' + i + '] id 형식 오류'); return; }
       if (it.kind !== 'aptos' && it.kind !== 'plan' && it.kind !== 'landing') errs.push(it.id + ': kind는 aptos, landing 또는 plan이어야 합니다.');
       if (!isObj(it.fields)) { errs.push(it.id + ': fields 객체 없음'); return; }
+      /* 2026-11-02: an item may list only the locales it already has (winter events start Korean-only) */
+      var only = Array.isArray(it.locales) ? it.locales : null;
+      if (only && (!only.length || only.some(function (x) { return !locales.some(function (l) { return isObj(l) && l.id === x; }); }))) errs.push(it.id + ': locales 형식 오류');
       locales.forEach(function (l) {
         if (!isObj(l)) return;
+        if (only && only.indexOf(l.id) < 0) return;
         var f = it.fields[l.id];
         var tag = it.id + ' ' + l.id + ': ';
         if (!isObj(f) || !Object.keys(f).length) { errs.push(tag + '언어판 데이터 없음'); return; }
@@ -179,11 +183,14 @@
     return out;
   }
 
+  function hasLocale(item, locale) { return !Array.isArray(item.locales) || item.locales.indexOf(locale) >= 0; }
+
   function buildExport(data, store) {
     return {
       items: data.items.map(function (item) {
         var locales = {};
         data.locales.forEach(function (l) {
+          if (!hasLocale(item, l.id)) return;
           locales[l.id] = { selected: store.isSelected(item.id, l.id), fields: effectiveFields(item, l.id, store) };
         });
         return { id: item.id, label: item.label, kind: item.kind, locales: locales };
@@ -229,7 +236,7 @@
     var setTimer = env.setTimeout || function (fn, ms) { return setTimeout(fn, ms); };
     var state = {
       data: null, errors: [], fatal: null, itemId: null, locale: null, author: '', editor: null,
-      saving: 0, aptos: null, frames: [], previewKey: null, toastTimer: null, started: false,
+      saving: 0, aptos: null, frames: [], previewKey: null, toastTimer: null, started: false, capture: null,
     };
     var ui = {};
 
@@ -339,10 +346,11 @@
     }
     function renderSummary() {
       if (!state.data || !state.locale) { ui.summary.replaceChildren(); return; }
-      var total = state.data.items.length;
-      var count = function (loc) { return state.data.items.filter(function (it) { return store.isSelected(it.id, loc); }).length; };
+      var totalOf = function (loc) { return state.data.items.filter(function (it) { return hasLocale(it, loc); }).length; };
+      var total = totalOf(state.locale);
+      var count = function (loc) { return state.data.items.filter(function (it) { return hasLocale(it, loc) && store.isSelected(it.id, loc); }).length; };
       var chips = state.data.locales.map(function (l) {
-        return H('button', { type: 'button', class: 'summary-chip' + (l.id === state.locale ? ' current' : ''), text: l.id + ' ' + count(l.id) + '/' + total, onclick: function () { selectLocale(l.id); } });
+        return H('button', { type: 'button', class: 'summary-chip' + (l.id === state.locale ? ' current' : ''), text: l.id + ' ' + count(l.id) + '/' + totalOf(l.id), onclick: function () { selectLocale(l.id); } });
       });
       ui.summary.replaceChildren(H('strong', { class: 'summary-main', text: state.locale + ' 선택 ' + count(state.locale) + ' / ' + total }), H('span', { class: 'summary-chips' }, chips));
     }
@@ -554,7 +562,7 @@
     function safeTheme(t) { return String(t || 'default').replace(/[^A-Za-z0-9-]/g, '') || 'default'; }
 
     function previewHead(it) {
-      var cb = H('input', { type: 'checkbox', class: 'select-box big', 'data-preview-select': it.id, checked: store.isSelected(it.id, state.locale), disabled: !store.canEdit(), onchange: function (e) { onSelectChange(it.id, state.locale, !!e.target.checked); } });
+      var cb = H('input', { type: 'checkbox', class: 'select-box big', 'data-preview-select': it.id, checked: store.isSelected(it.id, state.locale), disabled: !store.canEdit() || !hasLocale(it, state.locale), onchange: function (e) { onSelectChange(it.id, state.locale, !!e.target.checked); } });
       state.previewCb = cb;
       return H('div', { class: 'preview-head' }, [
         H('div', null, [
@@ -613,7 +621,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3l' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3m' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
@@ -637,11 +645,16 @@
       if (it.kind !== 'aptos' && it.kind !== 'landing') state.aptos = null;
       var f = it.fields && it.fields[state.locale];
       var body;
-      if (!isObj(f) || !Object.keys(f).length) {
+      if (!hasLocale(it, state.locale)) {
+        state.aptos = null;
+        var lo = localeObj(state.locale);
+        body = H('div', { class: 'missing-locale pending-locale', role: 'status', text: '이 페이지는 한국어판을 먼저 확정한 뒤 ' + (lo && lo.label ? lo.label : state.locale) + ' 판을 만듭니다.' });
+      } else if (!isObj(f) || !Object.keys(f).length) {
         state.aptos = null;
         body = H('div', { class: 'missing-locale', role: 'alert', text: '이 언어판 데이터가 없습니다: ' + it.id + ' / ' + state.locale + '. 부모 작업(data.json)에서 채워야 합니다.' });
       } else body = (it.kind === 'aptos' || it.kind === 'landing') ? aptosShell(it) : planCard(it, f);
-      ui.preview.replaceChildren(previewHead(it), body);
+      var bar = state.aptos && state.aptos.itemId === it.id ? downloadBar(it) : null;
+      ui.preview.replaceChildren.apply(ui.preview, [previewHead(it), bar, body].filter(Boolean));
       var ed = state.editor;
       if (ed && ed.ta && (ed.justOpened || ed.hadFocus)) {
         ed.ta.focus();
@@ -671,6 +684,11 @@
       postToFrame({ type: 'aptos-data', locale: a.locale, fields: effectiveFields(it, a.locale, store), editable: store.canEdit(), editMode: ui.app.className.split(/\s+/).indexOf('edit-mode') >= 0 });
     }
     function onMessage(e) {
+      var cap = state.capture;
+      if (cap && cap.el && e.source === cap.el.contentWindow) {
+        if (e.origin === origin() && isObj(e.data) && e.data.type === 'aptos-ready' && cap.fields) capPost(cap);
+        return;
+      }
       var a = frameOf(e.source);
       if (!a) return;
       if (e.origin !== origin()) return;
@@ -710,6 +728,410 @@
         ack(r.ok, r.ok ? null : reasonMessage(r));
         renderStatus();
       });
+    }
+
+    /* ---- card image download (2026-10-30 user: "개별 다운로드 기능과 한번에 길게 다운로드 기능") ----
+       The page opens in a hidden 1440px iframe with the same saved wording as the board, then every 1080x1350 card
+       becomes a PNG via vendor/modern-screenshot-4.7.0.js (MIT, vendor/modern-screenshot-4.7.0.LICENSE.txt).
+       capFontCss() embeds the font faces the five cards actually use (family, matched weight/style, characters), so the image matches the page. */
+    /* board items whose page has five 1080x1350 cards (section.p1 ... section.p5). To add one, append it here, e.g. FV12: true, HH12: true */
+    var CAP_ITEMS = { OXM12: true, APT12: true, FV12: true, HH12: true };
+    var CAP = { items: CAP_ITEMS, sel: 'section.p1,section.p2,section.p3,section.p4,section.p5', w: 1080, h: 1350, frameW: 1440, lib: 'vendor/modern-screenshot-4.7.0.js' };
+    var capFontData = {};
+
+    function capName(it, locale, suffix) {
+      var base = String(it.label || it.id).replace(/[\\/:*?"<>|]+/g, '').replace(/\s*·\s*/g, '_').replace(/\s+/g, '');
+      return base + '_' + locale + '_' + suffix + '.png';
+    }
+
+    function downloadBar(it) {
+      if (!CAP.items[it.id] || typeof it.page !== 'string' || !env.downloadBlob) return null;
+      var status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' });
+      var buttons = [];
+      var btn = function (text, action, nums, mode, cls) {
+        var b = H('button', { type: 'button', class: 'btn small' + (cls ? ' ' + cls : ''), 'data-action': action, text: text, onclick: function () { run(nums, mode); } });
+        buttons.push(b); return b;
+      };
+      function run(nums, mode) {
+        if (state.capture) { status.textContent = '이미 이미지를 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; }
+        buttons.forEach(function (b) { b.disabled = true; });
+        captureCards(it, state.locale, nums, mode, function (m) { status.textContent = m; }).then(function (msg) {
+          status.textContent = msg;
+        }, function (e) {
+          status.textContent = '받지 못했습니다: ' + (e && e.message || e);
+        }).then(function () { buttons.forEach(function (b) { b.disabled = false; }); });
+      }
+      return H('div', { class: 'img-download', 'data-img-download': it.id }, [
+        H('div', { class: 'img-dl-row' }, [
+          H('strong', { class: 'img-dl-label', text: '이미지 받기' }),
+          H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, [1, 2, 3, 4, 5].map(function (n) {
+            return btn(n + '장', 'img-card-' + n, [n], 'single');
+          }).concat([btn('5장 모두 따로', 'img-cards-all', [1, 2, 3, 4, 5], 'single')])),
+          btn('5장 이어서 길게 1장', 'img-long', [1, 2, 3, 4, 5], 'long', 'primary'),
+        ]),
+        H('p', { class: 'img-dl-note', text: '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×6750 PNG입니다.' }),
+        status,
+      ]);
+    }
+
+    function capWait(win, ms) { return new Promise(function (r) { win.setTimeout(r, ms); }); }
+    function capPost(cap) { postTo(cap, { type: 'aptos-data', locale: cap.locale, fields: cap.fields, editable: false, editMode: false }); }
+    function capBlob(canvas) {
+      return new Promise(function (resolve, reject) {
+        canvas.toBlob(function (b) { if (b) resolve(b); else reject(new Error('PNG를 만들지 못했습니다.')); }, 'image/png');
+      });
+    }
+
+    function captureCards(it, locale, nums, mode, progress) {
+      var win = doc.defaultView;
+      var cap = state.capture = { itemId: it.id, locale: locale, el: null, fields: null };
+      var finish = function () { if (cap.el && cap.el.parentNode) cap.el.parentNode.removeChild(cap.el); if (state.capture === cap) state.capture = null; };
+      progress('최신 문구를 확인하는 중…');
+      return store.refresh().then(function () {
+        if (!store.online || store.status !== 'ready') throw new Error('서버에 연결되지 않아 최신 문구를 확인할 수 없습니다. 연결된 뒤 다시 눌러 주세요.');
+        cap.fields = effectiveFields(it, locale, store);
+        progress('페이지를 준비하는 중…');
+        return new Promise(function (resolve, reject) {
+          var f = doc.createElement('iframe');
+          f.setAttribute('aria-hidden', 'true'); f.setAttribute('tabindex', '-1'); f.setAttribute('title', 'image capture');
+          f.style.cssText = 'position:fixed;left:0;top:0;width:' + CAP.frameW + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
+          var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000);
+          f.addEventListener('load', function () { win.clearTimeout(t); resolve(); });
+          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261029-v3m' + '&capture=1';
+          cap.el = f; doc.body.appendChild(f);
+        });
+      }).then(function () {
+        capPost(cap);
+        return capApplied(cap, it, locale);
+      }).then(function () {
+        progress('사진과 글꼴을 준비하는 중…');
+        return capPrepare(cap);
+      }).then(function (fontCss) {
+        var iwin = cap.el.contentWindow, cards = iwin.document.querySelectorAll(CAP.sel), out = [], chain = Promise.resolve();
+        if (state.lastCapture) { state.lastCapture.fontKB = Math.round(fontCss.length / 1024); state.lastCapture.fontFaces = (fontCss.match(/@font-face/g) || []).length; }
+        if (cards.length !== 5) throw new Error('카드 5장을 찾지 못했습니다 (' + cards.length + '장).');
+        nums.forEach(function (n, i) {
+          chain = chain.then(function () {
+            var card = cards[n - 1], r = card.getBoundingClientRect();
+            if (Math.abs(r.width - CAP.w) > 1 || Math.abs(r.height - CAP.h) > 1) throw new Error(n + '장 크기가 ' + Math.round(r.width) + '×' + Math.round(r.height) + '입니다.');
+            progress('이미지를 만드는 중 ' + (i + 1) + '/' + nums.length + '…');
+            /* the card is drawn on its own, so give it the page language: CJK fallback fonts and line breaking follow lang */
+            var lang = iwin.document.documentElement.getAttribute('lang');
+            if (lang && !card.getAttribute('lang')) card.setAttribute('lang', lang);
+            return iwin.modernScreenshot.domToCanvas(card, { scale: 1, font: { cssText: fontCss } }).then(function (c) { out.push({ n: n, canvas: c }); });
+          });
+        });
+        return chain.then(function () { return out; });
+      }).then(function (out) {
+        progress('파일로 저장하는 중…');
+        if (mode === 'long') {
+          var big = doc.createElement('canvas'); big.width = CAP.w; big.height = CAP.h * out.length;
+          var g = big.getContext('2d');
+          out.forEach(function (o, i) { g.drawImage(o.canvas, 0, i * CAP.h, CAP.w, CAP.h); });
+          return capBlob(big).then(function (b) {
+            env.downloadBlob(b, capName(it, locale, '전체'));
+            return '받았습니다: ' + out.length + '장을 이어 붙인 1장 (' + CAP.w + '×' + big.height + ')';
+          });
+        }
+        var chain = Promise.resolve();
+        out.forEach(function (o, i) {
+          chain = chain.then(function () {
+            var c = doc.createElement('canvas'); c.width = CAP.w; c.height = CAP.h;
+            c.getContext('2d').drawImage(o.canvas, 0, 0, CAP.w, CAP.h);
+            return capBlob(c).then(function (b) { env.downloadBlob(b, capName(it, locale, o.n + '장')); return i < out.length - 1 ? capWait(win, 400) : null; });
+          });
+        });
+        return chain.then(function () { return '받았습니다: ' + out.map(function (o) { return o.n + '장'; }).join(', ') + ' (각 ' + CAP.w + '×' + CAP.h + ')'; });
+      }).then(function (msg) { finish(); return msg; }, function (e) { finish(); throw e; });
+    }
+
+    /* wait until every saved (server) value of this item/locale is visible in the hidden page */
+    function capApplied(cap, it, locale) {
+      var win = doc.defaultView, prefix = it.id + '.' + locale + '.', started = Date.now();
+      var want = Object.keys(store.cells).filter(function (k) {
+        var f = k.slice(prefix.length);
+        return k.indexOf(prefix) === 0 && f !== 'selected' && typeof store.cells[k].value === 'string' && Object.prototype.hasOwnProperty.call(cap.fields, f);
+      }).map(function (k) { return { field: k.slice(prefix.length), text: store.cells[k].value.replace(/\s+/g, '') }; }).filter(function (w) { return w.text; });
+      return new Promise(function (resolve, reject) {
+        (function check() {
+          var idoc = cap.el && cap.el.contentDocument, hay = '';
+          if (idoc && idoc.body) {
+            hay = idoc.body.textContent;
+            Array.prototype.forEach.call(idoc.querySelectorAll('[alt],[title],[aria-label]'), function (el) {
+              hay += (el.getAttribute('alt') || '') + (el.getAttribute('title') || '') + (el.getAttribute('aria-label') || '');
+            });
+            hay = hay.replace(/\s+/g, '');
+          }
+          var missing = want.filter(function (w) { return hay.indexOf(w.text) < 0; });
+          if (hay && !missing.length && Date.now() - started > 500) { resolve(); return; }
+          if (Date.now() - started > 10000) { reject(new Error('저장된 문구가 화면에 반영되지 않았습니다 (' + missing.map(function (m) { return m.field; }).join(', ') + ').')); return; }
+          win.setTimeout(check, 150);
+        })();
+      });
+    }
+
+    /* load every image eagerly at its current choice, wait for fonts, load the capture tool, build the font CSS */
+    function capPrepare(cap) {
+      var iwin = cap.el.contentWindow, idoc = iwin.document;
+      var settle = function () {
+        return Promise.all(Array.prototype.map.call(idoc.images, function (img) {
+          if (img.complete && img.naturalWidth) return img.decode ? img.decode().catch(function () { return null; }) : null;
+          return new Promise(function (r) { img.addEventListener('load', r); img.addEventListener('error', r); iwin.setTimeout(r, 15000); });
+        }));
+      };
+      Array.prototype.forEach.call(idoc.images, function (img) { img.loading = 'eager'; });
+      return settle().then(function () {
+        var chosen = Array.prototype.map.call(idoc.images, function (img) { return [img, img.currentSrc]; });
+        Array.prototype.forEach.call(idoc.querySelectorAll('picture source'), function (s) { s.parentNode.removeChild(s); });
+        chosen.forEach(function (p) { if (p[1] && p[1] !== p[0].src) p[0].src = p[1]; p[0].removeAttribute('srcset'); p[0].removeAttribute('sizes'); });
+        return settle();
+      }).then(function () {
+        return capSheets(iwin);
+      }).then(function () {
+        return capSettle(iwin);
+      }).then(function () {
+        var fallback = capFallback(iwin);
+        var lang = idocLang(iwin);
+        /* line pinning only where the drawn card breaks CJK lines differently (JP card 5); KO/EN/TH already match without it */
+        state.lastCapture = { itemId: cap.itemId, locale: cap.locale, fallback: fallback, freeze: /^(ja|zh)/.test(lang) ? capFreeze(iwin) : null };
+        if (iwin.modernScreenshot) return null;
+        return new Promise(function (resolve, reject) {
+          var s = idoc.createElement('script');
+          s.src = new URL(CAP.lib, doc.baseURI).href;
+          s.onload = resolve; s.onerror = function () { reject(new Error('이미지 도구를 불러오지 못했습니다.')); };
+          idoc.head.appendChild(s);
+        });
+      }).then(function () { return capFontCss(iwin); });
+    }
+
+    /* wait until every stylesheet link has loaded (the pages add their JP/CN/TW/HK/TH font sheet from script after load) */
+    function capSheets(iwin) {
+      var idoc = iwin.document, started = Date.now();
+      return new Promise(function (resolve, reject) {
+        (function check() {
+          var waiting = Array.prototype.filter.call(idoc.querySelectorAll('link[rel~="stylesheet"]'), function (l) { return l.href && !l.sheet; });
+          if (!waiting.length) { resolve(); return; }
+          if (Date.now() - started > 20000) { reject(new Error('글꼴을 불러오지 못했습니다. 잠시 뒤 다시 눌러 주세요.')); return; }
+          iwin.setTimeout(check, 100);
+        })();
+      });
+    }
+
+    /* wait until web fonts are loaded and the card layout stops changing (the page re-fits its titles when fonts arrive) */
+    function capSettle(iwin) {
+      var idoc = iwin.document, started = Date.now(), last = '', same = 0;
+      var sig = function () {
+        var s = [idoc.fonts ? idoc.fonts.status : '', idoc.documentElement.scrollHeight];
+        Array.prototype.forEach.call(idoc.querySelectorAll(CAP.sel), function (card) {
+          Array.prototype.forEach.call(card.querySelectorAll('*'), function (el) { s.push(el.offsetWidth, el.offsetHeight, el.offsetLeft, el.offsetTop); });
+        });
+        return s.join(',');
+      };
+      return new Promise(function (resolve) {
+        (function step() {
+          (idoc.fonts ? idoc.fonts.ready : Promise.resolve()).then(function () {
+            iwin.dispatchEvent(new iwin.Event('resize'));
+            iwin.setTimeout(function () {
+              var s = sig();
+              if (s === last && (!idoc.fonts || idoc.fonts.status === 'loaded')) same++; else same = 0;
+              last = s;
+              if (same >= 2 || Date.now() - started > 10000) resolve(); else step();
+            }, 200);
+          });
+        })();
+      });
+    }
+
+    /* a drawn card ignores lang when the browser picks fallback fonts (2026-10-30: CN "模式" came out in a Korean font),
+       so write the page's own lang fallback (Windows first, then macOS) into every font list, before the generic family */
+    var CAP_FALLBACK = { ko: ['Malgun Gothic', 'Apple SD Gothic Neo'], ja: ['Yu Gothic', 'Hiragino Sans'], 'zh-CN': ['Microsoft YaHei', 'PingFang SC'],
+      'zh-TW': ['Microsoft JhengHei', 'PingFang TC'], 'zh-HK': ['Microsoft JhengHei', 'PingFang HK'], th: ['Tahoma', 'Thonburi'] };
+    function idocLang(iwin) { return iwin.document.documentElement.getAttribute('lang') || ''; }
+    function capFallback(iwin) {
+      var idoc = iwin.document, list = CAP_FALLBACK[idoc.documentElement.getAttribute('lang')];
+      if (!list) return 0;
+      var extra = list.map(function (f) { return '"' + f + '"'; }).join(', '), generic = /^(serif|sans-serif|monospace|cursive|fantasy|system-ui|ui-serif|ui-sans-serif|ui-monospace|ui-rounded|emoji|math|fangsong)$/i;
+      var els = [], saved = [];
+      Array.prototype.forEach.call(idoc.querySelectorAll(CAP.sel), function (card) { els.push(card); Array.prototype.push.apply(els, card.querySelectorAll('*')); });
+      var sig = function () { return els.map(function (el) { return el.offsetWidth + ',' + el.offsetHeight + ',' + el.offsetLeft + ',' + el.offsetTop; }).join(';'); };
+      var before = sig();
+      els.forEach(function (el) {
+        var fam = iwin.getComputedStyle(el).fontFamily;
+        if (!fam || fam.indexOf(list[0]) >= 0) return;
+        var parts = fam.split(','), at = -1;
+        for (var i = 0; i < parts.length; i++) if (generic.test(parts[i].trim().replace(/^["']|["']$/g, ''))) { at = i; break; }
+        if (at < 0) parts.push(extra); else parts.splice(at, 0, extra);
+        saved.push([el, el.style.fontFamily]);
+        el.style.fontFamily = parts.join(',');
+      });
+      if (sig() !== before) { saved.forEach(function (s) { s[0].style.fontFamily = s[1]; }); return -1; }
+      return saved.length;
+    }
+
+    /* pin every soft line break of the live page (nowrap spans + <br>), so the drawn card cannot wrap text differently
+       (2026-10-30: the drawn JP card 5 wrapped one line more than the page). A card whose layout moves is restored. */
+    function capFreeze(iwin) {
+      var idoc = iwin.document, frozen = 0, undone = 0;
+      Array.prototype.forEach.call(idoc.querySelectorAll(CAP.sel), function (card) {
+        var els = Array.prototype.slice.call(card.querySelectorAll('*'));
+        var sig = function () { return els.map(function (el) { return el.offsetWidth + ',' + el.offsetHeight + ',' + el.offsetLeft + ',' + el.offsetTop; }).join(';'); };
+        var before = sig(), plans = [], walker = idoc.createTreeWalker(card, 4), t;
+        while ((t = walker.nextNode())) {
+          var pe = t.parentElement;
+          if (!t.data.trim() || !pe || pe.closest('svg,script,style,textarea')) continue;
+          var ws = iwin.getComputedStyle(pe).whiteSpace;
+          if (ws === 'nowrap' || ws === 'pre') continue;
+          var r = idoc.createRange(), cuts = [], lastTop = null, i = 0;
+          while (i < t.data.length) {
+            var len = t.data.codePointAt(i) > 0xffff ? 2 : 1;
+            r.setStart(t, i); r.setEnd(t, i + len);
+            var rc = r.getClientRects()[0];
+            if (rc && rc.width > 0) {
+              var top = Math.round(rc.top);
+              if (lastTop !== null && Math.abs(top - lastTop) > 2) cuts.push(i);
+              lastTop = top;
+            }
+            i += len;
+          }
+          if (cuts.length) plans.push({ node: t, cuts: cuts, keep: ws === 'pre-wrap' || ws === 'break-spaces' });
+        }
+        /* lock the used width of every non-inline box around the frozen text, so nowrap lines cannot shrink-to-fit it */
+        var lockSet = [];
+        plans.forEach(function (p) {
+          for (var el = p.node.parentElement; el && el !== card.parentElement; el = el.parentElement) {
+            var d = iwin.getComputedStyle(el).display;
+            if (d !== 'inline' && d !== 'contents' && lockSet.indexOf(el) < 0) lockSet.push(el);
+          }
+        });
+        var locks = lockSet.map(function (el) { return { el: el, w: iwin.getComputedStyle(el).width, css: el.style.cssText }; });
+        var undo = [];
+        plans.forEach(function (p) {
+          var node = p.node, parent = node.parentNode, frag = idoc.createDocumentFragment(), start = 0, ends = p.cuts.concat([node.data.length]);
+          ends.forEach(function (end, k) {
+            var s = node.data.slice(start, end);
+            if (k < ends.length - 1) s = s.replace(/\s+$/, '');
+            if (k) frag.appendChild(idoc.createElement('br'));
+            var sp = idoc.createElement('span'); sp.style.whiteSpace = p.keep ? 'pre' : 'nowrap'; sp.textContent = s;
+            frag.appendChild(sp); start = end;
+          });
+          var nodes = Array.prototype.slice.call(frag.childNodes);
+          parent.replaceChild(frag, node);
+          undo.push({ node: node, nodes: nodes, parent: parent });
+        });
+        locks.forEach(function (k) { if (/px$/.test(k.w)) { k.el.style.width = k.w; k.el.style.minWidth = k.w; k.el.style.maxWidth = k.w; } });
+        if (undo.length && sig() !== before) {
+          undo.forEach(function (u) { u.parent.insertBefore(u.node, u.nodes[0]); u.nodes.forEach(function (n) { u.parent.removeChild(n); }); });
+          locks.forEach(function (k) { k.el.style.cssText = k.css; });
+          undone++;
+        } else frozen += undo.length;
+      });
+      return { frozenTextNodes: frozen, cardsRestored: undone };
+    }
+
+    /* @font-face rules for the fonts the five cards actually use, files inlined as data URLs:
+       per family only the face weight/style that CSS font matching picks for each used weight/style, and only the
+       unicode-range subsets holding characters set in that family (2026-11-02: embedding every weight of every family,
+       about 5.8 MB of CSS for HK, made the HK images differ from run to run). */
+    function capFontCss(iwin) {
+      var idoc = iwin.document;
+      var GENERIC = /^(serif|sans-serif|monospace|cursive|fantasy|system-ui|ui-serif|ui-sans-serif|ui-monospace|ui-rounded|emoji|math|fangsong|-apple-system)$/;
+      var famKey = function (f) { return String(f || '').trim().replace(/^["']|["']$/g, '').toLowerCase(); };
+      var used = {};
+      var note = function (cs, text) {
+        if (!text || !cs) return;
+        var w = parseInt(cs.fontWeight, 10) || 400, st = /italic|oblique/.test(cs.fontStyle) ? 'italic' : 'normal';
+        cs.fontFamily.split(',').forEach(function (f) {
+          var k = famKey(f);
+          if (!k || GENERIC.test(k)) return;
+          var u = used[k] || (used[k] = { want: {} });
+          var want = u.want[w + '|' + st] || (u.want[w + '|' + st] = { w: w, st: st, cps: {} });
+          Array.from(text).forEach(function (ch) { want.cps[ch.codePointAt(0)] = true; });
+        });
+      };
+      Array.prototype.forEach.call(idoc.querySelectorAll(CAP.sel), function (card) {
+        [card].concat(Array.prototype.slice.call(card.querySelectorAll('*'))).forEach(function (el) {
+          var own = '';
+          for (var c = el.firstChild; c; c = c.nextSibling) if (c.nodeType === 3) own += c.data;
+          if (own.trim()) note(iwin.getComputedStyle(el), own);
+          ['::before', '::after'].forEach(function (ps) {
+            var s = iwin.getComputedStyle(el, ps), ct = s.content;
+            if (ct && ct !== 'none' && ct !== 'normal') note(s, ct.replace(/^["']|["']$/g, ''));
+          });
+        });
+      });
+      var inRange = function (css, cps) {
+        var m = /unicode-range\s*:\s*([^;}]+)/i.exec(css);
+        if (!m) return true;
+        var any = function (lo, hi) { for (var i = 0; i < cps.length; i++) if (cps[i] >= lo && cps[i] <= hi) return true; return false; };
+        return m[1].split(',').some(function (p) {
+          var t = p.trim().replace(/^U\+/i, '');
+          if (t.indexOf('?') >= 0) return any(parseInt(t.replace(/\?/g, '0'), 16), parseInt(t.replace(/\?/g, 'F'), 16));
+          var ab = t.split('-'), lo = parseInt(ab[0], 16);
+          return any(lo, ab[1] ? parseInt(ab[1], 16) : lo);
+        });
+      };
+      var desc = function (css, name) { var m = new RegExp(name + '\\s*:\\s*([^;}]+)', 'i').exec(css); return m ? m[1].trim() : ''; };
+      var faceWeight = function (css) {
+        var v = desc(css, 'font-weight').replace(/\bnormal\b/g, '400').replace(/\bbold\b/g, '700').split(/\s+/).map(Number).filter(function (n) { return n > 0; });
+        return v.length ? [Math.min.apply(null, v), Math.max.apply(null, v)] : [400, 400];
+      };
+      var faceStyle = function (css) { var s = desc(css, 'font-style').toLowerCase(); return /italic/.test(s) ? 'italic' : /oblique/.test(s) ? 'oblique' : 'normal'; };
+      /* CSS Fonts 4 weight matching over the distinct weight ranges of one family+style */
+      var pickWeight = function (ranges, w) {
+        var inside = ranges.filter(function (r) { return r[0] <= w && w <= r[1]; });
+        if (inside.length) return inside[0];
+        var above = function (lim) { return ranges.filter(function (r) { return r[0] > w && (lim == null || r[0] <= lim); }).sort(function (a, b) { return a[0] - b[0]; })[0]; };
+        var below = function () { return ranges.filter(function (r) { return r[1] < w; }).sort(function (a, b) { return b[1] - a[1]; })[0]; };
+        if (w >= 400 && w <= 500) return above(500) || below() || above(null);
+        if (w < 400) return below() || above(null);
+        return above(null) || below();
+      };
+      var pickStyle = function (styles, st) {
+        var order = st === 'italic' ? ['italic', 'oblique', 'normal'] : ['normal', 'oblique', 'italic'];
+        for (var i = 0; i < order.length; i++) if (styles.indexOf(order[i]) >= 0) return order[i];
+        return styles[0];
+      };
+      var sheets = Array.prototype.map.call(idoc.styleSheets, function (sheet) {
+        var base = sheet.href || idoc.baseURI;
+        try { return Promise.resolve({ css: Array.prototype.map.call(sheet.cssRules, function (r) { return r.cssText; }).join('\n'), base: base }); }
+        catch (e) { return sheet.href ? iwin.fetch(sheet.href).then(function (r) { return r.text(); }).then(function (css) { return { css: css, base: base }; }, function () { return null; }) : Promise.resolve(null); }
+      });
+      var dataUrl = function (url) {
+        if (!capFontData[url]) capFontData[url] = iwin.fetch(url).then(function (r) { if (!r.ok) throw new Error('글꼴 파일 HTTP ' + r.status); return r.blob(); }).then(function (b) {
+          return new Promise(function (resolve, reject) { var fr = new iwin.FileReader(); fr.onload = function () { resolve(fr.result); }; fr.onerror = reject; fr.readAsDataURL(b); });
+        });
+        return capFontData[url];
+      };
+      return Promise.all(sheets).then(function (list) {
+        var byFam = {}, rules = [];
+        list.forEach(function (s) {
+          if (s) (s.css.match(/@font-face\s*\{[^}]*\}/g) || []).forEach(function (css) {
+            var k = famKey(desc(css, 'font-family'));
+            if (used[k]) (byFam[k] = byFam[k] || []).push({ css: css, base: s.base, w: faceWeight(css), st: faceStyle(css) });
+          });
+        });
+        Object.keys(byFam).forEach(function (k) {
+          var faces = byFam[k], u = used[k], keep = {};
+          Object.keys(u.want).forEach(function (wk) {
+            var want = u.want[wk], cps = Object.keys(want.cps).map(Number);
+            var st = pickStyle(faces.map(function (f) { return f.st; }).filter(function (v, i, a) { return a.indexOf(v) === i; }), want.st);
+            var same = faces.filter(function (f) { return f.st === st; });
+            var ranges = same.map(function (f) { return f.w; }).filter(function (r, i, a) { return a.findIndex(function (q) { return q[0] === r[0] && q[1] === r[1]; }) === i; });
+            var r = pickWeight(ranges, want.w);
+            if (r) same.forEach(function (f, i) { if (f.w[0] === r[0] && f.w[1] === r[1] && inRange(f.css, cps)) keep[faces.indexOf(f)] = true; });
+          });
+          faces.forEach(function (f, i) { if (keep[i]) rules.push(f); });
+        });
+        return Promise.all(rules.map(function (r) {
+          var src = /src\s*:\s*([^;}]+)/i.exec(r.css);
+          if (!src) return null;
+          var urls = [], re = /url\((['"]?)([^'")]+)\1\)\s*(format\((['"]?)([^'")]+)\4\))?/g, m;
+          while ((m = re.exec(src[1]))) urls.push({ url: new URL(m[2], r.base).href, fmt: (m[5] || '').toLowerCase() });
+          var pick = urls.filter(function (u) { return /woff2/.test(u.fmt) || /\.woff2(\?|$)/.test(u.url); })[0] || urls[0];
+          if (!pick) return null;
+          return dataUrl(pick.url).then(function (d) { return r.css.replace(/src\s*:\s*[^;}]+/i, 'src: url(' + d + ')'); });
+        }));
+      }).then(function (faces) { return faces.filter(Boolean).join('\n'); });
     }
 
     /* ---- polling ---- */
@@ -780,6 +1202,11 @@
         var url = win.URL.createObjectURL(new win.Blob([text], { type: 'application/json' }));
         var a = doc.createElement('a'); a.href = url; a.download = name; doc.body.appendChild(a); a.click(); doc.body.removeChild(a);
         win.setTimeout(function () { win.URL.revokeObjectURL(url); }, 1000);
+      },
+      downloadBlob: function (blob, name) {
+        var url = win.URL.createObjectURL(blob);
+        var a = doc.createElement('a'); a.href = url; a.download = name; doc.body.appendChild(a); a.click(); doc.body.removeChild(a);
+        win.setTimeout(function () { win.URL.revokeObjectURL(url); }, 60000);
       },
     });
     win.__reviewApp = app;
