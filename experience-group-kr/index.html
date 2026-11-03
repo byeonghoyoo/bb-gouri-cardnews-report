@@ -4,175 +4,246 @@
 <title>뷰티블라썸 국내 체험단 운영안</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-:root{--pink:#e5508f;--pink2:#fbe3ee;--ink:#1d1d26;--sub:#6b6b78;--line:#ececf2;--bg:#faf8fb;--card:#fff}
+:root{--pink:#e5508f;--pink2:#fde8f1;--ink:#1d1d26;--sub:#6b6b78;--line:#ececf2;--bg:#faf8fb}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.65;word-break:keep-all}
+body{background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;font-size:15px;line-height:1.6;word-break:keep-all}
 a{color:var(--pink);text-decoration:none;word-break:break-all}a:hover{text-decoration:underline}
-.hero{background:linear-gradient(135deg,#ffd6e7 0%,#f4e6ff 55%,#dfe9ff 100%);padding:56px 16px 44px}
-.in,main,.toc{max-width:1080px;margin:0 auto}
+.hero{background:linear-gradient(135deg,#ffd6e7,#f4e6ff 55%,#dfe9ff);padding:44px 16px 36px}
+.in,main{max-width:1100px;margin:0 auto}
 .kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--pink)}
-.hero h1{font-size:clamp(28px,5vw,44px);font-weight:900;letter-spacing:-.02em;margin:8px 0 12px}
-.sub{max-width:720px;color:#3d3d4a}
-.toc{display:flex;gap:8px;overflow-x:auto;padding:14px 16px;position:sticky;top:0;background:rgba(250,248,251,.94);backdrop-filter:blur(8px);z-index:5;border-bottom:1px solid var(--line);max-width:none;scrollbar-width:none}
+.hero h1{font-size:clamp(28px,5vw,42px);font-weight:900;letter-spacing:-.02em;margin:6px 0 8px}
+.sub{font-size:17px;font-weight:600;color:#3d3d4a}
+.toc{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;position:sticky;top:0;background:rgba(250,248,251,.94);backdrop-filter:blur(8px);z-index:5;border-bottom:1px solid var(--line);scrollbar-width:none;justify-content:center}
 .toc a{flex:none;font-size:13px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:99px;padding:6px 12px}
 main{padding:0 16px 40px}
-section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 24px;margin-top:22px}
-h2{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+section{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:18px}
+h2{font-size:20px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 h2 span{font-size:12px;color:#fff;background:var(--pink);border-radius:8px;padding:3px 8px}
-h3{font-size:16px;font-weight:800;margin:22px 0 10px}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media (max-width:760px){.kpis{grid-template-columns:1fr 1fr}}
-.kpi{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}
-.kpi b{display:block;font-size:24px;font-weight:900;letter-spacing:-.02em}
+h3{font-size:15px;font-weight:800;margin:20px 0 10px}
+small{font-size:12px}.mute2{color:var(--sub);font-weight:500;margin-left:6px}
+.lg{font-size:13px;color:var(--sub);margin-bottom:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.kpi b{display:block;font-size:26px;font-weight:900;letter-spacing:-.02em}
 .kpi span{font-size:12.5px;color:var(--sub)}
 .kpi.hot{background:var(--pink2);border-color:#f6c3d9}.kpi.hot b{color:var(--pink)}
-.callout{margin-top:16px;background:#1d1d26;color:#fff;border-radius:14px;padding:16px 18px}
-.callout b{color:#ffb3d2;margin-right:8px}
-.two{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:28px;align-items:start}
+.formula{display:flex;align-items:stretch;gap:10px;margin-top:14px}
+.formula>div{flex:1;border-radius:14px;padding:14px;background:#f5f4f8}
+.formula>div.me{background:#1d1d26;color:#fff}
+.formula small{display:block;color:var(--sub)}.formula .me small{color:#ffb3d2}
+.formula b{font-size:15px}
+.formula em{align-self:center;font-style:normal;font-size:22px;font-weight:900;color:var(--pink)}
+.chip{display:inline-block;font-size:12.5px;line-height:1.4;padding:4px 9px;border-radius:99px;background:#f3f1f6;margin:2px 4px 2px 0}
+.me .chip{background:var(--pink);color:#fff;font-weight:600}
+.two{display:grid;grid-template-columns:minmax(0,360px) 1fr;gap:26px;align-items:start}
+.two2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 .shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
 .shot img{display:block;width:100%;height:auto}
 .shot figcaption{font-size:12.5px;color:var(--sub);padding:8px 12px;border-top:1px solid var(--line)}
-.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;align-items:start}
-.bars{display:flex;flex-direction:column;gap:8px}
-.bar{display:grid;grid-template-columns:minmax(0,1.4fr) 1fr 40px;gap:10px;align-items:center;font-size:14px}
-.bt{height:12px;background:#f3f0f5;border-radius:99px;overflow:hidden}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start}
+.bars{display:flex;flex-direction:column;gap:7px}
+.bar{display:grid;grid-template-columns:minmax(0,1.5fr) 1fr 24px;gap:10px;align-items:center;font-size:14px}
+.bt{height:14px;background:#f3f0f5;border-radius:99px;overflow:hidden}
 .bt i{display:block;height:100%;background:linear-gradient(90deg,#f28ab6,var(--pink));border-radius:99px}
-.bar b{text-align:right}
-.total{margin-top:10px;font-size:13.5px;color:var(--sub)}
-.list{padding-left:20px}.list li{margin:2px 0}
-.note{font-size:13px;color:var(--sub);margin-top:6px}
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:6px}
-table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:640px}
-th{background:#26263a;color:#fff;font-weight:700;text-align:left;padding:10px 12px;white-space:nowrap}
-td{border-top:1px solid var(--line);padding:10px 12px;vertical-align:top}
-tbody tr:nth-child(even) td{background:#fcfbfd}
-td:first-child{font-weight:700;white-space:nowrap}
-table.cmp td:last-child,table.ctr td:last-child{background:#fff3f8}
-table.tx td:nth-child(n+4){text-align:center}
-table.tx td:first-child{color:var(--sub)}
-.mute{color:#c3c3cc}
+.bar b{text-align:right;color:var(--pink)}
+.facts{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.facts>div{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.facts small,.tl small,.prep small{width:72px;flex:none;color:var(--sub);font-weight:700}
+.facts a{font-size:12.5px;margin-left:4px}
+.cmpgrid{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cg{display:grid;grid-template-columns:110px 1fr 1fr 1fr;border-top:1px solid var(--line)}
+.cg>div{padding:9px 12px}
+.cg.h{border-top:0;background:#26263a;color:#fff;font-weight:700;font-size:13.5px}
+.cg.h .me{background:var(--pink)}
+.cg .k{font-weight:800;font-size:13.5px;background:#fafafc}
+.cg .me{background:#fff3f8}
 .tracks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.track{border:1px solid #f6c3d9;background:linear-gradient(180deg,#fff6fa,#fff);border-radius:16px;padding:18px}
-.track .tag{font-size:11px;font-weight:800;color:var(--pink);letter-spacing:.1em}
-.track h3{margin:4px 0 8px}
-.track ul{padding-left:18px;font-size:14px}
-.flow{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;counter-reset:f}
-.flow li{counter-increment:f;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px;color:var(--sub);background:#fff}
-.flow li b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:4px}
-.flow li b::before{content:counter(f) ". ";color:var(--pink)}
-details{border:1px solid var(--line);border-radius:12px;margin-top:8px;background:#fff}
-summary{cursor:pointer;padding:12px 14px;font-weight:700;font-size:14px}
-.raw{white-space:pre-wrap;font-size:13px;line-height:1.7;padding:4px 16px 16px;color:#33333f}
-.src{font-size:12.5px;color:var(--sub);margin-top:12px}
+.track{border:1px solid #f6c3d9;background:linear-gradient(180deg,#fff6fa,#fff);border-radius:16px;padding:16px}
+.track .tag{font-size:12px;font-weight:800;color:var(--pink);letter-spacing:.06em;margin-bottom:8px}
+.tl{display:flex;align-items:center;flex-wrap:wrap;gap:2px;margin:4px 0}
+.flow{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:0;counter-reset:f;margin-top:16px}
+.flow li{counter-increment:f;position:relative;padding:12px 10px 10px;font-size:12.5px;color:var(--sub);text-align:center;border-top:4px solid var(--pink2)}
+.flow li:nth-child(odd){border-top-color:#f6c3d9}
+.flow li b{display:block;color:var(--ink);font-size:14px}
+.flow li b::before{content:counter(f);display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--pink);color:#fff;font-size:11px;align-items:center;justify-content:center;margin-right:5px;vertical-align:1px}
+.prep{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px;padding:12px;border-radius:12px;background:#f7f6fa}
+.chk{font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 9px}
+.chk::before{content:"☐ ";color:var(--pink)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:#26263a;color:#fff;font-weight:700;text-align:left;padding:9px 10px;white-space:nowrap}
+td{border-top:1px solid var(--line);padding:7px 10px;vertical-align:middle}
+td.c{text-align:center}
+table.dots th:not(:first-child){text-align:center}
+table.hi td:last-child{background:#fff3f8}
+table.hi th:last-child{background:var(--pink)}
+.d{display:inline-block;width:13px;height:13px;border-radius:50%;border:2px solid #d5d3dc;vertical-align:middle}
+.d.on{background:var(--pink);border-color:var(--pink)}
+td small{color:#3d3d4a}.pr{color:var(--sub)!important;margin-left:4px}
+.pms{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pm{border:1px solid var(--line);border-radius:14px;padding:12px;font-size:12.5px;color:var(--sub)}
+.pm.me{border-color:#f6c3d9;background:#fff8fb}
+.pt{font-weight:800;color:var(--ink);font-size:13.5px;margin-bottom:6px}
+.pl{padding:6px 0;border-top:1px dashed var(--line)}
+.ph{height:34px;background:repeating-linear-gradient(#f2f0f5 0 8px,transparent 8px 13px);border:0;margin:6px 0}
+.tg{display:inline-block;border-radius:6px;padding:2px 6px;font-weight:700;font-size:12px}
+.t1{background:#ffe3ef;color:#c2185b}.t2{background:#e4ecff;color:#2950c7}.t3{background:#e6f6ec;color:#1e7a43}
+.pc{font-size:12px}
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start}
+.ref{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.ref.dead{opacity:.75}
+.rh{padding:9px 11px;border-bottom:1px solid var(--line);font-size:12px;display:flex;flex-direction:column;gap:1px}
+.rh b{font-size:13.5px}.st{color:var(--sub)}
+.ref.dead .st{color:#c0392b}
+.rimg{max-height:300px;overflow-y:auto;background:#f6f6f8}
+.ref.long .rimg{height:460px;max-height:none}
+.gl{font-size:13px;font-weight:800;margin:14px 0 8px;color:var(--pink)}
+.ref.dead .rimg{height:150px;overflow:hidden}
+.ref.dead .rimg img{height:100%;object-fit:cover;object-position:center}
+.rimg img{display:block;width:100%;height:auto}
+.cfs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.cf{border:1px solid var(--line);border-radius:14px;padding:14px;position:relative}
+.ck{font-weight:800;margin-bottom:8px}
+.cv{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
+.cv em{font-style:normal;color:var(--pink);font-weight:900}
+.base{background:#f3f1f6;border-radius:8px;padding:5px 9px}
+.alt{background:#fff3f8;border:1px solid #f6c3d9;border-radius:8px;padding:5px 9px;font-weight:600}
+.badge{position:absolute;top:12px;right:12px;font-size:11px;font-weight:800;color:#fff;background:#f39c12;border-radius:99px;padding:3px 9px}
+details{border:1px solid var(--line);border-radius:10px;margin-top:6px}
+summary{cursor:pointer;padding:10px 12px;font-weight:700;font-size:13.5px}
+.raw{white-space:pre-wrap;font-size:13px;line-height:1.7;padding:2px 14px 14px;color:#33333f}
 footer{text-align:center;font-size:12px;color:var(--sub);padding:24px 16px 40px}
-@media (max-width:760px){
- section{padding:22px 16px;border-radius:14px}
- .two,.tracks{grid-template-columns:1fr}
- .flow{grid-template-columns:1fr 1fr}
- .bar{grid-template-columns:minmax(0,1.6fr) 1fr 36px;font-size:13px}
+@media (max-width:860px){
+ .kpis{grid-template-columns:repeat(3,1fr)}
+ .two,.two2,.tracks,.cfs{grid-template-columns:1fr}
+ .shots{grid-template-columns:1fr 1fr}
+ .refs{grid-template-columns:1fr 1fr}
+ .flow{grid-template-columns:repeat(3,1fr)}
+ .formula{flex-direction:column}.formula em{align-self:center}
+ .cg{grid-template-columns:84px 1fr 1fr 1fr;font-size:12px}.cg>div{padding:7px 6px}
+ .cg .chip{font-size:11.5px;padding:3px 6px}
+ section{padding:18px 14px}
+ .toc{justify-content:flex-start}
 }
+ @media (max-width:600px){
+ .cg.h{display:none}.cg{grid-template-columns:1fr;border-top:6px solid var(--bg)}
+ .cg .k{background:#26263a;color:#fff}
+ .cg>div[data-l]{display:flex;align-items:center;flex-wrap:wrap;gap:2px;padding:6px 10px}
+ .cg>div[data-l]::before{content:attr(data-l);width:64px;flex:none;font-size:11.5px;font-weight:700;color:var(--sub)}
+ .cg .me[data-l]::before{color:var(--pink)}
+ .refs{grid-template-columns:1fr}
+}
+@media (max-width:480px){.shots{grid-template-columns:1fr}.pms{grid-template-columns:1fr}}
 </style></head><body>
-<header class="hero">
-  <div class="in">
-    <p class="kick">BEAUTY BLOSSOM · 마케팅파트 기획안 · 2026.11.03</p>
-    <h1>뷰티블라썸 국내 체험단 운영안</h1>
-    <p class="sub">해외 대상으로만 돌리던 체험단을 국내에도 엽니다. 현행 모집 포스터(9종·17명)를 기준으로, 서울아이성형외과에서 실제 운영한 계약서·자격조건·포스팅 매뉴얼을 비교해 국내 운영 기준을 정했습니다.</p>
-  </div>
-</header>
-<nav class="toc"><a href="#s1">요약</a><a href="#s2">현행 포스터</a><a href="#s3">3자 비교</a><a href="#s4">국내 운영안</a><a href="#s5">계약서</a><a href="#s6">매뉴얼</a><a href="#s7">운영진 판단</a><a href="#s8">서울아이 원자료</a></nav>
+<header class="hero"><div class="in">
+  <p class="kick">BEAUTY BLOSSOM · 마케팅파트 · 2026.11.03</p>
+  <h1>뷰티블라썸 국내 체험단 운영안</h1>
+  <p class="sub">해외 포스터(9종·17명) 그대로 + 서울아이 운영 방식으로 국내 오픈</p>
+</div></header>
+<nav class="toc"><a href="#s1">요약</a><a href="#s2">포스터</a><a href="#s3">비교</a><a href="#s4">운영안</a><a href="#s5">계약서</a><a href="#s6">매뉴얼</a><a href="#s7">컨펌 요청</a><a href="#s8">원자료</a></nav>
 <main>
 
-<section id="s1"><h2><span>01</span>한눈에 보기</h2>
+<section id="s1">
 <div class="kpis">
-  <div class="kpi hot"><b>9종</b><span>체험 시술 (포스터 기준)</span></div>
-  <div class="kpi hot"><b>17명</b><span>총 모집 인원</span></div>
-  <div class="kpi"><b>5천+</b><span>숏폼 트랙 팔로워 기준</span></div>
-  <div class="kpi"><b>1,200+ / 1만+</b><span>블로그 트랙 일평균 방문자 (서울아이 기준)</span></div>
-  <div class="kpi"><b>14일</b><span>시술 후 업로드 기한</span></div>
-  <div class="kpi"><b>3종 → 2종</b><span>서울아이 계약서 → 뷰블판 (숏폼·블로그)</span></div>
+  <div class="kpi hot"><b>9종</b><span>체험 시술</span></div>
+  <div class="kpi hot"><b>17명</b><span>모집 인원</span></div>
+  <div class="kpi"><b>2트랙</b><span>숏폼 + 블로그</span></div>
+  <div class="kpi"><b>5천+</b><span>숏폼 팔로워</span></div>
+  <div class="kpi"><b>1,200+</b><span>블로그 일방문자</span></div>
+  <div class="kpi"><b>14일</b><span>업로드 기한</span></div>
 </div>
-<div class="callout"><b>결론</b> 포스터의 시술·인원은 그대로 쓰고, 서울아이에서 검증한 운영 장치 4가지(블로그 방문자 기준, 계약서, 14일 기한·정가 납부, 포스팅 매뉴얼)를 붙여 국내판으로 엽니다.</div>
+<div class="formula"><div><small>뷰블 현행 포스터</small><b>시술 9종 · 17명 · 팔로워 5천+</b></div><em>+</em><div><small>서울아이 운영 방식</small><b>계약서 · 14일 기한 · 매뉴얼 · 블로그 기준</b></div><em>=</em><div class="me"><small>국내안</small><b>숏폼 + 블로그 2트랙</b></div></div>
 </section>
 
-<section id="s2"><h2><span>02</span>현행 뷰티블라썸 모집 포스터</h2>
+<section id="s2"><h2><span>01</span>현행 포스터</h2>
 <div class="two">
   <figure class="shot"><img src="img/blossom-poster.jpg" alt="뷰티블라썸 체험단 모집 포스터"><figcaption>현행 모집 포스터 (국내 미운영)</figcaption></figure>
   <div>
-    <h3>체험 항목과 모집 인원</h3>
-    <div class="bars"><div class="bar"><span class="bl">1. 유지인대 필러 리프팅 4cc</span><span class="bt"><i style="width:67%"></i></span><b>2명</b></div><div class="bar"><span class="bl">2. 세르프 200샷</span><span class="bt"><i style="width:100%"></i></span><b>3명</b></div><div class="bar"><span class="bl">3. 리니어지 500샷</span><span class="bt"><i style="width:67%"></i></span><b>2명</b></div><div class="bar"><span class="bl">4. 덴서티 300샷</span><span class="bt"><i style="width:33%"></i></span><b>1명</b></div><div class="bar"><span class="bl">5. 소프웨이브 70샷</span><span class="bt"><i style="width:67%"></i></span><b>2명</b></div><div class="bar"><span class="bl">6. 쇄골필러 4cc (국산)</span><span class="bt"><i style="width:67%"></i></span><b>2명</b></div><div class="bar"><span class="bl">7. 광경근 네페르티티 리프팅보톡스 (코어톡스)</span><span class="bt"><i style="width:100%"></i></span><b>3명</b></div><div class="bar"><span class="bl">8. 코필러</span><span class="bt"><i style="width:33%"></i></span><b>1명</b></div><div class="bar"><span class="bl">9. 어깨필러 24cc</span><span class="bt"><i style="width:33%"></i></span><b>1명</b></div></div>
-    <p class="total">합계 <b>17명</b> · 3명 모집 2종(세르프, 광경근 보톡스) · 2명 4종 · 1명 3종</p>
-    <h3>신청 자격</h3>
-    <ol class="list"><li>시술 과정 촬영 및 SNS 숏폼 업로드가 가능하신 분</li><li>한국 뷰티/의료미용에 관심이 많으신 분</li><li>SNS 팔로워 5천명 이상 보유하신 분</li></ol>
-    <p class="note">※ 팔로워 10만 이상인 경우, 상기 항목 중 2가지 이상 중복 시술 지원 가능</p>
-    <h3>신청 방법</h3>
-    <p>댓글 작성 후 DM</p>
-    <p class="note">※ 문의사항은 DM으로 부탁드립니다. ※ 모집 인원 마감 시 조기 종료될 수 있습니다.</p>
+    <h3>시술별 모집 인원 <small class="mute2">합계 17명</small></h3>
+    <div class="bars"><div class="bar"><span class="bl">유지인대 필러 리프팅 4cc</span><span class="bt"><i style="width:67%"></i></span><b>2</b></div><div class="bar"><span class="bl">세르프 200샷</span><span class="bt"><i style="width:100%"></i></span><b>3</b></div><div class="bar"><span class="bl">리니어지 500샷</span><span class="bt"><i style="width:67%"></i></span><b>2</b></div><div class="bar"><span class="bl">덴서티 300샷</span><span class="bt"><i style="width:33%"></i></span><b>1</b></div><div class="bar"><span class="bl">소프웨이브 70샷</span><span class="bt"><i style="width:67%"></i></span><b>2</b></div><div class="bar"><span class="bl">쇄골필러 4cc (국산)</span><span class="bt"><i style="width:67%"></i></span><b>2</b></div><div class="bar"><span class="bl">광경근 네페르티티 리프팅보톡스 (코어톡스)</span><span class="bt"><i style="width:100%"></i></span><b>3</b></div><div class="bar"><span class="bl">코필러</span><span class="bt"><i style="width:33%"></i></span><b>1</b></div><div class="bar"><span class="bl">어깨필러 24cc</span><span class="bt"><i style="width:33%"></i></span><b>1</b></div></div>
+    <div class="facts">
+      <div><small>신청 자격</small><span class="chip">숏폼 촬영·업로드</span><span class="chip">한국 뷰티 관심</span><span class="chip">팔로워 5천+</span></div>
+      <div><small>우대</small><span class="chip">팔로워 10만+ → 2종 이상 중복</span></div>
+      <div><small>신청</small><span class="chip">댓글 → DM</span><span class="chip">마감 시 조기 종료</span></div>
+    </div>
   </div>
 </div>
 </section>
 
-<section id="s3"><h2><span>03</span>서울아이 · 뷰블 현행 · 뷰블 국내안 비교</h2>
-<div class="tw"><table class="cmp"><thead><tr><th>항목</th><th>서울아이성형외과 (운영 실적)</th><th>뷰티블라썸 현행 포스터</th><th>뷰티블라썸 국내안</th></tr></thead><tbody><tr><td>운영 국가</td><td>국내 (강남역)</td><td>국내 미운영 (해외 대상 포스터)</td><td><b>국내 신규 오픈 (합정역)</b></td></tr><tr><td>주력 채널</td><td>네이버 블로그 (+ 인스타·유튜브 계약서 별도)</td><td>SNS 숏폼</td><td><b>숏폼 트랙 + 블로그 트랙 2개 운영</b></td></tr><tr><td>자격 기준</td><td>블로그 일평균 방문자 1,200명+ (기본) / 1만명+ (뷰스타)</td><td>SNS 팔로워 5천명+ · 시술 과정 촬영과 숏폼 업로드 가능 · 한국 뷰티/의료미용 관심</td><td><b>숏폼: 팔로워 5천명+ (포스터 기준 유지)<br>블로그: 일평균 1,200명+ / 고가 시술은 1만명+ (서울아이 기준 차용)</b></td></tr><tr><td>상위 등급 혜택</td><td>뷰스타(1만+)는 고가 시술 목록 별도 (13종)</td><td>팔로워 10만+는 2가지 이상 중복 시술 가능</td><td><b>팔로워 10만+ / 블로그 1만+ → 2개 중복 지원</b></td></tr><tr><td>제공 시술</td><td>기본 11종 / 뷰스타 13종 / 메일 일반 11종 / 파워 14종 / DM 1종 (총 19종) · 택1</td><td>9종 · 항목별 인원 지정 (총 17명)</td><td><b>포스터 9종 · 17명 그대로</b></td></tr><tr><td>모집 방식</td><td>네이버 폼 공지 + 제안 메일/쪽지 + 인스타 DM + 오픈채팅</td><td>게시물 댓글 작성 후 DM</td><td><b>인스타 댓글+DM (숏폼) / 네이버 폼 (블로그) / 직접 제안 메일·DM 병행</b></td></tr><tr><td>선정 기록</td><td>신청자 보고 시트 (구분·이름·연락처·신청시술·블로그주소·평균방문자·블로그속성·특이사항)</td><td>-</td><td><b>서울아이 시트 양식 그대로 + 팔로워 수·채널 URL 칸 추가</b></td></tr><tr><td>업로드 기한</td><td>시술 후 14일 (유튜브 20일)</td><td>-</td><td><b>시술 후 14일 (유튜브 20일)</b></td></tr><tr><td>업로드 범위</td><td>블로그 1건 (엘스코: 릴스+피드 각 1 + 블로그 + 강남언니·바비톡·구글맵·카카오맵 각 1)</td><td>숏폼 업로드</td><td><b>숏폼 1건 + 피드 1건 기본 / 블로그 트랙은 포스팅 1건</b></td></tr><tr><td>계약서</td><td>3종 (블로그 / 유튜브 / 엘스코)</td><td>없음</td><td><b>서울아이 계약서 기반 뷰티블라썸판 작성 (아래 05 계약서 조항 비교)</b></td></tr><tr><td>불이행 시</td><td>시술 정가 납부</td><td>-</td><td><b>시술 정가 납부 조항 유지</b></td></tr><tr><td>콘텐츠 2차 활용</td><td>전/후 사진 소장·사용, 게시물 영구 활용, 상담·시술 영상 촬영 동의</td><td>시술 과정 촬영 전제</td><td><b>병원 계정 재활용 동의 + 상담·시술 촬영 동의 포함</b></td></tr><tr><td>포스팅 매뉴얼</td><td>3종 (체험단 / 엘스코 / 블로그 pdf) · 해시태그·제목·위치 사진 규정</td><td>없음</td><td><b>숏폼용 + 블로그용 매뉴얼 2종 신규 작성</b></td></tr><tr><td>문의 창구</td><td>카톡 010-6209-8575</td><td>DM</td><td><b>인스타 DM + 카카오 채널</b></td></tr></tbody></table></div>
+<section id="s3"><h2><span>02</span>서울아이 · 뷰블 현행 · 국내안</h2>
+<div class="cmpgrid"><div class="cg h"><div></div><div>서울아이</div><div>뷰블 현행</div><div class="me">국내안</div></div><div class="cg"><div class="k">채널</div><div data-l="서울아이"><span class="chip">네이버 블로그</span></div><div data-l="뷰블 현행"><span class="chip">SNS 숏폼</span></div><div class="me" data-l="국내안"><span class="chip">숏폼</span><span class="chip">블로그</span></div></div><div class="cg"><div class="k">자격</div><div data-l="서울아이"><span class="chip">방문자 1,200+</span><span class="chip">뷰스타 1만+</span></div><div data-l="뷰블 현행"><span class="chip">팔로워 5천+</span><span class="chip">촬영·업로드 가능</span></div><div class="me" data-l="국내안"><span class="chip">팔로워 5천+</span><span class="chip">방문자 1,200+</span></div></div><div class="cg"><div class="k">상위 등급</div><div data-l="서울아이"><span class="chip">1만+ 고가 13종</span></div><div data-l="뷰블 현행"><span class="chip">10만+ 2종 중복</span></div><div class="me" data-l="국내안"><span class="chip">10만+ · 1만+ 2종 중복</span></div></div><div class="cg"><div class="k">시술</div><div data-l="서울아이"><span class="chip">19종 중 택1</span></div><div data-l="뷰블 현행"><span class="chip">9종 · 17명</span></div><div class="me" data-l="국내안"><span class="chip">9종 · 17명</span></div></div><div class="cg"><div class="k">모집</div><div data-l="서울아이"><span class="chip">네이버폼</span><span class="chip">메일</span><span class="chip">DM</span><span class="chip">오픈채팅</span></div><div data-l="뷰블 현행"><span class="chip">댓글 + DM</span></div><div class="me" data-l="국내안"><span class="chip">댓글 + DM</span><span class="chip">네이버폼</span></div></div><div class="cg"><div class="k">업로드 기한</div><div data-l="서울아이"><span class="chip">14일</span><span class="chip">유튜브 20일</span></div><div data-l="뷰블 현행"><span class="chip">—</span></div><div class="me" data-l="국내안"><span class="chip">14일</span><span class="chip">유튜브 20일</span></div></div><div class="cg"><div class="k">업로드 범위</div><div data-l="서울아이"><span class="chip">블로그 1건</span><span class="chip">엘스코 7채널</span></div><div data-l="뷰블 현행"><span class="chip">숏폼</span></div><div class="me" data-l="국내안"><span class="chip">숏폼 + 피드</span><span class="chip">블로그 1건</span></div></div><div class="cg"><div class="k">계약서</div><div data-l="서울아이"><span class="chip">3종</span></div><div data-l="뷰블 현행"><span class="chip">—</span></div><div class="me" data-l="국내안"><span class="chip">2종 (숏폼·블로그)</span></div></div><div class="cg"><div class="k">불이행</div><div data-l="서울아이"><span class="chip">정가 납부</span></div><div data-l="뷰블 현행"><span class="chip">—</span></div><div class="me" data-l="국내안"><span class="chip">정가 납부</span></div></div><div class="cg"><div class="k">2차 활용</div><div data-l="서울아이"><span class="chip">전후사진</span><span class="chip">게시물 영구</span><span class="chip">촬영</span></div><div data-l="뷰블 현행"><span class="chip">촬영 전제</span></div><div class="me" data-l="국내안"><span class="chip">서울아이와 동일</span></div></div><div class="cg"><div class="k">매뉴얼</div><div data-l="서울아이"><span class="chip">3종</span></div><div data-l="뷰블 현행"><span class="chip">—</span></div><div class="me" data-l="국내안"><span class="chip">2종 (숏폼·블로그)</span></div></div><div class="cg"><div class="k">선정 기록</div><div data-l="서울아이"><span class="chip">신청자 시트</span></div><div data-l="뷰블 현행"><span class="chip">—</span></div><div class="me" data-l="국내안"><span class="chip">신청자 시트 + 팔로워 칸</span></div></div><div class="cg"><div class="k">문의</div><div data-l="서울아이"><span class="chip">카톡</span></div><div data-l="뷰블 현행"><span class="chip">DM</span></div><div class="me" data-l="국내안"><span class="chip">DM</span><span class="chip">카카오 채널</span></div></div><div class="cg"><div class="k">운영 지역</div><div data-l="서울아이"><span class="chip">국내 · 강남역</span></div><div data-l="뷰블 현행"><span class="chip">해외만</span></div><div class="me" data-l="국내안"><span class="chip">국내 · 합정역</span></div></div></div>
 </section>
 
-<section id="s4"><h2><span>04</span>국내 운영안: 이렇게 엽니다</h2>
+<section id="s4"><h2><span>03</span>국내 운영안</h2>
 <div class="tracks">
-  <div class="track"><p class="tag">TRACK A</p><h3>숏폼 체험단</h3>
-    <ul><li>채널: 인스타 릴스 · 틱톡 · 유튜브 쇼츠</li><li>자격: 팔로워 5천명+ / 촬영·업로드 가능</li><li>10만+는 2종 중복 지원</li><li>모집: 뷰블 인스타 게시물 댓글 + DM</li><li>산출물: 숏폼 1건 + 피드 1건</li><li>계약서: 서울아이 ★3(엘스코)형 기반</li></ul></div>
-  <div class="track"><p class="tag">TRACK B</p><h3>블로그 체험단</h3>
-    <ul><li>채널: 네이버 블로그</li><li>자격: 일평균 방문자 1,200명+</li><li>고가 시술(소프웨이브·세르프 등)은 1만명+</li><li>모집: 네이버 폼 공지 + 제안 메일·쪽지</li><li>산출물: 포스팅 1건</li><li>계약서: 서울아이 ★1(블로그)형 기반</li></ul></div>
+  <div class="track"><p class="tag">TRACK A · 숏폼</p>
+    <div class="tl"><small>채널</small><span class="chip">릴스</span><span class="chip">틱톡</span><span class="chip">쇼츠</span></div>
+    <div class="tl"><small>자격</small><span class="chip">팔로워 5천+</span><span class="chip">10만+ 2종 중복</span></div>
+    <div class="tl"><small>모집</small><span class="chip">인스타 댓글 + DM</span></div>
+    <div class="tl"><small>산출물</small><span class="chip">숏폼 1</span><span class="chip">피드 1</span></div>
+    <div class="tl"><small>계약서</small><span class="chip">서울아이 ★3형</span></div></div>
+  <div class="track"><p class="tag">TRACK B · 블로그</p>
+    <div class="tl"><small>채널</small><span class="chip">네이버 블로그</span></div>
+    <div class="tl"><small>자격</small><span class="chip">일방문자 1,200+</span><span class="chip">고가 시술 1만+</span></div>
+    <div class="tl"><small>모집</small><span class="chip">네이버 폼</span><span class="chip">제안 메일·쪽지</span></div>
+    <div class="tl"><small>산출물</small><span class="chip">포스팅 1</span></div>
+    <div class="tl"><small>계약서</small><span class="chip">서울아이 ★1형</span></div></div>
 </div>
-<h3>운영 순서</h3>
-<ol class="flow">
-  <li><b>모집</b>포스터 게시(인스타) · 네이버 폼 공지 · 직접 제안</li>
-  <li><b>선정</b>신청자 시트에 팔로워/방문자·채널 속성 기록 후 선정</li>
-  <li><b>계약</b>시술명·정가·시술일·업로드 기한 기재 후 서명</li>
-  <li><b>시술·촬영</b>상담·시술 과정 촬영, 전/후 사진 확보</li>
-  <li><b>업로드</b>시술 후 14일 내 업로드, URL 회수</li>
-  <li><b>관리</b>삭제·비공개 모니터링, 병원 계정 재활용</li>
-</ol>
-<h3>준비물</h3>
-<div class="tw"><table class=""><thead><tr><th>산출물</th><th>근거 (서울아이 자료)</th><th>상태</th></tr></thead><tbody><tr><td>국내용 모집 포스터 (포스터 문구 국문 공지판)</td><td>현행 포스터</td><td>현행본 있음</td></tr><tr><td>네이버 폼 신청서</td><td>기본 체험단 신청폼 / 뷰스타 네이버폼</td><td>신규</td></tr><tr><td>제안 메일·DM 문구 (일반/상위 등급)</td><td>제안 메일 양식 2종 + 인스타 DM 양식</td><td>신규</td></tr><tr><td>계약서 2종 (숏폼 / 블로그)</td><td>★1 · ★2 · ★3 계약서</td><td>신규</td></tr><tr><td>포스팅 매뉴얼 2종 (숏폼 / 블로그)</td><td>체험단·엘스코·블로그 매뉴얼</td><td>신규</td></tr><tr><td>신청자·진행 관리 시트</td><td>체험단 신청자 보고 시트</td><td>신규</td></tr><tr><td>시술별 정가 (계약서 기재용)</td><td>★3에 정가 1,230,000원 기재 방식</td><td>수가표에서 기입</td></tr></tbody></table></div>
+<ol class="flow"><li><b>모집</b>포스터 · 폼 · 제안</li><li><b>선정</b>신청자 시트</li><li><b>계약</b>시술명·정가·기한</li><li><b>시술·촬영</b>전/후 사진</li><li><b>업로드</b>14일 · URL 회수</li><li><b>관리</b>유지 · 재활용</li></ol>
+<div class="prep"><small>준비물</small><span class="chk">국내용 모집 공지</span><span class="chk">네이버 폼 신청서</span><span class="chk">제안 메일·DM 문구</span><span class="chk">계약서 2종</span><span class="chk">포스팅 매뉴얼 2종</span><span class="chk">신청자 관리 시트</span><span class="chk">시술별 정가 (수가표)</span></div>
 </section>
 
-<section id="s5"><h2><span>05</span>계약서 조항 비교 (서울아이 3종 → 뷰블판)</h2>
-<div class="tw"><table class="ctr"><thead><tr><th>조항</th><th>★1 블로그</th><th>★2 유튜브</th><th>★3 엘스코</th><th>뷰블판</th></tr></thead><tbody><tr><td>업로드 기한</td><td>14일</td><td>20일</td><td>14일</td><td>14일 (유튜브 20일)</td></tr><tr><td>업로드 채널</td><td>블로그/인스타</td><td>유튜브/인스타</td><td>블로그·인스타·유튜브 기재란</td><td>숏폼 채널 + 블로그</td></tr><tr><td>업로드 범위</td><td>포스팅 1건</td><td>영상 1건</td><td>릴스·피드 각1 + 블로그 + 강남언니·바비톡·구글맵·카카오맵 각1</td><td>시술별로 지정</td></tr><tr><td>시술명·정가 기재</td><td>빈칸</td><td>빈칸</td><td>엘스코플러스 1,230,000원 기재</td><td>시술명·정가 계약 시 기재</td></tr><tr><td>갑: 전/후 사진 소장·사용</td><td>O</td><td><span class="mute">-</span></td><td>O</td><td>O</td></tr><tr><td>갑: 게시물·촬영물 영구 활용</td><td>O</td><td><span class="mute">-</span></td><td>O</td><td>O</td></tr><tr><td>을: 솔직한 후기 작성</td><td>O</td><td>O</td><td>"솔직한" 문구 없음</td><td>O</td></tr><tr><td>을: 댓글/쪽지 문의 답변</td><td>O</td><td>댓글/이메일</td><td>O</td><td>O</td></tr><tr><td>을: 키워드·해시태그 삽입, 수정 동의</td><td>O</td><td>O</td><td>O</td><td>O</td></tr><tr><td>을: 콘텐츠 유지·삭제 금지</td><td>O</td><td>O</td><td>O</td><td>O</td></tr><tr><td>을: 기한 초과 시 계약위반</td><td>O</td><td>O</td><td>O</td><td>O</td></tr><tr><td>을: 상담·시술 영상 촬영 동의</td><td>O</td><td><span class="mute">-</span></td><td>O</td><td>O</td></tr><tr><td>제3조 불이행 시 정가 납부</td><td>O</td><td>O</td><td>O</td><td>O</td></tr><tr><td>제4조 해석·관할·비밀유지·부작용 처리</td><td>O</td><td>O</td><td>O</td><td>"수술한 성형외과" → "시술한 의원"으로 수정</td></tr><tr><td>제5조 신의성실 (번호 1) 다음 3))</td><td>O</td><td>O</td><td>O</td><td>번호 2)로 정리</td></tr><tr><td>제6조 콘텐츠 유지·삭제 시 비용 납부</td><td>O</td><td>O</td><td>O</td><td>O</td></tr><tr><td>제6조 의료광고심의위원회 제출·협조</td><td>O</td><td>O</td><td>O</td><td>O</td></tr><tr><td>제6조 개인정보 활용 동의</td><td>O</td><td>O</td><td>O</td><td>O</td></tr><tr><td>갑 정보</td><td>서울아이성형외과의원 (강남대로 415 대동빌딩 3층)</td><td>동일</td><td>동일</td><td><b>뷰티블라썸의원 (대표 이건호)으로 교체</b></td></tr></tbody></table></div>
+<section id="s5"><h2><span>04</span>계약서 조항</h2>
+<p class="lg"><i class="d on"></i> 있음 <i class="d"></i> 없음</p>
+<div class="tw"><table class="dots hi"><thead><tr><th>조항</th><th>★1 블로그</th><th>★2 유튜브</th><th>★3 엘스코</th><th>뷰블판</th></tr></thead><tbody><tr><td>업로드 기한</td><td class="c"><small>14일</small></td><td class="c"><small>20일</small></td><td class="c"><small>14일</small></td><td class="c"><small>14일 · 유튜브 20일</small></td></tr><tr><td>업로드 범위</td><td class="c"><small>포스팅 1</small></td><td class="c"><small>영상 1</small></td><td class="c"><small>7채널</small></td><td class="c"><small>시술별 지정</small></td></tr><tr><td>시술명·정가 기재</td><td class="c"><small>빈칸</small></td><td class="c"><small>빈칸</small></td><td class="c"><small>123만원 기재</small></td><td class="c"><small>계약 시 기재</small></td></tr><tr><td>전/후 사진 사용</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>게시물 영구 활용</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>솔직한 후기</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>문의 답변</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>키워드·수정 동의</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>콘텐츠 유지</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>기한 초과 = 위반</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>상담·시술 촬영 동의</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>불이행 시 정가 납부</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>심의위 제출·협조</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>개인정보 동의</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>문구 정리</td><td class="c"><small></small></td><td class="c"><small></small></td><td class="c"><small></small></td><td class="c"><small>성형외과→의원 · 조항번호</small></td></tr><tr><td>갑</td><td class="c"><small>서울아이</small></td><td class="c"><small>서울아이</small></td><td class="c"><small>서울아이</small></td><td class="c"><small>뷰티블라썸의원</small></td></tr></tbody></table></div>
 </section>
 
-<section id="s6"><h2><span>06</span>포스팅 매뉴얼 비교</h2>
-<div class="tw"><table class=""><thead><tr><th>항목</th><th>1. 체험단 매뉴얼</th><th>2. 엘스코 매뉴얼</th><th>블로그 매뉴얼 (pdf)</th></tr></thead><tbody><tr><td>업로드 기한</td><td>14일 + 미업로드 시 정가 납부 안내</td><td>동일</td><td>없음</td></tr><tr><td>인스타 사진</td><td>최소 3장, 전/후 사진 필수 (한 페이지에 붙여 비교 금지)</td><td>동일</td><td>없음</td></tr><tr><td>인스타 릴스</td><td>시술 전 / 직후 / 3-7일차 포함</td><td>동일</td><td>없음</td></tr><tr><td>인스타 예시 이미지</td><td>2장 (병원명 해시태그 위치 표시)</td><td>동일 2장</td><td>없음</td></tr><tr><td>인스타 레퍼런스 링크</td><td>5개</td><td>5개 (동일)</td><td>없음</td></tr><tr><td>인스타 해시태그</td><td>26개 (쥬베룩 중심)</td><td>20개 (엘스코 중심)</td><td>없음</td></tr><tr><td>블로그 제목</td><td>지역+시술명 (시술명 필수)</td><td>동일</td><td>동일</td></tr><tr><td>블로그 본문</td><td>강남역 10번출구·BUTTER 건물·3층 언급, 내부사진·엠블럼·상패</td><td>동일</td><td>없음</td></tr><tr><td>블로그 사진/동영상</td><td>레퍼런스 참고, 전후 차이 강조, 해시태그 단어 반복</td><td>동일</td><td>동일</td></tr><tr><td>블로그 레퍼런스 링크</td><td>5개</td><td>4개</td><td>3개</td></tr><tr><td>블로그 해시태그</td><td>23개 + 위치 태그 2개</td><td>26개</td><td>24개</td></tr><tr><td>앱·지도 후기 방법</td><td>없음</td><td>강남언니·바비톡·카카오맵·구글맵</td><td>없음</td></tr></tbody></table></div>
-<h3>서울아이 매뉴얼 예시 이미지</h3>
-<p class="note">병원명·지역 해시태그를 어디에 넣는지 보여주는 예시. 매뉴얼 원본의 인스타 캡처에서 해시태그 부분만 잘라 실었습니다.</p>
+<section id="s6"><h2><span>05</span>포스팅 매뉴얼</h2>
+<div class="two2">
+  <div><div class="tw"><table class="dots"><thead><tr><th>항목</th><th>체험단</th><th>엘스코</th><th>블로그 pdf</th></tr></thead><tbody><tr><td>업로드 기한 14일</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>인스타 사진 3장+ (전후 필수)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>릴스 (전·직후·3~7일차)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>예시 이미지</td><td class="c"><small>2장</small></td><td class="c"><small>2장</small></td><td class="c"><i class="d"></i></td></tr><tr><td>인스타 레퍼런스</td><td class="c"><small>5개</small></td><td class="c"><small>5개</small></td><td class="c"><i class="d"></i></td></tr><tr><td>인스타 해시태그</td><td class="c"><small>26개</small></td><td class="c"><small>20개</small></td><td class="c"><i class="d"></i></td></tr><tr><td>블로그 제목 (지역+시술명)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td>블로그 위치 사진 (출구·건물·층)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>블로그 레퍼런스</td><td class="c"><small>5개</small></td><td class="c"><small>4개</small></td><td class="c"><small>3개</small></td></tr><tr><td>블로그 해시태그</td><td class="c"><small>25개</small></td><td class="c"><small>26개</small></td><td class="c"><small>24개</small></td></tr><tr><td>앱·지도 후기 방법</td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr></tbody></table></div></div>
+  <div><h3>해시태그 위치</h3><div class="pms">
+    <div class="pm "><p class="pt">서울아이</p>
+<div class="pl"><span class="tg t1">#쥬베룩</span> 본문 첫 줄</div>
+<div class="pl ph">본문 · 시술 후기</div>
+<div class="pl"><span class="tg t2">#서울아이성형외과 #강남역성형외과</span></div>
+<div class="pl pc">첫 댓글 <span class="tg t3">#지역 태그</span></div></div>
+    <div class="pm me"><p class="pt">뷰블판</p>
+<div class="pl"><span class="tg t1">#소프웨이브 #리니어지</span> 본문 첫 줄</div>
+<div class="pl ph">본문 · 시술 후기</div>
+<div class="pl"><span class="tg t2">#뷰티블라썸 #뷰티블라썸의원 #합정</span></div>
+<div class="pl pc">첫 댓글 <span class="tg t3">#지역 태그</span></div></div>
+  </div>
+  <div class="facts"><div><small>블로그 제목</small><span class="chip">강남 수면 쥬베룩 4CC 후기 → 합정 + 시술명</span></div>
+  <div><small>위치 사진</small><span class="chip">강남역 10번출구 · BUTTER · 3층 → 합정역 출구 · 건물 · 층</span></div></div></div>
+</div>
+<h3>매뉴얼 예시 이미지</h3>
 <div class="shots">
-  <figure class="shot"><img src="img/seoulai-ref1-hashtag.jpg" alt="서울아이 매뉴얼 예시 이미지 1"><figcaption>예시 1 · 본문 바로 아래 병원명·지역 해시태그 줄</figcaption></figure>
-  <figure class="shot"><img src="img/seoulai-ref2-hashtag.jpg" alt="서울아이 매뉴얼 예시 이미지 2"><figcaption>예시 2 · 첫 줄 시술명 태그 + 본문 끝 병원명 태그 + 첫 댓글 지역 태그</figcaption></figure>
-  <figure class="shot"><img src="img/seoulai-blog-manual-pdf.jpg" alt="서울아이 블로그 포스팅 매뉴얼 pdf"><figcaption>블로그 포스팅 매뉴얼.pdf (1페이지 전체)</figcaption></figure>
+  <figure class="shot"><img src="img/seoulai-ref1-full.jpg" alt="예시 1"><figcaption>예시 1 · 본문 아래 병원명 태그</figcaption></figure>
+  <figure class="shot"><img src="img/seoulai-ref2-full.jpg" alt="예시 2"><figcaption>예시 2 · 첫 줄 · 본문 끝 · 첫 댓글 태그</figcaption></figure>
+  <figure class="shot"><img src="img/seoulai-blog-manual-pdf.jpg" alt="블로그 매뉴얼 pdf"><figcaption>블로그 포스팅 매뉴얼.pdf</figcaption></figure>
 </div>
-<h3>뷰블판 해시태그 구조 (서울아이 구조 차용)</h3>
-<div class="tw"><table class=""><thead><tr><th>위치</th><th>서울아이 방식</th><th>뷰블판</th></tr></thead><tbody><tr><td>본문 첫 줄</td><td>시술명 태그 (#쥬베룩)</td><td>시술명 태그 (예: #소프웨이브 #리니어지)</td></tr><tr><td>본문 끝</td><td>병원명·지역 태그 필수 기재 (#서울아이성형외과 #강남역성형외과)</td><td>병원명·지역 태그 필수 기재 (#뷰티블라썸 #뷰티블라썸의원 + 합정 지역 태그)</td></tr><tr><td>첫 댓글</td><td>지역·일반 태그 묶음 (예시 2)</td><td>지역·일반 태그 묶음</td></tr><tr><td>블로그 제목</td><td>지역+시술명 (예: 강남 수면 쥬베룩 4CC 후기)</td><td>지역+시술명 (예: 합정 소프웨이브 후기)</td></tr><tr><td>블로그 본문 위치 정보</td><td>강남역 10번출구 · BUTTER 건물 · 3층</td><td>합정역 출구 · 건물·층 안내</td></tr></tbody></table></div>
+<h3>레퍼런스 게시물 <small class="mute2">2026.11.03 캡처 · 10개 중 5개 열림 · 블로그는 박스 안 스크롤</small></h3>
+<p class="gl">인스타그램 (5)</p><div class="refs"><figure class="ref"><div class="rh"><b>인스타 1</b><span class="st">열림 · damio3o · 2022.12.22 게시</span><a href="https://www.instagram.com/p/CmgIwO5LSAV/?utm_source=ig_web_copy_link" target="_blank" rel="noopener">www.instagram.com/p/CmgIwO5LSAV/</a></div><div class="rimg"><img src="img/ref-ig1.jpg" alt="인스타 1 캡처"></div></figure><figure class="ref"><div class="rh"><b>인스타 2</b><span class="st">열림 · sis_rue · 2022.11.19 게시</span><a href="https://www.instagram.com/p/ClIim2vJBbj/?utm_source=ig_web_copy_link" target="_blank" rel="noopener">www.instagram.com/p/ClIim2vJBbj/</a></div><div class="rimg"><img src="img/ref-ig2.jpg" alt="인스타 2 캡처"></div></figure><figure class="ref dead"><div class="rh"><b>인스타 3</b><span class="st">이용 불가 (게시물 삭제 또는 링크 오류)</span><a href="https://www.instagram.com/p/Cqw1qwyJT8v/?utm_source=ig_web_copy_link" target="_blank" rel="noopener">www.instagram.com/p/Cqw1qwyJT8v/</a></div><div class="rimg"><img src="img/ref-ig3.jpg" alt="인스타 3 캡처"></div></figure><figure class="ref dead"><div class="rh"><b>인스타 4</b><span class="st">이용 불가 (게시물 삭제 또는 링크 오류)</span><a href="https://www.instagram.com/p/DKHQS3EJRZm/?igsh=MWVkOXg3OTNsaHl4NA==" target="_blank" rel="noopener">www.instagram.com/p/DKHQS3EJRZm/</a></div><div class="rimg"><img src="img/ref-ig4.jpg" alt="인스타 4 캡처"></div></figure><figure class="ref dead"><div class="rh"><b>인스타 5 (릴스)</b><span class="st">연령 제한 콘텐츠 (로그인해야 보임)</span><a href="https://www.instagram.com/reel/DJ1kFt_TFYo/?igsh=MTRtM2lwMGhtc240aw==" target="_blank" rel="noopener">www.instagram.com/reel/DJ1kFt_TFYo/</a></div><div class="rimg"><img src="img/ref-ig5.jpg" alt="인스타 5 (릴스) 캡처"></div></figure></div><p class="gl">네이버 블로그 (5)</p><div class="refs"><figure class="ref long"><div class="rh"><b>블로그 1</b><span class="st">열림 · 「울쎄라 리프팅레이저 300샷 유경험자가 또 받은 한 달 후기(수면)」</span><a href="https://blog.naver.com/younsun5311/222874633444" target="_blank" rel="noopener">blog.naver.com/younsun5311/222874633444</a></div><div class="rimg"><img src="img/ref-blog1.jpg" alt="블로그 1 캡처"></div></figure><figure class="ref long"><div class="rh"><b>블로그 4</b><span class="st">열림 · 「강남성형외과 쥬베룩 4cc 수면 연어 2cc 후기」</span><a href="https://blog.naver.com/tbtb--8282/223484869728" target="_blank" rel="noopener">blog.naver.com/tbtb--8282/223484869728</a></div><div class="rimg"><img src="img/ref-blog4.jpg" alt="블로그 4 캡처"></div></figure><figure class="ref long"><div class="rh"><b>블로그 5</b><span class="st">열림 · 「코실리프팅 엘스코 내돈내산 솔직 후기」</span><a href="https://blog.naver.com/eun_da_/223896487041" target="_blank" rel="noopener">blog.naver.com/eun_da_/223896487041</a></div><div class="rimg"><img src="img/ref-blog5.jpg" alt="블로그 5 캡처"></div></figure><figure class="ref dead"><div class="rh"><b>블로그 2</b><span class="st">게시물 삭제됨</span><a href="https://blog.naver.com/2ndtori/222862244083" target="_blank" rel="noopener">blog.naver.com/2ndtori/222862244083</a></div><div class="rimg"><img src="img/ref-blog2.jpg" alt="블로그 2 캡처"></div></figure><figure class="ref dead"><div class="rh"><b>블로그 3</b><span class="st">비공개 게시물</span><a href="https://blog.naver.com/hky6463/222973947591" target="_blank" rel="noopener">blog.naver.com/hky6463/222973947591</a></div><div class="rimg"><img src="img/ref-blog3.jpg" alt="블로그 3 캡처"></div></figure></div>
 </section>
 
-<section id="s7"><h2><span>07</span>운영진 판단 사항</h2>
-<p>국내안은 서울아이에서 운영하던 방식을 그대로 기본안으로 합니다. 아래 항목은 우려되는 부분을 해소하려면 변경이 필요한 부분이며, 적용 여부는 운영진 판단으로 정합니다.</p>
-<div class="tw"><table class=""><thead><tr><th>항목</th><th>기본안 (서울아이 방식 그대로)</th><th>우려 해소 시 변경안</th><th>결정</th></tr></thead><tbody><tr><td>계약 목적</td><td>시술 지원 후 후기 작성 (계약서 제2조)</td><td>"후기 작성" 대신 "시술 과정 촬영 모델 + 콘텐츠 제작"으로 표현</td><td><b>운영진 판단</b></td></tr><tr><td>광고·협찬 표기</td><td>조항 없음</td><td>본문 앞부분에 #광고 또는 #협찬 표기 조항을 계약서·매뉴얼에 추가</td><td><b>운영진 판단</b></td></tr><tr><td>모집 범위</td><td>상시 모집, 블로그 방문자 기준으로 선정</td><td>시술 종류·인원·기간 한정 (포스터의 9종·17명·조기 마감 구조)</td><td><b>운영진 판단</b></td></tr><tr><td>병원 계정 재게시</td><td>체험단 게시물·촬영물 영구 활용 (계약서 제2조·제6조)</td><td>병원 계정에 다시 올리는 게시물은 의료광고 심의 후 게시</td><td><b>운영진 판단</b></td></tr></tbody></table></div>
+<section id="s7"><h2><span>06</span>운영진 컨펌 요청</h2>
+<p class="lg">기본안은 서울아이 방식 그대로. 우려 해소용 변경안은 법률 체크 포함 컨펌 요청.</p>
+<div class="cfs"><div class="cf"><p class="ck">계약 목적</p><div class="cv"><span class="base">시술 지원 후 후기 작성</span><em>→</em><span class="alt">시술 과정 촬영 모델 + 콘텐츠 제작</span></div><span class="badge">컨펌 요청</span></div><div class="cf"><p class="ck">광고·협찬 표기</p><div class="cv"><span class="base">조항 없음</span><em>→</em><span class="alt">본문 앞 #광고·#협찬 표기 조항 추가</span></div><span class="badge">컨펌 요청</span></div><div class="cf"><p class="ck">모집 범위</p><div class="cv"><span class="base">상시 모집</span><em>→</em><span class="alt">시술·인원·기간 한정 (9종·17명·조기 마감)</span></div><span class="badge">컨펌 요청</span></div><div class="cf"><p class="ck">병원 계정 재게시</p><div class="cv"><span class="base">게시물 영구 활용</span><em>→</em><span class="alt">재게시물은 의료광고 심의 후 게시</span></div><span class="badge">컨펌 요청</span></div></div>
 </section>
 
-<section id="s8"><h2><span>08</span>서울아이 원자료 전체</h2>
-<p class="note">체험단.zip (구글 드라이브 › 성형마케팅) 안의 파일 10개 내용을 원문 그대로 실었습니다. 정리본: <a href="https://docs.google.com/spreadsheets/d/1aNQR_pQZ0SCWwcHP8UyMGYOU3UEHTEynwOwwT6xKJAs/edit" target="_blank" rel="noopener">서울아이 체험단 모집 정보 (구글 시트)</a></p>
-
-<h3>모집 공지와 자격조건</h3>
-<div class="tw"><table class=""><thead><tr><th>항목</th><th>기본 블로그 체험단</th><th>뷰스타 체험단</th></tr></thead><tbody><tr><td>신청조건</td><td>블로그 일방문자수 최소 평균 1,200명 이상</td><td>블로그 일방문자수 최소 평균 1만명 이상</td></tr><tr><td>미달 시</td><td>조건 미달성, 성질이 너무 다른 블로그 등은 체험이 어렵습니다</td><td>조건 미달성일 경우 해당 체험이 어렵습니다</td></tr><tr><td>제공 방식</td><td>제공서비스 중 택1</td><td>제공서비스 중 택1</td></tr><tr><td>제공 시술 수</td><td>11</td><td>13</td></tr><tr><td>리뷰 기한</td><td>2주 이내 업로드</td><td>2주 이내 업로드</td></tr><tr><td>신청폼</td><td><a href="https://naver.me/FUQuosFw" target="_blank" rel="noopener">https://naver.me/FUQuosFw</a></td><td><a href="https://naver.me/5h11iiEq" target="_blank" rel="noopener">https://naver.me/5h11iiEq</a></td></tr></tbody></table></div>
-
-<h3>제공 시술 19종 (문서별 포함 여부)</h3>
-<div class="tw"><table class="tx"><thead><tr><th>#</th><th>시술명</th><th>수가 (문서 기재)</th><th>기본</th><th>뷰스타</th><th>메일 일반</th><th>메일 파워</th><th>DM</th></tr></thead><tbody><tr><td>1</td><td>수면 스킨바이브 2cc / +리쥬란힐러 2cc</td><td>55만원 / 79만원</td><td>O</td><td>O</td><td>O</td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>2</td><td>수면 린제이주사 (엘라비에 리투오주사)</td><td>59만원</td><td>O</td><td>O</td><td>O</td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>3</td><td>엘스코플러스 (코리프팅)</td><td>1,230,000원 (★3 계약서 정가)</td><td>O</td><td>O</td><td>O</td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>4</td><td>수면 온다레이저 (풀페이스 / 파워는 바디 한부위도)</td><td><span class="mute">-</span></td><td>O</td><td>O</td><td>O</td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>5</td><td>리얼브이주사 (한부위)</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td></tr><tr><td>6</td><td>수면 다이아리프팅</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>7</td><td>수면 인모드 FX + FORMA 풀페이스</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td></tr><tr><td>8</td><td>수면 바디슈링크 유니버스 (600샷)</td><td><span class="mute">-</span></td><td>O</td><td>O</td><td>O</td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>9</td><td>수면 리팟레이저 + PDRN연어주사 + LDM (한부위)</td><td><span class="mute">-</span></td><td>O</td><td>O</td><td>O</td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>10</td><td>에스핏주사 (160cc)</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td></tr><tr><td>11</td><td>아스코르주 고용량 비타민C 수액</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td></tr><tr><td>12</td><td>힙탱 콜라겐 주사 (100cc)</td><td>196.9만원</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>13</td><td>수면 스컬트라</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>14</td><td>수면 인쎄라</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>15</td><td>수면 리쥬쎄라 (울쎄라 300샷 + 리쥬란힐러 4CC + 수면마취)</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>16</td><td>수면 리쥬써마</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>17</td><td>수면 울타늄</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>18</td><td>아이(i)스템셀 주사_줄기세포주사 (스킨부스터 + IV프리미엄수액)</td><td>399만원</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td><td>O</td><td><span class="mute">-</span></td></tr><tr><td>19</td><td>엘프귀필러</td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td><span class="mute">-</span></td><td>O</td></tr><tr><td></td><td><b>합계</b></td><td></td><td><b>11</b></td><td><b>13</b></td><td><b>11</b></td><td><b>14</b></td><td><b>1</b></td></tr></tbody></table></div>
-<p class="note">제안 금액 범위: 일반 블로거 40만원~150만원 상당 / 파워블로거 88만원~385만원 상당</p>
-
-<h3>레퍼런스 링크 (포스팅 매뉴얼 수록)</h3>
-<div class="tw"><table class=""><thead><tr><th>구분</th><th>링크</th><th>수록 문서</th></tr></thead><tbody><tr><td>인스타</td><td><a href="https://www.instagram.com/p/CmgIwO5LSAV/?utm_source=ig_web_copy_link" target="_blank" rel="noopener">https://www.instagram.com/p/CmgIwO5LSAV/</a></td><td>체험단·엘스코 매뉴얼</td></tr><tr><td>인스타</td><td><a href="https://www.instagram.com/p/ClIim2vJBbj/?utm_source=ig_web_copy_link" target="_blank" rel="noopener">https://www.instagram.com/p/ClIim2vJBbj/</a></td><td>체험단·엘스코 매뉴얼</td></tr><tr><td>인스타</td><td><a href="https://www.instagram.com/p/Cqw1qwyJT8v/?utm_source=ig_web_copy_link" target="_blank" rel="noopener">https://www.instagram.com/p/Cqw1qwyJT8v/</a></td><td>체험단·엘스코 매뉴얼</td></tr><tr><td>인스타</td><td><a href="https://www.instagram.com/p/DKHQS3EJRZm/?igsh=MWVkOXg3OTNsaHl4NA==" target="_blank" rel="noopener">https://www.instagram.com/p/DKHQS3EJRZm/</a></td><td>체험단·엘스코 매뉴얼</td></tr><tr><td>인스타</td><td><a href="https://www.instagram.com/reel/DJ1kFt_TFYo/?igsh=MTRtM2lwMGhtc240aw==" target="_blank" rel="noopener">https://www.instagram.com/reel/DJ1kFt_TFYo/</a></td><td>체험단·엘스코 매뉴얼</td></tr><tr><td>블로그</td><td><a href="https://blog.naver.com/younsun5311/222874633444" target="_blank" rel="noopener">https://blog.naver.com/younsun5311/222874633444</a></td><td>체험단·엘스코·pdf</td></tr><tr><td>블로그</td><td><a href="https://blog.naver.com/2ndtori/222862244083" target="_blank" rel="noopener">https://blog.naver.com/2ndtori/222862244083</a></td><td>체험단·엘스코·pdf</td></tr><tr><td>블로그</td><td><a href="https://blog.naver.com/hky6463/222973947591" target="_blank" rel="noopener">https://blog.naver.com/hky6463/222973947591</a></td><td>체험단·엘스코·pdf</td></tr><tr><td>블로그</td><td><a href="https://blog.naver.com/tbtb--8282/223484869728" target="_blank" rel="noopener">https://blog.naver.com/tbtb--8282/223484869728</a></td><td>체험단·엘스코</td></tr><tr><td>블로그</td><td><a href="https://blog.naver.com/eun_da_/223896487041" target="_blank" rel="noopener">https://blog.naver.com/eun_da_/223896487041</a></td><td>체험단</td></tr></tbody></table></div>
-
-<h3>원문 보기</h3>
-<details><summary>★1. 체험단 계약서 (네이버 블로그) · 2025-08-05</summary><div class="raw">네이버 블로그 체험단 계약서
+<section id="s8"><h2><span>07</span>서울아이 원자료</h2>
+<p class="lg">체험단.zip 파일 10개 · <a href="https://docs.google.com/spreadsheets/d/1aNQR_pQZ0SCWwcHP8UyMGYOU3UEHTEynwOwwT6xKJAs/edit" target="_blank" rel="noopener">구글 시트 정리본</a></p>
+<h3>모집 공지</h3>
+<div class="facts">
+  <div><small>기본</small><span class="chip">일방문자 1,200+</span><span class="chip">11종 택1</span><span class="chip">2주 내 업로드</span><a href="https://naver.me/FUQuosFw" target="_blank" rel="noopener">신청폼</a></div>
+  <div><small>뷰스타</small><span class="chip">일방문자 1만+</span><span class="chip">13종 택1</span><span class="chip">2주 내 업로드</span><a href="https://naver.me/5h11iiEq" target="_blank" rel="noopener">신청폼</a></div>
+  <div><small>제안 금액</small><span class="chip">일반 40~150만원</span><span class="chip">파워 88~385만원</span></div>
+</div>
+<h3>제공 시술 19종</h3>
+<div class="tw"><table class="dots"><thead><tr><th>시술 (수가)</th><th>기본</th><th>뷰스타</th><th>메일 일반</th><th>메일 파워</th><th>DM</th></tr></thead><tbody><tr><td>수면 스킨바이브 2cc / +리쥬란힐러 2cc <small class="pr">55만원 / 79만원</small></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 린제이주사 (엘라비에 리투오주사) <small class="pr">59만원</small></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>엘스코플러스 (코리프팅) <small class="pr">1,230,000원 (★3 계약서 정가)</small></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 온다레이저 (풀페이스 / 파워는 바디 한부위도)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>리얼브이주사 (한부위)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 다이아리프팅</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 인모드 FX + FORMA 풀페이스</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 바디슈링크 유니버스 (600샷)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 리팟레이저 + PDRN연어주사 + LDM (한부위)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>에스핏주사 (160cc)</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>아스코르주 고용량 비타민C 수액</td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>힙탱 콜라겐 주사 (100cc) <small class="pr">196.9만원</small></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 스컬트라</td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 인쎄라</td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 리쥬쎄라 (울쎄라 300샷 + 리쥬란힐러 4CC + 수면마취)</td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 리쥬써마</td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>수면 울타늄</td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>아이(i)스템셀 주사_줄기세포주사 (스킨부스터 + IV프리미엄수액) <small class="pr">399만원</small></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td><td class="c"><i class="d"></i></td></tr><tr><td>엘프귀필러</td><td class="c"><i class="d"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d"></i></td><td class="c"><i class="d on"></i></td></tr><tr><td><b>합계</b></td><td class="c"><small><b>11</b></small></td><td class="c"><small><b>13</b></small></td><td class="c"><small><b>11</b></small></td><td class="c"><small><b>14</b></small></td><td class="c"><small><b>1</b></small></td></tr></tbody></table></div>
+<h3>원문</h3>
+<details><summary>★1. 체험단 계약서 (블로그)</summary><div class="raw">네이버 블로그 체험단 계약서
 
 
 본 계약은 서울아이성형외과의원(이하“갑”이라 함.)과            (이하 “을”이라 함.)간의 상호 원활한 업무진행을 위한 것이며, 갑과 을은 아래와 같이 계약을 체결하고 이를 성실히 이행하기로 합의한다.
@@ -237,7 +308,7 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:24px 16px 40px}
 주 민 등 록  번 호 :
 주             소 :
 연      락     처 :</div></details>
-<details><summary>★2. 체험단 계약서_유튜브 · 2025-08-08</summary><div class="raw">유튜브 체험단 계약서
+<details><summary>★2. 체험단 계약서_유튜브</summary><div class="raw">유튜브 체험단 계약서
 
 
 본 계약은 서울아이성형외과의원(이하“갑”이라 함.)과           (이하 “을”이라 함.)간의 상호 원활한 업무진행을 위한 것이며, 갑과 을은 아래와 같이 계약을 체결하고 이를 성실히 이행하기로 합의한다.
@@ -300,7 +371,7 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:24px 16px 40px}
 주 민 등 록 번 호 :
 주             소 :
 연      락     처 :</div></details>
-<details><summary>★3. 엘스코 체험단 계약서 · 2025-05-22</summary><div class="raw">엘스코플러스 체험단 계약서
+<details><summary>★3. 엘스코 체험단 계약서</summary><div class="raw">엘스코플러스 체험단 계약서
 
 
 본 계약은 서울아이성형외과의원(이하“갑”이라 함.)과              (이하 “을”이라 함.)간의 상호 원활한 업무진행을 위한 것이며, 갑과 을은 아래와 같이 계약을 체결하고 이를 성실히 이행하기로 합의한다.
@@ -376,7 +447,7 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:24px 16px 40px}
 주 민 등 록  번 호 :
 주             소 :
 연      락     처 :</div></details>
-<details><summary>기본 체험단 신청폼 · 2025-09-02</summary><div class="raw">💜서울아이성형외과 [블로그 체험단] 모집💜
+<details><summary>기본 체험단 신청폼</summary><div class="raw">💜서울아이성형외과 [블로그 체험단] 모집💜
 
 ✨병원명: 서울아이성형외과 (강남역)
 
@@ -398,7 +469,7 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:24px 16px 40px}
 
 ✨리뷰: 2주 이내 업로드
 ✨신청폼: <a href="https://naver.me/FUQuosFw" target="_blank" rel="noopener">https://naver.me/FUQuosFw</a></div></details>
-<details><summary>뷰스타 네이버폼 · 2025-09-02</summary><div class="raw">💜서울아이성형외과 [뷰스타 체험단] 모집💜
+<details><summary>뷰스타 네이버폼</summary><div class="raw">💜서울아이성형외과 [뷰스타 체험단] 모집💜
 
 ✨병원명: 서울아이성형외과 (강남역)
 ✨신청조건: 블로그 일방문자수 &#x27;최소 평균&#x27; [1만명이상]
@@ -417,7 +488,7 @@ footer{text-align:center;font-size:12px;color:var(--sub);padding:24px 16px 40px}
 
 ✨리뷰: 2주 이내 업로드
 ✨신청폼: <a href="https://naver.me/5h11iiEq" target="_blank" rel="noopener">https://naver.me/5h11iiEq</a></div></details>
-<details><summary>제안 메일: 일반 블로그 체험단 · 2025-09-02</summary><div class="raw">안녕하세요. 강남역 10번출구에 위치한 2022~2024년 리쥬란힐러 전국 사용량 1위, 서울아이성형외과입니다.
+<details><summary>제안 메일 · 일반</summary><div class="raw">안녕하세요. 강남역 10번출구에 위치한 2022~2024년 리쥬란힐러 전국 사용량 1위, 서울아이성형외과입니다.
 
 MAJI님께 40만원~150만원 상당의 시술지원 해드리고자 연락드립니다. 지원해드릴 시술은 다음과 같습니다. 
 
@@ -473,7 +544,7 @@ MAJI님께 40만원~150만원 상당의 시술지원 해드리고자 연락드�
 
 010-6209-8575로 문의 부탁드립니다~~^^
 *카톡 추가 하셔서 문의해 주시면 더욱 빠르게 일정 조율이 가능합니다~!*</div></details>
-<details><summary>제안 메일: 파워블로거 · 2025-09-02</summary><div class="raw">안녕하세요. 강남역 10번출구에 위치한 2022~2024년 리쥬란힐러 전국 사용량 1위, 서울아이성형외과입니다.
+<details><summary>제안 메일 · 파워블로거</summary><div class="raw">안녕하세요. 강남역 10번출구에 위치한 2022~2024년 리쥬란힐러 전국 사용량 1위, 서울아이성형외과입니다.
 
 MAJI님께 88만원 ~ 385만원 상당의 시술지원 해드리고자 연락드립니다.  지원해드릴 시술은 다음과 같습니다. 
 
@@ -552,7 +623,7 @@ MAJI님께 88만원 ~ 385만원 상당의 시술지원 해드리고자 연락드
 감사합니다 :)
 
 010-6209-8575로 문의 부탁드립니다 :)</div></details>
-<details><summary>인스타 DM 양식 · 2025-04-10</summary><div class="raw">안녕하세요, 서울아이성형외과 입니다!👋🏻
+<details><summary>인스타 DM 양식</summary><div class="raw">안녕하세요, 서울아이성형외과 입니다!👋🏻
 
 ㅇㅇ님께 아래의 시술을 지원 해드리고자 DM드립니다
 
@@ -567,7 +638,7 @@ MAJI님께 88만원 ~ 385만원 상당의 시술지원 해드리고자 연락드
 
 *문자나 전화 시 확인이 늦어질 수 있습니다. 카톡으로 부탁드립니다!!*
 감사합니다 :)</div></details>
-<details><summary>1. 체험단 포스팅 매뉴얼 · 2025-06-16</summary><div class="raw">블로그/인스타그램 포스팅 레퍼런스 및 매뉴얼
+<details><summary>1. 체험단 포스팅 매뉴얼</summary><div class="raw">블로그/인스타그램 포스팅 레퍼런스 및 매뉴얼
 ***** 업로드 기한 *****
 시술일로부터 14일 이내에 반드시 업로드 진행하셔야 합니다. 계약서에 명시된 내용과 마찬가지로, 업로드가 진행되지 않을 시, 시술 받은 금액의 정가를 납부하셔야 합니다. 
 그 외, 피치 못할 사유로 인한 업로드 불가(기간 내 업로드 불가상황) 혹은 시술 관련하여 부작용 등이 발생하였을 경우엔 병원 측과 상의/합의 후 진행하기로 합니다.
@@ -608,7 +679,7 @@ MAJI님께 88만원 ~ 385만원 상당의 시술지원 해드리고자 연락드
 #강남성형외과 #강남피부과 #쥬베룩 #쥬베룩후기 #수면시술 #스킨부스터 #쥬베룩볼륨 #수면쥬베룩 #눈밑지 #눈밑지방재배치 #다크서클시술 #수면마취 #피부탄력 #물광피부 #모공축소 #주름개선 #피부재생 #피부수분감 #광채피부 #리프팅 #피부시술 #시술후기 #쥬베룩효과(or 타 시술 시 시술명 관련 태그)
 #강남역10번출구 #강남역 BUTTER건물
 그 외, 포스팅 매뉴얼 관련하여, 더 궁금하신 점 있으시면 연락 주시기 바랍니다.</div></details>
-<details><summary>2. 엘스코 포스팅 매뉴얼 · 2025-08-27</summary><div class="raw">*엘스코* 블로그/인스타그램 포스팅 레퍼런스 및 매뉴얼
+<details><summary>2. 엘스코 포스팅 매뉴얼</summary><div class="raw">*엘스코* 블로그/인스타그램 포스팅 레퍼런스 및 매뉴얼
 ***** 업로드 기한 *****
 시술일로부터 14일 이내에 반드시 업로드 진행하셔야 합니다. 계약서에 명시된 내용과 마찬가지로, 업로드가 진행되지 않을 시, 시술 받은 금액의 정가를 납부하셔야 합니다. 
 그 외, 피치 못할 사유로 인한 업로드 불가(기간 내 업로드 불가상황) 혹은 시술 관련하여 부작용 등이 발생하였을 경우엔 병원 측과 상의/합의 후 진행하기로 합니다.
@@ -660,7 +731,7 @@ MAJI님께 88만원 ~ 385만원 상당의 시술지원 해드리고자 연락드
 카카오맵의 경우 첫 사용 시에는 24시간 이후 작성 가능하니 최소 포스팅기한 전날까지 꼭 시도 부탁드립니다. 사진 유무는 자유이나 시술 후 사진은 첨부되는 편이 좋습니다.
 구글맵 작성 방법
 구글아이디 로그인 후 병원 검색하셔서 리뷰 작성 해주시면 되시고 사진은 자유롭게 올려주세요.</div></details>
-<details><summary>블로그 포스팅 매뉴얼 (pdf) · 2023-07-10</summary><div class="raw">2. 네이버 블로그
+<details><summary>블로그 포스팅 매뉴얼 (pdf)</summary><div class="raw">2. 네이버 블로그
 
 
     ⚫   제목
@@ -696,11 +767,8 @@ MAJI님께 88만원 ~ 385만원 상당의 시술지원 해드리고자 연락드
 
 
 그 외, 포스팅 매뉴얼 관련하여, 더 궁금하신 점 있으시면 연락 주시기 바랍니다.</div></details>
-
-<h3>원본 파일 목록</h3>
-<div class="tw"><table class=""><thead><tr><th>구분</th><th>파일명</th><th>수정일</th></tr></thead><tbody><tr><td>계약서</td><td>★1. 체험단 계약서.hwp</td><td>2025-08-05</td></tr><tr><td>계약서</td><td>★2. 체험단 계약서_유튜브.hwp</td><td>2025-08-08</td></tr><tr><td>계약서</td><td>★3. 엘스코 체험단 계약서.hwp</td><td>2025-05-22</td></tr><tr><td>모집 공지</td><td>기본 체험단 신청폼.txt</td><td>2025-09-02</td></tr><tr><td>모집 공지</td><td>뷰스타 네이버폼.txt</td><td>2025-09-02</td></tr><tr><td>제안 메시지</td><td>제안 메일 양식(25년8월4일 업데이트).txt</td><td>2025-09-02</td></tr><tr><td>제안 메시지</td><td>인스타 디엠 양식.txt</td><td>2025-04-10</td></tr><tr><td>포스팅 매뉴얼</td><td>1. 체험단 포스팅 매뉴얼.docx</td><td>2025-06-16</td></tr><tr><td>포스팅 매뉴얼</td><td>2. 엘스코 포스팅 매뉴얼.docx</td><td>2025-08-27</td></tr><tr><td>포스팅 매뉴얼</td><td>블로그 포스팅 매뉴얼.pdf</td><td>2023-07-10</td></tr></tbody></table></div>
-<p class="note">신청자 보고 시트(2026-02-04, 신청자 2명)는 개인정보가 있어 이 페이지에 싣지 않았습니다.</p>
+<details><summary>파일 목록</summary><div class="tw"><table class=""><thead><tr><th>파일명</th><th>수정일</th></tr></thead><tbody><tr><td>★1. 체험단 계약서.hwp</td><td>2025-08-05</td></tr><tr><td>★2. 체험단 계약서_유튜브.hwp</td><td>2025-08-08</td></tr><tr><td>★3. 엘스코 체험단 계약서.hwp</td><td>2025-05-22</td></tr><tr><td>기본 체험단 신청폼.txt</td><td>2025-09-02</td></tr><tr><td>뷰스타 네이버폼.txt</td><td>2025-09-02</td></tr><tr><td>제안 메일 양식(25년8월4일 업데이트).txt</td><td>2025-09-02</td></tr><tr><td>인스타 디엠 양식.txt</td><td>2025-04-10</td></tr><tr><td>1. 체험단 포스팅 매뉴얼.docx</td><td>2025-06-16</td></tr><tr><td>2. 엘스코 포스팅 매뉴얼.docx</td><td>2025-08-27</td></tr><tr><td>블로그 포스팅 매뉴얼.pdf</td><td>2023-07-10</td></tr></tbody></table></div></details>
 </section>
 </main>
-<footer>뷰티블라썸의원 마케팅파트 · 작성 유병호 · 2026.11.03</footer>
+<footer>뷰티블라썸의원 마케팅파트 · 유병호 · 2026.11.03</footer>
 </body></html>
