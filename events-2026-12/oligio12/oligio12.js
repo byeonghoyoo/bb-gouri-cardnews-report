@@ -45,7 +45,7 @@ function setMoney(el,v){
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
 /* widow guard: the last two words (CJK: last three characters) stay together; the phone number never breaks */
-const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy]';
+const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.bb-ba__title,.bb-ba__note'; /* 2026-11-03: B/A card title and note */
 /* names that must never break inside (display only: wrapped in nowrap spans, the stored text is unchanged) */
 const KEEP=/(\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07|Beauty Blossom|Oligio XM|02-336-7511|\u30d3\u30e5\u30fc\u30c6\u30a3\u30fc\u30d6\u30ed\u30c3\u30b5\u30e0|\u30ab\u30ab\u30aa\u30c8\u30fc\u30af|Head Director|Chat on WhatsApp|\u0e1c\u0e39\u0e49\u0e2d\u0e33\u0e19\u0e27\u0e22\u0e01\u0e32\u0e23\u0e04\u0e25\u0e34\u0e19\u0e34\u0e01)/g; /* 2026-10-30b: card 5 only (these words do not occur on cards 1-4): JP clinic name, KakaoTalk, the director's title */
 function appendKept(el,s){
@@ -95,6 +95,8 @@ function fitLines(el,lines,min){
 function fit(){
  for(const el of document.querySelectorAll('.t-main'))fitTo(el,el.parentElement.clientWidth,.55);
  const phone=isPhone();
+ /* 2026-11-03 B/A card: the treatment name stays on one line on desktop and tablet */
+ for(const el of document.querySelectorAll('.bb-ba__title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.6);}
  for(const el of document.querySelectorAll('.grp-title')){
   el.classList.remove('wrap');
   if(phone){el.style.removeProperty('--fit');continue;}

@@ -409,3 +409,39 @@ html[data-locale=TH] .c5-title{line-height:1.32}
 }
 /* 2026-10-29: never split the phone number across lines (overseas locales use +82-2-336-7511) */
 a[data-link="phone"]{white-space:nowrap}
+
+/* ---------- 3장 · Before & After (2026-11-03 사용자 요청) ----------
+   승인된 bb-ba 컴포넌트(v4/_shared/ba/winter-ba-9/aptos-thread-lift/index.html)를 1080x1350 카드에 배치: 작은 'Before & After', 시술명,
+   1줄 정면 BEFORE > AFTER, 2줄 45도 BEFORE > AFTER, 사진 안 BEFORE/AFTER 꼬리표, 맨 아래 AI 생성 이미지 안내. 줄 라벨·효과 문구 없음.
+   색은 --ba-* 변수만(이 페이지의 자두빛·샴페인 골드). 사진은 받은 그대로(1:1, 필터·덮개 없음, 꼬리표만 위에). 화살표는 둥근 칩 위 글자 '›'. */
+.pba{--ba-bg-top:#5b2365;--ba-bg:#3a1442;--ba-bg-bottom:#200a28;--ba-ink:#fbf7fd;--ba-ink-soft:rgba(251,247,253,.7);
+  --ba-accent:#ecd4a4;--ba-accent-hi:#f5e6c6;--ba-accent-ink:#24102a;--ba-tag-bg:rgba(32,10,40,.62);--ba-tag-ink:#fbf7fd;
+  --ba-radius:calc(24*var(--px));--ba-gap:calc(48*var(--px));
+  --ba-deco:var(--f-serif);--ba-title:var(--f-body);--ba-label:var(--f-serif);--ba-sans:var(--f-body);
+  text-align:center;color:var(--ba-ink);
+  background:radial-gradient(90% 60% at 50% 0%,var(--ba-bg-top) 0%,var(--ba-bg) 60%,var(--ba-bg-bottom) 100%)}
+.pba .bb-ba__inner{position:absolute;inset:0;display:flex;flex-direction:column;padding:calc(74*var(--px)) calc(72*var(--px)) calc(54*var(--px))}
+.pba .bb-ba__eyebrow{font-family:var(--ba-deco);font-style:italic;font-weight:600;font-size:max(17px,calc(40*var(--px)));line-height:1.1;letter-spacing:.02em;color:var(--ba-accent-hi)}
+.pba .bb-ba__title{margin-top:calc(8*var(--px));font-family:var(--ba-title);font-weight:800;font-size:max(22px,calc(60*var(--px)*var(--fit,1)));line-height:1.22;letter-spacing:-.025em;white-space:nowrap;color:#fff}
+html[data-locale=TH] .pba .bb-ba__title{line-height:1.32}
+.pba .bb-ba__rows{margin-top:calc(42*var(--px));display:grid;gap:calc(34*var(--px))}
+.pba .bb-ba__pair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--ba-gap)}
+.pba .bb-ba__shot{position:relative;margin:0;aspect-ratio:1/1;border-radius:var(--ba-radius);overflow:hidden;background:var(--ba-bg-bottom)}
+.pba .bb-ba__shot img{display:block;width:100%;height:100%;object-fit:cover}
+.pba .bb-ba__tag{position:absolute;left:calc(14*var(--px));bottom:calc(14*var(--px));padding:.5em .78em .42em;border-radius:calc(10*var(--px));background:var(--ba-tag-bg);color:var(--ba-tag-ink);
+  font-family:var(--ba-label);font-weight:700;font-size:max(11px,calc(20*var(--px)));line-height:1;letter-spacing:.14em}
+.pba .bb-ba__tag--after{left:auto;right:calc(14*var(--px));background:var(--ba-accent);color:var(--ba-accent-ink)}
+.pba .bb-ba__arrow{position:absolute;left:50%;top:50%;z-index:1;width:calc(42*var(--px));height:calc(42*var(--px));border-radius:50%;transform:translate(-50%,-50%);display:grid;place-items:center;
+  background:var(--ba-accent);color:var(--ba-accent-ink);font-family:var(--ba-sans);font-weight:800;font-size:max(15px,calc(32*var(--px)));line-height:1;box-shadow:0 calc(4*var(--px)) calc(14*var(--px)) rgba(8,0,14,.4)}
+.pba .bb-ba__note{margin-top:auto;padding-top:calc(24*var(--px));font-family:var(--ba-sans);font-weight:500;font-size:max(11px,calc(21*var(--px)));line-height:1.5;color:var(--ba-ink-soft)}
+@container (max-width:640px){
+  .pba .bb-ba__inner{position:relative;inset:auto;padding:28px 18px 22px}
+  .pba .bb-ba__title{white-space:normal}
+  .pba .bb-ba__rows{margin-top:16px;gap:12px}
+  .pba .bb-ba__pair{gap:14px}
+  .pba .bb-ba__shot{border-radius:12px}
+  .pba .bb-ba__tag{left:6px;bottom:6px;padding:5px 7px 4px;border-radius:5px;letter-spacing:.1em}
+  .pba .bb-ba__tag--after{left:auto;right:6px}
+  .pba .bb-ba__arrow{width:26px;height:26px;font-size:17px}
+  .pba .bb-ba__note{margin-top:0;padding-top:16px}
+}

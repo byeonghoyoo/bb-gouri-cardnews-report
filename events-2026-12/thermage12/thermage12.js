@@ -1,4 +1,4 @@
-/* THM12 써마지 · 겨울 시즌 renderer + review-board protocol (aptos-* messages, same as FV12 and the other V4 pages).
+/* THM12 써마지 · 겨울 시즌 renderer + review-board protocol (aptos-* messages, same as FV12 and the other V4 pages). Six cards (3 = B/A).
    Every visible word comes from copy-data.js (names, details, badges and 만원 strings from v4/events/_data/pages.json via v4/thermage12/build-thermage12.cjs)
    and is edited in place through ../inline-edit.js. Display helpers only wrap text in spans; the stored text is never changed. */
 (()=>{'use strict';
@@ -56,7 +56,7 @@ function setHours(el,v){
  el.append(span('hd',m[1]),document.createTextNode(m[2]),span('ht',m[3]));
 }
 /* widow guard: the last two words stay together; kept names never break */
-const GUARD='.hook,.p-lead,.q-ans,.pt-d,.st-d,.gs-t,.inf-n,.inf-v,.c4-tip,.src,.cmp-title,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
+const GUARD='.hook,.p-lead,.q-ans,.pt-d,.st-d,.gs-t,.inf-n,.inf-v,.c4-tip [data-copy],.src,.cmp-title,.bb-ba__note,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
 const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|써마지 FLX|AccuREP™|고주파\(RF\)|고주파 열)/g;
 function appendKept(el,s){
  let last=0;
@@ -96,7 +96,7 @@ function fitLines(el,lines,min){
 function fit(){
  const phone=isPhone();
  for(const el of document.querySelectorAll('.hero-title'))fitTo(el,el.clientWidth,.6);
- for(const el of document.querySelectorAll('.p-title,.q-title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
+ for(const el of document.querySelectorAll('.p-title,.q-title,.bb-ba__title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
  for(const el of document.querySelectorAll('.pname .pl')){
   if(phone){el.style.removeProperty('--fit');continue;}
   fitTo(el,el.parentElement.clientWidth,.8);

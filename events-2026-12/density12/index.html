@@ -7,28 +7,29 @@
   <title>덴서티 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
-  <link rel="stylesheet" href="density12.css?v=20261102-density12a">
-  <script src="copy-data.js?v=20261102-density12a" defer></script>
-  <script src="../inline-edit.js?v=20261102-density12a" defer></script>
-  <script src="density12.js?v=20261102-density12a" defer></script>
+  <link rel="stylesheet" href="density12.css?v=20261102-density12b">
+  <script src="copy-data.js?v=20261102-density12b" defer></script>
+  <script src="../inline-edit.js?v=20261102-density12b" defer></script>
+  <script src="density12.js?v=20261102-density12b" defer></script>
 </head>
 <body>
 <!-- DEN12 덴서티 · 겨울 시즌 (Korean first). Team colour pin (sheet I38): Burnt Orange #EC6426, Golden Yellow #F8A91F, Apricot Cream #FDE3CF, Dark Chestnut #632713.
      The pin's four labelled swatch cards (name top-left, asterisk top-right, code bottom-left) become the four Density tips:
-     Burnt Orange = 클래식팁, Golden Yellow = 하이팁, Dark Chestnut = 알파팁, Apricot Cream = 부스트 팁. Winter only as warm light, a chestnut knit and small asterisk sparks.
-     Seven 1080x1350 cards (section[data-card="1..7"]); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
+     Burnt Orange = 클래식팁, Golden Yellow = 하이팁, Dark Chestnut = 알파팁, Apricot Cream = 부스트 팁. Winter only as warm light, a chestnut knit and small asterisk sparks. Every picture (icons, asterisks, sparks, seal, plate, knit, skin
+     diagram) is a generated image (v4/density12/gen, user rule 2026-11-03); devices, tips and the handpiece are real cut-outs; no inline SVG.
+     Eight 1080x1350 cards (section[data-card="1..8"], card 5 = Before & After); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
      Price rows: data-price-row="11_lifting:<sheet row>" with [data-price-list] / [data-price-sale]; the strings come from v4/events/_data/pages.json via v4/density12/build-density12.cjs. -->
 <main class="dn">
   <div class="sheet">
 
-    <!-- 1 / 7 : hero (generated model photo, v4/density12/gen/hero-v1.json); title = page name, launch line = sheet header B65, teaser = sheet row 66 -->
+    <!-- 1 / 8 : hero (generated model photo, v4/density12/gen/hero-v1.json); title = page name, launch line = sheet header B65, teaser = sheet row 66 -->
     <section class="card c1" data-card="1" aria-labelledby="dn-t1">
       <img class="c1-photo" src="assets/hero.jpg?v=a" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
-      <i class="ast ast-gold k1" aria-hidden="true"></i><i class="ast ast-cream k2" aria-hidden="true"></i><i class="ast ast-gold k3" aria-hidden="true"></i>
+      <img class="ast k1" src="assets/dec/ast-gold.webp" alt="" aria-hidden="true"><img class="ast k2" src="assets/dec/ast-cream.webp" alt="" aria-hidden="true"><img class="ast k3" src="assets/dec/ast-gold.webp" alt="" aria-hidden="true">
       <header class="c1-top"><span class="brand" data-copy="dn_brand"></span><span class="period"><span data-copy="dn_period"></span></span></header>
       <div class="stack">
         <div class="sw sw-orange">
-          <p class="sw-row"><span class="kicker-latin" data-copy="dn_kicker"></span><i class="ast-mark" aria-hidden="true"></i></p>
+          <p class="sw-row"><span class="kicker-latin" data-copy="dn_kicker"></span><img class="ast-mark" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"></p>
           <h1 class="hero-title" id="dn-t1" data-copy="dn_title"></h1>
           <p class="launch" data-copy="dn_launch"></p>
         </div>
@@ -38,15 +39,14 @@
           <p class="tz-main"><span class="tz-price money" data-copy="dn_hero_price"></span><span class="tz-vat" data-copy="dn_vat"></span></p>
         </div>
       </div>
-      <div class="seal s-hero"><svg class="seal-art" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><path d="M184.0 100.0L187.0 103.0L188.7 106.2L188.5 109.3L186.2 112.1L182.7 114.6L179.2 116.8L176.7 119.1L176.0 121.8L177.0 125.0L178.9 128.7L180.7 132.6L181.3 136.2L179.9 139.0L176.9 140.9L172.7 142.0L168.6 142.9L165.5 144.2L164.0 146.5L163.8 149.8L164.3 154.0L164.7 158.3L164.0 161.8L161.8 164.0L158.3 164.7L154.0 164.3L149.8 163.8L146.5 164.0L144.2 165.5L142.9 168.6L142.0 172.7L140.9 176.9L139.0 179.9L136.2 181.3L132.6 180.7L128.7 178.9L125.0 177.0L121.8 176.0L119.1 176.7L116.8 179.2L114.6 182.7L112.1 186.2L109.3 188.5L106.2 188.7L103.0 187.0L100.0 184.0L97.2 180.9L94.5 178.9L91.7 178.6L88.7 180.2L85.4 182.7L81.9 185.2L78.5 186.3L75.5 185.5L73.1 182.8L71.3 178.9L69.7 175.0L67.8 172.2L65.3 171.1L62.0 171.5L58.0 172.7L53.9 173.8L50.3 173.7L47.7 172.0L46.4 168.6L46.0 164.3L45.8 160.2L45.1 156.9L43.1 154.9L39.8 154.2L35.7 154.0L31.4 153.6L28.0 152.3L26.3 149.7L26.2 146.1L27.3 142.0L28.5 138.0L28.9 134.7L27.8 132.2L25.0 130.3L21.1 128.7L17.2 126.9L14.5 124.5L13.7 121.5L14.8 118.1L17.3 114.6L19.8 111.3L21.4 108.3L21.1 105.5L19.1 102.8L16.0 100.0L13.0 97.0L11.3 93.8L11.5 90.7L13.8 87.9L17.3 85.4L20.8 83.2L23.3 80.9L24.0 78.2L23.0 75.0L21.1 71.3L19.3 67.4L18.7 63.8L20.1 61.0L23.1 59.1L27.3 58.0L31.4 57.1L34.5 55.8L36.0 53.5L36.2 50.2L35.7 46.0L35.3 41.7L36.0 38.2L38.2 36.0L41.7 35.3L46.0 35.7L50.2 36.2L53.5 36.0L55.8 34.5L57.1 31.4L58.0 27.3L59.1 23.1L61.0 20.1L63.8 18.7L67.4 19.3L71.3 21.1L75.0 23.0L78.2 24.0L80.9 23.3L83.2 20.8L85.4 17.3L87.9 13.8L90.7 11.5L93.8 11.3L97.0 13.0L100.0 16.0L102.8 19.1L105.5 21.1L108.3 21.4L111.3 19.8L114.6 17.3L118.1 14.8L121.5 13.7L124.5 14.5L126.9 17.2L128.7 21.1L130.3 25.0L132.2 27.8L134.7 28.9L138.0 28.5L142.0 27.3L146.1 26.2L149.7 26.3L152.3 28.0L153.6 31.4L154.0 35.7L154.2 39.8L154.9 43.1L156.9 45.1L160.2 45.8L164.3 46.0L168.6 46.4L172.0 47.7L173.7 50.3L173.8 53.9L172.7 58.0L171.5 62.0L171.1 65.3L172.2 67.8L175.0 69.7L178.9 71.3L182.8 73.1L185.5 75.5L186.3 78.5L185.2 81.9L182.7 85.4L180.2 88.7L178.6 91.7L178.9 94.5L180.9 97.2Z" fill="#632713" stroke="#f8a91f" stroke-width="2.4"/><circle cx="100" cy="100" r="68" fill="#fde3cf" stroke="#f8a91f" stroke-width="3"/><circle cx="100" cy="100" r="61" fill="none" stroke="#a93f0f" stroke-width="1.4" stroke-dasharray="2.6 3.6" opacity=".7"/></svg><p class="seal-tx"><span class="sl s1" data-copy="dn_seal1"></span><span class="sl s2" data-copy="dn_seal2"></span><span class="sl s3" data-copy="dn_seal3"></span></p></div>
-      <p class="c1-contact"><svg class="ph-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5l3 3.1-1.8 2.6a13.5 13.5 0 0 0 7 7l2.6-1.8 3.1 3-1.7 3.1c-.4.7-1.2 1-2 .9C10 20.7 3.3 14 2.6 7.2c-.1-.8.2-1.6.9-2z" fill="currentColor"/></svg><span class="contact" data-copy="dn_contact"></span></p>
+      <div class="seal s-hero"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="dn_seal1"></span><span class="sl s2" data-copy="dn_seal2"></span><span class="sl s3" data-copy="dn_seal3"></span></p></div>
+      <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
     </section>
 
-    <!-- 2 / 7 : prices 2-1, sheet rows 66-71 of 11_lifting B66:K81 in sheet order: product 66 (options 66 / 67 / 68) and product 69 (options 69 / 70 / 71);
+    <!-- 2 / 8 : prices 2-1, sheet rows 66-71 of 11_lifting B66:K81 in sheet order: product 66 (options 66 / 67 / 68) and product 69 (options 69 / 70 / 71);
          tile colours follow the pin swatches (Burnt Orange 클래식팁, Golden Yellow 하이팁(아이), Dark Chestnut 알파팁); tip photos: Jeisys official tip image -->
     <section class="card cp c2" data-card="2" aria-labelledby="dn-t2">
-      <div class="glow" aria-hidden="true"></div>
-      <i class="ast ast-orange k4" aria-hidden="true"></i><i class="ast ast-gold k5" aria-hidden="true"></i>
+      <img class="ast k4" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><img class="ast k5" src="assets/dec/ast-gold.webp" alt="" aria-hidden="true">
       <div class="cp-in">
         <header class="top"><span class="brand" data-copy="dn_brand"></span><span class="period"><span data-copy="dn_period"></span></span></header>
         <div class="cp-head">
@@ -55,7 +55,7 @@
             <h2 class="p-title" id="dn-t2"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
             <p class="p-lead" data-copy="dn_p1_lead"></p>
           </div>
-          <figure class="plate"><span class="plate-bg" aria-hidden="true"></span><img class="dev" src="assets/density.webp" data-alt="dn_alt_dev" alt="" width="1000" height="1000"></figure>
+          <figure class="plate"><img class="plate-bg" src="assets/dec/plate.webp" alt="" aria-hidden="true"><img class="dev" src="assets/density.webp" data-alt="dn_alt_dev" alt="" width="1000" height="1000"></figure>
         </div>
         <div class="pgroups">
           <div class="pgroup">
@@ -76,18 +76,18 @@
           </div>
         </div>
         <div class="c2-foot">
-          <p class="eye-note"><i class="ast-mark" aria-hidden="true"></i><span data-copy="dn_p1_eye"></span></p>
+          <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
           <p class="vat"><span data-copy="dn_vat"></span></p>
         </div>
       </div>
     </section>
 
-    <!-- 3 / 7 : prices 2-2, sheet rows 72-76 (the sheet's note on row 72: one separate card for the Boost launch); row 72's name -> card title;
+    <!-- 3 / 8 : prices 2-2, sheet rows 72-76 (the sheet's note on row 72: one separate card for the Boost launch); row 72's name -> card title;
          boost tip: cut-out from the Jeisys Medical newsroom photo (2026-09, v3/products/density-tip-boost.webp), shown like the card-2 tips
          (Apricot Cream swatch tile, the same 92px contain box, no frame); dots show the tips in each row (decorative) -->
     <section class="card cp c3" data-card="3" aria-labelledby="dn-t3">
       <div class="knit" aria-hidden="true"></div>
-      <i class="ast ast-gold k6" aria-hidden="true"></i><i class="ast ast-cream k7" aria-hidden="true"></i>
+      <img class="ast k6" src="assets/dec/ast-gold.webp" alt="" aria-hidden="true"><img class="ast k7" src="assets/dec/ast-cream.webp" alt="" aria-hidden="true">
       <div class="cp-in">
         <header class="top"><span class="brand" data-copy="dn_brand"></span><span class="period"><span data-copy="dn_period"></span></span></header>
         <div class="b-head">
@@ -110,16 +110,15 @@
           </ul>
         </div>
         <div class="c3-foot">
-          <div class="seal s-board"><svg class="seal-art" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="92" fill="#f8a91f"/><circle cx="100" cy="100" r="80" fill="#fde3cf" stroke="#632713" stroke-width="2.2"/><circle cx="100" cy="100" r="72" fill="none" stroke="#a93f0f" stroke-width="1.4" stroke-dasharray="2.6 3.6" opacity=".7"/></svg><p class="seal-tx"><span class="sl s1" data-copy="dn_seal1"></span><span class="sl s2" data-copy="dn_seal2"></span><span class="sl s3" data-copy="dn_seal3"></span></p></div>
+          <div class="seal s-board"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="dn_seal1"></span><span class="sl s2" data-copy="dn_seal2"></span><span class="sl s3" data-copy="dn_seal3"></span></p></div>
           <p class="vat"><span data-copy="dn_vat"></span></p>
         </div>
       </div>
     </section>
 
-    <!-- 4 / 7 : prices 2-3, sheet rows 77-80: group 덴서티지 (77 name -> group name / sub / tag, 78) and group 울서티 (79, 80); booking line -->
+    <!-- 4 / 8 : prices 2-3, sheet rows 77-80: group 덴서티지 (77 name -> group name / sub / tag, 78) and group 울서티 (79, 80); booking line -->
     <section class="card cp c4" data-card="4" aria-labelledby="dn-t4">
-      <div class="glow" aria-hidden="true"></div>
-      <i class="ast ast-orange k8" aria-hidden="true"></i><i class="ast ast-cream k9" aria-hidden="true"></i>
+      <img class="ast k8" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><img class="ast k9" src="assets/dec/ast-cream.webp" alt="" aria-hidden="true">
       <div class="cp-in">
         <header class="top"><span class="brand" data-copy="dn_brand"></span><span class="period"><span data-copy="dn_period"></span></span></header>
         <div class="c4-head">
@@ -136,8 +135,8 @@
               </div>
               <div class="pair">
                 <figure class="pdev"><span class="pd-c"><img src="assets/density.webp" data-alt="dn_alt_dev" alt="" width="1000" height="1000"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
-                <i class="plus" aria-hidden="true"></i>
-                <figure class="pdev"><span class="pd-c pd-icon"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M9 17c4.5-3.6 9.6-3.6 14 0s9.6 3.6 14 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M9 25c4.5-3.6 9.6-3.6 14 0s9.6 3.6 14 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".75"/><path d="M9 33c4.5-3.6 9.6-3.6 14 0s9.6 3.6 14 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".5"/></svg></span><figcaption data-copy="dn_c_pair_lz"></figcaption></figure>
+                <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                <figure class="pdev"><span class="pd-c pd-icon"><img class="pd-ico" src="assets/icons/ic-waves.webp" alt="" aria-hidden="true"></span><figcaption data-copy="dn_c_pair_lz"></figcaption></figure>
               </div>
             </div>
             <ul class="prows">
@@ -153,7 +152,7 @@
               </div>
               <div class="pair">
                 <figure class="pdev"><span class="pd-c"><img src="assets/ultherapy-prime.webp" data-alt="dn_alt_dev_ut" alt="" width="1000" height="1000"></span><figcaption data-copy="dn_c_pair_ut"></figcaption></figure>
-                <i class="plus" aria-hidden="true"></i>
+                <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
                 <figure class="pdev"><span class="pd-c"><img src="assets/density.webp" data-alt="dn_alt_dev" alt="" width="1000" height="1000"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
               </div>
             </div>
@@ -166,14 +165,43 @@
         <p class="vat"><span data-copy="dn_vat"></span></p>
         <div class="bk-line">
           <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr2" alt="" width="424" height="424"></figure>
-          <div class="bkl-tx"><span class="bkl-pill" data-copy="dn_bk_label"></span><p class="bkl-msg" data-copy="dn_bk_text"></p><p class="bkl-phone"><svg class="ph-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5l3 3.1-1.8 2.6a13.5 13.5 0 0 0 7 7l2.6-1.8 3.1 3-1.7 3.1c-.4.7-1.2 1-2 .9C10 20.7 3.3 14 2.6 7.2c-.1-.8.2-1.6.9-2z" fill="currentColor"/></svg><span class="contact" data-copy="dn_contact"></span></p></div>
+          <div class="bkl-tx"><span class="bkl-pill" data-copy="dn_bk_label"></span><p class="bkl-msg" data-copy="dn_bk_text"></p><p class="bkl-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p></div>
         </div>
       </div>
     </section>
 
-    <!-- 5 / 7 : what the device is (facts: v4/density12/REFERENCE_AND_PLAN.md), the four tips as the pin's four swatches -->
-    <section class="card c5" data-card="5" aria-labelledby="dn-t5">
-      <i class="ast ast-orange k10" aria-hidden="true"></i><i class="ast ast-gold k11" aria-hidden="true"></i>
+    <!-- 5 / 8 : Before & After, the approved bb-ba component (v4/_shared/ba/BA_SECTION.md, v4/_shared/ba/winter-ba-9/density/index.html), page colours through --ba-*;
+         photos copied unchanged from v4/_shared/ba/winter-ba-9/density/ (AI-generated, eyes blurred), no row labels, no effect wording -->
+    <section class="card cba bb-ba" data-card="5" aria-labelledby="dn-tba">
+      <div class="knit" aria-hidden="true"></div>
+      <img class="ast k14" src="assets/dec/spark-trio.webp" alt="" aria-hidden="true"><img class="flake fl1" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true">
+      <div class="cba-in bb-ba__inner">
+        <header class="top solo"><span class="brand" data-copy="dn_brand"></span></header>
+        <p class="bb-ba__eyebrow" data-copy="dn_ba_kicker"></p>
+        <h2 class="bb-ba__title" id="dn-tba" data-copy="dn_ba_title"></h2>
+        <div class="bb-ba__rows">
+          <div class="bb-ba__row">
+            <div class="bb-ba__pair">
+              <figure class="bb-ba__shot"><img src="assets/ba/density-front-before.jpg" data-alt="dn_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="dn_ba_tag_before"></figcaption></figure>
+              <span class="bb-ba__arrow" aria-hidden="true" data-copy="dn_ba_arrow"></span>
+              <figure class="bb-ba__shot"><img src="assets/ba/density-front-after.jpg" data-alt="dn_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="dn_ba_tag_after"></figcaption></figure>
+            </div>
+          </div>
+          <div class="bb-ba__row">
+            <div class="bb-ba__pair">
+              <figure class="bb-ba__shot"><img src="assets/ba/density-45-before.jpg" data-alt="dn_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="dn_ba_tag_before"></figcaption></figure>
+              <span class="bb-ba__arrow" aria-hidden="true" data-copy="dn_ba_arrow"></span>
+              <figure class="bb-ba__shot"><img src="assets/ba/density-45-after.jpg" data-alt="dn_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="dn_ba_tag_after"></figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <p class="bb-ba__note" data-copy="dn_ba_note"></p>
+      </div>
+    </section>
+
+    <!-- 6 / 8 : what the device is (facts: v4/density12/REFERENCE_AND_PLAN.md), the four tips as the pin's four swatches -->
+    <section class="card c5" data-card="6" aria-labelledby="dn-t5">
+      <img class="ast k10" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><img class="ast k11" src="assets/dec/ast-gold.webp" alt="" aria-hidden="true">
       <div class="c5-in">
         <header class="top solo"><span class="brand" data-copy="dn_brand"></span></header>
         <div class="q-row">
@@ -182,36 +210,13 @@
             <h2 class="q-title" id="dn-t5" data-copy="dn_c5_q"></h2>
             <p class="q-ans" data-copy="dn_c5_a"></p>
           </div>
-          <figure class="plate plate-5"><span class="plate-bg" aria-hidden="true"></span><img class="dev" src="assets/density.webp" data-alt="dn_alt_dev" alt="" width="1000" height="1000"></figure>
+          <figure class="plate plate-5"><img class="plate-bg" src="assets/dec/plate.webp" alt="" aria-hidden="true"><img class="dev" src="assets/density.webp" data-alt="dn_alt_dev" alt="" width="1000" height="1000"></figure>
         </div>
         <div class="c5-mid">
           <figure class="layers">
-            <svg class="layers-art" viewBox="0 0 460 470" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="dn-derm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbe0cf"/><stop offset="1" stop-color="#f6cdb5"/></linearGradient>
-                <linearGradient id="dn-fat" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdf0d8"/><stop offset="1" stop-color="#fbe3b8"/></linearGradient>
-                <radialGradient id="dn-mono" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset=".35" stop-color="#ec6426" stop-opacity=".85"/><stop offset="1" stop-color="#ec6426" stop-opacity="0"/></radialGradient>
-                <radialGradient id="dn-bi" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset=".4" stop-color="#f8a91f" stop-opacity=".9"/><stop offset="1" stop-color="#f8a91f" stop-opacity="0"/></radialGradient>
-                <clipPath id="dn-skin"><rect x="20" y="150" width="420" height="300" rx="24"/></clipPath>
-              </defs>
-              <g clip-path="url(#dn-skin)">
-                <rect x="20" y="150" width="420" height="16" fill="#fff6ee"/>
-                <rect x="20" y="166" width="420" height="160" fill="url(#dn-derm)"/>
-                <rect x="20" y="326" width="420" height="124" fill="url(#dn-fat)"/>
-                <g fill="none" stroke="#a93f0f" stroke-opacity=".14" stroke-width="2"><circle cx="58" cy="356" r="22"/><circle cx="106" cy="380" r="24"/><circle cx="158" cy="352" r="20"/><circle cx="212" cy="382" r="25"/><circle cx="266" cy="354" r="21"/><circle cx="320" cy="384" r="24"/><circle cx="376" cy="356" r="22"/><circle cx="420" cy="386" r="20"/><circle cx="80" cy="428" r="22"/><circle cx="140" cy="434" r="20"/><circle cx="252" cy="432" r="22"/><circle cx="352" cy="434" r="21"/></g>
-                <g fill="none" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.6"><path d="M20 200c40 8 80-8 120 0s80 8 120 0 80-8 120 0 40 6 60 0"/><path d="M20 290c40-6 82 6 122 0s78-8 118 0 82 6 122 0 40-4 58 0"/></g>
-                <ellipse cx="230" cy="278" rx="132" ry="74" fill="url(#dn-mono)"/>
-                <ellipse cx="230" cy="190" rx="118" ry="24" fill="url(#dn-bi)"/>
-                <path d="M150 182q20 -14 40 0t40 0 40 0 40 0" fill="none" stroke="#a93f0f" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
-              </g>
-              <rect x="20" y="150" width="420" height="300" rx="24" fill="none" stroke="#a93f0f" stroke-opacity=".4" stroke-width="2"/>
-              <rect x="222" y="16" width="16" height="30" rx="6" fill="#632713"/>
-              <rect x="168" y="40" width="124" height="80" rx="24" fill="#fff6ee" stroke="#632713" stroke-width="2.5"/>
-              <rect x="182" y="116" width="96" height="30" rx="8" fill="#e8c9a8" stroke="#632713" stroke-width="2.5"/>
-              <rect x="190" y="142" width="80" height="8" rx="3" fill="#a93f0f"/>
-              <path d="M200 66h60M200 86h36" stroke="#a93f0f" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            <span class="ll l-cool"><svg class="ll-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-copy="dn_c5_d_cool"></span></span>
+            <img class="layers-art" src="assets/c6/layers.webp" alt="" aria-hidden="true" width="1000" height="1000">
+            <img class="layers-hp" src="assets/c6/handpiece.webp" data-alt="dn_alt_hp" alt="" width="360" height="520">
+            <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="dn_c5_d_cool"></span></span>
             <span class="ll l-bi" data-copy="dn_c5_d_bi"></span>
             <span class="ll l-mono" data-copy="dn_c5_d_mono"></span>
           </figure>
@@ -225,19 +230,19 @@
         <div class="tips">
           <h3 class="tips-t" data-copy="dn_c5_tips_t"></h3>
           <ul class="tips-row">
-            <li class="tp tp-classic"><p class="tp-top"><span class="tp-n" data-copy="dn_c5_t1_n"></span><i class="ast-mark" aria-hidden="true"></i></p><p class="tp-e" data-copy="dn_c5_t1_e"></p></li>
-            <li class="tp tp-high"><p class="tp-top"><span class="tp-n" data-copy="dn_c5_t2_n"></span><i class="ast-mark" aria-hidden="true"></i></p><p class="tp-e" data-copy="dn_c5_t2_e"></p></li>
-            <li class="tp tp-alpha"><p class="tp-top"><span class="tp-n" data-copy="dn_c5_t3_n"></span><i class="ast-mark" aria-hidden="true"></i></p><p class="tp-x" data-copy="dn_c5_t3_x"></p><p class="tp-e" data-copy="dn_c5_t3_e"></p></li>
-            <li class="tp tp-boost"><p class="tp-top"><span class="tp-n" data-copy="dn_c5_t4_n"></span><i class="ast-mark" aria-hidden="true"></i></p><p class="tp-x" data-copy="dn_c5_t4_x"></p><p class="tp-e" data-copy="dn_c5_t4_e"></p></li>
+            <li class="tp tp-classic"><p class="tp-top"><span class="tp-n" data-copy="dn_c5_t1_n"></span><img class="ast-mark" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"></p><p class="tp-e" data-copy="dn_c5_t1_e"></p></li>
+            <li class="tp tp-high"><p class="tp-top"><span class="tp-n" data-copy="dn_c5_t2_n"></span><img class="ast-mark" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"></p><p class="tp-e" data-copy="dn_c5_t2_e"></p></li>
+            <li class="tp tp-alpha"><p class="tp-top"><span class="tp-n" data-copy="dn_c5_t3_n"></span><img class="ast-mark" src="assets/dec/ast-gold.webp" alt="" aria-hidden="true"></p><p class="tp-x" data-copy="dn_c5_t3_x"></p><p class="tp-e" data-copy="dn_c5_t3_e"></p></li>
+            <li class="tp tp-boost"><p class="tp-top"><span class="tp-n" data-copy="dn_c5_t4_n"></span><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"></p><p class="tp-x" data-copy="dn_c5_t4_x"></p><p class="tp-e" data-copy="dn_c5_t4_e"></p></li>
           </ul>
         </div>
         <p class="src" data-copy="dn_c5_src"></p>
       </div>
     </section>
 
-    <!-- 6 / 7 : the treatment day (who it is for, four steps, treatment info) on Burnt Orange -->
-    <section class="card c6" data-card="6" aria-labelledby="dn-t6">
-      <i class="ast ast-cream k12" aria-hidden="true"></i><i class="ast ast-gold k13" aria-hidden="true"></i>
+    <!-- 7 / 8 : the treatment day (who it is for, four steps, treatment info) on Burnt Orange -->
+    <section class="card c6" data-card="7" aria-labelledby="dn-t6">
+      <img class="ast k12" src="assets/dec/ast-cream.webp" alt="" aria-hidden="true"><img class="ast k13" src="assets/dec/ast-gold.webp" alt="" aria-hidden="true">
       <div class="c6-in">
         <header class="top solo"><span class="brand" data-copy="dn_brand"></span></header>
         <div class="c6-headrow">
@@ -246,7 +251,7 @@
             <h2 class="q-title" id="dn-t6" data-copy="dn_c6_q"></h2>
             <p class="q-ans" data-copy="dn_c6_a"></p>
           </div>
-          <figure class="c6-photo"><img src="assets/model-c6.jpg?v=a" data-alt="dn_alt_c6" alt="" width="600" height="600"></figure>
+          <figure class="c6-photo"><img src="assets/model-c7.jpg?v=b" data-alt="dn_alt_c6" alt="" width="600" height="600"></figure>
         </div>
         <div class="who">
           <p class="who-lbl" data-copy="dn_c6_who_lbl"></p>
@@ -257,23 +262,23 @@
           </ul>
         </div>
         <ol class="steps">
-          <li class="st"><span class="st-num" aria-hidden="true"></span><span class="st-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 5.5h16v10H9l-5 4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9.5h8M8 12.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s1_t"></h3><p class="st-d" data-copy="dn_c6_s1_d"></p></div></li>
-          <li class="st"><span class="st-num" aria-hidden="true"></span><span class="st-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 6.2l-2-2M12 6.2l2-2M12 17.8l-2 2M12 17.8l2 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s2_t"></h3><p class="st-d" data-copy="dn_c6_s2_d"></p></div></li>
-          <li class="st"><span class="st-num" aria-hidden="true"></span><span class="st-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4.5h10a2 2 0 0 1 2 2V12a7 7 0 0 1-14 0V6.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 10.5h.01M14.5 10.5h.01M9.5 14.2c1.4 1.2 3.6 1.2 5 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s3_t"></h3><p class="st-d" data-copy="dn_c6_s3_d"></p></div></li>
-          <li class="st"><span class="st-num" aria-hidden="true"></span><span class="st-ico" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s4_t"></h3><p class="st-d" data-copy="dn_c6_s4_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s1_t"></h3><p class="st-d" data-copy="dn_c6_s1_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s2_t"></h3><p class="st-d" data-copy="dn_c6_s2_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-mask.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s3_t"></h3><p class="st-d" data-copy="dn_c6_s3_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-heart.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s4_t"></h3><p class="st-d" data-copy="dn_c6_s4_d"></p></div></li>
         </ol>
         <ul class="infos">
           <li class="inf"><span class="inf-k" data-copy="dn_c6_i1_k"></span><span class="inf-v" data-copy="dn_c6_i1_v"></span><span class="inf-n" data-copy="dn_c6_i1_n"></span></li>
           <li class="inf"><span class="inf-k" data-copy="dn_c6_i2_k"></span><span class="inf-v" data-copy="dn_c6_i2_v"></span><span class="inf-n" data-copy="dn_c6_i2_n"></span></li>
           <li class="inf"><span class="inf-k" data-copy="dn_c6_i3_k"></span><span class="inf-v" data-copy="dn_c6_i3_v"></span><span class="inf-n" data-copy="dn_c6_i3_n"></span></li>
         </ul>
-        <p class="c6-tip"><i class="tip-ast" aria-hidden="true"></i><span data-copy="dn_c6_tip"></span></p>
+        <p class="c6-tip"><img class="tip-ast" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"><span data-copy="dn_c6_tip"></span></p>
         <p class="src" data-copy="dn_c6_src"></p>
       </div>
     </section>
 
-    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12 / thermage12 / sofwave12) in this page's chestnut / cream / gold tone -->
-    <section class="card c7" data-card="7" aria-labelledby="dn-t7">
+    <!-- 8 / 8 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12 / thermage12 / sofwave12) in this page's chestnut / cream / gold tone -->
+    <section class="card c7" data-card="8" aria-labelledby="dn-t7">
       <div class="knit" aria-hidden="true"></div>
       <div class="cx-in">
         <header class="top solo"><span class="brand" data-copy="dn_brand"></span></header>
@@ -287,7 +292,6 @@
               </div>
               <figure class="dr">
                 <figcaption class="dr-tx"><span class="dr-name" data-copy="dn_ab_dr_name"></span><span class="dr-quote" data-copy="dn_ab_dr_quote"></span></figcaption>
-                <span class="dr-glow" aria-hidden="true"></span>
                 <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="dn_alt_director" alt="" width="640" height="640">
               </figure>
             </div>
@@ -297,10 +301,10 @@
               <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="dn_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph3"></figcaption></figure>
             </div>
             <ul class="ab-strengths">
-              <li><span class="sh"><span class="si" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 3l7 3v5.5c0 4.3-2.9 7.7-7 9.5-4.1-1.8-7-5.2-7-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.6 12.2l2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="at" data-copy="dn_ab_s1_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s1_d"></span></li>
-              <li><span class="sh"><span class="si" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 5.5h16v10H9l-5 4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 9.5h8M8 12.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="at" data-copy="dn_ab_s2_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s2_d"></span></li>
-              <li><span class="sh"><span class="si" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="at" data-copy="dn_ab_s3_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s3_d"></span></li>
-              <li><span class="sh"><span class="si" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5s-1.2 6.1-3.8 8.5c-2.6-2.4-3.8-5.2-3.8-8.5S9.4 5.9 12 3.5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><span class="at" data-copy="dn_ab_s4_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s4_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s1_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s1_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s2_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s2_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s3_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s3_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s4_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s4_d"></span></li>
             </ul>
           </div>
           <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
@@ -315,7 +319,7 @@
                 </picture>
               </figure>
               <div class="way">
-                <svg class="way-pin" viewBox="0 0 40 50" aria-hidden="true" focusable="false"><path d="M20 2C10.1 2 2 9.9 2 19.6 2 32.8 20 48 20 48S38 32.8 38 19.6C38 9.9 29.9 2 20 2z" stroke-width="2.4"/><circle cx="20" cy="19.5" r="6.5"/></svg>
+                <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
                 <div class="way-tx">
                   <p class="way-top"><span class="way-st" data-copy="dn_ab_way_station"></span><span class="way-line" data-copy="dn_ab_way_line"></span></p>
                   <p class="way-addr"><span data-copy="dn_ab_way_addr"></span><span class="way-desk"><span data-copy="dn_ab_way_desk"></span></span></p>
@@ -336,7 +340,7 @@
               <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr" alt="" width="424" height="424"><figcaption data-copy="dn_ab_qr"></figcaption></figure>
               <div class="bk-text">
                 <p class="bk-links"><a data-link="booking"><span data-copy="dn_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="dn_ab_bk_kakao"></span></a></span></p>
-                <p class="bk-phone"><svg class="ph-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5l3 3.1-1.8 2.6a13.5 13.5 0 0 0 7 7l2.6-1.8 3.1 3-1.7 3.1c-.4.7-1.2 1-2 .9C10 20.7 3.3 14 2.6 7.2c-.1-.8.2-1.6.9-2z" fill="currentColor"/></svg><a data-link="phone"><span data-copy="dn_ab_phone"></span></a></p>
+                <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="dn_ab_phone"></span></a></p>
               </div>
             </div>
             <span class="bk-mark" data-copy="dn_brand"></span>
@@ -352,6 +356,7 @@
         <li><span class="dot" aria-hidden="true"></span><span data-copy="dn_cond1"></span></li>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="dn_cond2"></span></li>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="dn_cond3"></span></li>
+        <li><span class="dot" aria-hidden="true"></span><span data-copy="dn_cond_ba"></span></li>
         <li data-optional-group><span class="dot" aria-hidden="true"></span><span data-copy="dn_cond4" data-optional data-placeholder="추가 안내 (예: 대상·조건)"></span></li>
       </ul>
     </section>

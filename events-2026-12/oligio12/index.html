@@ -6,18 +6,18 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>oligio xm · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Outfit:wght@500;600;700;800&amp;family=Quicksand:wght@600;700&amp;display=swap">
-  <link rel="stylesheet" href="oligio12.css?v=20261029-oligio12l">
-  <script src="copy-data.js?v=20261029-oligio12l" defer></script>
-  <script src="../inline-edit.js?v=20261029-oligio12l" defer></script>
-  <script src="oligio12.js?v=20261029-oligio12l" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Outfit:wght@500;600;700;800&amp;family=Quicksand:wght@600;700&amp;family=Cormorant+Garamond:ital,wght@1,600&amp;display=swap">
+  <link rel="stylesheet" href="oligio12.css?v=20261029-oligio12m">
+  <script src="copy-data.js?v=20261029-oligio12m" defer></script>
+  <script src="../inline-edit.js?v=20261029-oligio12m" defer></script>
+  <script src="oligio12.js?v=20261029-oligio12m" defer></script>
 </head>
 <body>
 <main class="ox">
   <div class="sheet">
 
     <!-- 1 / 2 : poster -->
-    <section class="p1" aria-labelledby="ox-t1">
+    <section class="p1" data-card="1" aria-labelledby="ox-t1">
       <img class="p1-photo" src="assets/hero.jpg?v=b" data-alt="ox_alt_hero" alt="" width="1080" height="1350">
       <div class="p1-light" aria-hidden="true"></div>
       <i class="beam b1" aria-hidden="true"></i>
@@ -49,7 +49,7 @@
     </section>
 
     <!-- 2 / 2 : price list -->
-    <section class="p2" aria-labelledby="ox-t2">
+    <section class="p2" data-card="2" aria-labelledby="ox-t2">
       <div class="snow" aria-hidden="true"></div>
       <span class="mw m-light2" data-kind="light" aria-hidden="true"><img class="miri" src="assets/miri/ice_light.webp" alt=""></span>
       <div class="p2-in">
@@ -130,8 +130,36 @@
       </div>
     </section>
 
+    <!-- 3 / 6 : Before & After (2026-11-03 user request). The approved bb-ba component of v4/_shared/ba/winter-ba-9/oligio-xm:
+         the four photos are byte copies in assets/ba (row 1 front, row 2 45 degrees), colours only through the --ba-* variables (this page's
+         ice-night palette), the arrow is the text '›'. No row labels, no effect wording; the note says the photos are AI-generated. -->
+    <section class="pba bb-ba" data-card="3" aria-labelledby="ox-tba">
+      <div class="bb-ba__inner">
+        <header class="top2"><span class="brand" data-copy="ox_brand"></span></header>
+        <p class="bb-ba__eyebrow" data-copy="ox_ba_kicker"></p>
+        <h2 class="bb-ba__title" id="ox-tba" data-copy="ox_ba_title"></h2>
+        <div class="bb-ba__rows">
+          <div class="bb-ba__row">
+            <div class="bb-ba__pair">
+              <figure class="bb-ba__shot"><img src="assets/ba/oligio-xm-front-before.jpg" data-alt="ox_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="ox_ba_tag_before"></figcaption></figure>
+              <span class="bb-ba__arrow" aria-hidden="true" data-copy="ox_ba_arrow"></span>
+              <figure class="bb-ba__shot"><img src="assets/ba/oligio-xm-front-after.jpg" data-alt="ox_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="ox_ba_tag_after"></figcaption></figure>
+            </div>
+          </div>
+          <div class="bb-ba__row">
+            <div class="bb-ba__pair">
+              <figure class="bb-ba__shot"><img src="assets/ba/oligio-xm-45-before.jpg" data-alt="ox_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="ox_ba_tag_before"></figcaption></figure>
+              <span class="bb-ba__arrow" aria-hidden="true" data-copy="ox_ba_arrow"></span>
+              <figure class="bb-ba__shot"><img src="assets/ba/oligio-xm-45-after.jpg" data-alt="ox_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="ox_ba_tag_after"></figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <p class="bb-ba__note" data-copy="ox_ba_note"></p>
+      </div>
+    </section>
+
     <!-- 3 / 5 : what it is -->
-    <section class="cardx p3" aria-labelledby="ox-t3">
+    <section class="cardx p3" data-card="4" aria-labelledby="ox-t3">
       <div class="snow" aria-hidden="true"></div>
       <span class="mw m-light3" data-kind="light" aria-hidden="true"><img class="miri" src="assets/miri/ice_light.webp" alt=""></span>
       <div class="cx-in">
@@ -168,7 +196,7 @@
     </section>
 
     <!-- 4 / 5 : how it works -->
-    <section class="cardx p4" aria-labelledby="ox-t4">
+    <section class="cardx p4" data-card="5" aria-labelledby="ox-t4">
       <div class="snow" aria-hidden="true"></div>
       <i class="mw flake fl6" aria-hidden="true"><img class="miri" src="assets/miri/snowflake_crystal.webp" alt=""></i>
       <span class="mw m-light3" data-kind="light" aria-hidden="true"><img class="miri" src="assets/miri/ice_light.webp" alt=""></span>
@@ -206,7 +234,7 @@
     </section>
 
     <!-- 5 / 5 : about the clinic. 2026-10-30b team request: bento grid of the team reference (layout only), in this page's ice-navy tone -->
-    <section class="cardx p5" aria-labelledby="ox-t5">
+    <section class="cardx p5" data-card="6" aria-labelledby="ox-t5">
       <div class="snow" aria-hidden="true"></div>
       <div class="cx-in">
         <header class="top2"><span class="brand" data-copy="ox_brand"></span></header>
@@ -291,6 +319,7 @@
         <li><span class="dot" aria-hidden="true"></span><span data-copy="ox_cond1"></span></li>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="ox_cond2"></span></li>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="ox_cond3"></span></li>
+        <li><span class="dot" aria-hidden="true"></span><span data-copy="ox_cond_ba"></span></li>
         <li data-optional-group><span class="dot" aria-hidden="true"></span><span data-copy="ox_cond4" data-optional data-placeholder="추가 안내 (예: 기간·대상 조건)"></span></li>
       </ul>
     </section>

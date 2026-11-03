@@ -466,3 +466,41 @@ html[data-locale=KO] .sheet{word-break:keep-all}
 .m-light2,.m-light3{display:none!important}
 /* 2026-10-29: never split the phone number across lines (overseas locales use +82-2-336-7511) */
 a[data-link="phone"]{white-space:nowrap}
+
+/* ---------- 3 / 6 : Before & After (2026-11-03 user request) ----------
+   The approved bb-ba component (v4/_shared/ba/winter-ba-9/oligio-xm/index.html) on a 1080x1350 card: small 'Before & After', the treatment name,
+   front BEFORE > AFTER on row 1, 45 degrees BEFORE > AFTER on row 2, BEFORE/AFTER tags inside the photos, the AI-image note at the bottom.
+   Colours only through the --ba-* variables (this page's ice-night palette); photos shown as delivered (1:1, no filter, nothing on top but the tags);
+   the arrow is the text '›' on a round chip. Fonts: the component's italic serif for 'Before & After', this page's own type for the rest. */
+.pba{--ba-bg-top:#1d3456;--ba-bg:#13233d;--ba-bg-bottom:#0b172c;--ba-ink:#eef6ff;--ba-ink-soft:rgba(220,230,242,.72);
+  --ba-accent:#9fd8ff;--ba-accent-hi:#cfeaff;--ba-accent-ink:#0b172c;--ba-tag-bg:rgba(11,23,44,.62);--ba-tag-ink:#eef6ff;
+  --ba-radius:calc(24*var(--px));--ba-gap:calc(48*var(--px));
+  --ba-deco:'Cormorant Garamond',var(--f-num);--ba-title:var(--f-text);--ba-label:var(--f-num);--ba-sans:var(--f-text);
+  position:relative;aspect-ratio:1080/1350;overflow:hidden;isolation:isolate;text-align:center;color:var(--ba-ink);
+  background:radial-gradient(90% 60% at 50% 0%,var(--ba-bg-top) 0%,var(--ba-bg) 60%,var(--ba-bg-bottom) 100%)}
+.pba .bb-ba__inner{position:absolute;inset:0;display:flex;flex-direction:column;padding:calc(46*var(--px)) calc(72*var(--px)) calc(44*var(--px))}
+.pba .bb-ba__eyebrow{margin-top:calc(44*var(--px));font-family:var(--ba-deco);font-style:italic;font-weight:600;font-size:max(16px,calc(36*var(--px)));line-height:1.1;letter-spacing:.04em;color:var(--ba-accent-hi)}
+.pba .bb-ba__title{margin-top:calc(8*var(--px));font-family:var(--ba-title);font-weight:800;font-size:max(22px,calc(60*var(--px)*var(--fit,1)));line-height:1.22;letter-spacing:-.02em;white-space:nowrap;color:var(--ba-ink)}
+.pba .bb-ba__rows{margin-top:calc(40*var(--px));display:grid;gap:calc(34*var(--px))}
+.pba .bb-ba__pair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--ba-gap)}
+.pba .bb-ba__shot{position:relative;margin:0;aspect-ratio:1/1;border-radius:var(--ba-radius);overflow:hidden;background:var(--ba-bg-bottom)}
+.pba .bb-ba__shot img{display:block;width:100%;height:100%;object-fit:cover}
+.pba .bb-ba__tag{position:absolute;left:calc(14*var(--px));bottom:calc(14*var(--px));padding:.52em .8em .46em;border-radius:calc(10*var(--px));background:var(--ba-tag-bg);color:var(--ba-tag-ink);
+  font-family:var(--ba-label);font-weight:700;font-size:max(11px,calc(18*var(--px)));line-height:1;letter-spacing:.14em}
+.pba .bb-ba__tag--after{left:auto;right:calc(14*var(--px));background:var(--ba-accent);color:var(--ba-accent-ink)}
+.pba .bb-ba__arrow{position:absolute;left:50%;top:50%;z-index:1;width:calc(42*var(--px));height:calc(42*var(--px));border-radius:50%;transform:translate(-50%,-50%);display:grid;place-items:center;
+  background:var(--ba-accent);color:var(--ba-accent-ink);font-family:var(--ba-label);font-weight:700;font-size:max(15px,calc(34*var(--px)));line-height:1;box-shadow:0 calc(4*var(--px)) calc(14*var(--px)) rgba(0,0,0,.35)}
+.pba .bb-ba__note{margin-top:auto;padding-top:calc(24*var(--px));font-family:var(--ba-sans);font-weight:500;font-size:max(11px,calc(21*var(--px)));line-height:1.5;color:var(--ba-ink-soft)}
+@container (max-width:600px){
+  .pba{aspect-ratio:auto}
+  .pba .bb-ba__inner{position:relative;inset:auto;padding:22px 16px 24px}
+  .pba .bb-ba__eyebrow{margin-top:16px}
+  .pba .bb-ba__title{white-space:normal}
+  .pba .bb-ba__rows{margin-top:16px;gap:12px}
+  .pba .bb-ba__pair{gap:14px}
+  .pba .bb-ba__shot{border-radius:12px}
+  .pba .bb-ba__tag{left:6px;bottom:6px;padding:5px 7px 4px;border-radius:5px;letter-spacing:.1em}
+  .pba .bb-ba__tag--after{left:auto;right:6px}
+  .pba .bb-ba__arrow{width:26px;height:26px;font-size:18px}
+  .pba .bb-ba__note{margin-top:0;padding-top:16px}
+}

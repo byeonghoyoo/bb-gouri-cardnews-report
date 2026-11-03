@@ -61,7 +61,10 @@ function fitTo(el,limit,min=.6){
  for(let f=1,i=0;i<26&&el.scrollWidth>limit+1&&f>min;i++){f-=.02;el.style.setProperty('--fit',f.toFixed(3));}
  return el.scrollWidth<=limit+1;
 }
-function fit(){for(const el of document.querySelectorAll('.fit'))if(el.offsetParent){const box=el.closest('.prices')||el.parentElement;fitTo(el,box.clientWidth);}}
+function fit(){for(const el of document.querySelectorAll('.fit'))if(el.offsetParent){const box=el.closest('.prices')||el.parentElement;fitTo(el,box.clientWidth);}
+ /* 2026-11-03 B/A card: the treatment name stays on one line on desktop and tablet */
+ const m=document.querySelector('main'),phone=!!m&&m.clientWidth<=640;
+ for(const el of document.querySelectorAll('.bb-ba__title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.6);}}
 
 /* words that must never be split across lines (display only, text content stays identical) */
 const KEEP={
@@ -80,7 +83,7 @@ function appendKeep(parent,s){
  if(last<s.length)parent.append(document.createTextNode(s.slice(last)));
 }
 /* widow guard: keep the last two words (CJK: last three characters) together. Text content stays identical. */
-const GUARD='h1,.kicker,.title,.sub,.list-title,.r-name,.r-desc,.qty-lines span,.notes li,.notes h2,.bk-text,.contact,.c-title,.c-lead,.pt-t,.pt-d,.c-sub,.c-sublead,.ln-focus,.c-note,.st-t,.st-d,.info-title,.in-t,.in-d,.c5-t,.c5-d,.b5-intro,.b5-dr-quote,.b5-addr'; /* 2026-10-30 card 5 bento: .b5-* */
+const GUARD='h1,.kicker,.title,.sub,.list-title,.r-name,.r-desc,.qty-lines span,.notes li,.notes h2,.bk-text,.contact,.c-title,.c-lead,.pt-t,.pt-d,.c-sub,.c-sublead,.ln-focus,.c-note,.st-t,.st-d,.info-title,.in-t,.in-d,.c5-t,.c5-d,.b5-intro,.b5-dr-quote,.b5-addr,.bb-ba__title,.bb-ba__note'; /* 2026-10-30 card 5 bento: .b5-*; 2026-11-03 B/A card: .bb-ba__* */
 function setText(el,v){
  el.textContent='';
  if(v)v=v.replace(/ ([\u00b7\u30fb])/g,'\u00a0$1');

@@ -621,7 +621,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3o' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3p' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
@@ -735,7 +735,7 @@
        becomes a PNG via vendor/modern-screenshot-4.7.0.js (MIT, vendor/modern-screenshot-4.7.0.LICENSE.txt).
        capFontCss() embeds the font faces the five cards actually use (family, matched weight/style, characters), so the image matches the page. */
     /* board items whose page has five 1080x1350 cards (section.p1 ... section.p5). To add one, append it here, e.g. FV12: true, HH12: true */
-    var CAP_ITEMS = { OXM12: true, APT12: true, FV12: true, HH12: true };
+    var CAP_ITEMS = { FV12: true, HH12: true }; /* 2026-11-03: OXM12·APT12 now have 6 cards with data-card (B/A added) */
     var CAP_P5 = 'section.p1,section.p2,section.p3,section.p4,section.p5';
     var CAP = { items: CAP_ITEMS, sel: CAP_P5, n: 5, w: 1080, h: 1350, frameW: 1440, lib: 'vendor/modern-screenshot-4.7.0.js' };
     /* winter event pages (2026-11-02) have a different number of cards: data.json item.cards = count and every card section carries data-card="1".."n" */
@@ -807,7 +807,7 @@
           f.style.cssText = 'position:fixed;left:0;top:0;width:' + CAP.frameW + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
           var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000);
           f.addEventListener('load', function () { win.clearTimeout(t); resolve(); });
-          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261029-v3o' + '&capture=1';
+          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261029-v3p' + '&capture=1';
           cap.el = f; doc.body.appendChild(f);
         });
       }).then(function () {

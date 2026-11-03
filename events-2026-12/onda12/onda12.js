@@ -60,7 +60,7 @@ function setHours(el,v){
  el.append(d,document.createTextNode(m[2]),t);
 }
 /* widow guard: the last two words stay together */
-const GUARD='.hook,.kj-d,.area-v,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.src,.bkl-msg,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy]';
+const GUARD='.bb-ba__note,.hook,.kj-d,.area-v,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.src,.bkl-msg,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy]';
 /* names that never break inside */
 const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|2\.45GHz|DCA, CA|쿨웨이브\(Coolwaves\)|울쎄라피 프라임|써마지 FLX)/g;
 function appendKept(el,s){
@@ -101,6 +101,7 @@ function fitLines(el,lines,min){
 function fit(){
  const phone=isPhone();
  for(const el of document.querySelectorAll('.kicker-script,.hero-title,.tz-label'))fitTo(el,el.parentElement.clientWidth,.6);
+ for(const el of document.querySelectorAll('.bb-ba__title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
  for(const el of document.querySelectorAll('.q-title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
  /* price names stay on one line (desktop); on phones they may wrap */
  for(const el of document.querySelectorAll('.pname')){

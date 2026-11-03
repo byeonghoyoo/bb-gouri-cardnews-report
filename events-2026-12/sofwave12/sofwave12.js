@@ -102,6 +102,7 @@ function fit(){
  for(const el of document.querySelectorAll('.kicker-latin,.hero-title,.tz-label'))fitTo(el,el.parentElement.clientWidth,.6);
  for(const el of document.querySelectorAll('.pt-main'))fitTo(el,el.closest('.cp-htx').clientWidth,.6);
  for(const el of document.querySelectorAll('.q-title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
+ for(const el of document.querySelectorAll('.bb-ba__title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.parentElement.clientWidth,.7);}
  /* price names stay on one line per part (desktop); on phones they may wrap */
  for(const el of document.querySelectorAll('.pname')){
   el.classList.remove('wrap');
