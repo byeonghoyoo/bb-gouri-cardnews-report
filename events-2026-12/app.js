@@ -621,7 +621,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3n' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3o' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
@@ -736,7 +736,15 @@
        capFontCss() embeds the font faces the five cards actually use (family, matched weight/style, characters), so the image matches the page. */
     /* board items whose page has five 1080x1350 cards (section.p1 ... section.p5). To add one, append it here, e.g. FV12: true, HH12: true */
     var CAP_ITEMS = { OXM12: true, APT12: true, FV12: true, HH12: true };
-    var CAP = { items: CAP_ITEMS, sel: 'section.p1,section.p2,section.p3,section.p4,section.p5', w: 1080, h: 1350, frameW: 1440, lib: 'vendor/modern-screenshot-4.7.0.js' };
+    var CAP_P5 = 'section.p1,section.p2,section.p3,section.p4,section.p5';
+    var CAP = { items: CAP_ITEMS, sel: CAP_P5, n: 5, w: 1080, h: 1350, frameW: 1440, lib: 'vendor/modern-screenshot-4.7.0.js' };
+    /* winter event pages (2026-11-02) have a different number of cards: data.json item.cards = count and every card section carries data-card="1".."n" */
+    function capSpec(it) {
+      if (!it || typeof it.page !== 'string') return null;
+      if (CAP_ITEMS[it.id]) return { sel: CAP_P5, n: 5 };
+      if ((it.cards | 0) > 0) return { sel: '[data-card]', n: it.cards | 0 };
+      return null;
+    }
     var capFontData = {};
 
     function capName(it, locale, suffix) {
@@ -745,7 +753,8 @@
     }
 
     function downloadBar(it) {
-      if (!CAP.items[it.id] || typeof it.page !== 'string' || !env.downloadBlob) return null;
+      var spec = capSpec(it); if (!spec || !env.downloadBlob) return null;
+      var nums1 = []; for (var q = 1; q <= spec.n; q++) nums1.push(q);
       var status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' });
       var buttons = [];
       var btn = function (text, action, nums, mode, cls) {
@@ -764,12 +773,12 @@
       return H('div', { class: 'img-download', 'data-img-download': it.id }, [
         H('div', { class: 'img-dl-row' }, [
           H('strong', { class: 'img-dl-label', text: '이미지 받기' }),
-          H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, [1, 2, 3, 4, 5].map(function (n) {
+          H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, nums1.map(function (n) {
             return btn(n + '장', 'img-card-' + n, [n], 'single');
-          }).concat([btn('5장 모두 따로', 'img-cards-all', [1, 2, 3, 4, 5], 'single')])),
-          btn('5장 이어서 길게 1장', 'img-long', [1, 2, 3, 4, 5], 'long', 'primary'),
+          }).concat([btn(spec.n + '장 모두 따로', 'img-cards-all', nums1, 'single')])),
+          btn(spec.n + '장 이어서 길게 1장', 'img-long', nums1, 'long', 'primary'),
         ]),
-        H('p', { class: 'img-dl-note', text: '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×6750 PNG입니다.' }),
+        H('p', { class: 'img-dl-note', text: '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×' + (1350 * spec.n) + ' PNG입니다.' }),
         status,
       ]);
     }
@@ -783,6 +792,7 @@
     }
 
     function captureCards(it, locale, nums, mode, progress) {
+      var spec = capSpec(it) || { sel: CAP_P5, n: 5 }; CAP.sel = spec.sel; CAP.n = spec.n;
       var win = doc.defaultView;
       var cap = state.capture = { itemId: it.id, locale: locale, el: null, fields: null };
       var finish = function () { if (cap.el && cap.el.parentNode) cap.el.parentNode.removeChild(cap.el); if (state.capture === cap) state.capture = null; };
@@ -797,7 +807,7 @@
           f.style.cssText = 'position:fixed;left:0;top:0;width:' + CAP.frameW + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
           var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000);
           f.addEventListener('load', function () { win.clearTimeout(t); resolve(); });
-          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261029-v3n' + '&capture=1';
+          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261029-v3o' + '&capture=1';
           cap.el = f; doc.body.appendChild(f);
         });
       }).then(function () {
@@ -809,7 +819,7 @@
       }).then(function (fontCss) {
         var iwin = cap.el.contentWindow, cards = iwin.document.querySelectorAll(CAP.sel), out = [], chain = Promise.resolve();
         if (state.lastCapture) { state.lastCapture.fontKB = Math.round(fontCss.length / 1024); state.lastCapture.fontFaces = (fontCss.match(/@font-face/g) || []).length; }
-        if (cards.length !== 5) throw new Error('카드 5장을 찾지 못했습니다 (' + cards.length + '장).');
+        if (cards.length !== CAP.n) throw new Error('카드 ' + CAP.n + '장을 찾지 못했습니다 (' + cards.length + '장).');
         nums.forEach(function (n, i) {
           chain = chain.then(function () {
             var card = cards[n - 1], r = card.getBoundingClientRect();
