@@ -1,4 +1,4 @@
-/* ONE12 원데이 마스터 솔루션 · 겨울 시즌 renderer + review-board protocol (aptos-* messages, same as the other V4 pages).
+/* ONE12 원데이 마스터 솔루션 · 겨울 시즌 (2026-11-04 rework) renderer + review-board protocol (aptos-* messages, same as the other V4 pages).
    Every visible word comes from copy-data.js (titles, group / product names, options, chips, parts lists and prices from v4/events/_data/pages.json via
    v4/oneday12/build-oneday12.cjs) and is edited in place through ../inline-edit.js. Display-only helpers below never change the stored text. */
 (()=>{'use strict';
@@ -60,7 +60,7 @@ function setHours(el,v){
  el.append(d,document.createTextNode(m[2]),t);
 }
 /* widow guard: the last two words stay together */
-const GUARD='.hook,.p-lead,.q-ans,.tier-d,.dv-t,.st-d,.inf-n,.ask-d,.care [data-copy],.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.sw-d,.pnote,.prod-s,.tier-n,.sw-n,.lay-t';
+const GUARD='.hook,.p-lead,.q-ans,.tier-d,.dv-t,.st-d,.inf-n,.ask-d,.care [data-copy],.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.pnote,.prod-s,.tier-n,.lay-t,.tz-label';
 /* names that never break inside */
 const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|마스터 솔루션|울쎄라피 프라임|써마지 FLX|1\.5·3\.0·4\.5mm|근막\(SMAS\)층까지|3D 피부 진단기|진피 1\.5mm|두 주파수|세 단계|세 장비|두 장비|하루 일정|Plan A·B|Plan A|Plan B|목·어깨 라인|3중 레이어 리프팅|리프팅 솔루션|베이직 솔루션|연고 마취|마취 없이|붉어짐·붓기·멍|몸속 전자기기|금속·보형물|임신·수유|복용 중인 약|음주·사우나·과한 운동|자외선 차단제)/g;
 function appendKept(el,s){
@@ -100,8 +100,7 @@ function fitLines(el,lines,min){
 }
 function fit(){
  const phone=isPhone();
- for(const el of document.querySelectorAll('.tz-top')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.6);}
- for(const el of document.querySelectorAll('.h-ko')){if(phone){el.style.removeProperty('--fit');continue;}fitLines(el,2,.7);}
+ for(const el of document.querySelectorAll('.d-en,.d-sub,.x-en')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.parentElement.clientWidth,.7);}
  for(const el of document.querySelectorAll('.pt-main')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.closest('.p-title').clientWidth*.82,.6);}
  for(const el of document.querySelectorAll('.gh-n')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
  for(const el of document.querySelectorAll('.q-title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}

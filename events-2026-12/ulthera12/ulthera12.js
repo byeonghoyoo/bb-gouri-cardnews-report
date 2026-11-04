@@ -1,4 +1,4 @@
-/* ULT12 울쎄라 · 겨울 시즌 renderer + review-board protocol (aptos-* messages, same as FV12 and the other V4 pages).
+/* ULT12 울쎄라 · 겨울 시즌 renderer (2026-11-04 F frames: band/pill text guarded below) + review-board protocol (aptos-* messages, same as FV12 and the other V4 pages).
    Every visible word comes from copy-data.js (names and 만원 strings from v4/events/_data/pages.json via v4/ulthera12/build-ulthera12.cjs)
    and is edited in place through ../inline-edit.js. Display helpers only wrap text in spans; the stored text is never changed. */
 (()=>{'use strict';
@@ -56,7 +56,7 @@ function setHours(el,v){
  el.append(span('hd',m[1]),document.createTextNode(m[2]),span('ht',m[3]));
 }
 /* widow guard: the last two words stay together; kept names never break */
-const GUARD='.hook,.p-lead,.q-ans,.pt-d,.st-d,.inf-n,.inf-v,.c4-tip [data-copy],.src,.ba-note,.gift-band [data-copy],.cmp-title,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
+const GUARD='.hook [data-copy],.q-ans,.pt-d,.st-d,.inf-n,.inf-v,.c4-tip [data-copy],.src,.ba-note,.gift-band [data-copy],.pg-sub [data-copy],.fr-depth .fr-band [data-copy],.cmp-title,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
 const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|정품 마스크팩|DeepSEE)/g;
 function appendKept(el,s){
  let last=0;

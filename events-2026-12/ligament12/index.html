@@ -7,26 +7,25 @@
   <title>유지인대 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500&amp;display=swap">
-  <link rel="stylesheet" href="ligament12.css?v=20261102-ligament12b">
-  <script src="copy-data.js?v=20261102-ligament12b" defer></script>
-  <script src="../inline-edit.js?v=20261102-ligament12b" defer></script>
-  <script src="ligament12.js?v=20261102-ligament12b" defer></script>
+  <link rel="stylesheet" href="ligament12.css?v=20261104-ligament12a">
+  <script src="copy-data.js?v=20261104-ligament12a" defer></script>
+  <script src="../inline-edit.js?v=20261104-ligament12a" defer></script>
+  <script src="ligament12.js?v=20261104-ligament12a" defer></script>
 </head>
 <body>
-<!-- LIG12 유지인대 · 겨울 시즌 (Korean first). Team colour pin (sheet I69, 'Blushing Sands'): #F28695 · #F2BFB4 · #F1CCA6 · #F2E6B8 (HEX printed on the pin, sharp check in v4/ligament12/ref/REFERENCE.md).
-     Tone pin (J69): quiet grey studio editorial, thin italic serif display type, a charcoal band at the bottom (#282828 measured) -> the ink colour and the hero band.
+<!-- LIG12 유지인대 · 겨울 시즌, 2026-11-04 redesign (reference sheet 11/04: F69 design poster, G69 team model, H69 colour pin).
+     F69 design language on every card: small brand mark, a large thin italic serif headline, a short rule, the Korean title, a soft studio backdrop
+     with a diagonal fall of light, and a full-width charcoal band at the bottom (serif line, thin rule, small line). Colours from H69 ('Blushing Sands').
      Seven 1080x1350 cards (section[data-card="1..7"]); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
-     Card 4 = Before & After (user request 2026-11-03 via the lead): the four shared images of v4/_shared/ba/winter-ba-9/retaining-ligament-facelift/ copied unchanged, layout = that folder's index.html component, colours via --ba-* only.
-     Pictures: generated model photo, generated face diagram / icons / decorations / texture (v4/ligament12/gen, qa/image-attempts.json), real product cut-outs (v3/products), shared clinic files.
+     Model photos (hero.jpg, model-day.jpg) are layout references; the lead replaces them with Higgsfield photos at the same paths (object-fit: cover + object-position).
      Price rows: data-price-row="15_ligament:<sheet row>" with [data-price-list] / [data-price-sale]; strings from v4/events/_data/pages.json via v4/ligament12/build-ligament12.cjs. -->
 <main class="lg">
   <div class="sheet">
 
-    <!-- 1 / 7 : hero (generated model photo); title = sheet event name, English title = sheet title row 5, band tags = the sheet's bracket tags, teaser = row 6 -->
+    <!-- 1 / 7 : hero. Headline = sheet title row 5 '(Ligament Lift)', Korean title = sheet event name; the offer (row 6) sits in the band like F's bottom line -->
     <section class="card c1" data-card="1" aria-labelledby="lg-t1">
-      <img class="c1-photo" src="assets/hero.jpg?v=a" data-alt="lg_alt_hero" alt="" width="1080" height="1350">
+      <img class="c1-photo model-photo" src="assets/hero.jpg?v=1104a" data-alt="lg_alt_hero" alt="" width="1080" height="1350">
       <img class="dec dk1" src="assets/dec/sparkle-1.png" alt="" aria-hidden="true" width="220" height="220">
-      <img class="dec dk2" src="assets/dec/sparkle-3.png" alt="" aria-hidden="true" width="220" height="220">
       <header class="c1-top"><span class="brand" data-copy="lg_brand"></span></header>
       <div class="hero-tx">
         <p class="h-en" data-copy="lg_title_en"></p>
@@ -34,30 +33,28 @@
         <h1 class="h-ko" id="lg-t1" data-copy="lg_title"></h1>
         <p class="hook" data-copy="lg_hook"></p>
       </div>
-      <div class="tz">
-        <p class="tz-top"><span class="tz-label" data-copy="lg_hero_label"></span><span class="tz-opt" data-copy="lg_hero_opt"></span></p>
-        <p class="tz-main"><span class="tz-tag" data-copy="lg_hero_tag"></span><span class="tz-price money" data-copy="lg_hero_price"></span><span class="tz-vat" data-copy="lg_vat"></span></p>
-      </div>
-      <div class="seal s-hero"><img class="seal-img" src="assets/dec/seal.png" alt="" aria-hidden="true" width="499" height="640"><p class="seal-tx"><span class="sl s1" data-copy="lg_seal1"></span><span class="sl s2" data-copy="lg_seal2"></span><span class="sl s3" data-copy="lg_seal3"></span></p></div>
-      <div class="band">
+      <div class="seal s-hero"><img class="seal-img" src="assets/dec/seal-ring.png" alt="" aria-hidden="true" width="600" height="600"><p class="seal-tx"><span class="sl s1" data-copy="lg_seal1"></span><span class="sl s2" data-copy="lg_seal2"></span><span class="sl s3" data-copy="lg_seal3"></span></p></div>
+      <div class="band band-hero">
         <p class="band-en" data-copy="lg_band_en"></p>
         <i class="band-rule" aria-hidden="true"></i>
-        <p class="band-row"><span class="band-period" data-copy="lg_period"></span><span class="band-contact"><img class="ico ico-phone" src="assets/icons/phone.webp" alt="" aria-hidden="true" width="192" height="192"><span data-copy="lg_contact"></span></span></p>
+        <p class="band-offer"><span class="tz-label" data-copy="lg_hero_label"></span><span class="tz-opt" data-copy="lg_hero_opt"></span><span class="tz-tag" data-copy="lg_hero_tag"></span><span class="tz-price money" data-copy="lg_hero_price"></span><span class="tz-vat" data-copy="lg_vat"></span></p>
+        <p class="band-sm"><span data-copy="lg_period"></span><span data-copy="lg_contact"></span></p>
       </div>
     </section>
 
     <!-- 2 / 7 : prices 2-1, sheet rows 6-11 of 15_ligament B5:K17 in sheet order (row 5 = table title; rows 6-9 Volume Up options, rows 10-11 Regen options) -->
     <section class="card cp c2" data-card="2" aria-labelledby="lg-t2">
-      <img class="tex" src="assets/tex-sands.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
-      <img class="dec dk3" src="assets/dec/snow-1.png" alt="" aria-hidden="true" width="231" height="260">
-      <img class="dec dk4" src="assets/dec/sparkle-2.png" alt="" aria-hidden="true" width="211" height="220">
-      <span class="p-mark" aria-hidden="true" data-copy="lg_p_mark"></span>
+      <img class="bg" src="assets/bg-studio.jpg?v=1104a" alt="" aria-hidden="true" width="1080" height="1350">
+      <img class="dec dk2" src="assets/dec/sparkle-2.png" alt="" aria-hidden="true" width="220" height="220">
       <div class="cp-in">
         <header class="top"><span class="brand" data-copy="lg_brand"></span><span class="period" data-copy="lg_period"></span></header>
-        <div class="cp-head">
+        <div class="head">
+          <p class="h-it" data-copy="lg_p_mark"></p>
+          <i class="rule" aria-hidden="true"></i>
           <h2 class="p-title" id="lg-t2"><span class="pt-main" data-copy="lg_p_title"></span><span class="pt-en" data-copy="lg_p_en"></span></h2>
           <p class="p-lead" data-copy="lg_p_lead"></p>
         </div>
+        <div class="seal s-board"><img class="seal-img" src="assets/dec/seal-ring.png" alt="" aria-hidden="true" width="600" height="600"><p class="seal-tx"><span class="sl s1" data-copy="lg_seal1"></span><span class="sl s2" data-copy="lg_seal2"></span><span class="sl s3" data-copy="lg_seal3"></span></p></div>
         <div class="pboard">
           <div class="pgroup">
             <p class="pg-head"><span class="pg-tag" data-copy="lg_g6_tag"></span><span class="pg-name" data-copy="lg_g6_name"></span></p>
@@ -78,21 +75,22 @@
             <li class="prow" data-price-row="15_ligament:11"><div class="pn"><p class="popt" data-copy="lg_r11_opt"></p></div><span class="plist money" data-price-list data-copy="lg_r11_list"></span><span class="psale money" data-price-sale data-copy="lg_r11_sale"></span></li>
           </ul>
         </div>
-        <div class="cp-foot">
-          <div class="seal s-board"><img class="seal-img" src="assets/dec/seal.png" alt="" aria-hidden="true" width="499" height="640"><p class="seal-tx"><span class="sl s1" data-copy="lg_seal1"></span><span class="sl s2" data-copy="lg_seal2"></span><span class="sl s3" data-copy="lg_seal3"></span></p></div>
-          <p class="vat"><span data-copy="lg_vat"></span></p>
-        </div>
+      </div>
+      <div class="band">
+        <p class="band-en" data-copy="lg_band_en"></p>
+        <i class="band-rule" aria-hidden="true"></i>
+        <p class="band-sm"><span data-copy="lg_vat"></span><span data-copy="lg_contact"></span></p>
       </div>
     </section>
 
     <!-- 3 / 7 : prices 2-2, sheet rows 12-17 (same table, title + '계속'; rows 12-15 Package options, row 16 group -> subheading, row 17) -->
     <section class="card cp c3" data-card="3" aria-labelledby="lg-t3">
-      <img class="tex tex-flip" src="assets/tex-sands.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
-      <img class="dec dk5" src="assets/dec/snow-2.png" alt="" aria-hidden="true" width="230" height="260">
-      <span class="p-mark" aria-hidden="true" data-copy="lg_p_mark"></span>
+      <img class="bg bg-flip" src="assets/bg-studio.jpg?v=1104a" alt="" aria-hidden="true" width="1080" height="1350">
       <div class="cp-in">
         <header class="top"><span class="brand" data-copy="lg_brand"></span><span class="period" data-copy="lg_period"></span></header>
-        <div class="cp-head">
+        <div class="head">
+          <p class="h-it" data-copy="lg_p_mark"></p>
+          <i class="rule" aria-hidden="true"></i>
           <h2 class="p-title" id="lg-t3"><span class="pt-main" data-copy="lg_p_title"></span><span class="pt-cont" data-copy="lg_cont"></span></h2>
           <p class="p-lead" data-copy="lg_p3_lead"></p>
         </div>
@@ -113,20 +111,24 @@
               <p class="pg-sub"><span class="pg-en" data-copy="lg_g16_en"></span><span class="pg-unit" data-copy="lg_g16_unit"></span></p>
             </div>
             <ul class="devs">
-              <li class="dev"><figure class="dev-img"><img src="assets/sofwave.webp" data-alt="lg_alt_dev_sofwave" alt="" width="1000" height="1000"></figure><span class="dev-n" data-copy="lg_dev1_n"></span></li>
-              <li class="dev"><figure class="dev-img"><img src="assets/ldm-smart-tri-full.webp" data-alt="lg_alt_dev_ldm" alt="" width="1000" height="1000"></figure><span class="dev-n" data-copy="lg_dev2_n"></span></li>
+              <li class="dev"><figure class="dev-img"><img src="assets/sofwave.webp?v=1104a" data-alt="lg_alt_dev_sofwave" alt="" width="600" height="600"></figure><span class="dev-n" data-copy="lg_dev1_n"></span></li>
+              <li class="dev"><figure class="dev-img"><img src="assets/ldm-smart-tri-full.webp?v=1104a" data-alt="lg_alt_dev_ldm" alt="" width="600" height="600"></figure><span class="dev-n" data-copy="lg_dev2_n"></span></li>
             </ul>
           </div>
           <ul class="prows">
             <li class="prow r17" data-price-row="15_ligament:17"><div class="pn"><p class="pname"><span class="pnm" data-copy="lg_r17_name"></span><span class="players" data-copy="lg_r17_layers"></span></p><p class="pparts" data-copy="lg_r17_parts"></p></div><span class="plist money" data-price-list data-copy="lg_r17_list"></span><span class="psale money" data-price-sale data-copy="lg_r17_sale"></span></li>
           </ul>
         </div>
-        <p class="vat"><span data-copy="lg_vat"></span></p>
+      </div>
+      <div class="band">
+        <p class="band-en" data-copy="lg_band_en"></p>
+        <i class="band-rule" aria-hidden="true"></i>
+        <p class="band-sm"><span data-copy="lg_vat"></span><span data-copy="lg_contact"></span></p>
       </div>
     </section>
 
     <!-- 4 / 7 : Before & After. Same structure as v4/_shared/ba/winter-ba-9/retaining-ligament-facelift/index.html (eyebrow, title = treatment name, front row, 45-degree row,
-         BEFORE / AFTER tags inside the photos, the round '›' between them, the AI note). No row labels, no effect wording. The '›' is a copy glyph, not an inline svg. -->
+         BEFORE / AFTER tags inside the photos, the round '›' between them, the AI note). No row labels, no effect wording. Colours via --ba-* only. -->
     <section class="card cba" data-card="4" aria-labelledby="lg-tba">
       <div class="bb-ba">
         <div class="bb-ba__inner">
@@ -152,12 +154,13 @@
     </section>
 
     <!-- 5 / 7 : what the treatment is (facts: v4/ligament12/REFERENCE_AND_PLAN.md). Face diagram = generated picture (slot G1); marker positions measured from it (gen/diagram-dots.json) -->
-    <section class="card c4" data-card="5" aria-labelledby="lg-t4">
-      <img class="dec dk6" src="assets/dec/sparkle-2.png" alt="" aria-hidden="true" width="211" height="220">
-      <div class="c4-in">
+    <section class="card cx c4" data-card="5" aria-labelledby="lg-t4">
+      <img class="bg" src="assets/bg-studio.jpg?v=1104a" alt="" aria-hidden="true" width="1080" height="1350">
+      <div class="cx-body">
         <header class="top solo"><span class="brand" data-copy="lg_brand"></span></header>
-        <div class="q-head">
-          <p class="kicker" data-copy="lg_c4_kicker"></p>
+        <div class="head">
+          <p class="h-it h-it-s" data-copy="lg_c4_kicker"></p>
+          <i class="rule" aria-hidden="true"></i>
           <h2 class="q-title" id="lg-t4" data-copy="lg_c4_q"></h2>
           <p class="q-ans" data-copy="lg_c4_a"></p>
         </div>
@@ -187,28 +190,33 @@
             <li class="mx"><span class="mx-k" data-copy="lg_c4_x3_k"></span><span class="mx-t" data-copy="lg_c4_x3_t"></span><span class="mx-d" data-copy="lg_c4_x3_d"></span></li>
           </ul>
         </div>
-        <p class="src" data-copy="lg_c4_src"></p>
+      </div>
+      <div class="band">
+        <p class="band-en" data-copy="lg_band_en"></p>
+        <i class="band-rule" aria-hidden="true"></i>
+        <p class="band-sm src" data-copy="lg_c4_src"></p>
       </div>
     </section>
 
-    <!-- 6 / 7 : the treatment day (four steps with generated icons, treatment info, care) -->
-    <section class="card c5" data-card="6" aria-labelledby="lg-t5">
-      <img class="dec dk7" src="assets/dec/snow-1.png" alt="" aria-hidden="true" width="231" height="260">
-      <div class="c5-in">
+    <!-- 6 / 7 : the treatment day (four steps with generated line icons, treatment info, care); the round photo = its own model cut (not a hero crop) -->
+    <section class="card cx c5" data-card="6" aria-labelledby="lg-t5">
+      <img class="bg bg-flip" src="assets/bg-studio.jpg?v=1104a" alt="" aria-hidden="true" width="1080" height="1350">
+      <div class="cx-body">
         <header class="top solo"><span class="brand" data-copy="lg_brand"></span></header>
         <div class="c5-headrow">
-          <div class="q-head">
-            <p class="kicker" data-copy="lg_c5_kicker"></p>
+          <div class="head">
+            <p class="h-it h-it-s" data-copy="lg_c5_kicker"></p>
+            <i class="rule" aria-hidden="true"></i>
             <h2 class="q-title" id="lg-t5" data-copy="lg_c5_q"></h2>
             <p class="q-ans" data-copy="lg_c5_a"></p>
           </div>
-          <figure class="c5-photo"><img src="assets/model-day.jpg?v=b" data-alt="lg_alt_c5" alt="" width="560" height="560"></figure>
+          <figure class="c5-photo"><img class="model-photo" src="assets/model-day.jpg?v=1104a" data-alt="lg_alt_c5" alt="" width="600" height="600"></figure>
         </div>
         <ol class="steps">
-          <li class="st"><img class="st-ico" src="assets/icons/plan.webp" alt="" aria-hidden="true" width="192" height="192"><div class="st-tx"><h3 class="st-t" data-copy="lg_c5_s1_t"></h3><p class="st-d" data-copy="lg_c5_s1_d"></p></div></li>
-          <li class="st"><img class="st-ico" src="assets/icons/cream.webp" alt="" aria-hidden="true" width="192" height="192"><div class="st-tx"><h3 class="st-t" data-copy="lg_c5_s2_t"></h3><p class="st-d" data-copy="lg_c5_s2_d"></p></div></li>
-          <li class="st"><img class="st-ico" src="assets/icons/point.webp" alt="" aria-hidden="true" width="192" height="192"><div class="st-tx"><h3 class="st-t" data-copy="lg_c5_s3_t"></h3><p class="st-d" data-copy="lg_c5_s3_d"></p></div></li>
-          <li class="st"><img class="st-ico" src="assets/icons/care.webp" alt="" aria-hidden="true" width="192" height="192"><div class="st-tx"><h3 class="st-t" data-copy="lg_c5_s4_t"></h3><p class="st-d" data-copy="lg_c5_s4_d"></p></div></li>
+          <li class="st"><img class="st-ico" src="assets/icons/plan.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><div class="st-tx"><h3 class="st-t" data-copy="lg_c5_s1_t"></h3><p class="st-d" data-copy="lg_c5_s1_d"></p></div></li>
+          <li class="st"><img class="st-ico" src="assets/icons/cream.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><div class="st-tx"><h3 class="st-t" data-copy="lg_c5_s2_t"></h3><p class="st-d" data-copy="lg_c5_s2_d"></p></div></li>
+          <li class="st"><img class="st-ico" src="assets/icons/point.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><div class="st-tx"><h3 class="st-t" data-copy="lg_c5_s3_t"></h3><p class="st-d" data-copy="lg_c5_s3_d"></p></div></li>
+          <li class="st"><img class="st-ico" src="assets/icons/care.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><div class="st-tx"><h3 class="st-t" data-copy="lg_c5_s4_t"></h3><p class="st-d" data-copy="lg_c5_s4_d"></p></div></li>
         </ol>
         <ul class="infos">
           <li class="inf"><span class="inf-k" data-copy="lg_c5_i1_k"></span><span class="inf-v" data-copy="lg_c5_i1_v"></span><span class="inf-n" data-copy="lg_c5_i1_n"></span></li>
@@ -221,13 +229,17 @@
           <li><span class="cdot" aria-hidden="true"></span><span data-copy="lg_c5_care2"></span></li>
           <li><span class="cdot" aria-hidden="true"></span><span data-copy="lg_c5_care3"></span></li>
         </ul>
-        <p class="src" data-copy="lg_c5_src"></p>
+      </div>
+      <div class="band">
+        <p class="band-en" data-copy="lg_band_en"></p>
+        <i class="band-rule" aria-hidden="true"></i>
+        <p class="band-sm src" data-copy="lg_c5_src"></p>
       </div>
     </section>
 
-    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12 / sofwave12 / cerf12) in this page's tone; icons = generated set (slot G2) -->
+    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as the other V4 pages) in this page's tone; icons = generated line set (slot G2) -->
     <section class="card c6" data-card="7" aria-labelledby="lg-t6">
-      <img class="tex tex-soft" src="assets/tex-sands.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
+      <img class="bg" src="assets/bg-studio.jpg?v=1104a" alt="" aria-hidden="true" width="1080" height="1350">
       <div class="cx-in">
         <header class="top solo"><span class="brand" data-copy="lg_brand"></span></header>
         <div class="bento">
@@ -249,10 +261,10 @@
               <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="lg_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="lg_ab_ph3"></figcaption></figure>
             </div>
             <ul class="ab-strengths">
-              <li><span class="sh"><img class="si" src="assets/icons/genuine.webp" alt="" aria-hidden="true" width="192" height="192"><span class="at" data-copy="lg_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="lg_ab_s1_d"></span></li>
-              <li><span class="sh"><img class="si" src="assets/icons/consult.webp" alt="" aria-hidden="true" width="192" height="192"><span class="at" data-copy="lg_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="lg_ab_s2_d"></span></li>
-              <li><span class="sh"><img class="si" src="assets/icons/hours.webp" alt="" aria-hidden="true" width="192" height="192"><span class="at" data-copy="lg_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="lg_ab_s3_d"></span></li>
-              <li><span class="sh"><img class="si" src="assets/icons/language.webp" alt="" aria-hidden="true" width="192" height="192"><span class="at" data-copy="lg_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="lg_ab_s4_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/genuine.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><span class="at" data-copy="lg_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="lg_ab_s1_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/consult.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><span class="at" data-copy="lg_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="lg_ab_s2_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/hours.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><span class="at" data-copy="lg_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="lg_ab_s3_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/language.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><span class="at" data-copy="lg_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="lg_ab_s4_d"></span></li>
             </ul>
           </div>
           <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
@@ -267,7 +279,7 @@
                 </picture>
               </figure>
               <div class="way">
-                <img class="way-pin" src="assets/icons/pin.webp" alt="" aria-hidden="true" width="192" height="192">
+                <img class="way-pin" src="assets/icons/pin.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192">
                 <div class="way-tx">
                   <p class="way-top"><span class="way-st" data-copy="lg_ab_way_station"></span><span class="way-line" data-copy="lg_ab_way_line"></span></p>
                   <p class="way-addr"><span data-copy="lg_ab_way_addr"></span><span class="way-desk"><span data-copy="lg_ab_way_desk"></span></span></p>
@@ -288,7 +300,7 @@
               <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="lg_alt_qr" alt="" width="424" height="424"><figcaption data-copy="lg_ab_qr"></figcaption></figure>
               <div class="bk-text">
                 <p class="bk-links"><a data-link="booking"><span data-copy="lg_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="lg_ab_bk_kakao"></span></a></span></p>
-                <p class="bk-phone"><img class="ico ico-phone" src="assets/icons/phone.webp" alt="" aria-hidden="true" width="192" height="192"><a data-link="phone"><span data-copy="lg_ab_phone"></span></a></p>
+                <p class="bk-phone"><img class="ico ico-phone" src="assets/icons/phone.webp?v=1104a" alt="" aria-hidden="true" width="192" height="192"><a data-link="phone"><span data-copy="lg_ab_phone"></span></a></p>
               </div>
             </div>
             <span class="bk-mark" data-copy="lg_brand"></span>
@@ -314,4 +326,3 @@
 </main>
 </body>
 </html>
-

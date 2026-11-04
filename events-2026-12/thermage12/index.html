@@ -6,57 +6,63 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>써마지 FLX · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&amp;family=Space+Grotesk:wght@300..700&amp;display=swap">
-  <link rel="stylesheet" href="thermage12.css?v=20261102-thermage12c">
-  <script src="copy-data.js?v=20261102-thermage12c" defer></script>
-  <script src="../inline-edit.js?v=20261102-thermage12c" defer></script>
-  <script src="thermage12.js?v=20261102-thermage12c" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&amp;family=Pinyon+Script&amp;family=Space+Grotesk:wght@300..700&amp;display=swap">
+  <link rel="stylesheet" href="thermage12.css?v=20261104-thermage12a">
+  <script src="copy-data.js?v=20261104-thermage12a" defer></script>
+  <script src="../inline-edit.js?v=20261104-thermage12a" defer></script>
+  <script src="thermage12.js?v=20261104-thermage12a" defer></script>
 </head>
 <body>
-<!-- THM12 써마지 · 겨울 시즌 (Korean first). Team palette (sheet I26 pin 702209766938269601): Rosarian #FAEADD, Wet Charcoal #222023, Purple Seduction #522A6F,
-     Harmonious Rose #F29CB7, Solarized #FBCF4F, Testosterose #DDAAFF; a winter twilight sky, star points, a moon-shaped seal.
-     Every picture is a generated image (v4/thermage12/gen/*.json -> a/*.png -> gen/cut-assets.cjs) or a real photo cut-out; no inline SVG, no CSS-drawn picture.
-     Six 1080x1350 cards (section[data-card="1..6"]); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
-     Price rows: data-price-row="11_lifting:<sheet row>" with [data-price-list] / [data-price-sale]; the strings come from v4/events/_data/pages.json via v4/thermage12/build-thermage12.cjs. -->
+<!-- THM12 써마지 · 겨울 시즌 (Korean first), 2026-11-04 rebuild on the completed reference sheet (row 26):
+     F = minimal still-life poster (pale lavender wall and floor, one big deep-purple velvet bow whose long tails frame a single centred object,
+     a faint white script word across the middle, wide empty space). Taken: composition, typography, the velvet ribbon element and the empty space;
+     no words, brand, product or numbers of F. H = team palette Rosarian #FAEADD, Wet Charcoal #222023, Purple Seduction #522A6F,
+     Harmonious Rose #F29CB7, Solarized #FBCF4F, Testosterose #DDAAFF (H wins where F differs). G = team model: a frontal master (v4/thermage12/a/master.png)
+     then two different cuts (hero, card 5). Every picture is a generated image (v4/thermage12/gen/*.json -> a/*.png -> gen/cut-1104.cjs) or a real
+     photo cut-out; no inline SVG, no CSS-drawn picture. Six 1080x1350 cards (section[data-card="1..6"]); every word is editable copy
+     (data-copy, ../inline-edit.js, aptos-* board messages). Price rows: data-price-row="11_lifting:<sheet row>" with [data-price-list] / [data-price-sale];
+     the strings come from v4/events/_data/pages.json via v4/thermage12/build-thermage12.cjs. -->
 <main class="tm">
   <div class="sheet">
 
-    <!-- 1 / 6 : hero (generated model photo, v4/thermage12/gen/hero-v1.json) -->
+    <!-- 1 / 6 : hero. The generated photo carries F's set: the model stands centred under the velvet bow whose tails frame her (gen/hero-1104-v1.json).
+         F's script word sits between the bow and her head; F's product box becomes the plum label box at the bottom centre. -->
     <section class="card c1" data-card="1" aria-labelledby="tm-t1">
-      <img class="c1-photo" src="assets/hero.jpg?v=a" data-alt="tm_alt_hero" alt="" width="1080" height="1350">
-      <div class="c1-shade" aria-hidden="true"></div>
-      <img class="spark k1" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k2" src="assets/dec/spark-lilac.webp" alt="" aria-hidden="true"><img class="spark k3" src="assets/dec/spark-sun.webp" alt="" aria-hidden="true">
+      <img class="c1-photo" src="assets/hero.jpg?v=1104" data-alt="tm_alt_hero" alt="" width="1080" height="1350">
       <header class="c1-top"><span class="brand" data-copy="tm_brand"></span></header>
-      <div class="c1-copy">
-        <p class="kicker-mono" data-copy="tm_kicker"></p>
+      <p class="script c1-script" aria-hidden="true" data-copy="tm_s1"></p>
+      <div class="seal s-hero"><img class="seal-art" src="assets/dec/rosette.webp" alt="" aria-hidden="true" width="390" height="520"><p class="seal-tx"><span class="sl s1" data-copy="tm_seal1"></span><span class="sl s2" data-copy="tm_seal2"></span><span class="sl s3" data-copy="tm_seal3"></span></p></div>
+      <div class="c1-box">
+        <p class="kicker-serif" data-copy="tm_kicker"></p>
         <h1 class="title hero-title" id="tm-t1" data-copy="tm_title"></h1>
         <p class="hook" data-copy="tm_hook"></p>
-        <p class="period"><span data-copy="tm_period"></span></p>
+        <div class="c1-price">
+          <p class="tz-top"><span class="tz-label" data-copy="tm_hero_label"></span><span class="tz-tag" data-copy="tm_hero_tag"></span></p>
+          <p class="tz-main"><span class="tz-price money" data-copy="tm_hero_price"></span><span class="tz-vat" data-copy="tm_vat"></span></p>
+        </div>
+        <div class="c1-foot">
+          <p class="period"><span data-copy="tm_period"></span></p>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="tm_contact"></span></p>
+        </div>
       </div>
-      <div class="c1-teaser">
-        <p class="tz-top"><span class="tz-label" data-copy="tm_hero_label"></span><span class="tz-tag" data-copy="tm_hero_tag"></span></p>
-        <p class="tz-main"><span class="tz-price money" data-copy="tm_hero_price"></span><span class="tz-vat" data-copy="tm_vat"></span></p>
-      </div>
-      <div class="seal s-hero"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="tm_seal1"></span><span class="sl s2" data-copy="tm_seal2"></span><span class="sl s3" data-copy="tm_seal3"></span></p></div>
-      <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="tm_contact"></span></p>
     </section>
 
-    <!-- 2 / 6 : prices, all eleven rows of 11_lifting B50:K61 in sheet order (header B49 -> card title; [tags] -> group heads) -->
+    <!-- 2 / 6 : prices, all eleven rows of 11_lifting B50:K61 in sheet order (header B49 -> card title; [tags] -> group heads).
+         Background: the generated velvet-bow set (bg/bow.jpg); the Rosarian price sheet stands in the empty centre like F's box. -->
     <section class="card c2" data-card="2" aria-labelledby="tm-t2">
-      <span class="p-mark" aria-hidden="true" data-copy="tm_p_mark"></span>
-      <img class="spark k4" src="assets/dec/spark-trio.webp" alt="" aria-hidden="true"><img class="spark k5" src="assets/dec/spark-lilac.webp" alt="" aria-hidden="true">
       <div class="c2-in">
         <header class="top"><span class="brand" data-copy="tm_brand"></span><span class="period"><span data-copy="tm_period"></span></span></header>
         <div class="c2-head">
+          <p class="script p-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
           <h2 class="p-title" id="tm-t2" data-copy="tm_p_title"></h2>
           <p class="p-lead" data-copy="tm_p_lead"></p>
         </div>
-        <div class="seal s-price"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="tm_seal1"></span><span class="sl s2" data-copy="tm_seal2"></span><span class="sl s3" data-copy="tm_seal3"></span></p></div>
+        <div class="seal s-price"><img class="seal-art" src="assets/dec/rosette.webp" alt="" aria-hidden="true" width="390" height="520"><p class="seal-tx"><span class="sl s1" data-copy="tm_seal1"></span><span class="sl s2" data-copy="tm_seal2"></span><span class="sl s3" data-copy="tm_seal3"></span></p></div>
         <div class="pboard">
           <section class="pgroup g-solo" aria-labelledby="tm-g-solo">
             <div class="phead">
               <div class="pg-tx"><h3 class="pg-name" id="tm-g-solo" data-copy="tm_g_solo_name"></h3><p class="pg-sub" data-copy="tm_g_solo_sub"></p></div>
-              <div class="pg-dev"><figure class="dev"><img src="assets/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="1000" height="1000"></figure></div>
+              <div class="pg-dev"><figure class="dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div>
             </div>
             <ul class="prows">
               <li class="prow" data-price-row="11_lifting:50"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
@@ -69,7 +75,7 @@
           <section class="pgroup g-ul" aria-labelledby="tm-g-ul">
             <div class="phead">
               <div class="pg-tx"><h3 class="pg-name" id="tm-g-ul" data-copy="tm_g_ul_name"></h3><p class="pg-sub" data-copy="tm_g_ul_sub"></p></div>
-              <div class="pg-dev"><figure class="dev"><img src="assets/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="1000" height="1000"></figure><span class="plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="dev"><img src="assets/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="1000" height="1000"></figure></div>
+              <div class="pg-dev"><figure class="dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><span class="plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div>
             </div>
             <ul class="prows">
               <li class="prow combo" data-price-row="11_lifting:55"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
@@ -80,7 +86,7 @@
           <section class="pgroup g-sf" aria-labelledby="tm-g-sf">
             <div class="phead">
               <div class="pg-tx"><h3 class="pg-name" id="tm-g-sf" data-copy="tm_g_sf_name"></h3><p class="pg-sub" data-copy="tm_g_sf_sub"></p></div>
-              <div class="pg-dev"><figure class="dev"><img src="assets/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="1000" height="1000"></figure><span class="plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="dev"><img src="assets/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="1000" height="1000"></figure></div>
+              <div class="pg-dev"><figure class="dev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><span class="plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div>
             </div>
             <ul class="prows">
               <li class="prow combo has-badge" data-price-row="11_lifting:58"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
@@ -94,9 +100,8 @@
     </section>
 
     <!-- 3 / 6 : Before & After (approved bb-ba component of v4/_shared/ba/winter-ba-9/thermage; the four photos are copied unchanged into assets/ba).
-         Colours come from the page palette through the --ba-* variables; the arrow is the text '›' (no inline SVG). -->
+         Only the colours follow the new design (--ba-* variables, generated lavender set behind); the arrow is the text '›' (no inline SVG). -->
     <section class="card cba bb-ba" data-card="3" aria-labelledby="tm-tba">
-      <img class="spark k8" src="assets/dec/spark-trio.webp" alt="" aria-hidden="true"><img class="spark k9" src="assets/dec/moon.webp" alt="" aria-hidden="true">
       <div class="cba-in bb-ba__inner">
         <header class="top solo"><span class="brand" data-copy="tm_brand"></span></header>
         <p class="bb-ba__eyebrow" data-copy="tm_ba_kicker"></p>
@@ -122,20 +127,20 @@
     </section>
 
     <!-- 4 / 6 : what the device is (facts: v4/thermage12/REFERENCE_AND_PLAN.md). The skin section is a generated picture without text; the labels are
-         HTML text placed on its layers; the tip is the manufacturer's real tip photo (v3/products/thermage-total-tip.webp), turned to face the skin. -->
+         HTML text placed on its layers; the tip is the manufacturer's real tip photo at its native size (v3/products/cut/thermage-total-tip.png, turned).
+         The three devices stand on Rosarian plinths like F's product on its box (trimmed cut-outs, equal boxes). -->
     <section class="card c3" data-card="4" aria-labelledby="tm-t3">
-      <img class="spark k10" src="assets/dec/snow-lilac.webp" alt="" aria-hidden="true"><img class="spark k11" src="assets/dec/spark-sun.webp" alt="" aria-hidden="true">
       <div class="c3-in">
         <header class="top solo"><span class="brand" data-copy="tm_brand"></span></header>
         <div class="q-head">
-          <p class="kicker" data-copy="tm_c3_kicker"></p>
+          <p class="script kicker-script" aria-hidden="true" data-copy="tm_c3_kicker"></p>
           <h2 class="q-title" id="tm-t3" data-copy="tm_c3_q"></h2>
           <p class="q-ans" data-copy="tm_c3_a"></p>
         </div>
         <div class="c3-mid">
           <figure class="xsec">
             <img class="xsec-art" src="assets/c4/skin.webp" alt="" aria-hidden="true" width="1000" height="1000">
-            <img class="xsec-tip" src="assets/c4/tip.webp" data-alt="tm_alt_tip" alt="" width="360" height="420">
+            <img class="xsec-tip" src="assets/c4/tip.webp" data-alt="tm_alt_tip" alt="" width="131" height="153">
             <span class="xl xl-tip" data-copy="tm_c3_d_tip"></span>
             <span class="xl xl-cool" data-copy="tm_c3_d_cool"></span>
             <span class="xl xl-heat" data-copy="tm_c3_d_heat"></span>
@@ -151,27 +156,27 @@
         <div class="cmp">
           <h3 class="cmp-title" data-copy="tm_c3_cmp_title"></h3>
           <ul class="cmp-row">
-            <li class="cmp-it is-main"><figure class="dev-l"><img src="assets/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="1000" height="1000"></figure><span class="cmp-n" data-copy="tm_c3_e1_name"></span><span class="cmp-t" data-copy="tm_c3_e1_type"></span></li>
-            <li class="cmp-it"><figure class="dev-l"><img src="assets/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="1000" height="1000"></figure><span class="cmp-n" data-copy="tm_c3_e2_name"></span><span class="cmp-t" data-copy="tm_c3_e2_type"></span></li>
-            <li class="cmp-it"><figure class="dev-l"><img src="assets/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="1000" height="1000"></figure><span class="cmp-n" data-copy="tm_c3_e3_name"></span><span class="cmp-t" data-copy="tm_c3_e3_type"></span></li>
+            <li class="cmp-it is-main"><figure class="dev-l"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e1_name"></span><span class="cmp-t" data-copy="tm_c3_e1_type"></span></div></li>
+            <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e2_name"></span><span class="cmp-t" data-copy="tm_c3_e2_type"></span></div></li>
+            <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e3_name"></span><span class="cmp-t" data-copy="tm_c3_e3_type"></span></div></li>
           </ul>
         </div>
         <p class="src" data-copy="tm_c3_src"></p>
       </div>
     </section>
 
-    <!-- 5 / 6 : the treatment day, step by step (genuine tip check = Solta Medical Korea: hologram sticker -> purple double sticker -> QR). All icons are generated. -->
+    <!-- 5 / 6 : the treatment day, step by step (genuine tip check = Solta Medical Korea: hologram sticker -> purple double sticker -> QR). All icons are generated.
+         The arch photo is the second model cut (gen/day-1104-v1.json): a different pose and expression from the hero. -->
     <section class="card c4" data-card="5" aria-labelledby="tm-t4">
-      <img class="spark k6" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k7" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true">
       <div class="c4-in">
         <header class="top solo"><span class="brand" data-copy="tm_brand"></span></header>
         <div class="c4-headrow">
+          <figure class="c4-photo"><img src="assets/model-day.jpg?v=1104" data-alt="tm_alt_c4" alt="" width="640" height="800"><img class="c4-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"></figure>
           <div class="q-head">
-            <p class="kicker" data-copy="tm_c4_kicker"></p>
+            <p class="script kicker-script" aria-hidden="true" data-copy="tm_c4_kicker"></p>
             <h2 class="q-title" id="tm-t4" data-copy="tm_c4_q"></h2>
             <p class="q-ans" data-copy="tm_c4_a"></p>
           </div>
-          <figure class="c4-photo"><img src="assets/model-day.jpg?v=a" data-alt="tm_alt_c4" alt="" width="640" height="640"></figure>
         </div>
         <ol class="steps">
           <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-consult.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s1_t"></h3><p class="st-d" data-copy="tm_c4_s1_d"></p>
@@ -207,12 +212,12 @@
           <li class="inf"><span class="inf-k" data-copy="tm_c4_i2_k"></span><span class="inf-v" data-copy="tm_c4_i2_v"></span><span class="inf-n" data-copy="tm_c4_i2_n"></span></li>
           <li class="inf"><span class="inf-k" data-copy="tm_c4_i3_k"></span><span class="inf-v" data-copy="tm_c4_i3_v"></span><span class="inf-n" data-copy="tm_c4_i3_n"></span></li>
         </ul>
-        <p class="c4-tip"><img class="tip-ico" src="assets/dec/spark-rose.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_tip"></span></p>
+        <p class="c4-tip"><img class="tip-ico" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"><span data-copy="tm_c4_tip"></span></p>
         <p class="src" data-copy="tm_c4_src"></p>
       </div>
     </section>
 
-    <!-- 6 / 6 : clinic intro, the V4 bento grid (same content and order as onda12 / ulthera12 / FV12) on the night sky with Rosarian panels and a Solarized booking panel -->
+    <!-- 6 / 6 : clinic intro, the V4 bento grid (same content and order as onda12 / ulthera12 / FV12) on the generated lavender set, Rosarian panels and a Solarized booking panel -->
     <section class="card c5" data-card="6" aria-labelledby="tm-t5">
       <div class="cx-in">
         <header class="top solo"><span class="brand" data-copy="tm_brand"></span></header>
@@ -285,7 +290,7 @@
 
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="tm-notes">
-      <h2 id="tm-notes"><img class="nt-ico" src="assets/dec/spark-sun.webp" alt="" aria-hidden="true"><span data-copy="tm_note_title"></span></h2>
+      <h2 id="tm-notes"><img class="nt-ico" src="assets/dec/bow-lilac.webp" alt="" aria-hidden="true" width="360" height="209"><span data-copy="tm_note_title"></span></h2>
       <ul>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="tm_cond1"></span></li>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="tm_cond2"></span></li>

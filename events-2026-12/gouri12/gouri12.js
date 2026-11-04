@@ -33,12 +33,12 @@ function setMoney(el,v){
  el.append(span('n',m[2]));
  if(m[3])el.append(span('u',m[3]));
 }
-/* hero title: the last word on its own line (the space stays in the text) */
-function setTitle(el,v){
+/* two-tone headline (sheet F): the first word glossy (.k1), the rest bold with a white outline (.k2); the space stays in the text */
+function setSplit(el,v){
  el.textContent='';
- const m=/^(.*\S)(\s+)(\S+)$/.exec(v||'');
- if(!m){el.append(span('t1',v||''));return;}
- el.append(span('t1',m[1]),document.createTextNode(m[2]),span('t2',m[3]));
+ const m=/^(\S+)(\s+)(.+)$/.exec(v||'');
+ if(!m){el.append(span('k1',v||''));return;}
+ el.append(span('k1',m[1]),document.createTextNode(m[2]),span('k2',m[3]));
 }
 /* card 5 hours: the day label and the time are styled apart */
 function setHours(el,v){
@@ -48,7 +48,7 @@ function setHours(el,v){
  el.append(span('hd',m[1]),document.createTextNode(m[2]),span('ht',m[3]));
 }
 /* widow guard: the last two words stay together; kept names never break */
-const GUARD='.hook,.a,.fd,.std,.wd,.ws,.tip,.src,.gift-line [data-copy],.gb-tx,.pdesc,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
+const GUARD='.a,.fd,.std,.wd,.ws,.tip [data-copy],.src,.gift-line [data-copy],.gb-tx,.pdesc,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
 /* kept together: names, the phone number, one set-up ('고우리 2실린지 + 리쥬란 4cc') and words joined by a middle dot ('세안·화장·운동은') */
 const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|재생크림 증정|PCL \(폴리카프로락톤\)|DEXLEVO|고우리 \d실린지 \+ 리(?:쥬란|투오) \d+(?:cc|vial)|[가-힣A-Za-z0-9]+(?:·[가-힣A-Za-z0-9]+)+)/g;
 function appendKept(el,s){
@@ -61,7 +61,7 @@ function appendKept(el,s){
 }
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
- if(el.classList.contains('title')){setTitle(el,v);return;}
+ if(el.classList.contains('split')){setSplit(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
  KEEP.lastIndex=0;
  if(v&&!el.matches(GUARD)&&KEEP.test(v)){KEEP.lastIndex=0;el.textContent='';appendKept(el,v);return;}
@@ -87,8 +87,8 @@ function fitLines(el,lines,min){
 }
 function fit(){
  const phone=isPhone();
- for(const el of document.querySelectorAll('.eyebrow,.title'))fitTo(el,el.clientWidth,.6);
- for(const el of document.querySelectorAll('.c2-title,.q,.ft,.opt')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.72);}
+ for(const el of document.querySelectorAll('.tag,.title'))fitTo(el,el.clientWidth,.6);
+ for(const el of document.querySelectorAll('.ptitle,.q,.ft,.opt')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.72);}
  for(const el of document.querySelectorAll('.ab-title,.ab-strengths .at')){if(phone){el.style.removeProperty('--fit');continue;}fitLines(el,2,.74);}
  for(const el of document.querySelectorAll('.seal .sl'))fitTo(el,el.parentElement.clientWidth,.55);
 }

@@ -6,60 +6,60 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>온다 리프팅 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Montserrat:wght@600;700;800&amp;display=swap">
-  <link rel="stylesheet" href="onda12.css?v=20261102-onda12d">
-  <script src="copy-data.js?v=20261102-onda12d" defer></script>
-  <script src="../inline-edit.js?v=20261102-onda12d" defer></script>
-  <script src="onda12.js?v=20261102-onda12d" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=DM+Serif+Display&amp;display=swap">
+  <link rel="stylesheet" href="onda12.css?v=20261104-onda12a">
+  <script src="copy-data.js?v=20261104-onda12a" defer></script>
+  <script src="../inline-edit.js?v=20261104-onda12a" defer></script>
+  <script src="onda12.js?v=20261104-onda12a" defer></script>
 </head>
 <body>
-<!-- OND12 온다 · 겨울 시즌 (Korean first). Team colour pin (sheet I18): Cosmic Latte #FFF8E7, Sangria #930500, Cornflower #95BBEA;
-     every picture is a generated image (v4/onda12/gen, qa/image-attempts.json) or a real photo cutout; HTML/CSS draws only the layout (boxes, lines, pills).
+<!-- OND12 온다 · 겨울 시즌 (Korean first), 2026-11-04 rebuild on the completed reference sheet:
+     design language from F (v4/onda12/ref/sheet1104/F.jpg: centred close-up poster, small Korean copy on top, large thin serif English title at the bottom,
+     sky with fine sparkle, a thin ribbon, a round emblem), colours from H (Cosmic Latte #FFF8E7, Sangria #930500, Cornflower #95BBEA), model from G via a front master.
      Seven 1080x1350 cards (section[data-card="1..7"]); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
+     Every picture is a generated image (v4/onda12/gen, qa/image-attempts.json) or a real photo cutout; HTML/CSS draws only the layout (boxes, lines, pills).
      Price rows: data-price-row="11_lifting:<sheet row>" with [data-price-list] / [data-price-sale]; the strings come from v4/events/_data/pages.json via v4/onda12/build-onda12.cjs. -->
 <main class="od">
   <div class="sheet">
 
-    <!-- 1 / 7 : hero (generated model photo, v4/onda12/gen/hero-v1.json) -->
+    <!-- 1 / 7 : hero (model from the G master, F poster composition: copy on top, thin serif title at the bottom) -->
     <section class="card c1" data-card="1" aria-labelledby="od-t1">
-      <img class="c1-photo" src="assets/hero.jpg?v=a" data-alt="od_alt_hero" alt="" width="1080" height="1350">
+      <img class="c1-photo" src="assets/hero-g.jpg?v=a" data-alt="od_alt_hero" alt="" width="1080" height="1350">
       <div class="c1-shade" aria-hidden="true"></div>
-      <img class="spark k1" src="assets/dec/spark-corn.webp" alt="" aria-hidden="true"><img class="spark k2" src="assets/dec/spark-corn.webp" alt="" aria-hidden="true"><img class="spark k3" src="assets/dec/snow-corn.webp" alt="" aria-hidden="true">
-      <header class="top"><span class="brand" data-copy="od_brand"></span><span class="period"><span data-copy="od_period"></span></span></header>
-      <div class="c1-copy">
-        <p class="kicker-script" data-copy="od_kicker"></p>
-        <h1 class="title hero-title" id="od-t1" data-copy="od_title"></h1>
+      <img class="glint g1" src="assets/dec2/glints.webp" alt="" aria-hidden="true">
+      <div class="c1-top">
+        <p class="brand" data-copy="od_brand"></p>
         <p class="hook" data-copy="od_hook"></p>
+        <h1 class="hero-ko" id="od-t1" data-copy="od_title"></h1>
+        <p class="period"><span data-copy="od_period"></span></p>
       </div>
-      <div class="c1-teaser">
-        <span class="tz-ging" aria-hidden="true"></span>
-        <img class="tz-bow" src="assets/dec/bow.webp" alt="" aria-hidden="true">
-        <div class="tz-in">
-          <p class="tz-top"><span class="tz-label" data-copy="od_hero_label"></span><span class="tz-tag" data-copy="od_hero_tag"></span></p>
-          <p class="tz-main"><span class="tz-price money" data-copy="od_hero_price"></span><span class="tz-vat" data-copy="od_vat"></span></p>
+      <div class="seal s-hero"><img class="seal-art" src="assets/dec2/medal-red.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="od_seal1"></span><span class="sl s2" data-copy="od_seal2"></span><span class="sl s3" data-copy="od_seal3"></span></p></div>
+      <div class="c1-bottom">
+        <p class="kicker-script" data-copy="od_kicker"></p>
+        <p class="hero-en" data-copy="od_hero_en"></p>
+        <div class="c1-cta">
+          <p class="tz"><span class="tz-label" data-copy="od_hero_label"></span><span class="tz-tag" data-copy="od_hero_tag"></span><span class="tz-price money" data-copy="od_hero_price"></span><span class="tz-vat" data-copy="od_vat"></span></p>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="od_contact"></span></p>
         </div>
       </div>
-      <div class="seal s-hero"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="od_seal1"></span><span class="sl s2" data-copy="od_seal2"></span><span class="sl s3" data-copy="od_seal3"></span></p></div>
-      <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="od_contact"></span></p>
     </section>
 
     <!-- 2 / 7 : prices FACE, sheet rows 25-31 of 11_lifting B24:K38 in sheet order (title -> card title; DCA, CA options stay together) -->
     <section class="card cp c2" data-card="2" aria-labelledby="od-t2">
-      <span class="p-mark" aria-hidden="true" data-copy="od_p_mark"></span>
-      <img class="spark k4" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k5" src="assets/dec/spark-corn.webp" alt="" aria-hidden="true"><img class="spark k6" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true">
+      <img class="glint g2" src="assets/dec2/glints.webp" alt="" aria-hidden="true">
       <div class="cp-in">
-        <header class="top"><span class="brand" data-copy="od_brand"></span><span class="period"><span data-copy="od_period"></span></span></header>
+        <header class="top"><span class="brand" data-copy="od_brand"></span></header>
         <div class="cp-head">
+          <figure class="dev-fig"><img class="dev" src="assets/onda-t.webp" data-alt="od_alt_dev_onda" alt="" width="429" height="912"></figure>
           <div class="cp-htx">
             <h2 class="p-title" id="od-t2"><span class="pt-main" data-copy="od_p_title"></span></h2>
             <p class="p-sec"><span class="sec-en" data-copy="od_p_face_en"></span><span class="sec-ko" data-copy="od_p_face_ko"></span></p>
-            <p class="p-kj"><span class="kj-k" data-copy="od_p_kj_k"></span><span class="kj-d" data-copy="od_p_kj_d"></span></p>
+            <p class="period"><span data-copy="od_period"></span></p>
           </div>
-          <figure class="plate"><img class="plate-art" src="assets/dec/plate.webp" alt="" aria-hidden="true"><img class="dev" src="assets/onda.webp" data-alt="od_alt_dev_onda" alt="" width="1000" height="1000"></figure>
+          <div class="seal s-board"><img class="seal-art" src="assets/dec2/medal-red.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="od_seal1"></span><span class="sl s2" data-copy="od_seal2"></span><span class="sl s3" data-copy="od_seal3"></span></p></div>
         </div>
+        <p class="p-kj"><span class="kj-k" data-copy="od_p_kj_k"></span><span class="kj-d" data-copy="od_p_kj_d"></span></p>
         <div class="pboard">
-          <span class="pb-ging" aria-hidden="true"></span>
-          <div class="seal s-board"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="od_seal1"></span><span class="sl s2" data-copy="od_seal2"></span><span class="sl s3" data-copy="od_seal3"></span></p></div>
           <ul class="prows">
             <li class="prow" data-price-row="11_lifting:25"><span class="pname"><span class="kjn" data-copy="od_r25_name"></span></span><span class="plist money" data-price-list data-copy="od_r25_list"></span><span class="psale money" data-price-sale data-copy="od_r25_sale"></span></li>
             <li class="prow" data-price-row="11_lifting:26"><span class="pname"><span class="kjn" data-copy="od_r26_name"></span></span><span class="plist money" data-price-list data-copy="od_r26_list"></span><span class="psale money" data-price-sale data-copy="od_r26_sale"></span></li>
@@ -81,20 +81,20 @@
 
     <!-- 3 / 7 : prices BODY (continued), sheet rows 32-38; the (HIT!) mark of row 36 is the only badge -->
     <section class="card cp c3" data-card="3" aria-labelledby="od-t3">
-      <span class="p-mark" aria-hidden="true" data-copy="od_p_mark"></span>
-      <img class="spark k4" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k5" src="assets/dec/spark-corn.webp" alt="" aria-hidden="true">
+      <img class="glint g3" src="assets/dec2/glints.webp" alt="" aria-hidden="true">
       <div class="cp-in">
-        <header class="top"><span class="brand" data-copy="od_brand"></span><span class="period"><span data-copy="od_period"></span></span></header>
+        <header class="top"><span class="brand" data-copy="od_brand"></span></header>
         <div class="cp-head">
+          <figure class="dev-fig"><img class="dev" src="assets/onda-t.webp" data-alt="od_alt_dev_onda" alt="" width="429" height="912"></figure>
           <div class="cp-htx">
             <h2 class="p-title" id="od-t3"><span class="pt-main" data-copy="od_p_title"></span><span class="pt-cont" data-copy="od_p_cont"></span></h2>
             <p class="p-sec"><span class="sec-en" data-copy="od_p_body_en"></span><span class="sec-ko" data-copy="od_p_body_ko"></span></p>
-            <p class="p-area"><span class="area-k" data-copy="od_p_area_k"></span><span class="area-v" data-copy="od_p_area_v"></span></p>
+            <p class="period"><span data-copy="od_period"></span></p>
           </div>
-          <figure class="plate"><img class="plate-art" src="assets/dec/plate.webp" alt="" aria-hidden="true"><img class="dev" src="assets/onda.webp" data-alt="od_alt_dev_onda" alt="" width="1000" height="1000"></figure>
+          <img class="rib" src="assets/dec2/ribbon.webp" alt="" aria-hidden="true">
         </div>
+        <p class="p-area"><span class="area-k" data-copy="od_p_area_k"></span><span class="area-v" data-copy="od_p_area_v"></span></p>
         <div class="pboard">
-          <span class="pb-ging" aria-hidden="true"></span>
           <ul class="prows">
             <li class="prow" data-price-row="11_lifting:32"><span class="pname"><span class="kjn" data-copy="od_r32_name"></span></span><span class="plist money" data-price-list data-copy="od_r32_list"></span><span class="psale money" data-price-sale data-copy="od_r32_sale"></span></li>
             <li class="prow" data-price-row="11_lifting:33"><span class="pname"><span class="kjn" data-copy="od_r33_name"></span></span><span class="plist money" data-price-list data-copy="od_r33_list"></span><span class="psale money" data-price-sale data-copy="od_r33_sale"></span></li>
@@ -121,9 +121,9 @@
     <!-- 4 / 7 : Before & After (approved bb-ba component of v4/_shared/ba/winter-ba-9/onda; the four photos are copied unchanged into assets/ba).
          Colours come from the page palette through the --ba-* variables; the arrow is the text '›' (no inline SVG). -->
     <section class="card cba bb-ba" data-card="4" aria-labelledby="od-tba">
-      <img class="spark k11" src="assets/dec/spark-trio.webp" alt="" aria-hidden="true"><img class="flake fl4" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true">
+      <img class="glint g4" src="assets/dec2/glints.webp" alt="" aria-hidden="true">
       <div class="cba-in bb-ba__inner">
-        <header class="top solo"><span class="brand" data-copy="od_brand"></span></header>
+        <header class="top"><span class="brand" data-copy="od_brand"></span></header>
         <p class="bb-ba__eyebrow" data-copy="od_ba_kicker"></p>
         <h2 class="bb-ba__title" id="od-tba" data-copy="od_ba_title"></h2>
         <div class="bb-ba__rows">
@@ -142,29 +142,26 @@
             </div>
           </div>
         </div>
+        
         <p class="bb-ba__note" data-copy="od_ba_note"></p>
       </div>
     </section>
 
-    <!-- 5 / 7 : what the device is (facts: v4/onda12/REFERENCE_AND_PLAN.md) -->
+    <!-- 5 / 7 : what the device is (facts: v4/onda12/REFERENCE_AND_PLAN.md). Generated skin section + real DEKA handpiece photos placed on the
+         measured energy lines (v4/onda12/gen/cut-1104.json: lines at 32.5% / 68.4%, surface 39.9%). -->
     <section class="card c4" data-card="5" aria-labelledby="od-t4">
-      <div class="ging-band" aria-hidden="true"></div>
-      <img class="spark k7" src="assets/dec/spark-corn.webp" alt="" aria-hidden="true"><img class="spark k8" src="assets/dec/spark-red.webp" alt="" aria-hidden="true">
       <div class="c4-in">
-        <header class="top solo"><span class="brand" data-copy="od_brand"></span></header>
-        <div class="c4-head">
-          <div class="q-head">
-            <p class="kicker" data-copy="od_c4_kicker"></p>
-            <h2 class="q-title" id="od-t4" data-copy="od_c4_q"></h2>
-            <p class="q-ans" data-copy="od_c4_a"></p>
-          </div>
-          <figure class="plate plate-4"><img class="plate-art" src="assets/dec/plate.webp" alt="" aria-hidden="true"><img class="dev" src="assets/onda.webp" data-alt="od_alt_dev_onda" alt="" width="1000" height="1000"></figure>
+        <header class="top"><span class="brand" data-copy="od_brand"></span></header>
+        <div class="q-head">
+          <p class="kicker" data-copy="od_c4_kicker"></p>
+          <h2 class="q-title" id="od-t4" data-copy="od_c4_q"></h2>
+          <p class="q-ans" data-copy="od_c4_a"></p>
         </div>
         <div class="c4-mid">
           <figure class="layers">
             <img class="layers-art" src="assets/c4/layers.webp" data-alt="od_alt_layers" alt="" width="1000" height="1000">
-            <img class="hp hp-l" src="assets/c4/hp-left-head.webp" data-alt="od_alt_hp" alt="" width="360" height="397">
-            <img class="hp hp-r" src="assets/c4/hp-right-head.webp" alt="" aria-hidden="true" width="360" height="396">
+            <img class="hp hp-l" src="assets/c4/hp-left-t.webp" data-alt="od_alt_hp" alt="" width="207" height="390">
+            <img class="hp hp-r" src="assets/c4/hp-right-t.webp" alt="" aria-hidden="true" width="206" height="389">
             <span class="ll l-shallow" data-copy="od_c4_d_shallow"></span>
             <span class="ll l-deep" data-copy="od_c4_d_deep"></span>
             <span class="ll l-cool"><img class="ll-ico" src="assets/dec/snow-corn.webp" alt="" aria-hidden="true"><span data-copy="od_c4_d_cool"></span></span>
@@ -191,19 +188,15 @@
       </div>
     </section>
 
-    <!-- 6 / 7 : the treatment day (who it is for, four steps, treatment info) -->
+    <!-- 6 / 7 : the treatment day (a different cut of the same model: near-frontal, smiling, looking down; not the hero photo) -->
     <section class="card c5" data-card="6" aria-labelledby="od-t5">
-      <img class="flake fl1" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true"><img class="flake fl2" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true"><img class="flake fl3" src="assets/dec/spark-trio.webp" alt="" aria-hidden="true">
-      <img class="spark k9" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k10" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true">
       <div class="c5-in">
-        <header class="top solo"><span class="brand" data-copy="od_brand"></span></header>
-        <div class="c5-headrow">
-          <div class="q-head">
-            <p class="kicker" data-copy="od_c5_kicker"></p>
-            <h2 class="q-title" id="od-t5" data-copy="od_c5_q"></h2>
-            <p class="q-ans" data-copy="od_c5_a"></p>
-          </div>
-          <figure class="c5-photo"><img src="assets/model-day.jpg?v=a" data-alt="od_alt_c5" alt="" width="640" height="640"></figure>
+        <header class="top"><span class="brand" data-copy="od_brand"></span></header>
+        <figure class="c5-photo"><img src="assets/day-g.jpg?v=a" data-alt="od_alt_c5" alt="" width="640" height="640"></figure>
+        <div class="q-head">
+          <p class="kicker" data-copy="od_c5_kicker"></p>
+          <h2 class="q-title" id="od-t5" data-copy="od_c5_q"></h2>
+          <p class="q-ans" data-copy="od_c5_a"></p>
         </div>
         <div class="who">
           <p class="who-lbl" data-copy="od_c5_who_lbl"></p>
@@ -228,10 +221,10 @@
       </div>
     </section>
 
-    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / aptos12 / FV12) in this page's sangria / cosmic latte / cornflower tone -->
+    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / aptos12 / FV12) on the deep winter sky -->
     <section class="card c6" data-card="7" aria-labelledby="od-t6">
       <div class="cx-in">
-        <header class="top solo"><span class="brand" data-copy="od_brand"></span></header>
+        <header class="top"><span class="brand" data-copy="od_brand"></span></header>
         <div class="bento">
           <div class="bt bt-about">
             <div class="ab-top">

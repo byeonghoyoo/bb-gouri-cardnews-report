@@ -46,6 +46,17 @@
     }).filter(Boolean).sort(function (a, b) { return a.n - b.n; });
   }
 
+  function a4Layout(n) {
+    n = Math.max(0, Number(n) || 0);
+    if (n <= 0) return [];
+    if (n === 1) return [{ x: 80, y: 304, w: 2320, h: 2900 }]; /* 2026-11-04: print margin about 7mm */
+    var gap = 60, w = n === 2 ? 1331 : 1150, h = n === 2 ? 1664 : 1437, cols = n === 2 ? 1 : 2, rows = Math.ceil(n / cols);
+    if (rows * h + (rows - 1) * gap > 3508) h = Math.floor((3508 - (rows - 1) * gap) / rows);
+    var totalH = rows * h + (rows - 1) * gap, y0 = Math.floor((3508 - totalH) / 2), out = [];
+    for (var i = 0; i < n; i++) { var row = Math.floor(i / cols), count = row === rows - 1 && n % cols ? n % cols : cols, rowW = count * w + (count - 1) * gap, col = i % cols; out.push({ x: Math.floor((2480 - rowW) / 2) + col * (w + gap), y: y0 + row * (h + gap), w: w, h: h }); }
+    return out;
+  }
+
   function collectOffers(fields) {
     var byN = {};
     Object.keys(fields || {}).forEach(function (k) {
@@ -111,10 +122,11 @@
     var doFetch = opts.fetch;
     var HEAD = {}; HEAD[HEADER_NAME] = HEADER_VALUE;
     var store = {
-      status: 'loading', online: true, cells: {}, error: null, lastSync: null,
+      status: 'loading', online: true, cells: {}, deleted: [], error: null, lastSync: null,
       canEdit: function () { return store.status === 'ready'; },
       get: function (k) { return store.cells[k]; },
       value: function (k, def) { var c = store.cells[k]; return c && typeof c.value === 'string' ? c.value : def; },
+      isDeleted: function (itemId) { return store.deleted.some(function (d) { return (d && d.id) === itemId || d === itemId; }); },
       isSelected: function (itemId, locale) {
         var c = store.cells[selectedKey(itemId, locale)];
         return !!c && (c.value === true || c.value === 'true');
@@ -128,13 +140,13 @@
         return res.json();
       }).then(function (body) {
         if (!body || !isObj(body.cells)) throw new Error('응답 형식 오류');
-        return body.cells;
+        return { cells: body.cells, deleted: Array.isArray(body.deleted) ? body.deleted : [] };
       });
     }
 
     store.load = function () {
-      return fetchState().then(function (cells) {
-        store.cells = cells; store.status = 'ready'; store.online = true; store.error = null; store.lastSync = new Date();
+      return fetchState().then(function (remote) {
+        store.cells = remote.cells; store.deleted = remote.deleted; store.status = 'ready'; store.online = true; store.error = null; store.lastSync = new Date();
         return true;
       }, function (e) { store.status = 'error'; store.error = e && e.message || String(e); return false; });
     };
@@ -143,14 +155,26 @@
       var skip = (o && o.skipKeys) || [];
       return fetchState().then(function (remote) {
         var changed = [];
-        Object.keys(remote).forEach(function (k) {
+        Object.keys(remote.cells).forEach(function (k) {
           if (skip.indexOf(k) >= 0) return;
           var old = store.cells[k];
-          if (!old || old.revision !== remote[k].revision || old.value !== remote[k].value) { store.cells[k] = remote[k]; changed.push(k); }
+          if (!old || old.revision !== remote.cells[k].revision || old.value !== remote.cells[k].value) { store.cells[k] = remote.cells[k]; changed.push(k); }
         });
+        store.deleted = remote.deleted;
         store.status = 'ready'; store.online = true; store.error = null; store.lastSync = new Date();
         return changed;
       }, function () { store.online = false; return []; });
+    };
+
+    store.remove = function (targets, pin, by) {
+      var headers = Object.assign({ 'Content-Type': 'application/json' }, HEAD);
+      return doFetch(base + '/v1/delete', { method: 'POST', headers: headers, body: JSON.stringify({ targets: targets, pin: pin, by: by }) }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (body) {
+          if (!res.ok) return { ok: false, status: res.status, body: body };
+          store.deleted = Array.isArray(body.deleted) ? body.deleted : store.deleted;
+          return { ok: true, deleted: store.deleted };
+        });
+      }, function () { return { ok: false, status: 0 }; });
     };
 
     store.save = function (key, value, by, o) {
@@ -243,7 +267,7 @@
     try { state.author = (env.storage && env.storage.getItem(AUTHOR_KEY)) || ''; } catch (e) { state.author = ''; }
 
     function by() { return state.author || '익명'; }
-    function item() { return state.data && state.data.items.filter(function (i) { return i.id === state.itemId; })[0]; }
+    function item() { return state.data && state.data.items.filter(function (i) { return i.id === state.itemId && !store.isDeleted(i.id); })[0]; }
     function localeObj(id) { return state.data.locales.filter(function (l) { return l.id === id; })[0]; }
     function origin() { return (env.location && env.location.origin) || ''; }
 
@@ -385,29 +409,37 @@
     function toggleGroup(g) { setFolded(g.id, !isFolded(g)); renderSidebar(); }
     function unfoldFor(itemId) { groupsOf().forEach(function (g) { if (g.items.indexOf(itemId) >= 0 && isFolded(g)) setFolded(g.id, false); }); }
 
+    function visibleItems() { return state.data.items.filter(function (it) { return !store.isDeleted(it.id); }); }
+    function visibleGroups() { return groupsOf().map(function (g) { return { g: g, items: g.items.map(function (id) { return state.data.items.filter(function (it) { return it.id === id; })[0]; }).filter(Boolean).filter(function (it) { return !store.isDeleted(it.id); }) }; }).filter(function (x) { return x.items.length; }); }
     function renderSidebar() {
       var loc = state.locale;
-      ui.sideTitle.textContent = '검토 항목 ' + state.data.items.length + '개';
-      var groups = groupsOf();
-      if (!groups.length) { ui.list.replaceChildren.apply(ui.list, state.data.items.map(itemRow)); return; }
+      var items = visibleItems();
+      ui.sideTitle.textContent = '검토 항목 ' + items.length + '개';
+      var groups = visibleGroups();
+      if (!groups.length) { ui.list.replaceChildren.apply(ui.list, items.map(itemRow)); return; }
       var byId = {}, used = {}, out = [];
-      state.data.items.forEach(function (it) { byId[it.id] = it; });
-      groups.forEach(function (g) {
-        var members = g.items.map(function (id) { used[id] = true; return byId[id]; }).filter(Boolean);
+      items.forEach(function (it) { byId[it.id] = it; });
+      if (!groups.length) { ui.list.replaceChildren.apply(ui.list, items.map(itemRow)); return; }
+      groups.forEach(function (x) {
+        var g = x.g, members = x.items;
+        members.forEach(function (it) { used[it.id] = true; });
         if (!members.length) return;
         var folded = isFolded(g);
         var selCount = members.filter(function (it) { return store.isSelected(it.id, loc); }).length;
         out.push(H('li', { class: 'group-row' + (folded ? ' folded' : '') }, [
-          H('button', { type: 'button', class: 'group-btn', 'data-group-id': g.id, 'aria-expanded': folded ? 'false' : 'true', onclick: function () { toggleGroup(g); } }, [
-            H('span', { class: 'group-chev', 'aria-hidden': 'true', text: folded ? '▶' : '▼' }),
-            g.test === true ? H('span', { class: 'group-test', text: '테스트 구간' }) : null,
-            H('span', { class: 'group-label', text: g.label || g.id }),
-            H('span', { class: 'group-count', text: members.length + '개' + (selCount ? ' · 선택 ' + selCount : '') + (folded ? ' · 접힘' : '') }),
+          H('div', { class: 'group-head' }, [
+            H('button', { type: 'button', class: 'group-btn', 'data-group-id': g.id, 'aria-expanded': folded ? 'false' : 'true', onclick: function () { toggleGroup(g); } }, [
+              H('span', { class: 'group-chev', 'aria-hidden': 'true', text: folded ? '▶' : '▼' }),
+              g.test === true ? H('span', { class: 'group-test', text: '테스트 구간' }) : null,
+              H('span', { class: 'group-label', text: g.label || g.id }),
+              H('span', { class: 'group-count', text: members.length + '개' + (selCount ? ' · 선택 ' + selCount : '') + (folded ? ' · 접힘' : '') }),
+            ]),
+            H('button', { type: 'button', class: 'btn small danger delete-btn', text: '삭제', onclick: function (e) { e.stopPropagation(); openDeleteDialog(members.map(function (it) { return it.id; }), g.label || g.id, members.length); } }),
           ]),
         ]));
         if (!folded) members.forEach(function (it) { out.push(itemRow(it)); });
       });
-      state.data.items.forEach(function (it) { if (!used[it.id]) out.push(itemRow(it)); });
+      items.forEach(function (it) { if (!used[it.id]) out.push(itemRow(it)); });
       ui.list.replaceChildren.apply(ui.list, out);
     }
 
@@ -422,7 +454,35 @@
             isTestItem(it.id) ? H('span', { class: 'kind-tag kind-test', text: '테스트' }) : H('span', { class: 'kind-tag kind-' + it.kind, text: it.kind === 'plan' ? '기획' : '완성' }),
             errs ? H('span', { class: 'err-tag', text: '오류 ' + errs }) : null,
           ]),
+          H('button', { type: 'button', class: 'btn small danger delete-btn', text: '삭제', onclick: function (e) { e.stopPropagation(); openDeleteDialog([it.id], it.label, 1); } }),
         ]);
+    }
+
+    function openDeleteDialog(targets, label, count) {
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 삭제할 수 없습니다.', 'error'); return; }
+      var pin = H('input', { class: 'delete-pin', type: 'password', inputMode: 'numeric', autocomplete: 'off', maxlength: '64', placeholder: '관리자 PIN', 'aria-label': '관리자 PIN' });
+      var modal = H('div', { class: 'delete-modal-backdrop', role: 'presentation' }, [H('div', { class: 'delete-modal', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'delete-title' }, [
+        H('h3', { id: 'delete-title', text: '항목 삭제' }),
+        H('p', { text: '다음 항목을 삭제합니다.' }),
+        H('strong', { class: 'delete-summary', text: label + ' (' + count + '개)' }),
+        H('p', { class: 'delete-warning', text: '삭제하면 검토 보드와 저장된 수정 내용에서 사라지며 되돌릴 수 없습니다.' }),
+        pin,
+        H('div', { class: 'delete-actions' }, [
+          H('button', { type: 'button', class: 'btn', text: '취소', onclick: function () { modal.remove(); } }),
+          H('button', { type: 'button', class: 'btn danger', text: '삭제', onclick: function () { submitDelete(targets, pin.value, modal); } }),
+        ]),
+      ])]);
+      doc.body.appendChild(modal); pin.focus();
+    }
+    function submitDelete(targets, pin, modal) {
+      if (!pin) { toast('관리자 PIN을 입력해 주세요.', 'error'); return; }
+      store.remove(targets, pin, by()).then(function (r) {
+        if (!r.ok) { toast(r.status === 403 ? '관리자 PIN이 올바르지 않습니다.' : r.status === 429 ? '삭제 시도가 너무 많습니다. 잠시 후 다시 시도해 주세요.' : '삭제하지 못했습니다. (' + (r.status || '네트워크 오류') + ')', 'error'); return; }
+        modal.remove();
+        var wasOpen = targets.indexOf(state.itemId) >= 0;
+        if (wasOpen) { var remain = visibleItems(); state.itemId = remain.length ? remain[0].id : null; }
+        renderAll(); toast('삭제했습니다. 저장소 파일은 몇 분 안에 자동으로 지워집니다.', 'ok');
+      });
     }
 
     /* ---- navigation ---- */
@@ -621,7 +681,7 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261029-v3p' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261104-v3q' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
@@ -736,6 +796,17 @@
        capFontCss() embeds the font faces the five cards actually use (family, matched weight/style, characters), so the image matches the page. */
     /* board items whose page has five 1080x1350 cards (section.p1 ... section.p5). To add one, append it here, e.g. FV12: true, HH12: true */
     var CAP_ITEMS = { FV12: true, HH12: true }; /* 2026-11-03: OXM12·APT12 now have 6 cards with data-card (B/A added) */
+    var a4CardsCache = {};
+    function a4CardsFromHtml(html) {
+      var d = new DOMParser().parseFromString(html, 'text/html');
+      return Array.prototype.filter.call(d.querySelectorAll('[data-card]'), function (el) { return el.querySelectorAll('[data-price-row]').length >= 1; }).map(function (el) { return Number(el.getAttribute('data-card')); }).filter(function (n) { return isFinite(n); });
+    }
+    function a4CardsFor(it) {
+      if (!it || typeof it.page !== 'string') return Promise.resolve([]);
+      var key = it.page;
+      if (a4CardsCache[key]) return Promise.resolve(a4CardsCache[key].slice());
+      return env.fetch(it.page, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('페이지를 확인하지 못했습니다.'); return r.text(); }).then(function (html) { var nums = a4CardsFromHtml(html); a4CardsCache[key] = nums; return nums.slice(); });
+    }
     var CAP_P5 = 'section.p1,section.p2,section.p3,section.p4,section.p5';
     var CAP = { items: CAP_ITEMS, sel: CAP_P5, n: 5, w: 1080, h: 1350, frameW: 1440, lib: 'vendor/modern-screenshot-4.7.0.js' };
     /* winter event pages (2026-11-02) have a different number of cards: data.json item.cards = count and every card section carries data-card="1".."n" */
@@ -752,45 +823,66 @@
       return base + '_' + locale + '_' + suffix + '.png';
     }
 
+    function safeBase(it) { return String(it.label || it.id).replace(/[\\/:*?"<>|]+/g, '').replace(/\s*·\s*/g, '_').replace(/\s+/g, ''); }
     function downloadBar(it) {
       var spec = capSpec(it); if (!spec || !env.downloadBlob) return null;
       var nums1 = []; for (var q = 1; q <= spec.n; q++) nums1.push(q);
       var status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' });
       var buttons = [];
-      var btn = function (text, action, nums, mode, cls) {
-        var b = H('button', { type: 'button', class: 'btn small' + (cls ? ' ' + cls : ''), 'data-action': action, text: text, onclick: function () { run(nums, mode); } });
-        buttons.push(b); return b;
-      };
-      function run(nums, mode) {
-        if (state.capture) { status.textContent = '이미 이미지를 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; }
-        buttons.forEach(function (b) { b.disabled = true; });
-        captureCards(it, state.locale, nums, mode, function (m) { status.textContent = m; }).then(function (msg) {
-          status.textContent = msg;
-        }, function (e) {
-          status.textContent = '받지 못했습니다: ' + (e && e.message || e);
-        }).then(function () { buttons.forEach(function (b) { b.disabled = false; }); });
-      }
-      return H('div', { class: 'img-download', 'data-img-download': it.id }, [
-        H('div', { class: 'img-dl-row' }, [
-          H('strong', { class: 'img-dl-label', text: '이미지 받기' }),
-          H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, nums1.map(function (n) {
-            return btn(n + '장', 'img-card-' + n, [n], 'single');
-          }).concat([btn(spec.n + '장 모두 따로', 'img-cards-all', nums1, 'single')])),
-          btn(spec.n + '장 이어서 길게 1장', 'img-long', nums1, 'long', 'primary'),
-        ]),
-        H('p', { class: 'img-dl-note', text: '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×' + (1350 * spec.n) + ' PNG입니다.' }),
-        status,
+      var btn = function (text, action, nums, mode, cls) { var b = H('button', { type: 'button', class: 'btn small' + (cls ? ' ' + cls : ''), 'data-action': action, text: text, onclick: function () { run(nums, mode); } }); buttons.push(b); return b; };
+      function run(nums, mode) { if (state.capture) { status.textContent = '이미 이미지를 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } buttons.forEach(function (b) { b.disabled = true; }); captureCards(it, state.locale, nums, mode, function (m) { status.textContent = m; }).then(function (m) { status.textContent = m; }, function (e) { status.textContent = '받지 못했습니다: ' + (e && e.message || e); }).then(function () { buttons.forEach(function (b) { b.disabled = false; }); }); }
+      var host = H('div', { class: 'img-download', 'data-img-download': it.id }, [
+        H('div', { class: 'img-dl-row' }, [H('strong', { class: 'img-dl-label', text: '이미지 받기' }), H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, nums1.map(function (n) { return btn(n + '장', 'img-card-' + n, [n], 'single'); }).concat([btn(spec.n + '장 모두 따로', 'img-cards-all', nums1, 'single')])), btn(spec.n + '장 이어서 길게 1장', 'img-long', nums1, 'long', 'primary')]),
+        H('p', { class: 'img-dl-note', text: '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×' + (1350 * spec.n) + ' PNG입니다.' }), status,
       ]);
+      var a4 = H('div', { class: 'a4-dl-group', hidden: true }); host.appendChild(a4);
+      a4CardsFor(it).then(function (cards) { if (!cards.length) return; var a4Status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' }); var group = H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '원내 배치용 A4 다운로드' }); var runA4 = function (mode) { if (state.capture) { a4Status.textContent = '이미 파일을 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } a4CardsFor(it).then(function (latest) { return captureA4(it, state.locale, latest, mode, function (m) { a4Status.textContent = m; }); }).then(function (m) { a4Status.textContent = m; }, function (e) { a4Status.textContent = '받지 못했습니다: ' + (e && e.message || e); }); };
+        group.appendChild(H('button', { type: 'button', class: 'btn small primary', text: 'A4 한 장 PNG', onclick: function () { runA4('one-png'); } })); group.appendChild(H('button', { type: 'button', class: 'btn small', text: 'A4 한 장 PDF', onclick: function () { runA4('one-pdf'); } })); if (cards.length >= 2) group.appendChild(H('button', { type: 'button', class: 'btn small', text: '카드별 A4 PDF (' + cards.length + '쪽)', onclick: function () { runA4('per-card-pdf'); } }));
+        a4.appendChild(H('strong', { class: 'img-dl-label', text: '원내 배치용 A4 (210×297mm)' })); a4.appendChild(group); a4.appendChild(H('p', { class: 'img-dl-note', text: '금액 카드 ' + cards.length + '장을 A4 한 장(210×297mm, 300dpi)에 담습니다.' })); a4.appendChild(a4Status); a4.hidden = false;
+      }, function () { /* no A4 group when the page has no price cards */ });
+      return host;
     }
-
     function capWait(win, ms) { return new Promise(function (r) { win.setTimeout(r, ms); }); }
     function capPost(cap) { postTo(cap, { type: 'aptos-data', locale: cap.locale, fields: cap.fields, editable: false, editMode: false }); }
-    function capBlob(canvas) {
+    function capBlob(canvas, type, quality) {
       return new Promise(function (resolve, reject) {
-        canvas.toBlob(function (b) { if (b) resolve(b); else reject(new Error('PNG를 만들지 못했습니다.')); }, 'image/png');
+        canvas.toBlob(function (b) { if (b) resolve(b); else reject(new Error('이미지를 만들지 못했습니다.')); }, type || 'image/png', quality);
       });
     }
-
+    function crc32(bytes) {
+      var table = crc32.table || (crc32.table = (function () { var t = [], n, k; for (n = 0; n < 256; n++) { k = n; for (var j = 0; j < 8; j++) k = (k & 1) ? (0xedb88320 ^ (k >>> 1)) : (k >>> 1); t[n] = k >>> 0; } return t; })());
+      var c = 0xffffffff; for (var i = 0; i < bytes.length; i++) c = table[(c ^ bytes[i]) & 255] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0;
+    }
+    function withPhys(blob) {
+      return blob.arrayBuffer().then(function (ab) { var src = new Uint8Array(ab), pos = 8, type, len; while (pos + 12 <= src.length) { len = (src[pos] << 24) | (src[pos + 1] << 16) | (src[pos + 2] << 8) | src[pos + 3]; type = String.fromCharCode(src[pos + 4], src[pos + 5], src[pos + 6], src[pos + 7]); if (type === 'IDAT') break; pos += 12 + len; } var data = new Uint8Array(9), dv = new DataView(data.buffer); dv.setUint32(0, 11811); dv.setUint32(4, 11811); data[8] = 1; var chunk = new Uint8Array(21), cd = new DataView(chunk.buffer); cd.setUint32(0, 9); chunk.set([112, 72, 89, 115], 4); chunk.set(data, 8); cd.setUint32(17, crc32(chunk.slice(4, 17))); var out = new Uint8Array(src.length + 21); out.set(src.slice(0, pos)); out.set(chunk, pos); out.set(src.slice(pos), pos + 21); return new Blob([out], { type: 'image/png' }); });
+    }
+    function pdfFromCanvases(canvases) {
+      return Promise.all(canvases.map(function (c) { return c.toDataURL('image/jpeg', .92); })).then(function (urls) { var objs = [], kids = [], add = function (s) { objs.push(s); return objs.length; }, bin = function (s) { var a = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) a[i] = s.charCodeAt(i) & 255; return a; }; var catalog = add('<< /Type /Catalog /Pages 2 0 R >>'); add(''); urls.forEach(function (u) { var raw = atob(u.split(',')[1]), img = new Uint8Array(raw.length); for (var i = 0; i < raw.length; i++) img[i] = raw.charCodeAt(i); var io = add('<< /Type /XObject /Subtype /Image /Width 2480 /Height 3508 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + img.length + ' >>\nstream\n' + raw + '\nendstream'); var content = 'q 595.28 0 0 841.89 0 0 cm /Im' + io + ' Do Q\n'; var co = add('<< /Length ' + content.length + ' >>\nstream\n' + content + 'endstream'); var po = add('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im' + io + ' ' + io + ' 0 R >> >> /Contents ' + co + ' 0 R >>'); kids.push(po + ' 0 R'); }); objs[1] = '<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + kids.length + ' >>'; var out = '%PDF-1.4\n%\xff\xff\xff\xff\n', offsets = [0]; objs.forEach(function (o, i) { offsets[i + 1] = out.length; out += (i + 1) + ' 0 obj\n' + o + '\nendobj\n'; }); var x = out.length; out += 'xref\n0 ' + (objs.length + 1) + '\n0000000000 65535 f \n'; offsets.slice(1).forEach(function (n) { out += String(n).padStart(10, '0') + ' 00000 n \n'; }); out += 'trailer\n<< /Size ' + (objs.length + 1) + ' /Root ' + catalog + ' 0 R >>\nstartxref\n' + x + '\n%%EOF'; return new Blob([bin(out)], { type: 'application/pdf' }); });
+    }
+    function roundClip(g, x, y, w, h, r) { g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else { g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); } g.closePath(); }
+    /* 2026-11-04: the page background is a plain vertical blend of the first card's top edge colour and the last card's bottom edge colour (no blurred copy of the card, no stretched rows) */
+    function a4EdgeColor(c, top) {
+      var g = c.getContext('2d'), w = c.width, h = c.height, y = top ? Math.round(h * 0.02) : Math.max(0, Math.round(h * 0.98) - 8), d;
+      try { d = g.getImageData(Math.round(w * 0.1), y, Math.max(1, Math.round(w * 0.8)), 8).data; } catch (err) { return null; }
+      var r = 0, gr = 0, b = 0, k = 0; for (var i = 0; i < d.length; i += 4) { if (d[i + 3] < 200) continue; r += d[i]; gr += d[i + 1]; b += d[i + 2]; k++; }
+      return k ? 'rgb(' + Math.round(r / k) + ',' + Math.round(gr / k) + ',' + Math.round(b / k) + ')' : null;
+    }
+    function composeA4(cards) {
+      var n = cards.length, positions = a4Layout(n), page = doc.createElement('canvas'); page.width = 2480; page.height = 3508; var g = page.getContext('2d');
+      var top = a4EdgeColor(cards[0], true) || '#ffffff', bottom = a4EdgeColor(cards[n - 1], false) || top, grad = g.createLinearGradient(0, 0, 0, 3508);
+      grad.addColorStop(0, top); grad.addColorStop(1, bottom); g.fillStyle = grad; g.fillRect(0, 0, 2480, 3508);
+      positions.forEach(function (p, i) {
+        var c = cards[i], s = Math.min(p.w / c.width, p.h / c.height), dw = Math.round(c.width * s), dh = Math.round(c.height * s), dx = p.x + Math.round((p.w - dw) / 2), dy = p.y + Math.round((p.h - dh) / 2);
+        g.save(); roundClip(g, dx, dy, dw, dh, 28); g.shadowColor = 'rgba(0,0,0,.14)'; g.shadowBlur = 24; g.shadowOffsetY = 8; g.fillStyle = top; g.fill(); g.restore();
+        g.save(); roundClip(g, dx, dy, dw, dh, 28); g.clip(); g.drawImage(c, 0, 0, c.width, c.height, dx, dy, dw, dh); g.restore();
+      });
+      return page;
+    }
+    function captureA4(it, locale, nums, mode, progress) {
+      var win = doc.defaultView, cap = state.capture = { itemId: it.id, locale: locale, el: null, fields: null }, finish = function () { if (cap.el && cap.el.parentNode) cap.el.parentNode.removeChild(cap.el); if (state.capture === cap) state.capture = null; };
+      progress('최신 문구를 확인하는 중…');
+      return store.refresh().then(function () { if (!store.online || store.status !== 'ready') throw new Error('서버에 연결되지 않아 최신 문구를 확인할 수 없습니다.'); cap.fields = effectiveFields(it, locale, store); return new Promise(function (resolve, reject) { var f = doc.createElement('iframe'); f.setAttribute('aria-hidden', 'true'); f.style.cssText = 'position:fixed;left:0;top:0;width:1440px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;'; var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000); f.addEventListener('load', function () { win.clearTimeout(t); resolve(); }); f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261104-a4b&capture=1'; cap.el = f; doc.body.appendChild(f); }); }).then(function () { capPost(cap); return capApplied(cap, it, locale); }).then(function () { return capPrepare(cap); }).then(function (fontCss) { var iw = cap.el.contentWindow, cards = Array.prototype.filter.call(iw.document.querySelectorAll('[data-card]'), function (c) { return c.querySelectorAll('[data-price-row]').length >= 1; }); if (!cards.length) throw new Error('금액 카드를 찾지 못했습니다.'); var out = [], chain = Promise.resolve(); cards.forEach(function (card, idx) { chain = chain.then(function () { progress('금액 카드 캡처 중 ' + (idx + 1) + '/' + cards.length + '…'); var scale = Math.min(2.4, Math.max(1, (a4Layout(cards.length)[idx] || a4Layout(1)[0]).w / card.getBoundingClientRect().width)); return iw.modernScreenshot.domToCanvas(card, { scale: scale, font: { cssText: fontCss } }).then(function (c) { out.push(c); }); }); }); return chain.then(function () { var one = composeA4(out); if (mode === 'one-png' || mode === 'one-pdf') return capBlob(one).then(withPhys).then(function (b) { if (mode === 'one-png') env.downloadBlob(b, safeBase(it) + '_' + locale + '_A4_원내배치용.png'); return mode === 'one-pdf' ? pdfFromCanvases([one]).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_원내배치용.pdf'); }) : null; }).then(function () { return 'A4 한 장을 받았습니다(금액 카드 ' + cards.length + '장).'; }); var pages = out.map(function (c) { return composeA4([c]); }); return pdfFromCanvases(pages).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_카드별.pdf'); return '카드별 A4 PDF를 받았습니다: ' + cards.length + '쪽'; }); }); }).then(function (m) { finish(); return m; }, function (e) { finish(); throw e; });
+    }
     function captureCards(it, locale, nums, mode, progress) {
       var spec = capSpec(it) || { sel: CAP_P5, n: 5 }; CAP.sel = spec.sel; CAP.n = spec.n;
       var win = doc.defaultView;
@@ -807,7 +899,7 @@
           f.style.cssText = 'position:fixed;left:0;top:0;width:' + CAP.frameW + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
           var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000);
           f.addEventListener('load', function () { win.clearTimeout(t); resolve(); });
-          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261029-v3p' + '&capture=1';
+          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261104-v3q' + '&capture=1';
           cap.el = f; doc.body.appendChild(f);
         });
       }).then(function () {
@@ -1159,11 +1251,12 @@
     /* ---- start ---- */
     function pickInitial() {
       var m = /^#?([A-Za-z0-9]+)\/([A-Z]{2})$/.exec((env.location && env.location.hash) || '');
-      var it = m && state.data.items.filter(function (i) { return i.id === m[1]; })[0];
+      var it = m && state.data.items.filter(function (i) { return i.id === m[1] && !store.isDeleted(i.id); })[0];
       var loc = m && state.data.locales.filter(function (l) { return l.id === m[2]; })[0];
       /* without a link to a specific item, open the first item of the first group that is not folded */
-      var open = !it && groupsOf().filter(function (g) { return !isFolded(g); }).map(function (g) { return state.data.items.filter(function (i) { return g.items.indexOf(i.id) >= 0; })[0]; }).filter(Boolean)[0];
-      state.itemId = (it || open || state.data.items[0]).id;
+      var visible = visibleItems();
+      var open = !it && visibleGroups().filter(function (x) { return !isFolded(x.g); }).map(function (x) { return x.items[0]; }).filter(Boolean)[0];
+      state.itemId = (it || open || visible[0] || {}).id || null;
       if (it) unfoldFor(it.id);
       state.locale = (loc || state.data.locales[0]).id;
     }
@@ -1229,6 +1322,6 @@
     cellKey: cellKey, selectedKey: selectedKey, fieldKind: fieldKind, isMultiline: isMultiline,
     collectNumbered: collectNumbered, collectOffers: collectOffers, validateData: validateData,
     createStore: createStore, effectiveFields: effectiveFields, buildExport: buildExport,
-    createApp: createApp, boot: boot,
+    createApp: createApp, a4Layout: a4Layout, boot: boot,
   };
 });

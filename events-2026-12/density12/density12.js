@@ -101,7 +101,7 @@ function fitLines(el,lines,min){
 }
 function fit(){
  const phone=isPhone();
- for(const el of document.querySelectorAll('.kicker-latin,.hero-title,.launch,.tz-label'))fitTo(el,el.parentElement.clientWidth,.6);
+ for(const el of document.querySelectorAll('.c1-launch,.hero-title,.kicker'))fitTo(el,el.parentElement.clientWidth,.6);
  for(const el of document.querySelectorAll('.pt-main')){const box=el.closest('.cp-htx,.b-htx,.c4-head');fitTo(el,box?box.clientWidth:el.parentElement.clientWidth,.6);}
  for(const el of document.querySelectorAll('.q-title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
  for(const el of document.querySelectorAll('.pname,.pg-head,.tl-top,.dg-name')){

@@ -6,59 +6,60 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>고우리 오픈이벤트 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&amp;family=Tenor+Sans&amp;display=swap">
-  <link rel="stylesheet" href="gouri12.css?v=20261102-gouri12a">
-  <script src="copy-data.js?v=20261102-gouri12a" defer></script>
-  <script src="../inline-edit.js?v=20261102-gouri12a" defer></script>
-  <script src="gouri12.js?v=20261102-gouri12a" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&amp;display=swap">
+  <link rel="stylesheet" href="gouri12.css?v=20261104-gouri12a">
+  <script src="copy-data.js?v=20261104-gouri12a" defer></script>
+  <script src="../inline-edit.js?v=20261104-gouri12a" defer></script>
+  <script src="gouri12.js?v=20261104-gouri12a" defer></script>
 </head>
 <body>
-<!-- GOU12 고우리 오픈이벤트 · 겨울 시즌 (Korean first). Team colour reference (sheet I61 pin): Noir Fiction #150811, Cloud Petal #FAF9F8,
-     Shy Moment #AAAAFF, Heartless #623B70, Wild Lilac #BEB8CD, Violet Carmine #531745.
-     Five 1080x1350 cards (section[data-card="1..5"]); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
-     Price rows: data-price-row="13_gouri:<sheet row>" with [data-price-list] / [data-price-sale]; the strings come from
-     v4/events/_data/pages.json via v4/gouri12/build-gouri12.cjs. D61 gift: .gift-mark in every qualifying row + one .gift-band, both outside data-price-*.
-     Pictures are generated images only (2026-11-03 rule): icons/sparkle/snowflake/seal cut-outs in assets/icons and assets/dec, card backgrounds
-     assets/bg-light.jpg and assets/bg-dark.jpg, model photo assets/hero.jpg; product photos are the manufacturer cut-outs. No inline SVG. -->
+<!-- GOU12 고우리 오픈이벤트 · 겨울 시즌 (Korean first), 2026-11-04 redesign from the completed reference sheet (row 61):
+     F = design language (bright studio poster: centred close-up, tagline + big two-tone headline, floating glossy bubbles, product near the chin),
+     G = team model (layout cuts only; the lead replaces hero.jpg / model-day.jpg with Higgsfield files), H = colours
+     (Noir Fiction #150811, Cloud Petal #FAF9F8, Shy Moment #AAAAFF, Heartless #623B70, Wild Lilac #BEB8CD, Violet Carmine #531745).
+     Six 1080x1350 cards (section[data-card="1..6"]); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
+     Price rows: data-price-row="13_gouri:<sheet row>" with [data-price-list] / [data-price-sale] from v4/events/_data/pages.json via build-gouri12.cjs.
+     D61 gift: .gift-mark in every qualifying row + one .gift-band, both outside data-price-*. Pictures are generated images or real cut-outs only. -->
 <main class="gr">
   <div class="sheet">
 
-    <!-- 1 / 5 : hero (what, how much, how to book) -->
+    <!-- 1 / 6 : hero (what, how much, how to book) -->
     <section class="card c1" data-card="1" aria-labelledby="gr-t1">
-      <img class="c1-photo" src="assets/hero.jpg?v=b" data-alt="gr_alt_hero" alt="" width="1080" height="1350">
-      <div class="c1-veil" aria-hidden="true"></div>
+      <img class="c1-photo model" src="assets/hero.jpg?v=1104" data-alt="gr_alt_hero" alt="" width="1080" height="1350">
+      <img class="bub b1" src="assets/dec/bubble-peri.webp" alt="" aria-hidden="true">
+      <img class="bub b2" src="assets/dec/bubble-lilac-s.webp" alt="" aria-hidden="true">
+      <img class="bub b3" src="assets/dec/heart.webp" alt="" aria-hidden="true">
+      <img class="bub b4" src="assets/dec/bubble-pearl.webp" alt="" aria-hidden="true">
       <img class="st s1" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
       <img class="st s2" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
-      <img class="st s3" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
-      <img class="st sf1" src="assets/dec/snowflake.webp" alt="" aria-hidden="true">
-      <header class="top"><span class="brand" data-copy="gr_brand"></span><span class="period" data-copy="gr_period"></span></header>
-      <div class="c1-copy">
-        <p class="eyebrow" data-copy="gr_h_eyebrow"></p>
-        <h1 class="title" id="gr-t1" data-copy="gr_h_title"></h1>
-        <p class="hook" data-copy="gr_h_hook"></p>
+      <header class="top"><span class="period" data-copy="gr_period"></span><span class="brand" data-copy="gr_brand"></span></header>
+      <div class="c1-head">
+        <p class="tag" data-copy="gr_h_eyebrow"></p>
+        <h1 class="title split" id="gr-t1" data-copy="gr_h_title"></h1>
+      </div>
+      <div class="seal s-hero"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl l1" data-copy="gr_seal1"></span><span class="sl l2" data-copy="gr_seal2"></span><span class="sl l3" data-copy="gr_seal3"></span></p></div>
+      <div class="c1-low">
         <div class="offer">
           <p class="offer-what"><span class="offer-name" data-copy="gr_h_name"></span><span class="offer-opt" data-copy="gr_h_opt"></span></p>
           <p class="offer-price"><span class="big money" data-copy="gr_h_price"></span><span class="offer-vat" data-copy="gr_vat"></span></p>
         </div>
         <p class="gift-line"><img class="gift-ico" src="assets/icons/gift.webp" alt="" aria-hidden="true"><span data-copy="gr_benefit"></span></p>
+        <p class="c1-contact"><img class="ph-ico" src="assets/icons/phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="gr_contact"></span></p>
       </div>
-      <div class="seal s-hero"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl l1" data-copy="gr_seal1"></span><span class="sl l2" data-copy="gr_seal2"></span><span class="sl l3" data-copy="gr_seal3"></span></p></div>
-      <p class="c1-contact"><img class="ph-ico" src="assets/icons/phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="gr_contact"></span></p>
+      <div class="c1-prod"><img class="prod-d" src="assets/prod/gouri-d.webp?v=1104" data-alt="gr_alt_syringe" alt="" width="915" height="482"></div>
     </section>
 
-    <!-- 2 / 5 : prices, 13) 고우리 B7:K12, all five rows in sheet order; every row holds 1+ GOURI syringe, so every row carries the D61 gift mark -->
-    <section class="card c2" data-card="2" aria-labelledby="gr-t2">
-      <img class="st s4" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
-      <img class="st s5" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
-      <img class="st sf2" src="assets/dec/snowflake.webp" alt="" aria-hidden="true">
-      <div class="in c2-in">
-        <header class="top2"><span class="brand" data-copy="gr_brand"></span><span class="period" data-copy="gr_period"></span></header>
+    <!-- 2 / 6 : prices, 13) 고우리 B7:K12, all five rows in sheet order; every row holds 1+ GOURI syringe, so every row carries the D61 gift mark -->
+    <section class="card c2 lil" data-card="2" aria-labelledby="gr-t2">
+      <img class="bub b5" src="assets/dec/bubble-lilac.webp" alt="" aria-hidden="true">
+      <img class="bub b6" src="assets/dec/bubble-pearl.webp" alt="" aria-hidden="true">
+      <img class="st s3" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
+      <div class="in">
+        <header class="top2"><span class="period" data-copy="gr_period"></span><span class="brand" data-copy="gr_brand"></span></header>
         <div class="c2-head">
-          <div class="c2-titles">
-            <p class="kicker" data-copy="gr_p_kicker"></p>
-            <p class="c2-sub" data-copy="gr_p_sub"></p>
-            <h2 class="c2-title" id="gr-t2" data-copy="gr_p_title"></h2>
-          </div>
+          <p class="tag" data-copy="gr_p_kicker"></p>
+          <h2 class="ptitle split" id="gr-t2" data-copy="gr_p_title"></h2>
+          <p class="c2-sub" data-copy="gr_p_sub"></p>
           <div class="seal s-board"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl l1" data-copy="gr_seal1"></span><span class="sl l2" data-copy="gr_seal2"></span><span class="sl l3" data-copy="gr_seal3"></span></p></div>
         </div>
         <div class="board">
@@ -88,59 +89,54 @@
       </div>
     </section>
 
-    <!-- 3 / 5 : what GOURI is (our homepage /gouri, then the 덱스레보 official site) + how the visit goes -->
-    <section class="card c3" data-card="3" aria-labelledby="gr-t3">
-      <img class="st s6" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
-      <img class="st s7" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
-      <div class="in c3-in">
+    <!-- 3 / 6 : what GOURI is (our homepage /gouri, then the 덱스레보 official site) -->
+    <section class="card c3 lil" data-card="3" aria-labelledby="gr-t3">
+      <img class="st s4" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
+      <div class="in">
         <header class="top2 solo"><span class="brand" data-copy="gr_brand"></span></header>
         <div class="qhead">
-          <p class="kicker" data-copy="gr_c3_kicker"></p>
-          <h2 class="q" id="gr-t3" data-copy="gr_c3_q"></h2>
+          <p class="tag" data-copy="gr_c3_kicker"></p>
+          <h2 class="q split" id="gr-t3" data-copy="gr_c3_q"></h2>
           <p class="a" data-copy="gr_c3_a"></p>
         </div>
-        <div class="c3-visual"><img src="assets/syringe.webp?v=a" data-alt="gr_alt_syringe" alt="" width="911" height="478"></div>
+        <div class="c3-visual">
+          <img class="bub b7" src="assets/dec/bubble-peri.webp" alt="" aria-hidden="true">
+          <img class="bub b8" src="assets/dec/bubble-violet.webp" alt="" aria-hidden="true">
+          <img class="bub b9" src="assets/dec/heart.webp" alt="" aria-hidden="true">
+          <img class="prod-d" src="assets/prod/gouri-d.webp?v=1104" data-alt="gr_alt_syringe" alt="" width="915" height="482">
+        </div>
         <ul class="facts">
           <li class="fact"><span class="fk" data-copy="gr_c3_f1_k"></span><h3 class="ft" data-copy="gr_c3_f1_t"></h3><p class="fd" data-copy="gr_c3_f1_d"></p></li>
           <li class="fact"><span class="fk" data-copy="gr_c3_f2_k"></span><h3 class="ft" data-copy="gr_c3_f2_t"></h3><p class="fd" data-copy="gr_c3_f2_d"></p></li>
           <li class="fact"><span class="fk" data-copy="gr_c3_f3_k"></span><h3 class="ft" data-copy="gr_c3_f3_t"></h3><p class="fd" data-copy="gr_c3_f3_d"></p></li>
         </ul>
-        <div class="steps">
-          <h3 class="steps-t" data-copy="gr_c3_steps"></h3>
-          <ol class="step-list">
-            <li class="step"><span class="sn" aria-hidden="true"></span><p class="stt" data-copy="gr_c3_s1_t"></p><p class="std" data-copy="gr_c3_s1_d"></p></li>
-            <li class="step"><span class="sn" aria-hidden="true"></span><p class="stt" data-copy="gr_c3_s2_t"></p><p class="std" data-copy="gr_c3_s2_d"></p></li>
-            <li class="step"><span class="sn" aria-hidden="true"></span><p class="stt" data-copy="gr_c3_s3_t"></p><p class="std" data-copy="gr_c3_s3_d"></p></li>
-            <li class="step"><span class="sn" aria-hidden="true"></span><p class="stt" data-copy="gr_c3_s4_t"></p><p class="std" data-copy="gr_c3_s4_d"></p></li>
-          </ol>
-        </div>
         <p class="src" data-copy="gr_c3_src"></p>
       </div>
     </section>
 
-    <!-- 4 / 5 : the three set-ups (GOURI alone, + 리투오, + 리쥬란). Product photos are cut-outs only (no photo box), equal slots, object-fit: contain.
+    <!-- 4 / 6 : the three set-ups. Product cut-outs only, trimmed, both syringes upright, one slot size, object-fit: contain (align-check).
          리투오 has no confirmed official photo, so its slot shows the name only. -->
-    <section class="card c4" data-card="4" aria-labelledby="gr-t4">
-      <img class="st s8" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
-      <img class="st sf3" src="assets/dec/snowflake.webp" alt="" aria-hidden="true">
-      <div class="in c4-in">
+    <section class="card c4 lil" data-card="4" aria-labelledby="gr-t4">
+      <img class="bub b10" src="assets/dec/bubble-lilac-s.webp" alt="" aria-hidden="true">
+      <img class="st s5" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
+      <div class="in">
         <header class="top2 solo"><span class="brand" data-copy="gr_brand"></span></header>
         <div class="qhead">
-          <p class="kicker" data-copy="gr_c4_kicker"></p>
+          <p class="tag" data-copy="gr_c4_kicker"></p>
           <h2 class="q" id="gr-t4" data-copy="gr_c4_q"></h2>
           <p class="a" data-copy="gr_c4_a"></p>
         </div>
         <ol class="ways">
           <li class="way" data-way="1">
-            <div class="slots"><span class="slot"><img src="assets/products/gouri.webp?v=a" data-alt="gr_alt_syringe" alt="" width="1000" height="1000"></span></div>
+            <div class="slots"><span class="slot"><img class="pv" src="assets/prod/gouri-v.webp?v=1104" data-alt="gr_alt_syringe" alt="" width="257" height="981"></span></div>
             <div class="wtx"><p class="wh"><span class="wn" data-copy="gr_c4_o1_name"></span><span class="wf" data-copy="gr_c4_o1_formula"></span></p><p class="wd" data-copy="gr_c4_o1_d"></p><p class="ws" data-copy="gr_c4_o1_spec"></p></div>
           </li>
           <li class="way" data-way="2">
-            <div class="slots"><span class="slot"><img src="assets/products/gouri.webp?v=a" data-alt="gr_alt_syringe" alt="" width="1000" height="1000"></span><span class="plus" aria-hidden="true"></span><span class="slot name-slot"><span class="ns-en" data-copy="gr_c4_retuo_en"></span><span class="ns-ko" data-copy="gr_c4_retuo"></span></span></div>
+            <div class="slots"><span class="slot"><img class="pv" src="assets/prod/gouri-v.webp?v=1104" data-alt="gr_alt_syringe" alt="" width="257" height="981"></span><span class="plus" aria-hidden="true"></span><span class="slot name-slot"><span class="ns-en" data-copy="gr_c4_retuo_en"></span><span class="ns-ko" data-copy="gr_c4_retuo"></span></span></div>
             <div class="wtx"><p class="wh"><span class="wn" data-copy="gr_c4_o2_name"></span><span class="wf" data-copy="gr_c4_o2_formula"></span></p><p class="wd" data-copy="gr_c4_o2_d"></p><p class="ws" data-copy="gr_c4_o2_spec"></p></div>
           </li>
           <li class="way" data-way="3">
-            <div class="slots"><span class="slot"><img src="assets/products/gouri.webp?v=a" data-alt="gr_alt_syringe" alt="" width="1000" height="1000"></span><span class="plus" aria-hidden="true"></span><span class="slot"><img src="assets/products/rejuran.webp?v=a" data-alt="gr_alt_rejuran" alt="" width="1000" height="1000"></span></div>
+            <div class="slots"><span class="slot"><img class="pv" src="assets/prod/gouri-v.webp?v=1104" data-alt="gr_alt_syringe" alt="" width="257" height="981"></span><span class="plus" aria-hidden="true"></span><span class="slot"><img class="pv" src="assets/prod/rejuran-v.webp?v=1104" data-alt="gr_alt_rejuran" alt="" width="171" height="467"></span></div>
             <div class="wtx"><p class="wh"><span class="wn" data-copy="gr_c4_o3_name"></span><span class="wf" data-copy="gr_c4_o3_formula"></span></p><p class="wd" data-copy="gr_c4_o3_d"></p><p class="ws" data-copy="gr_c4_o3_spec"></p></div>
           </li>
         </ol>
@@ -148,8 +144,32 @@
       </div>
     </section>
 
-    <!-- 5 / 5 : clinic intro, the V4 bento grid (same content and order as FV12 / ULT12 / OND12 card 5) in this page's Cloud Petal / Heartless tone -->
-    <section class="card c5" data-card="5" aria-labelledby="gr-t5">
+    <!-- 5 / 6 : treatment day (model layout cut 2, different pose and expression from the hero) -->
+    <section class="card c5 lil" data-card="5" aria-labelledby="gr-t5">
+      <img class="bub b11" src="assets/dec/bubble-peri.webp" alt="" aria-hidden="true">
+      <img class="bub b12" src="assets/dec/heart.webp" alt="" aria-hidden="true">
+      <img class="st s6" src="assets/dec/sparkle.webp" alt="" aria-hidden="true">
+      <div class="in">
+        <header class="top2 solo"><span class="brand" data-copy="gr_brand"></span></header>
+        <div class="qhead">
+          <p class="tag" data-copy="gr_c5_kicker"></p>
+          <h2 class="q" id="gr-t5" data-copy="gr_c5_q"></h2>
+          <p class="a" data-copy="gr_c5_a"></p>
+        </div>
+        <div class="c5-body">
+          <figure class="day-photo"><img class="model" src="assets/model-day.jpg?v=1104" data-alt="gr_alt_day" alt="" width="800" height="1000"></figure>
+          <ol class="step-list">
+            <li class="step"><span class="sn" aria-hidden="true"></span><div class="stx"><p class="stt" data-copy="gr_c5_s1_t"></p><p class="std" data-copy="gr_c5_s1_d"></p></div></li>
+            <li class="step"><span class="sn" aria-hidden="true"></span><div class="stx"><p class="stt" data-copy="gr_c5_s2_t"></p><p class="std" data-copy="gr_c5_s2_d"></p></div></li>
+            <li class="step"><span class="sn" aria-hidden="true"></span><div class="stx"><p class="stt" data-copy="gr_c5_s3_t"></p><p class="std" data-copy="gr_c5_s3_d"></p></div></li>
+            <li class="step"><span class="sn" aria-hidden="true"></span><div class="stx"><p class="stt" data-copy="gr_c5_s4_t"></p><p class="std" data-copy="gr_c5_s4_d"></p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 / 6 : clinic intro, the V4 bento grid (same content and order as FV12 / ULT12 / SOF12), bright lilac tone -->
+    <section class="card c6 lil" data-card="6" aria-labelledby="gr-t6">
       <div class="cx-in">
         <header class="top2 solo"><span class="brand" data-copy="gr_brand"></span></header>
         <div class="bento">
@@ -157,7 +177,7 @@
             <div class="ab-top">
               <div class="ab-intro">
                 <p class="bt-k" data-copy="gr_ab_kicker"></p>
-                <h2 class="ab-title" id="gr-t5" data-copy="gr_ab_title"></h2>
+                <h2 class="ab-title" id="gr-t6" data-copy="gr_ab_title"></h2>
                 <p class="ab-lead"><span data-copy="gr_ab_intro1"></span><span data-copy="gr_ab_intro2"></span></p>
               </div>
               <figure class="dr">
@@ -220,7 +240,7 @@
 
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="gr-notes">
-      <h2 id="gr-notes"><img class="nh-ico" src="assets/dec/snowflake.webp" alt="" aria-hidden="true"><span data-copy="gr_note_title"></span></h2>
+      <h2 id="gr-notes"><img class="nh-ico" src="assets/dec/heart.webp" alt="" aria-hidden="true"><span data-copy="gr_note_title"></span></h2>
       <ul>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="gr_cond1"></span></li>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="gr_cond2"></span></li>

@@ -100,7 +100,7 @@ function fitLines(el,lines,min){
 }
 function fit(){
  const phone=isPhone();
- for(const el of document.querySelectorAll('.kicker-script,.hero-title,.tz-label'))fitTo(el,el.parentElement.clientWidth,.6);
+ for(const el of document.querySelectorAll('.hero-ko,.hero-en,.kicker-script,.tz-label'))fitTo(el,el.parentElement.clientWidth,.6);
  for(const el of document.querySelectorAll('.bb-ba__title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
  for(const el of document.querySelectorAll('.q-title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
  /* price names stay on one line (desktop); on phones they may wrap */

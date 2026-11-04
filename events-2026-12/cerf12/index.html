@@ -6,58 +6,66 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>세르프 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..800;1,6..96,500..700&amp;family=DM+Sans:opsz,wght@9..40,500..800&amp;display=swap">
-  <link rel="stylesheet" href="cerf12.css?v=20261102-cerf12c">
-  <script src="copy-data.js?v=20261102-cerf12c" defer></script>
-  <script src="../inline-edit.js?v=20261102-cerf12c" defer></script>
-  <script src="cerf12.js?v=20261102-cerf12c" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&amp;family=DM+Sans:opsz,wght@9..40,200..800&amp;display=swap">
+  <link rel="stylesheet" href="cerf12.css?v=20261104-cerf12a">
+  <script src="copy-data.js?v=20261104-cerf12a" defer></script>
+  <script src="../inline-edit.js?v=20261104-cerf12a" defer></script>
+  <script src="cerf12.js?v=20261104-cerf12a" defer></script>
 </head>
 <body>
-<!-- CRF12 세르프 · 겨울 시즌 (Korean first). Team colour pin (sheet I34): Stalactite Brown #D5C4A6, Gretchin Green #5C6532, Chrysanthemum #C75256, Mythical Wine #730A16, Darkest Dungeon #6A040F.
-     Every picture is a generated image (v4/cerf12/gen/*.json -> v4/cerf12/a -> gen/cut-assets.cjs): linen textures, satin ribbon, gift tag, rosette seal, plate, sparks, icons, the skin cross-section.
-     Devices are real cutouts (v3/products). The B/A photos come from v4/_shared/ba/winter-ba-9/serf as they are. No inline SVG.
+<!-- CRF12 세르프 · 겨울 시즌 (Korean first), 2026-11-04 redesign from the completed reference sheet (row 34):
+     F = design language (dark luxury cosmetics poster: large model, product with a glint, a big colour disc holding the wordmark, thin display type,
+     brightness-based emphasis, silky light streaks and particle mesh), H = palette (Stalactite Brown #D5C4A6, Gretchin Green #5C6532,
+     Chrysanthemum #C75256, Mythical Wine #730A16, Darkest Dungeon #6A040F); see v4/cerf12/ref/REFERENCE.md.
+     Every picture is a generated image (v4/cerf12/gen/*.json -> v4/cerf12/a -> gen/cut-1104.cjs; icons and the skin cross-section kept from 11-03).
+     Model photos (hero.jpg card 1, model-day.jpg card 6) are layout reference cuts; the lead replaces them at the same paths and ratios (object-fit: cover).
+     Devices are real cutouts (v3/products, transparent margins trimmed). The B/A photos come from v4/_shared/ba/winter-ba-9/serf as they are. No inline SVG.
      Seven 1080x1350 cards (section[data-card="1..7"]); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
      Price rows: data-price-row="11_lifting:<sheet row>" with [data-price-list] / [data-price-sale]; the strings come from v4/events/_data/pages.json via v4/cerf12/build-cerf12.cjs.
      Team memo D34 (gift): one band per price card + a gift mark on every row with 600+ XERF shots, all outside the data-price-* elements. -->
 <main class="cf">
   <div class="sheet">
 
-    <!-- 1 / 7 : hero (generated model photo, v4/cerf12/gen/hero-v1.json); the title, teaser name, care line and price come from the sheet (page name, row 86) -->
+    <!-- 1 / 7 : hero (layout reference model photo, v4/cerf12/gen/hero-1104.json, replaced later at the same path); title, teaser name, care line and price come from the sheet (page name, row 86) -->
     <section class="card c1" data-card="1" aria-labelledby="cf-t1">
-      <img class="c1-photo" src="assets/hero.jpg?v=a" data-alt="cf_alt_hero" alt="" width="1080" height="1350">
-      <img class="spark k1" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k2" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k3" src="assets/dec/spark-coral.webp" alt="" aria-hidden="true">
+      <img class="c1-photo" src="assets/hero.jpg?v=b" data-alt="cf_alt_hero" alt="" width="1080" height="1350">
+      <img class="c1-mesh" src="assets/dec/mesh.webp" alt="" aria-hidden="true" width="650" height="235">
+      <img class="c1-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true" width="900" height="914">
+      <figure class="c1-dev"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+      <img class="glint g1" src="assets/dec/glint.webp" alt="" aria-hidden="true" width="309" height="345">
+      <img class="glint g2" src="assets/dec/glint-s.webp" alt="" aria-hidden="true" width="128" height="117">
       <header class="c1-top"><span class="brand" data-copy="cf_brand"></span><span class="period"><span data-copy="cf_period"></span></span></header>
-      <div class="hero-tx">
+      <div class="seal s-hero"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true" width="480" height="482"><p class="seal-tx"><span class="sl s1" data-copy="cf_seal1"></span><span class="sl s2" data-copy="cf_seal2"></span><span class="sl s3" data-copy="cf_seal3"></span></p></div>
+      <div class="hero-lead">
         <p class="kicker-latin" data-copy="cf_kicker"></p>
+        <p class="hook"><span class="hk hk1" data-copy="cf_hook"></span><span class="hk hk2" data-copy="cf_hook2"></span></p>
+      </div>
+      <div class="hero-disc">
         <h1 class="hero-title" id="cf-t1"><span class="ht-ko" data-copy="cf_title"></span><span class="ht-en" data-copy="cf_title_en"></span></h1>
-        <i class="rule-v" aria-hidden="true"></i>
-        <p class="hook" data-copy="cf_hook"></p>
+        <div class="tz">
+          <p class="tz-top"><span class="tz-label" data-copy="cf_hero_label"></span><span class="tz-tag" data-copy="cf_hero_tag"></span></p>
+          <p class="tz-care" data-copy="cf_hero_care"></p>
+          <p class="tz-main"><span class="tz-price money" data-copy="cf_hero_price"></span><span class="tz-vat" data-copy="cf_vat"></span></p>
+        </div>
       </div>
-      <div class="gtag">
-        <img class="gtag-art" src="assets/dec/tag.webp" alt="" aria-hidden="true" width="1100" height="787">
-        <p class="tz-top"><span class="tz-label" data-copy="cf_hero_label"></span><span class="tz-tag" data-copy="cf_hero_tag"></span></p>
-        <p class="tz-care" data-copy="cf_hero_care"></p>
-        <p class="tz-main"><span class="tz-price money" data-copy="cf_hero_price"></span><span class="tz-vat" data-copy="cf_vat"></span></p>
-      </div>
-      <div class="seal s-hero"><img class="seal-art" src="assets/dec/rosette.webp" alt="" aria-hidden="true" width="600" height="600"><p class="seal-tx"><span class="sl s1" data-copy="cf_seal1"></span><span class="sl s2" data-copy="cf_seal2"></span><span class="sl s3" data-copy="cf_seal3"></span></p></div>
       <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="cf_contact"></span></p>
     </section>
 
     <!-- 2 / 7 : prices 2-1, sheet rows 86-92 of 11_lifting B86:K104 in sheet order (rows 86-88 single XERF, group row 89 -> subheading, rows 90-92 eye tips) -->
     <section class="card cp c2" data-card="2" aria-labelledby="cf-t2">
-      <img class="tex" src="assets/tex/wine.jpg" alt="" aria-hidden="true">
-      <img class="ribbon rb-2" src="assets/dec/ribbon.webp" alt="" aria-hidden="true">
-      <span class="p-mark" aria-hidden="true" data-copy="cf_p_mark"></span>
-      <img class="spark k4" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k5" src="assets/dec/spark-coral.webp" alt="" aria-hidden="true">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
       <div class="cp-in">
         <header class="top"><span class="brand" data-copy="cf_brand"></span><span class="period"><span data-copy="cf_period"></span></span></header>
         <div class="cp-head">
           <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
             <h2 class="p-title" id="cf-t2"><span class="pt-main" data-copy="cf_p_title"></span><span class="pt-en" data-copy="cf_p_en"></span></h2>
             <p class="p-lead" data-copy="cf_p_lead"></p>
             <p class="p-unit"><span class="unit-k" data-copy="cf_p_unit_k"></span><span class="unit-d" data-copy="cf_p_unit_d"></span></p>
           </div>
-          <figure class="plate"><img class="plate-art" src="assets/dec/plate.webp" alt="" aria-hidden="true"><img class="dev" src="assets/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="1000" height="1000"></figure>
+          <figure class="dev-stage ds-2"><img class="dev" src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
         </div>
         <div class="pboard">
           <ul class="prows">
@@ -77,7 +85,7 @@
           </ul>
         </div>
         <div class="c2-foot">
-          <div class="seal s-board"><img class="seal-art" src="assets/dec/rosette.webp" alt="" aria-hidden="true" width="600" height="600"><p class="seal-tx"><span class="sl s1" data-copy="cf_seal1"></span><span class="sl s2" data-copy="cf_seal2"></span><span class="sl s3" data-copy="cf_seal3"></span></p></div>
+          <div class="seal s-board"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true" width="480" height="482"><p class="seal-tx"><span class="sl s1" data-copy="cf_seal1"></span><span class="sl s2" data-copy="cf_seal2"></span><span class="sl s3" data-copy="cf_seal3"></span></p></div>
           <p class="vat"><span data-copy="cf_vat"></span></p>
         </div>
       </div>
@@ -85,22 +93,22 @@
 
     <!-- 3 / 7 : prices 2-2, sheet rows 93-101 of 11_lifting B86:K104 in sheet order (same table, title + '계속'); the blank sheet rows 96 / 100 split the three combo groups -->
     <section class="card cp c3" data-card="3" aria-labelledby="cf-t3">
-      <img class="tex" src="assets/tex/olive.jpg" alt="" aria-hidden="true">
-      <img class="ribbon rb-3" src="assets/dec/ribbon.webp" alt="" aria-hidden="true">
-      <span class="p-mark" aria-hidden="true" data-copy="cf_p_mark"></span>
-      <img class="spark k4" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k5" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d3" src="assets/dec/disc-green.webp" alt="" aria-hidden="true">
+      <img class="glint g5" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
       <div class="cp-in">
         <header class="top"><span class="brand" data-copy="cf_brand"></span><span class="period"><span data-copy="cf_period"></span></span></header>
         <div class="cp-head c3-head">
           <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
             <h2 class="p-title" id="cf-t3"><span class="pt-main" data-copy="cf_p_title"></span><span class="pt-cont" data-copy="cf_cont"></span></h2>
             <p class="p-lead" data-copy="cf_p3_lead"></p>
             <p class="p-unit"><span class="unit-k" data-copy="cf_p_unit_k"></span><span class="unit-d" data-copy="cf_p3_unit"></span></p>
           </div>
           <ul class="trio">
-            <li class="tdev"><figure class="td-img"><img src="assets/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="1000" height="1000"></figure><span class="td-n" data-copy="cf_dev1_n"></span><span class="td-t" data-copy="cf_dev1_t"></span></li>
-            <li class="tdev"><figure class="td-img"><img src="assets/ultherapy-prime.webp" data-alt="cf_alt_dev_ulthera" alt="" width="1000" height="1000"></figure><span class="td-n" data-copy="cf_dev2_n"></span><span class="td-t" data-copy="cf_dev2_t"></span></li>
-            <li class="tdev"><figure class="td-img"><img src="assets/sofwave.webp" data-alt="cf_alt_dev_sofwave" alt="" width="1000" height="1000"></figure><span class="td-n" data-copy="cf_dev3_n"></span><span class="td-t" data-copy="cf_dev3_t"></span></li>
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure><span class="td-n" data-copy="cf_dev1_n"></span><span class="td-t" data-copy="cf_dev1_t"></span></li>
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/ultherapy-prime.webp" data-alt="cf_alt_dev_ulthera" alt="" width="443" height="900"></figure><span class="td-n" data-copy="cf_dev2_n"></span><span class="td-t" data-copy="cf_dev2_t"></span></li>
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/sofwave.webp" data-alt="cf_alt_dev_sofwave" alt="" width="424" height="862"></figure><span class="td-n" data-copy="cf_dev3_n"></span><span class="td-t" data-copy="cf_dev3_t"></span></li>
           </ul>
         </div>
         <div class="pboard">
@@ -128,8 +136,8 @@
 
     <!-- 4 / 7 : Before & After (v4/_shared/ba/BA_SECTION.md; photos v4/_shared/ba/winter-ba-9/serf used as they are; colours via --ba-*) -->
     <section class="card cba bb-ba" data-card="4" aria-labelledby="cf-tba">
-      <img class="tex" src="assets/tex/wine.jpg" alt="" aria-hidden="true">
-      <img class="spark k6" src="assets/dec/spark-trio.webp" alt="" aria-hidden="true"><img class="spark k7" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g6" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g7" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
       <div class="ba-in">
         <header class="top solo"><span class="brand" data-copy="cf_brand"></span></header>
         <div class="ba-head">
@@ -154,18 +162,18 @@
 
     <!-- 5 / 7 : what the device is (facts: v4/cerf12/REFERENCE_AND_PLAN.md); the skin cross-section is a generated illustration (v4/cerf12/gen/layers-v1.json), labels are HTML -->
     <section class="card c4" data-card="5" aria-labelledby="cf-t4">
-      <img class="tex" src="assets/tex/linen-light.jpg" alt="" aria-hidden="true">
-      <img class="spark k8" src="assets/dec/spark-coral.webp" alt="" aria-hidden="true"><img class="spark k9" src="assets/dec/spark-wine.webp" alt="" aria-hidden="true">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d5" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g8" src="assets/dec/glint.webp" alt="" aria-hidden="true">
       <div class="c4-in">
         <header class="top solo"><span class="brand" data-copy="cf_brand"></span></header>
         <div class="c4-head">
           <div class="q-head">
             <p class="kicker" data-copy="cf_c4_kicker"></p>
             <h2 class="q-title" id="cf-t4" data-copy="cf_c4_q"></h2>
-            <i class="rule-v rv-4" aria-hidden="true"></i>
             <p class="q-ans" data-copy="cf_c4_a"></p>
           </div>
-          <figure class="plate plate-4"><img class="plate-art" src="assets/dec/plate.webp" alt="" aria-hidden="true"><img class="dev" src="assets/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="1000" height="1000"></figure>
+          <figure class="dev-stage ds-5"><img class="dev" src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
         </div>
         <div class="c4-mid">
           <figure class="layers">
@@ -196,19 +204,19 @@
         <div class="cmb4">
           <h3 class="tips-title" data-copy="cf_c4_cmb_title"></h3>
           <ul class="cmb4-row">
-            <li class="cmb4-it is-on"><figure class="cmb4-dev"><img src="assets/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="1000" height="1000"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e1_t"></span><span class="cmb4-n" data-copy="cf_c4_e1_n"></span><span class="cmb4-d" data-copy="cf_c4_e1_d"></span></div></li>
-            <li class="cmb4-it"><figure class="cmb4-dev"><img src="assets/ultherapy-prime.webp" data-alt="cf_alt_dev_ulthera" alt="" width="1000" height="1000"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e2_t"></span><span class="cmb4-n" data-copy="cf_c4_e2_n"></span><span class="cmb4-d" data-copy="cf_c4_e2_d"></span></div></li>
-            <li class="cmb4-it"><figure class="cmb4-dev"><img src="assets/sofwave.webp" data-alt="cf_alt_dev_sofwave" alt="" width="1000" height="1000"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e3_t"></span><span class="cmb4-n" data-copy="cf_c4_e3_n"></span><span class="cmb4-d" data-copy="cf_c4_e3_d"></span></div></li>
+            <li class="cmb4-it is-on"><figure class="cmb4-dev"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e1_t"></span><span class="cmb4-n" data-copy="cf_c4_e1_n"></span><span class="cmb4-d" data-copy="cf_c4_e1_d"></span></div></li>
+            <li class="cmb4-it"><figure class="cmb4-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="cf_alt_dev_ulthera" alt="" width="443" height="900"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e2_t"></span><span class="cmb4-n" data-copy="cf_c4_e2_n"></span><span class="cmb4-d" data-copy="cf_c4_e2_d"></span></div></li>
+            <li class="cmb4-it"><figure class="cmb4-dev"><img src="assets/dev/sofwave.webp" data-alt="cf_alt_dev_sofwave" alt="" width="424" height="862"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e3_t"></span><span class="cmb4-n" data-copy="cf_c4_e3_n"></span><span class="cmb4-d" data-copy="cf_c4_e3_d"></span></div></li>
           </ul>
         </div>
         <p class="src" data-copy="cf_c4_src"></p>
       </div>
     </section>
 
-    <!-- 6 / 7 : the treatment day (who it is for, four steps, treatment info, care); the circle photo is its own generated cut (v4/cerf12/gen/day-v1.json), not a crop of the hero -->
+    <!-- 6 / 7 : the treatment day (who it is for, four steps, treatment info, care); the circle photo is its own layout reference cut (v4/cerf12/gen/day-1104.json), not a crop of the hero -->
     <section class="card c5" data-card="6" aria-labelledby="cf-t5">
-      <img class="tex" src="assets/tex/linen.jpg" alt="" aria-hidden="true">
-      <img class="spark k10" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k11" src="assets/dec/spark-coral.webp" alt="" aria-hidden="true">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g9" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g10" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
       <div class="c5-in">
         <header class="top solo"><span class="brand" data-copy="cf_brand"></span></header>
         <div class="c5-headrow">
@@ -217,7 +225,7 @@
             <h2 class="q-title" id="cf-t5" data-copy="cf_c5_q"></h2>
             <p class="q-ans" data-copy="cf_c5_a"></p>
           </div>
-          <figure class="c5-photo"><img src="assets/model-day.jpg?v=a" data-alt="cf_alt_day" alt="" width="640" height="640"></figure>
+          <div class="c5-pic"><img class="c5-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true"><figure class="c5-photo"><img src="assets/model-day.jpg?v=b" data-alt="cf_alt_day" alt="" width="640" height="640"></figure></div>
         </div>
         <div class="who">
           <p class="who-lbl" data-copy="cf_c5_who_lbl"></p>
@@ -247,9 +255,9 @@
       </div>
     </section>
 
-    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12 / sofwave12) in this page's wine / linen / olive tone -->
+    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12 / sofwave12) on this page's dark wine background -->
     <section class="card c6" data-card="7" aria-labelledby="cf-t6">
-      <img class="tex" src="assets/tex/wine.jpg" alt="" aria-hidden="true">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <div class="cx-in">
         <header class="top solo"><span class="brand" data-copy="cf_brand"></span></header>
         <div class="bento">
@@ -321,7 +329,7 @@
 
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="cf-notes">
-      <img class="tex" src="assets/tex/linen-light.jpg" alt="" aria-hidden="true">
+      <img class="bg bg-flip" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <h2 id="cf-notes"><span data-copy="cf_note_title"></span></h2>
       <ul>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="cf_cond1"></span></li>

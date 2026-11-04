@@ -6,56 +6,61 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>소프웨이브 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&amp;display=swap">
-  <link rel="stylesheet" href="sofwave12.css?v=20261102-sofwave12c">
-  <script src="copy-data.js?v=20261102-sofwave12c" defer></script>
-  <script src="../inline-edit.js?v=20261102-sofwave12c" defer></script>
-  <script src="sofwave12.js?v=20261102-sofwave12c" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;800;900&amp;family=Pinyon+Script&amp;display=swap">
+  <link rel="stylesheet" href="sofwave12.css?v=20261104-sofwave12a">
+  <script src="copy-data.js?v=20261104-sofwave12a" defer></script>
+  <script src="../inline-edit.js?v=20261104-sofwave12a" defer></script>
+  <script src="sofwave12.js?v=20261104-sofwave12a" defer></script>
 </head>
 <body>
-<!-- SOF12 소프웨이브 · 겨울 시즌 (Korean first). Team colour pin (sheet I30): Deep Berry Pink #B5175E, Soft Lime Green #D1E86F, Aqua Blue #34C2C1, Creamy #FCFFE0.
-     Every picture is a generated image (v4/sofwave12/gen/*.json -> a/*.png -> gen/cut-assets.cjs -> assets/{icons,dec,tex,c5}/) or a real photo / cutout;
-     words and prices stay HTML (data-copy, ../inline-edit.js, aptos-* board messages). No inline SVG. Seven 1080x1350 cards (section[data-card="1..7"]).
-     Price rows: data-price-row="11_lifting:<sheet row>" with [data-price-list] / [data-price-sale]; the strings come from v4/events/_data/pages.json via v4/sofwave12/build-sofwave12.cjs. -->
+<!-- SOF12 소프웨이브 · 겨울 시즌 (Korean first), 2026-11-04 rebuild on the finished reference sheet:
+     F (design) = v4/sofwave12/ref/sheet1104/F.jpg: pearl backdrop, one giant heavy title under a script + thin-caps line, a central model in front of
+     tilted frosted photo panels, the device cut-out overlapping the lower right, glass pills with thin line icons along the bottom.
+     H (colour) = team palette Deep Berry Pink #B5175E, Soft Lime Green #D1E86F, Aqua Blue #34C2C1, Creamy #FCFFE0 (wins over F's black and silver).
+     G (model) = team model; the two model photos (assets/hero.jpg 4:5, assets/model-day.jpg 4:5) are layout reference cuts that the lead replaces at the
+     same path and ratio (object-fit: cover + object-position). Every picture is a generated image or a real photo / cut-out; words and prices stay HTML
+     (data-copy, ../inline-edit.js, aptos-* board messages). No inline SVG. Seven 1080x1350 cards (section[data-card="1..7"]).
+     Price rows: data-price-row="11_lifting:<sheet row>" with [data-price-list] / [data-price-sale]; the strings come from v4/events/_data/pages.json
+     via v4/sofwave12/build-sofwave12.cjs. -->
 <main class="sw">
   <div class="sheet">
 
-    <!-- 1 / 7 : hero (generated model photo, v4/sofwave12/gen/hero-v1.json); the title, teaser name and price come from the sheet (rows 41, 42) -->
+    <!-- 1 / 7 : hero. Model photo = layout reference (G) full bleed; title, teaser name and price from the sheet (rows 41, 42) -->
     <section class="card c1" data-card="1" aria-labelledby="sw-t1">
-      <img class="c1-photo" src="assets/hero.jpg?v=a" data-alt="sw_alt_hero" alt="" width="1080" height="1350">
-      <img class="spark k1" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k2" src="assets/dec/spark-lime.webp" alt="" aria-hidden="true"><img class="spark k3" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true">
-      <header class="c1-top"><span class="brand" data-copy="sw_brand"></span><span class="period"><span data-copy="sw_period"></span></span></header>
-      <div class="stack">
-        <div class="swt swt-berry">
-          <p class="kicker-latin" data-copy="sw_kicker"></p>
-          <h1 class="hero-title" id="sw-t1" data-copy="sw_title"></h1>
-        </div>
-        <div class="swt swt-lime"><p class="hook" data-copy="sw_hook"></p></div>
-        <div class="swt swt-cream tz">
-          <p class="tz-top"><span class="tz-label" data-copy="sw_hero_label"></span><span class="tz-tag" data-copy="sw_hero_tag"></span></p>
-          <p class="tz-main"><span class="tz-price money" data-copy="sw_hero_price"></span><span class="tz-vat" data-copy="sw_vat"></span></p>
-        </div>
+      <img class="c1-photo" src="assets/hero.jpg?v=b" data-alt="sw_alt_hero" alt="" width="1080" height="1350">
+      <header class="c1-top"><span class="brand" data-copy="sw_brand"></span></header>
+      <div class="c1-head">
+        <p class="kick"><span class="kick-s" data-copy="sw_kick_s"></span><span class="kick-c" data-copy="sw_kick_c"></span></p>
+        <h1 class="hero-title" id="sw-t1" data-copy="sw_title"></h1>
+        <p class="hook" data-copy="sw_hook"></p>
       </div>
-      <div class="seal s-hero"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="sw_seal1"></span><span class="sl s2" data-copy="sw_seal2"></span><span class="sl s3" data-copy="sw_seal3"></span></p></div>
-      <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="sw_contact"></span></p>
+      <div class="seal s-hero"><p class="seal-tx"><span class="sl s1" data-copy="sw_seal1"></span><span class="sl s2" data-copy="sw_seal2"></span><span class="sl s3" data-copy="sw_seal3"></span></p></div>
+      <img class="c1-dev" src="assets/dev/sofwave.webp" data-alt="sw_alt_dev_sofwave" alt="" width="432" height="870">
+      <div class="hpills">
+        <div class="hp hp-price">
+          <p class="hp-top"><span class="hp-label" data-copy="sw_hero_label"></span><span class="hp-tag" data-copy="sw_hero_tag"></span></p>
+          <p class="hp-main"><span class="hp-num money" data-copy="sw_hero_price"></span><span class="hp-vat" data-copy="sw_vat"></span></p>
+        </div>
+        <div class="hp hp-info"><img class="hp-ico" src="assets/icons/ic-calendar.webp" alt="" aria-hidden="true"><p class="hp-tx"><span class="hp-k" data-copy="sw_period_k"></span><span class="hp-v" data-copy="sw_period"></span></p></div>
+        <div class="hp hp-info"><img class="hp-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><p class="hp-tx"><span class="hp-k" data-copy="sw_call_k"></span><span class="hp-v" data-copy="sw_ab_phone"></span></p></div>
+      </div>
     </section>
 
-    <!-- 2 / 7 : prices 2-1, sheet table 11_lifting B41:K46 in sheet order (table title row 41 -> card title, rows 42-46); generated berry knit behind -->
+    <!-- 2 / 7 : prices 2-1, sheet table 11_lifting B41:K46 in sheet order (table title row 41 -> card title, rows 42-46) -->
     <section class="card cp c2" data-card="2" aria-labelledby="sw-t2">
-      <span class="p-mark" aria-hidden="true" data-copy="sw_p_mark"></span>
-      <img class="spark k4" src="assets/dec/spark-lime.webp" alt="" aria-hidden="true"><img class="spark k5" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true">
+      <figure class="tp tp-2" aria-hidden="true"><img src="assets/panel/ripple.jpg" alt=""></figure>
       <div class="cp-in">
-        <header class="top"><span class="brand" data-copy="sw_brand"></span><span class="period"><span data-copy="sw_period"></span></span></header>
+        <header class="top"><span class="brand" data-copy="sw_brand"></span></header>
         <div class="cp-head">
+          <div class="seal s-board"><p class="seal-tx"><span class="sl s1" data-copy="sw_seal1"></span><span class="sl s2" data-copy="sw_seal2"></span><span class="sl s3" data-copy="sw_seal3"></span></p></div>
           <div class="cp-htx">
+            <p class="kick solo"><span class="kick-s" data-copy="sw_p_kick"></span></p>
             <h2 class="p-title" id="sw-t2"><span class="pt-main" data-copy="sw_p_title"></span></h2>
             <p class="p-lead" data-copy="sw_p_lead"></p>
-            <p class="p-unit"><span class="unit-k" data-copy="sw_p_unit_k"></span><span class="unit-d" data-copy="sw_p_unit_d"></span></p>
           </div>
-          <figure class="plate"><img class="plate-art" src="assets/dec/plate-aqua.webp" alt="" aria-hidden="true"><img class="dev" src="assets/sofwave.webp" data-alt="sw_alt_dev_sofwave" alt="" width="1000" height="1000"></figure>
+          <figure class="cp-devbox"><img class="cp-dev" src="assets/dev/sofwave.webp" data-alt="sw_alt_dev_sofwave" alt="" width="432" height="870"></figure>
         </div>
         <div class="pboard">
-          <img class="pb-wave" src="assets/dec/wave-lime.webp" alt="" aria-hidden="true">
           <ul class="prows">
             <li class="prow" data-price-row="11_lifting:42"><div class="pn"><p class="pname"><span class="pnm" data-copy="sw_r42_name"></span></p></div><span class="plist money" data-price-list data-copy="sw_r42_list"></span><span class="psale money" data-price-sale data-copy="sw_r42_sale"></span></li>
             <li class="prow" data-price-row="11_lifting:43"><div class="pn"><p class="pname"><span class="pnm" data-copy="sw_r43_name"></span></p><p class="pcare" data-copy="sw_r43_care"></p><p class="pdet" data-copy="sw_r43_detail"></p></div><span class="plist money" data-price-list data-copy="sw_r43_list"></span><span class="psale money" data-price-sale data-copy="sw_r43_sale"></span></li>
@@ -65,34 +70,32 @@
           </ul>
         </div>
         <div class="c2-foot">
-          <div class="seal s-board"><img class="seal-art" src="assets/dec/seal.webp" alt="" aria-hidden="true"><p class="seal-tx"><span class="sl s1" data-copy="sw_seal1"></span><span class="sl s2" data-copy="sw_seal2"></span><span class="sl s3" data-copy="sw_seal3"></span></p></div>
+          <p class="p-unit"><span class="unit-k" data-copy="sw_p_unit_k"></span><span class="unit-d" data-copy="sw_p_unit_d"></span></p>
           <p class="vat"><span data-copy="sw_vat"></span></p>
         </div>
       </div>
     </section>
 
     <!-- 3 / 7 : prices 2-2, sheet rows 17-21 of 11_lifting B17:K21 (the Sofwave + Ultherapy Prime group from the 울쎄라 table, team note D30);
-         group row 17 -> card title; the (HIT!) / (BEST!) marks of rows 19 / 20 are the only badges; generated aqua jersey behind -->
+         group row 17 -> card title; the (HIT!) / (BEST!) marks of rows 19 / 20 are the only badges -->
     <section class="card cp c3" data-card="3" aria-labelledby="sw-t3">
-      <span class="p-mark" aria-hidden="true" data-copy="sw_p_mark"></span>
-      <img class="spark k4" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k5" src="assets/dec/spark-lime.webp" alt="" aria-hidden="true">
-      <img class="flake f1" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true"><img class="flake f2" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true">
       <div class="cp-in">
-        <header class="top"><span class="brand" data-copy="sw_brand"></span><span class="period"><span data-copy="sw_period"></span></span></header>
+        <header class="top"><span class="brand" data-copy="sw_brand"></span></header>
         <div class="cp-head c3-head">
           <div class="cp-htx">
+            <p class="kick solo"><span class="kick-s" data-copy="sw_p_kick"></span></p>
             <h2 class="p-title" id="sw-t3"><span class="pt-main" data-copy="sw_g17_name"></span></h2>
             <p class="p-sub"><span data-copy="sw_g17_sub"></span></p>
             <p class="p-lead" data-copy="sw_p3_lead"></p>
           </div>
-          <div class="pair">
-            <figure class="pdev"><img class="pdev-art" src="assets/dec/plate-cream.webp" alt="" aria-hidden="true"><img class="pdev-img" src="assets/sofwave.webp" data-alt="sw_alt_dev_sofwave" alt="" width="1000" height="1000"></figure>
-            <span class="plus" aria-hidden="true" data-copy="sw_pair_plus"></span>
-            <figure class="pdev"><img class="pdev-art" src="assets/dec/plate-cream.webp" alt="" aria-hidden="true"><img class="pdev-img" src="assets/ultherapy-prime.webp" data-alt="sw_alt_dev_ulthera" alt="" width="1000" height="1000"></figure>
-          </div>
+        </div>
+        <div class="pair">
+          <figure class="tp tp-3" aria-hidden="true"><img src="assets/panel/ripple.jpg" alt=""></figure>
+          <figure class="pdev"><img src="assets/dev/sofwave.webp" data-alt="sw_alt_dev_sofwave" alt="" width="432" height="870"></figure>
+          <span class="plus" aria-hidden="true" data-copy="sw_pair_plus"></span>
+          <figure class="pdev"><img src="assets/dev/ultherapy-prime.webp" data-alt="sw_alt_dev_ulthera" alt="" width="451" height="908"></figure>
         </div>
         <div class="pboard">
-          <img class="pb-wave" src="assets/dec/wave-lime.webp" alt="" aria-hidden="true">
           <ul class="prows combo">
             <li class="prow" data-price-row="11_lifting:18"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="sw_r18_name"></span></p></div><span class="plist money" data-price-list data-copy="sw_r18_list"></span><span class="psale money" data-price-sale data-copy="sw_r18_sale"></span></li>
             <li class="prow hit" data-price-row="11_lifting:19"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="sw_r19_name"></span></p><p class="pmeta"><span class="badge" data-copy="sw_r19_badge"></span><span class="pchip" data-copy="sw_r19_detail"></span></p></div><span class="plist money" data-price-list data-copy="sw_r19_list"></span><span class="psale money" data-price-sale data-copy="sw_r19_sale"></span></li>
@@ -109,11 +112,12 @@
     </section>
 
     <!-- 4 / 7 : Before & After (approved bb-ba component of v4/_shared/ba/winter-ba-9/sofwave; the four photos are copied unchanged into assets/ba).
-         Colours come from the page palette through the --ba-* variables; the arrow is the text '›'. No row labels, no effect wording. -->
+         Colours only follow the new design through the --ba-* variables; the arrow is the text '›'. No row labels, no effect wording. -->
     <section class="card cba bb-ba" data-card="4" aria-labelledby="sw-tba">
-      <img class="spark k11" src="assets/dec/spark-trio.webp" alt="" aria-hidden="true"><img class="flake f4" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true">
+      <figure class="tp tp-4a" aria-hidden="true"><img src="assets/panel/ripple.jpg" alt=""></figure>
+      <figure class="tp tp-4b" aria-hidden="true"><img src="assets/panel/ripple.jpg" alt=""></figure>
       <div class="cba-in bb-ba__inner">
-        <header class="top solo"><span class="brand" data-copy="sw_brand"></span></header>
+        <header class="top"><span class="brand" data-copy="sw_brand"></span></header>
         <p class="bb-ba__eyebrow" data-copy="sw_ba_kicker"></p>
         <h2 class="bb-ba__title" id="sw-tba" data-copy="sw_ba_title"></h2>
         <div class="bb-ba__rows">
@@ -139,59 +143,58 @@
     <!-- 5 / 7 : what the device is, and how the two devices of the combo differ (facts: v4/sofwave12/REFERENCE_AND_PLAN.md).
          The skin cross-section is a generated picture without words (gen/layers-v1.json); every label sits on it as HTML at the measured layer positions (gen/cut-assets.json). -->
     <section class="card c4" data-card="5" aria-labelledby="sw-t4">
-      <img class="wave-band" src="assets/dec/wave-aqua.webp" alt="" aria-hidden="true">
-      <img class="spark k7" src="assets/dec/spark-aqua.webp" alt="" aria-hidden="true"><img class="spark k8" src="assets/dec/spark-berry.webp" alt="" aria-hidden="true">
+      <figure class="tp tp-5" aria-hidden="true"><img src="assets/panel/ripple.jpg" alt=""></figure>
       <div class="c4-in">
-        <header class="top solo"><span class="brand" data-copy="sw_brand"></span></header>
-        <div class="c4-head">
-          <div class="q-head">
-            <p class="kicker" data-copy="sw_c4_kicker"></p>
-            <h2 class="q-title" id="sw-t4" data-copy="sw_c4_q"></h2>
-            <p class="q-ans" data-copy="sw_c4_a"></p>
-          </div>
-          <figure class="plate plate-4"><img class="plate-art" src="assets/dec/plate-aqua.webp" alt="" aria-hidden="true"><img class="dev" src="assets/sofwave.webp" data-alt="sw_alt_dev_sofwave" alt="" width="1000" height="1000"></figure>
+        <header class="top"><span class="brand" data-copy="sw_brand"></span></header>
+        <div class="q-head q-center">
+          <p class="kick"><span class="kick-s" data-copy="sw_c4_k_s"></span><span class="kick-c" data-copy="sw_c4_k_c"></span></p>
+          <h2 class="q-title" id="sw-t4" data-copy="sw_c4_q"></h2>
+          <p class="q-ans" data-copy="sw_c4_a"></p>
         </div>
         <div class="c4-mid">
-          <figure class="layers">
-            <img class="layers-art" src="assets/c5/layers.webp" data-alt="sw_alt_layers" alt="" width="1000" height="1000">
-            <span class="ll l-beam" data-copy="sw_c4_d_beam"></span>
-            <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="sw_c4_d_cool"></span></span>
-            <span class="ll l-surface" data-copy="sw_c4_d_surface"></span>
-            <span class="ll l-depth" data-copy="sw_c4_d_depth"></span>
-            <span class="ll l-dermis" data-copy="sw_c4_d_dermis"></span>
-            <span class="ll l-fat" data-copy="sw_c4_d_fat"></span>
-          </figure>
+          <div class="layers-box">
+            <figure class="layers">
+              <img class="layers-art" src="assets/c5/layers.webp" data-alt="sw_alt_layers" alt="" width="1000" height="1000">
+              <span class="ll l-beam" data-copy="sw_c4_d_beam"></span>
+              <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="sw_c4_d_cool"></span></span>
+              <span class="ll l-surface" data-copy="sw_c4_d_surface"></span>
+              <span class="ll l-depth" data-copy="sw_c4_d_depth"></span>
+              <span class="ll l-dermis" data-copy="sw_c4_d_dermis"></span>
+              <span class="ll l-fat" data-copy="sw_c4_d_fat"></span>
+            </figure>
+          </div>
           <ol class="points">
-            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="sw_c4_p1_t"></h3><p class="pt-d" data-copy="sw_c4_p1_d"></p></div></li>
-            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="sw_c4_p2_t"></h3><p class="pt-d" data-copy="sw_c4_p2_d"></p></div></li>
-            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="sw_c4_p3_t"></h3><p class="pt-d" data-copy="sw_c4_p3_d"></p></div></li>
-            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="sw_c4_p4_t"></h3><p class="pt-d" data-copy="sw_c4_p4_d"></p></div></li>
+            <li class="pt"><img class="pt-ico" src="assets/icons/ic-layers.webp" alt="" aria-hidden="true"><div class="pt-tx"><h3 class="pt-t"><span class="pt-n" aria-hidden="true"></span><span data-copy="sw_c4_p1_t"></span></h3><p class="pt-d" data-copy="sw_c4_p1_d"></p></div></li>
+            <li class="pt"><img class="pt-ico" src="assets/icons/ic-beams.webp" alt="" aria-hidden="true"><div class="pt-tx"><h3 class="pt-t"><span class="pt-n" aria-hidden="true"></span><span data-copy="sw_c4_p2_t"></span></h3><p class="pt-d" data-copy="sw_c4_p2_d"></p></div></li>
+            <li class="pt"><img class="pt-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="pt-tx"><h3 class="pt-t"><span class="pt-n" aria-hidden="true"></span><span data-copy="sw_c4_p3_t"></span></h3><p class="pt-d" data-copy="sw_c4_p3_d"></p></div></li>
+            <li class="pt"><img class="pt-ico" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true"><div class="pt-tx"><h3 class="pt-t"><span class="pt-n" aria-hidden="true"></span><span data-copy="sw_c4_p4_t"></span></h3><p class="pt-d" data-copy="sw_c4_p4_d"></p></div></li>
           </ol>
         </div>
         <div class="cmp">
           <h3 class="cmp-title" data-copy="sw_c4_cmp_title"></h3>
           <ul class="cmp-row">
-            <li class="cmp-it is-on"><figure class="cmp-dev"><img src="assets/sofwave.webp" data-alt="sw_alt_dev_sofwave" alt="" width="1000" height="1000"></figure><div class="cmp-tx"><span class="cmp-t" data-copy="sw_c4_e1_type"></span><span class="cmp-n" data-copy="sw_c4_e1_name"></span><span class="cmp-d" data-copy="sw_c4_e1_depth"></span><span class="cmp-h" data-copy="sw_c4_e1_how"></span></div></li>
-            <li class="cmp-it"><figure class="cmp-dev"><img src="assets/ultherapy-prime.webp" data-alt="sw_alt_dev_ulthera" alt="" width="1000" height="1000"></figure><div class="cmp-tx"><span class="cmp-t" data-copy="sw_c4_e2_type"></span><span class="cmp-n" data-copy="sw_c4_e2_name"></span><span class="cmp-d" data-copy="sw_c4_e2_depth"></span><span class="cmp-h" data-copy="sw_c4_e2_how"></span></div></li>
+            <li class="cmp-it is-on"><figure class="cmp-dev"><img src="assets/dev/sofwave.webp" data-alt="sw_alt_dev_sofwave" alt="" width="432" height="870"></figure><div class="cmp-tx"><span class="cmp-t" data-copy="sw_c4_e1_type"></span><span class="cmp-n" data-copy="sw_c4_e1_name"></span><span class="cmp-d" data-copy="sw_c4_e1_depth"></span><span class="cmp-h" data-copy="sw_c4_e1_how"></span></div></li>
+            <li class="cmp-it"><figure class="cmp-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="sw_alt_dev_ulthera" alt="" width="451" height="908"></figure><div class="cmp-tx"><span class="cmp-t" data-copy="sw_c4_e2_type"></span><span class="cmp-n" data-copy="sw_c4_e2_name"></span><span class="cmp-d" data-copy="sw_c4_e2_depth"></span><span class="cmp-h" data-copy="sw_c4_e2_how"></span></div></li>
           </ul>
         </div>
         <p class="src" data-copy="sw_c4_src"></p>
       </div>
     </section>
 
-    <!-- 6 / 7 : the treatment day (who it is for, four steps, treatment info); generated icons and snowflakes -->
+    <!-- 6 / 7 : the treatment day (who it is for, four steps, treatment info). Model photo = second layout reference cut (G), in a tilted glass frame -->
     <section class="card c5" data-card="6" aria-labelledby="sw-t5">
-      <img class="spark k9" src="assets/dec/spark-cream.webp" alt="" aria-hidden="true"><img class="spark k10" src="assets/dec/spark-berry.webp" alt="" aria-hidden="true">
-      <img class="flake f5" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true"><img class="flake f6" src="assets/dec/snow-cream.webp" alt="" aria-hidden="true">
       <div class="c5-in">
-        <header class="top solo"><span class="brand" data-copy="sw_brand"></span></header>
+        <header class="top"><span class="brand" data-copy="sw_brand"></span></header>
         <div class="c5-headrow">
           <div class="q-head">
-            <p class="kicker" data-copy="sw_c5_kicker"></p>
+            <p class="kick solo"><span class="kick-s" data-copy="sw_c5_k_s"></span></p>
             <h2 class="q-title" id="sw-t5" data-copy="sw_c5_q"></h2>
             <p class="q-ans" data-copy="sw_c5_a"></p>
           </div>
-          <figure class="c5-photo"><img src="assets/model-day.jpg?v=a" data-alt="sw_alt_c5" alt="" width="640" height="640"></figure>
+          <div class="c5-pics">
+            <figure class="tp tp-6" aria-hidden="true"><img src="assets/panel/ripple.jpg" alt=""></figure>
+            <figure class="c5-photo"><img src="assets/model-day.jpg?v=b" data-alt="sw_alt_c5" alt="" width="800" height="1000"></figure>
+          </div>
         </div>
         <div class="who">
           <p class="who-lbl" data-copy="sw_c5_who_lbl"></p>
@@ -212,15 +215,15 @@
           <li class="inf"><span class="inf-k" data-copy="sw_c5_i2_k"></span><span class="inf-v" data-copy="sw_c5_i2_v"></span><span class="inf-n" data-copy="sw_c5_i2_n"></span></li>
           <li class="inf"><span class="inf-k" data-copy="sw_c5_i3_k"></span><span class="inf-v" data-copy="sw_c5_i3_v"></span><span class="inf-n" data-copy="sw_c5_i3_n"></span></li>
         </ul>
-        <p class="c5-tip"><img class="tip-spark" src="assets/dec/spark-berry.webp" alt="" aria-hidden="true"><span data-copy="sw_c5_tip"></span></p>
+        <p class="c5-tip"><span data-copy="sw_c5_tip"></span></p>
         <p class="src" data-copy="sw_c5_src"></p>
       </div>
     </section>
 
-    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12) on the generated berry knit -->
+    <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12), glass cells on the pearl backdrop -->
     <section class="card c6" data-card="7" aria-labelledby="sw-t6">
       <div class="cx-in">
-        <header class="top solo"><span class="brand" data-copy="sw_brand"></span></header>
+        <header class="top"><span class="brand" data-copy="sw_brand"></span></header>
         <div class="bento">
           <div class="bt bt-about">
             <div class="ab-top">
@@ -231,7 +234,7 @@
               </div>
               <figure class="dr">
                 <figcaption class="dr-tx"><span class="dr-name" data-copy="sw_ab_dr_name"></span><span class="dr-quote" data-copy="sw_ab_dr_quote"></span></figcaption>
-                <img class="dr-disc" src="assets/dec/plate-aqua.webp" alt="" aria-hidden="true">
+                <span class="dr-panel" aria-hidden="true"><img src="assets/panel/ripple.jpg" alt=""></span>
                 <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="sw_alt_director" alt="" width="640" height="640">
               </figure>
             </div>
@@ -291,7 +294,6 @@
 
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="sw-notes">
-      <img class="notes-wave" src="assets/dec/wave-aqua.webp" alt="" aria-hidden="true">
       <h2 id="sw-notes"><span data-copy="sw_note_title"></span></h2>
       <ul>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="sw_cond1"></span></li>

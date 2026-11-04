@@ -1,0 +1,35 @@
+name: Purge deleted review items
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Purge deleted items
+        env:
+          REVIEW_API: https://bb-event-review-sync.beautyblossom.workers.dev
+          REVIEW_HEADER: event-review-2026
+          REVIEW_ORIGIN: https://byeonghoyoo.github.io
+        run: node .github/scripts/purge-deleted.cjs
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- events-2026-12; then
+            echo 'No deleted items to purge.'
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add events-2026-12
+            git commit -m 'Purge deleted review items'
+            git push
+          fi

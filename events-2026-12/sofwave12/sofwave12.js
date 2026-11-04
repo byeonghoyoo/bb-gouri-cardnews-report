@@ -60,7 +60,7 @@ function setHours(el,v){
  el.append(d,document.createTextNode(m[2]),t);
 }
 /* widow guard: the last two words stay together */
-const GUARD='.hook,.p-lead,.unit-d,.pcare,.pdet,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.src,.bkl-msg,.cmp-d,.cmp-h,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy]';
+const GUARD='.hook,.p-lead,.unit-d,.pcare,.pdet,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.src,.bkl-msg,.cmp-d,.cmp-h,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.ba-note,.bb-ba__note';
 /* names that never break inside */
 const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
 function appendKept(el,s){
@@ -99,9 +99,12 @@ function fitLines(el,lines,min){
 }
 function fit(){
  const phone=isPhone();
- for(const el of document.querySelectorAll('.kicker-latin,.hero-title,.tz-label'))fitTo(el,el.parentElement.clientWidth,.6);
+ /* hero and section accent lines, giant titles, the hero pills */
+ for(const el of document.querySelectorAll('.kick,.hero-title'))fitTo(el,el.parentElement.clientWidth,.6);
+ for(const el of document.querySelectorAll('.hp-top'))fitTo(el,el.parentElement.clientWidth-parseFloat(getComputedStyle(el.parentElement).paddingLeft)-parseFloat(getComputedStyle(el.parentElement).paddingRight),.7);
+ for(const el of document.querySelectorAll('.hp-v'))fitTo(el,el.parentElement.clientWidth,.7);
  for(const el of document.querySelectorAll('.pt-main'))fitTo(el,el.closest('.cp-htx').clientWidth,.6);
- for(const el of document.querySelectorAll('.q-title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.7);}
+ for(const el of document.querySelectorAll('.q-title')){if(phone||el.closest('.c5')){el.style.removeProperty('--fit');continue;}fitTo(el,el.parentElement.clientWidth,.7);}
  for(const el of document.querySelectorAll('.bb-ba__title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.parentElement.clientWidth,.7);}
  /* price names stay on one line per part (desktop); on phones they may wrap */
  for(const el of document.querySelectorAll('.pname')){
