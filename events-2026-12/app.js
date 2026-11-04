@@ -22,10 +22,127 @@
   var FIELD_RE = /^[A-Za-z0-9_]+$/;
   var ID_RE = /^[A-Za-z0-9]+$/;
   var LOCALE_RE = /^[A-Z]{2}$/;
+  /* v4 (2026-11-04, v4/events/BOARD_V4_PLAN.md): mode tabs, hero/2nd-section A/B, pinned comments, beauty-app tab */
+  var BOARD_V = '20261104-v4a';
+  var PAGE_V = '&v=20261104-v4a'; /* cache version of the own-page iframes (qa/v2-cache.test.cjs) */
+  var VARIANT_SLOTS = [1, 2];
+  var COMMENT_SAVE_MS = 800;
+  var COMMENT_MAX = 4000;
+  var IMG_LONG = 1600, IMG_Q = 0.85, IMG_MAX_BYTES = 1500000, IMG_PER_COMMENT = 8;
+  var STATUS_COLOR = { open: '#E5484D', question: '#F5A524', done: '#30A46C' };
+  var STATUS_NAME = { open: '요청', question: '확인 필요', done: '적용완료' };
+  var MB = 1000000;
+  /* beauty-app downloads: one design, three download shapes (plan section 1 and 7) */
+  var APP_PLATFORMS = [
+    { id: 'gangnam', label: '강남언니', width: 1080, thumb: 1080, card: true, maxH: 16000, maxBytes: 5 * MB, thumbMax: 5 * MB, order: 'split' },
+    { id: 'babitalk', label: '바비톡', width: 800, thumb: 800, card: false, maxH: 30000 /* no platform limit; browser canvas limit */, maxBytes: 5 * MB, thumbMax: 2 * MB, order: 'quality' },
+    { id: 'yeoshin', label: '여신티켓', width: 1080, thumb: 1080, card: false, maxH: 16000, maxBytes: 5 * MB, thumbMax: 5 * MB, order: 'split' },
+  ];
+  var QUALITY_LADDER = [0.92, 0.85, 0.78, 0.7, 0.62, 0.55];
+  var APP_SPEC_ROWS = [
+    ['강남언니', '1080×1080 권장', '카드 1080×470 권장 (상세 상단)', '장당 최대 1080×16000px · 5MB, 여러 장', '미용 시술 VAT 포함 필수 · 할인 49% 이하 · 이미지 속 금액 항목은 모두 옵션 등록 · 이미지 속 기간 = 설정 기간'],
+    ['바비톡', '800×800 · 2MB 이하', '없음', '800×길이 제한 없음 · 5MB 이하', '정상가·이벤트가 VAT 포함 등록(2025-05-19부터) · 썸네일·상세 이미지에 VAT 포함 표기 · 49% 초과 불가 · 옵션명에 회차 문구 금지'],
+    ['여신티켓', '1080×1080 (등록 이미지 실측)', '없음', '가로 1080 (병원 소개 이미지 1080×5000 실측)', '앱이 VAT 포함 가격 표기'],
+  ];
 
   /* ------------------------------------------------------------ pure helpers */
   function cellKey(itemId, locale, field) { return itemId + '.' + locale + '.' + field; }
   function selectedKey(itemId, locale) { return cellKey(itemId, locale, 'selected'); }
+  /* A/B choice of the hero (1) and the 2nd section (2) is language-common and saved on the KO cell */
+  function variantKey(itemId, slot) { return cellKey(itemId, 'KO', 'variant_c' + slot); }
+  function normVariant(v) { return v === 'b' ? 'b' : 'a'; }
+  function slotName(n) { return n === 1 ? '히어로(1장)' : '2번 섹션(2장)'; }
+  function parseHash(hash) {
+    var m = /^#?([A-Za-z0-9]+)\/([A-Z]{2})(?:\/(app))?$/.exec(hash || '');
+    return m ? { item: m[1], locale: m[2], mode: m[3] === 'app' ? 'app' : 'home' } : null;
+  }
+  /* ?api=http://127.0.0.1:8787 points the board at a local test server; any other host is ignored */
+  function apiFromSearch(search) {
+    var q, u;
+    try { q = new URLSearchParams(search || '').get('api'); } catch (e) { return null; }
+    if (!q) return null;
+    try { u = new URL(q); } catch (e) { return null; }
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return null;
+    if (u.hostname !== 'localhost' && u.hostname !== '127.0.0.1') return null;
+    if (u.username || u.password || u.search || u.hash) return null;
+    return (u.origin + u.pathname).replace(/\/+$/, '');
+  }
+  function clamp01(v) { v = Number(v); return isFinite(v) ? Math.min(1, Math.max(0, v)) : 0; }
+  function round4(v) { return Math.round(v * 10000) / 10000; }
+  function fitLong(w, h, max) { var s = Math.min(1, max / Math.max(w, h, 1)); return { w: Math.max(1, Math.round(w * s)), h: Math.max(1, Math.round(h * s)) }; }
+  function commentCounts(list) {
+    var c = { open: 0, question: 0, done: 0, total: 0 };
+    (list || []).forEach(function (x) { if (!x || x.status === 'deleted') return; c.total++; if (typeof c[x.status] === 'number') c[x.status]++; });
+    return c;
+  }
+  function commentAsset(c) { var a = c && c.target && c.target.asset; return a === 'thumb' || a === 'card' ? a : null; }
+  function cardLabel(c) {
+    if (!c) return '';
+    if (c.mode === 'app' && !c.card) return commentAsset(c) === 'card' ? '카드 이미지 1080×470' : commentAsset(c) === 'thumb' ? '대표 이미지 1:1' : '페이지 전체';
+    if (!c.card) return '페이지 전체';
+    var v = c.variant === 'b' ? 'B안' : 'A안';
+    if (c.card === 1) return '1장 히어로 ' + v;
+    if (c.card === 2) return '2장 2번 섹션 ' + v;
+    return c.card + '장';
+  }
+  /* group consecutive detail cards into pieces no taller than maxH; a card taller than maxH is cut into rows */
+  function planPieces(heights, maxH) {
+    var pieces = [], cur = [], curH = 0;
+    (heights || []).forEach(function (h, i) {
+      if (h > maxH) {
+        if (cur.length) { pieces.push(cur); cur = []; curH = 0; }
+        for (var y = 0; y < h; y += maxH) pieces.push([{ i: i, y: y, h: Math.min(maxH, h - y) }]);
+        return;
+      }
+      if (cur.length && curH + h > maxH) { pieces.push(cur); cur = []; curH = 0; }
+      cur.push({ i: i, y: 0, h: h }); curH += h;
+    });
+    if (cur.length) pieces.push(cur);
+    return pieces;
+  }
+  function splitPiece(piece) {
+    if (piece.length > 1) { var k = Math.ceil(piece.length / 2); return [piece.slice(0, k), piece.slice(k)]; }
+    var s = piece[0], h1 = Math.ceil(s.h / 2);
+    return [[{ i: s.i, y: s.y, h: h1 }], [{ i: s.i, y: s.y + h1, h: s.h - h1 }]];
+  }
+  function crc32(bytes) {
+    var table = crc32.table || (crc32.table = (function () { var t = [], n, k; for (n = 0; n < 256; n++) { k = n; for (var j = 0; j < 8; j++) k = (k & 1) ? (0xedb88320 ^ (k >>> 1)) : (k >>> 1); t[n] = k >>> 0; } return t; })());
+    var c = 0xffffffff; for (var i = 0; i < bytes.length; i++) c = table[(c ^ bytes[i]) & 255] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0;
+  }
+  function utf8Bytes(s) { return new TextEncoder().encode(String(s)); }
+  /* uncompressed (stored) ZIP with UTF-8 names: the JPEGs inside are already compressed */
+  function zipStore(files, when) {
+    var d = when instanceof Date ? when : new Date();
+    var time = ((d.getHours() & 31) << 11) | ((d.getMinutes() & 63) << 5) | (Math.floor(d.getSeconds() / 2) & 31);
+    var date = (((Math.max(1980, d.getFullYear()) - 1980) & 127) << 9) | (((d.getMonth() + 1) & 15) << 5) | (d.getDate() & 31);
+    var parts = [], central = [], offset = 0;
+    files.forEach(function (f) {
+      var name = utf8Bytes(f.name), data = f.data instanceof Uint8Array ? f.data : new Uint8Array(f.data), crc = crc32(data);
+      var lh = new Uint8Array(30 + name.length), v = new DataView(lh.buffer);
+      v.setUint32(0, 0x04034b50, true); v.setUint16(4, 20, true); v.setUint16(6, 0x0800, true); v.setUint16(8, 0, true);
+      v.setUint16(10, time, true); v.setUint16(12, date, true); v.setUint32(14, crc, true);
+      v.setUint32(18, data.length, true); v.setUint32(22, data.length, true); v.setUint16(26, name.length, true); v.setUint16(28, 0, true);
+      lh.set(name, 30);
+      var ch = new Uint8Array(46 + name.length), c = new DataView(ch.buffer);
+      c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true);
+      c.setUint16(12, time, true); c.setUint16(14, date, true); c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true);
+      c.setUint16(28, name.length, true); c.setUint32(42, offset, true);
+      ch.set(name, 46);
+      parts.push(lh, data); central.push(ch); offset += lh.length + data.length;
+    });
+    var cdSize = central.reduce(function (s, x) { return s + x.length; }, 0);
+    var end = new Uint8Array(22), e = new DataView(end.buffer);
+    e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cdSize, true); e.setUint32(16, offset, true);
+    var all = parts.concat(central, [end]), out = new Uint8Array(offset + cdSize + 22), p = 0;
+    all.forEach(function (x) { out.set(x, p); p += x.length; });
+    return out;
+  }
+  function clampTarget(t) {
+    var keys = ['text', 'copyText', 'priceText', 'image', 'price', 'copy', 'label'], lim = 120;
+    var size = function () { return utf8Bytes(JSON.stringify(t)).length; };
+    while (size() > 2000 && lim >= 8) { keys.forEach(function (k) { if (typeof t[k] === 'string' && t[k].length > lim) t[k] = t[k].slice(0, lim); }); lim = Math.floor(lim / 2); }
+    return t;
+  }
 
   function fieldKind(name) {
     if (/price/i.test(name)) return 'price';
@@ -201,6 +318,31 @@
     return store;
   }
 
+  /* comment API (plan section 5). Every call resolves to { ok, status, body }; a network error is status 0. */
+  function createCommentApi(opts) {
+    var base = String(opts.api || '').replace(/\/+$/, '');
+    var doFetch = opts.fetch;
+    var HEAD = {}; HEAD[HEADER_NAME] = HEADER_VALUE;
+    function call(method, path, body) {
+      var o = { method: method, headers: Object.assign({}, HEAD), cache: 'no-store' };
+      if (body !== undefined) { o.headers['Content-Type'] = 'application/json'; o.body = JSON.stringify(body); }
+      return Promise.resolve().then(function () { return doFetch(base + path, o); }).then(function (res) {
+        return Promise.resolve().then(function () { return res.json(); }).then(function (b) { return b; }, function () { return null; })
+          .then(function (b) { return { ok: !!res.ok, status: res.status, body: b }; });
+      }, function () { return { ok: false, status: 0, body: null }; });
+    }
+    return {
+      base: base,
+      list: function (item) { return call('GET', '/v1/comments?item=' + encodeURIComponent(item)); },
+      summary: function () { return call('GET', '/v1/comments/summary'); },
+      create: function (b) { return call('POST', '/v1/comments', b); },
+      update: function (b) { return call('POST', '/v1/comments/update', b); },
+      image: function (b) { return call('POST', '/v1/comments/image', b); },
+      imageDelete: function (b) { return call('POST', '/v1/comments/image/delete', b); },
+      imageUrl: function (id) { return base + '/v1/comments/image?id=' + encodeURIComponent(id); },
+    };
+  }
+
   function effectiveFields(item, locale, store) {
     var out = {}; var f = (item.fields && item.fields[locale]) || {};
     Object.keys(f).forEach(function (k) { out[k] = store.value(cellKey(item.id, locale, k), f[k]); });
@@ -217,7 +359,9 @@
           if (!hasLocale(item, l.id)) return;
           locales[l.id] = { selected: store.isSelected(item.id, l.id), fields: effectiveFields(item, l.id, store) };
         });
-        return { id: item.id, label: item.label, kind: item.kind, locales: locales };
+        var variants = {};
+        VARIANT_SLOTS.forEach(function (n) { variants['c' + n] = normVariant(store.value(variantKey(item.id, n), 'a')); });
+        return { id: item.id, label: item.label, kind: item.kind, variants: variants, locales: locales };
       }),
     };
   }
@@ -261,8 +405,12 @@
     var state = {
       data: null, errors: [], fatal: null, itemId: null, locale: null, author: '', editor: null,
       saving: 0, aptos: null, frames: [], previewKey: null, toastTimer: null, started: false, capture: null,
+      mode: 'home', slides: {}, summary: {}, summaryOk: null, drafts: {}, appView: null, designBox: null, ctx: null, viewTimer: null,
+      cm: { itemId: null, list: [], loaded: false, loading: false, error: null, status: 0, active: null, token: 0, dirtyPanel: false },
     };
     var ui = {};
+    var capi = createCommentApi({ api: env.api || DEFAULT_API, fetch: env.fetch });
+    var win0 = doc.defaultView || null; /* null in the unit-test DOM */
 
     try { state.author = (env.storage && env.storage.getItem(AUTHOR_KEY)) || ''; } catch (e) { state.author = ''; }
 
@@ -291,6 +439,19 @@
       ui.list = H('ul', { class: 'item-list' });
       ui.preview = H('main', { class: 'preview', id: 'preview' });
       ui.toast = H('div', { class: 'toast', role: 'status', 'aria-live': 'polite' });
+      ui.modeTabs = H('nav', { class: 'mode-tabs', role: 'tablist', 'aria-label': '보기 선택' });
+      ui.cmHead = H('div', { class: 'cm-head' });
+      ui.cmStatus = H('p', { class: 'cm-status', role: 'status' });
+      ui.cmList = H('ul', { class: 'cm-list' });
+      ui.cpanel = H('aside', { class: 'comment-panel', id: 'comment-panel', 'aria-label': '코멘트' }, [
+        ui.cmHead,
+        H('p', { class: 'cm-hint', text: '미리보기에서 고칠 곳을 우클릭하고 ‘여기에 코멘트 달기’를 누르세요. 글은 자동 저장되고, 캡처는 Ctrl+V로 붙입니다. Shift+우클릭은 브라우저 기본 메뉴입니다.' }),
+        ui.cmStatus, ui.cmList,
+      ]);
+      ui.drawerBtn = H('button', { type: 'button', class: 'cm-drawer-btn', 'data-action': 'toggle-comments', 'aria-controls': 'comment-panel', 'aria-expanded': 'false', text: '코멘트', onclick: function () { setDrawer(!hasAppClass('drawer-open')); } });
+      ui.drawerBack = H('div', { class: 'cm-backdrop', 'aria-hidden': 'true', onclick: function () { setDrawer(false); } });
+      ui.ctx = H('div', { class: 'ctx-menu', role: 'menu', hidden: true });
+      ui.lightbox = H('div', { class: 'lightbox', role: 'dialog', 'aria-modal': 'true', 'aria-label': '이미지 크게 보기', hidden: true, onclick: function () { closeLightbox(); } });
       var authorInput = H('input', { class: 'author-input', type: 'text', maxlength: '40', placeholder: '이름 (표시용)', value: state.author, 'aria-label': '작성자 이름' });
       var saveAuthor = function () {
         state.author = String(authorInput.value || '').trim().slice(0, 40);
@@ -298,6 +459,7 @@
       };
       authorInput.addEventListener('input', saveAuthor); authorInput.addEventListener('change', saveAuthor);
       var app = H('div', { class: 'app' }, [
+        ui.modeTabs,
         H('header', { class: 'topbar' }, [
           H('div', { class: 'brand' }, [
             H('h1', { text: '12월 이벤트 · 수능 이벤트 검토' }),
@@ -307,8 +469,8 @@
             H('label', { class: 'author' }, [H('span', { text: '작성자' }), authorInput]),
             H('p', { class: 'author-note', text: '이름은 저장 기록에 표시만 되며 인증이 아닙니다.' }),
             H('button', { type: 'button', class: 'btn', 'data-action': 'toggle-edit-mode', 'aria-pressed': 'false', text: '편집 모드', onclick: function (e) {
-              var on = ui.app.className.split(/\s+/).indexOf('edit-mode') < 0;
-              ui.app.className = on ? 'app edit-mode' : 'app';
+              var on = !hasAppClass('edit-mode');
+              setAppClass('edit-mode', on);
               e.target.setAttribute('aria-pressed', on ? 'true' : 'false');
               postAptosData();
             } }),
@@ -318,11 +480,25 @@
         H('section', { class: 'statusbar' }, [ui.status, ui.summary]),
         ui.errors,
         ui.tabs,
-        H('div', { class: 'layout' }, [H('aside', { class: 'sidebar' }, [ui.sideTitle, ui.list]), ui.preview]),
+        H('div', { class: 'layout' }, [H('aside', { class: 'sidebar' }, [ui.sideTitle, ui.list]), ui.preview, ui.cpanel]),
+        ui.drawerBtn, ui.drawerBack, ui.ctx, ui.lightbox,
         ui.toast,
       ]);
       ui.app = app;
       env.root.replaceChildren(app);
+      renderModeTabs();
+      bindBoardEvents();
+    }
+    function hasAppClass(cls) { return !!ui.app && ui.app.className.split(/\s+/).indexOf(cls) >= 0; }
+    function setAppClass(cls, on) {
+      if (!ui.app) return;
+      var list = ui.app.className.split(/\s+/).filter(function (c) { return c && c !== cls; });
+      if (on) list.push(cls);
+      ui.app.className = list.join(' ');
+    }
+    function setDrawer(on) {
+      setAppClass('drawer-open', on);
+      if (ui.drawerBtn) ui.drawerBtn.setAttribute('aria-expanded', on ? 'true' : 'false');
     }
 
     function downloadJson() {
@@ -364,6 +540,7 @@
       var kids = [H('span', { class: 'dot' }), H('span', { text: STATUS_TEXT[s] })];
       if (s === 'ready' && store.lastSync) kids.push(H('span', { class: 'sync-time', text: ' · 확인 ' + store.lastSync.toLocaleTimeString('ko-KR') }));
       if (s === 'locked') kids.push(H('button', { type: 'button', class: 'btn small', 'data-action': 'retry-connect', text: '다시 연결', onclick: retryConnect }));
+      if (env.apiOverride) kids.push(H('span', { class: 'api-override', text: '시험 서버: ' + env.apiOverride }));
       ui.status.setAttribute('data-state', s);
       ui.status.replaceChildren.apply(ui.status, kids);
       renderSummary();
@@ -453,6 +630,7 @@
             H('span', { class: 'item-label', text: it.label }),
             isTestItem(it.id) ? H('span', { class: 'kind-tag kind-test', text: '테스트' }) : H('span', { class: 'kind-tag kind-' + it.kind, text: it.kind === 'plan' ? '기획' : '완성' }),
             errs ? H('span', { class: 'err-tag', text: '오류 ' + errs }) : null,
+            requestBadge(it.id),
           ]),
           H('button', { type: 'button', class: 'btn small danger delete-btn', text: '삭제', onclick: function (e) { e.stopPropagation(); openDeleteDialog([it.id], it.label, 1); } }),
         ]);
@@ -493,10 +671,26 @@
       if (ed && (ed.draft !== ed.original || ed.status !== 'idle')) { toast('수정 중인 내용을 먼저 저장하거나 취소해 주세요.', 'error'); return false; }
       state.editor = null; return true;
     }
-    function pushHash() { if (env.replaceHash) env.replaceHash('#' + state.itemId + '/' + state.locale); }
-    function selectItem(id) { if (id === state.itemId || !canNavigate()) return; state.itemId = id; unfoldFor(id); pushHash(); renderAll(); }
-    function selectLocale(id) { if (id === state.locale || !canNavigate()) return; state.locale = id; pushHash(); renderAll(); }
-    function renderAll() { renderErrors(); renderTabs(); renderSidebar(); renderPreview(); renderStatus(); }
+    function pushHash() { if (env.replaceHash) env.replaceHash('#' + state.itemId + '/' + state.locale + (state.mode === 'app' ? '/app' : '')); }
+    function selectItem(id) { if (id === state.itemId || !canNavigate()) return; flushActiveDraft(); hideCtx(); state.itemId = id; unfoldFor(id); pushHash(); renderAll(); loadComments(id); }
+    function selectLocale(id) { if (id === state.locale || !canNavigate()) return; hideCtx(); state.locale = id; pushHash(); renderAll(); }
+    function selectMode(m) { if (m === state.mode || !canNavigate()) return; hideCtx(); state.mode = m === 'app' ? 'app' : 'home'; pushHash(); renderAll(); }
+    function renderAll() { renderErrors(); renderModeTabs(); renderTabs(); renderSidebar(); renderPreview(); renderComments(); renderStatus(); }
+    function renderModeTabs() {
+      if (!ui.modeTabs) return;
+      setAppClass('mode-app', state.mode === 'app');
+      ui.modeTabs.replaceChildren.apply(ui.modeTabs, [['home', '홈페이지', '모든 이미지'], ['app', '뷰티앱', '강남언니 · 바비톡 · 여신티켓']].map(function (m) {
+        var cur = state.mode === m[0];
+        return H('button', { type: 'button', role: 'tab', class: 'mode-tab' + (cur ? ' current' : ''), 'data-mode': m[0], 'aria-selected': cur ? 'true' : 'false', onclick: function () { selectMode(m[0]); } }, [
+          H('span', { class: 'mode-name', text: m[1] }), H('span', { class: 'mode-sub', text: m[2] }),
+        ]);
+      }));
+    }
+    function requestBadge(itemId) {
+      var s = state.summary[itemId];
+      if (!s || !(s.open > 0)) return null;
+      return H('span', { class: 'req-tag', 'data-request-count': String(s.open), title: '요청 ' + s.open + ' · 확인 필요 ' + (s.question || 0) + ' · 적용완료 ' + (s.done || 0), text: '요청 ' + s.open });
+    }
 
     function retryConnect() {
       return store.load().then(function () { renderAll(); if (store.canEdit()) toast('공유 서버에 연결되었습니다.', 'ok'); });
@@ -629,7 +823,7 @@
           isTestItem(it.id)
             ? H('span', { class: 'kind-badge kind-test', text: '테스트 구간' })
             : H('span', { class: 'kind-badge kind-' + it.kind, text: it.kind === 'aptos' ? '완성 디자인 · 압토스' : it.kind === 'landing' ? '완성 디자인 · 공유 검토' : '기획 검토 시안 · 확정 아님' }),
-          H('h2', { class: 'preview-title', text: it.label + ' · ' + state.locale }),
+          H('h2', { class: 'preview-title', text: it.label + ' · ' + state.locale + (state.mode === 'app' ? ' · 뷰티앱' : '') }),
           isTestItem(it.id) ? H('p', { class: 'test-note', text: '테스트 구간 항목입니다. 연습용으로 만든 랜딩 7종(수능 포함)이며 실제 진행 작업과 구분됩니다.' }) : null,
         ]),
         H('label', { class: 'preview-select' }, [cb, H('span', { text: state.locale + ' 언어판 선택' })]),
@@ -681,8 +875,9 @@
 
     function aptosShell(it) {
       var ownPage = typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page);
-      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + '&v=20261104-v3q' : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
+      var frame = H('iframe', { class: 'aptos-frame', src: ownPage ? it.page + '?lang=' + encodeURIComponent(state.locale) + PAGE_V : (it.kind === 'aptos' ? 'aptos/index.html?lang=' + encodeURIComponent(state.locale) : 'landings/index.html?item=' + encodeURIComponent(it.id) + '&lang=' + encodeURIComponent(state.locale)) + '&v=20261029-edit1', title: it.label + ' ' + state.locale + ' 완성 디자인', loading: 'eager' });
       state.aptos = { el: frame, itemId: it.id, locale: state.locale, win: null, editing: null, inline: false };
+      frame.addEventListener('load', function () { syncViewer(); later(syncViewer, 400); });
       state.frames.push(state.aptos); if (state.frames.length > 6) state.frames.shift();
       return H('div', { class: 'aptos-shell' }, [
         H('p', { class: 'aptos-note', text: typeof it.note === 'string' && it.note ? it.note : it.kind === 'aptos' ? '글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 원문의 ‘최대 49%’ 배지는 표시 가격과 계산이 맞지 않아 확인이 필요합니다. 기존 행사 기간은 10/21~11/30입니다.' : '검토용 디자인입니다. 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 행사 가격·기간·적용 조건은 최종 확인 대상입니다.' }),
@@ -693,12 +888,25 @@
     function renderPreview() {
       var it = item();
       if (!it) return;
-      var key = it.id + '/' + state.locale;
+      var key = it.id + '/' + state.locale + '/' + state.mode;
       var ed0 = state.editor;
       if (ed0 && ed0.ta) { ed0.selStart = ed0.ta.selectionStart; ed0.selEnd = ed0.ta.selectionEnd; ed0.hadFocus = doc.activeElement === ed0.ta; }
+      if (state.mode === 'app') {
+        if (state.previewKey === key && state.appView && state.appView.itemId === it.id) {
+          if (state.previewCb) { state.previewCb.checked = store.isSelected(it.id, state.locale); state.previewCb.disabled = !store.canEdit() || !hasLocale(it, state.locale); }
+          fillDesignBox(); updateAppView();
+          return;
+        }
+        state.previewKey = key; state.aptos = null;
+        ui.preview.replaceChildren.apply(ui.preview, [previewHead(it), designBox(it), appPreview(it)].filter(Boolean));
+        return;
+      }
+      state.appView = null;
       if ((it.kind === 'aptos' || it.kind === 'landing') && state.previewKey === key && state.aptos && state.aptos.el.parentNode) {
         if (state.previewCb) { state.previewCb.checked = store.isSelected(it.id, state.locale); state.previewCb.disabled = !store.canEdit(); }
+        fillDesignBox();
         postAptosData();
+        syncViewer();
         return;
       }
       state.previewKey = key;
@@ -714,7 +922,8 @@
         body = H('div', { class: 'missing-locale', role: 'alert', text: '이 언어판 데이터가 없습니다: ' + it.id + ' / ' + state.locale + '. 부모 작업(data.json)에서 채워야 합니다.' });
       } else body = (it.kind === 'aptos' || it.kind === 'landing') ? aptosShell(it) : planCard(it, f);
       var bar = state.aptos && state.aptos.itemId === it.id ? downloadBar(it) : null;
-      ui.preview.replaceChildren.apply(ui.preview, [previewHead(it), bar, body].filter(Boolean));
+      var design = state.aptos && state.aptos.itemId === it.id ? designBox(it) : null;
+      ui.preview.replaceChildren.apply(ui.preview, [previewHead(it), design, bar, body].filter(Boolean));
       var ed = state.editor;
       if (ed && ed.ta && (ed.justOpened || ed.hadFocus)) {
         ed.ta.focus();
@@ -749,6 +958,13 @@
         if (e.origin === origin() && isObj(e.data) && e.data.type === 'aptos-ready' && cap.fields) capPost(cap);
         return;
       }
+      var acf = appFrameOf(e.source);
+      if (acf) {
+        if (e.origin !== origin() || !isObj(e.data)) return;
+        if (e.data.type === 'aptos-ready') postAppData(acf);
+        else if (e.data.type === 'aptos-size') layoutCrop(acf);
+        return;
+      }
       var a = frameOf(e.source);
       if (!a) return;
       if (e.origin !== origin()) return;
@@ -760,8 +976,8 @@
         return;
       }
       if (d.type === 'aptos-ready') a.inline = d.inline === true;
-      if (d.type === 'aptos-size' && Number.isFinite(d.height) && d.height >= 300 && d.height <= 25000) a.el.style.height = Math.ceil(d.height) + 'px';
-      else if (d.type === 'aptos-ready') postAptosData();
+      if (d.type === 'aptos-size' && Number.isFinite(d.height) && d.height >= 300 && d.height <= 25000) { a.el.style.height = Math.ceil(d.height) + 'px'; syncViewer(); }
+      else if (d.type === 'aptos-ready') { postAptosData(); syncViewer(); }
       else if(d.type==='aptos-editing' && typeof d.field==='string'){var k=cellKey(a.itemId,a.locale,d.field);var c=store.get(k);a.editing={field:d.field,key:k,baseRevision:c?c.revision:0};}
       else if(d.type==='aptos-edit-cancel'){a.editing=null;}
       else if (d.type === 'aptos-edit') handleAptosEdit(a, d);
@@ -796,16 +1012,33 @@
        capFontCss() embeds the font faces the five cards actually use (family, matched weight/style, characters), so the image matches the page. */
     /* board items whose page has five 1080x1350 cards (section.p1 ... section.p5). To add one, append it here, e.g. FV12: true, HH12: true */
     var CAP_ITEMS = { FV12: true, HH12: true }; /* 2026-11-03: OXM12·APT12 now have 6 cards with data-card (B/A added) */
-    var a4CardsCache = {};
-    function a4CardsFromHtml(html) {
-      var d = new DOMParser().parseFromString(html, 'text/html');
-      return Array.prototype.filter.call(d.querySelectorAll('[data-card]'), function (el) { return el.querySelectorAll('[data-price-row]').length >= 1; }).map(function (el) { return Number(el.getAttribute('data-card')); }).filter(function (n) { return isFinite(n); });
+    var pageHtmlCache = {};
+    function pageHtmlFor(it) {
+      if (!it || typeof it.page !== 'string') return Promise.reject(new Error('페이지가 없는 항목입니다.'));
+      var key = it.page;
+      if (!pageHtmlCache[key]) {
+        var p = pageHtmlCache[key] = Promise.resolve().then(function () { return env.fetch(it.page, { cache: 'no-store' }); }).then(function (r) { if (!r.ok) throw new Error('페이지를 확인하지 못했습니다.'); return r.text(); });
+        p.catch(function () { if (pageHtmlCache[key] === p) delete pageHtmlCache[key]; });
+      }
+      return pageHtmlCache[key];
+    }
+    function parseHtml(html) { var P = win0 && win0.DOMParser; return P ? new P().parseFromString(html, 'text/html') : null; }
+    /* price cards of the chosen design (hero / 2nd section A or B) */
+    function a4CardsFromHtml(html, it) {
+      var d = parseHtml(html); if (!d) return [];
+      if (it) applyVariantsToDoc(d, it, false);
+      return Array.prototype.filter.call(d.querySelectorAll('[data-card]'), function (el) { return el.querySelectorAll('[data-price-row]').length >= 1; }).map(function (el) { return Number(el.getAttribute('data-card')); }).filter(function (n, i, a) { return isFinite(n) && a.indexOf(n) === i; });
     }
     function a4CardsFor(it) {
       if (!it || typeof it.page !== 'string') return Promise.resolve([]);
-      var key = it.page;
-      if (a4CardsCache[key]) return Promise.resolve(a4CardsCache[key].slice());
-      return env.fetch(it.page, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('페이지를 확인하지 못했습니다.'); return r.text(); }).then(function (html) { var nums = a4CardsFromHtml(html); a4CardsCache[key] = nums; return nums.slice(); });
+      return pageHtmlFor(it).then(function (html) { return a4CardsFromHtml(html, it); });
+    }
+    function pageInfoFor(it) {
+      return pageHtmlFor(it).then(function (html) {
+        var d = parseHtml(html), slots = {};
+        VARIANT_SLOTS.forEach(function (n) { var s = d ? sectionsFor(d, n) : { a: null, b: null }; slots[n] = { a: !!s.a, b: !!s.b }; });
+        return { slots: slots };
+      });
     }
     var CAP_P5 = 'section.p1,section.p2,section.p3,section.p4,section.p5';
     var CAP = { items: CAP_ITEMS, sel: CAP_P5, n: 5, w: 1080, h: 1350, frameW: 1440, lib: 'vendor/modern-screenshot-4.7.0.js' };
@@ -833,7 +1066,7 @@
       function run(nums, mode) { if (state.capture) { status.textContent = '이미 이미지를 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } buttons.forEach(function (b) { b.disabled = true; }); captureCards(it, state.locale, nums, mode, function (m) { status.textContent = m; }).then(function (m) { status.textContent = m; }, function (e) { status.textContent = '받지 못했습니다: ' + (e && e.message || e); }).then(function () { buttons.forEach(function (b) { b.disabled = false; }); }); }
       var host = H('div', { class: 'img-download', 'data-img-download': it.id }, [
         H('div', { class: 'img-dl-row' }, [H('strong', { class: 'img-dl-label', text: '이미지 받기' }), H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, nums1.map(function (n) { return btn(n + '장', 'img-card-' + n, [n], 'single'); }).concat([btn(spec.n + '장 모두 따로', 'img-cards-all', nums1, 'single')])), btn(spec.n + '장 이어서 길게 1장', 'img-long', nums1, 'long', 'primary')]),
-        H('p', { class: 'img-dl-note', text: '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×' + (1350 * spec.n) + ' PNG입니다.' }), status,
+        H('p', { class: 'img-dl-note', text: '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×' + (1350 * spec.n) + ' PNG입니다.' + (spec.sel === '[data-card]' ? ' 히어로·2번 섹션은 디자인 선택에서 고른 안만 씁니다. 말풍선 핀은 들어가지 않습니다.' : '') }), status,
       ]);
       var a4 = H('div', { class: 'a4-dl-group', hidden: true }); host.appendChild(a4);
       a4CardsFor(it).then(function (cards) { if (!cards.length) return; var a4Status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' }); var group = H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '원내 배치용 A4 다운로드' }); var runA4 = function (mode) { if (state.capture) { a4Status.textContent = '이미 파일을 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } a4CardsFor(it).then(function (latest) { return captureA4(it, state.locale, latest, mode, function (m) { a4Status.textContent = m; }); }).then(function (m) { a4Status.textContent = m; }, function (e) { a4Status.textContent = '받지 못했습니다: ' + (e && e.message || e); }); };
@@ -848,10 +1081,6 @@
       return new Promise(function (resolve, reject) {
         canvas.toBlob(function (b) { if (b) resolve(b); else reject(new Error('이미지를 만들지 못했습니다.')); }, type || 'image/png', quality);
       });
-    }
-    function crc32(bytes) {
-      var table = crc32.table || (crc32.table = (function () { var t = [], n, k; for (n = 0; n < 256; n++) { k = n; for (var j = 0; j < 8; j++) k = (k & 1) ? (0xedb88320 ^ (k >>> 1)) : (k >>> 1); t[n] = k >>> 0; } return t; })());
-      var c = 0xffffffff; for (var i = 0; i < bytes.length; i++) c = table[(c ^ bytes[i]) & 255] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0;
     }
     function withPhys(blob) {
       return blob.arrayBuffer().then(function (ab) { var src = new Uint8Array(ab), pos = 8, type, len; while (pos + 12 <= src.length) { len = (src[pos] << 24) | (src[pos + 1] << 16) | (src[pos + 2] << 8) | src[pos + 3]; type = String.fromCharCode(src[pos + 4], src[pos + 5], src[pos + 6], src[pos + 7]); if (type === 'IDAT') break; pos += 12 + len; } var data = new Uint8Array(9), dv = new DataView(data.buffer); dv.setUint32(0, 11811); dv.setUint32(4, 11811); data[8] = 1; var chunk = new Uint8Array(21), cd = new DataView(chunk.buffer); cd.setUint32(0, 9); chunk.set([112, 72, 89, 115], 4); chunk.set(data, 8); cd.setUint32(17, crc32(chunk.slice(4, 17))); var out = new Uint8Array(src.length + 21); out.set(src.slice(0, pos)); out.set(chunk, pos); out.set(src.slice(pos), pos + 21); return new Blob([out], { type: 'image/png' }); });
@@ -881,7 +1110,7 @@
     function captureA4(it, locale, nums, mode, progress) {
       var win = doc.defaultView, cap = state.capture = { itemId: it.id, locale: locale, el: null, fields: null }, finish = function () { if (cap.el && cap.el.parentNode) cap.el.parentNode.removeChild(cap.el); if (state.capture === cap) state.capture = null; };
       progress('최신 문구를 확인하는 중…');
-      return store.refresh().then(function () { if (!store.online || store.status !== 'ready') throw new Error('서버에 연결되지 않아 최신 문구를 확인할 수 없습니다.'); cap.fields = effectiveFields(it, locale, store); return new Promise(function (resolve, reject) { var f = doc.createElement('iframe'); f.setAttribute('aria-hidden', 'true'); f.style.cssText = 'position:fixed;left:0;top:0;width:1440px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;'; var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000); f.addEventListener('load', function () { win.clearTimeout(t); resolve(); }); f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261104-a4b&capture=1'; cap.el = f; doc.body.appendChild(f); }); }).then(function () { capPost(cap); return capApplied(cap, it, locale); }).then(function () { return capPrepare(cap); }).then(function (fontCss) { var iw = cap.el.contentWindow, cards = Array.prototype.filter.call(iw.document.querySelectorAll('[data-card]'), function (c) { return c.querySelectorAll('[data-price-row]').length >= 1; }); if (!cards.length) throw new Error('금액 카드를 찾지 못했습니다.'); var out = [], chain = Promise.resolve(); cards.forEach(function (card, idx) { chain = chain.then(function () { progress('금액 카드 캡처 중 ' + (idx + 1) + '/' + cards.length + '…'); var scale = Math.min(2.4, Math.max(1, (a4Layout(cards.length)[idx] || a4Layout(1)[0]).w / card.getBoundingClientRect().width)); return iw.modernScreenshot.domToCanvas(card, { scale: scale, font: { cssText: fontCss } }).then(function (c) { out.push(c); }); }); }); return chain.then(function () { var one = composeA4(out); if (mode === 'one-png' || mode === 'one-pdf') return capBlob(one).then(withPhys).then(function (b) { if (mode === 'one-png') env.downloadBlob(b, safeBase(it) + '_' + locale + '_A4_원내배치용.png'); return mode === 'one-pdf' ? pdfFromCanvases([one]).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_원내배치용.pdf'); }) : null; }).then(function () { return 'A4 한 장을 받았습니다(금액 카드 ' + cards.length + '장).'; }); var pages = out.map(function (c) { return composeA4([c]); }); return pdfFromCanvases(pages).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_카드별.pdf'); return '카드별 A4 PDF를 받았습니다: ' + cards.length + '쪽'; }); }); }).then(function (m) { finish(); return m; }, function (e) { finish(); throw e; });
+      return store.refresh().then(function () { if (!store.online || store.status !== 'ready') throw new Error('서버에 연결되지 않아 최신 문구를 확인할 수 없습니다.'); cap.fields = effectiveFields(it, locale, store); return new Promise(function (resolve, reject) { var f = doc.createElement('iframe'); f.setAttribute('aria-hidden', 'true'); f.style.cssText = 'position:fixed;left:0;top:0;width:1440px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;'; var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000); f.addEventListener('load', function () { win.clearTimeout(t); resolve(); }); f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261104-a4b&capture=1'; cap.el = f; doc.body.appendChild(f); }); }).then(function () { capPost(cap); return capApplied(cap, it, locale); }).then(function () { applyVariantsToDoc(cap.el.contentDocument, it, true); return capPrepare(cap); }).then(function (fontCss) { var iw = cap.el.contentWindow, cards = Array.prototype.filter.call(iw.document.querySelectorAll('[data-card]'), function (c) { return c.querySelectorAll('[data-price-row]').length >= 1; }); if (!cards.length) throw new Error('금액 카드를 찾지 못했습니다.'); var out = [], chain = Promise.resolve(); cards.forEach(function (card, idx) { chain = chain.then(function () { progress('금액 카드 캡처 중 ' + (idx + 1) + '/' + cards.length + '…'); var scale = Math.min(2.4, Math.max(1, (a4Layout(cards.length)[idx] || a4Layout(1)[0]).w / card.getBoundingClientRect().width)); return iw.modernScreenshot.domToCanvas(card, { scale: scale, font: { cssText: fontCss } }).then(function (c) { out.push(c); }); }); }); return chain.then(function () { var one = composeA4(out); if (mode === 'one-png' || mode === 'one-pdf') return capBlob(one).then(withPhys).then(function (b) { if (mode === 'one-png') env.downloadBlob(b, safeBase(it) + '_' + locale + '_A4_원내배치용.png'); return mode === 'one-pdf' ? pdfFromCanvases([one]).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_원내배치용.pdf'); }) : null; }).then(function () { return 'A4 한 장을 받았습니다(금액 카드 ' + cards.length + '장).'; }); var pages = out.map(function (c) { return composeA4([c]); }); return pdfFromCanvases(pages).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_카드별.pdf'); return '카드별 A4 PDF를 받았습니다: ' + cards.length + '쪽'; }); }); }).then(function (m) { finish(); return m; }, function (e) { finish(); throw e; });
     }
     function captureCards(it, locale, nums, mode, progress) {
       var spec = capSpec(it) || { sel: CAP_P5, n: 5 }; CAP.sel = spec.sel; CAP.n = spec.n;
@@ -899,13 +1128,14 @@
           f.style.cssText = 'position:fixed;left:0;top:0;width:' + CAP.frameW + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
           var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000);
           f.addEventListener('load', function () { win.clearTimeout(t); resolve(); });
-          f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261104-v3q' + '&capture=1';
+          f.src = it.page + '?lang=' + encodeURIComponent(locale) + PAGE_V + '&capture=1';
           cap.el = f; doc.body.appendChild(f);
         });
       }).then(function () {
         capPost(cap);
         return capApplied(cap, it, locale);
       }).then(function () {
+        if (spec.sel === '[data-card]') applyVariantsToDoc(cap.el.contentDocument, it, true);
         progress('사진과 글꼴을 준비하는 중…');
         return capPrepare(cap);
       }).then(function (fontCss) {
@@ -975,6 +1205,8 @@
     /* load every image eagerly at its current choice, wait for fonts, load the capture tool, build the font CSS */
     function capPrepare(cap) {
       var iwin = cap.el.contentWindow, idoc = iwin.document;
+      /* review-only overlays (comment pins, A/B controls) never belong in a downloaded image */
+      Array.prototype.forEach.call(idoc.querySelectorAll('[data-bb-overlay]'), function (el) { if (el.parentNode) el.parentNode.removeChild(el); });
       var settle = function () {
         return Promise.all(Array.prototype.map.call(idoc.images, function (img) {
           if (img.complete && img.naturalWidth) return img.decode ? img.decode().catch(function () { return null; }) : null;
@@ -1236,6 +1468,931 @@
       }).then(function (faces) { return faces.filter(Boolean).join('\n'); });
     }
 
+    /* ================================================================ v4 board (v4/events/BOARD_V4_PLAN.md) */
+    function later(fn, ms) { var t = setTimer(fn, ms); if (t && t.unref) t.unref(); return t; }
+    function clearLater(t) { if (t == null) return; if (env.clearTimeout) env.clearTimeout(t); else clearTimeout(t); }
+    function hasPage(it) { return !!it && typeof it.page === 'string' && /^[a-z0-9-]+\/index\.html$/.test(it.page); }
+    function frameDoc(f) { try { var d = f && f.contentDocument; return d && d.body ? d : null; } catch (e) { return null; } }
+    function itemById(id) { return state.data && state.data.items.filter(function (i) { return i.id === id; })[0]; }
+    function fmtTime(s) { var d = s ? new Date(s) : null; return d && !isNaN(d.getTime()) ? d.toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''; }
+    function snip(s, n) { s = String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+    function fileName(u) { var s = String(u || '').split('#')[0].split('?')[0]; if (/^data:/i.test(s)) return 'data-url'; return s.slice(s.lastIndexOf('/') + 1); }
+
+    /* ---- A/B choice of the hero (1) and the 2nd section (2) ---- */
+    function variantOf(itemId, n) { return normVariant(store.value(variantKey(itemId, n), 'a')); }
+    function slideOf(itemId, n) { var s = state.slides[itemId]; return (s && s[n]) || variantOf(itemId, n); }
+    function setSlide(itemId, n, v) { (state.slides[itemId] = state.slides[itemId] || {})[n] = normVariant(v); syncAllViews(); }
+    function sectionsFor(root, n) {
+      var out = { a: null, b: null };
+      Array.prototype.forEach.call(root.querySelectorAll('[data-card="' + n + '"]'), function (s) {
+        if (s.closest && s.closest('[data-app-asset]')) return;
+        if (s.getAttribute('data-variant') === 'b') { if (!out.b) out.b = s; } else if (!out.a) out.a = s;
+      });
+      return out;
+    }
+    /* keep only the chosen section of the hero / 2nd section (and never a B section of another card) */
+    function applyVariantsToDoc(root, it, strict) {
+      if (!root || !root.querySelectorAll) return [];
+      var missing = [];
+      VARIANT_SLOTS.forEach(function (n) {
+        var s = sectionsFor(root, n), want = variantOf(it.id, n);
+        if (want === 'b' && !s.b) { if (s.a) missing.push(n); return; }
+        var drop = want === 'b' ? s.a : s.b;
+        if (drop && drop.parentNode) drop.parentNode.removeChild(drop);
+      });
+      Array.prototype.forEach.call(root.querySelectorAll('[data-card][data-variant="b"]'), function (s) { if (VARIANT_SLOTS.indexOf(Number(s.getAttribute('data-card'))) < 0 && s.parentNode) s.parentNode.removeChild(s); });
+      if (missing.length && strict) throw new Error(missing.map(slotName).join(', ') + '에 B안이 선택되어 있지만 페이지에 B안 디자인이 없습니다. 디자인 선택을 확인해 주세요.');
+      return missing;
+    }
+    function designBox(it) {
+      if (!hasPage(it) || !((it.cards | 0) > 0)) { state.designBox = null; return null; }
+      var box = H('section', { class: 'design-box', 'aria-label': '디자인 선택', 'data-design-for': it.id });
+      var d = state.designBox = { el: box, itemId: it.id, info: null };
+      fillDesignBox();
+      pageInfoFor(it).then(function (info) { d.info = info; if (state.designBox === d) fillDesignBox(); }, function () { d.info = { slots: null }; if (state.designBox === d) fillDesignBox(); });
+      return box;
+    }
+    function fillDesignBox() {
+      var d = state.designBox, it = item();
+      if (!d || !it || it.id !== d.itemId) return;
+      var info = d.info;
+      var rows = VARIANT_SLOTS.map(function (n) {
+        var slot = info && info.slots ? info.slots[n] : null, cur = variantOf(it.id, n);
+        var hasB = !!(slot && slot.b);
+        var opt = function (v, enabled, label) {
+          var on = cur === v;
+          return H('label', { class: 'variant-opt' + (on ? ' checked' : '') + (enabled ? '' : ' disabled') }, [
+            H('input', { type: 'checkbox', class: 'variant-box', 'data-variant-for': 'c' + n, 'data-variant-value': v, checked: on, disabled: !enabled || !store.canEdit(), 'aria-label': slotName(n) + ' ' + label, onchange: function (e) { onVariantChange(it.id, n, v, !!e.target.checked); } }),
+            H('span', { text: label }),
+          ]);
+        };
+        return H('div', { class: 'variant-row', 'data-variant-slot': String(n) }, [
+          H('span', { class: 'variant-slot', text: slotName(n) }),
+          opt('a', true, 'A안'),
+          opt('b', hasB, hasB ? 'B안' : info ? 'B안 · 미구현' : 'B안 · 확인 중'),
+        ]);
+      });
+      d.el.replaceChildren(H('strong', { class: 'design-title', text: '디자인 선택' }), H('div', { class: 'variant-rows' }, rows),
+        H('p', { class: 'design-note', text: '슬롯마다 하나만 고릅니다(언어 공통). 장별·길게·A4·뷰티앱 받기는 고른 안만 씁니다.' }));
+    }
+    function onVariantChange(itemId, n, v, checked) {
+      var key = variantKey(itemId, n);
+      if (!checked || variantOf(itemId, n) === v) { fillDesignBox(); return Promise.resolve(); } /* one choice per slot */
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 디자인 선택을 저장할 수 없습니다 (편집 잠금).', 'error'); fillDesignBox(); return Promise.resolve(); }
+      state.saving++; renderStatus();
+      return store.save(key, v, by()).then(function (r) {
+        state.saving--;
+        if (r.ok) { (state.slides[itemId] = state.slides[itemId] || {})[n] = v; toast(slotName(n) + ' ' + (v === 'b' ? 'B안' : 'A안') + ' 선택이 서버에 저장되었습니다.', 'ok'); }
+        else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 바꿨습니다. 최신 디자인 선택을 불러왔습니다.', 'error'); }
+        else toast('디자인 선택이 저장되지 않았습니다. (' + reasonMessage(r) + ')', 'error');
+        fillDesignBox(); syncAllViews(); renderStatus();
+      });
+    }
+
+    /* ---- overlays inside the same-origin preview frames (never in the hidden download frame) ---- */
+    var OVERLAY_CSS = [
+      '.bbv4-layer{position:absolute!important;inset:0;pointer-events:none!important;z-index:2147483000!important;margin:0!important;padding:0!important;border:0!important;background:none!important}',
+      '.bbv4-page-layer{inset:auto}',
+      '.bbv4-pin{position:absolute!important;box-sizing:border-box;pointer-events:auto!important;transform:translate(-50%,calc(-100% - 8px));min-width:30px;height:30px;margin:0;padding:0 9px;border:2px solid #fff;border-radius:15px;background:var(--pin,#E5484D);color:#fff;font:800 14px/26px system-ui,-apple-system,"Segoe UI","Malgun Gothic",sans-serif;letter-spacing:0;text-align:center;white-space:nowrap;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.38)}',
+      '.bbv4-pin::after{content:"";position:absolute;left:50%;bottom:-9px;margin-left:-7px;border:7px solid transparent;border-top:8px solid var(--pin,#E5484D);border-bottom:0}',
+      '.bbv4-pin.on{outline:3px solid rgba(17,17,17,.75);outline-offset:2px;z-index:1}',
+      '.bbv4-cover{position:absolute!important;inset:0;z-index:2147482000!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;box-sizing:border-box;margin:0;padding:24px;border:3px dashed #b8bcc8;background:repeating-linear-gradient(135deg,#f5f5f7 0 22px,#ededf1 22px 44px);color:#555a66;text-align:center;font-family:system-ui,-apple-system,"Segoe UI","Malgun Gothic",sans-serif}',
+      '.bbv4-cover strong{font-size:clamp(18px,4vw,44px);font-weight:900;letter-spacing:-.01em;color:#40444f}',
+      '.bbv4-cover span{font-size:clamp(12px,1.8vw,20px);font-weight:600}',
+      '.bbv4-slide{position:relative!important;z-index:5;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px;width:max-content;max-width:100%;margin:8px auto!important;padding:4px;border-radius:999px;background:rgba(20,22,28,.84);box-shadow:0 2px 10px rgba(0,0,0,.2);font:700 13px/1 system-ui,-apple-system,"Segoe UI","Malgun Gothic",sans-serif;letter-spacing:0;white-space:nowrap;transform:none!important}',
+      '.bbv4-slide button{margin:0;padding:7px 11px;border:0;border-radius:999px;background:transparent;color:#fff;font:inherit;line-height:1;cursor:pointer;box-shadow:none;text-shadow:none}',
+      '.bbv4-slide button:hover{background:rgba(255,255,255,.18)}',
+      '.bbv4-slide .bbv4-tab.on{background:#fff;color:#16181d}',
+      '.bbv4-slide .bbv4-slot{padding:0 6px 0 9px;color:#cdd0d8;font-weight:600}',
+    ].join('\n');
+    function childByClass(el, cls) { for (var c = el && el.firstElementChild; c; c = c.nextElementSibling) if (c.classList && c.classList.contains(cls)) return c; return null; }
+    function ensurePositioned(el) { var w = el.ownerDocument.defaultView; if (w && w.getComputedStyle(el).position === 'static') el.style.position = 'relative'; }
+    function setHidden(el, hide) {
+      if (!el) return;
+      if (hide) { el.setAttribute('data-bb-hidden', '1'); el.style.setProperty('display', 'none', 'important'); }
+      else if (el.hasAttribute('data-bb-hidden')) { el.removeAttribute('data-bb-hidden'); el.style.removeProperty('display'); }
+    }
+    function ensureOverlay(idoc, view) {
+      if (!idoc.querySelector('style[data-bb-overlay]')) {
+        var st = idoc.createElement('style'); st.setAttribute('data-bb-overlay', ''); st.textContent = OVERLAY_CSS;
+        (idoc.head || idoc.documentElement).appendChild(st);
+      }
+      idoc.__bbv4view = view;
+      if (idoc.__bbv4on) return;
+      idoc.__bbv4on = true;
+      idoc.addEventListener('contextmenu', function (e) { onFrameContext(idoc, e); }, true);
+      idoc.addEventListener('mousedown', function (e) { if (e.button !== 2) hideCtx(); }, true);
+      idoc.addEventListener('keydown', function (e) { if (e.key === 'Escape') hideCtx(); }, true);
+      if (idoc.defaultView) idoc.defaultView.addEventListener('scroll', hideCtx);
+    }
+    function syncAllViews() { syncViewer(); syncAppView(); }
+    function startViewTimer() {
+      if (!win0 || state.viewTimer) return;
+      var loop = function () { state.viewTimer = win0.setTimeout(loop, 1500); if (!doc.hidden) { try { syncAllViews(); } catch (e) { /* the frame is navigating */ } } };
+      state.viewTimer = win0.setTimeout(loop, 1500);
+    }
+    /* home viewer: A/B slides, the 'B 미구현' cover and the comment pins */
+    function syncViewer() {
+      var a = state.aptos; if (!a || state.mode !== 'home') return;
+      var it = aptosItem(); var idoc = frameDoc(a.el);
+      if (!it || !idoc || it.id !== state.itemId) return;
+      ensureOverlay(idoc, { kind: 'home', frame: a.el });
+      VARIANT_SLOTS.forEach(function (n) {
+        var s = sectionsFor(idoc, n); if (!s.a && !s.b) return;
+        var slide = slideOf(it.id, n), host;
+        if (s.a && s.b) { setHidden(s.a, slide === 'b'); setHidden(s.b, slide !== 'b'); host = slide === 'b' ? s.b : s.a; removeCover(s.a); }
+        else { host = s.a || s.b; if (s.a) { if (slide === 'b') ensureCover(s.a, n); else removeCover(s.a); } }
+        var first = s.a && s.b ? (s.a.compareDocumentPosition(s.b) & 4 ? s.a : s.b) : host;
+        slideControl(first, n, slide, !!s.b, it);
+      });
+      drawPins(idoc, { kind: 'home' }, it);
+    }
+    function ensureCover(sec, n) {
+      var c = childByClass(sec, 'bbv4-cover'); if (c) return c;
+      var d = sec.ownerDocument;
+      c = d.createElement('div'); c.className = 'bbv4-cover'; c.setAttribute('data-bb-overlay', ''); c.setAttribute('data-cover-slot', String(n));
+      var t = d.createElement('strong'); t.textContent = 'B안 · 디자인 미구현';
+      var s = d.createElement('span'); s.textContent = (n === 1 ? '히어로' : '2번 섹션') + ' B안은 아직 만들지 않았습니다. 우클릭으로 B안 요청을 남길 수 있습니다.';
+      c.appendChild(t); c.appendChild(s); ensurePositioned(sec); sec.appendChild(c);
+      return c;
+    }
+    function removeCover(sec) { var c = sec && childByClass(sec, 'bbv4-cover'); if (c) c.parentNode.removeChild(c); }
+    /* a slim A/B bar right before the slot's first section: outside the card, so it never covers copy that can be edited */
+    function slideControl(first, n, slide, hasB, it) {
+      var d = first.ownerDocument, chosen = variantOf(it.id, n), ctl = d.querySelector('.bbv4-slide[data-slide-slot="' + n + '"]');
+      if (!ctl) { ctl = d.createElement('div'); ctl.className = 'bbv4-slide'; ctl.setAttribute('data-bb-overlay', ''); ctl.setAttribute('data-slide-slot', String(n)); ctl.setAttribute('role', 'group'); ctl.setAttribute('aria-label', slotName(n) + ' A/B'); }
+      if (ctl.nextElementSibling !== first && first.parentNode) first.parentNode.insertBefore(ctl, first);
+      var sig = [slide, hasB ? 1 : 0, chosen].join('|');
+      if (ctl.getAttribute('data-sig') === sig) return;
+      ctl.setAttribute('data-sig', sig);
+      while (ctl.firstChild) ctl.removeChild(ctl.firstChild);
+      var add = function (text, cls, fn, attrs) {
+        var b = d.createElement('button'); b.type = 'button'; b.className = cls; b.textContent = text;
+        Object.keys(attrs || {}).forEach(function (k) { b.setAttribute(k, attrs[k]); });
+        b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); fn(); });
+        ctl.appendChild(b); return b;
+      };
+      var lab = d.createElement('span'); lab.className = 'bbv4-slot'; lab.textContent = n === 1 ? '히어로' : '2번 섹션'; ctl.appendChild(lab);
+      var flip = function () { setSlide(it.id, n, slide === 'a' ? 'b' : 'a'); };
+      add('‹', 'bbv4-arrow', flip, { 'aria-label': '이전 안' });
+      ['a', 'b'].forEach(function (v) {
+        add((v === 'a' ? 'A안' : 'B안') + (v === 'b' && !hasB ? ' · 미구현' : '') + (chosen === v ? ' ✓' : ''), 'bbv4-tab' + (slide === v ? ' on' : ''), function () { setSlide(it.id, n, v); }, { 'data-slide': v, 'aria-pressed': slide === v ? 'true' : 'false', title: chosen === v ? '디자인 선택에서 고른 안' : '' });
+      });
+      add('›', 'bbv4-arrow', flip, { 'aria-label': '다음 안' });
+    }
+
+    /* ---- pins ---- */
+    function viewComments(mode) {
+      var it = item(); if (!it) return [];
+      return state.cm.list.filter(function (c) { return c.item === it.id && c.mode === mode && c.status !== 'deleted' && (mode === 'app' || c.locale === state.locale); });
+    }
+    function pinHost(idoc, c, it, view) {
+      var asset = commentAsset(c);
+      if (view.kind === 'app-thumb' || view.kind === 'app-card') return !c.card && asset === view.asset ? idoc.querySelector('[data-app-asset="' + view.asset + '"]') : null;
+      if (!c.card) return asset ? null : 'page';
+      var s = sectionsFor(idoc, c.card);
+      if (VARIANT_SLOTS.indexOf(c.card) >= 0) {
+        var shown = view.kind === 'home' ? slideOf(it.id, c.card) : variantOf(it.id, c.card);
+        if (c.variant !== shown) return null;
+        if (shown === 'b') return s.b || (view.kind === 'home' && s.a ? childByClass(s.a, 'bbv4-cover') : null);
+        return s.a;
+      }
+      return c.variant === 'b' ? s.b : s.a;
+    }
+    function pageLayer(idoc) {
+      var L = idoc.querySelector('.bbv4-page-layer'), w = idoc.defaultView;
+      if (!L) { L = idoc.createElement('div'); L.className = 'bbv4-layer bbv4-page-layer'; L.setAttribute('data-bb-overlay', ''); idoc.body.appendChild(L); }
+      var m = idoc.querySelector('main') || idoc.body, r = m.getBoundingClientRect();
+      L.style.left = (r.left + w.scrollX) + 'px'; L.style.top = (r.top + w.scrollY) + 'px'; L.style.width = r.width + 'px'; L.style.height = r.height + 'px';
+      return L;
+    }
+    function layerIn(el) {
+      var L = childByClass(el, 'bbv4-layer');
+      if (!L) { L = el.ownerDocument.createElement('div'); L.className = 'bbv4-layer'; L.setAttribute('data-bb-overlay', ''); ensurePositioned(el); el.appendChild(L); }
+      return L;
+    }
+    function pinTitle(c) { return c.seq + '번 · ' + (STATUS_NAME[c.status] || '') + ' · ' + cardLabel(c) + (c.text ? ' · ' + snip(draftText(c), 60) : ''); }
+    function placePin(layer, c, keep) {
+      var d = layer.ownerDocument, p = null;
+      Array.prototype.some.call(d.querySelectorAll('.bbv4-pin'), function (x) { if (x.getAttribute('data-comment-id') === c.id) { p = x; return true; } return false; });
+      if (!p) {
+        p = d.createElement('button'); p.type = 'button'; p.className = 'bbv4-pin'; p.setAttribute('data-comment-id', c.id); p.setAttribute('data-bb-overlay', '');
+        p.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); activateComment(c.id, { fromPin: true }); });
+        p.addEventListener('contextmenu', function (e) { e.preventDefault(); e.stopPropagation(); });
+      }
+      if (p.parentNode !== layer) layer.appendChild(p);
+      var color = STATUS_COLOR[c.status] || STATUS_COLOR.open;
+      p.style.left = (c.x * 100).toFixed(3) + '%'; p.style.top = (c.y * 100).toFixed(3) + '%';
+      p.style.setProperty('--pin', color); p.style.background = color;
+      p.setAttribute('data-status', c.status); p.textContent = String(c.seq || '?'); p.title = pinTitle(c);
+      p.setAttribute('aria-label', pinTitle(c));
+      p.className = 'bbv4-pin' + (state.cm.active === c.id ? ' on' : '');
+      keep.push(p);
+    }
+    function drawPins(idoc, view, it) {
+      var keep = [];
+      viewComments(view.kind === 'home' ? 'home' : 'app').forEach(function (c) {
+        var host = pinHost(idoc, c, it, view); if (!host) return;
+        placePin(host === 'page' ? pageLayer(idoc) : layerIn(host), c, keep);
+      });
+      Array.prototype.forEach.call(idoc.querySelectorAll('.bbv4-pin'), function (p) { if (keep.indexOf(p) < 0 && p.parentNode) p.parentNode.removeChild(p); });
+    }
+    function findPin(id) {
+      var docs = [];
+      if (state.aptos) docs.push(frameDoc(state.aptos.el));
+      if (state.appView) state.appView.frames.forEach(function (f) { docs.push(frameDoc(f.el)); });
+      var hit = null;
+      docs.filter(Boolean).some(function (d) { return Array.prototype.some.call(d.querySelectorAll('.bbv4-pin'), function (p) { if (p.getAttribute('data-comment-id') === id) { hit = p; return true; } return false; }); });
+      if (!hit && ui.app && ui.app.querySelectorAll) Array.prototype.some.call(ui.app.querySelectorAll('.board-pin'), function (p) { if (p.getAttribute('data-comment-id') === id) { hit = p; return true; } return false; });
+      return hit;
+    }
+
+    /* ---- right-click menu ---- */
+    function nearestEl(list, cx, cy) {
+      var best = null, bd = Infinity;
+      Array.prototype.forEach.call(list || [], function (el) {
+        if (el.closest && el.closest('[data-bb-overlay]')) return;
+        var r = el.getBoundingClientRect(); if (!(r.width > 0 && r.height > 0)) return;
+        var dx = cx < r.left ? r.left - cx : cx > r.right ? cx - r.right : 0, dy = cy < r.top ? r.top - cy : cy > r.bottom ? cy - r.bottom : 0, dd = dx * dx + dy * dy;
+        if (dd < bd) { bd = dd; best = el; }
+      });
+      return best;
+    }
+    function buildTarget(el, scope, cx, cy, ex) {
+      var t = {};
+      if (!ex.cover && scope) {
+        var copyEl = (el && el.closest('[data-copy]')) || nearestEl(scope.querySelectorAll('[data-copy]'), cx, cy);
+        if (copyEl) { t.copy = copyEl.getAttribute('data-copy'); t.copyText = snip(copyEl.textContent, 80); }
+        var priceEl = (el && el.closest('[data-price-row]')) || nearestEl(scope.querySelectorAll('[data-price-row]'), cx, cy);
+        if (priceEl) { t.price = priceEl.getAttribute('data-price-row'); t.priceText = snip(priceEl.textContent, 100); }
+        var imgs = Array.prototype.filter.call(scope.querySelectorAll('img'), function (i) { return i.getAttribute('aria-hidden') !== 'true'; });
+        var imgEl = (el && el.tagName === 'IMG' ? el : null) || nearestEl(imgs.length ? imgs : scope.querySelectorAll('img'), cx, cy);
+        if (imgEl) t.image = fileName(imgEl.currentSrc || imgEl.getAttribute('src'));
+        var txt = el && !(el.closest && el.closest('[data-bb-overlay]')) ? snip(el.textContent, 120) : '';
+        if (txt) t.text = txt;
+      }
+      if (ex.asset) t.asset = ex.asset;
+      if (ex.cover) t.cover = 'B안 미구현';
+      if (ex.placeholder) t.placeholder = '뷰티앱 디자인 미구현';
+      t.label = cardLabel({ mode: ex.mode, card: ex.card, variant: ex.variant, target: t });
+      return clampTarget(t);
+    }
+    function surfaceAt(view, idoc, el, cx, cy) {
+      var mode = view.kind === 'home' ? 'home' : 'app', container = null, card = 0, variant = 'a', cover = false;
+      if (view.kind === 'app-thumb' || view.kind === 'app-card') container = idoc.querySelector('[data-app-asset="' + view.asset + '"]');
+      else {
+        var cv = el && el.closest && el.closest('.bbv4-cover'), sec = el && el.closest && el.closest('[data-card]');
+        if (sec && sec.closest('[data-app-asset]')) sec = null;
+        if (cv && sec) { container = cv; card = Number(sec.getAttribute('data-card')) || 0; variant = 'b'; cover = true; }
+        else if (sec) { container = sec; card = Number(sec.getAttribute('data-card')) || 0; variant = sec.getAttribute('data-variant') === 'b' ? 'b' : 'a'; }
+        else container = idoc.querySelector('main') || idoc.body;
+      }
+      if (!container) return null;
+      var r = container.getBoundingClientRect(); if (!(r.width > 0 && r.height > 0)) return null;
+      var asset = view.asset || null;
+      return { mode: mode, card: card, variant: variant, x: round4(clamp01((cx - r.left) / r.width)), y: round4(clamp01((cy - r.top) / r.height)), target: buildTarget(el, container, cx, cy, { mode: mode, card: card, variant: variant, cover: cover, asset: asset }) };
+    }
+    function onFrameContext(idoc, e) {
+      var view = idoc.__bbv4view; if (!view || !view.frame) return;
+      if (e.shiftKey) { hideCtx(); return; } /* Shift+right-click keeps the browser menu */
+      var t = e.target, el = t && t.nodeType === 1 ? t : t && t.parentElement;
+      if (el && el.closest && el.closest('.bbv4-pin,.bbv4-slide')) { e.preventDefault(); return; }
+      var surf = surfaceAt(view, idoc, el, e.clientX, e.clientY);
+      if (!surf) return;
+      e.preventDefault();
+      var f = view.frame, r = f.getBoundingClientRect(), sx = r.width / (f.offsetWidth || r.width || 1), sy = r.height / (f.offsetHeight || r.height || 1);
+      showCtx(r.left + e.clientX * sx, r.top + e.clientY * sy, surf);
+    }
+    function onBoardContext(e, host, asset) {
+      if (e.shiftKey) { hideCtx(); return; }
+      if (e.target && e.target.closest && e.target.closest('.board-pin')) { e.preventDefault(); return; }
+      e.preventDefault();
+      var r = host.getBoundingClientRect();
+      showCtx(e.clientX, e.clientY, { mode: 'app', card: 0, variant: 'a', x: round4(clamp01((e.clientX - r.left) / r.width)), y: round4(clamp01((e.clientY - r.top) / r.height)), target: buildTarget(null, null, 0, 0, { mode: 'app', card: 0, variant: 'a', asset: asset, placeholder: true }) });
+    }
+    function showCtx(x, y, surf) {
+      if (!ui.ctx || !it0()) return;
+      state.ctx = surf;
+      var t = surf.target || {}, where = [t.label, t.copyText ? '가까운 문구 “' + snip(t.copyText, 26) + '”' : '', t.cover || t.placeholder || ''].filter(Boolean).join(' · ');
+      ui.ctx.replaceChildren(
+        H('button', { type: 'button', class: 'ctx-item', role: 'menuitem', 'data-action': 'ctx-add-comment', onclick: function () { var s = state.ctx; hideCtx(); if (s) createComment(s); } }, [H('span', { class: 'ctx-bubble', 'aria-hidden': 'true' }), H('span', { text: '여기에 코멘트 달기' })]),
+        H('p', { class: 'ctx-where', text: where }),
+        H('p', { class: 'ctx-tip', text: 'Shift+우클릭: 브라우저 기본 메뉴' }));
+      ui.ctx.hidden = false;
+      var W = (win0 && win0.innerWidth) || 1280, Hh = (win0 && win0.innerHeight) || 800;
+      ui.ctx.setAttribute('style', 'left:' + Math.round(Math.max(4, Math.min(x, W - 270))) + 'px;top:' + Math.round(Math.max(4, Math.min(y, Hh - 130))) + 'px');
+      var b = ui.ctx.firstChild; if (b && b.focus) b.focus();
+    }
+    function it0() { return item(); }
+    function hideCtx() { if (ui.ctx && !ui.ctx.hidden) { ui.ctx.hidden = true; } state.ctx = null; }
+    function bindBoardEvents() {
+      if (!doc.addEventListener) return;
+      doc.addEventListener('mousedown', function (e) { if (ui.ctx && !ui.ctx.hidden && !(ui.ctx.contains && ui.ctx.contains(e.target))) hideCtx(); }, true);
+      doc.addEventListener('keydown', function (e) { if (e.key === 'Escape') { hideCtx(); closeLightbox(); } });
+      doc.addEventListener('paste', function (e) { /* Ctrl+V anywhere on the board goes to the open comment */
+        var c = commentById(state.cm.active); if (!c || e.defaultPrevented) return;
+        var t = e.target && e.target.nodeType === 1 ? e.target : null;
+        if (t && t.closest && (t.closest('.cm-card') || t.closest('input,textarea,[contenteditable]'))) return; /* the card handles its own paste; other fields keep theirs */
+        var files = filesFrom(e.clipboardData); if (!files.length) return;
+        e.preventDefault(); addImages(c.id, files);
+      });
+      if (win0) { win0.addEventListener('resize', function () { hideCtx(); syncAllViews(); }); win0.addEventListener('blur', hideCtx); win0.addEventListener('scroll', hideCtx, { passive: true }); }
+    }
+
+    /* ---- comments: data ---- */
+    function normComment(c) {
+      c = isObj(c) ? c : {};
+      var st = ['open', 'question', 'done', 'deleted'].indexOf(c.status) >= 0 ? c.status : 'open';
+      var str = function (v) { return typeof v === 'string' ? v : ''; };
+      return { id: String(c.id || ''), seq: Number(c.seq) || 0, item: str(c.item), locale: str(c.locale), mode: c.mode === 'app' ? 'app' : 'home', card: Math.max(0, Number(c.card) | 0), variant: normVariant(c.variant),
+        x: clamp01(c.x), y: clamp01(c.y), target: isObj(c.target) ? c.target : {}, text: str(c.text), status: st, note: str(c.note), by: str(c.by), createdAt: str(c.createdAt), updatedAt: str(c.updatedAt),
+        statusBy: str(c.statusBy), statusAt: str(c.statusAt), images: Array.isArray(c.images) ? c.images.filter(function (i) { return isObj(i) && typeof i.id === 'string'; }) : [], _local: 0 };
+    }
+    function commentById(id) { return id ? state.cm.list.filter(function (c) { return c.id === id; })[0] || null : null; }
+    function draftOf(id) { return state.drafts[id] || (state.drafts[id] = { text: null, dirty: false, timer: null, saving: null, msg: '', kind: '' }); }
+    function draftText(c) { var d = state.drafts[c.id]; return d && d.text != null && (d.dirty || d.saving) ? d.text : c.text; }
+    function upsertComment(c) {
+      c._local = Date.now();
+      var i = -1; state.cm.list.forEach(function (x, k) { if (x.id === c.id) i = k; });
+      if (c.status === 'deleted') { if (i >= 0) state.cm.list.splice(i, 1); }
+      else if (i >= 0) state.cm.list[i] = c; else state.cm.list.push(c);
+      state.cm.list.sort(function (a, b) { return a.seq - b.seq; });
+      var it = item(); if (it && state.cm.itemId === it.id) state.summary[it.id] = commentCounts(state.cm.list);
+    }
+    function loadComments(itemId) {
+      if (!itemId) return Promise.resolve();
+      var token = ++state.cm.token, started = Date.now();
+      if (state.cm.itemId !== itemId) { state.cm.itemId = itemId; state.cm.list = []; state.cm.active = null; state.cm.loaded = false; state.cm.error = null; }
+      state.cm.loading = true;
+      return capi.list(itemId).then(function (r) {
+        if (token !== state.cm.token || state.cm.itemId !== itemId) return;
+        state.cm.loading = false; state.cm.status = r.status;
+        if (!r.ok || !r.body || !Array.isArray(r.body.comments)) { state.cm.error = r.status === 404 ? 'unavailable' : 'failed'; renderComments(); return; }
+        state.cm.error = null; state.cm.loaded = true;
+        var fresh = r.body.comments.map(normComment).filter(function (c) { return c.item === itemId && c.id && c.status !== 'deleted'; });
+        state.cm.list.forEach(function (old) { /* keep a local change newer than this request */
+          if (old._local <= started) return;
+          var k = -1; fresh.forEach(function (x, j) { if (x.id === old.id) k = j; });
+          if (k >= 0) fresh[k] = old; else fresh.push(old);
+        });
+        fresh.sort(function (a, b) { return a.seq - b.seq; });
+        state.cm.list = fresh;
+        if (state.cm.active && !commentById(state.cm.active)) state.cm.active = null;
+        state.summary[itemId] = commentCounts(fresh);
+        renderComments(); renderSidebar(); syncAllViews();
+      });
+    }
+    function loadSummary() {
+      return capi.summary().then(function (r) {
+        if (!r.ok || !r.body || !isObj(r.body.items)) { state.summaryOk = false; return; }
+        state.summaryOk = true;
+        var next = {};
+        Object.keys(r.body.items).forEach(function (id) { var s = r.body.items[id]; if (isObj(s)) next[id] = { open: Number(s.open) || 0, question: Number(s.question) || 0, done: Number(s.done) || 0 }; });
+        if (state.cm.loaded && state.cm.itemId) next[state.cm.itemId] = commentCounts(state.cm.list);
+        var changed = JSON.stringify(next) !== JSON.stringify(state.summary);
+        state.summary = next;
+        if (changed) renderSidebar();
+      });
+    }
+    function refreshComments() { var it = item(); return Promise.all([loadSummary(), it ? loadComments(it.id) : null]); }
+    function commentErr(r, what) {
+      if (!r || !r.status) return what + ': 네트워크 오류입니다.';
+      if (r.status === 404) return what + ': 공유 서버에 코멘트 기능이 아직 없습니다 (HTTP 404).';
+      if (r.status === 429) return what + ': 요청이 너무 많습니다. 잠시 뒤 다시 해 주세요.';
+      if (r.status === 413) return what + ': 크기가 너무 큽니다.';
+      return what + ' (HTTP ' + r.status + (r.body && r.body.error ? ' · ' + String(r.body.error).slice(0, 80) : '') + ').';
+    }
+    function createComment(surf) {
+      var it = item(); if (!it) return Promise.resolve();
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 코멘트를 달 수 없습니다.', 'error'); return Promise.resolve(); }
+      var body = { item: it.id, locale: surf.mode === 'app' ? 'KO' : state.locale, mode: surf.mode, card: surf.card, variant: surf.variant, x: surf.x, y: surf.y, target: surf.target, text: '', by: by() };
+      return capi.create(body).then(function (r) {
+        if (!r.ok || !r.body || !isObj(r.body.comment)) { toast(commentErr(r, '코멘트를 만들지 못했습니다'), 'error'); return; }
+        var c = normComment(r.body.comment);
+        if (c.item !== it.id) return;
+        if (state.cm.active) flushDraft(state.cm.active);
+        upsertComment(c); state.cm.active = c.id;
+        setDrawer(true); renderComments(); renderSidebar(); syncAllViews(); focusComment(c.id);
+        toast((c.seq || '') + '번 코멘트를 달았습니다. 내용을 적으면 자동 저장됩니다.', 'ok');
+      });
+    }
+    function setSaveNote(id, msg, kind) {
+      var d = draftOf(id); d.msg = msg; d.kind = kind || '';
+      var el = ui.cmSaveEl && ui.cmSaveEl[id];
+      if (el) { el.textContent = msg; el.className = 'cm-save' + (kind ? ' is-' + kind : ''); }
+    }
+    function onCommentInput(id, ta) {
+      var d = draftOf(id); d.text = ta.value; d.dirty = true;
+      setSaveNote(id, '입력 중…', '');
+      clearLater(d.timer);
+      d.timer = later(function () { d.timer = null; saveCommentText(id); }, COMMENT_SAVE_MS);
+    }
+    function saveCommentText(id) {
+      var d = draftOf(id);
+      if (!d.dirty) return d.saving || Promise.resolve();
+      if (d.saving) { d.again = true; return d.saving; }
+      if (!store.canEdit()) { setSaveNote(id, '미저장: 공유 서버에 연결되지 않았습니다.', 'error'); return Promise.resolve(); }
+      var text = d.text; d.dirty = false;
+      setSaveNote(id, '저장 중…', '');
+      d.saving = capi.update({ id: id, text: text, by: by() }).then(function (r) {
+        d.saving = null;
+        if (!r.ok || !r.body || !isObj(r.body.comment)) { if (d.text === text) d.dirty = true; setSaveNote(id, '미저장: ' + commentErr(r, '저장하지 못했습니다') + ' 다시 입력하면 다시 저장합니다.', 'error'); return; }
+        var c = normComment(r.body.comment);
+        upsertComment(c);
+        if (d.again || d.dirty) { d.again = false; if (d.dirty) return saveCommentText(id); }
+        setSaveNote(id, '저장됨 ' + new Date().toLocaleTimeString('ko-KR'), 'ok');
+        updateCommentHead(); syncAllViews();
+      });
+      return d.saving;
+    }
+    function flushDraft(id) { var d = state.drafts[id]; if (!d) return Promise.resolve(); clearLater(d.timer); d.timer = null; return saveCommentText(id); }
+    function flushActiveDraft() { if (state.cm.active) flushDraft(state.cm.active); }
+    function setCommentStatus(id, status) {
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 상태를 바꿀 수 없습니다.', 'error'); return Promise.resolve(); }
+      return flushDraft(id).then(function () { return capi.update({ id: id, status: status, by: by() }); }).then(function (r) {
+        if (!r.ok || !r.body || !isObj(r.body.comment)) { toast(commentErr(r, '상태를 바꾸지 못했습니다'), 'error'); return; }
+        var c = normComment(r.body.comment);
+        if (status === 'deleted') c.status = 'deleted';
+        upsertComment(c);
+        if (c.status === 'deleted' && state.cm.active === id) state.cm.active = null;
+        renderComments(); renderSidebar(); syncAllViews();
+        toast(status === 'done' ? (c.seq + '번을 적용완료로 바꾸었습니다.') : status === 'open' ? (c.seq + '번을 다시 열었습니다.') : '코멘트를 지웠습니다.', 'ok');
+      });
+    }
+    function activateComment(id, o) {
+      var c = commentById(id); if (!c) return;
+      if (state.cm.active && state.cm.active !== id) flushDraft(state.cm.active);
+      state.cm.active = id;
+      var it = item();
+      if (c.mode === 'home' && c.locale !== state.locale && it && hasLocale(it, c.locale) && state.data.locales.some(function (l) { return l.id === c.locale; })) { selectLocale(c.locale); }
+      if (c.mode === 'home' && it && VARIANT_SLOTS.indexOf(c.card) >= 0 && slideOf(it.id, c.card) !== c.variant) (state.slides[it.id] = state.slides[it.id] || {})[c.card] = c.variant;
+      setDrawer(true); renderComments(); syncAllViews();
+      if (o && o.fromPin) { focusComment(id); return; }
+      var pin = findPin(id); if (pin && pin.scrollIntoView) pin.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+    function focusComment(id) {
+      var ta = ui.cmTextEl && ui.cmTextEl[id];
+      if (ta && ta.focus) { ta.focus(); try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) { /* not a text field */ } }
+      var card = ui.cmCardEl && ui.cmCardEl[id]; if (card && card.scrollIntoView) card.scrollIntoView({ block: 'nearest' });
+    }
+    function filesFrom(dt) {
+      if (!dt) return [];
+      var out = [];
+      if (dt.files && dt.files.length) Array.prototype.forEach.call(dt.files, function (f) { if (/^image\//.test(f.type)) out.push(f); });
+      if (!out.length && dt.items) Array.prototype.forEach.call(dt.items, function (i) { if (i.kind === 'file' && /^image\//.test(i.type)) { var f = i.getAsFile(); if (f) out.push(f); } });
+      return out;
+    }
+    function blobB64(blob) {
+      return new Promise(function (resolve, reject) { var fr = new win0.FileReader(); fr.onload = function () { resolve(String(fr.result).split(',')[1] || ''); }; fr.onerror = function () { reject(new Error('이미지를 읽지 못했습니다.')); }; fr.readAsDataURL(blob); });
+    }
+    /* long side 1600px or less, JPEG 0.85 (lower only if still above the 1.5MB upload limit) */
+    function shrinkImage(file) {
+      return new Promise(function (resolve, reject) {
+        var url = win0.URL.createObjectURL(file), img = new win0.Image();
+        img.onload = function () { win0.URL.revokeObjectURL(url); resolve(img); };
+        img.onerror = function () { win0.URL.revokeObjectURL(url); reject(new Error('이미지 파일을 열지 못했습니다.')); };
+        img.src = url;
+      }).then(function (img) {
+        var s = fitLong(img.naturalWidth, img.naturalHeight, IMG_LONG), c = doc.createElement('canvas'); c.width = s.w; c.height = s.h;
+        var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, s.w, s.h); g.imageSmoothingQuality = 'high'; g.drawImage(img, 0, 0, s.w, s.h);
+        var tryQ = function (q) { return capBlob(c, 'image/jpeg', q).then(function (b) { if (b.size > IMG_MAX_BYTES && q > 0.45) return tryQ(Math.round((q - 0.1) * 100) / 100); if (b.size > IMG_MAX_BYTES) throw new Error('이미지가 너무 커서 올릴 수 없습니다.'); return b; }); };
+        return tryQ(IMG_Q).then(blobB64).then(function (b64) { return { data: b64, w: s.w, h: s.h }; });
+      });
+    }
+    function addImages(id, files) {
+      var c = commentById(id); if (!c || !files.length || !win0) return Promise.resolve();
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 이미지를 올릴 수 없습니다.', 'error'); return Promise.resolve(); }
+      var d = draftOf(id), room = IMG_PER_COMMENT - c.images.length - (d.uploading || 0);
+      if (room <= 0) { toast('이미지는 코멘트당 ' + IMG_PER_COMMENT + '장까지 넣을 수 있습니다.', 'error'); return Promise.resolve(); }
+      if (files.length > room) toast(IMG_PER_COMMENT + '장을 넘는 이미지는 넣지 않았습니다.', 'error');
+      var list = files.slice(0, room); d.uploading = (d.uploading || 0) + list.length;
+      return list.reduce(function (p, f, i) {
+        return p.then(function () {
+          setSaveNote(id, '이미지 올리는 중 ' + (i + 1) + '/' + list.length + '…', '');
+          return shrinkImage(f).then(function (s) { return capi.image({ commentId: id, mime: 'image/jpeg', data: s.data, w: s.w, h: s.h, by: by() }); }).then(function (r) {
+            d.uploading--;
+            if (!r.ok || !r.body || !isObj(r.body.image)) throw new Error(commentErr(r, '이미지를 올리지 못했습니다'));
+            var cur = commentById(id); if (cur) { cur.images = cur.images.concat([r.body.image]); cur._local = Date.now(); }
+            renderComments(); setSaveNote(id, '이미지를 올렸습니다 (' + ((cur && cur.images.length) || 0) + '/' + IMG_PER_COMMENT + ').', 'ok');
+          }, function (e) { d.uploading--; throw e; });
+        });
+      }, Promise.resolve()).catch(function (e) { d.uploading = 0; setSaveNote(id, e && e.message || String(e), 'error'); toast(e && e.message || String(e), 'error'); });
+    }
+    function removeImage(cid, img) {
+      if (!store.canEdit()) return Promise.resolve();
+      return capi.imageDelete({ id: img.id, by: by() }).then(function (r) {
+        if (!r.ok) { toast(commentErr(r, '이미지를 지우지 못했습니다'), 'error'); return; }
+        var c = commentById(cid); if (c) { c.images = c.images.filter(function (x) { return x.id !== img.id; }); c._local = Date.now(); }
+        renderComments();
+      });
+    }
+    function openLightbox(src, alt) {
+      if (!ui.lightbox) return;
+      ui.lightbox.replaceChildren(H('img', { class: 'lightbox-img', src: src, alt: alt || '' }), H('button', { type: 'button', class: 'btn small lightbox-close', text: '닫기 (Esc)' }));
+      ui.lightbox.hidden = false;
+    }
+    function closeLightbox() { if (ui.lightbox && !ui.lightbox.hidden) { ui.lightbox.hidden = true; ui.lightbox.replaceChildren(); } }
+
+    /* ---- comments: panel ---- */
+    function panelComments() {
+      var it = item(); if (!it || state.cm.itemId !== it.id) return [];
+      return state.cm.list.filter(function (c) { return c.mode === state.mode && c.status !== 'deleted'; });
+    }
+    function updateCommentHead() {
+      if (!ui.cmHead) return;
+      var list = panelComments(), n = commentCounts(list);
+      ui.cmHead.replaceChildren(
+        H('h2', { class: 'cm-title', text: (state.mode === 'app' ? '뷰티앱' : '홈페이지') + ' 코멘트' }),
+        H('p', { class: 'cm-counts', 'data-cm-counts': n.open + '/' + n.question + '/' + n.done + '/' + n.total }, [
+          H('span', { class: 'cm-count is-open', text: '요청 ' + n.open }), H('span', { class: 'cm-count is-question', text: '확인 필요 ' + n.question }),
+          H('span', { class: 'cm-count is-done', text: '적용완료 ' + n.done }), H('span', { class: 'cm-count', text: '전체 ' + n.total }),
+        ]),
+        H('button', { type: 'button', class: 'btn small cm-close', 'aria-label': '코멘트 닫기', text: '닫기', onclick: function () { setDrawer(false); } }));
+      if (ui.drawerBtn) ui.drawerBtn.textContent = '코멘트' + (n.open ? ' · 요청 ' + n.open : n.total ? ' ' + n.total : '');
+    }
+    function renderComments() {
+      if (!ui.cpanel) return;
+      updateCommentHead();
+      var ae = doc.activeElement, typing = ae && ae.getAttribute && ae.getAttribute('data-comment-text');
+      if (typing && commentById(typing) && ui.cmTextEl && ui.cmTextEl[typing] === ae) { state.cm.dirtyPanel = true; fillCardParts(commentById(typing)); return; } /* never rebuild under the caret */
+      state.cm.dirtyPanel = false;
+      var it = item(), list = panelComments();
+      var msg = !it ? '' : state.cm.error === 'unavailable' ? '공유 서버에 코멘트 기능이 아직 없습니다 (HTTP 404). 서버가 준비되면 자동으로 보입니다.'
+        : state.cm.error === 'failed' ? '코멘트를 불러오지 못했습니다' + (state.cm.status ? ' (HTTP ' + state.cm.status + ')' : ' (네트워크)') + '. 15초마다 다시 확인합니다.'
+        : !state.cm.loaded ? '코멘트를 불러오는 중…' : !list.length ? '아직 코멘트가 없습니다.' : '';
+      ui.cmStatus.textContent = msg;
+      ui.cmStatus.setAttribute('data-state', state.cm.error || (state.cm.loaded ? 'ready' : 'loading'));
+      ui.cmTextEl = {}; ui.cmSaveEl = {}; ui.cmCardEl = {}; ui.cmParts = {};
+      ui.cmList.replaceChildren.apply(ui.cmList, list.map(commentCard));
+    }
+    function headKids(c) {
+      var color = STATUS_COLOR[c.status] || STATUS_COLOR.open;
+      return [
+        H('span', { class: 'cm-num', style: 'background:' + color, text: String(c.seq || '?') }),
+        H('span', { class: 'cm-loc', text: cardLabel(c) + (c.mode === 'home' && c.locale !== state.locale ? ' · ' + c.locale : '') }),
+        H('span', { class: 'cm-chip is-' + c.status, text: STATUS_NAME[c.status] || c.status }),
+      ];
+    }
+    function thumbKids(c) {
+      return c.images.map(function (img, k) {
+        var src = capi.imageUrl(img.id);
+        return H('div', { class: 'cm-thumb' }, [
+          H('button', { type: 'button', class: 'cm-thumb-btn', 'data-comment-image': img.id, 'aria-label': c.seq + '번 이미지 ' + (k + 1) + ' 크게 보기', onclick: function () { openLightbox(src, c.seq + '번 코멘트 이미지 ' + (k + 1)); } }, [H('img', { src: src, alt: '', loading: 'lazy', width: img.w ? String(img.w) : null, height: img.h ? String(img.h) : null })]),
+          store.canEdit() ? H('button', { type: 'button', class: 'cm-thumb-del', 'aria-label': '이미지 ' + (k + 1) + ' 지우기', text: '×', onclick: function () { removeImage(c.id, img); } }) : null,
+        ]);
+      });
+    }
+    function metaText(c) { return '작성 ' + (c.by || '익명') + (fmtTime(c.createdAt) ? ' · ' + fmtTime(c.createdAt) : '') + (c.statusAt ? ' · ' + (STATUS_NAME[c.status] || c.status) + ' ' + (c.statusBy || '') + ' ' + fmtTime(c.statusAt) : ''); }
+    function noteKids(c) { return c.note ? [H('strong', { text: '에이전트 메모' }), H('p', { text: c.note })] : []; }
+    function actionKids(c) {
+      var del = H('button', { type: 'button', class: 'btn small ghost', 'data-action': 'comment-delete', text: '지우기', onclick: function () {
+        if (del.getAttribute('data-armed') !== '1') { del.setAttribute('data-armed', '1'); del.textContent = '한 번 더 누르면 지웁니다'; later(function () { del.removeAttribute('data-armed'); del.textContent = '지우기'; }, 4000); return; }
+        setCommentStatus(c.id, 'deleted');
+      } });
+      return [
+        c.status === 'done'
+          ? H('button', { type: 'button', class: 'btn small', 'data-action': 'comment-reopen', disabled: !store.canEdit(), text: '다시 열기', onclick: function () { setCommentStatus(c.id, 'open'); } })
+          : H('button', { type: 'button', class: 'btn small primary cm-done', 'data-action': 'comment-done', disabled: !store.canEdit(), text: '적용완료', onclick: function () { setCommentStatus(c.id, 'done'); } }),
+        c.status === 'question' ? H('button', { type: 'button', class: 'btn small', 'data-action': 'comment-answered', disabled: !store.canEdit(), text: '답했음(요청으로)', onclick: function () { setCommentStatus(c.id, 'open'); } }) : null,
+        del,
+      ];
+    }
+    /* refresh an open card around the text box the user is typing in (the text box itself is never replaced) */
+    function fillCardParts(c) {
+      var p = ui.cmParts && ui.cmParts[c.id], li = ui.cmCardEl && ui.cmCardEl[c.id]; if (!p || !li) return;
+      var color = STATUS_COLOR[c.status] || STATUS_COLOR.open;
+      li.className = 'cm-card is-' + c.status + ' active'; li.setAttribute('data-status', c.status); li.setAttribute('style', '--cm:' + color);
+      p.head.replaceChildren.apply(p.head, headKids(c));
+      p.thumbs.replaceChildren.apply(p.thumbs, thumbKids(c)); p.thumbs.hidden = !c.images.length;
+      p.tip.textContent = 'Ctrl+V 붙여넣기 · 끌어놓기 · ' + c.images.length + '/' + IMG_PER_COMMENT + '장';
+      p.note.replaceChildren.apply(p.note, noteKids(c)); p.note.hidden = !c.note;
+      p.meta.textContent = metaText(c);
+      p.actions.replaceChildren.apply(p.actions, actionKids(c));
+    }
+    function commentCard(c) {
+      var active = c.id === state.cm.active, color = STATUS_COLOR[c.status] || STATUS_COLOR.open, d = draftOf(c.id);
+      var head = H('button', { type: 'button', class: 'cm-card-head', 'aria-expanded': active ? 'true' : 'false', onclick: function () { if (state.cm.active === c.id) return; activateComment(c.id); } }, headKids(c));
+      var kids = [head];
+      if (!active) {
+        kids.push(H('p', { class: 'cm-preview' + (draftText(c) ? '' : ' is-empty'), text: draftText(c) ? snip(draftText(c), 90) : '(글 없음)' }));
+        if (c.images.length) kids.push(H('p', { class: 'cm-meta', text: '이미지 ' + c.images.length + '장' }));
+      } else {
+        var ta = H('textarea', { class: 'cm-text', rows: '4', maxlength: String(COMMENT_MAX), 'data-comment-text': c.id, placeholder: '수정 요청을 적어 주세요. 캐처는 Ctrl+V로 붙입니다.', 'aria-label': c.seq + '번 코멘트 내용', value: draftText(c), disabled: !store.canEdit() });
+        ta.addEventListener('input', function () { onCommentInput(c.id, ta); });
+        ta.addEventListener('blur', function () { flushDraft(c.id); if (state.cm.dirtyPanel) later(renderComments, 0); });
+        ui.cmTextEl[c.id] = ta;
+        var save = H('span', { class: 'cm-save' + (d.kind ? ' is-' + d.kind : ''), role: 'status', text: d.msg || (c.updatedAt ? '저장됨 ' + fmtTime(c.updatedAt) : '') });
+        ui.cmSaveEl[c.id] = save;
+        var file = H('input', { type: 'file', class: 'cm-file', accept: 'image/png,image/jpeg,image/webp,image/gif', multiple: true, 'aria-label': '이미지 파일 선택', onchange: function (e) { var fs = filesFrom({ files: e.target.files }); e.target.value = ''; addImages(c.id, fs); } });
+        var parts = ui.cmParts[c.id] = {
+          head: head,
+          thumbs: H('div', { class: 'cm-thumbs', hidden: !c.images.length }, thumbKids(c)),
+          tip: H('span', { class: 'cm-attach-tip', text: 'Ctrl+V 붙여넣기 · 끌어놓기 · ' + c.images.length + '/' + IMG_PER_COMMENT + '장' }),
+          note: H('div', { class: 'cm-note', hidden: !c.note }, noteKids(c)),
+          meta: H('p', { class: 'cm-meta', text: metaText(c) }),
+          actions: H('div', { class: 'cm-actions' }, actionKids(c)),
+        };
+        kids.push(ta, save, parts.thumbs,
+          H('div', { class: 'cm-attach' }, [
+            H('button', { type: 'button', class: 'btn small', 'data-action': 'comment-attach', disabled: !store.canEdit(), text: '이미지 첨부', onclick: function () { file.click(); } }), file, parts.tip,
+          ]),
+          parts.note, parts.meta, parts.actions);
+      }
+      var li = H('li', { class: 'cm-card is-' + c.status + (active ? ' active' : ''), 'data-comment-id': c.id, 'data-status': c.status, style: '--cm:' + color }, kids);
+      ui.cmCardEl[c.id] = li;
+      if (active) {
+        li.addEventListener('paste', function (e) { var fs = filesFrom(e.clipboardData); if (!fs.length) return; e.preventDefault(); addImages(c.id, fs); });
+        li.addEventListener('dragover', function (e) { if (e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0) { e.preventDefault(); li.className = li.className.replace(/\s*is-drop/g, '') + ' is-drop'; } });
+        li.addEventListener('dragleave', function () { li.className = li.className.replace(/\s*is-drop/g, ''); });
+        li.addEventListener('drop', function (e) { li.className = li.className.replace(/\s*is-drop/g, ''); var fs = filesFrom(e.dataTransfer); if (!fs.length) return; e.preventDefault(); addImages(c.id, fs); });
+      }
+      return li;
+    }
+
+    /* ---- beauty-app tab (plan section 7) ---- */
+    function appSpecPanel() {
+      return H('details', { class: 'app-spec', open: true }, [
+        H('summary', { text: '플랫폼 규격 · 강남언니 · 바비톡 · 여신티켓 (2026-11-04 확인)' }),
+        H('div', { class: 'app-spec-scroll' }, [H('table', { class: 'app-spec-table' }, [
+          H('thead', null, [H('tr', null, ['플랫폼', '대표·썸네일', '추가 이미지', '상세 이미지', '가격 규칙'].map(function (t) { return H('th', { scope: 'col', text: t }); }))]),
+          H('tbody', null, APP_SPEC_ROWS.map(function (r) { return H('tr', null, r.map(function (t, i) { return H(i ? 'td' : 'th', i ? { text: t } : { scope: 'row', text: t }); })); })),
+        ])]),
+        H('p', { class: 'app-spec-note', text: '디자인은 뷰티앱 하나로 통일하고 받기 형식만 나눕니다. 가로 1080 기준(바비톡은 800으로 줄임), 상세는 1080 폭으로 이어 붙인 뒤 16000px·5MB 단위로 나눕니다. 이미지 속 금액은 VAT 포함(시트 vatAfter)이어야 합니다.' }),
+      ]);
+    }
+    function appPreview(it) {
+      var root = H('div', { class: 'app-view', 'data-app-view': it.id });
+      if (state.locale !== 'KO') {
+        state.appView = { itemId: it.id, root: root, frames: [], ready: false, koOnly: true, blocks: null };
+        root.appendChild(H('div', { class: 'app-ko-only', role: 'status' }, [
+          H('strong', { text: '뷰티앱은 한국어판만 만듭니다.' }),
+          H('p', { text: '강남언니·바비톡·여신티켓은 한국어 화면으로 등록합니다. 한국어(KO) 탭에서 확인해 주세요.' }),
+          H('button', { type: 'button', class: 'btn small', 'data-action': 'app-to-ko', text: '한국어(KO)로 보기', onclick: function () { selectLocale('KO'); } }),
+        ]));
+        return root;
+      }
+      var status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' });
+      var note = H('p', { class: 'img-dl-note app-dl-note', text: '뷰티앱 디자인을 확인하는 중…' });
+      var av = { itemId: it.id, root: root, frames: [], ready: null, zipBtns: [], note: note, status: status, blocks: {} };
+      av.zipBtns = APP_PLATFORMS.map(function (p) { return H('button', { type: 'button', class: 'btn small' + (p.id === 'gangnam' ? ' primary' : ''), 'data-action': 'app-zip-' + p.id, disabled: true, text: p.label + '용 ZIP', onclick: function () { runAppZip(it, p, av); } }); });
+      [['thumb', '대표 1:1 · 1080×1080 (바비톡 800×800)'], ['card', '카드 1080×470 · 강남언니 상세 상단'], ['detail', '상세 · 카드를 1080 폭으로 이어 붙인 모습']].forEach(function (b) {
+        var body = H('div', { class: 'app-block-body' });
+        av.blocks[b[0]] = { el: H('section', { class: 'app-block', 'data-app-block': b[0] }, [H('h4', { class: 'app-block-title', text: b[1] }), body]), body: body, shown: null, frame: null };
+      });
+      state.appView = av;
+      root.appendChild(appSpecPanel());
+      root.appendChild(H('div', { class: 'img-download app-download', 'data-app-download': it.id }, [H('div', { class: 'img-dl-row' }, [H('strong', { class: 'img-dl-label', text: '뷰티앱 받기' })].concat(av.zipBtns)), note, status]));
+      root.appendChild(H('div', { class: 'app-phone', 'aria-label': '휴대폰 폭 미리보기' }, [H('p', { class: 'app-phone-bar', text: '휴대폰 폭 미리보기 · 대표 → 카드 → 상세' }), av.blocks.thumb.el, av.blocks.card.el, av.blocks.detail.el]));
+      if (!hasPage(it)) { av.ready = false; setAppBlocks(av, it); return root; }
+      var det = cropFrame(av, it, 'detail');
+      av.blocks.detail.frame = det;
+      det.el.addEventListener('load', function () { waitAppReady(av, det, it); });
+      setAppBlocks(av, it);
+      return root;
+    }
+    function waitAppReady(av, det, it) {
+      var t0 = Date.now();
+      (function check() {
+        if (state.appView !== av) return;
+        var idoc = frameDoc(det.el), ok = !!idoc && idoc.documentElement.getAttribute('data-bb-app') === 'ready';
+        if (ok || Date.now() - t0 > 1500) { av.ready = ok; setAppBlocks(av, it); layoutCrop(det); return; }
+        later(check, 100);
+      })();
+    }
+    function cropFrame(av, it, kind) {
+      var f = H('iframe', { class: 'app-frame', src: it.page + '?lang=KO&mode=app' + PAGE_V, title: it.label + ' 뷰티앱 ' + kind, loading: 'eager', scrolling: 'no', tabindex: '-1' });
+      var cf = { kind: kind, el: f, itemId: it.id, asset: kind === 'detail' ? null : kind, scale: 1, wrap: null };
+      cf.wrap = H('div', { class: 'app-crop', 'data-app-crop': kind }, [f]);
+      av.frames.push(cf);
+      f.addEventListener('load', function () { layoutCrop(cf); later(function () { layoutCrop(cf); }, 500); });
+      return cf;
+    }
+    function postAppData(cf) {
+      var it = itemById(cf.itemId); if (!it) return;
+      postTo({ el: cf.el }, { type: 'aptos-data', locale: 'KO', fields: effectiveFields(it, 'KO', store), editable: false, editMode: false });
+    }
+    function updateAppView() {
+      var av = state.appView; if (!av) return;
+      av.frames.forEach(function (cf) { postAppData(cf); layoutCrop(cf); });
+      drawBoardPins(av);
+    }
+    function syncAppView() { var av = state.appView; if (!av || state.mode !== 'app') return; av.frames.forEach(layoutCrop); drawBoardPins(av); }
+    function setAppBlocks(av, it) {
+      if (!av.blocks || !av.blocks.thumb) return;
+      ['thumb', 'card'].forEach(function (k) {
+        var b = av.blocks[k], want = av.ready === true ? 'frame' : av.ready === false ? 'missing' : 'wait';
+        if (b.shown === want) return;
+        b.shown = want;
+        if (want === 'frame') { if (!b.frame) b.frame = cropFrame(av, it, k); b.body.replaceChildren(b.frame.wrap); return; }
+        if (want === 'wait') { b.body.replaceChildren(H('div', { class: 'app-missing is-wait', 'data-app-missing': k, text: '확인 중…' })); return; }
+        var ph = H('div', { class: 'app-missing', 'data-app-missing': k }, [
+          H('strong', { text: '뷰티앱 디자인 미구현' }),
+          H('span', { text: k === 'thumb' ? '대표 1:1 이미지는 뷰티앱판 제작(2단계)에서 만듭니다.' : '강남언니 카드 1080×470은 뷰티앱판 제작(2단계)에서 만듭니다.' }),
+        ]);
+        ph.addEventListener('contextmenu', function (e) { onBoardContext(e, ph, k); });
+        b.body.replaceChildren(ph);
+      });
+      var det = av.blocks.detail;
+      if (!det.bandHost) { /* built once: moving the iframe in the DOM would reload it */
+        det.bandHost = H('div', { class: 'app-band-host' });
+        det.body.replaceChildren(det.bandHost, det.frame ? det.frame.wrap : H('div', { class: 'app-missing', 'data-app-missing': 'detail', text: '이 항목은 페이지형 디자인이 아니어서 상세 미리보기가 없습니다.' }));
+      }
+      var detState = String(av.ready);
+      if (det.shown !== detState) {
+        det.shown = detState;
+        det.bandHost.replaceChildren.apply(det.bandHost, av.ready === false && hasPage(it) ? [H('div', { class: 'app-band', role: 'note', text: '앱용 금액(VAT 포함) 카드 제작 전 · 다운로드 불가' })] : []);
+      }
+      av.zipBtns.forEach(function (b) { b.disabled = av.ready !== true || !!state.capture; });
+      av.note.textContent = av.ready === true
+        ? '강남언니: 대표 1080×1080 · 카드 1080×470 · 상세 1080폭 16000px·5MB 단위 / 바비톡: 썸네일 800×800 2MB 이하 · 상세 800폭 5MB 이하 / 여신티켓: 대표 1080×1080 · 상세 1080폭 16000px·5MB 단위. JPEG를 무압축 ZIP 한 개로 받습니다.'
+        : av.ready === false ? '다운로드 불가: 이 페이지는 아직 뷰티앱판(앱용 금액 VAT 포함, 대표 1:1, 카드 1080×470)이 없습니다. 준비된 페이지만 받을 수 있습니다.' : '뷰티앱 디자인을 확인하는 중…';
+      av.root.setAttribute('data-app-ready', String(av.ready));
+      drawBoardPins(av);
+    }
+    function appFrameOf(src) { var av = state.appView; if (!av || !src) return null; return av.frames.filter(function (f) { return f.el.contentWindow === src; })[0] || null; }
+    function detailTargets(idoc, it) {
+      var secs = Array.prototype.filter.call(idoc.querySelectorAll('[data-card]'), function (s) { return !s.closest('[data-app-asset]'); });
+      if (secs.length) return secs.filter(function (s) {
+        var n = Number(s.getAttribute('data-card')), v = s.getAttribute('data-variant') === 'b' ? 'b' : 'a';
+        if (VARIANT_SLOTS.indexOf(n) < 0) return v === 'a';
+        var want = variantOf(it.id, n); if (want === 'b' && !sectionsFor(idoc, n).b) want = 'a';
+        return v === want;
+      });
+      var p5 = idoc.querySelectorAll(CAP_P5); if (p5.length) return Array.prototype.slice.call(p5);
+      var m = idoc.querySelector('main'); return m ? [m] : [];
+    }
+    /* show only the given elements (and their ancestors) so the cards sit one after another */
+    function isolate(idoc, keep) {
+      var anc = [];
+      keep.forEach(function (el) { for (var p = el.parentElement; p && p !== idoc.documentElement; p = p.parentElement) if (anc.indexOf(p) < 0) anc.push(p); });
+      anc.forEach(function (a) {
+        for (var c = a.firstElementChild; c; c = c.nextElementSibling) {
+          if (anc.indexOf(c) >= 0 || keep.indexOf(c) >= 0) { setHidden(c, false); continue; }
+          if (/^(SCRIPT|STYLE|LINK|META|TEMPLATE|NOSCRIPT)$/.test(c.tagName) || c.hasAttribute('data-bb-overlay')) continue;
+          setHidden(c, true);
+        }
+      });
+      keep.forEach(function (el) { if (el.parentElement) { el.parentElement.style.setProperty('row-gap', '0px', 'important'); } });
+    }
+    function layoutCrop(cf) {
+      var av = state.appView; if (!av || av.frames.indexOf(cf) < 0) return;
+      var idoc = frameDoc(cf.el), it = itemById(cf.itemId); if (!idoc || !it) return;
+      var iwin = idoc.defaultView;
+      ensureOverlay(idoc, { kind: 'app-' + cf.kind, frame: cf.el, asset: cf.asset });
+      var targets;
+      if (cf.kind === 'detail') { targets = detailTargets(idoc, it); isolate(idoc, targets); }
+      else { var a = idoc.querySelector('[data-app-asset="' + cf.kind + '"]'); targets = a ? [a] : []; }
+      targets = targets.filter(function (el) { var r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; });
+      if (!targets.length) { cf.wrap.setAttribute('data-empty', '1'); return; }
+      cf.wrap.removeAttribute('data-empty');
+      var L = Infinity, T = Infinity, R = -Infinity, B = -Infinity;
+      targets.forEach(function (el) { var r = el.getBoundingClientRect(); L = Math.min(L, r.left + iwin.scrollX); T = Math.min(T, r.top + iwin.scrollY); R = Math.max(R, r.right + iwin.scrollX); B = Math.max(B, r.bottom + iwin.scrollY); });
+      var docH = Math.max(Math.ceil(B) + 2, idoc.documentElement.scrollHeight);
+      if (cf.el.style.height !== docH + 'px') cf.el.style.height = docH + 'px';
+      var W = cf.wrap.clientWidth || 360, s = W / Math.max(1, R - L);
+      var tf = 'translate(' + (-L * s).toFixed(2) + 'px,' + (-T * s).toFixed(2) + 'px) scale(' + s.toFixed(5) + ')';
+      if (cf.el.style.transform !== tf) cf.el.style.transform = tf;
+      var hh = Math.ceil((B - T) * s) + 'px'; if (cf.wrap.style.height !== hh) cf.wrap.style.height = hh;
+      cf.scale = s;
+      drawPins(idoc, { kind: 'app-' + cf.kind, asset: cf.asset }, it);
+    }
+    function drawBoardPins(av) {
+      var it = item(); if (!av || !av.blocks || !av.blocks.thumb || !it || it.id !== av.itemId) return;
+      ['thumb', 'card'].forEach(function (k) {
+        var b = av.blocks[k], ph = b.shown === 'missing' ? b.body.firstChild : null; if (!ph) return;
+        var list = viewComments('app').filter(function (c) { return !c.card && commentAsset(c) === k; });
+        var old = Array.prototype.slice.call(ph.children || []).filter(function (x) { return x.className && String(x.className).indexOf('board-pin') >= 0; });
+        old.forEach(function (x) { ph.removeChild(x); });
+        list.forEach(function (c) {
+          var color = STATUS_COLOR[c.status] || STATUS_COLOR.open;
+          ph.appendChild(H('button', { type: 'button', class: 'board-pin' + (state.cm.active === c.id ? ' on' : ''), 'data-comment-id': c.id, 'data-status': c.status, title: pinTitle(c), style: 'left:' + (c.x * 100).toFixed(3) + '%;top:' + (c.y * 100).toFixed(3) + '%;--pin:' + color + ';background:' + color, text: String(c.seq || '?'), onclick: function (e) { e.stopPropagation(); activateComment(c.id, { fromPin: true }); } }));
+        });
+      });
+    }
+    function runAppZip(it, p, av) {
+      if (av.ready !== true) { av.status.textContent = '준비된 페이지만 받을 수 있습니다.'; return; }
+      if (state.capture) { av.status.textContent = '이미 파일을 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; }
+      av.zipBtns.forEach(function (b) { b.disabled = true; });
+      captureApp(it, p, function (m) { av.status.textContent = m; }).then(function (m) { av.status.textContent = m; }, function (e) { av.status.textContent = '받지 못했습니다: ' + (e && e.message || e); })
+        .then(function () { av.zipBtns.forEach(function (b) { b.disabled = av.ready !== true; }); });
+    }
+    function drawWhite(src, w, h, sy, sh) {
+      var c = doc.createElement('canvas'); c.width = w; c.height = h;
+      var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.imageSmoothingQuality = 'high';
+      if (src) g.drawImage(src, 0, sy || 0, src.width, sh || src.height, 0, 0, w, h);
+      return c;
+    }
+    function encodeFit(canvas, maxBytes, qualities) {
+      var i = 0;
+      return (function next() {
+        var q = qualities[i++];
+        return capBlob(canvas, 'image/jpeg', q).then(function (b) {
+          if (b.size <= maxBytes) return b.arrayBuffer().then(function (ab) { return { ok: true, bytes: new Uint8Array(ab), q: q }; });
+          if (i < qualities.length) return next();
+          return { ok: false, size: b.size, q: q };
+        });
+      })();
+    }
+    function drawPiece(cards, piece, w) {
+      var hTotal = piece.reduce(function (s, seg) { return s + seg.h; }, 0), c = doc.createElement('canvas'); c.width = w; c.height = hTotal;
+      var g = c.getContext('2d'), y = 0; g.fillStyle = '#fff'; g.fillRect(0, 0, w, hTotal);
+      piece.forEach(function (seg) { g.drawImage(cards[seg.i], 0, seg.y, w, seg.h, 0, y, w, seg.h); y += seg.h; });
+      return c;
+    }
+    function encodePieces(cards, p) {
+      var queue = planPieces(cards.map(function (c) { return c.height; }), p.maxH), done = [];
+      return (function next() {
+        if (!queue.length) return Promise.resolve(done);
+        var piece = queue.shift(), canvas = drawPiece(cards, piece, p.width), canSplit = piece.length > 1 || piece[0].h >= 400;
+        return encodeFit(canvas, p.maxBytes, p.order === 'quality' ? QUALITY_LADDER : [0.92]).then(function (r) {
+          if (r.ok) { done.push({ bytes: r.bytes, h: canvas.height }); return next(); }
+          if (canSplit) { var halves = splitPiece(piece); queue.unshift(halves[0], halves[1]); return next(); }
+          return encodeFit(canvas, p.maxBytes, QUALITY_LADDER).then(function (r2) {
+            if (!r2.ok) throw new Error('상세 이미지를 ' + (p.maxBytes / MB) + 'MB 이하로 만들지 못했습니다.');
+            done.push({ bytes: r2.bytes, h: canvas.height }); return next();
+          });
+        });
+      })();
+    }
+    function buildAppFiles(it, p, out) {
+      var files = [], find = function (k) { return out.filter(function (o) { return o.key === k; })[0]; };
+      var thumb = find('thumb'), card = find('card');
+      return encodeFit(drawWhite(thumb.canvas, p.thumb, p.thumb), p.thumbMax, QUALITY_LADDER).then(function (r) {
+        if (!r.ok) throw new Error('대표 이미지를 ' + (p.thumbMax / MB) + 'MB 이하로 만들지 못했습니다.');
+        files.push({ name: '01_대표_' + p.thumb + 'x' + p.thumb + '.jpg', data: r.bytes });
+        if (!p.card) return null;
+        return encodeFit(drawWhite(card.canvas, 1080, 470), p.maxBytes, QUALITY_LADDER).then(function (r2) {
+          if (!r2.ok) throw new Error('카드 이미지를 ' + (p.maxBytes / MB) + 'MB 이하로 만들지 못했습니다.');
+          files.push({ name: '02_카드_1080x470.jpg', data: r2.bytes });
+        });
+      }).then(function () {
+        var cards = out.filter(function (o) { return o.key === 'detail'; }).map(function (o) { return drawWhite(o.canvas, p.width, Math.round(o.canvas.height * p.width / o.canvas.width)); });
+        return encodePieces(cards, p);
+      }).then(function (pieces) {
+        var lead = p.card ? '03' : '02';
+        pieces.forEach(function (pc, i) { files.push({ name: lead + '_상세_' + String(i + 1).padStart(2, '0') + '_' + p.width + 'x' + pc.h + '.jpg', data: pc.bytes }); });
+        return files;
+      });
+    }
+    function captureApp(it, p, progress) {
+      var win = doc.defaultView, locale = 'KO', prevSel = CAP.sel, prevN = CAP.n;
+      var cap = state.capture = { itemId: it.id, locale: locale, el: null, fields: null };
+      var finish = function () { CAP.sel = prevSel; CAP.n = prevN; if (cap.el && cap.el.parentNode) cap.el.parentNode.removeChild(cap.el); if (state.capture === cap) state.capture = null; };
+      progress('최신 문구를 확인하는 중…');
+      return store.refresh().then(function () {
+        if (!store.online || store.status !== 'ready') throw new Error('서버에 연결되지 않아 최신 문구를 확인할 수 없습니다. 연결된 뒤 다시 눌러 주세요.');
+        cap.fields = effectiveFields(it, locale, store);
+        progress('뷰티앱 페이지를 준비하는 중…');
+        return new Promise(function (resolve, reject) {
+          var f = doc.createElement('iframe');
+          f.setAttribute('aria-hidden', 'true'); f.setAttribute('tabindex', '-1'); f.setAttribute('title', 'app capture');
+          f.style.cssText = 'position:fixed;left:0;top:0;width:' + CAP.frameW + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
+          var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000);
+          f.addEventListener('load', function () { win.clearTimeout(t); resolve(); });
+          f.src = it.page + '?lang=KO&mode=app' + PAGE_V + '&capture=1';
+          cap.el = f; doc.body.appendChild(f);
+        });
+      }).then(function () {
+        capPost(cap);
+        return capApplied(cap, it, locale);
+      }).then(function () {
+        var idoc = cap.el.contentDocument;
+        if (idoc.documentElement.getAttribute('data-bb-app') !== 'ready') throw new Error('이 페이지는 뷰티앱 디자인이 아직 없습니다 (다운로드 불가).');
+        applyVariantsToDoc(idoc, it, true);
+        CAP.sel = '[data-card],[data-app-asset]';
+        progress('사진과 글꼴을 준비하는 중…');
+        return capPrepare(cap);
+      }).then(function (fontCss) {
+        var iwin = cap.el.contentWindow, idoc = iwin.document, lang = idoc.documentElement.getAttribute('lang');
+        var thumb = idoc.querySelector('[data-app-asset="thumb"]'), card = idoc.querySelector('[data-app-asset="card"]');
+        var size = function (el) { var r = el.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height) }; };
+        var near = function (a, b) { return Math.abs(a - b) <= 1; };
+        if (!thumb) throw new Error('대표 이미지([data-app-asset="thumb"])를 찾지 못했습니다.');
+        var ts = size(thumb); if (!near(ts.w, 1080) || !near(ts.h, 1080)) throw new Error('대표 이미지 크기가 ' + ts.w + '×' + ts.h + '입니다 (1080×1080 필요).');
+        if (p.card) { if (!card) throw new Error('카드 이미지([data-app-asset="card"])를 찾지 못했습니다.'); var cs = size(card); if (!near(cs.w, 1080) || !near(cs.h, 470)) throw new Error('카드 이미지 크기가 ' + cs.w + '×' + cs.h + '입니다 (1080×470 필요).'); }
+        var details = Array.prototype.filter.call(idoc.querySelectorAll('[data-card]'), function (s) { var r = s.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !s.closest('[data-app-asset]'); });
+        if (!details.length) throw new Error('상세 카드([data-card])를 찾지 못했습니다.');
+        details.forEach(function (s) { var z = size(s); if (!near(z.w, 1080)) throw new Error(s.getAttribute('data-card') + '장 폭이 ' + z.w + 'px입니다 (1080 필요).'); });
+        var jobs = [{ key: 'thumb', el: thumb }].concat(p.card ? [{ key: 'card', el: card }] : []).concat(details.map(function (el) { return { key: 'detail', el: el }; }));
+        var out = [], chain = Promise.resolve();
+        jobs.forEach(function (j, i) {
+          chain = chain.then(function () {
+            progress('이미지를 만드는 중 ' + (i + 1) + '/' + jobs.length + '…');
+            if (lang && !j.el.getAttribute('lang')) j.el.setAttribute('lang', lang);
+            return iwin.modernScreenshot.domToCanvas(j.el, { scale: 1, font: { cssText: fontCss } }).then(function (c) { out.push({ key: j.key, canvas: c }); });
+          });
+        });
+        return chain.then(function () { return out; });
+      }).then(function (out) {
+        progress(p.label + ' 규격으로 맞추는 중…');
+        return buildAppFiles(it, p, out);
+      }).then(function (files) {
+        var zip = zipStore(files);
+        env.downloadBlob(new Blob([zip], { type: 'application/zip' }), safeBase(it) + '_KO_' + p.label + '.zip');
+        return p.label + '용 ZIP을 받았습니다: ' + files.length + '개 파일 (' + files.map(function (f) { return f.name; }).join(', ') + ')';
+      }).then(function (m) { finish(); return m; }, function (e) { finish(); throw e; });
+    }
+
     /* ---- polling ---- */
     function tick() {
       if (doc.hidden) return Promise.resolve();
@@ -1245,12 +2402,14 @@
       return store.refresh({ skipKeys: skip }).then(function (changed) {
         renderStatus();
         if (changed.length || prev !== store.status) { renderSidebar(); renderPreview(); }
-      });
+      }).then(function () { return refreshComments(); });
     }
 
     /* ---- start ---- */
     function pickInitial() {
-      var m = /^#?([A-Za-z0-9]+)\/([A-Z]{2})$/.exec((env.location && env.location.hash) || '');
+      var hm = parseHash((env.location && env.location.hash) || '');
+      var m = hm && [null, hm.item, hm.locale];
+      if (hm) state.mode = hm.mode;
       var it = m && state.data.items.filter(function (i) { return i.id === m[1] && !store.isDeleted(i.id); })[0];
       var loc = m && state.data.locales.filter(function (l) { return l.id === m[2]; })[0];
       /* without a link to a specific item, open the first item of the first group that is not folded */
@@ -1279,6 +2438,8 @@
           return store.load().then(function () {
             renderAll(); state.started = true;
             (env.setInterval || setInterval)(tick, POLL_MS);
+            startViewTimer();
+            return refreshComments();
           });
         });
     }
@@ -1294,9 +2455,10 @@
     try { win.localStorage.getItem(AUTHOR_KEY); storage = win.localStorage; } catch (e) {
       storage = { getItem: function (k) { return k in memory ? memory[k] : null; }, setItem: function (k, v) { memory[k] = String(v); } };
     }
+    var apiOverride = apiFromSearch(win.location && win.location.search);
     var app = createApp({
       document: doc, root: doc.getElementById('app'),
-      fetch: win.fetch.bind(win), api: win.REVIEW_API || DEFAULT_API, storage: storage, location: win.location,
+      fetch: win.fetch.bind(win), api: apiOverride || win.REVIEW_API || DEFAULT_API, apiOverride: apiOverride, storage: storage, location: win.location,
       replaceHash: function (hash) { try { win.history.replaceState(null, '', hash); } catch (e) { /* ignore */ } },
       addMessageListener: function (fn) { win.addEventListener('message', fn); },
       setInterval: function (fn, ms) { return win.setInterval(fn, ms); },
@@ -1323,5 +2485,8 @@
     collectNumbered: collectNumbered, collectOffers: collectOffers, validateData: validateData,
     createStore: createStore, effectiveFields: effectiveFields, buildExport: buildExport,
     createApp: createApp, a4Layout: a4Layout, boot: boot,
+    BOARD_V: BOARD_V, variantKey: variantKey, parseHash: parseHash, apiFromSearch: apiFromSearch, zipStore: zipStore, crc32: crc32,
+    planPieces: planPieces, splitPiece: splitPiece, fitLong: fitLong, commentCounts: commentCounts, cardLabel: cardLabel, clampTarget: clampTarget,
+    createCommentApi: createCommentApi, APP_PLATFORMS: APP_PLATFORMS, STATUS_COLOR: STATUS_COLOR,
   };
 });
