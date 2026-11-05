@@ -379,3 +379,15 @@ a[data-link="phone"]{white-space:nowrap}
   .way-pin{width:26px;height:33px}
   .bk-row{grid-template-columns:96px minmax(0,1fr);gap:14px}
 }
+
+/* 20261105 A fix pass */
+.wordmark{display:block;width:calc(240*var(--px));min-width:110px;height:auto;object-fit:contain;flex-shrink:0}.pp .top2 .wordmark{margin-left:calc(430*var(--px))}.p4 .top2 .wordmark,.p5 .top2 .wordmark{margin-left:0}.uibeop{margin:calc(8*var(--px)) 0 0;text-align:right;font-size:max(11px,calc(16*var(--px)));color:#ffe6f1}
+@media(max-width:600px){.pp .top2 .wordmark{margin-left:0}}
+
+/* Optical text centring */
+.pp .title .t2{padding:.082em .42em .078em}.tag{padding:.18em .55em .08em}.bkl-pill{padding:.35em .95em .25em}.gnum{font-variant-numeric:lining-nums}.gd-k{padding:.145em .7em .035em}.way-line{padding:.27em .8em .13em}.p1-contact .contact{position:relative;top:.045em}
+
+.p1-contact .contact{top:.02em}.gd-h .gnum{padding-bottom:.08em}
+@media(max-width:900px){.grp-head .gnum{padding-top:.13em}.gd-h .gnum{padding-top:.12em;padding-bottom:0}.tag{padding:.22em .55em .04em}.gd-k{padding:.17em .7em .01em}.way-line{padding:.31em .8em .09em}.p1-contact .contact{top:.045em}}
+
+.p1-contact .contact{top:-.005em}@media(max-width:900px){.p1-contact .contact{top:.045em}.grp[data-group="5"] .gnum{padding-top:.08em}}

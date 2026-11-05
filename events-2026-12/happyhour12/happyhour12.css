@@ -290,3 +290,7 @@ a[data-link="phone"]{white-space:nowrap}
   .b5-book .bk-text{font-size:13px}
   .b5-book .bk-phone{font-size:15px}
 }
+
+/* 20261105 optical text centring */
+.p1 .contact{padding:.45em 1.05em .35em}.p2-when{padding:.37em 1.2em .35em}.days li span{position:relative;top:.01em}.bar-label{position:relative;top:.04em}.pill{padding:.32em 1em .28em}.g-no{font-variant-numeric:lining-nums;padding-top:.04em;padding-bottom:0}
+.days [data-copy="hh_c3_d2"]{top:.025em}

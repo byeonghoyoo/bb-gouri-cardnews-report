@@ -545,3 +545,44 @@ a[data-link="phone"]{white-space:nowrap}
   .way-pin{width:30px;height:30px}
   .bk-row{grid-template-columns:96px minmax(0,1fr);gap:14px}
 }
+
+/* 2026-11-05 A fixpass */
+.wordmark{width:calc(232*var(--px));min-width:110px;height:auto;object-fit:contain;letter-spacing:normal}.bk-mark.wordmark{width:calc(220*var(--px))}.uibeop{position:relative;z-index:2;text-align:right;font-size:max(11px,calc(16*var(--px)));color:var(--chestnut);margin:0 0 calc(6*var(--px))}
+
+/* Glyph optical centre, em corrections keep capsule heights. */
+.c1-contact [data-copy]{position:relative;top:.05em}.period{padding-top:.355em;padding-bottom:.265em}.dg-tag{padding-top:.205em;padding-bottom:.155em}.plus{padding-top:.09em;padding-bottom:0}.l-cool [data-copy]{position:relative;top:.04em}.l-bi{padding-top:.217em;padding-bottom:.143em}.ab-photos figcaption{padding-top:.365em;padding-bottom:.235em}.way-line{padding-top:.25em;padding-bottom:.15em}
+@media(min-width:600px) and (max-width:900px){.tz-tag{padding-top:.22em;padding-bottom:.06em}.b-chip>span{padding-top:.30em;padding-bottom:.22em}.dg-tag{padding-top:.26em;padding-bottom:.10em}.way-line{padding-top:.36em;padding-bottom:.04em}}
+
+.plus{padding-top:.045em;padding-bottom:.045em}@media(min-width:600px) and (max-width:900px){.l-bi{padding-top:.25em;padding-bottom:.11em}}
+
+@media(min-width:600px) and (max-width:900px){.plus{padding-top:.065em;padding-bottom:.025em}}
+
+/* 2026-11-05 B: editorial inset hero / paired vertical price tickets. A selectors untouched. */
+.c1[data-variant="b"]{background:var(--cream)}
+.c1[data-variant="b"] .c1-photo{inset:auto;left:auto;right:calc(50*var(--px));top:calc(425*var(--px));width:calc(550*var(--px));height:calc(650*var(--px));object-fit:cover;object-position:65% 36%;border-radius:calc(250*var(--px)) calc(250*var(--px)) calc(24*var(--px)) calc(24*var(--px))}
+.c1[data-variant="b"] .wm1{left:calc(42*var(--px));top:calc(610*var(--px));font-size:calc(146*var(--px));writing-mode:vertical-rl;opacity:.6}
+.c1[data-variant="b"] .c1-head{left:calc(60*var(--px));top:calc(155*var(--px));width:calc(920*var(--px))}
+.c1[data-variant="b"] .hero-title{font-size:calc(150*var(--px));line-height:1.05}
+.c1[data-variant="b"] .hook{max-width:calc(840*var(--px));font-size:max(12px,calc(30*var(--px)))}
+.c1[data-variant="b"] .callouts{left:calc(60*var(--px));top:auto;bottom:calc(130*var(--px));width:calc(960*var(--px));display:grid;grid-template-columns:1fr 1fr;gap:calc(40*var(--px));padding-top:calc(22*var(--px));border-top:calc(2*var(--px)) solid var(--chestnut);background:var(--cream)}
+.c1[data-variant="b"] .co{padding-right:0}.c1[data-variant="b"] .co .mk{display:none}
+.c1[data-variant="b"] .co-big{font-size:calc(70*var(--px))}.c1[data-variant="b"] .co-date{font-size:calc(45*var(--px))}
+.c1[data-variant="b"] .c1-contact{bottom:calc(35*var(--px));left:calc(60*var(--px))}
+.c2[data-variant="b"] .cp-head{min-height:calc(240*var(--px));margin-top:calc(25*var(--px))}
+.c2[data-variant="b"] .cp-htx{max-width:calc(710*var(--px))}.c2[data-variant="b"] .p-title{flex-wrap:wrap;white-space:normal}.c2[data-variant="b"] .pt-main{font-size:calc(70*var(--px))}.c2[data-variant="b"] .pt-sub{font-size:calc(36*var(--px))}
+.c2[data-variant="b"] .dev-c{width:calc(160*var(--px));height:calc(210*var(--px));right:0;top:0}.c2[data-variant="b"] .dev-c img{max-height:90%;width:auto;max-width:90%;object-fit:contain}
+.c2[data-variant="b"] .pgroups{display:grid;grid-template-columns:1fr 1fr;gap:calc(24*var(--px));margin-top:calc(8*var(--px))}
+.c2[data-variant="b"] .pgroup{padding:calc(18*var(--px));border-top:calc(8*var(--px)) solid var(--orange);border-radius:calc(12*var(--px))}
+.c2[data-variant="b"] .pg-head{display:flex;flex-direction:column;align-items:flex-start;gap:calc(6*var(--px));white-space:normal;min-height:calc(88*var(--px))}
+.c2[data-variant="b"] .pg-name{font-size:calc(30*var(--px))}.c2[data-variant="b"] .pg-care{font-size:max(11px,calc(17*var(--px)))}
+.c2[data-variant="b"] .tiles{grid-template-columns:1fr;margin-top:0}.c2[data-variant="b"] .tile{min-height:calc(215*var(--px));padding:calc(15*var(--px)) calc(12*var(--px));display:grid;grid-template-columns:calc(100*var(--px)) 1fr;column-gap:calc(14*var(--px));border-left:0;border-bottom:1px solid var(--line)}
+.c2[data-variant="b"] .tl-top{grid-column:1/-1}.c2[data-variant="b"] .tl-img{grid-column:1;grid-row:2/4;width:calc(95*var(--px));height:calc(100*var(--px));margin:0;align-self:center}.c2[data-variant="b"] .tl-img img{max-width:100%;max-height:100%;object-fit:contain}.c2[data-variant="b"] .tl-e{grid-column:2;font-size:max(11px,calc(16*var(--px)))}
+.c2[data-variant="b"] .tl-price{grid-column:2;margin-top:0;padding-top:0;gap:calc(3*var(--px))}.c2[data-variant="b"] .psale{font-size:calc(36*var(--px))}.c2[data-variant="b"] .plist{font-size:max(11px,calc(18*var(--px)))}
+.c2[data-variant="b"] .c2-foot{margin-top:auto}
+@media(max-width:600px){
+.c1[data-variant="b"] .c1-head{top:calc(140*var(--px))}.c1[data-variant="b"] .c1-launch{font-size:12px}.c1[data-variant="b"] .hook{font-size:12px;max-width:95%}.c1[data-variant="b"] .co-lbl,.c1[data-variant="b"] .co-sub{font-size:11px}.c1[data-variant="b"] .co-date{font-size:calc(45*var(--px))}.c1[data-variant="b"] .tz-tag{font-size:10px}.c1[data-variant="b"] .c1-contact{font-size:11px;padding:.3em .6em}.c1[data-variant="b"] .wm1{display:block}
+.c2[data-variant="b"] .cp-head{min-height:130px}.c2[data-variant="b"] .cp-htx{max-width:78%}.c2[data-variant="b"] .pgroups{grid-template-columns:1fr;gap:14px}.c2[data-variant="b"] .pg-head{min-height:45px}.c2[data-variant="b"] .pg-name{font-size:20px}.c2[data-variant="b"] .tile{min-height:116px;grid-template-columns:70px 1fr;padding:10px}.c2[data-variant="b"] .tl-img{width:65px;height:65px}.c2[data-variant="b"] .psale{font-size:24px}.c2[data-variant="b"] .tl-e{font-size:11px}.c2[data-variant="b"] .tl-top{font-size:14px}.c2[data-variant="b"] .c2-foot{margin-top:14px}
+}
+
+/* Extra B sections advance later A cards by whole device pixels: preserve their original glyph raster phase. */
+.card[data-variant="b"]{margin-bottom:calc(round(down,calc(28*var(--px)),1px) - 28*var(--px))}

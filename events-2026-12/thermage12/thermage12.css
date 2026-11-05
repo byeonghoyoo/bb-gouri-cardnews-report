@@ -97,15 +97,24 @@ main.tm{container-type:inline-size;max-width:1080px;margin:0 auto}
 /* ---------- 2 / 6 prices on the generated bow set: script word under the bow, the Rosarian sheet stands in the empty centre ---------- */
 .c2{background:var(--wall) var(--set-bow) center top/cover no-repeat}
 .c2-in{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;padding:calc(40*var(--px)) calc(52*var(--px)) calc(30*var(--px))}
-.c2-head{margin-top:calc(128*var(--px));text-align:center}
-.p-mark{display:block;font-size:calc(128*var(--px));line-height:.95;opacity:.95}
-.p-title{position:relative;margin-top:calc(-44*var(--px));font-weight:900;font-size:calc(72*var(--px)*var(--fit,1));line-height:1.08;letter-spacing:-.04em;color:var(--plum);white-space:nowrap}
+/* 2026-11-05 team comments THM12 #2/#3: smaller 'Price', a model photo slot (left, arch) and the real device cut-outs (right, larger, out of the sheet) */
+.c2-head{margin-top:calc(54*var(--px));display:grid;grid-template-columns:calc(250*var(--px)) minmax(0,1fr) calc(300*var(--px));align-items:end;column-gap:calc(14*var(--px))}
+.c2-model{margin:0;width:calc(250*var(--px));aspect-ratio:4/5;overflow:hidden;border-radius:calc(125*var(--px)) calc(125*var(--px)) calc(4*var(--px)) calc(4*var(--px));
+  border:calc(5*var(--px)) solid var(--rosarian);background:var(--wall);box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) rgba(60,24,80,.22)}
+/* model slot (temporary crop of the A hero; the lead replaces it with a new Higgsfield cut in the same path and ratio) */
+.c2-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.c2-tx{min-width:0;text-align:center;padding-bottom:calc(4*var(--px))}
+.c2-devs{display:flex;align-items:flex-end;justify-content:center;gap:calc(6*var(--px))}
+.c2-dev{margin:0;width:calc(96*var(--px));height:calc(206*var(--px))}
+.c2-dev img{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 calc(12*var(--px)) calc(14*var(--px)) rgba(60,24,80,.28))}
+.p-mark{display:block;font-size:calc(72*var(--px));line-height:1;opacity:.95}
+.p-title{position:relative;margin-top:calc(-14*var(--px));font-weight:900;font-size:calc(72*var(--px)*var(--fit,1));line-height:1.08;letter-spacing:-.04em;color:var(--plum);white-space:nowrap}
 .p-lead{margin-top:calc(8*var(--px));font-size:max(12px,calc(22*var(--px)));font-weight:600;line-height:1.4;color:var(--plum-m)}
 .s-price{right:calc(66*var(--px));top:calc(194*var(--px));width:calc(140*var(--px))}
 .pboard{flex:1 1 auto;width:calc(900*var(--px));margin:calc(22*var(--px)) auto 0;display:flex;flex-direction:column;border-radius:calc(4*var(--px));
   padding:calc(4*var(--px)) calc(34*var(--px)) calc(10*var(--px));color:var(--plum);background:var(--rosarian);box-shadow:0 calc(18*var(--px)) calc(40*var(--px)) rgba(60,24,80,.22)}
 .pgroup + .pgroup{border-top:calc(2*var(--px)) solid rgba(82,42,111,.3)}
-.phead{display:flex;align-items:center;justify-content:space-between;gap:calc(16*var(--px));padding:calc(10*var(--px)) 0 calc(4*var(--px))}
+.phead{display:flex;align-items:center;justify-content:space-between;gap:calc(16*var(--px));padding:calc(9*var(--px)) 0 calc(3*var(--px))}
 .pg-tx{min-width:0;display:flex;align-items:baseline;flex-wrap:wrap;gap:calc(4*var(--px)) calc(14*var(--px))}
 .pg-name{font-weight:900;font-size:max(15px,calc(29*var(--px)));line-height:1.2;letter-spacing:-.025em;color:var(--plum);white-space:nowrap}
 .pg-sub{font-family:var(--f-text);font-size:max(11px,calc(18*var(--px)));font-weight:600;line-height:1.35;color:var(--plum-m);white-space:nowrap}
@@ -181,6 +190,11 @@ main.tm{container-type:inline-size;max-width:1080px;margin:0 auto}
 .pt::before{content:counter(pt,decimal-leading-zero);position:absolute;left:0;top:calc(-2*var(--px));font-family:var(--f-serif);font-weight:700;font-size:calc(34*var(--px));line-height:1;color:var(--plum-m)}
 .pt-t{font-size:max(15px,calc(31*var(--px)));font-weight:800;line-height:1.25;letter-spacing:-.02em;color:var(--plum)}
 .pt-d{margin-top:calc(10*var(--px));font-size:max(12px,calc(22*var(--px)));font-weight:500;line-height:1.5;color:var(--plum-m)}
+/* 2026-11-05 team comment THM12 #7: the two tips under point 3 (name chip + what it is for) */
+.tips{list-style:none;padding:0;margin-top:calc(12*var(--px));display:grid;gap:calc(8*var(--px))}
+.tip{display:flex;align-items:flex-start;gap:calc(10*var(--px))}
+.tip-k{flex:none;display:inline-block;padding:.2em .72em .22em;border-radius:999px;background:var(--plum);color:var(--rosarian);font-size:max(11px,calc(16*var(--px)));font-weight:800;line-height:1.3;white-space:nowrap}
+.tip-d{min-width:0;padding-top:calc(1*var(--px));font-size:max(11px,calc(17*var(--px)));font-weight:600;line-height:1.45;color:var(--plum-m)}
 .cmp{margin-top:calc(26*var(--px));text-align:center}
 .cmp-title{font-weight:800;font-size:max(15px,calc(27*var(--px)));line-height:1.25;letter-spacing:-.02em;color:var(--plum)}
 .cmp-row{list-style:none;padding:0;margin:calc(14*var(--px)) auto 0;width:calc(860*var(--px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(28*var(--px));align-items:end}
@@ -229,6 +243,8 @@ main.tm{container-type:inline-size;max-width:1080px;margin:0 auto}
 .chip{padding:.3em .95em .32em;background:var(--plum);color:var(--rosarian)}
 .chips.soft .chip{background:var(--rosarian);color:var(--plum)}
 .sh-it.heat{background:var(--sun);color:var(--charcoal)}
+/* 2026-11-05 team comment THM12 #8: the ground pad goes on before the shots (a plain plum chip, as tall as the icon chips) */
+.sh-it.pad{min-height:2.37em;padding:.3em .95em .32em;background:var(--plum);color:var(--rosarian)}
 .sh-ar{font-family:var(--f-en);font-weight:700;font-size:max(14px,calc(30*var(--px)));line-height:1;color:var(--plum);padding:0 calc(2*var(--px))}
 .infos{list-style:none;padding:0;margin-top:calc(22*var(--px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(14*var(--px))}
 .inf{display:flex;flex-direction:column;gap:calc(8*var(--px));padding:calc(20*var(--px)) calc(22*var(--px));border-radius:calc(4*var(--px));background:var(--rosarian);
@@ -350,9 +366,13 @@ a[data-link="phone"]{white-space:nowrap}
   /* flowing cards: the ribbon-free set (the bow and the floor ribbon would sit under text at these heights) */
   .card.c2,.card.cba,.card.c3,.card.c4,.card.c5{background:var(--wall) var(--set-clean) center top/cover no-repeat}
   .top .brand{font-size:11px}
-  .c2-head{margin-top:30px;padding-right:96px;text-align:left}
-  .p-mark{font-size:58px}
-  .p-title{margin-top:-20px;font-size:30px;white-space:normal}
+  .c2-head{margin-top:22px;grid-template-columns:104px minmax(0,1fr);column-gap:12px;row-gap:10px;text-align:left;align-items:center}
+  .c2-model{width:104px;border-width:3px;border-radius:52px 52px 4px 4px}
+  .c2-tx{text-align:left}
+  .c2-devs{grid-column:1 / -1;justify-content:flex-start;gap:8px}
+  .c2-dev{width:48px;height:100px}
+  .p-mark{font-size:44px}
+  .p-title{margin-top:-10px;font-size:30px;white-space:normal}
   .p-lead{font-size:14px}
   .s-price{right:8px;top:46px;width:84px}
   .pboard{width:100%;margin-top:18px;padding:2px 14px 10px}
@@ -445,3 +465,216 @@ a[data-link="phone"]{white-space:nowrap}
   .bk-row{grid-template-columns:96px minmax(0,1fr);gap:14px}
   .notes{padding:18px 16px 22px}
 }
+
+/* 20261105 A fixpass */
+.wordmark{display:block;width:calc(240*var(--px));min-width:110px;height:auto;object-fit:contain}.uibeop{font-size:max(11px,calc(16*var(--px)));color:var(--plum-m);text-align:right;margin-top:auto}.c2 .vat{margin-top:0}.tz-main{align-items:center}.tz-main>*{align-self:auto}
+
+/* Pixel measured component centering 1080 pass 0 */
+@media (min-width:601px){
+[data-card="1"] span.tz-label[data-copy="tm_hero_label"]{padding-top:0.15320em!important;padding-bottom:0.10680em!important;}
+[data-card="2"] span.period{padding-top:0.37158em!important;padding-bottom:0.28842em!important;}
+[data-card="2"] span.badge[data-copy="tm_r56_badge"]{padding-top:0.27641em!important;padding-bottom:0.10359em!important;}
+[data-card="2"] span.badge.hit[data-copy="tm_r58_badge"]{padding-top:0.23179em!important;padding-bottom:0.14821em!important;}
+[data-card="2"] span.badge[data-copy="tm_r59_badge"]{padding-top:0.23795em!important;padding-bottom:0.14205em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-top:-0.01162em!important;padding-bottom:0.13162em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-top:-0.01162em!important;padding-bottom:0.13162em!important;}
+[data-card="4"] span.xl.xl-tip[data-copy="tm_c3_d_tip"]{padding-top:0.26105em!important;padding-bottom:0.15895em!important;}
+[data-card="4"] span.xl.xl-cool[data-copy="tm_c3_d_cool"]{padding-top:0.26021em!important;padding-bottom:0.15979em!important;}
+[data-card="4"] span.xl.xl-heat[data-copy="tm_c3_d_heat"]{padding-top:0.25221em!important;padding-bottom:0.16779em!important;}
+[data-card="4"] span.cmp-t[data-copy="tm_c3_e1_type"]{padding-top:0.22353em!important;padding-bottom:0.13647em!important;}
+[data-card="4"] span.cmp-t[data-copy="tm_c3_e2_type"]{padding-top:0.21788em!important;padding-bottom:0.14212em!important;}
+[data-card="4"] span.cmp-t[data-copy="tm_c3_e3_type"]{padding-top:0.21788em!important;padding-bottom:0.14212em!important;}
+[data-card="5"] li.sh-it.cool > span{position:relative;top:0.03111em;}
+[data-card="5"] li.sh-it.heat > span{position:relative;top:0.03111em;}
+[data-card="5"] li.sh-it.cool > span{position:relative;top:0.03111em;}
+[data-card="5"] span.inf-k[data-copy="tm_c4_i1_k"]{padding-top:0.16706em!important;padding-bottom:0.09294em!important;}
+[data-card="5"] span.inf-k[data-copy="tm_c4_i2_k"]{padding-top:0.16706em!important;padding-bottom:0.09294em!important;}
+[data-card="5"] span.inf-k[data-copy="tm_c4_i3_k"]{padding-top:0.16706em!important;padding-bottom:0.09294em!important;}
+}
+
+/* Pixel measured component centering 1080 pass 1 */
+@media (min-width:601px){
+[data-card="2"] span.period{padding-top:0.40358em!important;padding-bottom:0.25642em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-top:-0.01162em!important;padding-bottom:0.14324em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-top:-0.01162em!important;padding-bottom:0.14324em!important;}
+[data-card="4"] span.cmp-t[data-copy="tm_c3_e1_type"]{padding-top:0.19294em!important;padding-bottom:0.16706em!important;}
+}
+
+/* Pixel measured component centering 1080 pass 2 */
+@media (min-width:601px){
+[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-top:-0.01162em!important;padding-bottom:0.15486em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-top:-0.01162em!important;padding-bottom:0.15486em!important;}
+}
+
+/* Pixel measured component centering 780 pass 0 */
+@media (min-width:601px) and (max-width:999px){
+[data-card="1"] p.period{padding-top:0.39976em!important;padding-bottom:0.26023em!important;}
+[data-card="2"] span.badge[data-copy="tm_r56_badge"]{padding-top:0.18102em!important;padding-bottom:0.19897em!important;}
+[data-card="5"] li.chip{padding-top:0.37511em!important;padding-bottom:0.24489em!important;}
+[data-card="5"] li.chip{padding-top:0.37511em!important;padding-bottom:0.24489em!important;}
+[data-card="5"] li.chip{padding-top:0.37511em!important;padding-bottom:0.24489em!important;}
+[data-card="5"] li.gs > span{position:relative;top:0.04933em;}
+[data-card="5"] li.gs > span{position:relative;top:0.04933em;}
+[data-card="5"] li.gs > span{position:relative;top:0.04933em;}
+[data-card="5"] li.chip{padding-top:0.39822em!important;padding-bottom:0.22178em!important;}
+[data-card="5"] li.chip{padding-top:0.39822em!important;padding-bottom:0.22178em!important;}
+[data-card="6"] span.way-line[data-copy="tm_ab_way_line"]{padding-top:0.31135em!important;padding-bottom:0.08865em!important;}
+}
+
+/* Pixel measured component centering 780 pass 1 */
+@media (min-width:601px) and (max-width:999px){
+[data-card="5"] li.gs > span{position:relative;top:0.09866em;}
+[data-card="5"] li.gs > span{position:relative;top:0.09866em;}
+[data-card="5"] li.gs > span{position:relative;top:0.09866em;}
+}
+
+.bb-ba__arrow{padding-top:0!important;padding-bottom:.04em!important;font-variant-numeric:lining-nums}
+
+[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-top:0!important;padding-bottom:.06em!important;}
+
+[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-top:0!important;padding-bottom:.18em!important;}
+.top{flex-shrink:0}.wordmark{flex-shrink:0}
+
+[data-card="2"] span.period{padding-top:.38558em!important;padding-bottom:.27442em!important;}
+@media(min-width:601px) and (max-width:999px){[data-card="2"] span.badge.hit[data-copy="tm_r58_badge"]{padding-top:.20179em!important;padding-bottom:.17821em!important}[data-card="2"] span.badge[data-copy="tm_r59_badge"]{padding-top:.20795em!important;padding-bottom:.17205em!important}[data-card="3"] span.bb-ba__arrow[data-copy="tm_ba_arrow"]{padding-bottom:.15em!important}}
+
+@media(min-width:601px) and (max-width:999px){[data-card="2"] span.badge.hit[data-copy="tm_r58_badge"]{padding-top:.17179em!important;padding-bottom:.20821em!important}[data-card="2"] span.badge[data-copy="tm_r59_badge"]{padding-top:.17795em!important;padding-bottom:.20205em!important}}
+
+/* 2026-11-05 team comments pass (A): chip text centring for the new BEST! badges (rows 51, 54), the tip chips, the ground-pad chip, and the heat label
+   whose position moved with the taller card-4 panel (measured with qa/text-center-check.cjs at 1080 and at the 780 board width) */
+@media (min-width:1000px){
+[data-card="2"] span.badge[data-copy="tm_r51_badge"]{padding-top:.2915em!important;padding-bottom:.0885em!important}
+[data-card="2"] span.badge[data-copy="tm_r54_badge"]{padding-top:.2435em!important;padding-bottom:.1365em!important}
+[data-card="4"] span.xl.xl-heat[data-copy="tm_c3_d_heat"]{padding-top:.2864em!important;padding-bottom:.1336em!important}
+[data-card="4"] span.tip-k[data-copy="tm_c3_tip1_k"]{padding-top:.269em;padding-bottom:.151em}
+[data-card="4"] span.tip-k[data-copy="tm_c3_tip2_k"]{padding-top:.279em;padding-bottom:.141em}
+[data-card="5"] li.sh-it.pad{padding-top:.339em;padding-bottom:.281em}
+}
+@media (min-width:601px) and (max-width:999px){
+[data-card="4"] span.tip-k[data-copy="tm_c3_tip1_k"],[data-card="4"] span.tip-k[data-copy="tm_c3_tip2_k"]{padding-top:.306em;padding-bottom:.114em}
+}
+
+/* ==================== 2026-11-05 B variants (data-variant="b") · source v4/thermage12/b-variant.css, applied by v4/thermage12/qa/bvariant/apply-css.cjs ====================
+   A rules above stay untouched; every rule here is scoped to .c1b / .c2b (the B sections) so the A cards render exactly as before.
+   Same palette (H), type (Pretendard, Pinyon Script, Cormorant Garamond, Space Grotesk), decoration set (velvet bows) and copy keys as A. */
+
+/* ---------- 1 B : split poster. Plum type panel on the left, tall model photo on the right, script word and velvet bow across the seam ---------- */
+.c1b{background:var(--plum)}
+.hb-ph{position:absolute;z-index:0;left:calc(500*var(--px));top:0;width:calc(580*var(--px));height:100%;margin:0;overflow:hidden;background:var(--wall)}
+/* model slot (temporary 2:3 crop of the A hero; the lead replaces it with a new Higgsfield cut in the same path and ratio) */
+.hb-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.hb-panel{position:absolute;z-index:2;left:0;top:0;bottom:0;width:calc(500*var(--px));display:flex;flex-direction:column;padding:calc(46*var(--px)) calc(48*var(--px)) calc(42*var(--px));background:var(--plum);color:var(--rosarian)}
+.hb-top{display:flex;align-items:center;min-height:calc(36*var(--px))}
+.hb-head{margin-top:calc(300*var(--px))}
+.hb-panel .kicker-serif{color:var(--lilac)}
+.hb-panel .hero-title{margin-top:calc(10*var(--px));font-size:calc(96*var(--px)*var(--fit,1))}
+.hb-panel .hook{margin-top:calc(14*var(--px));font-size:max(12px,calc(22*var(--px)))}
+.hb-dev{flex:1 1 auto;min-height:0;margin:calc(18*var(--px)) 0 calc(10*var(--px));display:flex;align-items:center;justify-content:center}
+.hb-dev img{display:block;height:100%;max-height:calc(300*var(--px));width:auto;max-width:100%;object-fit:contain;object-position:50% 50%;filter:drop-shadow(0 calc(12*var(--px)) calc(16*var(--px)) rgba(20,8,30,.45))}
+.hb-price{padding-top:calc(20*var(--px));border-top:calc(1.5*var(--px)) solid rgba(250,234,221,.3)}
+.hb-tz{display:flex;align-items:center;gap:calc(10*var(--px));font-size:max(12px,calc(20*var(--px)));font-weight:700;line-height:1.25;white-space:nowrap;color:var(--rosarian)}
+.hb-tz .tz-label{padding:.12em .7em .14em;border-radius:999px;background:var(--sun);color:var(--charcoal);font-weight:800}
+.hb-main{display:flex;align-items:center;flex-wrap:wrap;gap:calc(4*var(--px)) calc(14*var(--px));margin-top:calc(8*var(--px))}
+.hb-main .tz-price{font-size:max(30px,calc(96*var(--px)))}
+.hb-vat{font-size:max(11px,calc(17*var(--px)));font-weight:600;color:rgba(250,234,221,.86);white-space:nowrap}
+.hb-foot{margin-top:calc(26*var(--px));display:flex;flex-direction:column;align-items:flex-start;gap:calc(12*var(--px))}
+.c1b .period{background:var(--rose);color:var(--charcoal);font-size:max(11px,calc(17*var(--px)))}
+.hb-script{position:absolute;z-index:4;left:calc(120*var(--px));top:calc(196*var(--px));font-size:calc(150*var(--px));opacity:.96}
+.hb-bow{position:absolute;z-index:3;left:calc(386*var(--px));top:calc(30*var(--px));width:calc(228*var(--px));height:auto;transform:rotate(-5deg);filter:drop-shadow(0 calc(8*var(--px)) calc(12*var(--px)) rgba(40,18,56,.35))}
+
+/* ---------- 2 B : device bands. One band per group: plum device panel left (name, make-up, real cut-outs), Rosarian row list right ---------- */
+.c2b{background:var(--wall) var(--set-clean) center top/cover no-repeat}
+.c2b-in{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;padding:calc(40*var(--px)) calc(52*var(--px)) calc(30*var(--px))}
+.c2b-head{position:relative;margin-top:calc(22*var(--px));display:flex;align-items:flex-end;gap:calc(22*var(--px))}
+/* 2026-11-05 team comment THM12 #3 (same rule as A): a model photo slot in the price card, its own file (temporary crop until the lead's Higgsfield cut) */
+.c2b-model{order:-1;flex:none;position:relative;margin:0;width:calc(172*var(--px));aspect-ratio:3/4;overflow:hidden;border-radius:calc(4*var(--px));border:calc(5*var(--px)) solid var(--rosarian);background:var(--wall);box-shadow:0 calc(12*var(--px)) calc(26*var(--px)) rgba(60,24,80,.2)}
+.c2b-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.c2b-mark{flex:none;font-size:calc(118*var(--px));line-height:.9;color:#fff}
+.c2b-tx{min-width:0;padding-bottom:calc(8*var(--px))}
+.c2b .c2b-title{margin-top:0;text-align:left;font-size:calc(64*var(--px)*var(--fit,1))}
+.c2b-lead{margin-top:calc(4*var(--px));font-size:max(12px,calc(20*var(--px)));font-weight:600;line-height:1.4;color:var(--plum-m)}
+.c2b-bow{position:absolute;left:calc(122*var(--px));top:calc(-12*var(--px));width:calc(112*var(--px));height:auto;transform:rotate(10deg);filter:drop-shadow(0 calc(8*var(--px)) calc(12*var(--px)) rgba(60,24,80,.25))}
+.bands{flex:1 1 auto;min-height:0;margin-top:calc(22*var(--px));display:flex;flex-direction:column;gap:calc(16*var(--px))}
+.band{flex:1 1 auto;display:grid;grid-template-columns:calc(244*var(--px)) minmax(0,1fr);border-radius:calc(4*var(--px));overflow:hidden;background:var(--rosarian);box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) rgba(60,24,80,.18)}
+.bd-side{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(12*var(--px));text-align:center;padding:calc(16*var(--px)) calc(14*var(--px));background:var(--plum);color:var(--rosarian)}
+.bd-name{font-weight:900;font-size:max(15px,calc(31*var(--px)));line-height:1.15;letter-spacing:-.025em;color:var(--rosarian);white-space:nowrap}
+.bd-sub{margin-top:calc(6*var(--px));font-size:max(11px,calc(15.5*var(--px)));font-weight:600;line-height:1.35;color:var(--lilac)}
+.bd-devs{display:flex;align-items:center;justify-content:center;gap:calc(4*var(--px))}
+.bdev{margin:0;width:calc(72*var(--px));height:calc(136*var(--px))}
+.g-solo .bdev{width:calc(96*var(--px));height:calc(180*var(--px))}
+.bdev img{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 50%;filter:drop-shadow(0 calc(8*var(--px)) calc(10*var(--px)) rgba(20,8,30,.4))}
+.bd-plus{flex:none;font-family:var(--f-en);font-weight:700;font-size:max(14px,calc(24*var(--px)));line-height:1;color:var(--lilac)}
+.brows{list-style:none;margin:0;padding:calc(4*var(--px)) calc(26*var(--px));display:flex;flex-direction:column;justify-content:center}
+.brow{display:grid;grid-template-columns:minmax(0,1fr) calc(112*var(--px)) calc(170*var(--px));align-items:center;column-gap:calc(12*var(--px));min-height:calc(52*var(--px));padding:calc(6*var(--px)) 0;border-top:calc(1.5*var(--px)) dashed rgba(82,42,111,.24)}
+.brow:first-child{border-top:0}
+.bname{min-width:0;display:flex;flex-direction:column;gap:calc(3*var(--px))}
+.bpl{font-size:calc(25*var(--px));line-height:1.3}
+.bpl .pn{white-space:normal}
+.bpl .pn .n1,.bpl .pn .np{white-space:nowrap}
+.bpl .badge{margin-left:calc(8*var(--px));vertical-align:.08em}
+/* package rows read as two lines: the first device on top, '+ 써마지 …' with its badge under it */
+.c2b .g-ul .pn .n1,.c2b .g-sf .pn .n1{display:block}
+.c2b .psale{font-size:max(18px,calc(46*var(--px)))}
+.c2b-foot{margin-top:calc(14*var(--px));text-align:right}
+.c2b .uibeop{margin-top:0;text-align:right}
+.c2b .vat{margin-top:calc(2*var(--px));padding-top:0;border-top:0}
+
+/* small tablets (601-767px container): the B price card keeps at least the 4:5 height and grows only when the text needs it */
+@container (min-width:601px) and (max-width:767px){
+  .card.c2b{aspect-ratio:auto;min-height:calc(1350*var(--px));display:flex;flex-direction:column}
+  .c2b-in{position:relative;inset:auto;flex:1 0 auto}
+}
+/* phones: B hero = photo on top, the plum panel flows under it; B prices = bands stack, rows break name / prices */
+@container (max-width:600px){
+  .card.c1b{aspect-ratio:auto;display:flex;flex-direction:column}
+  .hb-ph{position:relative;left:auto;top:auto;width:100%;height:calc(1150*var(--px));order:0}
+  .hb-panel{position:relative;width:100%;padding:16px 16px 18px;order:1}
+  .hb-top{position:absolute;left:12px;top:calc(-1150*var(--px) + 12px)}
+  .hb-top{padding:4px 8px;border-radius:999px;background:rgba(82,42,111,.82)}
+  .hb-top .wordmark{min-width:104px}
+  .hb-head{margin-top:0}
+  .hb-panel .hero-title{font-size:max(30px,calc(96*var(--px)*var(--fit,1)))}
+  .hb-panel .hook{font-size:13px}
+  .hb-dev{display:none}
+  .hb-price{margin-top:14px;padding-top:12px}
+  .hb-main .tz-price{font-size:34px}
+  .hb-foot{margin-top:14px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 12px}
+  .hb-script{left:0;right:0;text-align:center;top:calc(1150*var(--px) - 72px);font-size:64px}
+  .hb-bow{left:auto;right:10px;top:10px;width:96px}
+  .card.c2b{aspect-ratio:auto}
+  .card.c2b{background:var(--wall) var(--set-clean) center top/cover no-repeat}
+  .c2b-in{position:relative;inset:auto;padding:16px 14px 18px}
+  .c2b-head{margin-top:20px;gap:10px;align-items:flex-end;flex-wrap:wrap}
+  .c2b-model{width:84px;border-width:3px}
+  .c2b-mark{font-size:52px}
+  .c2b .c2b-title{font-size:28px;white-space:normal}
+  .c2b-lead{font-size:13px}
+  .c2b-bow{width:52px;left:56px;top:-14px}
+  .bands{margin-top:14px;gap:12px}
+  .band{grid-template-columns:1fr}
+  .bd-side{flex-direction:row;justify-content:space-between;text-align:left;padding:10px 12px;gap:10px}
+  .bd-name{font-size:17px}
+  .bd-sub{font-size:12px}
+  .bdev,.g-solo .bdev{width:30px;height:56px}
+  .bd-plus{font-size:14px}
+  .brows{padding:2px 12px 6px}
+  .brow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"bn bn" "pl ps";row-gap:2px;column-gap:10px;padding:9px 0 8px}
+  .brow .bname{grid-area:bn}
+  .brow .plist{grid-area:pl;justify-self:start;align-self:baseline}
+  .brow .psale{grid-area:ps}
+  .bpl{font-size:15px}
+  .c2b .psale{font-size:24px}
+  .c2b-foot{text-align:left}
+  .c2b .uibeop{text-align:left;font-size:12px}
+  .c2b .vat{text-align:left}
+}
+/* chip text centring for B (measured with qa/text-center-check.cjs; the A fixpass rules for the same copy keys also reach B, this only re-tunes B at 1080) */
+@media (min-width:1000px){
+[data-card="2"][data-variant="b"] span.badge[data-copy="tm_r56_badge"]{padding-top:.228em!important;padding-bottom:.152em!important}
+[data-card="2"][data-variant="b"] span.badge[data-copy="tm_r51_badge"]{padding-top:.256em!important;padding-bottom:.124em!important}
+[data-card="2"][data-variant="b"] span.badge[data-copy="tm_r54_badge"]{padding-top:.2393em!important;padding-bottom:.1407em!important}
+}
+@media (min-width:601px) and (max-width:999px){
+[data-card="2"][data-variant="b"] span.badge[data-copy="tm_r59_badge"]{padding-top:.29em!important;padding-bottom:.09em!important}
+}
+/* ==================== end B variants ==================== */

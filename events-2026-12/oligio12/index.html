@@ -7,10 +7,10 @@
   <title>oligio xm · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Outfit:wght@500;600;700;800&amp;family=Quicksand:wght@600;700&amp;family=Cormorant+Garamond:ital,wght@1,600&amp;display=swap">
-  <link rel="stylesheet" href="oligio12.css?v=20261029-oligio12m">
-  <script src="copy-data.js?v=20261029-oligio12m" defer></script>
-  <script src="../inline-edit.js?v=20261029-oligio12m" defer></script>
-  <script src="oligio12.js?v=20261029-oligio12m" defer></script>
+  <link rel="stylesheet" href="oligio12.css?v=20261105-oligio12b">
+  <script src="copy-data.js?v=20261105-oligio12b" defer></script>
+  <script src="../inline-edit.js?v=20261105-oligio12b" defer></script>
+  <script src="oligio12.js?v=20261105-oligio12b" defer></script>
 </head>
 <body>
 <main class="ox">
@@ -35,7 +35,7 @@
 
       <header class="top">
         <span class="period" data-copy="ox_period" data-optional data-placeholder="이벤트 기간"></span>
-        <span class="brand" data-copy="ox_brand"></span>
+        <img class="wordmark" src="assets/logo-wordmark-eef6ff.png" alt="BEAUTY BLOSSOM" width="975" height="111">
       </header>
       <div class="p1-copy">
         <p class="season" data-copy="ox_season" data-optional data-placeholder="Winter" data-type-src="assets/miri/type_winter.webp" data-type-text="Winter" data-type-locales="*"></p>
@@ -48,13 +48,34 @@
       <p class="p1-contact"><i class="mw cicon" aria-hidden="true"><img class="miri" src="assets/miri/icon_phone.webp" alt=""></i><span class="contact" data-copy="ox_contact"></span></p>
     </section>
 
+    <!-- 1 · B (2026-11-05 B variant, v4/events/BVARIANT_20261105.md): split poster. Left: the night text panel (wordmark, Winter script, title with the
+         official logo, hook, contact); right half: the model photo panel (slot M1B, assets/hero-b.jpg = temporary crop of the A poster photo until the
+         lead's new cut, v4/oligio12/MODEL_SLOTS.md); the device stands on the seam. Same copy keys as the A poster (7 languages). -->
+    <section class="p1b" data-card="1" data-variant="b" aria-labelledby="ox-t1b">
+      <figure class="b1-photo"><img src="assets/hero-b.jpg?v=a" data-alt="ox_alt_hero_b" alt="" width="540" height="1350"></figure>
+      <span class="mw b1-light" aria-hidden="true"><img class="miri" src="assets/miri/ice_light.webp" alt=""></span>
+      <i class="mw b1-fl bf1" aria-hidden="true"><img class="miri" src="assets/miri/snowflake_crystal.webp" alt=""></i>
+      <i class="mw b1-fl bf2" aria-hidden="true"><img class="miri" src="assets/miri/snowflake_crystal.webp" alt=""></i>
+      <img class="b1-device" src="assets/device.webp?v=b" data-alt="ox_alt_device" alt="" width="625" height="1555">
+      <div class="b1-panel">
+        <header class="b1-top"><img class="wordmark" src="assets/logo-wordmark-eef6ff.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period" data-copy="ox_period" data-optional data-placeholder="이벤트 기간"></span></header>
+        <p class="season b1-season" data-copy="ox_season" data-optional data-placeholder="Winter" data-type-src="assets/miri/type_winter.webp" data-type-text="Winter" data-type-locales="*"></p>
+        <h1 class="b1-title" id="ox-t1b">
+          <span class="t-pre" data-copy="ox_title_pre"></span>
+          <span class="t-wrap"><span class="t-main" data-copy="ox_title_main"></span><img class="t-logo" src="assets/oligio-xm-logo-white.png?v=b" data-logo-text="oligio xm" alt="oligio xm" width="414" height="97"></span>
+        </h1>
+        <p class="hook b1-hook"><span data-copy="ox_hook1"></span><span data-copy="ox_hook2"></span></p>
+        <p class="b1-contact"><i class="mw cicon" aria-hidden="true"><img class="miri" src="assets/miri/icon_phone.webp" alt=""></i><span class="contact" data-copy="ox_contact"></span></p>
+      </div>
+    </section>
+
     <!-- 2 / 2 : price list -->
     <section class="p2" data-card="2" aria-labelledby="ox-t2">
       <div class="snow" aria-hidden="true"></div>
       <span class="mw m-light2" data-kind="light" aria-hidden="true"><img class="miri" src="assets/miri/ice_light.webp" alt=""></span>
       <div class="p2-in">
         <header class="top2">
-          <span class="brand" data-copy="ox_brand"></span>
+          <img class="wordmark" src="assets/logo-wordmark-eef6ff.png" alt="BEAUTY BLOSSOM" width="975" height="111">
           <span class="period" data-copy="ox_period" data-optional data-placeholder="이벤트 기간"></span>
         </header>
         <div class="p2-head">
@@ -75,22 +96,7 @@
           <i class="mw corner c-bl" aria-hidden="true"><img class="miri" src="assets/miri/frost_corner.webp" alt=""></i>
           <i class="mw corner c-br" aria-hidden="true"><img class="miri" src="assets/miri/frost_corner.webp" alt=""></i>
           <!-- 2026-10-30 team request: '의료법상 최대 49% 할인' seal where the silver ribbon was (drawn in SVG, the three lines are editable copy) -->
-          <div class="seal">
-            <svg class="seal-art" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="ox-seal-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#dbe8f5"/><stop offset=".58" stop-color="#a7c4e1"/><stop offset=".78" stop-color="#edf4fb"/><stop offset="1" stop-color="#8db1d6"/></linearGradient>
-                <radialGradient id="ox-seal-face" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#eaf3fc"/><stop offset="1" stop-color="#c3dbf1"/></radialGradient>
-                <linearGradient id="ox-seal-tail" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6ecff"/><stop offset="1" stop-color="#5f97cf"/></linearGradient>
-              </defs>
-              <path class="seal-tail" d="M66 128L40 190L58 183L66 199L92 140Z" fill="url(#ox-seal-tail)"/>
-              <path class="seal-tail" d="M134 128L160 190L142 183L134 199L108 140Z" fill="url(#ox-seal-tail)"/>
-              <path class="seal-rim" d="M100.00 14.00A10.01 10.01 0 0 1 119.14 16.16A10.01 10.01 0 0 1 137.31 22.52A10.01 10.01 0 0 1 153.62 32.76A10.01 10.01 0 0 1 167.24 46.38A10.01 10.01 0 0 1 177.48 62.69A10.01 10.01 0 0 1 183.84 80.86A10.01 10.01 0 0 1 186.00 100.00A10.01 10.01 0 0 1 183.84 119.14A10.01 10.01 0 0 1 177.48 137.31A10.01 10.01 0 0 1 167.24 153.62A10.01 10.01 0 0 1 153.62 167.24A10.01 10.01 0 0 1 137.31 177.48A10.01 10.01 0 0 1 119.14 183.84A10.01 10.01 0 0 1 100.00 186.00A10.01 10.01 0 0 1 80.86 183.84A10.01 10.01 0 0 1 62.69 177.48A10.01 10.01 0 0 1 46.38 167.24A10.01 10.01 0 0 1 32.76 153.62A10.01 10.01 0 0 1 22.52 137.31A10.01 10.01 0 0 1 16.16 119.14A10.01 10.01 0 0 1 14.00 100.00A10.01 10.01 0 0 1 16.16 80.86A10.01 10.01 0 0 1 22.52 62.69A10.01 10.01 0 0 1 32.76 46.38A10.01 10.01 0 0 1 46.38 32.76A10.01 10.01 0 0 1 62.69 22.52A10.01 10.01 0 0 1 80.86 16.16A10.01 10.01 0 0 1 100.00 14.00Z" fill="url(#ox-seal-rim)" stroke="#ffffff" stroke-opacity=".8" stroke-width="1.2"/>
-              <circle cx="100" cy="100" r="71" fill="url(#ox-seal-face)" stroke="#86a9cc" stroke-width="2.4"/>
-              <circle cx="100" cy="100" r="64" fill="none" stroke="#7e9ec2" stroke-width="1.2" stroke-dasharray="2.4 3.4" opacity=".85"/>
-              <path class="seal-spark" d="M164 14c1.3 9.5 4.2 12.4 13.7 13.7c-9.5 1.3-12.4 4.2-13.7 13.7c-1.3-9.5-4.2-12.4-13.7-13.7c9.5-1.3 12.4-4.2 13.7-13.7z" fill="#ffffff"/>
-            </svg>
-            <p class="seal-tx"><span class="sl s1" data-copy="ox_seal1"></span><span class="sl s2" data-copy="ox_seal2"></span><span class="sl s3" data-copy="ox_seal3" data-optional data-placeholder="셋째 줄"></span></p>
-          </div>
+          
 
           <section class="grp">
             <div class="grp-head"><i class="mw gicon" aria-hidden="true"><img class="miri" src="assets/miri/icon_rf.webp" alt=""></i><h3 class="grp-title" data-copy="ox_g1_title" data-type-src="assets/miri/type_g1_ko2.webp" data-type-text="골라 받는 싱글 에너지, RF 또는 HIFU" data-type-locales="KO"></h3></div>
@@ -123,7 +129,60 @@
           </section>
         </div>
 
-        <footer class="p2-foot">
+        <p class="uibeop" data-copy="ox_uibeop"></p><footer class="p2-foot">
+          <span class="contact-line"><i class="mw cicon" aria-hidden="true"><img class="miri" src="assets/miri/icon_phone.webp" alt=""></i><span class="contact" data-copy="ox_contact"></span></span>
+          <span class="vat" data-copy="ox_vat"></span>
+        </footer>
+      </div>
+    </section>
+
+    <!-- 2 · B (B variant): three group columns of frosted cards on the night background, the same 12 rows in the same order (group 1 left, group 2 middle,
+         group 3 right, rows top to bottom); the device and the title with the official logo on top; small 의료법상 line, contact and VAT at the bottom.
+         Same copy keys as the A price list (7 languages). -->
+    <section class="p2b" data-card="2" data-variant="b" aria-labelledby="ox-t2b">
+      <span class="mw b2-light" aria-hidden="true"><img class="miri" src="assets/miri/ice_light.webp" alt=""></span>
+      <div class="b2-in">
+        <header class="top2">
+          <img class="wordmark" src="assets/logo-wordmark-eef6ff.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+          <span class="period" data-copy="ox_period" data-optional data-placeholder="이벤트 기간"></span>
+        </header>
+        <div class="b2-head">
+          <img class="b2-device" src="assets/device.webp?v=b" data-alt="ox_alt_device" alt="" width="625" height="1555">
+          <h2 class="b2-title" id="ox-t2b">
+            <span class="t-pre" data-copy="ox_title_pre"></span>
+            <span class="t-wrap"><span class="t-main" data-copy="ox_title_main"></span><img class="t-logo" src="assets/oligio-xm-logo-white.png?v=b" data-logo-text="oligio xm" alt="oligio xm" width="414" height="97"></span>
+          </h2>
+        </div>
+        <div class="b2-groups">
+          <div class="b2-grp">
+            <p class="b2-gh"><i class="mw b2-gi" aria-hidden="true"><img class="miri" src="assets/miri/icon_rf.webp" alt=""></i><span data-copy="ox_g1_title"></span></p>
+            <ul class="b2-rows">
+              <li class="b2-r"><p class="b2-n"><span data-copy="ox_r1_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r1_old"></span><span class="price money" data-copy="ox_r1_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span class="b2-badge" data-copy="ox_r2_badge" data-optional data-placeholder="배지"></span><span data-copy="ox_r2_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r2_old"></span><span class="price money" data-copy="ox_r2_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span data-copy="ox_r3_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r3_old"></span><span class="price money" data-copy="ox_r3_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span data-copy="ox_r4_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r4_old"></span><span class="price money" data-copy="ox_r4_price"></span></p></li>
+            </ul>
+          </div>
+          <div class="b2-grp">
+            <p class="b2-gh"><i class="mw b2-gi" aria-hidden="true"><img class="miri" src="assets/miri/icon_dual.webp" alt=""></i><span data-copy="ox_g2_title"></span></p>
+            <ul class="b2-rows">
+              <li class="b2-r"><p class="b2-n"><span data-copy="ox_r5_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r5_old"></span><span class="price money" data-copy="ox_r5_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span class="b2-badge best" data-copy="ox_r6_badge" data-optional data-placeholder="배지"></span><span data-copy="ox_r6_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r6_old"></span><span class="price money" data-copy="ox_r6_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span data-copy="ox_r7_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r7_old"></span><span class="price money" data-copy="ox_r7_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span class="b2-badge" data-copy="ox_r8_badge" data-optional data-placeholder="배지"></span><span data-copy="ox_r8_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r8_old"></span><span class="price money" data-copy="ox_r8_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span data-copy="ox_r9_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r9_old"></span><span class="price money" data-copy="ox_r9_price"></span></p></li>
+            </ul>
+          </div>
+          <div class="b2-grp">
+            <p class="b2-gh"><i class="mw b2-gi" aria-hidden="true"><img class="miri" src="assets/miri/icon_eye.webp" alt=""></i><span data-copy="ox_g3_title"></span></p>
+            <ul class="b2-rows">
+              <li class="b2-r"><p class="b2-n"><span class="pre" data-copy="ox_eye_prefix"></span><span data-copy="ox_r10_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r10_old"></span><span class="price money" data-copy="ox_r10_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span class="pre" data-copy="ox_eye_prefix"></span><span data-copy="ox_r11_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r11_old"></span><span class="price money" data-copy="ox_r11_price"></span></p></li>
+              <li class="b2-r"><p class="b2-n"><span class="pre" data-copy="ox_eye_prefix"></span><span data-copy="ox_r12_name"></span></p><p class="b2-p"><span class="old money" data-copy="ox_r12_old"></span><span class="price money" data-copy="ox_r12_price"></span></p></li>
+            </ul>
+          </div>
+        </div>
+        <p class="uibeop" data-copy="ox_uibeop"></p><footer class="p2-foot">
           <span class="contact-line"><i class="mw cicon" aria-hidden="true"><img class="miri" src="assets/miri/icon_phone.webp" alt=""></i><span class="contact" data-copy="ox_contact"></span></span>
           <span class="vat" data-copy="ox_vat"></span>
         </footer>
@@ -135,7 +194,7 @@
          ice-night palette), the arrow is the text '›'. No row labels, no effect wording; the note says the photos are AI-generated. -->
     <section class="pba bb-ba" data-card="3" aria-labelledby="ox-tba">
       <div class="bb-ba__inner">
-        <header class="top2"><span class="brand" data-copy="ox_brand"></span></header>
+        <header class="top2"><img class="wordmark" src="assets/logo-wordmark-eef6ff.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <p class="bb-ba__eyebrow" data-copy="ox_ba_kicker"></p>
         <h2 class="bb-ba__title" id="ox-tba" data-copy="ox_ba_title"></h2>
         <div class="bb-ba__rows">
@@ -163,7 +222,7 @@
       <div class="snow" aria-hidden="true"></div>
       <span class="mw m-light3" data-kind="light" aria-hidden="true"><img class="miri" src="assets/miri/ice_light.webp" alt=""></span>
       <div class="cx-in">
-        <header class="top2"><span class="brand" data-copy="ox_brand"></span></header>
+        <header class="top2"><img class="wordmark" src="assets/logo-wordmark-eef6ff.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="cx-head">
           <p class="kicker" data-copy="ox_c3_kicker" data-type-src="assets/miri/type_what_is.webp" data-type-text="WHAT IS OLIGIO XM" data-type-locales="*"></p>
           <h2 class="cx-q" id="ox-t3" data-copy="ox_c3_q"></h2>
@@ -201,7 +260,7 @@
       <i class="mw flake fl6" aria-hidden="true"><img class="miri" src="assets/miri/snowflake_crystal.webp" alt=""></i>
       <span class="mw m-light3" data-kind="light" aria-hidden="true"><img class="miri" src="assets/miri/ice_light.webp" alt=""></span>
       <div class="cx-in">
-        <header class="top2"><span class="brand" data-copy="ox_brand"></span></header>
+        <header class="top2"><img class="wordmark" src="assets/logo-wordmark-eef6ff.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="cx-head">
           <p class="kicker" data-copy="ox_c4_kicker" data-type-src="assets/miri/type_how_it_works.webp" data-type-text="HOW IT WORKS" data-type-locales="*"></p>
           <h2 class="cx-q" id="ox-t4" data-copy="ox_c4_q"></h2>
@@ -237,7 +296,7 @@
     <section class="cardx p5" data-card="6" aria-labelledby="ox-t5">
       <div class="snow" aria-hidden="true"></div>
       <div class="cx-in">
-        <header class="top2"><span class="brand" data-copy="ox_brand"></span></header>
+        <header class="top2"><img class="wordmark" src="assets/logo-wordmark-eef6ff.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="bento">
           <!-- A: about, director, three clinic photos, four strengths -->
           <div class="bt bt-about">
@@ -306,7 +365,7 @@
                 <p class="bk-phone"><svg class="ph-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5l3 3.1-1.8 2.6a13.5 13.5 0 0 0 7 7l2.6-1.8 3.1 3-1.7 3.1c-.4.7-1.2 1-2 .9C10 20.7 3.3 14 2.6 7.2c-.1-.8.2-1.6.9-2z" fill="currentColor"/></svg><a data-link="phone"><span data-copy="ox_ab_phone"></span></a></p>
               </div>
             </div>
-            <span class="bk-mark" data-copy="ox_brand"></span>
+            <img class="wordmark" src="assets/logo-wordmark-5a6f90.png" alt="BEAUTY BLOSSOM" width="975" height="111">
           </div>
         </div>
       </div>

@@ -41,12 +41,7 @@ function setTitle(el,v){
 }
 /* price names: a package line breaks before ' + ' (second device on its own line); a single line marks the shot count */
 function setName(el,v){
- el.textContent='';v=v||'';
- const c=/^(.*\S)(\s+)(\+\s*\S.*)$/.exec(v);
- if(c){el.append(span('n1',c[1]),document.createTextNode(c[2]),span('n2',c[3]));return;}
- const s=/^(.*\S)(\s+)(\d[\d,]*샷)$/.exec(v);
- if(s){el.append(span('np',s[1]),document.createTextNode(s[2]),span('ns',s[3]));return;}
- el.textContent=v;
+ el.textContent='';v=v||'';const parts=v.split(/(\d[\d,]*샷)/g);for(const p of parts){if(/^\d[\d,]*샷$/.test(p))el.append(span('ns',p));else el.append(document.createTextNode(p));}
 }
 /* card 5 hours: the day label and the time are styled apart */
 function setHours(el,v){
