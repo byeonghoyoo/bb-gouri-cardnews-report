@@ -566,3 +566,40 @@ a[data-link="phone"]{white-space:nowrap}
 
 /* Official white-background model: only the text over A hero photo changes colour. */
 .c1:not([data-variant]) .hero-lead .kicker-latin,.c1:not([data-variant]) .hero-lead .hk1{color:#730a16}.c1:not([data-variant]) .hero-lead .hk2{color:#6a040f}
+
+/* ===== 2026-11-05 card 2 team comments: #5 device on the left, #4 the official model's face (assets/model-c2.jpg, cover) on the right of the head row,
+   #7 BEST badge on the 세르프 600 row instead of per-row gift icons, #8 the D34 gift band at the bottom of the card, #3 the '샷' chip removed.
+   A = .c2n, B = .c2bn (B keeps its 3-column tiles; its face photo is a circle). Card 3 keeps its own gift marks and band. ===== */
+.badge{display:inline-flex;align-items:center;justify-content:center;margin-left:.55em;padding:.26em .66em;border-radius:999px;background:var(--wine);color:var(--cream);
+  font-family:var(--f-label);font-weight:700;font-size:max(11px,calc(16*var(--px)));line-height:1.1;letter-spacing:.08em;white-space:nowrap;vertical-align:.32em}
+.c2-face{position:relative;z-index:2;margin:0;overflow:hidden;background:var(--cream)}
+.c2-face img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.c2n .cp-head{grid-template-columns:calc(160*var(--px)) minmax(0,1fr) calc(258*var(--px));column-gap:calc(22*var(--px));align-items:center}
+.c2n .ds-2{width:calc(160*var(--px));height:calc(330*var(--px))}
+.c2n .c2-face{width:calc(258*var(--px));height:calc(322*var(--px));border-radius:calc(22*var(--px));border:calc(3*var(--px)) solid var(--stal);box-shadow:0 calc(18*var(--px)) calc(36*var(--px)) rgba(10,0,2,.5)}
+.c2n .d2{left:calc(-236*var(--px));top:calc(-40*var(--px))}
+.c2n .g3{left:calc(150*var(--px));top:calc(150*var(--px))}
+.c2n .g4{left:calc(560*var(--px));top:calc(96*var(--px))}
+.c2n .p-unit{margin-top:calc(12*var(--px))}
+.c2n .pboard{margin-top:calc(22*var(--px))}
+.c2n .c2-gift{margin:auto 0 0;justify-content:center;padding:calc(12*var(--px)) calc(24*var(--px));border-radius:calc(18*var(--px));font-size:max(12px,calc(22*var(--px)))}
+.c2n .c2-foot{min-height:0;margin-top:calc(14*var(--px));align-items:baseline}
+.c2.c2bn[data-variant="b"] .cp-head{grid-template-columns:calc(150*var(--px)) minmax(0,1fr) calc(220*var(--px));column-gap:calc(22*var(--px));align-items:center;min-height:0}
+.c2.c2bn[data-variant="b"] .cp-htx{max-width:none}
+.c2.c2bn[data-variant="b"] .ds-2{width:calc(150*var(--px));height:calc(260*var(--px));right:auto;top:auto}
+.c2.c2bn[data-variant="b"] .d2{width:calc(330*var(--px));height:auto;left:calc(-110*var(--px));right:auto;top:calc(60*var(--px))}
+.c2.c2bn[data-variant="b"] .g3{left:calc(150*var(--px));top:calc(120*var(--px))}
+.c2-face--round{width:calc(220*var(--px));height:calc(220*var(--px));border-radius:50%;border:calc(4*var(--px)) solid var(--stal);box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) rgba(10,0,2,.5)}
+.c2.c2bn[data-variant="b"] .badge{position:absolute;right:calc(14*var(--px));top:calc(14*var(--px));margin:0}
+.c2.c2bn[data-variant="b"] .c2-gift{margin:auto 0 0;justify-content:center;padding:calc(12*var(--px)) calc(22*var(--px));border-radius:calc(18*var(--px));font-size:max(12px,calc(20*var(--px)))}
+.c2.c2bn[data-variant="b"] .c2-foot{min-height:0;margin-top:calc(14*var(--px))}
+@media(max-width:600px){
+  .c2n .c2-gift,.c2.c2bn[data-variant="b"] .c2-gift{margin-top:14px;padding:8px 12px;font-size:12px;border-radius:12px}
+  .c2n .c2-foot,.c2.c2bn[data-variant="b"] .c2-foot{margin-top:10px}
+}
+/* measured centring (qa/text-center-check.cjs, 1080 and 780) for the card-2 badge and gift band */
+.c2n .c2-gift [data-copy]{position:relative;top:.027em}
+@media(min-width:601px) and (max-width:900px){
+  .c2n .badge,.c2.c2bn[data-variant="b"] .badge{padding-top:calc(.26em + .144em);padding-bottom:calc(.26em - .144em)}
+  .c2.c2bn[data-variant="b"] .c2-gift [data-copy]{position:relative;top:-.04em}
+}

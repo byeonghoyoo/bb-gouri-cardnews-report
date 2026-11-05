@@ -460,52 +460,129 @@ a[data-link="phone"]{white-space:nowrap}
 [data-card="1"] span.hp-tag[data-copy="sw_hero_tag"]{padding-top:0.23150em!important;padding-bottom:0.10850em!important;}
 [data-card="2"] span.ptag[data-copy="sw_r45_tag"]{padding-top:0.19911em!important;padding-bottom:0.12089em!important;}
 [data-card="2"] span.ptag[data-copy="sw_r46_tag"]{padding-top:0.19172em!important;padding-bottom:0.12828em!important;}
-[data-card="3"] span.plus[data-copy="sw_pair_plus"]{padding-top:0.03082em!important;padding-bottom:0.02918em!important;}
-[data-card="3"] span.badge[data-copy="sw_r19_badge"]{padding-top:0.19400em!important;padding-bottom:0.12600em!important;}
-[data-card="3"] span.pchip[data-copy="sw_r19_detail"]{padding-top:0.20650em!important;padding-bottom:0.11350em!important;}
-[data-card="3"] span.badge[data-copy="sw_r20_badge"]{padding-top:0.20000em!important;padding-bottom:0.12000em!important;}
-[data-card="3"] span.pchip[data-copy="sw_r20_detail"]{padding-top:0.20650em!important;padding-bottom:0.11350em!important;}
-[data-card="3"] span.bkl-pill[data-copy="sw_bk_label"]{padding-top:0.25800em!important;padding-bottom:0.18200em!important;}
-[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.11780em!important;}
-[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.11780em!important;}
-[data-card="5"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.26965em!important;padding-bottom:0.21035em!important;}
-[data-card="5"] span.ll.l-cool > span{position:relative;top:0.04178em;}
-[data-card="5"] span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:0.15333em!important;padding-bottom:0.08667em!important;}
-[data-card="5"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:0.14844em!important;padding-bottom:0.09156em!important;}
-[data-card="7"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:0.23886em!important;padding-bottom:0.16114em!important;}
+[data-card="2"] span.plus[data-copy="sw_pair_plus"]{padding-top:0.03082em!important;padding-bottom:0.02918em!important;}
+[data-card="2"] span.badge[data-copy="sw_r19_badge"]{padding-top:0.19400em!important;padding-bottom:0.12600em!important;}
+[data-card="2"] span.pchip[data-copy="sw_r19_detail"]{padding-top:0.20650em!important;padding-bottom:0.11350em!important;}
+[data-card="2"] span.badge[data-copy="sw_r20_badge"]{padding-top:0.20000em!important;padding-bottom:0.12000em!important;}
+[data-card="2"] span.pchip[data-copy="sw_r20_detail"]{padding-top:0.20650em!important;padding-bottom:0.11350em!important;}
+[data-card="2"] span.bkl-pill[data-copy="sw_bk_label"]{padding-top:0.25800em!important;padding-bottom:0.18200em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.11780em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.11780em!important;}
+[data-card="4"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.26965em!important;padding-bottom:0.21035em!important;}
+[data-card="4"] span.ll.l-cool > span{position:relative;top:0.04178em;}
+[data-card="4"] span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:0.15333em!important;padding-bottom:0.08667em!important;}
+[data-card="4"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:0.14844em!important;padding-bottom:0.09156em!important;}
+[data-card="6"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:0.23886em!important;padding-bottom:0.16114em!important;}
 }
 
 /* Pixel measured component centering 1080 pass 1 */
 @media (min-width:601px){
-[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.13560em!important;}
-[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.13560em!important;}
-[data-card="5"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.29930em!important;padding-bottom:0.18070em!important;}
-[data-card="5"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:0.17688em!important;padding-bottom:0.06312em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.13560em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.13560em!important;}
+[data-card="4"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.29930em!important;padding-bottom:0.18070em!important;}
+[data-card="4"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:0.17688em!important;padding-bottom:0.06312em!important;}
 }
 
 /* Pixel measured component centering 1080 pass 2 */
 @media (min-width:601px){
-[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.15340em!important;}
-[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.15340em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.15340em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:-0.01780em!important;padding-bottom:0.15340em!important;}
 }
 
 /* Pixel measured component centering 780 pass 0 */
 @media (min-width:601px) and (max-width:999px){
 [data-card="2"] span.ptag[data-copy="sw_r46_tag"]{padding-top:0.24886em!important;padding-bottom:0.07114em!important;}
 [data-card="2"] span.unit-k[data-copy="sw_p_unit_k"]{padding-top:0.27223em!important;padding-bottom:0.20776em!important;}
-[data-card="3"] span[data-copy="sw_g17_sub"]{padding-top:0.31091em!important;padding-bottom:0.20909em!important;}
-[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:0.02040em!important;padding-bottom:0.13300em!important;}
-[data-card="5"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.24942em!important;padding-bottom:0.23058em!important;}
+[data-card="2"] span[data-copy="sw_g17_sub"]{padding-top:0.31091em!important;padding-bottom:0.20909em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:0.02040em!important;padding-bottom:0.13300em!important;}
+[data-card="4"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.24942em!important;padding-bottom:0.23058em!important;}
 }
 
-[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:0!important;padding-bottom:.15em!important;}
+[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-top:0!important;padding-bottom:.15em!important;}
 
-@media(min-width:601px) and (max-width:999px){[data-card="4"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-bottom:.12em!important;}}
+@media(min-width:601px) and (max-width:999px){[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-bottom:.12em!important;}}
+
+/* ---------- 2026-11-05 team comments SOF12 #5 / #4 / #2: card 2 now holds both price tables (rows 42-46, then the 18-21 group in its own tinted box).
+   Head = the device on the left, title in the middle, a model photo slot on the right (no wave-photo card); rows are tighter; '의료법상' once in the foot.
+   Source v4/sofwave12/a-card2.css, applied by v4/sofwave12/qa/bvariant/apply-a2.cjs. A rules only (the B card is .c2v and never matches .c2). ---------- */
+.c2-head{grid-template-columns:calc(176*var(--px)) minmax(0,1fr) calc(190*var(--px));align-items:center;margin-top:calc(4*var(--px))}
+.c2-devbox{grid-column:1;justify-self:center;margin:0;width:calc(104*var(--px));height:calc(210*var(--px))}
+.c2-dev{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 calc(14*var(--px)) calc(18*var(--px)) rgba(15,56,56,.28))}
+.c2-head .cp-htx{grid-column:2}
+.c2-model{grid-column:3;justify-self:end;margin:0;width:calc(172*var(--px));aspect-ratio:4/5;overflow:hidden;border-radius:calc(24*var(--px));border:calc(4*var(--px)) solid var(--glass-line);
+  background:var(--cream);box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) rgba(90,11,47,.16)}
+/* model slot (temporary crop of the A hero; the lead replaces it with a new Higgsfield cut in the same path and ratio) */
+.c2-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.c2 .kick-s{font-size:calc(54*var(--px)*var(--fit,1))}
+.c2 .pt-main{font-size:calc(98*var(--px)*var(--fit,1))}
+.c2 .p-lead{margin-top:calc(4*var(--px));font-size:max(13px,calc(22*var(--px)))}
+.c2 .pboard{margin-top:calc(10*var(--px));padding:0 calc(30*var(--px)) calc(8*var(--px))}
+.c2 .prow{padding:calc(5*var(--px)) 0 calc(10*var(--px))}
+.c2 .pname{font-size:calc(26*var(--px)*var(--fit,1));line-height:1.22}
+.c2 .pcare{margin-top:calc(2*var(--px));font-size:max(11px,calc(16*var(--px)));line-height:1.35}
+.c2 .pdet{margin-top:calc(1*var(--px));font-size:max(11px,calc(16*var(--px)));line-height:1.35}
+.c2 .plist{font-size:max(12px,calc(22*var(--px)))}
+.c2 .psale{font-size:max(17px,calc(46*var(--px)))}
+.c2 .c2-foot{padding-top:calc(12*var(--px))}
+.c2-legal{text-align:right}
+.c2-legal .uibeop{margin-top:0}
+.c2-legal .vat{margin-top:calc(4*var(--px))}
+.c2 .unit-d{font-size:max(12px,calc(18*var(--px)));line-height:1.4}
+/* the 프라임소프쎄라 group (sheet B17:K21) in its own box, like the second group of OND12 */
+.pgroup2{margin:calc(4*var(--px)) calc(-14*var(--px)) 0;padding:calc(8*var(--px)) calc(16*var(--px)) 0;border-radius:calc(24*var(--px));
+  background:rgba(209,232,111,.16);border:calc(1.5*var(--px)) solid rgba(181,23,94,.2)}
+.pg2-head{display:flex;align-items:center;justify-content:space-between;gap:calc(16*var(--px));padding-bottom:calc(4*var(--px));border-bottom:calc(1.5*var(--px)) solid rgba(181,23,94,.16)}
+.pg2-tx{min-width:0;display:flex;align-items:center;flex-wrap:wrap;gap:calc(6*var(--px)) calc(14*var(--px))}
+.pg2-name{font-weight:900;font-size:max(17px,calc(34*var(--px)));line-height:1.15;letter-spacing:-.04em;color:var(--berry);white-space:nowrap}
+.pgroup2 .p-sub{margin-top:0}
+.pgroup2 .p-sub > span{font-size:max(11px,calc(18*var(--px)))}
+.pg2-head .pair{flex:none;height:auto;margin:0;gap:calc(8*var(--px))}
+.pg2-head .pdev{width:calc(28*var(--px));height:calc(56*var(--px))}
+.pg2-head .plus{width:calc(28*var(--px));height:calc(28*var(--px));border-width:calc(2*var(--px));font-size:max(12px,calc(19*var(--px)))}
+/* combo rows: the badge + chip of rows 19 / 20 sit beside the two-line name instead of under it */
+.pgroup2 .pn{display:flex;align-items:flex-start;column-gap:calc(14*var(--px))}
+.pgroup2 .pmeta{margin-top:calc(4*var(--px));flex-wrap:nowrap}
+.c2 .pnm .l2{margin-top:0;line-height:1.2}
+.pgroup2 .prow{padding:calc(5*var(--px)) 0 calc(9*var(--px))}
+/* phones: the merged card 2 keeps the phone sizes of the old cards 2 and 3 (device, title and photo side by side, small) */
+@container (max-width:600px){
+  .c2-head{grid-template-columns:56px minmax(0,1fr) 80px;column-gap:8px;margin-top:8px}
+  .c2-devbox{width:44px;height:89px}
+  .c2-model{width:80px;border-width:2px;border-radius:12px}
+  .c2 .kick-s{font-size:max(22px,calc(62*var(--px)*var(--fit,1)))}
+  .c2 .pt-main{font-size:34px}
+  .c2 .p-lead{font-size:13px}
+  .c2 .pboard{margin-top:14px;padding:4px 12px}
+  .c2 .prow{padding:11px 0 10px}
+  .c2 .pname{font-size:15px;line-height:1.3}
+  .c2 .pcare,.c2 .pdet{font-size:12px}
+  .c2 .plist{font-size:14px}
+  .c2 .psale{font-size:26px}
+  .c2 .unit-d{font-size:12px;line-height:1.5}
+  .pgroup2{margin:8px -6px 0;padding:8px 8px 0;border-radius:14px;border-width:1px}
+  .pg2-head{gap:8px;padding-bottom:6px}
+  .pg2-tx{gap:6px}
+  .pg2-name{font-size:18px}
+  .pg2-head .pair{gap:6px}
+  .pg2-head .pdev{width:24px;height:48px}
+  .pg2-head .plus{width:20px;height:20px;font-size:12px;border-width:2px}
+  .pgroup2 .pn{display:block}
+  .pgroup2 .pmeta{margin-top:6px;flex-wrap:wrap}
+  .pgroup2 .prow{padding:10px 0 9px}
+}
+/* chip text centring for the merged card 2 A (qa/text-center-check.cjs, 1080): the group pill and the row 19 / 20 chips moved into card 2 at new
+   positions and sizes, so their measured padding is set again here (A only; later and as specific as the fixpass rules, which they replace at 1080) */
+@media (min-width:1000px){
+  .c2 span[data-copy="sw_g17_sub"]{padding-top:.2867em!important;padding-bottom:.2333em!important}
+  .c2 span.badge[data-copy="sw_r19_badge"]{padding-top:.234em!important;padding-bottom:.086em!important}
+  .c2 span.pchip[data-copy="sw_r19_detail"]{padding-top:.2621em!important;padding-bottom:.0579em!important}
+  .c2 span.pchip[data-copy="sw_r20_detail"]{padding-top:.2446em!important;padding-bottom:.0754em!important}
+}
 
 /* ==================== 2026-11-05 B variants (data-variant="b") · source v4/sofwave12/b-variant.css, applied by v4/sofwave12/qa/bvariant/apply-css.cjs ====================
    A rules above stay untouched; every rule here is scoped to .c1v / .c2v (the B sections) or uses B-only class names, so the A cards render as before.
    Same palette (H: berry, lime, aqua, cream), type (Pretendard 900, Montserrat, Pinyon Script), F devices (frosted glass, real device cut-out) and copy
-   keys as A. Team comment SOF12 #1 (2026-11-05): no wave-photo cards in B, the device larger. */
+   keys as A. Team comment SOF12 #1 (2026-11-05): no wave-photo cards in B, the device larger. Team comment #5: B card 2 holds both price tables. */
 
 /* ---------- 1 B : device-led poster. Title top left, the real Sofwave cut-out large on the left, the model in a white-framed card on the right, glass price card bottom left ---------- */
 .c1v{background:var(--cream) url("assets/bg/pearl-m.jpg") center/cover no-repeat}
@@ -532,30 +609,42 @@ a[data-link="phone"]{white-space:nowrap}
   box-shadow:0 calc(16*var(--px)) calc(40*var(--px)) rgba(90,11,47,.14);-webkit-backdrop-filter:blur(calc(12*var(--px))) saturate(1.1);backdrop-filter:blur(calc(12*var(--px))) saturate(1.1)}
 .vb-price .hp-num{font-size:calc(92*var(--px))}
 
-/* ---------- 2 B : pulse tiles. Same five rows in sheet order as glass tiles (three across), each led by its big pulse figure; the sixth cell = the device, large ---------- */
+/* ---------- 2 B : two menus side by side (team comment #5: both tables in one card). Left = table B41:K46 (rows 42-46) as a pulse ladder of glass
+   tickets under its own big title; right = the 프라임소프쎄라 group B17:K21 (rows 18-21) under its title with the two real device cut-outs. No wave card. ---------- */
 .c2v{background-image:url("assets/bg/pearl-m.jpg")}
 .vb-top2{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;min-height:calc(30*var(--px))}
 .vb-period{display:inline-block;padding:.3em .95em .32em;border-radius:999px;background:var(--lime);color:var(--berry-d);font-family:var(--f-lat);font-size:max(11px,calc(18*var(--px)));font-weight:800;line-height:1.3;white-space:nowrap}
-.vt-head{margin-top:calc(18*var(--px));display:grid;grid-template-columns:auto minmax(0,1fr);align-items:end;column-gap:calc(30*var(--px))}
-.c2v .cp-htx{grid-column:1;align-items:flex-start;text-align:left}
+.vt-head{margin-top:calc(14*var(--px));display:flex;align-items:center;justify-content:space-between;gap:calc(24*var(--px))}
 .c2v .kick{justify-content:flex-start}
-.c2v .pt-main{font-size:calc(104*var(--px)*var(--fit,1))}
-.vt-lead{margin:0 0 calc(18*var(--px));text-align:right;font-size:max(12px,calc(23*var(--px)))}
-.vtiles{flex:1 1 auto;min-height:0;list-style:none;margin:calc(18*var(--px)) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:calc(18*var(--px))}
-.vtile{position:relative;min-width:0;display:flex;flex-direction:column;padding:calc(22*var(--px)) calc(24*var(--px)) calc(22*var(--px));border-radius:calc(30*var(--px));background:var(--glass-hi);
-  border:calc(2*var(--px)) solid var(--glass-line);box-shadow:0 calc(16*var(--px)) calc(40*var(--px)) rgba(90,11,47,.12);-webkit-backdrop-filter:blur(calc(12*var(--px))) saturate(1.1);backdrop-filter:blur(calc(12*var(--px))) saturate(1.1)}
-.tname{font-size:calc(29*var(--px));font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--berry-d)}
-.tname .pb{display:block;font-size:.62em;font-weight:700;letter-spacing:.02em;color:var(--aqua-d)}
-.tname .pv{display:block;white-space:nowrap;margin-top:calc(8*var(--px));font-family:var(--f-lat);font-size:2.25em;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--berry)}
-.vtile .ptag{position:absolute;right:calc(20*var(--px));top:calc(22*var(--px));margin:0;vertical-align:0}
-.vtile .pcare{margin-top:calc(18*var(--px));font-size:max(11px,calc(19*var(--px)))}
-.vtile .pdet{margin-top:calc(8*var(--px));font-size:max(11px,calc(19*var(--px)))}
-.vt-pr{margin-top:auto;padding-top:calc(14*var(--px));display:flex;justify-content:space-between;align-items:baseline;gap:calc(10*var(--px));border-top:calc(1.5*var(--px)) solid rgba(181,23,94,.16)}
-.vt-pr .plist{font-size:max(12px,calc(25*var(--px)))}
-.vt-pr .psale{font-size:max(17px,calc(66*var(--px)))}
-.vt-art{position:relative;min-width:0;display:flex;align-items:flex-end;justify-content:center}
-.vt-dev{position:relative;z-index:2;display:block;width:calc(214*var(--px));height:calc(430*var(--px));object-fit:contain;filter:drop-shadow(0 calc(16*var(--px)) calc(20*var(--px)) rgba(15,56,56,.28))}
-.vt-foot{margin-top:auto;padding-top:calc(16*var(--px));display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:calc(26*var(--px));align-items:end}
+.vt-kick{flex:none}
+.vt-lead{margin:0;min-width:0;text-align:right;font-size:max(12px,calc(23*var(--px)))}
+.vmenus{flex:1 1 auto;min-height:0;margin-top:calc(12*var(--px));display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:calc(24*var(--px))}
+.vmenu{min-width:0;display:flex;flex-direction:column}
+.vm-head{min-height:calc(112*var(--px));display:flex;align-items:center;justify-content:space-between;gap:calc(14*var(--px));padding-bottom:calc(8*var(--px));border-bottom:calc(3*var(--px)) solid var(--berry)}
+.vm1 .cp-htx{grid-column:auto;flex:1 1 auto;align-items:flex-start;text-align:left}
+.vm1 .pt-main{font-size:calc(82*var(--px)*var(--fit,1))}
+.vm-pd img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 calc(12*var(--px)) calc(14*var(--px)) rgba(15,56,56,.28))}
+.vm-tx{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:calc(8*var(--px))}
+.vm-name{font-weight:900;font-size:calc(58*var(--px));line-height:1.04;letter-spacing:-.055em;white-space:nowrap;color:var(--berry);text-shadow:0 0 calc(24*var(--px)) rgba(255,255,250,.8)}
+.vm-sub > span{display:inline-block;padding:.24em .9em .28em;border-radius:999px;background:var(--lime);color:var(--berry-d);font-size:max(11px,calc(18*var(--px)));font-weight:800;line-height:1.3;white-space:nowrap}
+.vm-pair{display:flex;justify-content:center;align-items:flex-end;gap:calc(26*var(--px));margin-top:calc(12*var(--px));height:calc(214*var(--px))}
+.vm-pd{flex:none;margin:0;width:calc(106*var(--px));height:100%}
+.vtk{flex:1 1 auto;list-style:none;margin:calc(12*var(--px)) 0 0;padding:0;display:grid;grid-auto-rows:minmax(min-content,1fr);row-gap:calc(12*var(--px))}
+.tk{min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:calc(12*var(--px));padding:calc(12*var(--px)) calc(18*var(--px)) calc(12*var(--px)) calc(20*var(--px));
+  border-radius:calc(24*var(--px));background:var(--glass-hi);border:calc(2*var(--px)) solid var(--glass-line);box-shadow:0 calc(10*var(--px)) calc(26*var(--px)) rgba(90,11,47,.1)}
+.tk-l{min-width:0}
+.tk-r{display:flex;flex-direction:column;align-items:flex-end;gap:calc(6*var(--px))}
+.tname{font-size:calc(25*var(--px));font-weight:800;line-height:1.2;letter-spacing:-.02em;color:var(--berry-d)}
+.tname .pb{font-size:.74em;font-weight:700}
+.tname .pv{font-family:var(--f-lat);font-weight:800;font-size:1.48em;letter-spacing:-.03em;color:var(--berry)}
+.tname .l2 .pv{color:var(--aqua-d)}
+.tk .ptag{vertical-align:.32em}
+.tk .pcare{margin-top:calc(4*var(--px));font-size:max(11px,calc(16*var(--px)))}
+.tk .pdet{margin-top:calc(3*var(--px));font-size:max(11px,calc(16*var(--px)))}
+.tk .pmeta{margin-top:calc(6*var(--px))}
+.tk .plist{font-size:max(12px,calc(21*var(--px)))}
+.tk .psale{font-size:max(17px,calc(52*var(--px)))}
+.vt-foot{padding-top:calc(16*var(--px));display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:calc(26*var(--px));align-items:end}
 .vt-legal{text-align:right}
 .c2v .uibeop{margin-top:0}
 .c2v .vat{margin-top:calc(4*var(--px))}
@@ -565,7 +654,7 @@ a[data-link="phone"]{white-space:nowrap}
   .card.c2v{aspect-ratio:auto;min-height:calc(1350*var(--px));display:flex;flex-direction:column}
   .c2v .cp-in{position:relative;inset:auto;flex:1 0 auto}
 }
-/* phones: B hero = the poster part keeps its place on top, the price card flows under it; B prices = tiles in one column */
+/* phones: B hero = the poster part keeps its place on top, the price card flows under it; B prices = the two menus one under the other */
 @container (max-width:600px){
   .card.c1v{aspect-ratio:auto;padding:calc(1290*var(--px)) 0 14px}
   .vb-top{left:12px;top:12px}
@@ -581,27 +670,33 @@ a[data-link="phone"]{white-space:nowrap}
   .vb-price .hp-num{font-size:40px}
   .card.c2v{aspect-ratio:auto}
   .c2v .cp-in{position:relative;inset:auto;padding:16px 14px 18px}
-  .vt-head{grid-template-columns:1fr;row-gap:6px}
-  .vt-lead{margin:0;text-align:left;font-size:14px}
-  .c2v .pt-main{font-size:44px}
-  .vtiles{grid-template-columns:1fr;grid-template-rows:none;gap:12px;margin-top:14px}
-  .vtile{padding:14px 14px 12px;border-radius:18px}
+  .vt-head{flex-direction:column;align-items:flex-start;gap:6px;margin-top:10px}
+  .vt-lead{text-align:left;font-size:14px}
+  .vmenus{grid-template-columns:1fr;row-gap:22px;margin-top:12px}
+  .vm-head{min-height:0;padding-bottom:6px;border-bottom-width:2px}
+  .vm1 .pt-main{font-size:40px}
+  .vm-tx{gap:6px}
+  .vm-name{font-size:30px}
+  .vm-pair{height:96px;gap:14px;margin-top:10px}
+  .vm-pd{width:48px}
+  .vtk{grid-auto-rows:auto;row-gap:8px;margin-top:10px}
+  .tk{padding:10px 12px;border-radius:14px;column-gap:10px}
   .tname{font-size:16px}
-  .vtile .ptag{right:12px;top:12px}
-  .vtile .pcare,.vtile .pdet{font-size:12px}
-  .vt-pr .plist{font-size:13px}
-  .vt-pr .psale{font-size:26px}
-  .vt-art{display:none}
+  .tname .pb{font-size:.8em}
+  .tk .pcare,.tk .pdet{font-size:12px}
+  .tk .plist{font-size:13px}
+  .tk .psale{font-size:26px}
   .vt-foot{grid-template-columns:1fr;row-gap:8px}
   .vt-legal{text-align:left}
   .c2v .uibeop,.c2v .vat{text-align:left}
 }
-/* chip text centring for B (qa/text-center-check.cjs): the B period pill at 1080 */
-@media (min-width:1000px){.c2v .vb-period{padding-top:.391em;padding-bottom:.229em}}
+/* chip text centring for B (qa/text-center-check.cjs): the B period pill and the row-19 badge at 1080 */
+@media (min-width:1000px){.c2v .vb-period{padding-top:.391em;padding-bottom:.229em}
+  .c2v span.badge[data-copy="sw_r19_badge"]{padding-top:.2396em!important;padding-bottom:.0804em!important}}
 /* standalone page only (A and B both present, as the checker loads it): at the 780 board width the two stacked B cards (975 + 20.22 px each) move every
-   later card by a fraction of a pixel, which re-snaps the card-7 line chip. The board never shows A and B together (it removes one), so this rule is
+   later card by a fraction of a pixel, which re-snaps the card-6 line chip. The board never shows A and B together (it removes one), so this rule is
    off there and the A fixpass value stays in force. */
 @media (min-width:601px) and (max-width:999px){
-main:has([data-card="1"]:not([data-variant="b"])):has([data-card="1"][data-variant="b"]) [data-card="7"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:.333em!important;padding-bottom:.067em!important}
+main:has([data-card="1"]:not([data-variant="b"])):has([data-card="1"][data-variant="b"]) [data-card="6"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:.333em!important;padding-bottom:.067em!important}
 }
 /* ==================== end B variants ==================== */
