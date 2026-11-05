@@ -187,9 +187,14 @@ main.cf{container-type:inline-size;max-width:1080px;margin:0 auto}
 .pk{display:flex;align-items:center;gap:calc(12*var(--px));margin-top:calc(7*var(--px))}
 .pk > span{flex:none;display:inline-block;padding:.18em .78em .22em;border-radius:999px;background:rgba(92,101,50,.1);border:max(1px,calc(1.5*var(--px))) solid rgba(92,101,50,.55);color:var(--green-d);font-size:max(11px,calc(17*var(--px)));font-weight:700;line-height:1.3;white-space:nowrap}
 .pk::after{content:'';flex:1;height:max(1px,calc(1.5*var(--px)));background:rgba(92,101,50,.28)}
-.c3 .prow{padding:calc(8*var(--px)) 0 calc(8*var(--px))}
-.c3 .pname{font-size:calc(27*var(--px)*var(--fit,1));line-height:1.26}
-.c3 .gift-mark{top:calc(9*var(--px))}
+/* team comment #9 (2026-11-05): the lines of one combo name sit close together (line-height 1.08, the '+' line right under the line above);
+   the rows keep a clear gap and the board keeps its height (rows 8 -> 12px padding, names 27 -> 28px) */
+.c3 .prow{padding:calc(12*var(--px)) 0 calc(12*var(--px))}
+.c3 .pname{font-size:calc(28*var(--px)*var(--fit,1));line-height:1.08}
+.c3 .pnm .l2,.c3 .pnm .l3{margin-top:0}
+.c3 .gift-mark{top:calc(13*var(--px))}
+/* the third group chip sits a fraction of a pixel lower now; its measured centring at 1080 (qa/text-center-check.cjs) */
+@media (min-width:901px){.c3 [data-copy="cf_k3"]{padding-top:.226em;padding-bottom:.174em}}
 .c3 .psale{font-size:max(17px,calc(56*var(--px)))}
 
 /* ---------- 4 / 7 Before & After (BA_SECTION.md component; only the colours follow the new design, via --ba-*) ---------- */

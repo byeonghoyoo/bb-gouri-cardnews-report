@@ -639,3 +639,60 @@ a[data-link="phone"]{white-space:nowrap}
 .pb2 .badge{font-size:max(11px,calc(15.4*var(--px)));padding:calc(.16em + .002em) .6em calc(.14em - .002em)} .pb2 .badge{margin-bottom:.22em} /* measured centring at 1080 and 780 */
 .ob2-period{padding:calc(.28em + .037em) .9em calc(.28em - .037em)}
 .ob2-nm .kjb{font-size:max(11px,.5em)} /* the stub product words stay at least 11px on tablets */
+
+/* ===== 2026-11-05 19:04 team request (comment #9 re-read): FACE (card 2, .cpf) and BODY (card 3, .cpb) on two cards again, larger type than the
+   merged board (the .cpm/.pb2 rules above belonged to the merged board and are unused now). Card 2: device + the card-2 model photo (#6); card 3: a large
+   device (#8) + the card-3 model photo (#7). B card 2 (.ob2-face) holds the FACE rows only, at the larger size. ===== */
+.cpf .cp-head{grid-template-columns:calc(220*var(--px)) minmax(0,1fr) calc(240*var(--px));column-gap:calc(14*var(--px));align-items:center}
+.cpf .dev-fig{height:calc(310*var(--px))}
+.cpf .model-slot{width:calc(240*var(--px));height:calc(310*var(--px))}
+.cpb .cp-head{grid-template-columns:calc(230*var(--px)) minmax(0,1fr) calc(240*var(--px));column-gap:calc(14*var(--px));align-items:center}
+.cpb .dev-fig{height:calc(380*var(--px))}
+.cpb .model-slot{width:calc(240*var(--px));height:calc(320*var(--px))}
+.cpf .pt-main{font-size:calc(128*var(--px))}
+.cpb .pt-main{font-size:calc(112*var(--px))}
+.cpf .p-kj{margin-top:calc(14*var(--px))}
+.cpb .p-area{margin-top:calc(12*var(--px))}
+.cp.cpf .pboard,.cp.cpb .pboard{margin-top:calc(20*var(--px));padding:calc(20*var(--px)) calc(40*var(--px)) calc(8*var(--px))}
+.cp.cpf .prow{padding:calc(20*var(--px)) 0 calc(18*var(--px))}
+.cp.cpf .opt .prow{padding:calc(14*var(--px)) 0 calc(13*var(--px))}
+.cp.cpb .prow{padding:calc(17*var(--px)) 0 calc(15*var(--px))}
+.cp.cpb .opt .prow{padding:calc(11*var(--px)) 0 calc(10*var(--px))}
+.cpf .pname,.cpb .pname{font-size:calc(33*var(--px)*var(--fit,1))}
+.cpf .plist,.cpb .plist{font-size:max(13px,calc(30*var(--px)))}
+.cpf .psale,.cpb .psale{font-size:max(19px,calc(62*var(--px)))}
+.cpf .pg-name,.cpb .pg-name{font-size:max(15px,calc(30*var(--px)))}
+.cpf .uibeop{margin-top:calc(10*var(--px))}
+.cpb .vat{margin-top:calc(12*var(--px))}
+.ob2-face .ob2-title{font-size:calc(120*var(--px))}
+.ob2-face .ob2-sec{margin-top:calc(12*var(--px))}
+.ob2-face .ob2-kj{margin-top:calc(14*var(--px))}
+.ob2-face .ob2-ticket{margin-top:calc(20*var(--px));padding:calc(8*var(--px)) calc(24*var(--px)) calc(12*var(--px))}
+.ob2-face .ob2-row{min-height:calc(114*var(--px))}
+.ob2-face .ob2-nm{flex-direction:column;align-items:flex-start;justify-content:center;font-size:calc(36*var(--px)*var(--fit,1))}
+.ob2-face .ob2-row .plist{font-size:max(13px,calc(26*var(--px)))}
+.ob2-face .ob2-row .psale{font-size:max(19px,calc(62*var(--px)))}
+.ob2-face .ob2-rows.opt .ob2-row{min-height:calc(90*var(--px))}
+.ob2-face .ob2-rows.opt .ob2-nm{font-size:calc(32*var(--px))}
+@container (max-width:600px){
+  .cpf .cp-head,.cpb .cp-head{grid-template-columns:80px minmax(0,1fr) 84px;column-gap:6px}
+  .cpf .dev-fig,.cpb .dev-fig{height:120px}
+  .cpf .model-slot,.cpb .model-slot{width:84px;height:112px}
+  .cpf .pt-main,.cpb .pt-main{font-size:44px}
+  .cp.cpf .pboard,.cp.cpb .pboard{padding:14px 14px 6px}
+  .cp.cpf .prow,.cp.cpb .prow{padding:12px 0 11px}
+  .cp.cpf .opt .prow,.cp.cpb .opt .prow{padding:10px 0}
+  .cpf .pname,.cpb .pname{font-size:16px}
+  .cpf .plist,.cpb .plist{font-size:14px}
+  .cpf .psale,.cpb .psale{font-size:28px}
+  .cpf .pg-name,.cpb .pg-name{font-size:17px}
+  .ob2-face .ob2-title{font-size:48px}
+  .ob2-face .ob2-row{min-height:0}
+  .ob2-face .ob2-nm{font-size:24px}
+  .ob2-face .ob2-row .plist{font-size:14px}
+  .ob2-face .ob2-row .psale{font-size:30px}
+  .ob2-face .ob2-rows.opt .ob2-nm{font-size:21px}
+}
+/* measured centring for the split price cards (qa/text-center-check.cjs, 1080 and 780) */
+.cpf .pg-sub{padding:calc(.16em + .035em) .7em calc(.18em - .035em)}
+.cpb .area-k{padding:calc(.24em + .024em) .72em calc(.26em - .024em)}
