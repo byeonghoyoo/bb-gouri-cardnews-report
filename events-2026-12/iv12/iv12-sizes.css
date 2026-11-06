@@ -1,0 +1,206 @@
+/* generated from v4/iv12/sizes/sizes.css by v4/iv12/sizes/after-build.cjs (run by v4/iv12/build-iv12.cjs); do not edit here */
+/* ===================== IVS12 channel sizes (2026-11-06, v4/events/CHANNEL_SIZES_20261106.md) =====================
+   ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is redrawn
+   for the frame from the same copy keys, price rows and pictures (v4/iv12/sizes/line.html, kakao.html); nothing is cropped or scaled down from
+   the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size.
+   This page's own stylesheet (site/iv12/iv12-sizes.css, linked after iv12.css). Every rule is scoped to main.iv and starts with
+   html[data-size]:not(#sz) to outrank the page rules (.v-b.c1 ..., the container-query position of the 49% line).
+   1A stands the person cutout of the hero original (v4/iv12/a/cut) on the card texture under the same liquid mass and spheres. */
+html[data-size="line"] main.iv{max-width:none;width:1100px}
+html[data-size="kakao"] main.iv{max-width:none;width:800px}
+html[data-size="line"] main.iv .sheet,html[data-size="kakao"] main.iv .sheet{--px:1px}
+html[data-size="line"] main.iv section.card{width:1100px;height:1000px;aspect-ratio:auto;min-height:0}
+html[data-size="kakao"] main.iv section.card{width:800px;height:600px;aspect-ratio:auto;min-height:0}
+main.iv [data-size-only]{display:none!important}
+html[data-size="line"] main.iv [data-size-only~="line"],html[data-size="kakao"] main.iv [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] main.iv [data-size-hide~="line"],html[data-size="kakao"] main.iv [data-size-hide~="kakao"]{display:none!important}
+html[data-size]:not(#sz) main.iv .h-model{position:absolute;z-index:1;display:block;width:auto;max-width:none;pointer-events:none}
+
+/* ---------- LINE 1100x1000 ---------- */
+/* 1A: the cutout centred above the liquid mass (as home), the price badge at the top right, the title block on the liquid */
+html[data-size]:not(#sz) main.iv .L1a .h-model{left:50%;top:30px;height:740px;transform:translateX(-50%)}
+html[data-size]:not(#sz) main.iv .L1a .blob{bottom:-64px}
+html[data-size]:not(#sz) main.iv .L1a .c1-foot{left:56px;right:56px;bottom:30px}
+html[data-size]:not(#sz) main.iv .L1a .hb{right:48px;top:118px}
+html[data-size]:not(#sz) main.iv .L1a .sp-h1{left:120px;top:400px}
+html[data-size]:not(#sz) main.iv .L1a .sp-h2{right:16px;top:60px;width:140px}
+html[data-size]:not(#sz) main.iv .L1a .sp-h3{right:150px;top:380px}
+html[data-size]:not(#sz) main.iv .L1a .sp-h4{left:60px;top:520px}
+/* 1B: the headline across the top, the arch photo (home frame ratio 560:760) at the left, the price badge at the right, the info line at the bottom */
+html[data-size]:not(#sz) main.iv .L1b .c1-top{left:60px;top:40px}
+html[data-size]:not(#sz) main.iv .L1b .c1-foot{left:60px;right:60px;top:96px}
+html[data-size]:not(#sz) main.iv .L1b .c1-photo{left:60px;top:410px;width:383px;height:520px;border-radius:191px 191px 24px 24px}
+html[data-size]:not(#sz) main.iv .L1b .hb{right:150px;top:470px}
+html[data-size]:not(#sz) main.iv .L1b .band{top:850px;margin-top:0}
+html[data-size]:not(#sz) main.iv .L1b .sp-h1{left:470px;top:440px;width:100px}
+html[data-size]:not(#sz) main.iv .L1b .sp-h2{right:56px;top:110px;width:80px}
+html[data-size]:not(#sz) main.iv .L1b .sp-h3{right:70px;top:860px;width:50px}
+/* 2A: one column, the head in two columns (title | lead), the single lines on one line, rows tightened */
+html[data-size]:not(#sz) main.iv .L2a .cx-in,html[data-size]:not(#sz) main.iv .L2b .cx-in{padding:34px 60px 26px}
+html[data-size]:not(#sz) main.iv .L2a .cp-head{margin-top:8px;max-width:none;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:36px;align-items:end}
+html[data-size]:not(#sz) main.iv .L2a .p-event{grid-column:1 / -1}
+html[data-size]:not(#sz) main.iv .L2a .p-title{grid-column:1}
+html[data-size]:not(#sz) main.iv .L2a .p-lead{grid-column:2;margin:0 0 12px}
+html[data-size]:not(#sz) main.iv .L2a .pboard{margin-top:12px;padding:12px 34px 10px}
+html[data-size]:not(#sz) main.iv .L2a .pg + .pg{margin-top:10px}
+html[data-size]:not(#sz) main.iv .L2a .prow{grid-template-columns:minmax(0,1fr) 86px 132px;padding:8px 0}
+html[data-size]:not(#sz) main.iv .L2a [data-price-row="14_iv:6"] .pn,html[data-size]:not(#sz) main.iv .L2a [data-price-row="14_iv:7"] .pn{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:16px}
+html[data-size]:not(#sz) main.iv .L2a [data-price-row="14_iv:6"] .popts,html[data-size]:not(#sz) main.iv .L2a [data-price-row="14_iv:7"] .pmix{margin-top:0}
+html[data-size]:not(#sz) main.iv .L2a .vat{margin-top:6px}
+html[data-size]:not(#sz) main.iv .L2a .sp-p1{left:450px;top:78px}
+/* the 49% line sits right of the aqua sphere as home (B has no spheres here) */
+html[data-size]:not(#sz) main.iv .L2a .uibeop{bottom:26px;left:150px}
+html[data-size]:not(#sz) main.iv .L2b .uibeop{bottom:26px;left:60px}
+html[data-size]:not(#sz) main.iv .L2a .sp-p2{left:44px;bottom:14px;width:76px}
+/* 2B: the tickets two to a row, tightened */
+html[data-size]:not(#sz) main.iv .L2b .cp-head{margin-top:8px}
+html[data-size]:not(#sz) main.iv .L2b .pboard{margin-top:14px;gap:10px}
+html[data-size]:not(#sz) main.iv .L2b .prow{min-height:146px;padding:14px 22px}
+html[data-size]:not(#sz) main.iv .L2b .prow[data-price-row="14_iv:12"]{min-height:110px}
+/* 3 in two parts: question and the three kinds | kicker, the mix box, the checks before, source */
+html[data-size]:not(#sz) main.iv .L3 .cx-in{padding:36px 60px 26px}
+html[data-size]:not(#sz) main.iv .L3 .q-head{margin-top:24px}
+html[data-size]:not(#sz) main.iv .L3p1 .kinds{margin-top:auto;margin-bottom:auto}
+html[data-size]:not(#sz) main.iv .L3p2 .mix{margin-top:auto}
+html[data-size]:not(#sz) main.iv .L3p2 .pick{margin-top:20px}
+/* 4 in two parts: question with the round photo and the four steps | kicker, three facts, care and the safety line, source */
+html[data-size]:not(#sz) main.iv .L4 .cx-in{padding:36px 60px 26px}
+html[data-size]:not(#sz) main.iv .L4p1 .c4-headrow{margin-top:20px}
+html[data-size]:not(#sz) main.iv .L4p1 .steps{margin-top:28px}
+html[data-size]:not(#sz) main.iv .L4p2 .c4-headrow{display:block;margin-top:20px}
+html[data-size]:not(#sz) main.iv .L4p2 .infos{margin-top:auto}
+html[data-size]:not(#sz) main.iv .L4p2 .care{margin-top:18px}
+/* 5 clinic intro in two parts (as CMB12D / DIE12A) */
+html[data-size]:not(#sz) main.iv .L5 .cx-in{padding:36px 48px 30px}
+html[data-size]:not(#sz) main.iv .L5 .bento{margin-top:22px}
+html[data-size]:not(#sz) main.iv .L5p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) main.iv .L5p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:30px 36px}
+html[data-size]:not(#sz) main.iv .L5p1 .ab-title{font-size:44px}
+html[data-size]:not(#sz) main.iv .L5p1 .dr{grid-template-columns:250px 290px}
+html[data-size]:not(#sz) main.iv .L5p1 .ab-photos{height:350px;margin-top:4px}
+html[data-size]:not(#sz) main.iv .L5p1 .ab-strengths{margin-top:auto}
+html[data-size]:not(#sz) main.iv .L5p2 .bento{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);grid-template-rows:minmax(0,.78fr) minmax(0,1fr)}
+html[data-size]:not(#sz) main.iv .L5p2 .map{width:100%}
+html[data-size]:not(#sz) main.iv .L5p2 .loc-body{padding-top:18px}
+html[data-size]:not(#sz) main.iv .L5p2 .way{margin-top:18px}
+html[data-size]:not(#sz) main.iv .L5p2 .hrs{gap:14px}
+html[data-size]:not(#sz) main.iv .L5p2 .hrs li{font-size:25px}
+html[data-size]:not(#sz) main.iv .L5p2 .hrs-note{margin-top:18px;font-size:17px}
+html[data-size]:not(#sz) main.iv .L5p2 .bk-row{grid-template-columns:150px minmax(0,1fr);gap:22px}
+html[data-size]:not(#sz) main.iv .L5p2 .bk-links{font-size:20px}
+html[data-size]:not(#sz) main.iv .L5p2 .bk-phone{font-size:34px}
+html[data-size]:not(#sz) main.iv .L5p2 .bt-loc{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) main.iv .L5p2 .bt-hours{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) main.iv .L5p2 .bt-book{grid-column:2;grid-row:2}
+/* ---------- /LINE ---------- */
+
+/* ---------- KAKAO 800x600 ---------- */
+/* 1A: the cutout above the liquid mass, the price badge at the top right, the title block on the liquid (one line each) */
+html[data-size]:not(#sz) main.iv .K1a .c1-top{left:26px;top:20px}
+html[data-size]:not(#sz) main.iv .K1a .h-model{left:50%;top:2px;height:500px;transform:translateX(-50%)}
+html[data-size]:not(#sz) main.iv .K1a .blob{bottom:-55px}
+html[data-size]:not(#sz) main.iv .K1a .c1-foot{left:20px;right:20px;bottom:10px}
+html[data-size]:not(#sz) main.iv .K1a .hook{margin-top:12px}
+html[data-size]:not(#sz) main.iv .K1a .band{margin-top:12px}
+html[data-size]:not(#sz) main.iv .K1a .hb{right:18px;top:18px}
+html[data-size]:not(#sz) main.iv .K1a .sp-h1{left:60px;top:120px;width:80px}
+html[data-size]:not(#sz) main.iv .K1a .sp-h2{right:auto;left:640px;top:200px;width:96px}
+html[data-size]:not(#sz) main.iv .K1a .sp-h3{right:auto;left:160px;top:40px;width:50px}
+html[data-size]:not(#sz) main.iv .K1a .sp-h4{left:24px;top:230px;width:90px}
+/* 1B: the headline across the top; below it the arch photo, the price badge and the hook; the info line at the bottom */
+html[data-size]:not(#sz) main.iv .K1b .c1-top{left:30px;top:18px}
+html[data-size]:not(#sz) main.iv .K1b .c1-foot{left:30px;right:30px;top:50px}
+html[data-size]:not(#sz) main.iv .K1b .h-word{margin-top:6px}
+html[data-size]:not(#sz) main.iv .K1b .hook{position:absolute;left:530px;top:250px;width:210px;margin:0}
+html[data-size]:not(#sz) main.iv .K1b .c1-photo{left:30px;top:300px;width:184px;height:250px;border-radius:92px 92px 16px 16px}
+html[data-size]:not(#sz) main.iv .K1b .hb{right:auto;left:234px;top:300px;width:300px;padding:20px}
+html[data-size]:not(#sz) main.iv .K1b .hb-price{flex-direction:row;align-items:baseline;justify-content:space-between;margin-top:12px}
+html[data-size]:not(#sz) main.iv .K1b .band{top:512px;margin-top:0}
+html[data-size]:not(#sz) main.iv .K1b .sp-h1{left:auto;right:30px;top:60px;width:70px}
+html[data-size]:not(#sz) main.iv .K1b .sp-h2{right:120px;top:150px;width:50px}
+html[data-size]:not(#sz) main.iv .K1b .sp-h3{right:36px;top:500px;width:40px}
+/* 2A in three parts (head and the singles | sets 8-10 | sets 11-12, the 49% line and VAT); 2B in two parts (head and the singles | the five sets) */
+html[data-size]:not(#sz) main.iv .K2a .cx-in,html[data-size]:not(#sz) main.iv .K2b .cx-in{padding:22px 40px 18px}
+html[data-size]:not(#sz) main.iv .K2a .cp-head,html[data-size]:not(#sz) main.iv .K2b .cp-head{margin-top:6px;max-width:none}
+html[data-size]:not(#sz) main.iv .K2a .pboard{margin-top:14px;padding:14px 30px 12px}
+html[data-size]:not(#sz) main.iv .K2ap2 .pboard,html[data-size]:not(#sz) main.iv .K2ap3 .pboard{margin-top:18px}
+html[data-size]:not(#sz) main.iv .K2a .prow{grid-template-columns:minmax(0,1fr) 86px 132px}
+html[data-size]:not(#sz) main.iv .K2ap3 .uibeop{bottom:18px;left:140px}
+html[data-size]:not(#sz) main.iv .K2bp2 .uibeop{bottom:18px;left:40px}
+html[data-size]:not(#sz) main.iv .K2b .pboard{margin-top:14px;gap:10px}
+html[data-size]:not(#sz) main.iv .K2b .prow{min-height:0;padding:12px 18px}
+html[data-size]:not(#sz) main.iv .K2b .prow[data-price-row="14_iv:12"]{min-height:0}
+html[data-size]:not(#sz) main.iv .K2bp2 .pboard{margin-top:8px}
+/* 3 in two parts: question and the three kinds | kicker, the mix box, the checks before, source */
+html[data-size]:not(#sz) main.iv .K3 .cx-in{padding:22px 30px 16px}
+html[data-size]:not(#sz) main.iv .K3 .q-head{margin-top:8px}
+html[data-size]:not(#sz) main.iv .K3p1 .kinds{margin-top:14px;gap:12px}
+/* each kind: a small picture beside the chip and the name, the description below (the three stay side by side as home) */
+html[data-size]:not(#sz) main.iv .K3p1 .kd{display:grid;grid-template-columns:64px minmax(0,1fr);grid-template-areas:"f t" "f n" "d d";column-gap:12px;align-items:center;text-align:left;padding:18px 16px 18px}
+html[data-size]:not(#sz) main.iv .K3p1 .kd-fig{grid-area:f;width:64px;height:64px}
+html[data-size]:not(#sz) main.iv .K3p1 .kd-ico{width:64px;height:64px}
+html[data-size]:not(#sz) main.iv .K3p1 .kd-a{width:52px;height:52px}
+html[data-size]:not(#sz) main.iv .K3p1 .kd-b{width:38px;height:38px}
+html[data-size]:not(#sz) main.iv .K3p1 .kd-t{grid-area:t;justify-self:start;margin-top:0}
+html[data-size]:not(#sz) main.iv .K3p1 .kd-n{grid-area:n;margin-top:4px}
+html[data-size]:not(#sz) main.iv .K3p1 .kd-d{grid-area:d;margin-top:12px}
+/* the spheres stay off the title and the answer */
+html[data-size]:not(#sz) main.iv .K3p1 .sp-c3a{right:22px;top:14px;width:52px}
+html[data-size]:not(#sz) main.iv .K3p1 .sp-c3b{right:92px;top:16px;width:34px}
+html[data-size]:not(#sz) main.iv .K3p2 .mix{margin-top:auto}
+html[data-size]:not(#sz) main.iv .K3p2 .pick{margin-top:14px}
+/* 4 in three parts: question with the round photo (title full width, answer beside the photo) | kicker and the four steps | kicker, facts, care, source */
+html[data-size]:not(#sz) main.iv .K4 .cx-in{padding:22px 40px 16px}
+html[data-size]:not(#sz) main.iv .K4p1 .c4-headrow{grid-template-columns:minmax(0,1fr) 240px;grid-template-areas:"k k" "t t" "a p";column-gap:28px;align-items:start;margin-top:8px}
+html[data-size]:not(#sz) main.iv .K4p1 .q-head{display:contents}
+html[data-size]:not(#sz) main.iv .K4p1 .kicker{grid-area:k}
+html[data-size]:not(#sz) main.iv .K4p1 .q-title{grid-area:t}
+html[data-size]:not(#sz) main.iv .K4p1 .q-ans{grid-area:a}
+html[data-size]:not(#sz) main.iv .K4p1 .c4-photo{grid-area:p;width:240px;margin-top:14px}
+html[data-size]:not(#sz) main.iv .K4p2 .c4-headrow,html[data-size]:not(#sz) main.iv .K4p3 .c4-headrow{display:block;margin-top:8px}
+html[data-size]:not(#sz) main.iv .K4p2 .steps{margin-top:auto;margin-bottom:auto}
+html[data-size]:not(#sz) main.iv .K4p2 .sp-c4a,html[data-size]:not(#sz) main.iv .K4p3 .sp-c4a{right:104px;top:18px;width:44px}
+html[data-size]:not(#sz) main.iv .K4p3 .infos{margin-top:12px;gap:12px}
+html[data-size]:not(#sz) main.iv .K4p3 .inf{padding:18px 20px 20px}
+html[data-size]:not(#sz) main.iv .K4p3 .care{margin-top:12px;padding:18px 24px 18px}
+html[data-size]:not(#sz) main.iv .K4p3 .src{padding-top:8px}
+/* 5 clinic intro in three parts (as CMB12D / DIE12A) */
+html[data-size]:not(#sz) main.iv .K5 .cx-in{padding:30px 44px 26px}
+html[data-size]:not(#sz) main.iv .K5 .bento{margin-top:16px}
+html[data-size]:not(#sz) main.iv .K5p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) main.iv .K5p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:18px 22px}
+html[data-size]:not(#sz) main.iv .K5p1 .ab-top{grid-template-columns:minmax(0,1fr) 220px;grid-template-rows:auto auto auto auto;column-gap:16px;align-items:start}
+html[data-size]:not(#sz) main.iv .K5p1 .ab-intro,html[data-size]:not(#sz) main.iv .K5p1 .dr{display:contents}
+html[data-size]:not(#sz) main.iv .K5p1 .ab-intro .bt-k{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) main.iv .K5p1 .ab-title{grid-column:1;grid-row:2;margin-top:6px}
+html[data-size]:not(#sz) main.iv .K5p1 .ab-lead{grid-column:1;grid-row:3;margin-top:10px}
+html[data-size]:not(#sz) main.iv .K5p1 .dr-tx{grid-column:1;grid-row:4;align-self:start;text-align:left;padding:14px 0 0}
+html[data-size]:not(#sz) main.iv .K5p1 .dr-quote{margin-top:4px}
+html[data-size]:not(#sz) main.iv .K5p1 .dr-img{grid-column:2;grid-row:1 / 5;align-self:end;width:220px}
+html[data-size]:not(#sz) main.iv .K5p1 .ab-photos{height:190px;margin-top:8px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.3fr)}
+html[data-size]:not(#sz) main.iv .K5p2 .bento{grid-template-columns:1fr;grid-template-rows:auto auto}
+html[data-size]:not(#sz) main.iv .K5p2 .bt-str{grid-column:1;grid-row:1;padding:18px 24px}
+html[data-size]:not(#sz) main.iv .K5p2 .bt-str .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 26px}
+html[data-size]:not(#sz) main.iv .K5p2 .bt-str .dots{display:none}
+html[data-size]:not(#sz) main.iv .K5p2 .bt-hours{grid-column:1;grid-row:2}
+html[data-size]:not(#sz) main.iv .K5p3 .bento{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) main.iv .K5p3 .bt-loc{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) main.iv .K5p3 .bt-book{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) main.iv .K5p3 .map{width:100%}
+html[data-size]:not(#sz) main.iv .K5p3 .bk-row{grid-template-columns:120px;grid-template-rows:auto auto;justify-items:start;align-content:center}
+html[data-size]:not(#sz) main.iv .K5p3 .way-top{align-items:baseline}
+html[data-size]:not(#sz) main.iv .K5p1 figcaption[data-copy="da_ab_ph1"]{padding-top:3.9px!important;padding-bottom:4.9px!important}
+html[data-size]:not(#sz) main.iv .K5p1 figcaption[data-copy="da_ab_ph2"]{padding-top:3.9px!important;padding-bottom:4.9px!important}
+html[data-size]:not(#sz) main.iv .K5p1 figcaption[data-copy="da_ab_ph3"]{padding-top:3.9px!important;padding-bottom:4.9px!important}
+/* text centring in the components (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each box below moves its text by a pixel or half a pixel (growing one side) from its computed padding */
+html[data-size]:not(#sz) main.iv .L3p1 p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:2.1px!important;padding-bottom:6.46px!important}
+html[data-size]:not(#sz) main.iv .K2ap2 span[data-copy="iv_g2"]{padding-top:5.51px!important;padding-bottom:3.85px!important}
+html[data-size]:not(#sz) main.iv .K2ap2 span.pplus[data-copy="iv_r9_plus"]{padding-top:2.06px!important;padding-bottom:3.04px!important}
+html[data-size]:not(#sz) main.iv .K2ap3 span[data-copy="iv_g2"]{padding-top:5.51px!important;padding-bottom:3.85px!important}
+html[data-size]:not(#sz) main.iv .K2bp2 span[data-copy="iv_g2"]{padding-top:5.51px!important;padding-bottom:3.85px!important}
+html[data-size]:not(#sz) main.iv .K3p1 p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:1.1px!important;padding-bottom:6.46px!important}
+html[data-size]:not(#sz) main.iv .K3p1 p.kd-t[data-copy="iv_c3_k3_t"]{padding-top:4.41px!important;padding-bottom:4.15px!important}
+html[data-size]:not(#sz) main.iv .K2bp2 span.pplus[data-copy="iv_r10_plus"]{padding-top:1.52px!important;padding-bottom:2.68px!important}
+html[data-size]:not(#sz) main.iv .K2bp2 span.pplus[data-copy="iv_r11_plus"]{padding-top:1.31px!important;padding-bottom:2.89px!important}
+/* ---------- /KAKAO ---------- */
+/* ===================== /channel sizes ===================== */

@@ -1,0 +1,209 @@
+/* generated from v4/diet12b/sizes/sizes.css by v4/diet12b/sizes/after-build.cjs (run by v4/diet12b/build-diet12b.cjs); do not edit here */
+/* ===================== DIE12B channel sizes (2026-11-06, v4/events/CHANNEL_SIZES_20261106.md) =====================
+   ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is redrawn
+   for the frame from the same copy keys, price rows and pictures (v4/diet12b/sizes/line.html, kakao.html); nothing is cropped or scaled down from
+   the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size.
+   This page's own stylesheet (site/diet12b/diet12b-sizes.css, linked after diet12b.css): diet12b.css is the bundle sheet the build copies from diet12a.css
+   byte for byte, so the size rules stay out of it. Every rule is scoped to main.p-b and starts with html[data-size]:not(#sz) to outrank the
+   bundle rules (.b-price ..., .p-b .b-title h2).
+   1A stands the person cutout of the hero original (v4/diet12b/a/cut) on the card texture: the hero photo has the model baked into its backdrop. */
+html[data-size="line"] main.dt2.p-b{max-width:none;width:1100px}
+html[data-size="kakao"] main.dt2.p-b{max-width:none;width:800px}
+html[data-size="line"] main.p-b .sheet,html[data-size="kakao"] main.p-b .sheet{--px:1px}
+html[data-size="line"] main.p-b section.card{width:1100px;height:1000px;aspect-ratio:auto;min-height:0}
+html[data-size="kakao"] main.p-b section.card{width:800px;height:600px;aspect-ratio:auto;min-height:0}
+main.p-b [data-size-only]{display:none!important}
+html[data-size="line"] main.p-b [data-size-only~="line"],html[data-size="kakao"] main.p-b [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] main.p-b [data-size-hide~="line"],html[data-size="kakao"] main.p-b [data-size-hide~="kakao"]{display:none!important}
+html[data-size]:not(#sz) main.p-b .h-model{position:absolute;z-index:1;display:block;width:auto;max-width:none;pointer-events:none}
+
+/* ---------- LINE 1100x1000 ---------- */
+/* 1A: the cutout in the arch outline (centred, as home), the date along the arch, the title with the pill over the fade, the offer band */
+html[data-size]:not(#sz) main.p-b .L1a .h-model{left:50%;top:78px;height:1080px;transform:translateX(-50%)}
+html[data-size]:not(#sz) main.p-b .L1a .c1-fade{height:620px}
+html[data-size]:not(#sz) main.p-b .L1a .arch-line{left:130px;right:130px;top:44px;height:800px;border-radius:420px 420px 0 0}
+html[data-size]:not(#sz) main.p-b .L1a .h-period{right:52px;top:170px}
+html[data-size]:not(#sz) main.p-b .L1a .sp-h{right:58px;top:28px;width:132px}
+html[data-size]:not(#sz) main.p-b .L1a .tw1{right:216px;top:118px;width:60px}
+html[data-size]:not(#sz) main.p-b .L1a .tw2{left:170px;top:590px;width:66px}
+html[data-size]:not(#sz) main.p-b .L1a .tw3{right:150px;top:690px;width:76px}
+html[data-size]:not(#sz) main.p-b .L1a .h-title{top:514px}
+/* 1B: title block at the left, the arch photo (home frame ratio 500:860) at the right, the band along the bottom */
+html[data-size]:not(#sz) main.p-b .L1b .b-top{inset:40px 56px auto}
+html[data-size]:not(#sz) main.p-b .L1b .b-title{left:60px;top:250px;width:480px}
+html[data-size]:not(#sz) main.p-b .L1b .b-model{left:auto;right:64px;top:110px;width:408px;height:702px;border-radius:196px 196px 30px 30px}
+html[data-size]:not(#sz) main.p-b .L1b .h-band{bottom:30px}
+/* 2A: the home board in one column (the long package lines stay on one line), rows tightened; 2B: the two tile boxes as home; 3: one column, rows tightened */
+html[data-size]:not(#sz) main.p-b .L2a .cp-in,html[data-size]:not(#sz) main.p-b .L2b .cp-in,html[data-size]:not(#sz) main.p-b .L3 .cp-in{padding:34px 52px 26px}
+html[data-size]:not(#sz) main.p-b .L2a .cp-head,html[data-size]:not(#sz) main.p-b .L2b .cp-head,html[data-size]:not(#sz) main.p-b .L3 .cp-head{margin-top:14px;max-width:none}
+html[data-size]:not(#sz) main.p-b .L2a .pboard,html[data-size]:not(#sz) main.p-b .L3 .pboard{margin-top:16px}
+html[data-size]:not(#sz) main.p-b .L2a .cp-in{padding-top:28px}
+html[data-size]:not(#sz) main.p-b .L2a .cp-head{margin-top:10px}
+html[data-size]:not(#sz) main.p-b .L2a .pboard{margin-top:12px}
+html[data-size]:not(#sz) main.p-b .L2a .mid .prod-h{padding:12px 0 4px}
+html[data-size]:not(#sz) main.p-b .L2a .mid .prow{padding:9px 0 8px}
+html[data-size]:not(#sz) main.p-b .L2a .psale{line-height:1}
+html[data-size]:not(#sz) main.p-b .L2a .p-note{margin:0 0 6px}
+html[data-size]:not(#sz) main.p-b .L2b .pboard{margin-top:14px;gap:16px}
+html[data-size]:not(#sz) main.p-b .L2b .prod{padding:10px 22px}
+html[data-size]:not(#sz) main.p-b .L2b .mid .prod-h{padding:8px 0 2px}
+html[data-size]:not(#sz) main.p-b .L2b .prow{padding:8px 0}
+html[data-size]:not(#sz) main.p-b .L2b .p-note{margin:4px 0 4px;padding-left:0}
+html[data-size]:not(#sz) main.p-b .L3 .roomy .prow{padding:9px 0 8px}
+html[data-size]:not(#sz) main.p-b .L3 .roomy .prod-h{padding:14px 0 4px}
+/* 4 in two parts: question and the device box | kicker, the five units, the energy kinds, the pick box, source */
+html[data-size]:not(#sz) main.p-b .L4 .cx-in{padding:32px 52px 24px}
+html[data-size]:not(#sz) main.p-b .L4 .q-head{margin-top:20px}
+html[data-size]:not(#sz) main.p-b .L4p1 .dev{margin-top:auto;margin-bottom:auto;grid-template-columns:400px minmax(0,1fr);column-gap:40px;padding:34px 40px}
+html[data-size]:not(#sz) main.p-b .L4p1 .dev-img{width:400px;height:430px}
+html[data-size]:not(#sz) main.p-b .L4p2 .units{margin-top:auto}
+html[data-size]:not(#sz) main.p-b .L4p2 .energy{margin-top:16px}
+html[data-size]:not(#sz) main.p-b .L4 .pick{margin-top:18px}
+/* 5 in two parts: question with the arch photo and the four steps | kicker, three facts, care lines, source */
+html[data-size]:not(#sz) main.p-b .L5 .cx-in{padding:32px 52px 24px}
+html[data-size]:not(#sz) main.p-b .L5p1 .q-title{white-space:normal}
+html[data-size]:not(#sz) main.p-b .L5p1 .steps{margin-top:24px}
+html[data-size]:not(#sz) main.p-b .L5p2 .day-head{display:block}
+html[data-size]:not(#sz) main.p-b .L5p2 .infos{margin-top:auto}
+html[data-size]:not(#sz) main.p-b .L5p2 .care{margin-top:18px}
+/* 6 clinic intro in two parts (as CMB12D / OND12 / SOF12) */
+html[data-size]:not(#sz) main.p-b .L6 .cx-in{padding:36px 48px 30px}
+html[data-size]:not(#sz) main.p-b .L6 .bento{margin-top:22px}
+html[data-size]:not(#sz) main.p-b .L6p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) main.p-b .L6p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:30px 36px}
+html[data-size]:not(#sz) main.p-b .L6p1 .ab-title{font-size:44px}
+html[data-size]:not(#sz) main.p-b .L6p1 .dr{grid-template-columns:250px 290px}
+html[data-size]:not(#sz) main.p-b .L6p1 .ab-photos{height:350px;margin-top:4px}
+html[data-size]:not(#sz) main.p-b .L6p1 .ab-strengths{margin-top:auto}
+html[data-size]:not(#sz) main.p-b .L6p2 .bento{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);grid-template-rows:minmax(0,.78fr) minmax(0,1fr)}
+html[data-size]:not(#sz) main.p-b .L6p2 .map{width:100%}
+html[data-size]:not(#sz) main.p-b .L6p2 .loc-body{padding-top:18px}
+html[data-size]:not(#sz) main.p-b .L6p2 .way{margin-top:18px}
+html[data-size]:not(#sz) main.p-b .L6p2 .hrs{gap:14px}
+html[data-size]:not(#sz) main.p-b .L6p2 .hrs li{font-size:25px}
+html[data-size]:not(#sz) main.p-b .L6p2 .hrs-note{margin-top:18px;font-size:17px}
+html[data-size]:not(#sz) main.p-b .L6p2 .bk-row{grid-template-columns:150px minmax(0,1fr);gap:22px}
+html[data-size]:not(#sz) main.p-b .L6p2 .bk-links{font-size:20px}
+html[data-size]:not(#sz) main.p-b .L6p2 .bk-phone{font-size:34px}
+html[data-size]:not(#sz) main.p-b .L6p2 .bt-loc{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) main.p-b .L6p2 .bt-hours{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) main.p-b .L6p2 .bt-book{grid-column:2;grid-row:2}
+/* ---------- /LINE ---------- */
+
+/* ---------- KAKAO 800x600 ---------- */
+/* 1A: the cutout at the right inside the arch outline with the date beside it, the title with the pill at the left over the fade, the band */
+html[data-size]:not(#sz) main.p-b .K1a .c1-top{left:30px;top:22px}
+html[data-size]:not(#sz) main.p-b .K1a .h-model{left:auto;right:92px;top:28px;height:620px}
+html[data-size]:not(#sz) main.p-b .K1a .arch-line{left:410px;right:70px;top:16px;height:450px;border-radius:160px 160px 0 0}
+html[data-size]:not(#sz) main.p-b .K1a .h-period{right:22px;top:24px}
+html[data-size]:not(#sz) main.p-b .K1a .sp-h{right:60px;top:4px;width:92px}
+html[data-size]:not(#sz) main.p-b .K1a .c1-fade{height:360px}
+html[data-size]:not(#sz) main.p-b .K1a .h-title{left:30px;right:auto;top:80px;width:740px;align-items:flex-start;text-align:left}
+html[data-size]:not(#sz) main.p-b .K1a .h-pill{white-space:normal;max-width:420px;border-radius:28px;text-align:left}
+html[data-size]:not(#sz) main.p-b .K1a .tw1{right:96px;top:70px;width:44px}
+html[data-size]:not(#sz) main.p-b .K1a .tw2{left:336px;top:92px;width:52px}
+html[data-size]:not(#sz) main.p-b .K1a .tw3{right:auto;left:640px;top:330px;width:56px}
+html[data-size]:not(#sz) main.p-b .K1a .h-band{left:20px;right:20px;bottom:16px;padding:14px 26px}
+html[data-size]:not(#sz) main.p-b .K1a .h-band,html[data-size]:not(#sz) main.p-b .K1b .h-band{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"top top" "main side";row-gap:2px}
+html[data-size]:not(#sz) main.p-b .K1a .hb,html[data-size]:not(#sz) main.p-b .K1b .hb{display:contents}
+html[data-size]:not(#sz) main.p-b .K1a .hb-top,html[data-size]:not(#sz) main.p-b .K1b .hb-top{grid-area:top}
+html[data-size]:not(#sz) main.p-b .K1a .hb-main,html[data-size]:not(#sz) main.p-b .K1b .hb-main{grid-area:main}
+html[data-size]:not(#sz) main.p-b .K1a .hb-side,html[data-size]:not(#sz) main.p-b .K1b .hb-side{grid-area:side;align-self:center}
+/* 1B: title block at the left, the arch photo at the right, the band along the bottom */
+html[data-size]:not(#sz) main.p-b .K1b .b-top{inset:20px 30px auto}
+html[data-size]:not(#sz) main.p-b .K1b .b-title{left:30px;top:74px;width:540px}
+html[data-size]:not(#sz) main.p-b .K1b .b-title h1{margin-top:12px}
+html[data-size]:not(#sz) main.p-b .K1b .b-title h2{margin-top:8px}
+html[data-size]:not(#sz) main.p-b .K1b .b-hook{margin-top:16px}
+html[data-size]:not(#sz) main.p-b .K1b .b-model{left:auto;right:30px;top:64px;width:190px;height:327px;border-radius:91px 91px 18px 18px;border-width:6px}
+html[data-size]:not(#sz) main.p-b .K1b .h-band{left:20px;right:20px;bottom:16px;padding:14px 26px}
+/* 2A / 2B in two parts (the first two products | DCA, the 49% line and VAT), 3 in two parts (CA | the 7-week product and VAT) */
+html[data-size]:not(#sz) main.p-b .K2a .cp-in,html[data-size]:not(#sz) main.p-b .K2b .cp-in,html[data-size]:not(#sz) main.p-b .K3 .cp-in{padding:18px 40px 16px}
+html[data-size]:not(#sz) main.p-b .K2a .cp-head,html[data-size]:not(#sz) main.p-b .K2b .cp-head,html[data-size]:not(#sz) main.p-b .K3 .cp-head{margin-top:2px;max-width:none}
+html[data-size]:not(#sz) main.p-b .K2a .pboard,html[data-size]:not(#sz) main.p-b .K3 .pboard{margin-top:10px}
+html[data-size]:not(#sz) main.p-b .K2a .prow{grid-template-columns:minmax(0,1fr) 90px 150px;column-gap:12px}
+html[data-size]:not(#sz) main.p-b .K2ap1 .mid .prow{padding:10px 0 9px}
+html[data-size]:not(#sz) main.p-b .K2ap1 .mid .prod-h{padding:14px 0 4px}
+/* the board fills part 1 down to the bottom, so the orange (half under it) waits for part 2 */
+html[data-size]:not(#sz) main.p-b .K2ap1 .cx-or,html[data-size]:not(#sz) main.p-b .K2bp1 .cx-or{display:none}
+html[data-size]:not(#sz) main.p-b .K2ap2 .pboard{margin-top:18px}
+html[data-size]:not(#sz) main.p-b .K2ap2 .mid .prod-h{padding:14px 0 4px}
+html[data-size]:not(#sz) main.p-b .K2ap2 .mid .prow{padding:10px 0 9px}
+
+html[data-size]:not(#sz) main.p-b .K2b .pboard{margin-top:14px;gap:16px}
+html[data-size]:not(#sz) main.p-b .K2b .prod{padding:12px 22px}
+html[data-size]:not(#sz) main.p-b .K2b .mid .prod-h{padding:8px 0 2px}
+html[data-size]:not(#sz) main.p-b .K2bp1 .pboard,html[data-size]:not(#sz) main.p-b .K2bp2 .pboard{grid-template-columns:minmax(0,1fr)}
+html[data-size]:not(#sz) main.p-b .K2bp1 .prows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:30px}
+html[data-size]:not(#sz) main.p-b .K2bp2 .pboard{margin-top:18px}
+html[data-size]:not(#sz) main.p-b .K2bp2 .prows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:26px}
+html[data-size]:not(#sz) main.p-b .K2b .prow{padding:9px 0}
+html[data-size]:not(#sz) main.p-b .K2b .p-note{margin:4px 0 4px;padding-left:0}
+html[data-size]:not(#sz) main.p-b .K3 .pboard{padding:6px 24px 10px}
+html[data-size]:not(#sz) main.p-b .K3 .prow{grid-template-columns:minmax(0,1fr) 84px 140px;column-gap:10px}
+html[data-size]:not(#sz) main.p-b .K3 .roomy .prow{padding:10px 0 9px}
+html[data-size]:not(#sz) main.p-b .K3 .roomy .prod-h{padding:12px 0 4px}
+html[data-size]:not(#sz) main.p-b .K3p2 .pboard{margin-top:18px}
+/* the twinkle sits right of the title (the home spot, 330px from the right edge, falls on the title in the 800 frame) */
+html[data-size]:not(#sz) main.p-b .K3 .cx-tw{right:40px;top:74px;width:44px}
+html[data-size]:not(#sz) main.p-b .K4 .cx-tw{right:40px;top:26px;width:44px}
+/* 4 in three parts: question and the device box | kicker and the five units | kicker, the energy kinds, the pick box, source */
+html[data-size]:not(#sz) main.p-b .K4 .cx-in,html[data-size]:not(#sz) main.p-b .K5 .cx-in{padding:22px 40px 16px}
+html[data-size]:not(#sz) main.p-b .K4 .q-head{margin-top:10px}
+html[data-size]:not(#sz) main.p-b .K4p1 .dev{grid-template-columns:250px minmax(0,1fr);column-gap:24px;margin-top:16px;padding:20px 24px}
+html[data-size]:not(#sz) main.p-b .K4p1 .dev-img{width:250px;height:270px}
+html[data-size]:not(#sz) main.p-b .K4p2 .units{margin-top:auto;margin-bottom:auto}
+/* the five units three over two (centred): a unit name such as the shot devices needs more than a fifth of the width */
+html[data-size]:not(#sz) main.p-b .K4p2 .units{grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+html[data-size]:not(#sz) main.p-b .K4p2 .un{grid-column:span 2}
+html[data-size]:not(#sz) main.p-b .K4p2 .un:nth-child(4){grid-column:2 / 4}
+html[data-size]:not(#sz) main.p-b .K4p2 .un:nth-child(5){grid-column:4 / 6}
+html[data-size]:not(#sz) main.p-b .K4p3 .energy{margin-top:auto}
+html[data-size]:not(#sz) main.p-b .K4 .pick{margin-top:14px;padding:20px 24px}
+html[data-size]:not(#sz) main.p-b .K4 .src{padding-top:8px}
+/* 5 in three parts: question with the arch photo | kicker and the four steps | kicker, facts, care lines, source */
+html[data-size]:not(#sz) main.p-b .K5p1 .day-head{grid-template-columns:minmax(0,1fr) 270px;column-gap:26px;margin-top:12px}
+html[data-size]:not(#sz) main.p-b .K5p1 .arch{width:270px}
+html[data-size]:not(#sz) main.p-b .K5p1 .q-title{white-space:normal}
+html[data-size]:not(#sz) main.p-b .K5p2 .day-head,html[data-size]:not(#sz) main.p-b .K5p3 .day-head{display:block}
+html[data-size]:not(#sz) main.p-b .K5 .q-head{margin-top:8px}
+html[data-size]:not(#sz) main.p-b .K5p2 .steps{margin-top:auto;margin-bottom:auto}
+html[data-size]:not(#sz) main.p-b .K5p3 .infos{margin-top:16px}
+html[data-size]:not(#sz) main.p-b .K5p3 .care{margin-top:14px}
+html[data-size]:not(#sz) main.p-b .K5 .src{padding-top:8px}
+/* 6 clinic intro in three parts (as CMB12D / OND12 / SOF12) */
+html[data-size]:not(#sz) main.p-b .K6 .cx-in{padding:30px 44px 26px}
+html[data-size]:not(#sz) main.p-b .K6 .bento{margin-top:16px}
+html[data-size]:not(#sz) main.p-b .K6p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) main.p-b .K6p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:18px 22px}
+html[data-size]:not(#sz) main.p-b .K6p1 .ab-top{grid-template-columns:minmax(0,1fr) 220px;grid-template-rows:auto auto auto auto;column-gap:16px;align-items:start}
+html[data-size]:not(#sz) main.p-b .K6p1 .ab-intro,html[data-size]:not(#sz) main.p-b .K6p1 .dr{display:contents}
+html[data-size]:not(#sz) main.p-b .K6p1 .ab-intro .bt-k{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) main.p-b .K6p1 .ab-title{grid-column:1;grid-row:2;margin-top:6px}
+html[data-size]:not(#sz) main.p-b .K6p1 .ab-lead{grid-column:1;grid-row:3;margin-top:10px}
+html[data-size]:not(#sz) main.p-b .K6p1 .dr-tx{grid-column:1;grid-row:4;align-self:start;text-align:left;padding:14px 0 0}
+html[data-size]:not(#sz) main.p-b .K6p1 .dr-quote{margin-top:4px}
+html[data-size]:not(#sz) main.p-b .K6p1 .dr-img{grid-column:2;grid-row:1 / 5;align-self:end;width:220px}
+html[data-size]:not(#sz) main.p-b .K6p1 .ab-photos{height:190px;margin-top:8px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.3fr)}
+html[data-size]:not(#sz) main.p-b .K6p2 .bento{grid-template-columns:1fr;grid-template-rows:auto auto}
+html[data-size]:not(#sz) main.p-b .K6p2 .bt-str{grid-column:1;grid-row:1;padding:18px 24px}
+html[data-size]:not(#sz) main.p-b .K6p2 .bt-str .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 26px}
+html[data-size]:not(#sz) main.p-b .K6p2 .bt-str .dots{display:none}
+html[data-size]:not(#sz) main.p-b .K6p2 .bt-hours{grid-column:1;grid-row:2}
+html[data-size]:not(#sz) main.p-b .K6p3 .bento{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) main.p-b .K6p3 .bt-loc{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) main.p-b .K6p3 .bt-book{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) main.p-b .K6p3 .map{width:100%}
+html[data-size]:not(#sz) main.p-b .K6p3 .bk-row{grid-template-columns:120px;grid-template-rows:auto auto;justify-items:start;align-content:center}
+html[data-size]:not(#sz) main.p-b .K6p3 .way-top{align-items:baseline}
+/* text centring in the components (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each box below moves its text by half a pixel (growing one side) from its computed padding */
+/* text centring in the components (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each box below moves its text by a pixel or half a pixel (growing one side) from its computed padding */
+html[data-size]:not(#sz) main.p-b .L3 p.fn[data-copy="db_fn37"]{padding-top:16px!important;padding-bottom:17px!important}
+html[data-size]:not(#sz) main.p-b .K3p2 p.fn[data-copy="db_fn37"]{padding-top:15px!important;padding-bottom:17px!important}
+html[data-size]:not(#sz) main.p-b .K4p1 p.q-ans[data-copy="db_c4_a"]{padding-top:7.8px!important;padding-bottom:10.8px!important}
+html[data-size]:not(#sz) main.p-b .K4p1 span.dev-e[data-copy="db_c4_dev_e"]{padding-top:4.2px!important;padding-bottom:1.28px!important}
+html[data-size]:not(#sz) main.p-b .K6p1 figcaption[data-copy="db_ab_ph1"]{padding-top:3.9px!important;padding-bottom:4.9px!important}
+html[data-size]:not(#sz) main.p-b .K6p1 figcaption[data-copy="db_ab_ph2"]{padding-top:3.9px!important;padding-bottom:4.9px!important}
+html[data-size]:not(#sz) main.p-b .K6p1 figcaption[data-copy="db_ab_ph3"]{padding-top:3.9px!important;padding-bottom:4.9px!important}
+/* ---------- /KAKAO ---------- */
+/* ===================== /channel sizes ===================== */

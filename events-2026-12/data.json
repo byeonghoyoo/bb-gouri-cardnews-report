@@ -10594,7 +10594,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "DIE12B",
@@ -10780,7 +10785,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "FIL12A",
@@ -11551,7 +11561,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 5
+      "cards": 5,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "ULT5",
