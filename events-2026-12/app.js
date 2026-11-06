@@ -23,7 +23,7 @@
   var ID_RE = /^[A-Za-z0-9]+$/;
   var LOCALE_RE = /^[A-Z]{2}$/;
   /* v4 (2026-11-04, v4/events/BOARD_V4_PLAN.md): mode tabs, hero/2nd-section A/B, pinned comments, beauty-app tab */
-  var BOARD_V = '20261106-v4c'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
+  var BOARD_V = '20261106-v4d'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
   var PAGE_V = '&v=20261104-v4a'; /* cache version of the own-page iframes (qa/v2-cache.test.cjs) */
   var VARIANT_SLOTS = [1, 2];
   var COMMENT_SAVE_MS = 800;
@@ -53,8 +53,8 @@
   function normVariant(v) { return v === 'b' ? 'b' : 'a'; }
   function slotName(n) { return n === 1 ? '히어로(1장)' : '2번 섹션(2장)'; }
   function parseHash(hash) {
-    var m = /^#?([A-Za-z0-9]+)\/([A-Z]{2})(?:\/(app))?$/.exec(hash || '');
-    return m ? { item: m[1], locale: m[2], mode: m[3] === 'app' ? 'app' : 'home' } : null;
+    var m = /^#?([A-Za-z0-9]+)\/([A-Z]{2})(?:\/(app|dl))?$/.exec(hash || '');
+    return m ? { item: m[1], locale: m[2], mode: m[3] === 'app' ? 'app' : m[3] === 'dl' ? 'download' : 'home' } : null;
   }
   /* ?api=http://127.0.0.1:8787 points the board at a local test server; any other host is ignored */
   function apiFromSearch(search) {
@@ -480,7 +480,8 @@
         H('section', { class: 'statusbar' }, [ui.status, ui.summary]),
         ui.errors,
         ui.tabs,
-        H('div', { class: 'layout' }, [H('aside', { class: 'sidebar' }, [ui.sideTitle, ui.list]), ui.preview, ui.cpanel]),
+        ui.layout = H('div', { class: 'layout' }, [H('aside', { class: 'sidebar' }, [ui.sideTitle, ui.list]), ui.preview, ui.cpanel]),
+        ui.hub = H('main', { class: 'dl-hub', id: 'dl-hub', hidden: true }),
         ui.drawerBtn, ui.drawerBack, ui.ctx, ui.lightbox,
         ui.toast,
       ]);
@@ -711,15 +712,18 @@
       if (ed && (ed.draft !== ed.original || ed.status !== 'idle')) { toast('수정 중인 내용을 먼저 저장하거나 취소해 주세요.', 'error'); return false; }
       state.editor = null; return true;
     }
-    function pushHash() { if (env.replaceHash) env.replaceHash('#' + state.itemId + '/' + state.locale + (state.mode === 'app' ? '/app' : '')); }
+    function pushHash() { if (env.replaceHash) env.replaceHash('#' + state.itemId + '/' + state.locale + (state.mode === 'app' ? '/app' : state.mode === 'download' ? '/dl' : '')); }
     function selectItem(id) { if (id === state.itemId || !canNavigate()) return; flushActiveDraft(); hideCtx(); state.itemId = id; unfoldFor(id); pushHash(); renderAll(); loadComments(id); }
     function selectLocale(id) { if (id === state.locale || !canNavigate()) return; hideCtx(); state.locale = id; pushHash(); renderAll(); }
-    function selectMode(m) { if (m === state.mode || !canNavigate()) return; hideCtx(); state.mode = m === 'app' ? 'app' : 'home'; pushHash(); renderAll(); }
-    function renderAll() { renderErrors(); renderModeTabs(); renderTabs(); renderSidebar(); renderPreview(); renderComments(); renderStatus(); }
+    function selectMode(m) { if (m === state.mode || !canNavigate()) return; hideCtx(); state.mode = m === 'app' ? 'app' : m === 'download' ? 'download' : 'home'; pushHash(); renderAll(); }
+    /* 2026-11-06: third view '콘텐츠별 다운로드' (#ID/LOCALE/dl) replaces the list/preview/comments with the download hub */
+    function showHub(on) { if (ui.layout) ui.layout.hidden = !!on; if (ui.hub) ui.hub.hidden = !on; if (ui.drawerBtn) ui.drawerBtn.hidden = !!on; }
+    function renderAll() { renderErrors(); renderModeTabs(); renderTabs(); if (state.mode === 'download') { showHub(true); renderHub(); renderStatus(); return; } showHub(false); renderSidebar(); renderPreview(); renderComments(); renderStatus(); }
     function renderModeTabs() {
       if (!ui.modeTabs) return;
       setAppClass('mode-app', state.mode === 'app');
-      ui.modeTabs.replaceChildren.apply(ui.modeTabs, [['home', '홈페이지', '모든 이미지'], ['app', '뷰티앱', '강남언니 · 바비톡 · 여신티켓']].map(function (m) {
+      setAppClass('mode-dl', state.mode === 'download');
+      ui.modeTabs.replaceChildren.apply(ui.modeTabs, [['home', '홈페이지', '모든 이미지'], ['app', '뷰티앱', '강남언니 · 바비톡 · 여신티켓'], ['download', '콘텐츠별 다운로드', '라인·카카오톡 사이즈까지 한 번에']].map(function (m) {
         var cur = state.mode === m[0];
         return H('button', { type: 'button', role: 'tab', class: 'mode-tab' + (cur ? ' current' : ''), 'data-mode': m[0], 'aria-selected': cur ? 'true' : 'false', onclick: function () { selectMode(m[0]); } }, [
           H('span', { class: 'mode-name', text: m[1] }), H('span', { class: 'mode-sub', text: m[2] }),
@@ -927,7 +931,7 @@
 
     function renderPreview() {
       var it = item();
-      if (!it) return;
+      if (!it || state.mode === 'download') return;
       var key = it.id + '/' + state.locale + '/' + state.mode;
       var ed0 = state.editor;
       if (ed0 && ed0.ta) { ed0.selStart = ed0.ta.selectionStart; ed0.selEnd = ed0.ta.selectionEnd; ed0.hadFocus = doc.activeElement === ed0.ta; }
@@ -1082,6 +1086,17 @@
     }
     var CAP_P5 = 'section.p1,section.p2,section.p3,section.p4,section.p5';
     var CAP = { items: CAP_ITEMS, sel: CAP_P5, n: 5, w: 1080, h: 1350, frameW: 1440, lib: 'vendor/modern-screenshot-4.7.0.js' };
+    /* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md): every image is redesigned per size, never cropped.
+       A page lists its sizes in data.json item.sizes (and <meta name="bb-sizes">); ?size=line|kakao switches it. New channel = one line. */
+    var SIZES = [
+      { id: 'home', label: '홈페이지·수가책·메타', w: 1080, h: 1350, tag: '' },
+      { id: 'line', label: '라인', w: 1100, h: 1000, tag: '라인' },
+      { id: 'kakao', label: '카카오톡', w: 800, h: 600, tag: '카카오톡' },
+    ];
+    function sizeById(id) { return SIZES.filter(function (s) { return s.id === id; })[0] || SIZES[0]; }
+    function sizesOf(it) { var l = it && Array.isArray(it.sizes) ? it.sizes : []; return SIZES.filter(function (s) { return s.id === 'home' || l.indexOf(s.id) >= 0; }); }
+    function sizeSuffix(size) { return size && size.id !== 'home' ? '_' + size.tag + '_' + size.w + 'x' + size.h : ''; }
+    function partLabel(o) { return o.n + '장' + (o.parts > 1 ? '-' + o.part : ''); }
     /* winter event pages (2026-11-02) have a different number of cards: data.json item.cards = count and every card section carries data-card="1".."n" */
     function capSpec(it) {
       if (!it || typeof it.page !== 'string') return null;
@@ -1099,20 +1114,38 @@
     function safeBase(it) { return String(it.label || it.id).replace(/[\\/:*?"<>|]+/g, '').replace(/\s*·\s*/g, '_').replace(/\s+/g, ''); }
     function downloadBar(it) {
       var spec = capSpec(it); if (!spec || !env.downloadBlob) return null;
+      state.dlSize = state.dlSize || {};
+      var sizes = sizesOf(it), cur = sizeById(state.dlSize[it.id] || 'home'); if (sizes.indexOf(cur) < 0) cur = SIZES[0];
       var nums1 = []; for (var q = 1; q <= spec.n; q++) nums1.push(q);
       var status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' });
       var buttons = [];
       var btn = function (text, action, nums, mode, cls) { var b = H('button', { type: 'button', class: 'btn small' + (cls ? ' ' + cls : ''), 'data-action': action, text: text, onclick: function () { run(nums, mode); } }); buttons.push(b); return b; };
-      function run(nums, mode) { if (state.capture) { status.textContent = '이미 이미지를 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } buttons.forEach(function (b) { b.disabled = true; }); captureCards(it, state.locale, nums, mode, function (m) { status.textContent = m; }).then(function (m) { status.textContent = m; }, function (e) { status.textContent = '받지 못했습니다: ' + (e && e.message || e); }).then(function () { buttons.forEach(function (b) { b.disabled = false; }); }); }
+      function run(nums, mode) { if (state.capture) { status.textContent = '이미 이미지를 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } buttons.forEach(function (b) { b.disabled = true; }); captureCards(it, state.locale, nums, mode, function (m) { status.textContent = m; }, cur.id).then(function (m) { status.textContent = m; }, function (e) { status.textContent = '받지 못했습니다: ' + (e && e.message || e); }).then(function () { buttons.forEach(function (b) { b.disabled = false; }); }); }
+      var longBtn = btn(spec.n + '장 이어서 길게 1장', 'img-long', nums1, 'long', 'primary');
+      var homeNote = '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×' + (1350 * spec.n) + ' PNG입니다.' + (spec.sel === '[data-card]' ? ' 히어로·2번 섹션은 디자인 선택에서 고른 안만 씁니다. 말풍선 핀은 들어가지 않습니다.' : '');
+      var note = H('p', { class: 'img-dl-note', text: homeNote });
+      var sizeBtns = [];
+      var sizeRow = sizes.length > 1 ? H('div', { class: 'img-dl-row img-dl-sizes', role: 'group', 'aria-label': '사이즈' }, [H('strong', { class: 'img-dl-label', text: '사이즈' })].concat(sizes.map(function (s) {
+        var b = H('button', { type: 'button', class: 'btn small size-btn', 'data-size': s.id, text: s.label + ' ' + s.w + '×' + s.h, onclick: function () { if (state.capture) return; cur = s; state.dlSize[it.id] = s.id; refreshSize(); } });
+        sizeBtns.push(b); return b;
+      }))) : null;
       var host = H('div', { class: 'img-download', 'data-img-download': it.id }, [
-        H('div', { class: 'img-dl-row' }, [H('strong', { class: 'img-dl-label', text: '이미지 받기' }), H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, nums1.map(function (n) { return btn(n + '장', 'img-card-' + n, [n], 'single'); }).concat([btn(spec.n + '장 모두 따로', 'img-cards-all', nums1, 'single')])), btn(spec.n + '장 이어서 길게 1장', 'img-long', nums1, 'long', 'primary')]),
-        H('p', { class: 'img-dl-note', text: '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×' + (1350 * spec.n) + ' PNG입니다.' + (spec.sel === '[data-card]' ? ' 히어로·2번 섹션은 디자인 선택에서 고른 안만 씁니다. 말풍선 핀은 들어가지 않습니다.' : '') }), status,
-      ]);
+        sizeRow,
+        H('div', { class: 'img-dl-row' }, [H('strong', { class: 'img-dl-label', text: '이미지 받기' }), H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, nums1.map(function (n) { return btn(n + '장', 'img-card-' + n, [n], 'single'); }).concat([btn(spec.n + '장 모두 따로', 'img-cards-all', nums1, 'single')])), longBtn]),
+        note, status,
+      ].filter(Boolean));
+      function refreshSize() {
+        sizeBtns.forEach(function (b) { var on = b.getAttribute('data-size') === cur.id; b.className = 'btn small size-btn' + (on ? ' primary' : ''); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        longBtn.hidden = cur.id !== 'home';
+        note.textContent = cur.id === 'home' ? homeNote : '서버에 저장된 지금 문구 그대로 받습니다. ' + cur.label + ' ' + cur.w + '×' + cur.h + ' PNG입니다. 한 장에 다 들어가지 않는 장은 나눠서 받습니다(예: 2장-1, 2장-2). 히어로·2번 섹션은 디자인 선택에서 고른 안만 씁니다.';
+        if (a4) a4.hidden = cur.id !== 'home' || !a4.childNodes.length;
+      }
       var a4 = H('div', { class: 'a4-dl-group', hidden: true }); host.appendChild(a4);
       a4CardsFor(it).then(function (cards) { if (!cards.length) return; var a4Status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' }); var group = H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '원내 배치용 A4 다운로드' }); var runA4 = function (mode) { if (state.capture) { a4Status.textContent = '이미 파일을 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } a4CardsFor(it).then(function (latest) { return captureA4(it, state.locale, latest, mode, function (m) { a4Status.textContent = m; }); }).then(function (m) { a4Status.textContent = m; }, function (e) { a4Status.textContent = '받지 못했습니다: ' + (e && e.message || e); }); };
         group.appendChild(H('button', { type: 'button', class: 'btn small primary', text: 'A4 한 장 PNG', onclick: function () { runA4('one-png'); } })); group.appendChild(H('button', { type: 'button', class: 'btn small', text: 'A4 한 장 PDF', onclick: function () { runA4('one-pdf'); } })); if (cards.length >= 2) group.appendChild(H('button', { type: 'button', class: 'btn small', text: '카드별 A4 PDF (' + cards.length + '쪽)', onclick: function () { runA4('per-card-pdf'); } }));
-        a4.appendChild(H('strong', { class: 'img-dl-label', text: '원내 배치용 A4 (210×297mm)' })); a4.appendChild(group); a4.appendChild(H('p', { class: 'img-dl-note', text: '금액 카드 ' + cards.length + '장을 A4 한 장(210×297mm, 300dpi)에 담습니다.' })); a4.appendChild(a4Status); a4.hidden = false;
+        a4.appendChild(H('strong', { class: 'img-dl-label', text: '원내 배치용 A4 (210×297mm)' })); a4.appendChild(group); a4.appendChild(H('p', { class: 'img-dl-note', text: '금액 카드 ' + cards.length + '장을 A4 한 장(210×297mm, 300dpi)에 담습니다.' })); a4.appendChild(a4Status); a4.hidden = cur.id !== 'home';
       }, function () { /* no A4 group when the page has no price cards */ });
+      if (sizeRow) refreshSize();
       return host;
     }
     function capWait(win, ms) { return new Promise(function (r) { win.setTimeout(r, ms); }); }
@@ -1152,9 +1185,11 @@
       progress('최신 문구를 확인하는 중…');
       return store.refresh().then(function () { if (!store.online || store.status !== 'ready') throw new Error('서버에 연결되지 않아 최신 문구를 확인할 수 없습니다.'); cap.fields = effectiveFields(it, locale, store); return new Promise(function (resolve, reject) { var f = doc.createElement('iframe'); f.setAttribute('aria-hidden', 'true'); f.style.cssText = 'position:fixed;left:0;top:0;width:1440px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;'; var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000); f.addEventListener('load', function () { win.clearTimeout(t); resolve(); }); f.src = it.page + '?lang=' + encodeURIComponent(locale) + '&v=20261104-a4b&capture=1'; cap.el = f; doc.body.appendChild(f); }); }).then(function () { capPost(cap); return capApplied(cap, it, locale); }).then(function () { applyVariantsToDoc(cap.el.contentDocument, it, true); return capPrepare(cap); }).then(function (fontCss) { var iw = cap.el.contentWindow, cards = Array.prototype.filter.call(iw.document.querySelectorAll('[data-card]'), function (c) { return c.querySelectorAll('[data-price-row]').length >= 1; }); if (!cards.length) throw new Error('금액 카드를 찾지 못했습니다.'); var out = [], chain = Promise.resolve(); cards.forEach(function (card, idx) { chain = chain.then(function () { progress('금액 카드 캡처 중 ' + (idx + 1) + '/' + cards.length + '…'); var scale = Math.min(2.4, Math.max(1, (a4Layout(cards.length)[idx] || a4Layout(1)[0]).w / card.getBoundingClientRect().width)); return iw.modernScreenshot.domToCanvas(card, { scale: scale, font: { cssText: fontCss } }).then(function (c) { out.push(c); }); }); }); return chain.then(function () { var one = composeA4(out); if (mode === 'one-png' || mode === 'one-pdf') return capBlob(one).then(withPhys).then(function (b) { if (mode === 'one-png') env.downloadBlob(b, safeBase(it) + '_' + locale + '_A4_원내배치용.png'); return mode === 'one-pdf' ? pdfFromCanvases([one]).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_원내배치용.pdf'); }) : null; }).then(function () { return 'A4 한 장을 받았습니다(금액 카드 ' + cards.length + '장).'; }); var pages = out.map(function (c) { return composeA4([c]); }); return pdfFromCanvases(pages).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_카드별.pdf'); return '카드별 A4 PDF를 받았습니다: ' + cards.length + '쪽'; }); }); }).then(function (m) { finish(); return m; }, function (e) { finish(); throw e; });
     }
-    function captureCards(it, locale, nums, mode, progress) {
+    /* capture the chosen design's cards at one channel size (2026-11-06); resolves { size, out: [{ n, part, parts, canvas }] }.
+       Size modes: the page gets &size=line|kakao, only displayed sections count, and a card may be split into parts (data-part). */
+    function captureParts(it, locale, nums, sizeId, progress) {
       var spec = capSpec(it) || { sel: CAP_P5, n: 5 }; CAP.sel = spec.sel; CAP.n = spec.n;
-      var win = doc.defaultView;
+      var size = sizeById(sizeId), win = doc.defaultView;
       var cap = state.capture = { itemId: it.id, locale: locale, el: null, fields: null };
       var finish = function () { if (cap.el && cap.el.parentNode) cap.el.parentNode.removeChild(cap.el); if (state.capture === cap) state.capture = null; };
       progress('최신 문구를 확인하는 중…');
@@ -1165,10 +1200,10 @@
         return new Promise(function (resolve, reject) {
           var f = doc.createElement('iframe');
           f.setAttribute('aria-hidden', 'true'); f.setAttribute('tabindex', '-1'); f.setAttribute('title', 'image capture');
-          f.style.cssText = 'position:fixed;left:0;top:0;width:' + CAP.frameW + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
+          f.style.cssText = 'position:fixed;left:0;top:0;width:' + Math.max(CAP.frameW, size.w + 200) + 'px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;';
           var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000);
           f.addEventListener('load', function () { win.clearTimeout(t); resolve(); });
-          f.src = it.page + '?lang=' + encodeURIComponent(locale) + PAGE_V + '&capture=1';
+          f.src = it.page + '?lang=' + encodeURIComponent(locale) + PAGE_V + '&capture=1' + (size.id !== 'home' ? '&size=' + size.id : '');
           cap.el = f; doc.body.appendChild(f);
         });
       }).then(function () {
@@ -1179,42 +1214,136 @@
         progress('사진과 글꼴을 준비하는 중…');
         return capPrepare(cap);
       }).then(function (fontCss) {
-        var iwin = cap.el.contentWindow, cards = iwin.document.querySelectorAll(CAP.sel), out = [], chain = Promise.resolve();
+        var iwin = cap.el.contentWindow, idoc = iwin.document;
+        if (size.id !== 'home' && idoc.documentElement.getAttribute('data-size') !== size.id) throw new Error('이 페이지에는 ' + size.label + ' ' + size.w + '×' + size.h + ' 디자인이 아직 없습니다.');
+        var shown = Array.prototype.filter.call(idoc.querySelectorAll(CAP.sel), function (c) { return iwin.getComputedStyle(c).display !== 'none' && !(c.closest && c.closest('[data-app-asset]')); });
+        var groups = {}, order = [];
+        shown.forEach(function (c, i) { var n = spec.sel === '[data-card]' ? Number(c.getAttribute('data-card')) : i + 1; if (!groups[n]) { groups[n] = []; order.push(n); } groups[n].push(c); });
         if (state.lastCapture) { state.lastCapture.fontKB = Math.round(fontCss.length / 1024); state.lastCapture.fontFaces = (fontCss.match(/@font-face/g) || []).length; }
-        if (cards.length !== CAP.n) throw new Error('카드 ' + CAP.n + '장을 찾지 못했습니다 (' + cards.length + '장).');
-        nums.forEach(function (n, i) {
+        if (order.length !== CAP.n) throw new Error('카드 ' + CAP.n + '장을 찾지 못했습니다 (' + order.length + '장).');
+        var jobs = [];
+        nums.forEach(function (n) {
+          var parts = (groups[n] || []).slice().sort(function (a, b) { return (Number(a.getAttribute('data-part')) || 1) - (Number(b.getAttribute('data-part')) || 1); });
+          if (!parts.length) throw new Error(n + '장을 찾지 못했습니다.');
+          parts.forEach(function (card, pi) { jobs.push({ n: n, part: pi + 1, parts: parts.length, card: card }); });
+        });
+        var out = [], chain = Promise.resolve();
+        jobs.forEach(function (j, i) {
           chain = chain.then(function () {
-            var card = cards[n - 1], r = card.getBoundingClientRect();
-            if (Math.abs(r.width - CAP.w) > 1 || Math.abs(r.height - CAP.h) > 1) throw new Error(n + '장 크기가 ' + Math.round(r.width) + '×' + Math.round(r.height) + '입니다.');
-            progress('이미지를 만드는 중 ' + (i + 1) + '/' + nums.length + '…');
+            var r = j.card.getBoundingClientRect();
+            if (Math.abs(r.width - size.w) > 1 || Math.abs(r.height - size.h) > 1) throw new Error(partLabel(j) + ' 크기가 ' + Math.round(r.width) + '×' + Math.round(r.height) + '입니다.' + (size.id !== 'home' ? ' (' + size.label + ' ' + size.w + '×' + size.h + ')' : ''));
+            progress('이미지를 만드는 중 ' + (i + 1) + '/' + jobs.length + '…');
             /* the card is drawn on its own, so give it the page language: CJK fallback fonts and line breaking follow lang */
-            var lang = iwin.document.documentElement.getAttribute('lang');
-            if (lang && !card.getAttribute('lang')) card.setAttribute('lang', lang);
-            return iwin.modernScreenshot.domToCanvas(card, { scale: 1, font: { cssText: fontCss } }).then(function (c) { out.push({ n: n, canvas: c }); });
+            var lang = idoc.documentElement.getAttribute('lang');
+            if (lang && !j.card.getAttribute('lang')) j.card.setAttribute('lang', lang);
+            return iwin.modernScreenshot.domToCanvas(j.card, { scale: 1, font: { cssText: fontCss } }).then(function (c) {
+              var k = doc.createElement('canvas'); k.width = size.w; k.height = size.h; k.getContext('2d').drawImage(c, 0, 0, size.w, size.h);
+              out.push({ n: j.n, part: j.part, parts: j.parts, canvas: k });
+            });
           });
         });
         return chain.then(function () { return out; });
-      }).then(function (out) {
+      }).then(function (out) { finish(); return { size: size, out: out }; }, function (e) { finish(); throw e; });
+    }
+    function captureCards(it, locale, nums, mode, progress, sizeId) {
+      var win = doc.defaultView;
+      return captureParts(it, locale, nums, sizeId || 'home', progress).then(function (res) {
+        var out = res.out, size = res.size;
         progress('파일로 저장하는 중…');
-        if (mode === 'long') {
-          var big = doc.createElement('canvas'); big.width = CAP.w; big.height = CAP.h * out.length;
+        if (mode === 'long' && size.id === 'home') {
+          var big = doc.createElement('canvas'); big.width = size.w; big.height = size.h * out.length;
           var g = big.getContext('2d');
-          out.forEach(function (o, i) { g.drawImage(o.canvas, 0, i * CAP.h, CAP.w, CAP.h); });
+          out.forEach(function (o, i) { g.drawImage(o.canvas, 0, i * size.h, size.w, size.h); });
           return capBlob(big).then(function (b) {
             env.downloadBlob(b, capName(it, locale, '전체'));
-            return '받았습니다: ' + out.length + '장을 이어 붙인 1장 (' + CAP.w + '×' + big.height + ')';
+            return '받았습니다: ' + out.length + '장을 이어 붙인 1장 (' + size.w + '×' + big.height + ')';
           });
         }
         var chain = Promise.resolve();
         out.forEach(function (o, i) {
           chain = chain.then(function () {
-            var c = doc.createElement('canvas'); c.width = CAP.w; c.height = CAP.h;
-            c.getContext('2d').drawImage(o.canvas, 0, 0, CAP.w, CAP.h);
-            return capBlob(c).then(function (b) { env.downloadBlob(b, capName(it, locale, o.n + '장')); return i < out.length - 1 ? capWait(win, 400) : null; });
+            return capBlob(o.canvas).then(function (b) { env.downloadBlob(b, capName(it, locale, partLabel(o) + sizeSuffix(size))); return i < out.length - 1 ? capWait(win, 400) : null; });
           });
         });
-        return chain.then(function () { return '받았습니다: ' + out.map(function (o) { return o.n + '장'; }).join(', ') + ' (각 ' + CAP.w + '×' + CAP.h + ')'; });
-      }).then(function (msg) { finish(); return msg; }, function (e) { finish(); throw e; });
+        return chain.then(function () { return '받았습니다: ' + out.map(partLabel).join(', ') + ' (각 ' + (size.id !== 'home' ? size.label + ' ' : '') + size.w + '×' + size.h + ')'; });
+      });
+    }
+
+    /* ---- 콘텐츠별 다운로드 (2026-11-06 user: "다운로드 기능이 있는 url을 컨텐츠별로 분류해서 선택 클릭 다운 받을 수 있게") ----
+       Groups -> items -> sizes. Every image of the chosen items is captured in each chosen size with the saved wording and the
+       A/B design choice, then one stored ZIP (one folder per channel) is downloaded. #ID/LOCALE/dl opens this view. */
+    function hubState() { return state.hub || (state.hub = { sizes: { home: true, line: true, kakao: true }, items: {}, busy: false, msg: '' }); }
+    function hubItems() { return visibleItems().filter(function (it) { return !!capSpec(it) && hasLocale(it, state.locale) && !isTestItem(it.id); }); }
+    function hubJobs() {
+      var hub = hubState(), jobs = [];
+      hubItems().forEach(function (it) { if (!hub.items[it.id]) return; sizesOf(it).forEach(function (s) { if (hub.sizes[s.id]) jobs.push({ it: it, size: s }); }); });
+      return jobs;
+    }
+    function hubFolder(size) { return size.id === 'home' ? '홈페이지·수가책·메타_1080x1350' : size.tag + '_' + size.w + 'x' + size.h; }
+    function hubStamp() { var d = new Date(), p = function (v) { return (v < 10 ? '0' : '') + v; }; return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + p(d.getHours()) + p(d.getMinutes()); }
+    function setHubMsg(m) { var hub = hubState(); hub.msg = m; var s = ui.hub && ui.hub.querySelector ? ui.hub.querySelector('.hub-status') : null; if (s) s.textContent = m; }
+    function renderHub() {
+      if (!ui.hub) return;
+      var hub = hubState(), loc = state.locale, avail = hubItems(), availIds = {};
+      avail.forEach(function (it) { availIds[it.id] = true; });
+      var check = function (on, fn, label) { return H('input', { type: 'checkbox', checked: !!on, disabled: hub.busy, 'aria-label': label, onchange: function (e) { fn(!!e.target.checked); renderHub(); } }); };
+      var sizeBox = H('div', { class: 'hub-sizes', role: 'group', 'aria-label': '사이즈' }, [H('strong', { class: 'hub-label', text: '사이즈' })].concat(SIZES.map(function (s) {
+        return H('label', { class: 'hub-size' }, [check(hub.sizes[s.id], function (v) { hub.sizes[s.id] = v; }, s.label), H('span', { text: s.label + ' ' + s.w + '×' + s.h })]);
+      })));
+      var used = {}, rows = [];
+      var itemRowH = function (it) {
+        var sz = sizesOf(it), missing = SIZES.filter(function (s) { return sz.indexOf(s) < 0; });
+        return H('li', { class: 'hub-item' + (hub.items[it.id] ? ' on' : ''), 'data-hub-item': it.id }, [
+          H('label', { class: 'hub-item-main' }, [check(hub.items[it.id], function (v) { hub.items[it.id] = v; }, it.label), H('span', { class: 'hub-item-label', text: it.label }), H('span', { class: 'hub-item-cards', text: capSpec(it).n + '장' })]),
+          H('span', { class: 'hub-item-sizes' }, sz.map(function (s) { return H('span', { class: 'hub-chip', text: s.id === 'home' ? '1080×1350' : s.tag + ' ' + s.w + '×' + s.h }); }).concat(missing.length ? [H('span', { class: 'hub-chip off', text: missing.map(function (s) { return s.tag || s.label; }).join('·') + ' 준비 중' })] : [])),
+        ]);
+      };
+      visibleGroups().forEach(function (x) {
+        var members = x.items.filter(function (it) { return availIds[it.id]; });
+        members.forEach(function (it) { used[it.id] = true; });
+        if (!members.length) return;
+        var allOn = members.every(function (it) { return hub.items[it.id]; });
+        rows.push(H('li', { class: 'hub-group', 'data-hub-group': x.g.id }, [
+          H('label', { class: 'hub-group-head' }, [check(allOn, function (v) { members.forEach(function (it) { hub.items[it.id] = v; }); }, (x.g.label || x.g.id) + ' 전체'), H('strong', { text: x.g.label || x.g.id }), H('span', { class: 'hub-count', text: members.length + '개' })]),
+          H('ul', { class: 'hub-items' }, members.map(itemRowH)),
+        ]));
+      });
+      var rest = avail.filter(function (it) { return !used[it.id]; });
+      if (rest.length) rows.push(H('li', { class: 'hub-group' }, [H('div', { class: 'hub-group-head' }, [H('strong', { text: '묶음 없음' })]), H('ul', { class: 'hub-items' }, rest.map(itemRowH))]));
+      var jobs = hubJobs(), imgs = jobs.reduce(function (a, j) { return a + capSpec(j.it).n; }, 0);
+      var go = H('button', { type: 'button', class: 'btn primary hub-go', 'data-action': 'hub-download', disabled: hub.busy || !jobs.length, text: hub.busy ? '만드는 중…' : '선택한 이미지 받기 (ZIP)', onclick: function () { runHub(); } });
+      ui.hub.replaceChildren(H('section', { class: 'hub-panel', 'aria-label': '콘텐츠별 다운로드' }, [
+        H('h2', { class: 'hub-title', text: '콘텐츠별 이미지 받기 · ' + loc }),
+        H('p', { class: 'hub-note', text: '받을 묶음·항목과 사이즈를 고르면, 서버에 저장된 지금 문구와 디자인 선택(A·B안) 그대로 모든 장을 만들어 ZIP 한 개로 받습니다. 사이즈별로 폴더가 나뉩니다. 언어는 위 언어 탭에서 바꿉니다. 라인·카카오톡은 사이즈에 맞게 새로 디자인한 페이지만 들어갑니다.' }),
+        sizeBox,
+        H('div', { class: 'hub-actions' }, [go, H('span', { class: 'hub-sum', text: jobs.length ? '항목×사이즈 ' + jobs.length + '건 · 기본 ' + imgs + '장(나뉜 장은 더 늘어납니다)' : '항목과 사이즈를 고르세요.' })]),
+        H('p', { class: 'hub-status', role: 'status', 'aria-live': 'polite', text: hub.msg || '' }),
+        H('ul', { class: 'hub-list' }, rows),
+      ]));
+    }
+    function runHub() {
+      var hub = hubState(), jobs = hubJobs(), loc = state.locale;
+      if (hub.busy || !jobs.length) return;
+      if (state.capture) { setHubMsg('다른 이미지를 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'); return; }
+      hub.busy = true; hub.msg = '준비하는 중…'; renderHub();
+      var files = [], failed = [], chain = Promise.resolve();
+      jobs.forEach(function (j, idx) {
+        chain = chain.then(function () {
+          var nums = []; for (var q = 1; q <= capSpec(j.it).n; q++) nums.push(q);
+          var head = (idx + 1) + '/' + jobs.length + ' ' + j.it.label + ' · ' + (j.size.tag || '홈페이지') + ': ';
+          return captureParts(j.it, loc, nums, j.size.id, function (m) { setHubMsg(head + m); }).then(function (res) {
+            var c2 = Promise.resolve();
+            res.out.forEach(function (o) { c2 = c2.then(function () { return capBlob(o.canvas).then(function (b) { return b.arrayBuffer(); }).then(function (ab) { files.push({ name: hubFolder(res.size) + '/' + capName(j.it, loc, partLabel(o) + sizeSuffix(res.size)), data: new Uint8Array(ab) }); }); }); });
+            return c2;
+          }).catch(function (e) { failed.push(j.it.label + ' · ' + (j.size.tag || '홈페이지') + ' (' + (e && e.message || e) + ')'); });
+        });
+      });
+      chain.then(function () {
+        if (!files.length) throw new Error(failed.join(' / ') || '받을 이미지가 없습니다.');
+        setHubMsg('ZIP으로 묶는 중… (' + files.length + '장)');
+        env.downloadBlob(new Blob([zipStore(files)], { type: 'application/zip' }), '뷰티블라썸_이미지_' + loc + '_' + hubStamp() + '.zip');
+        hub.msg = '받았습니다: 이미지 ' + files.length + '장 (ZIP)' + (failed.length ? ' · 못 받은 것 ' + failed.length + '건: ' + failed.join(' / ') : '');
+      }).catch(function (e) { hub.msg = '받지 못했습니다: ' + (e && e.message || e); }).then(function () { hub.busy = false; renderHub(); });
     }
 
     /* wait until every saved (server) value of this item/locale is visible in the hidden page */
@@ -1537,8 +1666,12 @@
       VARIANT_SLOTS.forEach(function (n) {
         var s = sectionsFor(root, n), want = variantOf(it.id, n);
         if (want === 'b' && !s.b) { if (s.a) missing.push(n); return; }
-        var drop = want === 'b' ? s.a : s.b;
-        if (drop && drop.parentNode) drop.parentNode.removeChild(drop);
+        /* drop every section of the design that is not chosen: all its parts (data-part) and size-only sections too */
+        Array.prototype.forEach.call(root.querySelectorAll('[data-card="' + n + '"]'), function (sec) {
+          if (sec.closest && sec.closest('[data-app-asset]')) return;
+          var isB = sec.getAttribute('data-variant') === 'b';
+          if ((want === 'b') !== isB && sec.parentNode) sec.parentNode.removeChild(sec);
+        });
       });
       Array.prototype.forEach.call(root.querySelectorAll('[data-card][data-variant="b"]'), function (s) { if (VARIANT_SLOTS.indexOf(Number(s.getAttribute('data-card'))) < 0 && s.parentNode) s.parentNode.removeChild(s); });
       if (missing.length && strict) throw new Error(missing.map(slotName).join(', ') + '에 B안이 선택되어 있지만 페이지에 B안 디자인이 없습니다. 디자인 선택을 확인해 주세요.');
