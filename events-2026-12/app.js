@@ -23,12 +23,20 @@
   var ID_RE = /^[A-Za-z0-9]+$/;
   var LOCALE_RE = /^[A-Z]{2}$/;
   /* v4 (2026-11-04, v4/events/BOARD_V4_PLAN.md): mode tabs, hero/2nd-section A/B, pinned comments, beauty-app tab */
-  var BOARD_V = '20261106-v4d'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
+  var BOARD_V = '20261106-v4f'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
   var PAGE_V = '&v=20261104-v4a'; /* cache version of the own-page iframes (qa/v2-cache.test.cjs) */
   var VARIANT_SLOTS = [1, 2];
   var COMMENT_SAVE_MS = 800;
   var COMMENT_MAX = 4000;
-  var IMG_LONG = 1600, IMG_Q = 0.85, IMG_MAX_BYTES = 1500000, IMG_PER_COMMENT = 8;
+  /* 2026-11-06 team: "큰 이미지 안 들어감". The file itself is uploaded (no base64) up to 10MB; PNG/JPEG/WebP within 24MP and 16384px a side (tall page captures) go as they are. */
+  var IMG_MAX_SIDE = 16384, IMG_MAX_PIXELS = 24000000, IMG_Q = 0.9, IMG_MAX_BYTES = 10 * 1024 * 1024, IMG_KEEP_TYPES = ['image/png', 'image/jpeg', 'image/webp'], IMG_PER_COMMENT = 8;
+  /* downloads from the share server are slow from Korea (about 65KB/s): images above 64KB also get a 320px center-square preview for the card */
+  var IMG_PREVIEW_SIDE = 320, IMG_PREVIEW_MIN = 64 * 1024;
+  /* keep the original file, or the scale to redraw it at (JPEG) */
+  function imagePlan(w, h, type, size) {
+    if (IMG_KEEP_TYPES.indexOf(type) >= 0 && size <= IMG_MAX_BYTES && w * h <= IMG_MAX_PIXELS && Math.max(w, h) <= IMG_MAX_SIDE) return { keep: true, scale: 1 };
+    return { keep: false, scale: Math.min(1, Math.sqrt(IMG_MAX_PIXELS / Math.max(1, w * h)), IMG_MAX_SIDE / Math.max(1, w, h)) };
+  }
   var STATUS_COLOR = { open: '#E5484D', question: '#F5A524', done: '#30A46C' };
   var STATUS_NAME = { open: '요청', question: '확인 필요', done: '적용완료' };
   var MB = 1000000;
@@ -48,6 +56,8 @@
   /* ------------------------------------------------------------ pure helpers */
   function cellKey(itemId, locale, field) { return itemId + '.' + locale + '.' + field; }
   function selectedKey(itemId, locale) { return cellKey(itemId, locale, 'selected'); }
+  /* 2026-11-06 team: items whose feedback round is finished show a pink title in the list ('done' or '') */
+  function feedbackKey(itemId) { return cellKey(itemId, 'KO', 'feedback_done'); }
   /* A/B choice of the hero (1) and the 2nd section (2) is language-common and saved on the KO cell */
   function variantKey(itemId, slot) { return cellKey(itemId, 'KO', 'variant_c' + slot); }
   function normVariant(v) { return v === 'b' ? 'b' : 'a'; }
@@ -338,8 +348,21 @@
       create: function (b) { return call('POST', '/v1/comments', b); },
       update: function (b) { return call('POST', '/v1/comments/update', b); },
       image: function (b) { return call('POST', '/v1/comments/image', b); },
+      imageRaw: function (m, blob) {
+        var qs = '?commentId=' + encodeURIComponent(m.commentId) + '&mime=' + encodeURIComponent(m.mime) + '&w=' + m.w + '&h=' + m.h + '&by=' + encodeURIComponent(m.by || '');
+        var o = { method: 'POST', headers: Object.assign({ 'Content-Type': 'application/octet-stream' }, HEAD), cache: 'no-store', body: blob };
+        return Promise.resolve().then(function () { return doFetch(base + '/v1/comments/image/raw' + qs, o); }).then(function (res) {
+          return Promise.resolve().then(function () { return res.json(); }).then(function (b) { return b; }, function () { return null; })
+            .then(function (b) { return { ok: !!res.ok, status: res.status, body: b }; });
+        }, function () { return { ok: false, status: 0, body: null }; });
+      },
       imageDelete: function (b) { return call('POST', '/v1/comments/image/delete', b); },
-      imageUrl: function (id) { return base + '/v1/comments/image?id=' + encodeURIComponent(id); },
+      imagePreview: function (id, blob) {
+        var o = { method: 'POST', headers: Object.assign({ 'Content-Type': 'application/octet-stream' }, HEAD), cache: 'no-store', body: blob };
+        return Promise.resolve().then(function () { return doFetch(base + '/v1/comments/image/preview?id=' + encodeURIComponent(id), o); })
+          .then(function (res) { return { ok: !!res.ok, status: res.status }; }, function () { return { ok: false, status: 0 }; });
+      },
+      imageUrl: function (id, size) { return base + '/v1/comments/image?id=' + encodeURIComponent(id) + (size ? '&size=' + encodeURIComponent(size) : ''); },
     };
   }
 
@@ -665,10 +688,12 @@
         var loc = state.locale;
         var sel = store.isSelected(it.id, loc);
         var errs = itemErrorCount(it.id);
-        return H('li', { class: 'item-row' + (it.id === state.itemId ? ' current' : '') + (sel ? ' selected' : '') }, [
+        var fb = feedbackDone(it.id);
+        return H('li', { class: 'item-row' + (it.id === state.itemId ? ' current' : '') + (sel ? ' selected' : '') + (fb ? ' fb-done' : '') }, [
           H('input', { type: 'checkbox', class: 'select-box', 'data-select-for': it.id, 'aria-label': it.label + ' 선택 (' + loc + ')', checked: sel, disabled: !store.canEdit(), onchange: function (e) { onSelectChange(it.id, loc, !!e.target.checked); } }),
           H('button', { type: 'button', class: 'item-btn', 'data-item-id': it.id, 'aria-current': it.id === state.itemId ? 'true' : null, onclick: function () { selectItem(it.id); } }, [
             H('span', { class: 'item-label', text: it.label }),
+            fb ? H('span', { class: 'fb-tag', 'data-feedback-done': it.id, text: '피드백 완료' }) : null,
             isTestItem(it.id) ? H('span', { class: 'kind-tag kind-test', text: '테스트' }) : H('span', { class: 'kind-tag kind-' + it.kind, text: it.kind === 'plan' ? '기획' : '완성' }),
             errs ? H('span', { class: 'err-tag', text: '오류 ' + errs }) : null,
             requestBadge(it.id),
@@ -870,8 +895,95 @@
           H('h2', { class: 'preview-title', text: it.label + ' · ' + state.locale + (state.mode === 'app' ? ' · 뷰티앱' : '') }),
           isTestItem(it.id) ? H('p', { class: 'test-note', text: '테스트 구간 항목입니다. 연습용으로 만든 랜딩 7종(수능 포함)이며 실제 진행 작업과 구분됩니다.' }) : null,
         ]),
-        H('label', { class: 'preview-select' }, [cb, H('span', { text: state.locale + ' 언어판 선택' })]),
+        H('div', { class: 'preview-actions' }, [
+          hasPage(it) && (it.cards | 0) > 0 ? H('button', { type: 'button', class: 'btn final-btn', 'data-action': 'final-open', text: '최종본 전체보기', onclick: function () { openFinal(it); } }) : null,
+          (state.previewFb = H('button', { type: 'button', class: 'btn fb-btn', 'data-action': 'feedback-done', 'data-feedback-for': it.id, title: '팀 피드백을 다 달았으면 눌러 주세요. 왼쪽 목록 제목이 분홍색으로 바뀝니다.', onclick: function () { toggleFeedback(it.id); } }), syncFbBtn(), state.previewFb),
+          H('label', { class: 'preview-select' }, [cb, H('span', { text: state.locale + ' 언어판 선택' })]),
+        ]),
       ]);
+    }
+
+    /* ---- feedback round finished (pink title in the list) ---- */
+    function feedbackDone(itemId) { return store.value(feedbackKey(itemId), '') === 'done'; }
+    function syncFbBtn() {
+      var b = state.previewFb; if (!b) return;
+      var on = feedbackDone(b.getAttribute('data-feedback-for'));
+      b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.disabled = !store.canEdit(); b.textContent = on ? '피드백 완료됨' : '피드백 완료로 표시';
+    }
+    function toggleFeedback(itemId) {
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 저장할 수 없습니다 (편집 잠금).', 'error'); return Promise.resolve(); }
+      var key = feedbackKey(itemId), next = feedbackDone(itemId) ? '' : 'done';
+      state.saving++; renderStatus();
+      return store.save(key, next, by()).then(function (r) {
+        state.saving--;
+        if (r.ok) toast(next ? '피드백 완료로 표시했습니다.' : '피드백 완료 표시를 없앰습니다.', 'ok');
+        else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 바꿨습니다. 최신 상태를 불러왔습니다.', 'error'); }
+        else toast('서버에 저장되지 않았습니다. (' + reasonMessage(r) + ')', 'error');
+        renderSidebar(); renderPreview(); renderStatus();
+      });
+    }
+
+    /* ---- final version, full view: slides in from the right; chosen A/B only, saved wording, no pins (2026-11-06) ---- */
+    function variantSummary(it) { return VARIANT_SLOTS.map(function (n) { return n + '장 ' + variantOf(it.id, n).toUpperCase() + '안'; }).join(' · ') + ' 선택 기준 · 저장된 문구 반영'; }
+    function openFinal(it) {
+      if (!it || !hasPage(it)) return;
+      closeFinal(true);
+      var stage = H('div', { class: 'final-stage' }), note = H('p', { class: 'final-note', role: 'status', text: '최종본을 준비하는 중입니다…' });
+      var sizes = sizesOf(it), tabs = sizes.length > 1 ? H('div', { class: 'final-sizes', role: 'tablist', 'aria-label': '사이즈' }) : null;
+      var panel = H('div', { class: 'final-panel', role: 'dialog', 'aria-modal': 'true', 'aria-label': it.label + ' 최종본 전체보기', 'data-final-for': it.id }, [
+        H('div', { class: 'final-head' }, [
+          H('div', { class: 'final-title-wrap' }, [H('h2', { class: 'final-title', text: it.label + ' · 최종본' }), H('p', { class: 'final-sub', text: variantSummary(it) })]),
+          tabs,
+          H('button', { type: 'button', class: 'btn final-close', 'data-action': 'final-close', text: '닫기 (Esc)', onclick: function () { closeFinal(); } }),
+        ]),
+        note, stage,
+      ]);
+      state.final = { el: panel, stage: stage, note: note, tabs: tabs, sizes: sizes, itemId: it.id, frame: null, fit: null, size: null };
+      doc.body.appendChild(panel);
+      loadFinal('home');
+      win0.requestAnimationFrame(function () { win0.requestAnimationFrame(function () { panel.className += ' open'; }); });
+    }
+    function loadFinal(sizeId) {
+      var f = state.final, it = f && itemById(f.itemId); if (!f || !it) return;
+      var size = f.size = sizeById(sizeId);
+      if (f.tabs) f.tabs.replaceChildren.apply(f.tabs, f.sizes.map(function (s) {
+        var cur = s.id === size.id;
+        return H('button', { type: 'button', role: 'tab', class: 'btn small' + (cur ? ' current' : ''), 'aria-selected': cur ? 'true' : 'false', 'data-final-size': s.id, text: (s.id === 'home' ? '기본' : s.label) + ' ' + s.w + '×' + s.h, onclick: function () { if (!cur) loadFinal(s.id); } });
+      }));
+      f.note.hidden = false; f.note.textContent = '최종본을 준비하는 중입니다…';
+      var fw = Math.max(CAP.frameW, size.w + 200), fr = doc.createElement('iframe');
+      fr.className = 'final-frame'; fr.setAttribute('title', it.label + ' 최종본'); fr.setAttribute('scrolling', 'no'); fr.style.width = fw + 'px'; fr.style.height = '1600px';
+      var fit = H('div', { class: 'final-fit' }, [fr]);
+      f.frame = fr; f.fit = fit; f.stage.replaceChildren(fit); f.stage.scrollTop = 0;
+      fr.addEventListener('load', function () {
+        if (state.final !== f || f.frame !== fr) return;
+        var cap = { el: fr, fields: effectiveFields(it, 'KO', store) };
+        postTo(cap, { type: 'aptos-data', locale: 'KO', fields: cap.fields, editable: false, editMode: false });
+        capApplied(cap, it, 'KO').catch(function () { return null; }).then(function () {
+          if (state.final !== f || f.frame !== fr || !fr.contentDocument) return;
+          var idoc = fr.contentDocument;
+          applyVariantsToDoc(idoc, it, false);
+          Array.prototype.forEach.call(idoc.querySelectorAll('[data-bb-overlay]'), function (el) { if (el.parentNode) el.parentNode.removeChild(el); });
+          if (size.id !== 'home' && idoc.documentElement.getAttribute('data-size') !== size.id) { f.note.textContent = '이 페이지에는 ' + size.label + ' ' + size.w + '×' + size.h + ' 디자인이 아직 없습니다.'; return; }
+          f.note.hidden = true; fitFinal();
+          [300, 1200, 3000].forEach(function (ms) { win0.setTimeout(fitFinal, ms); }); /* late images and fonts change the height */
+        });
+      });
+      fr.src = it.page + '?lang=KO' + PAGE_V + '&capture=1' + (size.id !== 'home' ? '&size=' + size.id : '');
+    }
+    function fitFinal() {
+      var f = state.final, fr = f && f.frame, idoc = fr && fr.contentDocument; if (!idoc || !idoc.documentElement) return;
+      var h = Math.max(idoc.documentElement.scrollHeight, idoc.body ? idoc.body.scrollHeight : 0), fw = parseFloat(fr.style.width) || CAP.frameW;
+      var s = Math.min(1, Math.max(0.2, (f.stage.clientWidth - 32) / fw));
+      fr.style.height = h + 'px'; fr.style.transform = 'scale(' + s + ')';
+      f.fit.style.width = Math.round(fw * s) + 'px'; f.fit.style.height = Math.round(h * s) + 'px';
+    }
+    function closeFinal(now) {
+      var f = state.final; if (!f) return;
+      state.final = null;
+      var el = f.el; el.className = el.className.replace(/\s*\bopen\b/g, '');
+      if (now || !win0) { if (el.parentNode) el.parentNode.removeChild(el); return; }
+      win0.setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 420);
     }
 
     function missing(name) { return H('div', { class: 'missing-field', text: '필드 누락: ' + name }); }
@@ -948,6 +1060,7 @@
       state.appView = null;
       if ((it.kind === 'aptos' || it.kind === 'landing') && state.previewKey === key && state.aptos && state.aptos.el.parentNode) {
         if (state.previewCb) { state.previewCb.checked = store.isSelected(it.id, state.locale); state.previewCb.disabled = !store.canEdit(); }
+        syncFbBtn();
         fillDesignBox();
         postAptosData();
         syncViewer();
@@ -1961,7 +2074,16 @@
     function bindBoardEvents() {
       if (!doc.addEventListener) return;
       doc.addEventListener('mousedown', function (e) { if (ui.ctx && !ui.ctx.hidden && !(ui.ctx.contains && ui.ctx.contains(e.target))) hideCtx(); }, true);
-      doc.addEventListener('keydown', function (e) { if (e.key === 'Escape') { hideCtx(); closeLightbox(); } });
+      doc.addEventListener('keydown', function (e) { if (e.key === 'Escape') { hideCtx(); if (ui.lightbox && !ui.lightbox.hidden) closeLightbox(); else closeFinal(); } });
+      /* a link dropped outside a comment card must not navigate the board away (unsaved drafts would be lost) */
+      doc.addEventListener('dragover', function (e) { var ty = dtTypes(e.dataTransfer); if (ty.indexOf('text/uri-list') >= 0 || ty.indexOf('Files') >= 0) e.preventDefault(); });
+      doc.addEventListener('drop', function (e) {
+        if (e.defaultPrevented) return;
+        var t = e.target && e.target.nodeType === 1 ? e.target : null; if (t && t.closest && t.closest('input,textarea,[contenteditable]')) return;
+        var dt = e.dataTransfer, fs = filesFrom(dt), c = commentById(state.cm.active);
+        if (fs.length) { e.preventDefault(); if (c) addImages(c.id, fs); else toast('이미지를 붙일 코멘트를 먼저 열어 주세요.', 'error'); return; }
+        if (dtTypes(dt).indexOf('text/uri-list') >= 0 || (dt && dt.files && dt.files.length)) { e.preventDefault(); toast(dropProblem(dt) || LINK_ONLY_MSG, 'error'); }
+      });
       doc.addEventListener('paste', function (e) { /* Ctrl+V anywhere on the board goes to the open comment */
         var c = commentById(state.cm.active); if (!c || e.defaultPrevented) return;
         var t = e.target && e.target.nodeType === 1 ? e.target : null;
@@ -1969,7 +2091,7 @@
         var files = filesFrom(e.clipboardData); if (!files.length) return;
         e.preventDefault(); addImages(c.id, files);
       });
-      if (win0) { win0.addEventListener('resize', function () { hideCtx(); syncAllViews(); }); win0.addEventListener('blur', hideCtx); win0.addEventListener('scroll', hideCtx, { passive: true }); }
+      if (win0) { win0.addEventListener('resize', function () { hideCtx(); syncAllViews(); fitFinal(); }); win0.addEventListener('blur', hideCtx); win0.addEventListener('scroll', hideCtx, { passive: true }); }
       if (win0) { win0.addEventListener('scroll', queueFitSidebar, { passive: true }); win0.addEventListener('resize', queueFitSidebar); if (win0.setTimeout) win0.setTimeout(queueFitSidebar, 600); }
       if (doc.fonts && doc.fonts.ready && doc.fonts.ready.then) doc.fonts.ready.then(queueFitSidebar);
     }
@@ -2034,7 +2156,7 @@
       if (!r || !r.status) return what + ': 네트워크 오류입니다.';
       if (r.status === 404) return what + ': 공유 서버에 코멘트 기능이 아직 없습니다 (HTTP 404).';
       if (r.status === 429) return what + ': 요청이 너무 많습니다. 잠시 뒤 다시 해 주세요.';
-      if (r.status === 413) return what + ': 크기가 너무 큽니다.';
+      if (r.status === 413) return what + ': 크기가 너무 큽니다 (장당 10MB까지).';
       return what + ' (HTTP ' + r.status + (r.body && r.body.error ? ' · ' + String(r.body.error).slice(0, 80) : '') + ').';
     }
     function createComment(surf) {
@@ -2110,6 +2232,17 @@
       if (ta && ta.focus) { ta.focus(); try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) { /* not a text field */ } }
       var card = ui.cmCardEl && ui.cmCardEl[id]; if (card && card.scrollIntoView) card.scrollIntoView({ block: 'nearest' });
     }
+    /* 2026-11-06 team: "이미지 첨부가 안 돼서 링크로". A picture dragged or copied from Drive or a web page arrives as a link or HTML,
+       not as a file: say how to attach instead of ignoring it, and never let a dropped link navigate the board away. */
+    var LINK_ONLY_MSG = '이미지 링크는 붙일 수 없습니다. 이미지를 PC에 저장한 뒤 ‘이미지 첨부’로 고르거나, 화면을 캡처(Win+Shift+S)해 Ctrl+V로 붙여 주세요.';
+    function dtTypes(dt) { return dt ? Array.prototype.slice.call(dt.types || []) : []; }
+    function htmlImageOnly(dt) { var ty = dtTypes(dt); if (ty.indexOf('Files') >= 0) return false; var html = ty.indexOf('text/html') >= 0 && dt.getData ? dt.getData('text/html') : ''; return /<img\b/i.test(html || ''); }
+    function dropProblem(dt) {
+      var ty = dtTypes(dt);
+      if (dt && dt.files && dt.files.length) return '이미지 파일(PNG·JPG·WEBP·GIF)만 붙일 수 있습니다.';
+      if (ty.indexOf('text/uri-list') >= 0 || htmlImageOnly(dt)) return LINK_ONLY_MSG;
+      return '';
+    }
     function filesFrom(dt) {
       if (!dt) return [];
       var out = [];
@@ -2120,18 +2253,40 @@
     function blobB64(blob) {
       return new Promise(function (resolve, reject) { var fr = new win0.FileReader(); fr.onload = function () { resolve(String(fr.result).split(',')[1] || ''); }; fr.onerror = function () { reject(new Error('이미지를 읽지 못했습니다.')); }; fr.readAsDataURL(blob); });
     }
-    /* long side 1600px or less, JPEG 0.85 (lower only if still above the 1.5MB upload limit) */
-    function shrinkImage(file) {
+    /* the original file when imagePlan keeps it; otherwise redrawn on white as JPEG 0.9, lowering quality to 0.6 and then the size
+       (x0.75 per step) only while it is still above 10MB */
+    function prepareImage(file) {
       return new Promise(function (resolve, reject) {
         var url = win0.URL.createObjectURL(file), img = new win0.Image();
         img.onload = function () { win0.URL.revokeObjectURL(url); resolve(img); };
         img.onerror = function () { win0.URL.revokeObjectURL(url); reject(new Error('이미지 파일을 열지 못했습니다.')); };
         img.src = url;
       }).then(function (img) {
-        var s = fitLong(img.naturalWidth, img.naturalHeight, IMG_LONG), c = doc.createElement('canvas'); c.width = s.w; c.height = s.h;
-        var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, s.w, s.h); g.imageSmoothingQuality = 'high'; g.drawImage(img, 0, 0, s.w, s.h);
-        var tryQ = function (q) { return capBlob(c, 'image/jpeg', q).then(function (b) { if (b.size > IMG_MAX_BYTES && q > 0.45) return tryQ(Math.round((q - 0.1) * 100) / 100); if (b.size > IMG_MAX_BYTES) throw new Error('이미지가 너무 커서 올릴 수 없습니다.'); return b; }); };
-        return tryQ(IMG_Q).then(blobB64).then(function (b64) { return { data: b64, w: s.w, h: s.h }; });
+        var w = img.naturalWidth, h = img.naturalHeight;
+        if (!w || !h) throw new Error('이미지 파일을 열지 못했습니다.');
+        var plan = imagePlan(w, h, file.type, file.size);
+        var withPreview = function (main) { /* the thumbnail shows the center square (object-fit: cover), so the preview is exactly that */
+          if (main.blob.size <= IMG_PREVIEW_MIN) return main;
+          var side = Math.min(w, h), out = Math.min(IMG_PREVIEW_SIDE, side), c = doc.createElement('canvas'); c.width = out; c.height = out;
+          var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, out, out); g.imageSmoothingQuality = 'high';
+          g.drawImage(img, Math.round((w - side) / 2), Math.round((h - side) / 2), side, side, 0, 0, out, out);
+          return capBlob(c, 'image/jpeg', 0.85).then(function (b) { main.preview = b; return main; }, function () { return main; });
+        };
+        if (plan.keep) return withPreview({ blob: file, mime: file.type, w: w, h: h });
+        var drawAt = function (scale) {
+          var cw = Math.max(1, Math.round(w * scale)), ch = Math.max(1, Math.round(h * scale)), c = doc.createElement('canvas'); c.width = cw; c.height = ch;
+          var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, cw, ch); g.imageSmoothingQuality = 'high'; g.drawImage(img, 0, 0, cw, ch);
+          var tryQ = function (q) {
+            return capBlob(c, 'image/jpeg', q).then(function (b) {
+              if (b.size <= IMG_MAX_BYTES) return { blob: b, mime: 'image/jpeg', w: cw, h: ch };
+              if (q > 0.6) return tryQ(Math.round((q - 0.1) * 100) / 100);
+              if (scale > 0.05) return drawAt(scale * 0.75);
+              throw new Error('이미지가 너무 커서 올릴 수 없습니다.');
+            });
+          };
+          return tryQ(IMG_Q);
+        };
+        return drawAt(plan.scale).then(withPreview);
       });
     }
     function addImages(id, files) {
@@ -2144,7 +2299,13 @@
       return list.reduce(function (p, f, i) {
         return p.then(function () {
           setSaveNote(id, '이미지 올리는 중 ' + (i + 1) + '/' + list.length + '…', '');
-          return shrinkImage(f).then(function (s) { return capi.image({ commentId: id, mime: 'image/jpeg', data: s.data, w: s.w, h: s.h, by: by() }); }).then(function (r) {
+          return prepareImage(f).then(function (s) {
+            return capi.imageRaw({ commentId: id, mime: s.mime, w: s.w, h: s.h, by: by() }, s.blob).then(function (r) {
+              if (!r.ok || !r.body || !isObj(r.body.image) || !s.preview) return r;
+              /* the preview is a nicety: if it fails, the card just shows the original */
+              return capi.imagePreview(r.body.image.id, s.preview).then(function (p) { if (p.ok) r.body.image.preview = true; return r; }, function () { return r; });
+            });
+          }).then(function (r) {
             d.uploading--;
             if (!r.ok || !r.body || !isObj(r.body.image)) throw new Error(commentErr(r, '이미지를 올리지 못했습니다'));
             var cur = commentById(id); if (cur) { cur.images = cur.images.concat([r.body.image]); cur._local = Date.now(); }
@@ -2163,7 +2324,11 @@
     }
     function openLightbox(src, alt) {
       if (!ui.lightbox) return;
-      ui.lightbox.replaceChildren(H('img', { class: 'lightbox-img', src: src, alt: alt || '' }), H('button', { type: 'button', class: 'btn small lightbox-close', text: '닫기 (Esc)' }));
+      /* the original can take a while to arrive from the share server: say so until it has loaded */
+      var note = H('div', { class: 'lightbox-note', text: '원본 이미지를 불러오는 중입니다…' });
+      var im = H('img', { class: 'lightbox-img', alt: alt || '', onload: function () { note.hidden = true; }, onerror: function () { note.textContent = '이미지를 불러오지 못했습니다.'; } });
+      ui.lightbox.replaceChildren(im, note, H('button', { type: 'button', class: 'btn small lightbox-close', text: '닫기 (Esc)' }));
+      im.src = src;
       ui.lightbox.hidden = false;
     }
     function closeLightbox() { if (ui.lightbox && !ui.lightbox.hidden) { ui.lightbox.hidden = true; ui.lightbox.replaceChildren(); } }
@@ -2210,9 +2375,9 @@
     }
     function thumbKids(c) {
       return c.images.map(function (img, k) {
-        var src = capi.imageUrl(img.id);
+        var src = capi.imageUrl(img.id), thumb = img.preview ? capi.imageUrl(img.id, 'preview') : src;
         return H('div', { class: 'cm-thumb' }, [
-          H('button', { type: 'button', class: 'cm-thumb-btn', 'data-comment-image': img.id, 'aria-label': c.seq + '번 이미지 ' + (k + 1) + ' 크게 보기', onclick: function () { openLightbox(src, c.seq + '번 코멘트 이미지 ' + (k + 1)); } }, [H('img', { src: src, alt: '', loading: 'lazy', width: img.w ? String(img.w) : null, height: img.h ? String(img.h) : null })]),
+          H('button', { type: 'button', class: 'cm-thumb-btn', 'data-comment-image': img.id, 'aria-label': c.seq + '번 이미지 ' + (k + 1) + ' 크게 보기', onclick: function () { openLightbox(src, c.seq + '번 코멘트 이미지 ' + (k + 1)); } }, [H('img', { src: thumb, alt: '', loading: 'lazy', width: img.w ? String(img.w) : null, height: img.h ? String(img.h) : null })]),
           store.canEdit() ? H('button', { type: 'button', class: 'cm-thumb-del', 'aria-label': '이미지 ' + (k + 1) + ' 지우기', text: '×', onclick: function () { removeImage(c.id, img); } }) : null,
         ]);
       });
@@ -2239,7 +2404,7 @@
       li.className = 'cm-card is-' + c.status + ' active'; li.setAttribute('data-status', c.status); li.setAttribute('style', '--cm:' + color);
       p.head.replaceChildren.apply(p.head, headKids(c));
       p.thumbs.replaceChildren.apply(p.thumbs, thumbKids(c)); p.thumbs.hidden = !c.images.length;
-      p.tip.textContent = 'Ctrl+V 붙여넣기 · 끌어놓기 · ' + c.images.length + '/' + IMG_PER_COMMENT + '장';
+      p.tip.textContent = 'Ctrl+V 붙여넣기 · 끌어놓기 · 장당 10MB · ' + c.images.length + '/' + IMG_PER_COMMENT + '장';
       p.note.replaceChildren.apply(p.note, noteKids(c)); p.note.hidden = !c.note;
       p.meta.textContent = metaText(c);
       p.actions.replaceChildren.apply(p.actions, actionKids(c));
@@ -2262,7 +2427,7 @@
         var parts = ui.cmParts[c.id] = {
           head: head,
           thumbs: H('div', { class: 'cm-thumbs', hidden: !c.images.length }, thumbKids(c)),
-          tip: H('span', { class: 'cm-attach-tip', text: 'Ctrl+V 붙여넣기 · 끌어놓기 · ' + c.images.length + '/' + IMG_PER_COMMENT + '장' }),
+          tip: H('span', { class: 'cm-attach-tip', text: 'Ctrl+V 붙여넣기 · 끌어놓기 · 장당 10MB · ' + c.images.length + '/' + IMG_PER_COMMENT + '장' }),
           note: H('div', { class: 'cm-note', hidden: !c.note }, noteKids(c)),
           meta: H('p', { class: 'cm-meta', text: metaText(c) }),
           actions: H('div', { class: 'cm-actions' }, actionKids(c)),
@@ -2276,10 +2441,10 @@
       var li = H('li', { class: 'cm-card is-' + c.status + (active ? ' active' : ''), 'data-comment-id': c.id, 'data-status': c.status, style: '--cm:' + color }, kids);
       ui.cmCardEl[c.id] = li;
       if (active) {
-        li.addEventListener('paste', function (e) { var fs = filesFrom(e.clipboardData); if (!fs.length) return; e.preventDefault(); addImages(c.id, fs); });
-        li.addEventListener('dragover', function (e) { if (e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0) { e.preventDefault(); li.className = li.className.replace(/\s*is-drop/g, '') + ' is-drop'; } });
+        li.addEventListener('paste', function (e) { var fs = filesFrom(e.clipboardData); if (!fs.length) { if (htmlImageOnly(e.clipboardData)) toast(LINK_ONLY_MSG, 'error'); return; } e.preventDefault(); addImages(c.id, fs); });
+        li.addEventListener('dragover', function (e) { var ty = e.dataTransfer ? Array.prototype.slice.call(e.dataTransfer.types || []) : []; if (ty.indexOf('Files') >= 0 || ty.indexOf('text/uri-list') >= 0) { e.preventDefault(); li.className = li.className.replace(/\s*is-drop/g, '') + ' is-drop'; } });
         li.addEventListener('dragleave', function () { li.className = li.className.replace(/\s*is-drop/g, ''); });
-        li.addEventListener('drop', function (e) { li.className = li.className.replace(/\s*is-drop/g, ''); var fs = filesFrom(e.dataTransfer); if (!fs.length) return; e.preventDefault(); addImages(c.id, fs); });
+        li.addEventListener('drop', function (e) { li.className = li.className.replace(/\s*is-drop/g, ''); var fs = filesFrom(e.dataTransfer); if (!fs.length) { var why = dropProblem(e.dataTransfer); if (why) { e.preventDefault(); toast(why, 'error'); } return; } e.preventDefault(); addImages(c.id, fs); });
       }
       return li;
     }
@@ -2661,7 +2826,7 @@
     createStore: createStore, effectiveFields: effectiveFields, buildExport: buildExport,
     createApp: createApp, a4Layout: a4Layout, boot: boot,
     BOARD_V: BOARD_V, variantKey: variantKey, parseHash: parseHash, apiFromSearch: apiFromSearch, zipStore: zipStore, crc32: crc32,
-    planPieces: planPieces, splitPiece: splitPiece, fitLong: fitLong, commentCounts: commentCounts, cardLabel: cardLabel, clampTarget: clampTarget,
+    planPieces: planPieces, splitPiece: splitPiece, fitLong: fitLong, imagePlan: imagePlan, commentCounts: commentCounts, cardLabel: cardLabel, clampTarget: clampTarget,
     createCommentApi: createCommentApi, APP_PLATFORMS: APP_PLATFORMS, STATUS_COLOR: STATUS_COLOR,
   };
 });

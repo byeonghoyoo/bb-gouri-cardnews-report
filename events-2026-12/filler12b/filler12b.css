@@ -170,6 +170,7 @@ img{max-width:100%}
 .note-ico{flex:none;width:calc(36*var(--px));height:calc(36*var(--px))}
 .src{margin-top:auto;padding-top:calc(10*var(--px));font-weight:500;font-size:max(11px,calc(16*var(--px)));line-height:1.4;color:var(--ink)}
 .c5-headrow{display:grid;grid-template-columns:minmax(0,1fr) calc(330*var(--px));gap:calc(26*var(--px));align-items:start}
+.c5 .q-title{text-wrap:balance}
 .c5-photo{margin-top:calc(18*var(--px));border:calc(10*var(--px)) solid var(--white);border-radius:calc(40*var(--px));overflow:hidden;aspect-ratio:4/5;box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) rgba(34,43,110,.2);background:var(--peri-3)}
 .c5-img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
 .steps{display:grid;grid-template-columns:1fr 1fr;gap:calc(16*var(--px));margin-top:calc(-36*var(--px))}

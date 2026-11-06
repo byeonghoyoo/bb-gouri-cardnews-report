@@ -615,3 +615,7 @@ a[data-link="phone"]{white-space:nowrap}
 .c2.c2bn[data-variant="b"] .cp-head{grid-template-columns:calc(150*var(--px)) minmax(0,1fr) calc(300*var(--px));min-height:calc(330*var(--px))}
 .c2.c2bn[data-variant="b"] .c2-cut{height:calc(540*var(--px));right:calc(10*var(--px));bottom:calc(-204*var(--px))}
 @media(max-width:600px){.c2n .cp-head{grid-template-columns:calc(160*var(--px)) minmax(0,1fr) 114px}.c2n .c2-cut{right:8px}.c2.c2bn[data-variant="b"] .cp-head{min-height:130px}}
+
+/* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
+   '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
+[data-copy="cf_c5_q"]{text-wrap:balance}

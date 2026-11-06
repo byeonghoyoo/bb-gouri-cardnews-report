@@ -27,7 +27,7 @@ function setTitle(el,v){el.textContent='';const i=(v||'').indexOf(' & ');if(i<0)
 function setHours(el,v){el.textContent='';const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];const t=document.createElement('span');t.className='ht';t.textContent=m[3];el.append(d,document.createTextNode(m[2]),t);}
 const GUARD='.p-lead,.q-ans,.blk-d,.blk-n,.ch-q,.ch-a,.st-d,.inf-n,.ask-d,.care [data-copy],.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.prod-note [data-copy]';
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|쥬베룩 볼륨|울트라콜 200|콜라움 240|볼륨\/200\/240|눈밑 전용 쥬베룩 I|손등 래디어스|바디 스컬트라|CaHA\(칼슘하이드록시아파타이트\)|1회 또는 3회 세션|3회 세션|연고·국소 마취|국소 마취|1병·3병|셀르디엠|리투오)/g;
+const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|쥬베룩 볼륨|울트라콜 200|콜라움 240|볼륨\/200\/240|눈밑 전용 쥬베룩 I|손등 래디어스|바디 스컬트라|CaHA\(칼슘하이드록시아파타이트\)|1회 또는 3회 세션|3회 세션|연고·국소 마취|국소 마취|1병·3병|셀르디엠|리투오|이렇게 진행돼요)/g;
 function appendKept(el,s){let last=0;KEEP.lastIndex=0;for(const m of s.matchAll(KEEP)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;}if(last<s.length)el.append(document.createTextNode(s.slice(last)));}
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}

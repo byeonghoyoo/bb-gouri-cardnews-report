@@ -51,30 +51,55 @@ img{max-width:100%}
 .h-title .t2{color:var(--yel)}
 .h-l2,.h-l3{position:relative;z-index:4;font-weight:800;letter-spacing:-.01em;line-height:1.3}
 
-/* ---------- 1 · A : poster ---------- */
+/* ---------- 1 · A : poster, team comment #1 (2026-11-06 mock v4/suneung11/ref/team-ref-hero-a-20261106.png) ----------
+   title, team line 2, team line 3 in a ticket (cream box, dark green outline, a half-round notch on each side), two photo cards (female / male
+   student), contact bar. The ticket notches are a mask on the box (layout shape); the 49% highlight is a text underline bar. */
 .ha .ha-top{position:absolute;left:calc(56*var(--px));right:calc(56*var(--px));top:calc(46*var(--px))}
-.ha-title{position:absolute;left:0;right:0;top:calc(118*var(--px));--ts:calc(150*var(--px))}
-.ha-l2,.ha-l3{position:absolute;left:calc(40*var(--px));right:calc(40*var(--px));white-space:nowrap;text-align:center;
-  text-shadow:0 calc(3*var(--px)) 0 rgba(7,61,26,.85),0 0 calc(12*var(--px)) rgba(7,61,26,.35)}
-.ha-l2{display:flex;justify-content:center;align-items:center}
-.ha-l2{top:calc(452*var(--px));font-size:max(13px,calc(36*var(--px)*var(--fit,1)));color:var(--white)}
-.ha-l3{top:calc(508*var(--px));font-size:max(12px,calc(34*var(--px)*var(--fit,1)));color:var(--yel)}
-.stack{position:absolute;z-index:3;left:50%;top:calc(580*var(--px));width:calc(480*var(--px));height:calc(592*var(--px));transform:translateX(-50%)}
-.stack-back{position:absolute;inset:0;border-radius:calc(40*var(--px));background:rgba(255,255,255,.62);transform:translate(calc(34*var(--px)),calc(4*var(--px))) rotate(7deg);
-  box-shadow:0 calc(10*var(--px)) calc(24*var(--px)) rgba(7,61,26,.18)}
-.stack-front{position:absolute;inset:0;margin:0;padding:calc(16*var(--px));border-radius:calc(40*var(--px));background:var(--white);transform:rotate(-3deg);
-  box-shadow:0 calc(16*var(--px)) calc(34*var(--px)) rgba(7,61,26,.3)}
-.stack-front img{display:block;width:100%;height:100%;object-fit:cover;border-radius:calc(26*var(--px))}
-.cta{position:absolute;z-index:4;left:calc(110*var(--px));right:calc(110*var(--px));top:calc(1208*var(--px));height:calc(90*var(--px));display:flex;justify-content:center;align-items:center;gap:calc(18*var(--px));
-  border-radius:calc(26*var(--px));background:var(--g-dark);box-shadow:0 calc(8*var(--px)) 0 var(--g-ink);color:var(--white);font-weight:800;font-size:max(12px,calc(34*var(--px)));letter-spacing:-.005em;line-height:1.2;white-space:nowrap}
-.cta-c{display:block;flex:none;width:calc(44*var(--px));min-width:16px;height:auto}
-.ha-d1{left:calc(62*var(--px));top:calc(760*var(--px));width:calc(200*var(--px));transform:rotate(-14deg)}
-.ha-d2{right:calc(58*var(--px));top:calc(960*var(--px));width:calc(176*var(--px));transform:rotate(12deg)}
-.ha-d3{right:calc(82*var(--px));top:calc(640*var(--px));width:calc(120*var(--px));transform:rotate(-8deg)}
-.ha-d4{left:calc(70*var(--px));top:calc(560*var(--px));width:calc(78*var(--px))}
-.ha-d5{right:calc(118*var(--px));top:calc(118*var(--px));width:calc(64*var(--px))}
-.ha-d6{left:calc(120*var(--px));top:calc(132*var(--px));width:calc(54*var(--px))}
-.ha-d7{left:calc(92*var(--px));top:calc(1040*var(--px));width:calc(92*var(--px))}
+.ha-title{position:absolute;left:0;right:0;top:calc(110*var(--px));--ts:calc(118*var(--px))}
+.ha-l2{position:absolute;left:calc(40*var(--px));right:calc(40*var(--px));top:calc(374*var(--px));display:flex;justify-content:center;align-items:center;white-space:nowrap;text-align:center;
+  font-size:max(13px,calc(36*var(--px)*var(--fit,1)));color:var(--white);text-shadow:0 calc(3*var(--px)) 0 rgba(7,61,26,.85),0 0 calc(12*var(--px)) rgba(7,61,26,.35)}
+.ha-ticket{position:absolute;z-index:4;left:calc(214*var(--px));width:calc(652*var(--px));top:calc(444*var(--px));height:calc(232*var(--px));
+  --nr:calc(26*var(--px));--bw:calc(5*var(--px));border-radius:calc(30*var(--px));background:var(--g-dark);
+  -webkit-mask:radial-gradient(circle at 0 50%,#0000 var(--nr),#000 calc(var(--nr) + .6px)) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,#0000 var(--nr),#000 calc(var(--nr) + .6px)) right/51% 100% no-repeat;
+  mask:radial-gradient(circle at 0 50%,#0000 var(--nr),#000 calc(var(--nr) + .6px)) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,#0000 var(--nr),#000 calc(var(--nr) + .6px)) right/51% 100% no-repeat}
+.ha-ticket::before{content:'';position:absolute;inset:var(--bw);border-radius:calc(25*var(--px));background:#fcf8d8;
+  -webkit-mask:radial-gradient(circle at calc(-1*var(--bw)) 50%,#0000 calc(var(--nr) + var(--bw)),#000 calc(var(--nr) + var(--bw) + .6px)) left/51% 100% no-repeat,radial-gradient(circle at calc(100% + var(--bw)) 50%,#0000 calc(var(--nr) + var(--bw)),#000 calc(var(--nr) + var(--bw) + .6px)) right/51% 100% no-repeat;
+  mask:radial-gradient(circle at calc(-1*var(--bw)) 50%,#0000 calc(var(--nr) + var(--bw)),#000 calc(var(--nr) + var(--bw) + .6px)) left/51% 100% no-repeat,radial-gradient(circle at calc(100% + var(--bw)) 50%,#0000 calc(var(--nr) + var(--bw)),#000 calc(var(--nr) + var(--bw) + .6px)) right/51% 100% no-repeat}
+.ha-l3{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;white-space:nowrap;text-align:center;
+  font-size:max(13px,calc(36*var(--px)*var(--fit,1)));font-weight:800;line-height:1.25;letter-spacing:-.01em;color:var(--g-dark)}
+.ha-l3 .l3a{display:block}
+.ha-l3 .l3b{display:flex;align-items:center;justify-content:center;gap:.36em;margin-top:.04em}
+.ha-l3 .tag{display:inline-block;padding:.24em .5em .2em;border-radius:.32em;background:var(--g-dark);color:var(--white);font-size:.83em;font-weight:800;line-height:1.2;transform:translateY(-.5em)}
+.ha-l3 .num{position:relative;display:inline-block;font-family:var(--f-disp);font-weight:400;font-size:4.33em;line-height:1;letter-spacing:-.01em;color:#e80858;
+  -webkit-text-stroke:.055em var(--white);paint-order:stroke fill;text-shadow:0 .05em 0 #9b0a3f,0 .09em .12em rgba(7,61,26,.25)}
+.ha-l3 .num::after{content:'';position:absolute;z-index:-1;left:.06em;right:.02em;bottom:-.02em;height:.12em;border-radius:.06em;background:var(--yel);transform:rotate(-2.5deg)}
+.ha-l3 .rest{font-size:1.78em;font-weight:900;letter-spacing:-.02em}
+.ha .stack{left:auto;transform:none;width:calc(332*var(--px));height:calc(410*var(--px))}
+.ha .stack-a{left:calc(204*var(--px));top:calc(730*var(--px))}
+.ha .stack-b{left:calc(540*var(--px));top:calc(702*var(--px))}
+.ha .stack-a .stack-front{transform:rotate(-5deg)}
+.ha .stack-a .stack-back{transform:translate(calc(-26*var(--px)),calc(30*var(--px))) rotate(-9deg)}
+.ha .stack-b .stack-front{transform:rotate(6deg)}
+.ha .stack-b .stack-back{transform:translate(calc(26*var(--px)),calc(24*var(--px))) rotate(10deg)}
+.stack{position:absolute;z-index:3}
+.stack-back{position:absolute;inset:0;border-radius:calc(36*var(--px));background:rgba(255,255,255,.62);box-shadow:0 calc(10*var(--px)) calc(24*var(--px)) rgba(7,61,26,.18)}
+.stack-front{position:absolute;inset:0;margin:0;padding:calc(15*var(--px));border-radius:calc(36*var(--px));background:var(--white);box-shadow:0 calc(16*var(--px)) calc(34*var(--px)) rgba(7,61,26,.3)}
+.stack-front img{display:block;width:100%;height:100%;object-fit:cover;border-radius:calc(24*var(--px))}
+.cta{position:absolute;z-index:4;left:calc(170*var(--px));right:calc(170*var(--px));top:calc(1206*var(--px));height:calc(76*var(--px));display:flex;justify-content:center;align-items:center;gap:calc(18*var(--px));
+  border-radius:calc(26*var(--px));background:var(--g-dark);box-shadow:0 calc(7*var(--px)) 0 var(--g-ink);color:var(--white);font-weight:800;font-size:max(12px,calc(34*var(--px)));letter-spacing:-.005em;line-height:1.2;white-space:nowrap}
+.cta .nw{font-size:1.1em}
+.cta > [data-copy]{position:relative;top:-.026em}
+.cta-c{display:block;flex:none;width:calc(42*var(--px));min-width:16px;height:auto}
+.ha-d1{left:calc(40*var(--px));top:calc(668*var(--px));width:calc(200*var(--px));transform:rotate(-14deg)}
+.ha-d2{right:calc(34*var(--px));top:calc(1008*var(--px));width:calc(142*var(--px));transform:rotate(12deg)}
+.ha-d3{right:calc(84*var(--px));top:calc(716*var(--px));width:calc(88*var(--px));transform:rotate(-8deg)}
+.ha-d4{left:calc(250*var(--px));top:calc(170*var(--px));width:calc(50*var(--px))}
+.ha-d5{right:calc(118*var(--px));top:calc(118*var(--px));width:calc(54*var(--px))}
+.ha-d6{left:calc(124*var(--px));top:calc(132*var(--px));width:calc(46*var(--px))}
+.ha-d7{left:calc(104*var(--px));top:calc(1040*var(--px));width:calc(84*var(--px))}
+.ha-d8{right:calc(30*var(--px));top:calc(160*var(--px));width:calc(46*var(--px))}
+.ha-d9{z-index:5;left:calc(780*var(--px));top:calc(472*var(--px));width:calc(60*var(--px));transform:rotate(12deg)}
+.ha-d10{left:calc(62*var(--px));top:calc(900*var(--px));width:calc(42*var(--px))}
 
 /* ---------- 1 · B : exam-ticket frame ---------- */
 .ticket{position:absolute;z-index:3;left:calc(60*var(--px));right:calc(60*var(--px));top:calc(62*var(--px));bottom:calc(62*var(--px));display:flex;flex-direction:column;
@@ -130,7 +155,7 @@ img{max-width:100%}
 .pa-board{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;margin-top:calc(26*var(--px));padding:calc(10*var(--px)) calc(38*var(--px)) calc(22*var(--px));border-radius:calc(36*var(--px));background:var(--white);
   box-shadow:0 calc(12*var(--px)) 0 rgba(7,61,26,.3)}
 .prows{list-style:none;padding:0;flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between}
-.pr{display:grid;grid-template-columns:calc(46*var(--px)) minmax(0,1fr) calc(206*var(--px));column-gap:calc(20*var(--px));align-items:center;padding:calc(14*var(--px)) 0;border-bottom:calc(2*var(--px)) dashed var(--mint-2)}
+.pr{display:grid;grid-template-columns:calc(46*var(--px)) minmax(0,1fr) calc(206*var(--px));column-gap:calc(20*var(--px));align-items:center;padding:calc(11*var(--px)) 0;border-bottom:calc(2*var(--px)) dashed var(--mint-2)}
 .pr:last-child{border-bottom:0}
 .pr-c{display:block;width:calc(46*var(--px));min-width:18px;height:auto}
 .pr-n{font-weight:800;font-size:max(14px,calc(27*var(--px)));line-height:1.3;color:var(--ink)}
@@ -140,7 +165,7 @@ img{max-width:100%}
 .pr .psale{font-size:max(22px,calc(46*var(--px)))}
 .pa .p-foot{padding-top:calc(14*var(--px));border-top:calc(2*var(--px)) solid var(--mint-2)}
 
-/* 2 · B : two-column tiles */
+/* 2 · B : three-column tiles (nine rows since 2026-11-06, was two columns) */
 .pb{background:var(--mint)}
 .pb-d1{right:calc(64*var(--px));top:calc(112*var(--px));width:calc(188*var(--px));transform:rotate(10deg)}
 .pb-d2{right:calc(256*var(--px));top:calc(176*var(--px));width:calc(56*var(--px))}
@@ -149,7 +174,7 @@ img{max-width:100%}
 .pb .p-kicker{color:var(--g-deep)}
 .pb .p-title{margin-top:calc(6*var(--px));font-size:max(30px,calc(96*var(--px)));color:var(--g);-webkit-text-stroke:calc(7*var(--px)) var(--g-dark);paint-order:stroke fill;text-shadow:0 calc(6*var(--px)) 0 var(--g-dark)}
 .pb .p-lead{margin-top:calc(14*var(--px));font-size:max(12px,calc(22*var(--px)));color:var(--ink-2)}
-.ptiles{list-style:none;padding:0;flex:1 1 auto;min-height:0;margin-top:calc(26*var(--px));display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);gap:calc(16*var(--px))}
+.ptiles{list-style:none;padding:0;flex:1 1 auto;min-height:0;margin-top:calc(26*var(--px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);gap:calc(16*var(--px))}
 .pt{position:relative;display:flex;flex-direction:column;min-width:0;padding:calc(22*var(--px)) calc(26*var(--px)) calc(20*var(--px));border-radius:calc(26*var(--px));background:var(--white);
   box-shadow:0 calc(6*var(--px)) 0 var(--mint-3)}
 .pt-n{font-weight:800;font-size:max(14px,calc(27*var(--px)));line-height:1.3;color:var(--ink)}
@@ -356,20 +381,24 @@ html[data-size="kakao"] main.sn{max-width:none;width:800px}
 html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
 html[data-size="line"] .notes,html[data-size="kakao"] .notes{display:none}
 /* ---------- LINE 1100x1000 ---------- */
-/* 1 A poster: title and team lines on the left, the card stack with the photo on the right, the contact bar across the bottom */
-html[data-size="line"] .ha-title{left:56px;right:auto;width:640px;top:176px;align-items:flex-start;text-align:left}
-html[data-size="line"] .ha-l2,html[data-size="line"] .ha-l3{left:56px;right:auto;width:640px;text-align:left}
-html[data-size="line"] .ha-l2{top:530px;justify-content:flex-start}
-html[data-size="line"] .ha-l3{top:586px}
-html[data-size="line"] .stack{left:auto;right:74px;top:168px;width:372px;height:459px;transform:none}
-html[data-size="line"] .cta{left:110px;right:110px;top:866px}
-html[data-size="line"] .ha-d1{left:96px;top:676px;width:170px}
-html[data-size="line"] .ha-d2{right:52px;top:672px;width:186px}
-html[data-size="line"] .ha-d3{right:452px;top:120px;width:96px}
-html[data-size="line"] .ha-d4{left:auto;right:58px;top:132px;width:66px}
-html[data-size="line"] .ha-d5{right:560px;top:104px;width:56px}
-html[data-size="line"] .ha-d6{left:604px;top:548px;width:46px}
-html[data-size="line"] .ha-d7{left:auto;right:300px;top:700px;width:80px}
+/* 1 A poster (team comment #1): title, team line 2 and the ticket on the left, the two photo cards on the right, the contact bar across the bottom */
+html[data-size="line"] .ha-title{left:36px;right:auto;width:652px;top:120px}
+html[data-size="line"] .ha-l2{left:36px;right:auto;width:652px;top:386px}
+html[data-size="line"] .ha-ticket{left:36px;top:458px}
+html[data-size="line"] .ha .stack{width:250px;height:309px}
+html[data-size="line"] .ha .stack-a{left:714px;top:126px}
+html[data-size="line"] .ha .stack-b{left:816px;top:472px}
+html[data-size="line"] .cta{left:179px;right:179px;top:870px}
+html[data-size="line"] .ha-d1{left:70px;top:716px;width:150px}
+html[data-size="line"] .ha-d2{right:auto;left:640px;top:690px;width:136px}
+html[data-size="line"] .ha-d3{right:24px;top:396px;width:76px}
+html[data-size="line"] .ha-d4{left:70px;top:150px;width:48px}
+html[data-size="line"] .ha-d5{right:auto;left:598px;top:118px;width:52px}
+html[data-size="line"] .ha-d6{left:30px;top:300px;width:42px}
+html[data-size="line"] .ha-d7{left:330px;top:760px;width:84px}
+html[data-size="line"] .ha-d8{right:30px;top:820px;width:44px}
+html[data-size="line"] .ha-d9{left:600px;top:482px;width:56px}
+html[data-size="line"] .ha-d10{left:540px;top:800px;width:40px}
 /* 1 B ticket: ID photo on the left, title (left aligned) + fields + line 2 on the right, the stub along the bottom */
 html[data-size="line"] .ticket{left:50px;right:50px;top:44px;bottom:44px;display:grid;grid-template-columns:344px minmax(0,1fr);grid-template-rows:104px auto auto minmax(0,1fr)}
 html[data-size="line"] .tk-head{grid-column:1 / -1;grid-row:1}
@@ -382,7 +411,8 @@ html[data-size="line"] .tk-stub{grid-column:1 / -1;grid-row:4;margin-top:34px;pa
 html[data-size="line"] .hb-pencil{right:40px;top:118px;width:176px}
 html[data-size="line"] .hb-d1{left:14px;top:770px;width:120px}
 html[data-size="line"] .hb-d3{left:auto;right:330px;top:150px;width:54px}
-/* 2 A list: kicker + title left, the lead on the right of the head row; all eight rows in one board, list price beside the event price */
+/* 2 A list: kicker + title left, the lead on the right of the head row; list price beside the event price. Nine rows (2026-11-06) in two parts:
+   rows 13-17 on the home card, rows 18-21 + the 의료법상 line and VAT on the line-only part 2 (.pa-l2); the rows share the board height */
 html[data-size="line"] .pa .cp-in{padding:36px 40px 30px}
 html[data-size="line"] .pa-head{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"k l" "t l";justify-items:start;align-items:end;column-gap:44px;text-align:left;margin-top:6px}
 html[data-size="line"] .pa .p-kicker{grid-area:k}
@@ -390,24 +420,25 @@ html[data-size="line"] .pa .p-title{grid-area:t;margin-top:4px}
 html[data-size="line"] .pa .p-lead{grid-area:l;align-self:end;margin:0 0 16px}
 html[data-size="line"] .pa-board{margin-top:16px;padding:4px 38px 14px}
 html[data-size="line"] .pr{grid-template-columns:46px minmax(0,1fr) auto;padding:8px 0}
+html[data-size="line"] .pa-board .pr{flex:1 1 0}
+html[data-size="line"] .pa .pr:has(+ .pr[data-size-hide~="line"]){border-bottom:0}
 html[data-size="line"] .pr-pz{flex-direction:row;align-items:baseline;gap:16px}
 html[data-size="line"] .pa .p-foot{padding-top:12px}
 html[data-size="line"] .pa-d1{left:auto;right:300px;top:28px;width:84px;transform:rotate(-10deg)}
 html[data-size="line"] .pa-d2{left:auto;right:400px;top:40px;width:42px}
 html[data-size="line"] .pa-d3{right:24px;top:104px;width:104px;transform:rotate(14deg)}
-/* 2 B tiles: three columns, rows sized by content; the ninth cell keeps a clover */
+/* 2 B tiles: three columns, rows sized by content; the nine tiles fill the 3 x 3 grid (2026-11-06) */
 html[data-size="line"] .pb .cp-in{padding:36px 40px 30px}
 html[data-size="line"] .pb-head{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"k k" "t l";justify-items:start;align-items:end;column-gap:40px;margin-top:8px}
 html[data-size="line"] .pb .p-kicker{grid-area:k}
 html[data-size="line"] .pb .p-title{grid-area:t}
 html[data-size="line"] .pb .p-lead{grid-area:l;margin:0 0 14px}
-html[data-size="line"] .ptiles{margin-top:20px;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;align-content:start;gap:12px}
+html[data-size="line"] .ptiles{margin-top:20px;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;align-content:stretch;gap:12px}
 html[data-size="line"] .pt{padding:16px 22px 14px}
 html[data-size="line"] .pt-pz{padding-top:8px}
 html[data-size="line"] .pb .p-foot{margin-top:auto;padding-top:10px}
 html[data-size="line"] .pb-d1{right:36px;top:100px;width:104px}
 html[data-size="line"] .pb-d2{right:150px;top:96px;width:40px}
-html[data-size="line"] .pb-d3{right:110px;bottom:84px;width:200px;transform:rotate(-10deg)}
 /* 3 care guide: compact head, five rows */
 html[data-size="line"] .c3 .cx-in{padding:36px 48px 30px}
 html[data-size="line"] .c3 .q-head{margin-top:14px}
@@ -453,24 +484,30 @@ html[data-size="line"] .c5-p2 .way-desk{display:block;margin:6px 0 0}
 html[data-size="line"] .c5-p2 .way-line{padding-top:calc(.2em + .01em);padding-bottom:calc(.2em - .01em)}
 /* ---------- /LINE ---------- */
 /* ---------- KAKAO 800x600 ---------- */
-/* 1 A poster: title (150px) left, the card stack right with the title's second line running over its lower left corner, team lines and the contact bar below */
-html[data-size="kakao"] .ha .ha-top{left:28px;right:28px;top:24px}
-html[data-size="kakao"] .ha-title{left:28px;right:auto;width:660px;top:66px;align-items:flex-start;text-align:left}
-html[data-size="kakao"] .ha-l2,html[data-size="kakao"] .ha-l3{left:28px;right:auto;width:600px;text-align:left}
-html[data-size="kakao"] .ha-l2{top:398px;justify-content:flex-start}
-html[data-size="kakao"] .ha-l3{top:450px}
-html[data-size="kakao"] .stack{left:auto;right:46px;top:82px;width:250px;height:308px;transform:none}
-html[data-size="kakao"] .stack-back{transform:translate(20px,4px) rotate(6deg)}
-html[data-size="kakao"] .stack-front{padding:12px;border-radius:30px}
-html[data-size="kakao"] .stack-front img{border-radius:20px}
-html[data-size="kakao"] .cta{left:28px;right:28px;top:510px;height:66px;border-radius:22px}
-html[data-size="kakao"] .ha-d1{display:none}
-html[data-size="kakao"] .ha-d2{right:30px;top:398px;width:118px}
-html[data-size="kakao"] .ha-d3{right:300px;top:64px;width:70px}
-html[data-size="kakao"] .ha-d4{left:auto;right:24px;top:78px;width:46px}
-html[data-size="kakao"] .ha-d5{right:330px;top:52px;width:40px}
-html[data-size="kakao"] .ha-d6{display:none}
+/* 1 A poster (team comment #1), two parts: part 1 the title, team line 2 and the ticket; part 2 (.ha-k2) the two photo cards and the contact bar */
+html[data-size="kakao"] .ha .ha-top{left:24px;right:24px;top:20px}
+html[data-size="kakao"] .ha-title{top:44px;line-height:1}
+html[data-size="kakao"] .ha-l2{left:24px;right:24px;top:284px}
+html[data-size="kakao"] .ha-ticket{left:74px;top:340px}
+html[data-size="kakao"] .ha-d1{left:4px;top:392px;width:112px}
+html[data-size="kakao"] .ha-d2{right:4px;top:430px;width:104px}
+html[data-size="kakao"] .ha-d3{right:30px;top:96px;width:66px}
+html[data-size="kakao"] .ha-d4{left:150px;top:100px;width:40px}
+html[data-size="kakao"] .ha-d5{right:150px;top:90px;width:44px}
+html[data-size="kakao"] .ha-d6{left:40px;top:210px;width:36px}
 html[data-size="kakao"] .ha-d7{display:none}
+html[data-size="kakao"] .ha-d8{right:44px;top:224px;width:36px}
+html[data-size="kakao"] .ha-d9{left:640px;top:352px;width:50px}
+html[data-size="kakao"] .ha-d10{display:none}
+html[data-size="kakao"] .ha-k2 .stack{width:286px;height:353px}
+html[data-size="kakao"] .ha-k2 .stack-a{left:92px;top:96px}
+html[data-size="kakao"] .ha-k2 .stack-b{left:410px;top:84px}
+html[data-size="kakao"] .ha-k2 .cta{left:29px;right:29px;top:500px}
+html[data-size="kakao"] .ha-k2 .ha-d1{left:6px;top:120px;width:104px}
+html[data-size="kakao"] .ha-k2 .ha-d2{right:8px;top:330px;width:110px}
+html[data-size="kakao"] .ha-k2 .ha-d3{right:36px;top:92px;width:64px}
+html[data-size="kakao"] .ha-k2 .ha-d7{display:block;left:24px;top:392px;width:72px}
+html[data-size="kakao"] .ha-k2 .ha-d8{right:96px;top:452px;width:36px}
 /* 1 B ticket: ID photo + title on top, the three fields in one row, both team lines on the stub */
 html[data-size="kakao"] .ticket{left:16px;right:16px;top:16px;bottom:16px;display:grid;grid-template-columns:180px minmax(0,1fr);grid-template-rows:58px auto auto auto minmax(0,1fr);border-radius:30px}
 html[data-size="kakao"] .tk-head{grid-column:1 / -1;grid-row:1;height:58px;padding:0 28px}
@@ -487,7 +524,7 @@ html[data-size="kakao"] .hb-omr{display:none}
 html[data-size="kakao"] .hb-d1{left:6px;top:452px;width:70px}
 html[data-size="kakao"] .hb-d2{left:10px;top:8px;width:44px}
 html[data-size="kakao"] .hb-d3{left:auto;right:150px;top:72px;width:40px}
-/* 2 A list: three parts (rows 13 14 16 / 17 18 19 / 20 21 + 의료법상 line and VAT); the lead only on part 1, beside the title */
+/* 2 A list: three parts (rows 13-15 / 16-18 / 19-21 + 의료법상 line and VAT, 2026-11-06); the lead only on part 1, beside the title */
 html[data-size="kakao"] .pa .cp-in{padding:24px 26px 22px}
 html[data-size="kakao"] .pa-head{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"k l" "t l";justify-items:start;align-items:end;column-gap:30px;text-align:left;margin-top:2px}
 html[data-size="kakao"] .pa .p-kicker{grid-area:k}
@@ -495,9 +532,7 @@ html[data-size="kakao"] .pa .p-title{grid-area:t;margin-top:2px}
 html[data-size="kakao"] .pa .p-lead{grid-area:l;align-self:end;margin:0 0 14px}
 html[data-size="kakao"] .pa-board{margin-top:12px;padding:4px 24px 10px;border-radius:28px}
 html[data-size="kakao"] .pa-board .pr{flex:1 1 0}
-html[data-size="kakao"] .pa .pr[data-price-row="rq_sun11:16"],html[data-size="kakao"] .pa .pr[data-price-row="rq_sun11:19"]{border-bottom:0}
-html[data-size="kakao"] .pa-k:has(.p-foot) .pa-board{flex:0 0 auto}
-html[data-size="kakao"] .pa-k:has(.p-foot) .pa-board .pr{flex:0 0 auto}
+html[data-size="kakao"] .pa-k .pr:last-child{border-bottom:0}
 html[data-size="kakao"] .prows{justify-content:flex-start}
 html[data-size="kakao"] .pr{padding:8px 0}
 html[data-size="kakao"] .pa .p-foot{padding-top:10px}
@@ -508,8 +543,7 @@ html[data-size="kakao"] .pa-k.pa-k1 .pa-d2{right:236px;top:34px;width:34px}
 html[data-size="kakao"] .pa-d2{left:auto;right:236px;top:34px;width:34px}
 html[data-size="kakao"] .pa-k .pa-d2{right:214px;top:126px;width:40px}
 html[data-size="kakao"] .pa-d3{display:none}
-html[data-size="kakao"] .pa-d4{right:30px;bottom:24px;width:130px;transform:rotate(12deg)}
-/* 2 B tiles: three parts, three tiles in a row (part 3: two tiles + a clover in the free cell) */
+/* 2 B tiles: three parts, three tiles in a row (part 3 also holds the 의료법상 line and VAT) */
 html[data-size="kakao"] .pb .cp-in{padding:24px 26px 22px}
 html[data-size="kakao"] .pb-head{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"k k" "t l";justify-items:start;align-items:end;column-gap:28px;margin-top:4px}
 html[data-size="kakao"] .pb .p-kicker{grid-area:k}
@@ -525,7 +559,6 @@ html[data-size="kakao"] .pb-k1 .pb-d1{right:28px;top:74px;width:66px}
 html[data-size="kakao"] .pb-d2{right:110px;top:82px;width:30px}
 html[data-size="kakao"] .pb-k .pb-d2{right:190px;top:120px;width:36px}
 html[data-size="kakao"] .pb-k1 .pb-d2{right:110px;top:82px;width:30px}
-html[data-size="kakao"] .pb-d3{right:70px;bottom:120px;width:150px;transform:rotate(-10deg)}
 /* 3 care guide: part 1 groups 1-2 with the answer line, part 2 groups 3-5; the kicker sits in the top row, the items under each description */
 html[data-size="kakao"] .c3 .cx-in{padding:24px 26px 22px}
 html[data-size="kakao"] .c3 .kicker{position:absolute;right:26px;top:34px}

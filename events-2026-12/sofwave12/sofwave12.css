@@ -702,3 +702,10 @@ a[data-link="phone"]{white-space:nowrap}
 main:has([data-card="1"]:not([data-variant="b"])):has([data-card="1"][data-variant="b"]) [data-card="6"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:.333em!important;padding-bottom:.067em!important}
 }
 /* ==================== end B variants ==================== */
+
+/* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
+   '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
+[data-copy="sw_c5_q"]{text-wrap:balance}
+@container (max-width:600px){
+  .c5-headrow{grid-template-columns:minmax(0,1fr) 100px;column-gap:6px} /* keeps the 24px title on one line at 390 (was 120px / 10px) */
+}

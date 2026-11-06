@@ -684,3 +684,13 @@ a[data-link="phone"]{white-space:nowrap}
 [data-card="2"][data-variant="b"] span.badge[data-copy="tm_r59_badge"]{padding-top:.29em!important;padding-bottom:.09em!important}
 }
 /* ==================== end B variants ==================== */
+
+/* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
+   '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
+[data-copy="tm_c4_q"]{text-wrap:balance}
+@container (max-width:374px){
+  /* the treatment-day title stays on one line on 360px phones (as before the wording change): smaller arch photo there */
+  .c4-headrow{grid-template-columns:72px minmax(0,1fr);column-gap:12px}
+  .c4-photo{width:72px;height:90px}
+  .c4-photo > img:first-child{border-radius:36px 36px 4px 4px}
+}

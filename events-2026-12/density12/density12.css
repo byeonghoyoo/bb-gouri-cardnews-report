@@ -586,3 +586,7 @@ a[data-link="phone"]{white-space:nowrap}
 
 /* Extra B sections advance later A cards by whole device pixels: preserve their original glyph raster phase. */
 .card[data-variant="b"]{margin-bottom:calc(round(down,calc(28*var(--px)),1px) - 28*var(--px))}
+
+/* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
+   '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
+[data-copy="dn_c6_q"]{text-wrap:balance}

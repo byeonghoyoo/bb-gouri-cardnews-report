@@ -9,10 +9,10 @@
   <title>수능이벤트 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&amp;family=Jost:wght@400;500;600&amp;display=swap">
-  <link rel="stylesheet" href="suneung11.css?v=20261106-suneung11b">
-  <script src="copy-data.js?v=20261106-suneung11b" defer></script>
-  <script src="../inline-edit.js?v=20261106-suneung11b" defer></script>
-  <script src="suneung11.js?v=20261106-suneung11b" defer></script>
+  <link rel="stylesheet" href="suneung11.css?v=20261106-suneung11d">
+  <script src="copy-data.js?v=20261106-suneung11d" defer></script>
+  <script src="../inline-edit.js?v=20261106-suneung11d" defer></script>
+  <script src="suneung11.js?v=20261106-suneung11d" defer></script>
 </head>
 <body>
 <!-- SUN11 수능이벤트 (11.19 – 12.31, Korean). Main / tone reference: v4/suneung11/ref/req1105/main.jpg (green 'lucky card draw' event poster:
@@ -26,8 +26,10 @@
 <main class="sn">
   <div class="sheet">
 
-    <!-- 1 / 5 · A : poster type (main.jpg composition): wordmark + period, two-line puffy title, two team lines, the model photo on the front card of
-         a two-card stack (the 'card draw'), dark green contact bar with clovers -->
+    <!-- 1 / 5 · A : poster type, team comment #1 (2026-11-06, mock v4/suneung11/ref/team-ref-hero-a-20261106.png): wordmark + period, the two-line puffy
+         title, team line 2 with the heart picture, team line 3 inside a ticket (최대 tag, a big pink 49%, 할인!; the stored line stays one sentence),
+         two photo cards side by side (female and male student, same pose), the dark green contact bar.
+         assets/model-hero-a-boy.jpg is the lead's Higgsfield cut (2026-11-06); the earlier team-mock crop is kept in v4/suneung11/a/pre-hf/. -->
     <section class="card ha" data-card="1" aria-labelledby="sn-t1">
       <img class="bg" src="assets/bg.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
       <img class="dec ha-d1" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360">
@@ -37,15 +39,42 @@
       <img class="dec ha-d5" src="assets/dec/spark-y.png" alt="" aria-hidden="true" width="360" height="360">
       <img class="dec ha-d6" src="assets/dec/spark-w.png" alt="" aria-hidden="true" width="360" height="360">
       <img class="dec ha-d7" src="assets/dec/spark-c.png" alt="" aria-hidden="true" width="360" height="360">
+      <img class="dec ha-d8" src="assets/dec/spark-w.png" alt="" aria-hidden="true" width="360" height="360">
+      <img class="dec ha-d10" src="assets/dec/spark-w.png" alt="" aria-hidden="true" width="360" height="360">
       <header class="top ha-top"><img class="wordmark" src="assets/logo-wordmark-ffffff.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period" data-copy="sn_period"></span></header>
       <h1 class="h-title ha-title" id="sn-t1" data-copy="sn_h_title"></h1>
       <p class="h-l2 ha-l2"><span data-copy="sn_h_line2"></span><img class="heart" src="assets/dec/heart-green.png" alt="" aria-hidden="true" width="360" height="360"></p>
-      <p class="h-l3 ha-l3" data-copy="sn_h_line3"></p>
-      <div class="stack">
+      <div class="ha-ticket"><p class="h-l3 ha-l3" data-copy="sn_h_line3"></p></div>
+      <img class="dec ha-d9" src="assets/dec/spark-y.png" alt="" aria-hidden="true" width="360" height="360">
+      <div class="stack stack-a" data-size-hide="kakao">
         <span class="stack-back" aria-hidden="true"></span>
         <figure class="stack-front"><img src="assets/model-hero-a.jpg?v=a" data-alt="sn_alt_hero_a" alt="" width="960" height="1200"></figure>
       </div>
-      <p class="cta"><img class="cta-c" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360"><span data-copy="sn_contact"></span><img class="cta-c" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360"></p>
+      <div class="stack stack-b" data-size-hide="kakao">
+        <span class="stack-back" aria-hidden="true"></span>
+        <figure class="stack-front"><img src="assets/model-hero-a-boy.jpg?v=b" data-alt="sn_alt_hero_a_boy" alt="" width="960" height="1200"></figure>
+      </div>
+      <p class="cta" data-size-hide="kakao"><img class="cta-c" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360"><span data-copy="sn_contact"></span><img class="cta-c" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360"></p>
+    </section>
+
+    <!-- 1 / 5 · A · kakao part 2: the two photo cards and the contact bar (part 1 = the card above: title, team line 2, the ticket) -->
+    <section class="card ha ha-k2" data-card="1" data-part="2" data-size-only="kakao" aria-labelledby="sn-t1-k2">
+      <img class="bg" src="assets/bg.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
+      <img class="dec ha-d1" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360">
+      <img class="dec ha-d2" src="assets/dec/clover-4.png" alt="" aria-hidden="true" width="360" height="360">
+      <img class="dec ha-d3" src="assets/dec/clover-3.png" alt="" aria-hidden="true" width="360" height="360">
+      <img class="dec ha-d7" src="assets/dec/spark-c.png" alt="" aria-hidden="true" width="360" height="360">
+      <img class="dec ha-d8" src="assets/dec/spark-w.png" alt="" aria-hidden="true" width="360" height="360">
+      <header class="top ha-top"><img class="wordmark" src="assets/logo-wordmark-ffffff.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period" data-copy="sn_period"></span></header>
+      <div class="stack stack-a">
+        <span class="stack-back" aria-hidden="true"></span>
+        <figure class="stack-front"><img src="assets/model-hero-a.jpg?v=a" data-alt="sn_alt_hero_a" alt="" width="960" height="1200"></figure>
+      </div>
+      <div class="stack stack-b">
+        <span class="stack-back" aria-hidden="true"></span>
+        <figure class="stack-front"><img src="assets/model-hero-a-boy.jpg?v=b" data-alt="sn_alt_hero_a_boy" alt="" width="960" height="1200"></figure>
+      </div>
+      <p class="cta"><img class="cta-c" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360"><span id="sn-t1-k2" data-copy="sn_contact"></span><img class="cta-c" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360"></p>
     </section>
 
     <!-- 1 / 5 · B : ticket frame type (exam-ticket motif): one large ticket with a head band (wordmark + label), the puffy title, an ID-style photo
@@ -78,8 +107,9 @@
       <img class="dec hb-d3" src="assets/dec/spark-y.png" alt="" aria-hidden="true" width="360" height="360">
     </section>
 
-    <!-- 2 / 5 · A : list type. Sheet rq_sun11 rows 13-21 in sheet order (row 15 'CA 뉴비주 2cc' is 컨텐츠 노출 X: not shown).
-         Each row = clover bullet, name + one-line description (상세내용), 표기정가 (struck) over 표기엔드가. Rows are written by the build. -->
+    <!-- 2 / 5 · A : list type. Sheet rq_sun11 rows 13-21 in sheet order (row 15 'CA 뉴비주 2cc' is 컨텐츠 노출 X on the sheet but shown since team comment #4).
+         Each row = clover bullet, name + one-line description (상세내용), 표기정가 (struck) over 표기엔드가. Rows are written by the build; in line, rows 18-21 and the foot
+         carry data-size-hide="line" and show on line part 2 below. -->
     <section class="card cp pa" data-card="2" data-size-hide="kakao" aria-labelledby="sn-t2">
       <img class="bg" src="assets/bg.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
       <img class="dec pa-d1" src="assets/dec/clover-3.png" alt="" aria-hidden="true" width="360" height="360">
@@ -97,21 +127,49 @@
 <!--PRICE-A-->
             <li class="pr" data-price-row="rq_sun11:13"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r13_name"></p><p class="pr-d" data-copy="sn_r13_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r13_list"></span><span class="psale money" data-price-sale data-copy="sn_r13_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:14"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r14_name"></p><p class="pr-d" data-copy="sn_r14_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r14_list"></span><span class="psale money" data-price-sale data-copy="sn_r14_sale"></span></p></li>
+            <li class="pr" data-price-row="rq_sun11:15"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r15_name"></p><p class="pr-d" data-copy="sn_r15_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r15_list"></span><span class="psale money" data-price-sale data-copy="sn_r15_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:16"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r16_name"></p><p class="pr-d" data-copy="sn_r16_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r16_list"></span><span class="psale money" data-price-sale data-copy="sn_r16_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:17"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r17_name"></p><p class="pr-d" data-copy="sn_r17_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r17_list"></span><span class="psale money" data-price-sale data-copy="sn_r17_sale"></span></p></li>
+            <li class="pr" data-price-row="rq_sun11:18" data-size-hide="line"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r18_name"></p><p class="pr-d" data-copy="sn_r18_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r18_list"></span><span class="psale money" data-price-sale data-copy="sn_r18_sale"></span></p></li>
+            <li class="pr" data-price-row="rq_sun11:19" data-size-hide="line"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r19_name"></p><p class="pr-d" data-copy="sn_r19_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r19_list"></span><span class="psale money" data-price-sale data-copy="sn_r19_sale"></span></p></li>
+            <li class="pr" data-price-row="rq_sun11:20" data-size-hide="line"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r20_name"></p><p class="pr-d" data-copy="sn_r20_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r20_list"></span><span class="psale money" data-price-sale data-copy="sn_r20_sale"></span></p></li>
+            <li class="pr" data-price-row="rq_sun11:21" data-size-hide="line"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r21_name"></p><p class="pr-d" data-copy="sn_r21_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r21_list"></span><span class="psale money" data-price-sale data-copy="sn_r21_sale"></span></p></li>
+<!--/PRICE-A-->
+          </ol>
+          <div class="p-foot" data-size-hide="line"><p class="uibeop" data-copy="sn_uibeop"></p><p class="vat" data-copy="sn_vat"></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 / 5 · A · line part 2 (2026-11-06, nine rows): rows 18-21 + the 의료법상 line and VAT in the same design; part 1 is the card above
+         (rows 13-17 with the lead). Rows are written by the build. -->
+    <section class="card cp pa pa-l2" data-card="2" data-part="2" data-size-only="line" aria-labelledby="sn-t2-l2">
+      <img class="bg" src="assets/bg.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
+      <img class="dec pa-d1" src="assets/dec/clover-3.png" alt="" aria-hidden="true" width="360" height="360">
+      <img class="dec pa-d2" src="assets/dec/spark-w.png" alt="" aria-hidden="true" width="360" height="360">
+      <img class="dec pa-d3" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360">
+      <div class="cp-in">
+        <header class="top"><img class="wordmark" src="assets/logo-wordmark-ffffff.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period" data-copy="sn_period"></span></header>
+        <div class="pa-head">
+          <p class="p-kicker" data-copy="sn_p_kicker"></p>
+          <h2 class="p-title" id="sn-t2-l2" data-copy="sn_event"></h2>
+        </div>
+        <div class="pa-board">
+          <ol class="prows">
+<!--PRICE-A-L2-->
             <li class="pr" data-price-row="rq_sun11:18"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r18_name"></p><p class="pr-d" data-copy="sn_r18_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r18_list"></span><span class="psale money" data-price-sale data-copy="sn_r18_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:19"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r19_name"></p><p class="pr-d" data-copy="sn_r19_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r19_list"></span><span class="psale money" data-price-sale data-copy="sn_r19_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:20"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r20_name"></p><p class="pr-d" data-copy="sn_r20_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r20_list"></span><span class="psale money" data-price-sale data-copy="sn_r20_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:21"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r21_name"></p><p class="pr-d" data-copy="sn_r21_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r21_list"></span><span class="psale money" data-price-sale data-copy="sn_r21_sale"></span></p></li>
-<!--/PRICE-A-->
+<!--/PRICE-A-L2-->
           </ol>
           <div class="p-foot"><p class="uibeop" data-copy="sn_uibeop"></p><p class="vat" data-copy="sn_vat"></p></div>
         </div>
       </div>
     </section>
 
-    <!-- 2 / 5 · A · kakao: the card above is hidden in kakao (data-size-hide) and redrawn as three parts in the same design: rows 13 14 16 with the
-         lead, rows 17-19, rows 20-21 + the 의료법상 line and VAT. Rows are written by the build. -->
+    <!-- 2 / 5 · A · kakao: the card above is hidden in kakao (data-size-hide) and redrawn as three parts in the same design: rows 13-15 with the
+         lead, rows 16-18, rows 19-21 + the 의료법상 line and VAT. Rows are written by the build. -->
     <section class="card cp pa pa-k pa-k1" data-card="2" data-part="1" data-size-only="kakao" aria-labelledby="sn-t2-k1">
       <img class="bg" src="assets/bg.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
       <img class="dec pa-d1" src="assets/dec/clover-3.png" alt="" aria-hidden="true" width="360" height="360">
@@ -128,7 +186,7 @@
 <!--PRICE-A-K1-->
             <li class="pr" data-price-row="rq_sun11:13"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r13_name"></p><p class="pr-d" data-copy="sn_r13_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r13_list"></span><span class="psale money" data-price-sale data-copy="sn_r13_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:14"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r14_name"></p><p class="pr-d" data-copy="sn_r14_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r14_list"></span><span class="psale money" data-price-sale data-copy="sn_r14_sale"></span></p></li>
-            <li class="pr" data-price-row="rq_sun11:16"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r16_name"></p><p class="pr-d" data-copy="sn_r16_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r16_list"></span><span class="psale money" data-price-sale data-copy="sn_r16_sale"></span></p></li>
+            <li class="pr" data-price-row="rq_sun11:15"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r15_name"></p><p class="pr-d" data-copy="sn_r15_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r15_list"></span><span class="psale money" data-price-sale data-copy="sn_r15_sale"></span></p></li>
 <!--/PRICE-A-K1-->
           </ol>
         </div>
@@ -147,9 +205,9 @@
         <div class="pa-board">
           <ol class="prows">
 <!--PRICE-A-K2-->
+            <li class="pr" data-price-row="rq_sun11:16"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r16_name"></p><p class="pr-d" data-copy="sn_r16_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r16_list"></span><span class="psale money" data-price-sale data-copy="sn_r16_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:17"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r17_name"></p><p class="pr-d" data-copy="sn_r17_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r17_list"></span><span class="psale money" data-price-sale data-copy="sn_r17_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:18"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r18_name"></p><p class="pr-d" data-copy="sn_r18_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r18_list"></span><span class="psale money" data-price-sale data-copy="sn_r18_sale"></span></p></li>
-            <li class="pr" data-price-row="rq_sun11:19"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r19_name"></p><p class="pr-d" data-copy="sn_r19_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r19_list"></span><span class="psale money" data-price-sale data-copy="sn_r19_sale"></span></p></li>
 <!--/PRICE-A-K2-->
           </ol>
         </div>
@@ -159,7 +217,6 @@
       <img class="bg" src="assets/bg.jpg?v=a" alt="" aria-hidden="true" width="1080" height="1350">
       <img class="dec pa-d1" src="assets/dec/clover-3.png" alt="" aria-hidden="true" width="360" height="360">
       <img class="dec pa-d2" src="assets/dec/spark-w.png" alt="" aria-hidden="true" width="360" height="360">
-      <img class="dec pa-d4" src="assets/dec/clover-4.png" alt="" aria-hidden="true" width="360" height="360">
       <div class="cp-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-ffffff.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period" data-copy="sn_period"></span></header>
         <div class="pa-head">
@@ -169,6 +226,7 @@
         <div class="pa-board">
           <ol class="prows">
 <!--PRICE-A-K3-->
+            <li class="pr" data-price-row="rq_sun11:19"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r19_name"></p><p class="pr-d" data-copy="sn_r19_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r19_list"></span><span class="psale money" data-price-sale data-copy="sn_r19_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:20"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r20_name"></p><p class="pr-d" data-copy="sn_r20_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r20_list"></span><span class="psale money" data-price-sale data-copy="sn_r20_sale"></span></p></li>
             <li class="pr" data-price-row="rq_sun11:21"><img class="pr-c" src="assets/dec/clover-1.png" alt="" aria-hidden="true" width="360" height="360"><div class="pr-nm"><p class="pr-n" data-copy="sn_r21_name"></p><p class="pr-d" data-copy="sn_r21_desc"></p></div><p class="pr-pz"><span class="plist money" data-price-list data-copy="sn_r21_list"></span><span class="psale money" data-price-sale data-copy="sn_r21_sale"></span></p></li>
 <!--/PRICE-A-K3-->
@@ -178,11 +236,10 @@
       </div>
     </section>
 
-    <!-- 2 / 5 · B : two-column tile type, same rows and order (left to right, top to bottom) -->
+    <!-- 2 / 5 · B : tile type, three columns since the nine rows of 2026-11-06 (was two), same rows and order (left to right, top to bottom) -->
     <section class="card cp pb" data-card="2" data-variant="b" data-size-hide="kakao" aria-labelledby="sn-t2b">
       <img class="dec pb-d1" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360">
       <img class="dec pb-d2" src="assets/dec/spark-y.png" alt="" aria-hidden="true" width="360" height="360">
-      <img class="dec pb-d3" src="assets/dec/clover-4.png" alt="" aria-hidden="true" width="360" height="360" data-size-only="line">
       <div class="cp-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-0b5a27.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period" data-copy="sn_period"></span></header>
         <div class="pb-head">
@@ -194,6 +251,7 @@
 <!--PRICE-B-->
           <li class="pt" data-price-row="rq_sun11:13"><p class="pt-n" data-copy="sn_r13_name"></p><p class="pt-d" data-copy="sn_r13_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r13_list"></span><span class="psale money" data-price-sale data-copy="sn_r13_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:14"><p class="pt-n" data-copy="sn_r14_name"></p><p class="pt-d" data-copy="sn_r14_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r14_list"></span><span class="psale money" data-price-sale data-copy="sn_r14_sale"></span></p></li>
+          <li class="pt" data-price-row="rq_sun11:15"><p class="pt-n" data-copy="sn_r15_name"></p><p class="pt-d" data-copy="sn_r15_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r15_list"></span><span class="psale money" data-price-sale data-copy="sn_r15_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:16"><p class="pt-n" data-copy="sn_r16_name"></p><p class="pt-d" data-copy="sn_r16_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r16_list"></span><span class="psale money" data-price-sale data-copy="sn_r16_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:17"><p class="pt-n" data-copy="sn_r17_name"></p><p class="pt-d" data-copy="sn_r17_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r17_list"></span><span class="psale money" data-price-sale data-copy="sn_r17_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:18"><p class="pt-n" data-copy="sn_r18_name"></p><p class="pt-d" data-copy="sn_r18_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r18_list"></span><span class="psale money" data-price-sale data-copy="sn_r18_sale"></span></p></li>
@@ -206,8 +264,8 @@
       </div>
     </section>
 
-    <!-- 2 / 5 · B · kakao: the B card is hidden in kakao and redrawn as three parts: tiles 13 14 16 with the lead, 17-19, 20-21 + a clover in the
-         free cell + the 의료법상 line and VAT -->
+    <!-- 2 / 5 · B · kakao: the B card is hidden in kakao and redrawn as three parts: tiles 13-15 with the lead, 16-18, 19-21 + the
+         의료법상 line and VAT -->
     <section class="card cp pb pb-k pb-k1" data-card="2" data-variant="b" data-part="1" data-size-only="kakao" aria-labelledby="sn-t2b-k1">
       <img class="dec pb-d1" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360">
       <img class="dec pb-d2" src="assets/dec/spark-y.png" alt="" aria-hidden="true" width="360" height="360">
@@ -222,7 +280,7 @@
 <!--PRICE-B-K1-->
           <li class="pt" data-price-row="rq_sun11:13"><p class="pt-n" data-copy="sn_r13_name"></p><p class="pt-d" data-copy="sn_r13_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r13_list"></span><span class="psale money" data-price-sale data-copy="sn_r13_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:14"><p class="pt-n" data-copy="sn_r14_name"></p><p class="pt-d" data-copy="sn_r14_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r14_list"></span><span class="psale money" data-price-sale data-copy="sn_r14_sale"></span></p></li>
-          <li class="pt" data-price-row="rq_sun11:16"><p class="pt-n" data-copy="sn_r16_name"></p><p class="pt-d" data-copy="sn_r16_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r16_list"></span><span class="psale money" data-price-sale data-copy="sn_r16_sale"></span></p></li>
+          <li class="pt" data-price-row="rq_sun11:15"><p class="pt-n" data-copy="sn_r15_name"></p><p class="pt-d" data-copy="sn_r15_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r15_list"></span><span class="psale money" data-price-sale data-copy="sn_r15_sale"></span></p></li>
 <!--/PRICE-B-K1-->
         </ul>
       </div>
@@ -238,9 +296,9 @@
         </div>
         <ul class="ptiles">
 <!--PRICE-B-K2-->
+          <li class="pt" data-price-row="rq_sun11:16"><p class="pt-n" data-copy="sn_r16_name"></p><p class="pt-d" data-copy="sn_r16_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r16_list"></span><span class="psale money" data-price-sale data-copy="sn_r16_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:17"><p class="pt-n" data-copy="sn_r17_name"></p><p class="pt-d" data-copy="sn_r17_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r17_list"></span><span class="psale money" data-price-sale data-copy="sn_r17_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:18"><p class="pt-n" data-copy="sn_r18_name"></p><p class="pt-d" data-copy="sn_r18_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r18_list"></span><span class="psale money" data-price-sale data-copy="sn_r18_sale"></span></p></li>
-          <li class="pt" data-price-row="rq_sun11:19"><p class="pt-n" data-copy="sn_r19_name"></p><p class="pt-d" data-copy="sn_r19_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r19_list"></span><span class="psale money" data-price-sale data-copy="sn_r19_sale"></span></p></li>
 <!--/PRICE-B-K2-->
         </ul>
       </div>
@@ -248,7 +306,6 @@
     <section class="card cp pb pb-k" data-card="2" data-variant="b" data-part="3" data-size-only="kakao" aria-labelledby="sn-t2b-k3">
       <img class="dec pb-d1" src="assets/dec/clover-2.png" alt="" aria-hidden="true" width="360" height="360">
       <img class="dec pb-d2" src="assets/dec/spark-y.png" alt="" aria-hidden="true" width="360" height="360">
-      <img class="dec pb-d3" src="assets/dec/clover-4.png" alt="" aria-hidden="true" width="360" height="360">
       <div class="cp-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-0b5a27.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period" data-copy="sn_period"></span></header>
         <div class="pb-head">
@@ -257,6 +314,7 @@
         </div>
         <ul class="ptiles">
 <!--PRICE-B-K3-->
+          <li class="pt" data-price-row="rq_sun11:19"><p class="pt-n" data-copy="sn_r19_name"></p><p class="pt-d" data-copy="sn_r19_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r19_list"></span><span class="psale money" data-price-sale data-copy="sn_r19_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:20"><p class="pt-n" data-copy="sn_r20_name"></p><p class="pt-d" data-copy="sn_r20_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r20_list"></span><span class="psale money" data-price-sale data-copy="sn_r20_sale"></span></p></li>
           <li class="pt" data-price-row="rq_sun11:21"><p class="pt-n" data-copy="sn_r21_name"></p><p class="pt-d" data-copy="sn_r21_desc"></p><p class="pt-pz"><span class="plist money" data-price-list data-copy="sn_r21_list"></span><span class="psale money" data-price-sale data-copy="sn_r21_sale"></span></p></li>
 <!--/PRICE-B-K3-->

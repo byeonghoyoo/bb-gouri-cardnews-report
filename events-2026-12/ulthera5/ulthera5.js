@@ -35,6 +35,8 @@ function setMoney(el,v){
 /* hero title / sub line: split after the first comma (the space stays in the text) */
 function setSplit(el,v,c1,c2){
  el.textContent='';
+ const nl=/^([^\n]*)\n([\s\S]*)$/.exec(v||''); /* 2026-11-06: two-line copy (u5_h2, team comment #4) splits at the line break */
+ if(nl){el.append(span(c1,nl[1]),document.createTextNode('\n'),span(c2,nl[2]));return;}
  const m=/^(.*?,)(\s+)(\S.*)$/.exec(v||'');
  if(!m){el.append(span(c1,v||''));return;}
  el.append(span(c1,m[1]),document.createTextNode(m[2]),span(c2,m[3]));

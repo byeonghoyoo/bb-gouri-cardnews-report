@@ -62,7 +62,7 @@ function setHours(el,v){
 /* widow guard: the last two words stay together */
 const GUARD='.bub-tx,.p-lead,.q-ans,.way-d,.way-pick,.way-for,.facts [data-copy],.ar-d,.pick-d,.st-d,.inf-n,.ask-d,.care [data-copy],.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.prod-s';
 /* names that never break inside */
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|고주파\(RF\)|모공 팁|펌핑 팁|스킨부스터|크라이오·시트팩|크라이오 5분|앰플·스킨부스터|미세침|저작근|귀밑·턱밑|턱 근육\(저작근\)|피부의 얕은 층|피부결·잔주름|이마·미간·눈가|붉어짐·부기·멍|붉어짐·열감|세안·화장·운동·사우나|알레르기·신경근 질환|임신·수유|복용 중인 약|자외선 차단|3D 피부 진단기|두 갈래|근육 상태|저작근\)의|세안·화장·생활 관리|크라이오·시트팩을)/g;
+const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|고주파\(RF\)|모공 팁|펌핑 팁|스킨부스터|크라이오·시트팩|크라이오 5분|앰플·스킨부스터|미세침|저작근|귀밑·턱밑|턱 근육\(저작근\)|피부의 얕은 층|피부결·잔주름|이마·미간·눈가|붉어짐·부기·멍|붉어짐·열감|세안·화장·운동·사우나|알레르기·신경근 질환|임신·수유|복용 중인 약|자외선 차단|3D 피부 진단기|두 갈래|근육 상태|저작근\)의|세안·화장·생활 관리|크라이오·시트팩을|이렇게 진행돼요)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){

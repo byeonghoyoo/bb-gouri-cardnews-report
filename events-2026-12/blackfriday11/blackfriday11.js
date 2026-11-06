@@ -33,7 +33,7 @@ function topSplit(v){const parts=[];let depth=0,start=0;for(let i=0;i<v.length;i
 function setParts(el,v){el.textContent='';topSplit(v||'').forEach((p,i)=>{if(i)el.append(span('plus',' + '));el.append(span('seg',p));});}
 function setHours(el,v){el.textContent='';const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');if(!m){el.textContent=v||'';return;}
  el.append(span('hd',m[1]),document.createTextNode(m[2]),span('ht',m[3]));}
-const KEEP=/(BEAUTY BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|최대 49%|7% 추가 할인!|할인가 제공!|조기 종료될|안내드립니다\.|6CC 까지 가능|\d+V|\d+cc|\d+샷|\d+kJ|\d+회)/g;
+const KEEP=/(BEAUTY BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|최대 49%|7% 추가 할인!|할인가 제공!|조기 종료될|안내드립니다\.|적용이 불가합니다\.|6CC 까지 가능|\d+V|\d+cc|\d+샷|\d+kJ|\d+회)/g;
 function appendKept(el,s){let last=0;KEEP.lastIndex=0;for(const m of s.matchAll(KEEP)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));el.append(span('nw',m[0]));last=m.index+m[0].length;}if(last<s.length)el.append(document.createTextNode(s.slice(last)));}
 /* emphasis on the percentage inside the EVENT 01 line ('7%') */
 function setEm(el,v){el.textContent='';v=v||'';const m=/(\d+%)/.exec(v);if(!m){appendTail(el,v);return;}

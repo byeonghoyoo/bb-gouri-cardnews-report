@@ -68,7 +68,7 @@ main.u5{container-type:inline-size;max-width:1080px;margin:0 auto}
 .h-event{font-size:max(12px,calc(24*var(--px)));font-weight:700;letter-spacing:-.01em;color:var(--white)}
 .c1a .h-title{margin-top:calc(22*var(--px));font-size:calc(70*var(--px)*var(--fit,1))}
 .c1a .h-sub{margin-top:calc(20*var(--px));font-size:calc(30*var(--px)*var(--fit,1))}
-.ticket{position:absolute;z-index:4;left:calc(64*var(--px));top:calc(560*var(--px));width:calc(470*var(--px));padding:calc(30*var(--px)) calc(30*var(--px)) calc(34*var(--px));
+.ticket{position:absolute;z-index:4;left:calc(64*var(--px));top:calc(500*var(--px));width:calc(470*var(--px));padding:calc(30*var(--px)) calc(30*var(--px)) calc(34*var(--px));
   background:rgba(12,10,7,.8);border:var(--line) solid var(--gold-l);outline:max(1px,calc(1*var(--px))) solid rgba(201,161,90,.4);outline-offset:calc(-10*var(--px));text-align:center}
 .tk-k{font-family:var(--f-cap);font-weight:600;font-size:max(11px,calc(17*var(--px)));letter-spacing:.26em;line-height:1.2;color:var(--gold-l)}
 .tk-cond{margin-top:calc(14*var(--px));display:flex;align-items:center;gap:calc(12*var(--px))}
@@ -78,10 +78,13 @@ main.u5{container-type:inline-size;max-width:1080px;margin:0 auto}
 .tk-big .b1{grid-column:1;grid-row:1;align-self:end;font-size:calc(34*var(--px));font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--white);text-align:left}
 .tk-big .b2{grid-column:1;grid-row:2;align-self:start;font-size:calc(34*var(--px));font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--gold);text-align:left}
 .tk-big .b5{grid-column:2;grid-row:1 / 3;font-size:calc(148*var(--px));line-height:.95}
-.h1a-dev{position:absolute;z-index:5;left:calc(566*var(--px));bottom:calc(36*var(--px));display:block;width:auto;height:calc(560*var(--px))}
-.h1a-contact{left:calc(64*var(--px));bottom:calc(56*var(--px))}
+/* 2026-11-06 team comments ULT5 #1 / #2: two Ultherapy Prime units in the empty space bottom left (one large in front, one smaller behind),
+   the phone line bottom right */
+.h1a-dev{position:absolute;z-index:5;left:calc(96*var(--px));bottom:calc(22*var(--px));display:block;width:auto;height:calc(520*var(--px))}
+.h1a-dev-back{z-index:4;left:calc(300*var(--px));bottom:calc(100*var(--px));height:calc(418*var(--px));filter:brightness(.88)}
+.h1a-contact{right:calc(64*var(--px));bottom:calc(56*var(--px))}
 .h1a-sp1{left:calc(470*var(--px));top:calc(122*var(--px));width:calc(70*var(--px))}
-.h1a-sp2{left:calc(470*var(--px));top:calc(520*var(--px));width:calc(86*var(--px))}
+.h1a-sp2{left:calc(470*var(--px));top:calc(460*var(--px));width:calc(86*var(--px))}
 
 /* ---------- 1 / 5 hero B: split. Left black column with stacked type and a giant 5%; right full-height photo panel ---------- */
 .h1b-photo{position:absolute;z-index:1;top:0;right:0;bottom:0;width:calc(520*var(--px));margin:0;overflow:hidden;border-left:calc(3*var(--px)) solid var(--gold-l)}
@@ -136,6 +139,10 @@ main.u5{container-type:inline-size;max-width:1080px;margin:0 auto}
 .ptable{margin-top:calc(26*var(--px));display:grid;gap:calc(12*var(--px))}
 .tg{display:grid;grid-template-columns:calc(168*var(--px)) minmax(0,1fr);grid-template-rows:auto auto;column-gap:calc(18*var(--px));padding-top:calc(10*var(--px));border-top:var(--line) solid var(--gold-l)}
 .tg-dev{grid-column:1;grid-row:1 / 3;display:flex;align-items:center;justify-content:center;gap:calc(4*var(--px))}
+/* 2026-11-06 team comment ULT5 #3: the single Ultherapy groups (울쎄라피 프라임, 아이울쎄라) carry no device picture; their head and rows
+   use the full width, the price columns stay aligned with the other groups */
+.tg.nodev{grid-template-columns:minmax(0,1fr)}
+.tg.nodev .tg-head,.tg.nodev .trows{grid-column:1}
 .tdev{display:block;width:auto;height:calc(124*var(--px))}
 .tg1 .tdev{height:calc(132*var(--px))}
 .tg2 .tdev{height:calc(84*var(--px))}
@@ -171,6 +178,7 @@ main.u5{container-type:inline-size;max-width:1080px;margin:0 auto}
 .bc-dev{flex:none;display:flex;align-items:center;justify-content:center;gap:calc(2*var(--px));height:calc(64*var(--px))}
 .bdev{display:block;width:auto;height:calc(62*var(--px))}
 .bc-dev .plus{width:calc(14*var(--px));height:calc(14*var(--px))}
+.bc.nodev .bc-head{min-height:calc(88*var(--px))} /* #3: no device picture, the head band keeps the height of the other cards */
 .bc-t{display:flex;flex-direction:column;gap:calc(2*var(--px));min-width:0;white-space:nowrap}
 .bc-name{position:relative;top:.029em;font-size:max(13px,calc(24*var(--px)));font-weight:800;letter-spacing:-.02em;line-height:1.25;color:var(--gold)}
 .bc-sub{font-size:max(11px,calc(16*var(--px)));font-weight:500;line-height:1.3;color:var(--muted)}
@@ -359,9 +367,10 @@ a[data-link="phone"]{white-space:nowrap}
   .tk-big{margin-top:6px;column-gap:8px}
   .tk-big .b1,.tk-big .b2{font-size:13px}
   .tk-big .b5{font-size:52px}
-  .h1a-dev{left:auto;right:calc(250*var(--px));bottom:calc(30*var(--px));height:calc(540*var(--px))}
+  .h1a-dev{left:calc(64*var(--px));bottom:calc(26*var(--px));height:calc(400*var(--px))}
+  .h1a-dev-back{left:calc(236*var(--px));bottom:calc(84*var(--px));height:calc(320*var(--px))}
   .contact{font-size:11px;padding:.3em .9em .3em .35em}
-  .h1a-contact{left:12px;bottom:10px}
+  .h1a-contact{right:12px;bottom:10px}
   .h1b-col{left:14px;top:14px;width:calc(500*var(--px))}
   .h1b-meta{margin-top:14px;flex-direction:column;align-items:flex-start;gap:4px}
   .h1b-period{font-size:11px;padding:.24em .7em}
@@ -496,12 +505,15 @@ html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] 
 .L1a .bg{object-position:50% 100%}
 .L1a .h-model{right:-12px;top:52px;height:1160px}
 .L1a .c1-top{top:40px}
-.L1a .h1a-copy{top:128px}
-.L1a .ticket{top:448px}
-.L1a .h1a-dev{left:556px;bottom:28px;height:500px}
-.L1a .h1a-contact{bottom:46px}
-.L1a .h1a-sp1{top:100px}
-.L1a .h1a-sp2{left:500px;top:424px}
+.L1a .h1a-copy{top:100px}
+.L1a .h-title{margin-top:14px}
+.L1a .h-sub{margin-top:12px}
+.L1a .ticket{top:372px}
+.L1a .h1a-dev{left:92px;bottom:18px;height:320px}
+.L1a .h1a-dev-back{left:226px;bottom:60px;height:256px}
+.L1a .h1a-contact{bottom:44px}
+.L1a .h1a-sp1{top:72px}
+.L1a .h1a-sp2{left:500px;top:350px}
 /* 1B split: photo panel 540 wide, the arch stays whole */
 .L1b .h1b-photo{width:540px}
 .L1b .h1b-col{top:46px;width:476px}
@@ -528,6 +540,8 @@ html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] 
 .L2a .tdev,.L2a .tg1 .tdev,.L2a .tg5 .tdev{height:92px}
 .L2a .tg2 .tdev{height:72px}
 .L2a .tg-head{grid-column:2;grid-row:1;align-self:center;flex-direction:column;align-items:flex-start;gap:2px;min-height:0}
+.L2a .tg.nodev{grid-template-columns:minmax(0,1fr)}
+.L2a .tg.nodev .tg-head{grid-column:1}
 .L2a .trows{grid-column:1 / -1;grid-row:2;margin-top:4px}
 .L2a .trow{grid-template-columns:minmax(0,1fr) 74px 112px;column-gap:10px}
 /* 2B three columns of cream cards */
@@ -535,6 +549,7 @@ html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] 
 .L2b .pcol{display:flex;flex-direction:column;gap:16px}
 .L2b .pcol > .bc:last-child{flex:1 1 auto}
 .L2b .bc-head{padding:14px 14px;gap:12px}
+.L2b .bc.nodev .bc-head{min-height:94px}
 .L2b .bc-dev{height:66px}
 .L2b .bdev{height:64px}
 .L2b .brows{padding:4px 12px 8px}
@@ -591,21 +606,23 @@ html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] 
 .K1a .bg{object-position:50% 100%}
 .K1a .h-model{right:-14px;top:40px;height:860px}
 .K1a .c1-top{top:26px}
-.K1a .h1a-copy{left:44px;top:62px;width:480px}
+.K1a .c1-top{left:44px;right:auto;top:24px;justify-content:flex-start}
+.K1a .h1a-copy{left:44px;top:66px;width:480px}
 .K1a .h-title{margin-top:14px}
 .K1a .h-sub{margin-top:12px}
-.K1a .h1a-sp1{left:404px;top:86px;width:60px}
-.K1a .h1a-sp2{left:574px;top:296px;width:76px}
-.K1a .ticket{left:44px;top:338px;width:auto;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto auto auto;column-gap:22px;align-items:center;padding:22px 26px;text-align:left}
+.K1a .h1a-sp1{left:404px;top:92px;width:60px}
+.K1a .h1a-sp2{left:734px;top:312px;width:64px}
+.K1a .ticket{left:auto;right:24px;top:340px;width:auto;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto auto auto;column-gap:18px;align-items:center;padding:22px 26px;text-align:left}
 .K1a .tk-k{grid-column:1;grid-row:1}
 .K1a .tk-cond{grid-column:1;grid-row:2;margin-top:8px}
 .K1a .tk-rule{display:none}
 .K1a .tk-big{display:contents}
 .K1a .tk-big .b1{grid-column:1;grid-row:3;margin-top:12px}
 .K1a .tk-big .b2{grid-column:1;grid-row:4}
-.K1a .tk-big .b5{grid-column:2;grid-row:1 / 5;align-self:center;padding-left:22px;border-left:1.6px dashed var(--gold-l)}
-.K1a .h1a-dev{left:auto;right:24px;bottom:16px;height:300px}
-.K1a .h1a-contact{left:44px;bottom:24px}
+.K1a .tk-big .b5{grid-column:2;grid-row:1 / 5;align-self:center;padding-left:18px;border-left:1.6px dashed var(--gold-l)}
+.K1a .h1a-dev{left:20px;right:auto;bottom:14px;height:250px}
+.K1a .h1a-dev-back{left:92px;bottom:50px;height:198px}
+.K1a .h1a-contact{right:24px;bottom:18px}
 /* 1B: split, the 5% beside its offer words, wordmark on the photo's cream top */
 .K1b .h1b-photo{width:280px}
 .K1b .h1b-top{position:absolute;z-index:4;right:40px;top:26px}
@@ -635,6 +652,7 @@ html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] 
 .K2a .bg,.K3 .bg,.K5 .bg{height:100%;object-position:50% 20%}
 .K2a .ptable{margin-top:18px;gap:18px}
 .K2a .tg{grid-template-columns:150px minmax(0,1fr);column-gap:18px;padding-top:12px}
+.K2a .tg.nodev{grid-template-columns:minmax(0,1fr)}
 .K2a .trow{grid-template-columns:minmax(0,1fr) 74px 112px;column-gap:10px;min-height:72px}
 .K2p3.K2a .ptable{gap:14px}
 .K2p3.K2a .tg{padding-top:10px}
@@ -647,6 +665,7 @@ html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] 
 .K2b .brow{padding:8px 0}
 .K2p1.K2b .pcards,.K2p2.K2b .pcards{flex:1 1 auto;align-items:stretch}
 .K2p1.K2b .bc-head,.K2p2.K2b .bc-head{padding:14px 16px}
+.K2p1.K2b .bc.nodev .bc-head{min-height:98px}
 .K2p1.K2b .bc-dev,.K2p2.K2b .bc-dev{height:70px}
 .K2p1.K2b .bdev,.K2p2.K2b .bdev{height:68px}
 .K2p1.K2b .brow{padding:14px 0}
@@ -710,3 +729,142 @@ html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] 
 /* background slots (v4/ulthera5/BG_SLOTS.md): until the lead's per-size picture exists, the 4:5 bg/dark.jpg / bg/cream.jpg is re-framed with
    object-fit (temporary). inject-sizes.cjs switches a slot to assets/bg/<slot>.jpg and marks it data-bg-ready: then it is shown whole. */
 .L .bg[data-bg-ready],.K .bg[data-bg-ready]{inset:0;height:100%;object-position:50% 50%}
+@container (max-width:600px){
+  .bc.nodev .bc-head{min-height:60px} /* #3: same head band height as the cards with a device picture */
+}
+
+/* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
+   '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
+[data-copy="u5_c4_q"]{text-wrap:balance}
+
+/* ===================== 2026-11-06 team comments (qa/comments/ult5-20261106d) =====================
+   #4 the hero sub line is two lines (copy u5_h2 holds the line break; line 2 in pale gold), #7 the event label left the hero meta,
+   #8 #9 HIT / BEST badges, #15-#19 gel mask gift mark on every 울쎄라피 프라임 600샷+ row, #12 + gift notes, #21-#23 card 4 steps. */
+.h-sub{white-space:pre}
+.gift{flex:none;display:inline-flex;align-items:center;gap:.4em;padding:calc(.16em + .03em) .75em calc(.16em - .03em) .3em;border-radius:999px;border:max(1px,calc(1.2*var(--px))) solid rgba(226,194,127,.6);
+  background:rgba(226,194,127,.12);font-size:max(11px,calc(14*var(--px)));font-weight:700;letter-spacing:-.01em;line-height:1.25;color:var(--gold-hi);white-space:nowrap}
+.gift-img{flex:none;display:block;width:auto;height:1.85em}
+.c2b .gift{border-color:rgba(156,114,48,.5);background:rgba(226,194,127,.2);color:var(--brown)}
+.c4-gen{display:flex;align-items:center;gap:.5em;margin-top:calc(16*var(--px));font-size:max(13px,calc(19*var(--px)));line-height:1.45;color:var(--brown-m)}
+.gen-ico{flex:none;display:block;width:1.6em;height:1.6em;object-fit:contain}
+.gen-k{flex:none;font-weight:800;color:var(--brown)}
+.gen-k::after{content:'\00a0\00b7'} /* middle dot after the label */
+/* B rows: badge and gift mark share the first line, the name below (keeps the rows short) */
+.brow .pn{flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:calc(6*var(--px));row-gap:calc(5*var(--px))}
+.brow .pname{order:2;flex:0 0 100%}
+/* home desktop (the 390 phone rules stay as they were unless set below) */
+@container (min-width:601px){
+  /* #1 #14 hero A after the team reference picture: compact ticket under the copy, two units big bottom left (front large, the second
+     one smaller behind it on the left), model right, phone bottom right */
+  html[data-size="home"] .c1a .ticket{top:calc(482*var(--px));padding:calc(22*var(--px)) calc(28*var(--px)) calc(24*var(--px))}
+  html[data-size="home"] .c1a .tk-cond{margin-top:calc(10*var(--px))}
+  html[data-size="home"] .c1a .tk-big{margin-top:calc(10*var(--px))}
+  html[data-size="home"] .c1a .h1a-dev{left:calc(205*var(--px));bottom:calc(58*var(--px));height:calc(545*var(--px))}
+  html[data-size="home"] .c1a .h1a-dev-back{left:calc(66*var(--px));bottom:calc(176*var(--px));height:calc(404*var(--px))}
+  html[data-size="home"] .c1a .h1a-sp2{left:calc(500*var(--px));top:calc(452*var(--px))}
+  /* #11 card 2 A: head on the left, the top right is the model slot (picture pending); narrower price columns
+     so the badge and the gift mark fit beside the name */
+  html[data-size="home"] .c2a .p-head{margin-top:calc(26*var(--px));text-align:left;max-width:calc(660*var(--px))}
+  html[data-size="home"] .c2a .p-lead{justify-content:flex-start}
+  html[data-size="home"] .c2a .ptable{gap:calc(10*var(--px))}
+  html[data-size="home"] .c2a .trow{grid-template-columns:minmax(0,1fr) calc(90*var(--px)) calc(150*var(--px));min-height:calc(54*var(--px))}
+}
+@container (max-width:600px){
+  html[data-size="home"] .c1a .h1a-dev{left:calc(150*var(--px));bottom:calc(26*var(--px));height:calc(470*var(--px))}
+  html[data-size="home"] .c1a .h1a-dev-back{left:calc(40*var(--px));bottom:calc(110*var(--px));height:calc(350*var(--px))}
+  html[data-size="home"] .c2a .p-head{text-align:left}
+  html[data-size="home"] .c2a .p-lead{justify-content:flex-start}
+}
+/* LINE */
+.L1a .h1a-copy{top:96px}
+.L1a .ticket{top:404px;padding:18px 26px 20px}
+.L1a .tk-cond{margin-top:8px}
+.L1a .tk-big{margin-top:8px}
+.L1a .h1a-dev{left:200px;bottom:16px;height:330px}
+.L1a .h1a-dev-back{left:120px;bottom:90px;height:246px}
+.L1a .h1a-sp2{left:500px;top:380px}
+.L2a .p-head{display:block}
+.L2a .p-lead{justify-content:flex-start;margin:10px 0 0}
+.L2a .trow{min-height:50px}
+.L2a .trow .pn{flex-wrap:wrap;row-gap:4px}
+.L2b .brow{padding:11px 0}
+/* KAKAO */
+.K1a .h1a-copy{top:62px}
+.K1a .h-title{margin-top:12px}
+.K1a .h-sub{margin-top:10px}
+.K1a .h1a-dev{left:60px;bottom:12px;height:226px}
+.K1a .h1a-dev-back{left:8px;bottom:52px;height:170px}
+.K1a .ticket{top:358px}
+.K1a .h1a-contact{bottom:14px}
+.K1a .h1a-sp2{left:740px;top:330px}
+.K1b .h1b-col{top:28px}
+.K1b .h1b-title{margin-top:12px}
+.K1b .h1b-sub{margin-top:8px}
+.K1b .h1b-offer{margin-top:12px;padding-top:12px}
+.K1b .stack5{margin-top:4px}
+.K1b .h1b-contact{bottom:16px}
+.K2p1.K2a .p-head{text-align:left}
+.K2p1.K2a .p-lead{justify-content:flex-start}
+.K2a .trow .pn{flex-wrap:wrap;row-gap:4px}
+.K2p2.K2a .trow{min-height:62px}
+/* kakao card 2, part 4: the gel mask gift band (after the team gift notice) + notes + '의료법상' line */
+.gift-box{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:24px;margin-top:20px;padding:14px 24px 14px 18px;border:var(--line) solid var(--gold-l);background:rgba(12,10,7,.6)}
+.c2b .gift-box{background:rgba(255,251,242,.9)}
+.gift-prod{display:block;width:auto;height:150px}
+.gift-band{display:inline-flex;align-items:center;justify-content:center;padding:calc(.3em + .02em) 1.1em calc(.3em - .02em);background:var(--gold);color:var(--ink);font-family:var(--f-cap);font-weight:700;font-size:16px;letter-spacing:.2em;line-height:1.2;white-space:nowrap}
+.c2b .gift-band{background:var(--ink);color:var(--gold)}
+.gift-c{margin-top:12px;font-size:19px;font-weight:600;line-height:1.35;color:var(--muted)}
+.c2b .gift-c{color:var(--brown-m)}
+.gift-big{margin-top:4px;font-size:32px;font-weight:900;letter-spacing:-.02em;line-height:1.2;color:var(--gold-hi);white-space:nowrap}
+.c2b .gift-big{color:var(--brown)}
+/* card 4: the genuine-check note under the steps (team comment #21) */
+.L4 .c4-gen{justify-content:center;margin-top:34px}
+.K4p2 .c4-gen{margin-top:12px}
+/* line 2A: compact head again (kicker over the title, lead and period stacked beside it); the top right stays free for the model slot (#11) */
+.L2a .p-head{display:flex;justify-content:flex-start;align-items:flex-end;gap:30px}
+.L2a .p-lead{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;margin:0 0 10px}
+.L2a .tg-dev{height:70px}
+.L2a .tdev,.L2a .tg1 .tdev,.L2a .tg5 .tdev{height:70px}
+.L2a .trow{min-height:46px}
+.L2a .pcol{gap:10px}
+.L2b .brow{padding:8px 0}
+.L2b .bc-head{padding:10px 14px}
+.L2b .bc.nodev .bc-head{min-height:86px}
+.L2b .pcol{gap:12px}
+@container (min-width:601px){
+  html[data-size="home"] .c2b .pcards{row-gap:calc(14*var(--px))}
+}
+.L2a .tg{padding-top:8px}
+.L2b .bc-head{padding:8px 14px}
+.L2a .c2-in,.L2b .c2-in{padding-bottom:26px}
+.K1a .h1a-copy{top:56px}
+.K1a .h-title{margin-top:10px}
+.K1a .h-sub{margin-top:8px}
+/* text-center: the gift mark text and the new badges / gift band sit on the optical middle */
+.gift{padding:.16em .75em .16em .3em}
+.gift-t{position:relative;top:.08em}
+.gift-band{padding:calc(.3em + .0325em) 1.1em calc(.3em - .0325em)}
+.K2b.K2p1 .badge,.K2b.K2p2 .badge{padding:.3em .62em}
+@container (min-width:1000px){html[data-size="home"] .c2b .brow .badge{padding:calc(.3em + .025em) .62em calc(.3em - .025em)}}
+.L4 .c4-gen{margin-top:34.5px}
+/* text-center: glyphs land on whole pixels, so single rows whose mark sits one pixel low get the text one pixel up */
+@container (min-width:1000px){
+  html[data-size="home"] .c2b [data-price-row="rq_ult5:23"] .gift-t,html[data-size="home"] .c2b [data-price-row="rq_ult5:24"] .gift-t{top:calc(.08em - 1px)}
+}
+.L2a [data-price-row="rq_ult5:14"] .gift-t,.L2a [data-price-row="rq_ult5:18"] .gift-t,.L2b [data-price-row="rq_ult5:23"] .gift-t{top:calc(.08em - 1px)}
+.K2b [data-price-row="rq_ult5:23"] .gift-t{top:calc(.08em - 1px)}
+
+/* 2026-11-06 team comment #11: model picture at the top right of card 2 A. A person cutout standing behind the price table: the window's
+   bottom edge sits on the table's top rule (the rule paints over the cut, the model is under the table layer), so only head to chest show
+   above the table and nothing overlaps the price text. No box or frame, soft shadow only. */
+.c2a .ptable{position:relative}
+.c2-model{position:absolute;z-index:-1;bottom:calc(100% - 1px);right:calc(-44*var(--px));width:calc(298*var(--px));height:calc(277*var(--px));overflow:hidden;pointer-events:none}
+.c2-model-img{position:absolute;left:calc(28*var(--px));top:calc(24*var(--px));display:block;width:auto;max-width:none;height:calc(450*var(--px));filter:drop-shadow(0 calc(12*var(--px)) calc(26*var(--px)) rgba(0,0,0,.55))}
+@container (max-width:600px){
+  html[data-size="home"] .c2-model{right:calc(-57*var(--px));width:calc(349*var(--px));height:calc(320*var(--px))}
+  html[data-size="home"] .c2-model-img{left:calc(40*var(--px));top:calc(40*var(--px));height:calc(500*var(--px))}
+}
+.L2a .c2-model{right:-38px;width:232px;height:213px}
+.L2a .c2-model-img{left:24px;top:20px;height:343px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.55))}
+.K2a .c2-model{right:-40px;width:260px;height:240px}
+.K2a .c2-model-img{left:24px;top:18px;height:395px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.55))}

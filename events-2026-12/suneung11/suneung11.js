@@ -54,10 +54,19 @@ function appendKept(el,s){
  for(const m of s.matchAll(KEEP)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));el.append(span('nw',m[0]));last=m.index+m[0].length;}
  if(last<s.length)el.append(document.createTextNode(s.slice(last)));
 }
+/* hero A ticket (team comment #1, 2026-11-06): team line 3 shown as two lines, the '최대' tag, a big number and the rest; the stored sentence is unchanged */
+function setTicket(el,v){
+ el.textContent='';v=v||'';
+ const m=/^(.*?)\s*(최대)\s*(\d+\s*%)\s*(.*)$/.exec(v);
+ if(!m){appendKept(el,v);return;}
+ const b=span('l3b','');b.append(span('tag',m[2]),document.createTextNode(' '),span('num',m[3]),document.createTextNode(' '),span('rest',m[4]));
+ el.append(span('l3a',m[1]),document.createTextNode(' '),b);
+}
 /* widow guard: the last two words of a wrapping line stay together */
 const GUARD='.p-lead,.q-ans,.gd-d,.st-d,.tip-d,.tip-d2,.care [data-copy],.notes [data-copy],.ab-lead [data-copy],.dr-quote,.ad,.way-addr > [data-copy],.hrs-note,.pr-d,.pt-d,.pr-n,.pt-n,.h-l2 [data-copy],.h-l3,.ab-title';
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
+ if(el.classList.contains('ha-l3')){setTicket(el,v);return;}
  if(el.classList.contains('h-title')){setTitle(el,v);return;}
  if(el.classList.contains('gd-it')){setItems(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}

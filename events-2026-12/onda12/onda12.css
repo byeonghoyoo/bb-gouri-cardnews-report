@@ -741,3 +741,7 @@ a[data-link="phone"]{white-space:nowrap}
   .pboard .pkj-in{flex-wrap:nowrap;align-items:flex-start;gap:8px}
   .pboard .pkj-in .kj-d{flex:1 1 auto;min-width:0}
 }
+
+/* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
+   '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
+[data-copy="od_c5_q"]{text-wrap:balance}
