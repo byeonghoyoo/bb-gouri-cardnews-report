@@ -619,3 +619,249 @@ a[data-link="phone"]{white-space:nowrap}
 /* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
    '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
 [data-copy="cf_c5_q"]{text-wrap:balance}
+/* ===== SIZES START (generated from v4/cerf12/sizes/sizes.css, do not edit here) ===== */
+/* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
+   ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
+   redrawn for the frame from the same copy keys, price rows and pictures (v4/cerf12/sizes/line.html, kakao.html); nothing is cropped or
+   scaled down from the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size.
+   Card rules start with html[data-size]:not(#sz): the :not(#sz) part only lifts the weight so the size layout outranks the page's own
+   card rules (.c2.c2bn[data-variant="b"] ...); it matches every page. Source: v4/cerf12/sizes/sizes.css, spliced into site/cerf12/cerf12.css
+   by v4/cerf12/sizes/splice-css.cjs. ===== */
+html[data-size="line"] main.cf{max-width:none;width:1100px}
+html[data-size="kakao"] main.cf{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto;min-height:0;margin-bottom:0}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto;min-height:0;margin-bottom:0}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+html[data-size="home"] [data-size-only] section,
+html[data-size="line"] [data-size-only]:not([data-size-only~="line"]) section,html[data-size="kakao"] [data-size-only]:not([data-size-only~="kakao"]) section,
+html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] [data-size-hide~="kakao"] section{display:none!important}
+html[data-size]:not(#sz) .h-model{position:absolute;z-index:2;display:block;width:auto;max-width:none;pointer-events:none}
+
+/* ---------- LINE 1100x1000 ---------- */
+/* 1A: light studio colour (the hero photo's backdrop), the hero model cutout on the right, the disc with title and offer lower left */
+html[data-size]:not(#sz) .L1a{background:#efedec}
+html[data-size]:not(#sz) .L1a .h-model{left:430px;top:66px;height:1150px}
+html[data-size]:not(#sz) .L1a .c1-mesh{left:30px;top:520px}
+html[data-size]:not(#sz) .L1a .c1-disc{left:-200px;top:520px}
+html[data-size]:not(#sz) .L1a .c1-dev{right:44px;bottom:34px}
+html[data-size]:not(#sz) .L1a .g1{right:20px;top:600px}
+html[data-size]:not(#sz) .L1a .g2{left:560px;top:600px}
+html[data-size]:not(#sz) .L1a .hero-lead{left:60px;top:200px;width:380px}
+html[data-size]:not(#sz) .L1a .hero-disc{left:66px;top:596px}
+html[data-size]:not(#sz) .L1a .tz{margin-top:22px}
+html[data-size]:not(#sz) .L1a .c1-contact{right:190px;bottom:40px}
+/* 1B: wine card, arched photo left, title right, offer under the photo, disc and device lower right */
+html[data-size]:not(#sz) .L1b .hero-lead{top:110px}
+html[data-size]:not(#sz) .L1b .c1-photo{top:240px;height:500px}
+html[data-size]:not(#sz) .L1b > .hero-title{top:290px}
+html[data-size]:not(#sz) .L1b .c1-disc{top:560px}
+html[data-size]:not(#sz) .L1b .c1-dev{top:560px}
+html[data-size]:not(#sz) .L1b .hero-disc{top:770px;min-height:0}
+/* 2A: head row (device | text | the official model cutout behind the board), the rows in two columns (86-88 | the eye group with 90-92) */
+html[data-size]:not(#sz) .L2a .cp-in,html[data-size]:not(#sz) .L2b .cp-in{padding:34px 52px 24px}
+html[data-size]:not(#sz) .L2a .cp-head{grid-template-columns:150px minmax(0,1fr) 250px;margin-top:6px}
+html[data-size]:not(#sz) .L2a .ds-2{width:150px;height:240px}
+html[data-size]:not(#sz) .L2a .c2-cut{height:450px;right:6px;bottom:-150px}
+html[data-size]:not(#sz) .L2a .pboard{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:56px;align-items:start;margin-top:18px;padding:16px 34px 12px 40px}
+html[data-size]:not(#sz) .L2a .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:12px 0 11px}
+html[data-size]:not(#sz) .L2a .prow .pn{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) .L2a .prow .plist{grid-column:2;grid-row:1;align-self:end;margin-bottom:6px}
+html[data-size]:not(#sz) .L2a .prow .psale{grid-column:2;grid-row:2;align-self:start}
+html[data-size]:not(#sz) .L2a .pcol2 .pgroup{margin-top:0;padding-top:8px}
+html[data-size]:not(#sz) .L2a .c2-gift{margin-top:20px}
+/* 2B: the six tiles in two rows of three, shorter tiles */
+html[data-size]:not(#sz) .L2b .cp-head{margin-top:6px;min-height:0}
+html[data-size]:not(#sz) .L2b .ds-2{height:230px}
+html[data-size]:not(#sz) .L2b .c2-cut{height:470px;bottom:-170px}
+html[data-size]:not(#sz) .L2b .pboard{margin-top:16px}
+html[data-size]:not(#sz) .L2b .prow{min-height:0;padding:16px 18px 16px;gap:6px}
+html[data-size]:not(#sz) .L2b .pgroup{padding:6px 0 10px}
+html[data-size]:not(#sz) .L2b .c2-gift{margin-top:16px}/* 3: two columns of combo groups */
+html[data-size]:not(#sz) .L3 .cp-in{padding:34px 52px 26px}
+html[data-size]:not(#sz) .L3 .pboard{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:64px;align-items:start;padding:14px 26px 8px 58px}
+html[data-size]:not(#sz) .L3 .pboard > .gift-band{grid-column:1 / -1}
+html[data-size]:not(#sz) .L3 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:12px;align-items:center}
+html[data-size]:not(#sz) .L3 .prow .pn{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) .L3 .prow .plist{grid-column:2;grid-row:1;align-self:end}
+html[data-size]:not(#sz) .L3 .prow .psale{grid-column:2;grid-row:2;align-self:start}
+/* 4 B&A */
+html[data-size]:not(#sz) .L4 .ba-in{padding:36px 56px 26px}
+html[data-size]:not(#sz) .L4 .ba-rows{margin:20px auto 0;width:680px;gap:20px}
+/* 5 in two parts: head + skin section beside the points | tips and combo devices, larger */
+html[data-size]:not(#sz) .L5 .c4-in{padding:36px 52px 24px}
+html[data-size]:not(#sz) .L5p1 .c4-mid{margin-top:26px}
+html[data-size]:not(#sz) .L5p2 .tips{margin-top:auto}
+html[data-size]:not(#sz) .L5p2 .tip-row{gap:16px}
+html[data-size]:not(#sz) .L5p2 .tip{padding:24px 20px}
+html[data-size]:not(#sz) .L5p2 .cmb4{margin-top:56px;padding-top:0}
+html[data-size]:not(#sz) .L5p2 .cmb4-row{gap:16px}
+html[data-size]:not(#sz) .L5p2 .cmb4-it{grid-template-columns:110px minmax(0,1fr);padding:16px 18px}
+html[data-size]:not(#sz) .L5p2 .cmb4-dev{width:120px;height:160px}
+html[data-size]:not(#sz) .L5p2 .src{margin-top:auto}
+/* 6: question with the photo, who, the four steps in one row, facts, combo note, care tips */
+html[data-size]:not(#sz) .L6 .c5-in{padding:32px 52px 22px}
+html[data-size]:not(#sz) .L6 .c5-headrow{grid-template-columns:minmax(0,1fr) 180px;margin-top:0}
+html[data-size]:not(#sz) .L6 .c5-pic{width:180px;height:180px}
+html[data-size]:not(#sz) .L6 .who{margin-top:10px}
+html[data-size]:not(#sz) .L6 .who-it{padding:12px 20px}
+html[data-size]:not(#sz) .L6 .steps{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:12px}
+html[data-size]:not(#sz) .L6 .st{padding:14px 16px 16px}
+html[data-size]:not(#sz) .L6 .infos{margin-top:12px}
+html[data-size]:not(#sz) .L6 .inf{padding:12px 20px 14px}
+html[data-size]:not(#sz) .L6 .c5-combo{margin-top:10px}
+/* 7 clinic intro in two parts (as OND12 / ULT5) */
+html[data-size]:not(#sz) .L7 .cx-in{padding:36px 48px 30px}
+html[data-size]:not(#sz) .L7 .bento{margin-top:22px}
+html[data-size]:not(#sz) .L7p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .L7p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:30px 36px}
+html[data-size]:not(#sz) .L7p1 .ab-title{font-size:44px}
+html[data-size]:not(#sz) .L7p1 .dr{grid-template-columns:250px 290px}
+html[data-size]:not(#sz) .L7p1 .ab-photos{height:350px;margin-top:4px}
+html[data-size]:not(#sz) .L7p1 .ab-strengths{margin-top:auto}
+html[data-size]:not(#sz) .L7p2 .bento{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);grid-template-rows:minmax(0,.78fr) minmax(0,1fr)}
+html[data-size]:not(#sz) .L7p2 .map{width:100%}
+html[data-size]:not(#sz) .L7p2 .loc-body{padding-top:18px}
+html[data-size]:not(#sz) .L7p2 .way{margin-top:18px}
+html[data-size]:not(#sz) .L7p2 .hrs{gap:14px}
+html[data-size]:not(#sz) .L7p2 .hrs li{font-size:25px}
+html[data-size]:not(#sz) .L7p2 .hrs-note{margin-top:18px;font-size:17px}
+html[data-size]:not(#sz) .L7p2 .bk-row{grid-template-columns:150px minmax(0,1fr);gap:22px}
+html[data-size]:not(#sz) .L7p2 .bk-links{font-size:20px}
+html[data-size]:not(#sz) .L7p2 .bk-phone{font-size:34px}
+html[data-size]:not(#sz) .L7p2 .bt-loc{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) .L7p2 .bt-hours{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) .L7p2 .bt-book{grid-column:2;grid-row:2}
+/* ---------- /LINE ---------- */
+
+/* ---------- KAKAO 800x600 ---------- */
+/* 1A: the hero model cutout on the right, the lead, the disc with the title and the offer on the left */
+html[data-size]:not(#sz) .K1a{background:#efedec}
+html[data-size]:not(#sz) .K1a .h-model{left:448px;top:40px;height:700px}
+html[data-size]:not(#sz) .K1a .c1-mesh{left:0;top:236px;width:360px}
+html[data-size]:not(#sz) .K1a .c1-disc{left:-200px;top:190px;width:840px;height:853px}
+html[data-size]:not(#sz) .K1a .c1-dev{right:16px;bottom:14px;width:96px;height:250px}
+html[data-size]:not(#sz) .K1a .g1{right:4px;top:300px}
+html[data-size]:not(#sz) .K1a .g2{left:470px;top:220px}
+html[data-size]:not(#sz) .K1a .c1-top{left:36px;right:36px;top:22px}
+html[data-size]:not(#sz) .K1a .hero-lead{left:40px;top:62px;width:420px}
+html[data-size]:not(#sz) .K1a .hook{margin-top:8px}
+html[data-size]:not(#sz) .K1a .hero-disc{left:44px;top:222px}
+html[data-size]:not(#sz) .K1a .tz{margin-top:4px}
+html[data-size]:not(#sz) .K1a .c1-contact{right:126px;bottom:16px}
+/* 1B: wine card, the arched photo on the left, the title and offer on the right, disc and device at the right edge */
+html[data-size]:not(#sz) .K1b .c1-top{left:36px;right:36px;top:22px}
+html[data-size]:not(#sz) .K1b .hero-lead{left:40px;top:62px;width:720px}
+html[data-size]:not(#sz) .K1b .c1-photo{left:40px;top:180px;width:290px;height:390px}
+html[data-size]:not(#sz) .K1b > .hero-title{left:372px;top:168px;width:300px}
+html[data-size]:not(#sz) .K1b .hero-disc{left:372px;top:402px;width:300px;min-height:0}
+html[data-size]:not(#sz) .K1b .c1-disc{left:620px;top:340px;width:260px}
+html[data-size]:not(#sz) .K1b .c1-dev{left:auto;right:28px;top:318px;width:100px;height:262px}
+html[data-size]:not(#sz) .K1b .c1-contact{left:52px;right:auto;bottom:52px}
+/* 2A / 2B: part 1 = head (device | text | model) + rows 86-88, part 2 = the price kicker (2A with the shot note) + the eye group, gift band, foot */
+html[data-size]:not(#sz) .K2a .cp-in,html[data-size]:not(#sz) .K2b .cp-in{padding:22px 36px 14px}
+html[data-size]:not(#sz) .K2a .cp-head{grid-template-columns:96px minmax(0,1fr) 140px;column-gap:12px;margin-top:4px}
+html[data-size]:not(#sz) .K2a .ds-2{width:96px;height:200px}
+html[data-size]:not(#sz) .K2a .c2-cut{height:330px;right:-4px;bottom:-120px}
+html[data-size]:not(#sz) .K2a .pboard{margin-top:10px;padding:8px 26px 6px}
+html[data-size]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) 110px 180px;column-gap:12px;align-items:center;padding:8px 0 7px}
+html[data-size]:not(#sz) .K2a .pgroup{margin-top:2px}
+html[data-size]:not(#sz) .K2ap2 .cp-head,html[data-size]:not(#sz) .K2bp2 .cp-head{display:block;min-height:0;margin-top:6px}
+html[data-size]:not(#sz) .K2ap2 .p-unit{margin-top:6px}
+html[data-size]:not(#sz) .K2a .c2-gift,html[data-size]:not(#sz) .K2b .c2-gift{margin-top:12px}
+html[data-size]:not(#sz) .K2a .c2-foot,html[data-size]:not(#sz) .K2b .c2-foot{margin-top:8px}
+html[data-size]:not(#sz) .K2b .cp-head{grid-template-columns:100px minmax(0,1fr) 150px;column-gap:14px;margin-top:4px;min-height:0}
+html[data-size]:not(#sz) .K2b .ds-2{width:100px;height:190px}
+html[data-size]:not(#sz) .K2b .c2-cut{height:330px;right:-4px;bottom:-110px}
+html[data-size]:not(#sz) .K2b .p-unit{margin-top:8px}
+html[data-size]:not(#sz) .K2b .pboard{margin-top:10px}
+html[data-size]:not(#sz) .K2b .prows{gap:12px}
+html[data-size]:not(#sz) .K2b .prow{min-height:0;padding:14px 16px;gap:6px}
+html[data-size]:not(#sz) .K2b .pgroup{padding:2px 0 8px}
+/* 3 in three parts: head, gift band, combos 93-95 | the shot note, combos 97-99 | the three devices, combo 101, VAT */
+html[data-size]:not(#sz) .K3 .cp-in{padding:22px 36px 14px}
+html[data-size]:not(#sz) .K3 .c3-head{grid-template-columns:minmax(0,1fr);margin-top:4px}
+html[data-size]:not(#sz) .K3 .pboard{margin-top:10px;padding:10px 26px 6px 58px}
+html[data-size]:not(#sz) .K3 .prow{grid-template-columns:minmax(0,1fr) 110px 170px;column-gap:12px;padding:6px 0 5px}
+html[data-size]:not(#sz) .K3 .gift-mark{top:9px}
+html[data-size]:not(#sz) .K3p2 .p-lead{margin-top:6px}
+html[data-size]:not(#sz) .K3p3 .c3-head{display:block}
+html[data-size]:not(#sz) .K3p3 .trio{margin:10px auto 0;width:560px;gap:24px}
+html[data-size]:not(#sz) .K3p3 .td-img{width:120px;height:170px}
+html[data-size]:not(#sz) .K3p3 .pboard{margin-top:18px}
+/* 4 */
+html[data-size]:not(#sz) .K4 .ba-in{padding:22px 44px 16px}
+html[data-size]:not(#sz) .K4 .ba-rows{margin:14px auto 0;width:640px}
+/* 5 in three parts: question + device + four points (2 x 2) | the skin section with the four tips | the combo devices and source */
+html[data-size]:not(#sz) .K5 .c4-in{padding:22px 40px 16px}
+html[data-size]:not(#sz) .K5p1 .c4-head{grid-template-columns:minmax(0,1fr) 80px;column-gap:12px;margin-top:4px}
+html[data-size]:not(#sz) .K5p1 .ds-5{width:80px;height:200px}
+html[data-size]:not(#sz) .K5p1 .c4-mid{display:block;margin:10px 0 0;padding:0}
+html[data-size]:not(#sz) .K5p1 .points{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+html[data-size]:not(#sz) .K5p1 .pt{padding:12px 16px}
+html[data-size]:not(#sz) .K5p2 .c4-mid{display:block;margin:14px 0 0;width:430px}
+html[data-size]:not(#sz) .K5p2 .tips{position:absolute;z-index:3;right:40px;top:68px;width:270px;margin:0}
+html[data-size]:not(#sz) .K5p2 .tip-row{grid-template-columns:1fr;gap:8px;margin-top:10px}
+html[data-size]:not(#sz) .K5p2 .tip{grid-template-columns:64px minmax(0,1fr);padding:8px 12px}
+html[data-size]:not(#sz) .K5p2 .tip-box{height:76px}
+html[data-size]:not(#sz) .K5p3 .cmb4{margin-top:auto;margin-bottom:auto;padding-top:0}
+html[data-size]:not(#sz) .K5p3 .cmb4-row{grid-template-columns:1fr;gap:12px}
+html[data-size]:not(#sz) .K5p3 .cmb4-it{grid-template-columns:96px minmax(0,1fr);padding:12px 18px}
+html[data-size]:not(#sz) .K5p3 .cmb4-dev{width:96px;height:110px}
+/* 6 in two parts: question + photo + who + combo note | the four steps in one row, facts, care tips, source */
+html[data-size]:not(#sz) .K6 .c5-in{padding:22px 40px 16px}
+html[data-size]:not(#sz) .K6p1 .c5-headrow{grid-template-columns:minmax(0,1fr) 210px;margin-top:4px}
+html[data-size]:not(#sz) .K6p1 .c5-pic{width:210px;height:210px}
+html[data-size]:not(#sz) .K6p1 .who{margin-top:14px}
+html[data-size]:not(#sz) .K6p1 .infos{margin-top:12px}
+html[data-size]:not(#sz) .K6p2 .steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+html[data-size]:not(#sz) .K6p2 .st{padding:12px 12px 14px}
+html[data-size]:not(#sz) .K6p2 .infos{margin-top:12px}
+html[data-size]:not(#sz) .K6p2 .inf{padding:12px 16px 14px}/* 7 clinic intro in three parts (as OND12 / ULT5) */
+html[data-size]:not(#sz) .K7 .cx-in{padding:30px 44px 26px}
+html[data-size]:not(#sz) .K7 .bento{margin-top:16px}
+html[data-size]:not(#sz) .K7p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .K7p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:18px 22px}
+html[data-size]:not(#sz) .K7p1 .ab-top{grid-template-columns:minmax(0,1fr) 220px;grid-template-rows:auto auto auto auto;column-gap:16px;align-items:start}
+html[data-size]:not(#sz) .K7p1 .ab-intro,html[data-size]:not(#sz) .K7p1 .dr{display:contents}
+html[data-size]:not(#sz) .K7p1 .ab-intro .bt-k{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .K7p1 .ab-title{grid-column:1;grid-row:2;margin-top:6px}
+html[data-size]:not(#sz) .K7p1 .ab-lead{grid-column:1;grid-row:3;margin-top:10px}
+html[data-size]:not(#sz) .K7p1 .dr-tx{grid-column:1;grid-row:4;align-self:start;text-align:left;padding:14px 0 0}
+html[data-size]:not(#sz) .K7p1 .dr-quote{margin-top:4px}
+html[data-size]:not(#sz) .K7p1 .dr-img{grid-column:2;grid-row:1 / 5;align-self:end;width:220px}
+html[data-size]:not(#sz) .K7p1 .ab-photos{height:190px;margin-top:8px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.3fr)}
+html[data-size]:not(#sz) .K7p2 .bento{grid-template-columns:1fr;grid-template-rows:auto auto}
+html[data-size]:not(#sz) .K7p2 .bt-str{grid-column:1;grid-row:1;padding:18px 24px}
+html[data-size]:not(#sz) .K7p2 .bt-str .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 26px}
+html[data-size]:not(#sz) .K7p2 .bt-str .dots{display:none}
+html[data-size]:not(#sz) .K7p2 .bt-hours{grid-column:1;grid-row:2}
+html[data-size]:not(#sz) .K7p3 .bento{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .K7p3 .bt-loc{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .K7p3 .bt-book{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) .K7p3 .map{width:100%}
+html[data-size]:not(#sz) .K7p3 .bk-row{grid-template-columns:120px;grid-template-rows:auto auto;justify-items:start;align-content:center}
+/* ---------- /KAKAO ---------- */
+/* price names in the sizes: the tip chip may take its own line instead of shrinking the name (the page script shrinks a name that overflows) */
+html[data-size]:not(#sz) .L2a .pname,html[data-size]:not(#sz) .K2a .pname{white-space:normal}
+html[data-size]:not(#sz) .L2a .pchip,html[data-size]:not(#sz) .K2a .pchip{white-space:nowrap}
+/* decorations kept inside the kakao frame */
+html[data-size]:not(#sz) .K1b .c1-mesh{left:420px;top:64px;width:330px}
+html[data-size]:not(#sz) .K1b .g1{left:auto;right:18px;top:296px}
+html[data-size]:not(#sz) .K1b .g2{left:332px;top:150px}
+html[data-size]:not(#sz) .K5 .g8{left:auto;right:8px;top:8px;width:120px;height:134px}
+html[data-size]:not(#sz) .K6 .g9{left:auto;right:8px;top:8px;width:120px;height:134px}
+/* text centring in the sizes (qa/text-center-check.cjs --size): glyphs land on whole pixels, so single components get a 1px padding shift */
+html[data-size]:not(#sz) .L3 .pt-cont{padding-top:5.84px;padding-bottom:4.72px}
+html[data-size]:not(#sz) .L3 .gift-band [data-copy],html[data-size]:not(#sz) .K3p1 .gift-band [data-copy]{position:relative;top:1px}
+html[data-size]:not(#sz) .L3 [data-copy="cf_k1"]{padding-top:4.06px;padding-bottom:2.74px}
+html[data-size]:not(#sz) .K2bp1 .badge{padding-top:5.16px}
+html[data-size]:not(#sz) .K2bp2 .pg-sub{padding-top:1.72px;padding-bottom:4.4px}
+html[data-size]:not(#sz) .K2bp2 [data-copy="cf_r92_detail"]{padding-top:4.57px}
+html[data-size]:not(#sz) .K3p1 [data-copy="cf_k1"]{padding-top:4.06px;padding-bottom:2.74px}
+html[data-size]:not(#sz) .K3p2 [data-copy="cf_k2"]{padding-bottom:2.785px}
+html[data-size]:not(#sz) .K3p3 [data-copy="cf_k3"]{padding-top:2.842px;padding-bottom:3.958px}
+html[data-size]:not(#sz) .K7p1 .ab-photos figcaption{padding-top:5.745px}/* ===================== /channel sizes ===================== */
+/* ===== SIZES END ===== */

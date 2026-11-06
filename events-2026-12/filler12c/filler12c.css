@@ -305,3 +305,171 @@ img{max-width:100%}
 @media(max-width:600px){.fb-price .cp-in{position:relative;inset:auto;padding:20px 14px}.fb-price .pb-in{grid-template-columns:1fr;gap:12px}.fb-price .prod{padding:14px}.fb-price .grp{grid-column:auto}.fb-price .uibeop{margin-top:16px}.fb-hero{aspect-ratio:1080/1350!important}.fb-top .period{font-size:11px}.fb-heading h1{font-size:calc(74*var(--px))}.fb-hero .tz{padding:10px;border-width:3px}.fb-model{border-width:4px}.fb-hero .cta-a{font-size:12px;padding:6px 16px 6px 9px}.fb-hero .cta-ico{width:20px;height:20px}.fb-hero .tz-price{font-size:calc(66*var(--px))}.fb-hero .tz-label{font-size:11px}.fb-notes{font-size:11px}}
 
 .fb-price .prod-s{padding-top:calc(3*var(--px) + .004em)!important;padding-bottom:calc(3*var(--px) - .004em)!important}
+
+/* ===== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md): ?size=line 1100x1000, ?size=kakao 800x600, home 1080x1350 unchanged.
+   Size mode is a fixed screen (the board draws it at 1440px and wider). --px is 1px, so every calc(N*var(--px)) keeps its 1080-design size
+   (text never smaller than the home design). The home cards are hidden in the sizes (data-size-hide); every card is redrawn as size sections
+   (v4/filler12c/sizes/line.html, kakao.html) on the same elements and copy keys; cards that do not fit are split into parts (data-part). ===== */
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+html[data-size="line"] main.fl{max-width:none;width:1100px}
+html[data-size="kakao"] main.fl{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] .notes,html[data-size="kakao"] .notes{display:none}
+/* ---------- LINE 1100x1000 ---------- */
+/* FIL12C LINE 1100x1000 (2026-11-06, v4/events/CHANNEL_SIZES_20261106.md). Size sections are clones of the home cards (.L + .L<key>, parts .L<n>-<part>);
+   --px is 1px, so every home size stays; only position, width, wrapping, columns and parts change here. Made with the FIL12A/B/C template. */
+/* 1A: the page texture, the model cutout right (bottom on the card edge, 780px tall), the masthead left (the script word on two lines), the offer box
+   bottom right over her as at home, the contact pill under the masthead */
+html[data-size="line"] .L1a .hero-ph{display:none}
+html[data-size="line"] .L1a .sz-hero{position:absolute;z-index:2;right:0;bottom:0;display:block;width:auto;height:780px;max-width:none;pointer-events:none}
+html[data-size="line"] .L1a .h-head{left:40px;right:auto;width:520px;top:40px}
+html[data-size="line"] .L1a .h-pills{flex-wrap:wrap}
+html[data-size="line"] .L1a .h-script{white-space:normal}
+html[data-size="line"] .L1a .h-title{white-space:normal;max-width:none}
+html[data-size="line"] .L1a .tz{right:40px;bottom:120px}
+html[data-size="line"] .L1a .cta{left:40px;right:auto;width:520px}
+html[data-size="line"] .L1a .h-sn1{left:470px;top:640px}
+html[data-size="line"] .L1a .h-sn3{left:440px;top:500px}
+html[data-size="line"] .L1a .h-gl2{left:480px;top:300px}
+/* 1B: the masthead top, the framed photo left (cover in its frame, as at home), the notes, offer box and contact pill right */
+html[data-size="line"] .L1b .fb-heading{top:100px}
+html[data-size="line"] .L1b .fb-model{top:396px;width:430px;height:560px}
+html[data-size="line"] .L1b .fb-notes{left:540px;top:410px}
+html[data-size="line"] .L1b .tz{top:540px}
+html[data-size="line"] .L1b .cta{left:500px;right:0;bottom:46px}
+/* 2A / 2B / 3: the price boards keep their own height; parts in sheet order, the 의료법상 줄 and VAT on the last part */
+html[data-size="line"] .L .pboard{flex:none}
+html[data-size="line"] .L .pb-in{height:auto;justify-content:flex-start;gap:24px}
+html[data-size="line"] .L .cp-in > .uibeop{margin-top:auto}
+html[data-size="line"] .L2a.L2-1 .pb-in > :nth-child(3),html[data-size="line"] .L2a.L2-1 .pb-in > :nth-child(4),html[data-size="line"] .L2a.L2-1 .pb-in > :nth-child(5),html[data-size="line"] .L2a.L2-1 .cp-in > .uibeop,html[data-size="line"] .L2a.L2-1 .cp-in > .vat{display:none}
+html[data-size="line"] .L2a.L2-2 .pb-in > :nth-child(1),html[data-size="line"] .L2a.L2-2 .pb-in > :nth-child(2){display:none}
+html[data-size="line"] .L2b.L2-1 .pb-in > :nth-child(3),html[data-size="line"] .L2b.L2-1 .pb-in > :nth-child(4),html[data-size="line"] .L2b.L2-1 .pb-in > :nth-child(5),html[data-size="line"] .L2b.L2-1 .cp-in > .uibeop,html[data-size="line"] .L2b.L2-1 .cp-in > .vat{display:none}
+html[data-size="line"] .L2b.L2-2 .pb-in > :nth-child(1),html[data-size="line"] .L2b.L2-2 .pb-in > :nth-child(2){display:none}
+html[data-size="line"] .L3.L3-1 .pb-in > :nth-child(4),html[data-size="line"] .L3.L3-1 .pb-in > :nth-child(5),html[data-size="line"] .L3.L3-1 .pb-in > :nth-child(6),html[data-size="line"] .L3.L3-1 .cp-in > .uibeop,html[data-size="line"] .L3.L3-1 .cp-in > .vat{display:none}
+html[data-size="line"] .L3.L3-2 .pb-in > :nth-child(1),html[data-size="line"] .L3.L3-2 .pb-in > :nth-child(2),html[data-size="line"] .L3.L3-2 .pb-in > :nth-child(3){display:none}
+/* 4: part 1 the question + the two product blocks, part 2 the question title + the area table + source */
+html[data-size="line"] .L4-1 .choose,html[data-size="line"] .L4-1 .src{display:none}
+html[data-size="line"] .L4-1 .blocks{margin-top:44px}
+html[data-size="line"] .L4-2 .blocks,html[data-size="line"] .L4-2 .q-ans{display:none}
+html[data-size="line"] .L4-2 .choose{margin-top:44px}
+/* 5: part 1 the question, photo and the four steps; part 2 the question title, infos, ask line, care notes, source */
+html[data-size="line"] .L5-1 .infos,html[data-size="line"] .L5-1 .ask,html[data-size="line"] .L5-1 .care,html[data-size="line"] .L5-1 .src{display:none}
+html[data-size="line"] .L5-2 .c5-photo,html[data-size="line"] .L5-2 .q-ans,html[data-size="line"] .L5-2 .steps{display:none}
+html[data-size="line"] .L5-2 .c5-headrow{grid-template-columns:minmax(0,1fr)}
+html[data-size="line"] .L5-2 .infos{margin-top:40px}
+/* 6 clinic: part 1 the introduction, part 2 directions, hours and booking */
+html[data-size="line"] .L6-1 .bt-loc,html[data-size="line"] .L6-1 .bt-hours,html[data-size="line"] .L6-1 .bt-book{display:none}
+html[data-size="line"] .L6-1 .bento{grid-template-rows:auto;align-content:start;margin-top:40px}
+html[data-size="line"] .L6-2 .bt-about{display:none}
+html[data-size="line"] .L6-2 .bento{grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+html[data-size="line"] .L6-2 .bt-loc{grid-row:1 / 3}
+html[data-size="line"] .L6-2 .bt-hours{grid-row:1}
+html[data-size="line"] .L6-2 .bt-book{grid-row:2}
+/* ---------- /LINE ---------- */
+/* ---------- KAKAO 800x600 ---------- */
+/* FIL12C KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). Made with the FIL12A/B/C template. */
+html[data-size="kakao"] .K .cp-in,html[data-size="kakao"] .K .cx-in{inset:22px 24px 18px}
+/* 1A: part 1 the model cutout right (bottom on the card edge, 560px tall), wordmark, pills, title, hook and contact left;
+   part 2 the script word on two lines and the offer box */
+html[data-size="kakao"] .K1a .hero-ph{display:none}
+html[data-size="kakao"] .K1a .h-head{left:24px;right:auto;width:436px;top:24px}
+html[data-size="kakao"] .K1a .h-pills{flex-wrap:wrap}
+html[data-size="kakao"] .K1a .sz-hero{position:absolute;z-index:2;right:0;bottom:0;display:block;width:auto;height:560px;max-width:none;pointer-events:none}
+html[data-size="kakao"] .K1-1.K1a .h-script,html[data-size="kakao"] .K1-1.K1a .tz{display:none}
+html[data-size="kakao"] .K1-1.K1a .h-title{white-space:normal;margin-top:18px;max-width:none}
+html[data-size="kakao"] .K1-1.K1a .cta{left:24px;right:auto;width:436px;bottom:24px}
+html[data-size="kakao"] .K1-1.K1a .fr-tl{display:none}
+html[data-size="kakao"] .K1-1.K1a .fr-tr{right:auto;left:-40px}
+html[data-size="kakao"] .K1-1.K1a .h-sn1{left:300px;top:330px;width:110px}
+html[data-size="kakao"] .K1-1.K1a .h-sn3,html[data-size="kakao"] .K1-1.K1a .h-gl2{display:none}
+html[data-size="kakao"] .K1-1.K1a .h-gl1{left:auto;right:30px;top:40px}
+html[data-size="kakao"] .K1-2.K1a .h-title,html[data-size="kakao"] .K1-2.K1a .h-sub,html[data-size="kakao"] .K1-2.K1a .cta,html[data-size="kakao"] .K1-2.K1a .h-pills{display:none}
+html[data-size="kakao"] .K1-2.K1a .h-script{white-space:normal}
+html[data-size="kakao"] .K1-2.K1a .h-head{width:500px;align-items:flex-start;text-align:left}
+html[data-size="kakao"] .K1-2.K1a .h-pills{justify-content:flex-start}
+html[data-size="kakao"] .K1-2.K1a .h-script{margin-top:30px}
+html[data-size="kakao"] .K1-2.K1a .tz{right:24px;bottom:24px}
+html[data-size="kakao"] .K1-2.K1a .h-sn1{left:auto;right:60px;top:60px;width:120px}
+html[data-size="kakao"] .K1-2.K1a .h-sn3{left:500px;top:120px}
+html[data-size="kakao"] .K1-2.K1a .h-gl1{left:560px;top:330px}
+html[data-size="kakao"] .K1-2.K1a .h-gl2{left:40px;top:470px}
+/* 1B: part 1 the masthead, notes and contact; part 2 the framed photo left and the offer box right */
+html[data-size="kakao"] .K1b .fb-top{left:24px;right:24px;top:24px}
+html[data-size="kakao"] .K1-1.K1b .fb-model,html[data-size="kakao"] .K1-1.K1b .tz{display:none}
+html[data-size="kakao"] .K1-1.K1b .fb-heading{left:24px;right:24px;top:70px}
+html[data-size="kakao"] .K1-1.K1b .fb-notes{left:24px;right:24px;top:350px;text-align:center}
+html[data-size="kakao"] .K1-1.K1b .cta{bottom:24px}
+html[data-size="kakao"] .K1-2.K1b .fb-heading,html[data-size="kakao"] .K1-2.K1b .fb-notes,html[data-size="kakao"] .K1-2.K1b .cta{display:none}
+html[data-size="kakao"] .K1-2.K1b .fb-model{left:40px;top:76px;width:330px;height:430px}
+html[data-size="kakao"] .K1-2.K1b .tz{right:40px;top:180px;width:370px}
+/* 2A / 2B / 3: the boards keep their own height; part 1 has the whole head, later parts the kicker and title; one product (or a group) per part,
+   the 의료법상 줄 and VAT on the last part; the B tiles stand alone at full width with one-line rows */
+html[data-size="kakao"] .K .cp-head{margin-top:12px}
+html[data-size="kakao"] .K .pboard{flex:none;margin-top:16px}
+html[data-size="kakao"] .K .pb-in{height:auto;justify-content:flex-start;gap:14px;padding:12px 24px 8px}
+html[data-size="kakao"] .K .cp-in > .uibeop{margin-top:auto}
+/* A rows: the option wraps, so the list and sale columns keep their places */
+html[data-size="kakao"] .K .popt,html[data-size="kakao"] .K .popt .seg{white-space:normal}
+/* the bow on the first board would sit on the end of the long lead line */
+html[data-size="kakao"] .K2a.K2-1 .bow-board{display:none}
+html[data-size="kakao"] .K2a .prod:not(.solo) .prow,html[data-size="kakao"] .K3 .prod:not(.solo) .prow{grid-template-columns:minmax(0,1fr) 104px 150px;padding-left:50px}
+html[data-size="kakao"] .K2b .pb-in{grid-template-columns:minmax(0,1fr);gap:14px}
+html[data-size="kakao"] .K2b .prow{grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"op pl ps";align-items:baseline;column-gap:16px;padding:8px 0}
+html[data-size="kakao"] .K2a.K2-1 .pb-in > :nth-child(2),html[data-size="kakao"] .K2a.K2-1 .pb-in > :nth-child(3),html[data-size="kakao"] .K2a.K2-1 .pb-in > :nth-child(4),html[data-size="kakao"] .K2a.K2-1 .pb-in > :nth-child(5),html[data-size="kakao"] .K2a.K2-1 .cp-in > .uibeop,html[data-size="kakao"] .K2a.K2-1 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K2a.K2-2 .pb-in > :nth-child(1),html[data-size="kakao"] .K2a.K2-2 .pb-in > :nth-child(3),html[data-size="kakao"] .K2a.K2-2 .pb-in > :nth-child(4),html[data-size="kakao"] .K2a.K2-2 .pb-in > :nth-child(5),html[data-size="kakao"] .K2a.K2-2 .cp-in > .uibeop,html[data-size="kakao"] .K2a.K2-2 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K2a.K2-2 .p-lead{display:none}
+html[data-size="kakao"] .K2a.K2-3 .pb-in > :nth-child(1),html[data-size="kakao"] .K2a.K2-3 .pb-in > :nth-child(2),html[data-size="kakao"] .K2a.K2-3 .pb-in > :nth-child(5),html[data-size="kakao"] .K2a.K2-3 .cp-in > .uibeop,html[data-size="kakao"] .K2a.K2-3 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K2a.K2-3 .p-lead{display:none}
+html[data-size="kakao"] .K2a.K2-4 .pb-in > :nth-child(1),html[data-size="kakao"] .K2a.K2-4 .pb-in > :nth-child(2),html[data-size="kakao"] .K2a.K2-4 .pb-in > :nth-child(4){display:none}
+html[data-size="kakao"] .K2a.K2-4 .p-lead{display:none}
+html[data-size="kakao"] .K2b.K2-1 .pb-in > :nth-child(2),html[data-size="kakao"] .K2b.K2-1 .pb-in > :nth-child(3),html[data-size="kakao"] .K2b.K2-1 .pb-in > :nth-child(4),html[data-size="kakao"] .K2b.K2-1 .pb-in > :nth-child(5),html[data-size="kakao"] .K2b.K2-1 .cp-in > .uibeop,html[data-size="kakao"] .K2b.K2-1 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K2b.K2-2 .pb-in > :nth-child(1),html[data-size="kakao"] .K2b.K2-2 .pb-in > :nth-child(3),html[data-size="kakao"] .K2b.K2-2 .pb-in > :nth-child(4),html[data-size="kakao"] .K2b.K2-2 .pb-in > :nth-child(5),html[data-size="kakao"] .K2b.K2-2 .cp-in > .uibeop,html[data-size="kakao"] .K2b.K2-2 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K2b.K2-2 .p-lead{display:none}
+html[data-size="kakao"] .K2b.K2-3 .pb-in > :nth-child(1),html[data-size="kakao"] .K2b.K2-3 .pb-in > :nth-child(2),html[data-size="kakao"] .K2b.K2-3 .pb-in > :nth-child(5),html[data-size="kakao"] .K2b.K2-3 .cp-in > .uibeop,html[data-size="kakao"] .K2b.K2-3 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K2b.K2-3 .p-lead{display:none}
+html[data-size="kakao"] .K2b.K2-4 .pb-in > :nth-child(1),html[data-size="kakao"] .K2b.K2-4 .pb-in > :nth-child(2),html[data-size="kakao"] .K2b.K2-4 .pb-in > :nth-child(4){display:none}
+html[data-size="kakao"] .K2b.K2-4 .p-lead{display:none}
+html[data-size="kakao"] .K3.K3-1 .pb-in > :nth-child(2),html[data-size="kakao"] .K3.K3-1 .pb-in > :nth-child(3),html[data-size="kakao"] .K3.K3-1 .pb-in > :nth-child(4),html[data-size="kakao"] .K3.K3-1 .pb-in > :nth-child(5),html[data-size="kakao"] .K3.K3-1 .pb-in > :nth-child(6),html[data-size="kakao"] .K3.K3-1 .cp-in > .uibeop,html[data-size="kakao"] .K3.K3-1 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K3.K3-2 .pb-in > :nth-child(1),html[data-size="kakao"] .K3.K3-2 .pb-in > :nth-child(4),html[data-size="kakao"] .K3.K3-2 .pb-in > :nth-child(5),html[data-size="kakao"] .K3.K3-2 .pb-in > :nth-child(6),html[data-size="kakao"] .K3.K3-2 .cp-in > .uibeop,html[data-size="kakao"] .K3.K3-2 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K3.K3-2 .p-lead{display:none}
+html[data-size="kakao"] .K3.K3-3 .pb-in > :nth-child(1),html[data-size="kakao"] .K3.K3-3 .pb-in > :nth-child(2),html[data-size="kakao"] .K3.K3-3 .pb-in > :nth-child(3),html[data-size="kakao"] .K3.K3-3 .pb-in > :nth-child(6),html[data-size="kakao"] .K3.K3-3 .cp-in > .uibeop,html[data-size="kakao"] .K3.K3-3 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K3.K3-3 .p-lead{display:none}
+html[data-size="kakao"] .K3.K3-4 .pb-in > :nth-child(1),html[data-size="kakao"] .K3.K3-4 .pb-in > :nth-child(2),html[data-size="kakao"] .K3.K3-4 .pb-in > :nth-child(3),html[data-size="kakao"] .K3.K3-4 .pb-in > :nth-child(4),html[data-size="kakao"] .K3.K3-4 .pb-in > :nth-child(5){display:none}
+html[data-size="kakao"] .K3.K3-4 .p-lead{display:none}
+/* 4: part 1 the question; part 2 the two product blocks; part 3 the question title, the area table and source */
+html[data-size="kakao"] .K4-1 .blocks,html[data-size="kakao"] .K4-1 .choose,html[data-size="kakao"] .K4-1 .src{display:none}
+html[data-size="kakao"] .K4-1 .q-head{margin-top:60px}
+html[data-size="kakao"] .K4-2 .q-head,html[data-size="kakao"] .K4-2 .choose,html[data-size="kakao"] .K4-2 .src{display:none}
+html[data-size="kakao"] .K4-2 .blocks{margin-top:16px}
+/* the product pictures fit their block (contain, never cut) */
+html[data-size="kakao"] .K4-2 .blk-ph{min-width:0;gap:8px}
+html[data-size="kakao"] .K4-2 .blk-ph .ph{flex:0 1 auto;min-width:0;margin:0}
+html[data-size="kakao"] .K4-2 .blk-ph .ph-img{width:auto;height:auto;max-width:100%;max-height:150px}
+html[data-size="kakao"] .K4-3 .blocks,html[data-size="kakao"] .K4-3 .q-ans{display:none}
+html[data-size="kakao"] .K4-3 .choose{margin-top:18px}
+/* 5: part 1 the question + photo; part 2 the four steps; part 3 infos, ask line, care notes, source */
+html[data-size="kakao"] .K5-1 .steps,html[data-size="kakao"] .K5-1 .infos,html[data-size="kakao"] .K5-1 .ask,html[data-size="kakao"] .K5-1 .care,html[data-size="kakao"] .K5-1 .src{display:none}
+html[data-size="kakao"] .K5-2 .c5-headrow,html[data-size="kakao"] .K5-2 .infos,html[data-size="kakao"] .K5-2 .ask,html[data-size="kakao"] .K5-2 .care,html[data-size="kakao"] .K5-2 .src{display:none}
+html[data-size="kakao"] .K5-2 .steps{margin-top:16px}
+html[data-size="kakao"] .K5-3 .c5-headrow,html[data-size="kakao"] .K5-3 .steps{display:none}
+html[data-size="kakao"] .K5-3 .infos{margin-top:16px}
+/* 6 clinic: part 1 introduction + director; part 2 space photos + strengths; part 3 directions, hours, booking */
+html[data-size="kakao"] .K6-1 .ab-photos,html[data-size="kakao"] .K6-1 .ab-strengths,html[data-size="kakao"] .K6-1 .bt-loc,html[data-size="kakao"] .K6-1 .bt-hours,html[data-size="kakao"] .K6-1 .bt-book{display:none}
+html[data-size="kakao"] .K6-2 .ab-top,html[data-size="kakao"] .K6-2 .bt-loc,html[data-size="kakao"] .K6-2 .bt-hours,html[data-size="kakao"] .K6-2 .bt-book{display:none}
+html[data-size="kakao"] .K6-1 .bento,html[data-size="kakao"] .K6-2 .bento{grid-template-rows:auto;align-content:start}
+html[data-size="kakao"] .K6-1 .ab-top{grid-template-columns:minmax(0,1fr);row-gap:10px}
+html[data-size="kakao"] .K6-1 .dr{justify-self:end}
+html[data-size="kakao"] .K6-3 .bt-about{display:none}
+html[data-size="kakao"] .K6-3 .bento{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);grid-template-rows:auto auto;align-content:start}
+html[data-size="kakao"] .K6-3 .bt-loc{grid-row:1 / 3}
+html[data-size="kakao"] .K6-3 .bt-hours{grid-row:1}
+html[data-size="kakao"] .K6-3 .bt-book{grid-row:2}
+/* Text centring (qa/text-center-check.cjs, 1080-scale +-0.6 = +-0.44 real px at 800): the text stays where it is (it snaps to whole px); the bottom
+   padding moves the box edge and the margin keeps the layout */
+html[data-size="kakao"] .K1-2.K1a .tz-opt{padding-bottom:2.88px;margin-bottom:1.12px}
+html[data-size="kakao"] .K4-1 .pill-k,html[data-size="kakao"] .K4-3 .pill-k,html[data-size="kakao"] .K5-1 .pill-k{padding-bottom:8.06px;margin-bottom:-1.06px}
+/* ---------- /KAKAO ---------- */

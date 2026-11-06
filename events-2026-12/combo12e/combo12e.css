@@ -394,3 +394,210 @@ a[data-link="phone"]{white-space:nowrap}
 @container(max-width:600px){.bv.c2 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps"}}
 
 .bv.c2 .otag.ot2{padding-top:.18em;padding-bottom:.06em}
+/* ===== SIZES START (generated from v4/combo12e/sizes/sizes.css, do not edit here) ===== */
+/* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
+   ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
+   redrawn for the frame from the same copy keys, price rows and pictures (v4/combo12e/sizes/line.html, kakao.html); nothing is cropped or
+   scaled down from the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size.
+   Card rules start with html[data-size]:not(#sz): the :not(#sz) part only lifts the weight so the size layout outranks the page's own
+   card rules (.bv.c1 ...); it matches every page. Source: v4/combo12e/sizes/sizes.css, spliced into site/combo12e/combo12e.css
+   by v4/combo12e/sizes/splice-css.cjs. 1A uses the person cutout of the hero original on the blue studio texture of the same set: the
+   hero photo itself has the model baked into its backdrop. ===== */
+html[data-size="line"] main.c5{max-width:none;width:1100px}
+html[data-size="kakao"] main.c5{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto;min-height:0;margin-bottom:0}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto;min-height:0;margin-bottom:0}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+html[data-size]:not(#sz) .h-model{position:absolute;z-index:2;display:block;width:auto;max-width:none;pointer-events:none}
+
+/* ---------- LINE 1100x1000 ---------- */
+/* 1A: the cutout in the middle down to mid-thigh (as the home photo), title and script across the top, the offers either side with their lead lines to the upper arms */
+html[data-size]:not(#sz) .L1a .c1-title{top:70px}
+html[data-size]:not(#sz) .L1a .hook{top:262px}
+html[data-size]:not(#sz) .L1a .h-model{left:330px;top:232px;height:768px}
+html[data-size]:not(#sz) .L1a .hb1{right:auto;left:690px;top:300px}
+html[data-size]:not(#sz) .L1a .hb2{left:70px;top:384px}
+html[data-size]:not(#sz) .L1a .ld1{left:731px;top:476px;height:155px}
+html[data-size]:not(#sz) .L1a .dt1{left:700px;top:599px}
+html[data-size]:not(#sz) .L1a .ld2{left:363px;top:560px;height:148px}
+html[data-size]:not(#sz) .L1a .dt2{left:332px;top:676px}
+html[data-size]:not(#sz) .L1a .st-h1{left:1030px;top:250px}
+/* 1B: framed photo left, title / script / hook / the two offers right, period, VAT and contact in one row at the bottom */
+html[data-size]:not(#sz) .L1b .c1-photo{left:50px;top:110px;width:420px;height:820px}
+html[data-size]:not(#sz) .L1b .c1-title{left:520px;right:40px;top:110px}
+html[data-size]:not(#sz) .L1b .h-script{top:250px}
+html[data-size]:not(#sz) .L1b .hook{left:520px;top:470px;width:520px}
+html[data-size]:not(#sz) .L1b .hb{left:520px;width:520px}
+html[data-size]:not(#sz) .L1b .hb1{top:560px}
+html[data-size]:not(#sz) .L1b .hb2{top:740px}
+html[data-size]:not(#sz) .L1b .band{bottom:20px}
+/* 2A / 2B: head, the board in two columns filled top to bottom (59-60, 61-64 | 65-66, 67-70), the 49% line bottom left, VAT bottom right */
+html[data-size]:not(#sz) .L2a .cp-in,html[data-size]:not(#sz) .L2b .cp-in{padding:34px 50px 30px}
+html[data-size]:not(#sz) .L2a .pboard,html[data-size]:not(#sz) .L2b .pboard{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto;grid-auto-flow:column;gap:14px 22px;align-items:start}
+html[data-size]:not(#sz) .L2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html[data-size]:not(#sz) .L2a .uibeop,html[data-size]:not(#sz) .L2b .uibeop{left:50px;bottom:36px}
+html[data-size]:not(#sz) .L2b .prow{padding:9px 0}
+html[data-size]:not(#sz) .L2b .pg{padding:14px 22px}
+/* 3: question, the layer picture beside the four kinds, the pick box, source */
+html[data-size]:not(#sz) .L3 .cx-in{padding:30px 56px 24px}
+html[data-size]:not(#sz) .L3 .q-head{margin-top:6px}
+html[data-size]:not(#sz) .L3 .c3-body{grid-template-columns:400px minmax(0,1fr);margin-top:14px}
+html[data-size]:not(#sz) .L3 .lay-fig{width:400px}
+html[data-size]:not(#sz) .L3 .kd{padding:12px 18px 13px}
+html[data-size]:not(#sz) .L3 .pick{margin-top:14px;padding:18px 26px}
+html[data-size]:not(#sz) .L3 .src{padding-top:8px}
+/* 4 in two parts: question with the photo and the four steps | kicker, three facts, care list and alert, source */
+html[data-size]:not(#sz) .L4 .cx-in{padding:32px 56px 28px}
+html[data-size]:not(#sz) .L4p1 .c4-headrow{grid-template-columns:minmax(0,1fr) 300px}
+html[data-size]:not(#sz) .L4p1 .c4-photo{width:300px}
+html[data-size]:not(#sz) .L4p1 .steps{margin-top:22px}
+html[data-size]:not(#sz) .L4p1 .st{padding:20px 22px 22px}
+html[data-size]:not(#sz) .L4p2 .c4-headrow{display:block}
+html[data-size]:not(#sz) .L4p2 .infos{margin-top:auto;gap:16px}
+html[data-size]:not(#sz) .L4p2 .inf{padding:30px 28px 32px}
+html[data-size]:not(#sz) .L4p2 .care{margin-top:18px;padding:26px 30px}
+html[data-size]:not(#sz) .L4p2 .src{margin-top:auto}/* 5 clinic intro in two parts (as OND12 / SOF12) */
+html[data-size]:not(#sz) .L5 .cx-in{padding:36px 48px 30px}
+html[data-size]:not(#sz) .L5 .bento{margin-top:22px}
+html[data-size]:not(#sz) .L5p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .L5p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:30px 36px}
+html[data-size]:not(#sz) .L5p1 .ab-title{font-size:44px}
+html[data-size]:not(#sz) .L5p1 .dr{grid-template-columns:250px 290px}
+html[data-size]:not(#sz) .L5p1 .ab-photos{height:350px;margin-top:4px}
+html[data-size]:not(#sz) .L5p1 .ab-strengths{margin-top:auto}
+html[data-size]:not(#sz) .L5p2 .bento{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);grid-template-rows:minmax(0,.78fr) minmax(0,1fr)}
+html[data-size]:not(#sz) .L5p2 .map{width:100%}
+html[data-size]:not(#sz) .L5p2 .loc-body{padding-top:18px}
+html[data-size]:not(#sz) .L5p2 .way{margin-top:18px}
+html[data-size]:not(#sz) .L5p2 .hrs{gap:14px}
+html[data-size]:not(#sz) .L5p2 .hrs li{font-size:25px}
+html[data-size]:not(#sz) .L5p2 .hrs-note{margin-top:18px;font-size:17px}
+html[data-size]:not(#sz) .L5p2 .bk-row{grid-template-columns:150px minmax(0,1fr);gap:22px}
+html[data-size]:not(#sz) .L5p2 .bk-links{font-size:20px}
+html[data-size]:not(#sz) .L5p2 .bk-phone{font-size:34px}
+html[data-size]:not(#sz) .L5p2 .bt-loc{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) .L5p2 .bt-hours{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) .L5p2 .bt-book{grid-column:2;grid-row:2}
+/* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by one pixel (or half, by growing one side) from its computed padding */
+html[data-size]:not(#sz) .L2a span.otag[data-copy="c5_r61_tag"]{padding-top:3.2px!important;padding-bottom:1.64px!important}
+html[data-size]:not(#sz) .L2b span.pdet[data-copy="c5_r60_sub"]{padding-top:3.75px!important;padding-bottom:2.65px!important}
+html[data-size]:not(#sz) .L5p2 span.way-line{padding-top:4px!important;padding-bottom:3.4px!important}
+/* ---------- /LINE ---------- */
+
+/* ---------- KAKAO 800x600 ---------- */
+/* 1A: title and script across the top; the cutout in the middle down to mid-thigh, the hook and one offer at the left, the other offer and
+   period / VAT / contact at the right. The lead lines stay out (no room for them between the offers and the arms). */
+html[data-size]:not(#sz) .K1a .c1-top{left:24px;top:14px}
+html[data-size]:not(#sz) .K1a .c1-title{left:24px;right:24px;top:40px}
+html[data-size]:not(#sz) .K1a .h-script{left:286px;top:86px}
+html[data-size]:not(#sz) .K1a .hook{left:24px;top:214px;width:240px}
+html[data-size]:not(#sz) .K1a .h-model{left:270px;top:214px;height:447px}
+html[data-size]:not(#sz) .K1a .hb{width:240px}
+html[data-size]:not(#sz) .K1a .hb2{left:24px;top:330px;width:318px}
+html[data-size]:not(#sz) .K1a .hb1{right:24px;top:250px}
+html[data-size]:not(#sz) .K1a .band{left:auto;right:24px;bottom:14px}
+html[data-size]:not(#sz) .K1a .lead,html[data-size]:not(#sz) .K1a .ldot{display:none}
+html[data-size]:not(#sz) .K1a .st-h1{left:760px;top:220px}
+/* 1B: title and script across the top, the framed photo under them at the left; hook and the two offers stacked at the right (each offer as one
+   row: name and list price left, sale price right), period, VAT and contact in one row at the bottom */
+html[data-size]:not(#sz) .K1b .c1-top{left:30px;top:16px}
+html[data-size]:not(#sz) .K1b .c1-title{left:30px;right:auto;top:40px;width:560px}
+html[data-size]:not(#sz) .K1b .h-ko{white-space:nowrap}
+html[data-size]:not(#sz) .K1b .h-script{left:330px;top:84px}
+html[data-size]:not(#sz) .K1b .c1-photo{left:30px;top:180px;width:220px;height:356px}
+html[data-size]:not(#sz) .K1b .hook{left:276px;top:214px;width:494px}
+html[data-size]:not(#sz) .K1b .hb{left:276px;width:494px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:14px 18px}
+html[data-size]:not(#sz) .K1b .hb-name{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .K1b .hb-price{grid-column:1;grid-row:2;margin-top:6px}
+html[data-size]:not(#sz) .K1b .hb-sale{grid-column:2;grid-row:1 / 3;margin-top:0}
+html[data-size]:not(#sz) .K1b .hb1{top:296px}
+html[data-size]:not(#sz) .K1b .hb2{top:401px}
+html[data-size]:not(#sz) .K1b .band{left:30px;right:30px;bottom:14px}/* 2A / 2B in two parts: head and 59-64 | the rest with the 49% line and VAT */
+html[data-size]:not(#sz) .K2a .cp-in,html[data-size]:not(#sz) .K2b .cp-in{padding:22px 40px 18px}
+html[data-size]:not(#sz) .K2a .cp-head,html[data-size]:not(#sz) .K2b .cp-head{margin-top:6px}
+html[data-size]:not(#sz) .K2a .pboard,html[data-size]:not(#sz) .K2b .pboard{margin-top:12px;gap:10px}
+html[data-size]:not(#sz) .K2a .singles .prow{padding:8px 0 7px}
+html[data-size]:not(#sz) .K2a .prow{padding:6px 0 5px}
+html[data-size]:not(#sz) .K2a .psale{line-height:1}
+html[data-size]:not(#sz) .K2ap2 .cp-head{margin-top:4px;max-width:none}
+html[data-size]:not(#sz) .K2a .prod-h{padding:8px 0 2px}
+html[data-size]:not(#sz) .K2ap2 .pboard{margin-top:16px}
+html[data-size]:not(#sz) .K2b .prow{padding:7px 0}
+html[data-size]:not(#sz) .K2bp1 .pboard{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+html[data-size]:not(#sz) .K2b .pg{padding:14px 20px}
+html[data-size]:not(#sz) .K2b .prod-h{padding:0 0 10px}
+html[data-size]:not(#sz) .K2bp2 .cp-head{max-width:none}
+/* the second parts start with the unit line: the two head stars would sit on the first box, so they stay out */
+html[data-size]:not(#sz) .K2ap2 .st-p1,html[data-size]:not(#sz) .K2ap2 .st-p2,html[data-size]:not(#sz) .K2bp2 .st-p1,html[data-size]:not(#sz) .K2bp2 .st-p2{display:none}
+/* 2B part 1: the narrow 59-60 box puts both prices under the name */
+html[data-size]:not(#sz) .K2bp1 .pg1 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:4px}
+html[data-size]:not(#sz) .K2bp1 .pg1 .pn{grid-area:pn}
+html[data-size]:not(#sz) .K2bp1 .pg1 .plist{grid-area:pl;justify-self:start;align-self:baseline}
+html[data-size]:not(#sz) .K2bp1 .pg1 .psale{grid-area:ps;align-self:baseline}
+html[data-size]:not(#sz) .K2a .uibeop,html[data-size]:not(#sz) .K2b .uibeop{left:40px;bottom:22px}
+/* 3 in two parts: question, the layer picture and kinds 1-2 | kinds 3-4 and the pick box; the picture / source line under both */
+html[data-size]:not(#sz) .K3 .cx-in{padding:22px 44px 16px}
+html[data-size]:not(#sz) .K3 .q-head{margin-top:0}
+html[data-size]:not(#sz) .K3p1 .c3-body{grid-template-columns:250px minmax(0,1fr);margin-top:8px}
+html[data-size]:not(#sz) .K3p1 .lay-fig{width:250px}
+html[data-size]:not(#sz) .K3p1 .kd{grid-template-columns:64px minmax(0,1fr);padding:8px 14px 9px}
+html[data-size]:not(#sz) .K3p1 .kd-ico{width:64px}
+html[data-size]:not(#sz) .K3 .kd{padding:12px 16px 13px}
+html[data-size]:not(#sz) .K3p2 .c3-body{grid-template-columns:minmax(0,1fr);margin-top:8px}
+html[data-size]:not(#sz) .K3p2 .kinds{grid-auto-rows:auto}
+html[data-size]:not(#sz) .K3p2 .pick{margin-top:12px;padding:18px 24px}
+html[data-size]:not(#sz) .K3 .src{padding-top:6px}
+html[data-size]:not(#sz) .K3p2 .st-c3{top:16px}
+/* 4 in three parts: question with the photo | kicker and the four steps | kicker, three facts, care list and alert, source */
+html[data-size]:not(#sz) .K4 .cx-in{padding:22px 44px 16px}
+html[data-size]:not(#sz) .K4p1 .c4-headrow{grid-template-columns:minmax(0,1fr) 280px;margin-top:4px}
+html[data-size]:not(#sz) .K4p1 .c4-photo{width:280px}
+html[data-size]:not(#sz) .K4p2 .c4-headrow,html[data-size]:not(#sz) .K4p3 .c4-headrow{display:block}
+html[data-size]:not(#sz) .K4 .q-head{margin-top:4px}
+html[data-size]:not(#sz) .K4p2 .steps{margin-top:14px}
+html[data-size]:not(#sz) .K4p2 .st{padding:18px 20px 20px}
+html[data-size]:not(#sz) .K4p3 .infos{margin-top:12px}
+html[data-size]:not(#sz) .K4p3 .inf{padding:16px 18px 18px}
+html[data-size]:not(#sz) .K4p3 .care{margin-top:12px;padding:14px 22px}
+html[data-size]:not(#sz) .K4p3 .src{padding-top:8px}/* 5 clinic intro in three parts (as OND12 / SOF12) */
+html[data-size]:not(#sz) .K5 .cx-in{padding:30px 44px 26px}
+html[data-size]:not(#sz) .K5 .bento{margin-top:16px}
+html[data-size]:not(#sz) .K5p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .K5p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:18px 22px}
+html[data-size]:not(#sz) .K5p1 .ab-top{grid-template-columns:minmax(0,1fr) 220px;grid-template-rows:auto auto auto auto;column-gap:16px;align-items:start}
+html[data-size]:not(#sz) .K5p1 .ab-intro,html[data-size]:not(#sz) .K5p1 .dr{display:contents}
+html[data-size]:not(#sz) .K5p1 .ab-intro .bt-k{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .K5p1 .ab-title{grid-column:1;grid-row:2;margin-top:6px}
+html[data-size]:not(#sz) .K5p1 .ab-lead{grid-column:1;grid-row:3;margin-top:10px}
+html[data-size]:not(#sz) .K5p1 .dr-tx{grid-column:1;grid-row:4;align-self:start;text-align:left;padding:14px 0 0}
+html[data-size]:not(#sz) .K5p1 .dr-quote{margin-top:4px}
+html[data-size]:not(#sz) .K5p1 .dr-img{grid-column:2;grid-row:1 / 5;align-self:end;width:220px}
+html[data-size]:not(#sz) .K5p1 .ab-photos{height:190px;margin-top:8px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.3fr)}
+html[data-size]:not(#sz) .K5p2 .bento{grid-template-columns:1fr;grid-template-rows:auto auto}
+html[data-size]:not(#sz) .K5p2 .bt-str{grid-column:1;grid-row:1;padding:18px 24px}
+html[data-size]:not(#sz) .K5p2 .bt-str .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 26px}
+html[data-size]:not(#sz) .K5p2 .bt-str .dots{display:none}
+html[data-size]:not(#sz) .K5p2 .bt-hours{grid-column:1;grid-row:2}
+html[data-size]:not(#sz) .K5p3 .bento{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .K5p3 .bt-loc{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .K5p3 .bt-book{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) .K5p3 .map{width:100%}
+html[data-size]:not(#sz) .K5p3 .bk-row{grid-template-columns:120px;grid-template-rows:auto auto;justify-items:start;align-content:center}
+/* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by one pixel (or half, by growing one side) from its computed padding */
+html[data-size]:not(#sz) .K2ap1 span.pdet[data-copy="c5_r59_sub"]{padding-top:2.75px!important;padding-bottom:2.65px!important}
+html[data-size]:not(#sz) .K2ap1 span.pdet[data-copy="c5_r60_sub"]{padding-top:3.75px!important;padding-bottom:2.65px!important}
+html[data-size]:not(#sz) .K2ap1 span.otag[data-copy="c5_r61_tag"]{padding-top:3.2px!important;padding-bottom:1.64px!important}
+html[data-size]:not(#sz) .K2bp1 span.pdet[data-copy="c5_r59_sub"]{padding-top:2.75px!important;padding-bottom:2.65px!important}
+html[data-size]:not(#sz) .K2bp1 span.pdet[data-copy="c5_r60_sub"]{padding-top:2.75px!important;padding-bottom:2.65px!important}
+html[data-size]:not(#sz) .K2bp1 span.otag[data-copy="c5_r61_tag"]{padding-top:3.4px!important;padding-bottom:1.2px!important}
+html[data-size]:not(#sz) .K2bp2 span.otag[data-copy="c5_r65_tag"]{padding-top:3.4px!important;padding-bottom:1.2px!important}
+html[data-size]:not(#sz) .K3p1 span.ly.ly3{padding-top:3.96px!important;padding-bottom:3.52px!important}
+html[data-size]:not(#sz) .K2ap1 span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:3.2px!important;padding-bottom:1.64px!important}
+/* the 1B star stays inside the 800 frame */
+html[data-size]:not(#sz) .K1b .st-h1{left:744px;top:180px}
+/* ---------- /KAKAO ---------- */
+/* ===================== /channel sizes ===================== */
+/* ===== SIZES END ===== */

@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <script>(function(){var m=/[?&]size=(line|kakao)(?:&|$)/.exec(location.search);document.documentElement.setAttribute('data-size',m?m[1]:'home');})();</script>
+  <meta name="bb-sizes" content="home,line,kakao">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>덴서티 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;display=swap">
-  <link rel="stylesheet" href="density12.css?v=20261106-density12c">
-  <script src="copy-data.js?v=20261106-density12c" defer></script>
-  <script src="../inline-edit.js?v=20261106-density12c" defer></script>
-  <script src="density12.js?v=20261106-density12c" defer></script>
+  <link rel="stylesheet" href="density12.css?v=20261106-density12d">
+  <script src="copy-data.js?v=20261106-density12d" defer></script>
+  <script src="../inline-edit.js?v=20261106-density12d" defer></script>
+  <script src="density12.js?v=20261106-density12d" defer></script>
 </head>
 <body>
 <!-- DEN12 덴서티 · 겨울 시즌 (Korean first). 2026-11-04 reference sheet (v4/density12/ref/sheet1104, v4/density12/ref/REFERENCE.md):
@@ -25,7 +27,7 @@
   <div class="sheet">
 
     <!-- 1 / 8 : hero. Title = page name, thin line = sheet header B65, callout = sheet row 66 (product head + tip + 표기엔드가), period. -->
-    <section class="card c1" data-card="1" aria-labelledby="dn-t1">
+    <section class="card c1" data-card="1" aria-labelledby="dn-t1" data-size-hide="line kakao">
       <img class="c1-photo model-photo" src="assets/hero.jpg?v=1104a" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
       <p class="wm wm1" aria-hidden="true"><span data-copy="dn_wm1"></span></p>
       <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -40,8 +42,65 @@
       </ul>
       <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
     </section>
+    <!-- SZ:line:1a -->
+    <!-- 1A: the hero photo has the model in it, so the size card puts the model cutout (v4/density12/a/cut/hero.png -> assets/hero-cut.webp) on the
+         card's own peach (.c1 background, the colour of the photo's backdrop); the original frame cuts her right shoulder and hair, so the cutout
+         sits on the card's right and bottom edges -->
+    <section class="card c1 L L1a" data-card="1" data-size-only="line" aria-labelledby="dn-t1-l">
+    <img class="person sz-hero" src="assets/hero-cut.webp" data-alt="dn_alt_hero" alt="" width="920" height="1600">
+    
+          <img class="c1-photo model-photo" src="assets/hero.jpg?v=1104a" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
+          <p class="wm wm1" aria-hidden="true"><span data-copy="dn_wm1"></span></p>
+          <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-head">
+            <p class="c1-launch" data-copy="dn_launch"></p>
+            <h1 class="hero-title" id="dn-t1-l" data-copy="dn_title"></h1>
+            <p class="hook" data-copy="dn_hook"></p>
+          </div>
+          <ul class="callouts">
+            <li class="co co-price"><i class="mk" aria-hidden="true"></i><p class="co-big"><span class="tz-price money" data-copy="dn_hero_price"></span></p><p class="co-lbl"><span class="tz-label" data-copy="dn_hero_label"></span><span class="tz-tag" data-copy="dn_hero_tag"></span></p><p class="co-sub" data-copy="dn_vat"></p></li>
+            <li class="co co-period"><i class="mk" aria-hidden="true"></i><p class="co-big co-date" data-copy="dn_period"></p><p class="co-lbl" data-copy="dn_period_lbl"></p></li>
+          </ul>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
+        </section>
+    <!-- /SZ:line:1a -->
+    <!-- SZ:kakao:1a -->
+    <!-- 1A: part 1 the model cutout right (right and bottom on the card edges) with the launch line, title and hook; part 2 the title, price, period and contact -->
+    <section class="card c1 K K1a K1-1" data-card="1" data-part="1" data-size-only="kakao" aria-labelledby="dn-t1-k1">
+    <img class="person sz-hero" src="assets/hero-cut.webp" data-alt="dn_alt_hero" alt="" width="920" height="1600">
+    
+          <img class="c1-photo model-photo" src="assets/hero.jpg?v=1104a" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
+          <p class="wm wm1" aria-hidden="true"><span data-copy="dn_wm1"></span></p>
+          <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-head">
+            <p class="c1-launch" data-copy="dn_launch"></p>
+            <h1 class="hero-title" id="dn-t1-k1" data-copy="dn_title"></h1>
+            <p class="hook" data-copy="dn_hook"></p>
+          </div>
+          <ul class="callouts">
+            <li class="co co-price"><i class="mk" aria-hidden="true"></i><p class="co-big"><span class="tz-price money" data-copy="dn_hero_price"></span></p><p class="co-lbl"><span class="tz-label" data-copy="dn_hero_label"></span><span class="tz-tag" data-copy="dn_hero_tag"></span></p><p class="co-sub" data-copy="dn_vat"></p></li>
+            <li class="co co-period"><i class="mk" aria-hidden="true"></i><p class="co-big co-date" data-copy="dn_period"></p><p class="co-lbl" data-copy="dn_period_lbl"></p></li>
+          </ul>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
+        </section>
+    <section class="card c1 K K1a K1-2" data-card="1" data-part="2" data-size-only="kakao" aria-labelledby="dn-t1-k2">
+          <img class="c1-photo model-photo" src="assets/hero.jpg?v=1104a" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
+          <p class="wm wm1" aria-hidden="true"><span data-copy="dn_wm1"></span></p>
+          <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-head">
+            <p class="c1-launch" data-copy="dn_launch"></p>
+            <h1 class="hero-title" id="dn-t1-k2" data-copy="dn_title"></h1>
+            <p class="hook" data-copy="dn_hook"></p>
+          </div>
+          <ul class="callouts">
+            <li class="co co-price"><i class="mk" aria-hidden="true"></i><p class="co-big"><span class="tz-price money" data-copy="dn_hero_price"></span></p><p class="co-lbl"><span class="tz-label" data-copy="dn_hero_label"></span><span class="tz-tag" data-copy="dn_hero_tag"></span></p><p class="co-sub" data-copy="dn_vat"></p></li>
+            <li class="co co-period"><i class="mk" aria-hidden="true"></i><p class="co-big co-date" data-copy="dn_period"></p><p class="co-lbl" data-copy="dn_period_lbl"></p></li>
+          </ul>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
+        </section>
+    <!-- /SZ:kakao:1a -->
 <!-- BVARIANT START 1 -->
-<section class="card c1" data-card="1" data-variant="b" aria-labelledby="dn-t1-b">
+<section class="card c1" data-card="1" data-variant="b" aria-labelledby="dn-t1-b" data-size-hide="line kakao">
       <img class="c1-photo model-photo" src="assets/hero-b.jpg" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
       <p class="wm wm1" aria-hidden="true"><span data-copy="dn_wm1"></span></p>
       <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -56,11 +115,60 @@
       </ul>
       <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
     </section>
+    <!-- SZ:line:1b -->
+    <section class="card c1 L L1b" data-card="1" data-variant="b" data-size-only="line" aria-labelledby="dn-t1-b-l">
+          <img class="c1-photo model-photo" src="assets/hero-b.jpg" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
+          <p class="wm wm1" aria-hidden="true"><span data-copy="dn_wm1"></span></p>
+          <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-head">
+            <p class="c1-launch" data-copy="dn_launch"></p>
+            <h1 class="hero-title" id="dn-t1-b-l" data-copy="dn_title"></h1>
+            <p class="hook" data-copy="dn_hook"></p>
+          </div>
+          <ul class="callouts">
+            <li class="co co-price"><i class="mk" aria-hidden="true"></i><p class="co-big"><span class="tz-price money" data-copy="dn_hero_price"></span></p><p class="co-lbl"><span class="tz-label" data-copy="dn_hero_label"></span><span class="tz-tag" data-copy="dn_hero_tag"></span></p><p class="co-sub" data-copy="dn_vat"></p></li>
+            <li class="co co-period"><i class="mk" aria-hidden="true"></i><p class="co-big co-date" data-copy="dn_period"></p><p class="co-lbl" data-copy="dn_period_lbl"></p></li>
+          </ul>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
+        </section>
+    <!-- /SZ:line:1b -->
+    <!-- SZ:kakao:1b -->
+    <section class="card c1 K K1b K1-1" data-card="1" data-variant="b" data-part="1" data-size-only="kakao" aria-labelledby="dn-t1-b-k1">
+          <img class="c1-photo model-photo" src="assets/hero-b.jpg" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
+          <p class="wm wm1" aria-hidden="true"><span data-copy="dn_wm1"></span></p>
+          <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-head">
+            <p class="c1-launch" data-copy="dn_launch"></p>
+            <h1 class="hero-title" id="dn-t1-b-k1" data-copy="dn_title"></h1>
+            <p class="hook" data-copy="dn_hook"></p>
+          </div>
+          <ul class="callouts">
+            <li class="co co-price"><i class="mk" aria-hidden="true"></i><p class="co-big"><span class="tz-price money" data-copy="dn_hero_price"></span></p><p class="co-lbl"><span class="tz-label" data-copy="dn_hero_label"></span><span class="tz-tag" data-copy="dn_hero_tag"></span></p><p class="co-sub" data-copy="dn_vat"></p></li>
+            <li class="co co-period"><i class="mk" aria-hidden="true"></i><p class="co-big co-date" data-copy="dn_period"></p><p class="co-lbl" data-copy="dn_period_lbl"></p></li>
+          </ul>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
+        </section>
+    <section class="card c1 K K1b K1-2" data-card="1" data-variant="b" data-part="2" data-size-only="kakao" aria-labelledby="dn-t1-b-k2">
+          <img class="c1-photo model-photo" src="assets/hero-b.jpg" data-alt="dn_alt_hero" alt="" width="1080" height="1350">
+          <p class="wm wm1" aria-hidden="true"><span data-copy="dn_wm1"></span></p>
+          <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-head">
+            <p class="c1-launch" data-copy="dn_launch"></p>
+            <h1 class="hero-title" id="dn-t1-b-k2" data-copy="dn_title"></h1>
+            <p class="hook" data-copy="dn_hook"></p>
+          </div>
+          <ul class="callouts">
+            <li class="co co-price"><i class="mk" aria-hidden="true"></i><p class="co-big"><span class="tz-price money" data-copy="dn_hero_price"></span></p><p class="co-lbl"><span class="tz-label" data-copy="dn_hero_label"></span><span class="tz-tag" data-copy="dn_hero_tag"></span></p><p class="co-sub" data-copy="dn_vat"></p></li>
+            <li class="co co-period"><i class="mk" aria-hidden="true"></i><p class="co-big co-date" data-copy="dn_period"></p><p class="co-lbl" data-copy="dn_period_lbl"></p></li>
+          </ul>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p>
+        </section>
+    <!-- /SZ:kakao:1b -->
 <!-- BVARIANT END 1 -->
 
     <!-- 2 / 8 : prices 2-1, sheet rows 66-71 of 11_lifting B66:K81 in sheet order: product 66 (options 66 / 67 / 68) and product 69 (options 69 / 70 / 71);
          each tip keeps its palette colour as a dot (Burnt Orange 클래식팁, Golden Yellow 하이팁(아이), Dark Chestnut 알파팁); tip photos: Jeisys official tip image, trimmed -->
-    <section class="card cp c2" data-card="2" aria-labelledby="dn-t2">
+    <section class="card cp c2" data-card="2" aria-labelledby="dn-t2" data-size-hide="line kakao">
       <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
       <div class="cp-in">
         <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
@@ -96,8 +204,194 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:2a -->
+    <!-- 2A / 2B: two parts in sheet order: 1 = 덴서티 300샷 (클래식 · 하이팁 · 알파팁), 2 = 덴서티 600샷 + 눈가 팁 안내 · 의료법상 줄 · VAT -->
+    <section class="card cp c2 L L2a L2-1" data-card="2" data-part="1" data-size-only="line" aria-labelledby="dn-t2-l1">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-l1"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c2 L L2a L2-2" data-card="2" data-part="2" data-size-only="line" aria-labelledby="dn-t2-l2">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-l2"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:2a -->
+    <!-- SZ:kakao:2a -->
+    <!-- 2A / 2B: three parts in sheet order: the head (kicker, title, lead, device) | 덴서티 300샷 | 덴서티 600샷 + 눈가 팁 안내 · 의료법상 줄 · VAT -->
+    <section class="card cp c2 K K2a K2-1" data-card="2" data-part="1" data-size-only="kakao" aria-labelledby="dn-t2-k1">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-k1"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c2 K K2a K2-2" data-card="2" data-part="2" data-size-only="kakao" aria-labelledby="dn-t2-k2">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-k2"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c2 K K2a K2-3" data-card="2" data-part="3" data-size-only="kakao" aria-labelledby="dn-t2-k3">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-k3"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:2a -->
 <!-- BVARIANT START 2 -->
-<section class="card cp c2" data-card="2" data-variant="b" aria-labelledby="dn-t2-b">
+<section class="card cp c2" data-card="2" data-variant="b" aria-labelledby="dn-t2-b" data-size-hide="line kakao">
       <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
       <div class="cp-in">
         <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
@@ -133,12 +427,196 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:2b -->
+    <section class="card cp c2 L L2b L2-1" data-card="2" data-variant="b" data-part="1" data-size-only="line" aria-labelledby="dn-t2-b-l1">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-b-l1"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c2 L L2b L2-2" data-card="2" data-variant="b" data-part="2" data-size-only="line" aria-labelledby="dn-t2-b-l2">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-b-l2"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:2b -->
+    <!-- SZ:kakao:2b -->
+    <section class="card cp c2 K K2b K2-1" data-card="2" data-variant="b" data-part="1" data-size-only="kakao" aria-labelledby="dn-t2-b-k1">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-b-k1"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c2 K K2b K2-2" data-card="2" data-variant="b" data-part="2" data-size-only="kakao" aria-labelledby="dn-t2-b-k2">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-b-k2"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c2 K K2b K2-3" data-card="2" data-variant="b" data-part="3" data-size-only="kakao" aria-labelledby="dn-t2-b-k3">
+          <p class="wm wm2" aria-hidden="true"><span data-copy="dn_wm2"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="cp-head">
+              <div class="cp-htx">
+                <p class="kicker" data-copy="dn_p1_kicker"></p>
+                <h2 class="p-title" id="dn-t2-b-k3"><span class="pt-main" data-copy="dn_p1_title"></span><span class="pt-sub" data-copy="dn_p1_sub"></span></h2>
+                <p class="p-lead" data-copy="dn_p1_lead"></p>
+              </div>
+              <figure class="dev-c"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="pgroups">
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r66_name"></span><span class="pg-care" data-copy="dn_r66_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:66"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r66_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r66_list"></span><span class="psale money" data-price-sale data-copy="dn_r66_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:67"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r67_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r67_list"></span><span class="psale money" data-price-sale data-copy="dn_r67_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:68"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r68_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r68_list"></span><span class="psale money" data-price-sale data-copy="dn_r68_sale"></span></p></li>
+                </ul>
+              </div>
+              <div class="pgroup">
+                <p class="pg-head"><span class="pg-name" data-copy="dn_r69_name"></span><span class="pg-care" data-copy="dn_r69_care"></span></p>
+                <ul class="tiles">
+                  <li class="tile t-classic" data-price-row="11_lifting:69"><p class="tl-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r69_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-classic-f.webp" data-alt="dn_alt_tip_classic" alt="" width="692" height="489"></span><p class="tl-e" data-copy="dn_c5_t1_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r69_list"></span><span class="psale money" data-price-sale data-copy="dn_r69_sale"></span></p></li>
+                  <li class="tile t-high" data-price-row="11_lifting:70"><p class="tl-top"><i class="dot d-high" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r70_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-high-e.webp" data-alt="dn_alt_tip_high" alt="" width="736" height="520"></span><p class="tl-e" data-copy="dn_c5_t2_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r70_list"></span><span class="psale money" data-price-sale data-copy="dn_r70_sale"></span></p></li>
+                  <li class="tile t-alpha" data-price-row="11_lifting:71"><p class="tl-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tl-name" data-copy="dn_r71_opt"></span></p><span class="tl-img"><img src="assets/dev/density-tip-alpha.webp" data-alt="dn_alt_tip_alpha" alt="" width="737" height="514"></span><p class="tl-e" data-copy="dn_c5_t3_e"></p><p class="tl-price"><span class="plist money" data-price-list data-copy="dn_r71_list"></span><span class="psale money" data-price-sale data-copy="dn_r71_sale"></span></p></li>
+                </ul>
+              </div>
+            </div>
+            <div class="c2-foot">
+              <p class="eye-note"><img class="ast-mark" src="assets/dec/ast-orange.webp" alt="" aria-hidden="true"><span data-copy="dn_p1_eye"></span></p>
+              <p class="uibeop" data-copy="dn_uibeop"></p><p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:2b -->
 <!-- BVARIANT END 2 -->
 
     <!-- 3 / 8 : prices 2-2, sheet rows 72-76 (the sheet's note on row 72: one separate card for the Boost launch); row 72's name -> card title;
          boost tip: cut-out from the Jeisys Medical newsroom photo (2026-09, v3/products/density-tip-boost.webp, trimmed) as the product focus;
          dots show the tips in each row (decorative) -->
-    <section class="card cp c3" data-card="3" aria-labelledby="dn-t3">
+    <section class="card cp c3" data-card="3" aria-labelledby="dn-t3" data-size-hide="line kakao">
       <p class="wm wm3" aria-hidden="true"><span data-copy="dn_wm3"></span></p>
       <div class="cp-in">
         <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
@@ -169,10 +647,171 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:3 -->
+    <!-- 3: part 1 the boost-tip head + rows 72-74, part 2 the title + rows 75-76 + VAT -->
+    <section class="card cp c3 L L3 L3-1" data-card="3" data-part="1" data-size-only="line" aria-labelledby="dn-t3-l1">
+          <p class="wm wm3" aria-hidden="true"><span data-copy="dn_wm3"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="b-head">
+              <div class="b-htx">
+                <p class="kicker" data-copy="dn_b_kicker"></p>
+                <h2 class="p-title" id="dn-t3-l1"><span class="pt-main" data-copy="dn_b_title"></span></h2>
+                <p class="b-chip"><span data-copy="dn_b_chip"></span></p>
+                <p class="p-lead" data-copy="dn_b_lead"></p>
+              </div>
+              <figure class="b-tip">
+                <span class="b-ring"><img src="assets/dev/density-tip-boost.webp" data-alt="dn_alt_boost" alt="" width="746" height="497"></span>
+                <figcaption class="b-cap"><span class="b-name"><span data-copy="dn_c5_t4_n"></span><span class="b-way" data-copy="dn_c5_t4_e"></span></span><span class="b-src"><span class="bp-l" data-copy="dn_b_photo"></span><span class="bp-s" data-copy="dn_b_src"></span></span></figcaption>
+              </figure>
+            </div>
+            <div class="pboard">
+              <p class="dots-key"><span class="dk-l" data-copy="dn_b_dots"></span><span class="dk"><i class="dot d-classic" aria-hidden="true"></i><span data-copy="dn_b_dot_classic"></span></span><span class="dk"><i class="dot d-alpha" aria-hidden="true"></i><span data-copy="dn_b_dot_alpha"></span></span><span class="dk"><i class="dot d-boost" aria-hidden="true"></i><span data-copy="dn_b_dot_boost"></span></span></p>
+              <ul class="prows">
+                <li class="prow" data-price-row="11_lifting:72"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r72_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r72_list"></span><span class="psale money" data-price-sale data-copy="dn_r72_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:73"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r73_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r73_list"></span><span class="psale money" data-price-sale data-copy="dn_r73_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:74"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r74_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r74_list"></span><span class="psale money" data-price-sale data-copy="dn_r74_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:75"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r75_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r75_list"></span><span class="psale money" data-price-sale data-copy="dn_r75_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:76"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r76_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r76_list"></span><span class="psale money" data-price-sale data-copy="dn_r76_sale"></span></li>
+              </ul>
+            </div>
+            <div class="c3-foot">
+              <p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c3 L L3 L3-2" data-card="3" data-part="2" data-size-only="line" aria-labelledby="dn-t3-l2">
+          <p class="wm wm3" aria-hidden="true"><span data-copy="dn_wm3"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="b-head">
+              <div class="b-htx">
+                <p class="kicker" data-copy="dn_b_kicker"></p>
+                <h2 class="p-title" id="dn-t3-l2"><span class="pt-main" data-copy="dn_b_title"></span></h2>
+                <p class="b-chip"><span data-copy="dn_b_chip"></span></p>
+                <p class="p-lead" data-copy="dn_b_lead"></p>
+              </div>
+              <figure class="b-tip">
+                <span class="b-ring"><img src="assets/dev/density-tip-boost.webp" data-alt="dn_alt_boost" alt="" width="746" height="497"></span>
+                <figcaption class="b-cap"><span class="b-name"><span data-copy="dn_c5_t4_n"></span><span class="b-way" data-copy="dn_c5_t4_e"></span></span><span class="b-src"><span class="bp-l" data-copy="dn_b_photo"></span><span class="bp-s" data-copy="dn_b_src"></span></span></figcaption>
+              </figure>
+            </div>
+            <div class="pboard">
+              <p class="dots-key"><span class="dk-l" data-copy="dn_b_dots"></span><span class="dk"><i class="dot d-classic" aria-hidden="true"></i><span data-copy="dn_b_dot_classic"></span></span><span class="dk"><i class="dot d-alpha" aria-hidden="true"></i><span data-copy="dn_b_dot_alpha"></span></span><span class="dk"><i class="dot d-boost" aria-hidden="true"></i><span data-copy="dn_b_dot_boost"></span></span></p>
+              <ul class="prows">
+                <li class="prow" data-price-row="11_lifting:72"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r72_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r72_list"></span><span class="psale money" data-price-sale data-copy="dn_r72_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:73"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r73_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r73_list"></span><span class="psale money" data-price-sale data-copy="dn_r73_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:74"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r74_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r74_list"></span><span class="psale money" data-price-sale data-copy="dn_r74_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:75"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r75_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r75_list"></span><span class="psale money" data-price-sale data-copy="dn_r75_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:76"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r76_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r76_list"></span><span class="psale money" data-price-sale data-copy="dn_r76_sale"></span></li>
+              </ul>
+            </div>
+            <div class="c3-foot">
+              <p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:3 -->
+    <!-- SZ:kakao:3 -->
+    <!-- 3: part 1 the boost-tip head, part 2 rows 72-74, part 3 rows 75-76 + VAT -->
+    <section class="card cp c3 K K3 K3-1" data-card="3" data-part="1" data-size-only="kakao" aria-labelledby="dn-t3-k1">
+          <p class="wm wm3" aria-hidden="true"><span data-copy="dn_wm3"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="b-head">
+              <div class="b-htx">
+                <p class="kicker" data-copy="dn_b_kicker"></p>
+                <h2 class="p-title" id="dn-t3-k1"><span class="pt-main" data-copy="dn_b_title"></span></h2>
+                <p class="b-chip"><span data-copy="dn_b_chip"></span></p>
+                <p class="p-lead" data-copy="dn_b_lead"></p>
+              </div>
+              <figure class="b-tip">
+                <span class="b-ring"><img src="assets/dev/density-tip-boost.webp" data-alt="dn_alt_boost" alt="" width="746" height="497"></span>
+                <figcaption class="b-cap"><span class="b-name"><span data-copy="dn_c5_t4_n"></span><span class="b-way" data-copy="dn_c5_t4_e"></span></span><span class="b-src"><span class="bp-l" data-copy="dn_b_photo"></span><span class="bp-s" data-copy="dn_b_src"></span></span></figcaption>
+              </figure>
+            </div>
+            <div class="pboard">
+              <p class="dots-key"><span class="dk-l" data-copy="dn_b_dots"></span><span class="dk"><i class="dot d-classic" aria-hidden="true"></i><span data-copy="dn_b_dot_classic"></span></span><span class="dk"><i class="dot d-alpha" aria-hidden="true"></i><span data-copy="dn_b_dot_alpha"></span></span><span class="dk"><i class="dot d-boost" aria-hidden="true"></i><span data-copy="dn_b_dot_boost"></span></span></p>
+              <ul class="prows">
+                <li class="prow" data-price-row="11_lifting:72"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r72_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r72_list"></span><span class="psale money" data-price-sale data-copy="dn_r72_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:73"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r73_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r73_list"></span><span class="psale money" data-price-sale data-copy="dn_r73_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:74"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r74_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r74_list"></span><span class="psale money" data-price-sale data-copy="dn_r74_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:75"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r75_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r75_list"></span><span class="psale money" data-price-sale data-copy="dn_r75_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:76"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r76_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r76_list"></span><span class="psale money" data-price-sale data-copy="dn_r76_sale"></span></li>
+              </ul>
+            </div>
+            <div class="c3-foot">
+              <p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c3 K K3 K3-2" data-card="3" data-part="2" data-size-only="kakao" aria-labelledby="dn-t3-k2">
+          <p class="wm wm3" aria-hidden="true"><span data-copy="dn_wm3"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="b-head">
+              <div class="b-htx">
+                <p class="kicker" data-copy="dn_b_kicker"></p>
+                <h2 class="p-title" id="dn-t3-k2"><span class="pt-main" data-copy="dn_b_title"></span></h2>
+                <p class="b-chip"><span data-copy="dn_b_chip"></span></p>
+                <p class="p-lead" data-copy="dn_b_lead"></p>
+              </div>
+              <figure class="b-tip">
+                <span class="b-ring"><img src="assets/dev/density-tip-boost.webp" data-alt="dn_alt_boost" alt="" width="746" height="497"></span>
+                <figcaption class="b-cap"><span class="b-name"><span data-copy="dn_c5_t4_n"></span><span class="b-way" data-copy="dn_c5_t4_e"></span></span><span class="b-src"><span class="bp-l" data-copy="dn_b_photo"></span><span class="bp-s" data-copy="dn_b_src"></span></span></figcaption>
+              </figure>
+            </div>
+            <div class="pboard">
+              <p class="dots-key"><span class="dk-l" data-copy="dn_b_dots"></span><span class="dk"><i class="dot d-classic" aria-hidden="true"></i><span data-copy="dn_b_dot_classic"></span></span><span class="dk"><i class="dot d-alpha" aria-hidden="true"></i><span data-copy="dn_b_dot_alpha"></span></span><span class="dk"><i class="dot d-boost" aria-hidden="true"></i><span data-copy="dn_b_dot_boost"></span></span></p>
+              <ul class="prows">
+                <li class="prow" data-price-row="11_lifting:72"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r72_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r72_list"></span><span class="psale money" data-price-sale data-copy="dn_r72_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:73"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r73_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r73_list"></span><span class="psale money" data-price-sale data-copy="dn_r73_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:74"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r74_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r74_list"></span><span class="psale money" data-price-sale data-copy="dn_r74_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:75"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r75_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r75_list"></span><span class="psale money" data-price-sale data-copy="dn_r75_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:76"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r76_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r76_list"></span><span class="psale money" data-price-sale data-copy="dn_r76_sale"></span></li>
+              </ul>
+            </div>
+            <div class="c3-foot">
+              <p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c3 K K3 K3-3" data-card="3" data-part="3" data-size-only="kakao" aria-labelledby="dn-t3-k3">
+          <p class="wm wm3" aria-hidden="true"><span data-copy="dn_wm3"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="b-head">
+              <div class="b-htx">
+                <p class="kicker" data-copy="dn_b_kicker"></p>
+                <h2 class="p-title" id="dn-t3-k3"><span class="pt-main" data-copy="dn_b_title"></span></h2>
+                <p class="b-chip"><span data-copy="dn_b_chip"></span></p>
+                <p class="p-lead" data-copy="dn_b_lead"></p>
+              </div>
+              <figure class="b-tip">
+                <span class="b-ring"><img src="assets/dev/density-tip-boost.webp" data-alt="dn_alt_boost" alt="" width="746" height="497"></span>
+                <figcaption class="b-cap"><span class="b-name"><span data-copy="dn_c5_t4_n"></span><span class="b-way" data-copy="dn_c5_t4_e"></span></span><span class="b-src"><span class="bp-l" data-copy="dn_b_photo"></span><span class="bp-s" data-copy="dn_b_src"></span></span></figcaption>
+              </figure>
+            </div>
+            <div class="pboard">
+              <p class="dots-key"><span class="dk-l" data-copy="dn_b_dots"></span><span class="dk"><i class="dot d-classic" aria-hidden="true"></i><span data-copy="dn_b_dot_classic"></span></span><span class="dk"><i class="dot d-alpha" aria-hidden="true"></i><span data-copy="dn_b_dot_alpha"></span></span><span class="dk"><i class="dot d-boost" aria-hidden="true"></i><span data-copy="dn_b_dot_boost"></span></span></p>
+              <ul class="prows">
+                <li class="prow" data-price-row="11_lifting:72"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r72_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r72_list"></span><span class="psale money" data-price-sale data-copy="dn_r72_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:73"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r73_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r73_list"></span><span class="psale money" data-price-sale data-copy="dn_r73_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:74"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-classic"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r74_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r74_list"></span><span class="psale money" data-price-sale data-copy="dn_r74_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:75"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r75_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r75_list"></span><span class="psale money" data-price-sale data-copy="dn_r75_sale"></span></li>
+                <li class="prow" data-price-row="11_lifting:76"><div class="pn"><span class="dots" aria-hidden="true"><i class="dot d-alpha"></i><i class="dot d-boost"></i></span><p class="pname"><span class="pnm" data-copy="dn_r76_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r76_list"></span><span class="psale money" data-price-sale data-copy="dn_r76_sale"></span></li>
+              </ul>
+            </div>
+            <div class="c3-foot">
+              <p class="vat"><span data-copy="dn_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:3 -->
 
     <!-- 4 / 8 : prices 2-3, sheet rows 77-80: group 덴서티지 (77 name -> group name / sub / tag, 78) and group 울서티 (79, 80); booking line.
          The device cut-outs in each pair are trimmed and shown at the same height, centred in equal circles. -->
-    <section class="card cp c4" data-card="4" aria-labelledby="dn-t4">
+    <section class="card cp c4" data-card="4" aria-labelledby="dn-t4" data-size-hide="line kakao">
       <p class="wm wm4" aria-hidden="true"><span data-copy="dn_wm4"></span></p>
       <div class="cp-in">
         <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
@@ -224,10 +863,276 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:4 -->
+    <!-- 4: part 1 the head + 덴서티지, part 2 the title + 울서티 + VAT + booking line -->
+    <section class="card cp c4 L L4 L4-1" data-card="4" data-part="1" data-size-only="line" aria-labelledby="dn-t4-l1">
+          <p class="wm wm4" aria-hidden="true"><span data-copy="dn_wm4"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="c4-head">
+              <p class="kicker" data-copy="dn_c_kicker"></p>
+              <h2 class="p-title" id="dn-t4-l1"><span class="pt-main" data-copy="dn_c_title"></span></h2>
+              <p class="p-lead" data-copy="dn_c_lead"></p>
+            </div>
+            <div class="duo">
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g77_name"></span><span class="dg-tag" data-copy="dn_g77_tag"></span></p>
+                    <p class="dg-sub" data-copy="dn_g77_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c pd-icon"><img class="pd-ico" src="assets/icons/ic-waves.webp" alt="" aria-hidden="true"></span><figcaption data-copy="dn_c_pair_lz"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:77"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r77_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r77_list"></span><span class="psale money" data-price-sale data-copy="dn_r77_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:78"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r78_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r78_list"></span><span class="psale money" data-price-sale data-copy="dn_r78_sale"></span></li>
+                </ul>
+              </div>
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g79_name"></span></p>
+                    <p class="dg-sub" data-copy="dn_g79_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/ultherapy-prime.webp" data-alt="dn_alt_dev_ut" alt="" width="479" height="936"></span><figcaption data-copy="dn_c_pair_ut"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:79"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r79_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r79_list"></span><span class="psale money" data-price-sale data-copy="dn_r79_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:80"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r80_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r80_list"></span><span class="psale money" data-price-sale data-copy="dn_r80_sale"></span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="vat"><span data-copy="dn_vat"></span></p>
+            <div class="bk-line">
+              <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr2" alt="" width="424" height="424"></figure>
+              <div class="bkl-tx"><span class="bkl-pill" data-copy="dn_bk_label"></span><p class="bkl-msg" data-copy="dn_bk_text"></p><p class="bkl-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p></div>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c4 L L4 L4-2" data-card="4" data-part="2" data-size-only="line" aria-labelledby="dn-t4-l2">
+          <p class="wm wm4" aria-hidden="true"><span data-copy="dn_wm4"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="c4-head">
+              <p class="kicker" data-copy="dn_c_kicker"></p>
+              <h2 class="p-title" id="dn-t4-l2"><span class="pt-main" data-copy="dn_c_title"></span></h2>
+              <p class="p-lead" data-copy="dn_c_lead"></p>
+            </div>
+            <div class="duo">
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g77_name"></span><span class="dg-tag" data-copy="dn_g77_tag"></span></p>
+                    <p class="dg-sub" data-copy="dn_g77_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c pd-icon"><img class="pd-ico" src="assets/icons/ic-waves.webp" alt="" aria-hidden="true"></span><figcaption data-copy="dn_c_pair_lz"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:77"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r77_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r77_list"></span><span class="psale money" data-price-sale data-copy="dn_r77_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:78"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r78_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r78_list"></span><span class="psale money" data-price-sale data-copy="dn_r78_sale"></span></li>
+                </ul>
+              </div>
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g79_name"></span></p>
+                    <p class="dg-sub" data-copy="dn_g79_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/ultherapy-prime.webp" data-alt="dn_alt_dev_ut" alt="" width="479" height="936"></span><figcaption data-copy="dn_c_pair_ut"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:79"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r79_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r79_list"></span><span class="psale money" data-price-sale data-copy="dn_r79_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:80"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r80_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r80_list"></span><span class="psale money" data-price-sale data-copy="dn_r80_sale"></span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="vat"><span data-copy="dn_vat"></span></p>
+            <div class="bk-line">
+              <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr2" alt="" width="424" height="424"></figure>
+              <div class="bkl-tx"><span class="bkl-pill" data-copy="dn_bk_label"></span><p class="bkl-msg" data-copy="dn_bk_text"></p><p class="bkl-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p></div>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:4 -->
+    <!-- SZ:kakao:4 -->
+    <!-- 4: part 1 the head + booking line, part 2 덴서티지, part 3 울서티 + VAT -->
+    <section class="card cp c4 K K4 K4-1" data-card="4" data-part="1" data-size-only="kakao" aria-labelledby="dn-t4-k1">
+          <p class="wm wm4" aria-hidden="true"><span data-copy="dn_wm4"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="c4-head">
+              <p class="kicker" data-copy="dn_c_kicker"></p>
+              <h2 class="p-title" id="dn-t4-k1"><span class="pt-main" data-copy="dn_c_title"></span></h2>
+              <p class="p-lead" data-copy="dn_c_lead"></p>
+            </div>
+            <div class="duo">
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g77_name"></span><span class="dg-tag" data-copy="dn_g77_tag"></span></p>
+                    <p class="dg-sub" data-copy="dn_g77_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c pd-icon"><img class="pd-ico" src="assets/icons/ic-waves.webp" alt="" aria-hidden="true"></span><figcaption data-copy="dn_c_pair_lz"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:77"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r77_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r77_list"></span><span class="psale money" data-price-sale data-copy="dn_r77_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:78"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r78_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r78_list"></span><span class="psale money" data-price-sale data-copy="dn_r78_sale"></span></li>
+                </ul>
+              </div>
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g79_name"></span></p>
+                    <p class="dg-sub" data-copy="dn_g79_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/ultherapy-prime.webp" data-alt="dn_alt_dev_ut" alt="" width="479" height="936"></span><figcaption data-copy="dn_c_pair_ut"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:79"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r79_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r79_list"></span><span class="psale money" data-price-sale data-copy="dn_r79_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:80"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r80_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r80_list"></span><span class="psale money" data-price-sale data-copy="dn_r80_sale"></span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="vat"><span data-copy="dn_vat"></span></p>
+            <div class="bk-line">
+              <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr2" alt="" width="424" height="424"></figure>
+              <div class="bkl-tx"><span class="bkl-pill" data-copy="dn_bk_label"></span><p class="bkl-msg" data-copy="dn_bk_text"></p><p class="bkl-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p></div>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c4 K K4 K4-2" data-card="4" data-part="2" data-size-only="kakao" aria-labelledby="dn-t4-k2">
+          <p class="wm wm4" aria-hidden="true"><span data-copy="dn_wm4"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="c4-head">
+              <p class="kicker" data-copy="dn_c_kicker"></p>
+              <h2 class="p-title" id="dn-t4-k2"><span class="pt-main" data-copy="dn_c_title"></span></h2>
+              <p class="p-lead" data-copy="dn_c_lead"></p>
+            </div>
+            <div class="duo">
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g77_name"></span><span class="dg-tag" data-copy="dn_g77_tag"></span></p>
+                    <p class="dg-sub" data-copy="dn_g77_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c pd-icon"><img class="pd-ico" src="assets/icons/ic-waves.webp" alt="" aria-hidden="true"></span><figcaption data-copy="dn_c_pair_lz"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:77"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r77_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r77_list"></span><span class="psale money" data-price-sale data-copy="dn_r77_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:78"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r78_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r78_list"></span><span class="psale money" data-price-sale data-copy="dn_r78_sale"></span></li>
+                </ul>
+              </div>
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g79_name"></span></p>
+                    <p class="dg-sub" data-copy="dn_g79_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/ultherapy-prime.webp" data-alt="dn_alt_dev_ut" alt="" width="479" height="936"></span><figcaption data-copy="dn_c_pair_ut"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:79"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r79_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r79_list"></span><span class="psale money" data-price-sale data-copy="dn_r79_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:80"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r80_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r80_list"></span><span class="psale money" data-price-sale data-copy="dn_r80_sale"></span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="vat"><span data-copy="dn_vat"></span></p>
+            <div class="bk-line">
+              <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr2" alt="" width="424" height="424"></figure>
+              <div class="bkl-tx"><span class="bkl-pill" data-copy="dn_bk_label"></span><p class="bkl-msg" data-copy="dn_bk_text"></p><p class="bkl-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p></div>
+            </div>
+          </div>
+        </section>
+    <section class="card cp c4 K K4 K4-3" data-card="4" data-part="3" data-size-only="kakao" aria-labelledby="dn-t4-k3">
+          <p class="wm wm4" aria-hidden="true"><span data-copy="dn_wm4"></span></p>
+          <div class="cp-in">
+            <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="dn_period"></span></span></header>
+            <div class="c4-head">
+              <p class="kicker" data-copy="dn_c_kicker"></p>
+              <h2 class="p-title" id="dn-t4-k3"><span class="pt-main" data-copy="dn_c_title"></span></h2>
+              <p class="p-lead" data-copy="dn_c_lead"></p>
+            </div>
+            <div class="duo">
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g77_name"></span><span class="dg-tag" data-copy="dn_g77_tag"></span></p>
+                    <p class="dg-sub" data-copy="dn_g77_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c pd-icon"><img class="pd-ico" src="assets/icons/ic-waves.webp" alt="" aria-hidden="true"></span><figcaption data-copy="dn_c_pair_lz"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:77"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r77_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r77_list"></span><span class="psale money" data-price-sale data-copy="dn_r77_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:78"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r78_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r78_list"></span><span class="psale money" data-price-sale data-copy="dn_r78_sale"></span></li>
+                </ul>
+              </div>
+              <div class="dgroup">
+                <div class="dg-head">
+                  <div class="dg-tx">
+                    <p class="dg-name"><span class="dg-n" data-copy="dn_g79_name"></span></p>
+                    <p class="dg-sub" data-copy="dn_g79_sub"></p>
+                  </div>
+                  <div class="pair">
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/ultherapy-prime.webp" data-alt="dn_alt_dev_ut" alt="" width="479" height="936"></span><figcaption data-copy="dn_c_pair_ut"></figcaption></figure>
+                    <span class="plus" aria-hidden="true" data-copy="dn_c_plus"></span>
+                    <figure class="pdev"><span class="pd-c"><img class="pd-dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></span><figcaption data-copy="dn_c_pair_dn"></figcaption></figure>
+                  </div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:79"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r79_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r79_list"></span><span class="psale money" data-price-sale data-copy="dn_r79_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:80"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="dn_r80_name"></span></p></div><span class="plist money" data-price-list data-copy="dn_r80_list"></span><span class="psale money" data-price-sale data-copy="dn_r80_sale"></span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="vat"><span data-copy="dn_vat"></span></p>
+            <div class="bk-line">
+              <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr2" alt="" width="424" height="424"></figure>
+              <div class="bkl-tx"><span class="bkl-pill" data-copy="dn_bk_label"></span><p class="bkl-msg" data-copy="dn_bk_text"></p><p class="bkl-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="dn_contact"></span></p></div>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:4 -->
 
     <!-- 5 / 8 : Before & After, the approved bb-ba component (v4/_shared/ba/BA_SECTION.md, v4/_shared/ba/winter-ba-9/density/index.html), page colours through --ba-*;
          photos copied unchanged from v4/_shared/ba/winter-ba-9/density/ (AI-generated, eyes blurred), no row labels, no effect wording -->
-    <section class="card cba bb-ba" data-card="5" aria-labelledby="dn-tba">
+    <section class="card cba bb-ba" data-card="5" aria-labelledby="dn-tba" data-size-hide="line kakao">
       <div class="cba-in bb-ba__inner">
         <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <p class="bb-ba__eyebrow" data-copy="dn_ba_kicker"></p>
@@ -251,10 +1156,86 @@
         <p class="bb-ba__note" data-copy="dn_ba_note"></p>
       </div>
     </section>
+    <!-- SZ:line:5 -->
+    <section class="card cba bb-ba L L5" data-card="5" data-size-only="line" aria-labelledby="dn-tba-l">
+          <div class="cba-in bb-ba__inner">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <p class="bb-ba__eyebrow" data-copy="dn_ba_kicker"></p>
+            <h2 class="bb-ba__title" id="dn-tba-l" data-copy="dn_ba_title"></h2>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-front-before.jpg" data-alt="dn_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="dn_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="dn_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-front-after.jpg" data-alt="dn_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="dn_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-45-before.jpg" data-alt="dn_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="dn_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="dn_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-45-after.jpg" data-alt="dn_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="dn_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="dn_ba_note"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:5 -->
+    <!-- SZ:kakao:5 -->
+    <section class="card cba bb-ba K K5 K5-1" data-card="5" data-part="1" data-size-only="kakao" aria-labelledby="dn-tba-k1">
+          <div class="cba-in bb-ba__inner">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <p class="bb-ba__eyebrow" data-copy="dn_ba_kicker"></p>
+            <h2 class="bb-ba__title" id="dn-tba-k1" data-copy="dn_ba_title"></h2>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-front-before.jpg" data-alt="dn_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="dn_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="dn_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-front-after.jpg" data-alt="dn_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="dn_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-45-before.jpg" data-alt="dn_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="dn_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="dn_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-45-after.jpg" data-alt="dn_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="dn_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="dn_ba_note"></p>
+          </div>
+        </section>
+    <section class="card cba bb-ba K K5 K5-2" data-card="5" data-part="2" data-size-only="kakao" aria-labelledby="dn-tba-k2">
+          <div class="cba-in bb-ba__inner">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <p class="bb-ba__eyebrow" data-copy="dn_ba_kicker"></p>
+            <h2 class="bb-ba__title" id="dn-tba-k2" data-copy="dn_ba_title"></h2>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-front-before.jpg" data-alt="dn_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="dn_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="dn_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-front-after.jpg" data-alt="dn_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="dn_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-45-before.jpg" data-alt="dn_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="dn_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="dn_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/density-45-after.jpg" data-alt="dn_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="dn_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="dn_ba_note"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:5 -->
 
     <!-- 6 / 8 : what the device is (facts: v4/density12/REFERENCE_AND_PLAN.md). The skin cross-section is a generated picture without text
          (trimmed to the skin block); the real handpiece cut-out stands on its cooling pad; the HTML labels sit on the layers they name. -->
-    <section class="card c5" data-card="6" aria-labelledby="dn-t5">
+    <section class="card c5" data-card="6" aria-labelledby="dn-t5" data-size-hide="line kakao">
       <p class="wm wm6" aria-hidden="true"><span data-copy="dn_wm6"></span></p>
       <div class="c5-in">
         <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -293,10 +1274,211 @@
         <p class="src" data-copy="dn_c5_src"></p>
       </div>
     </section>
+    <!-- SZ:line:6 -->
+    <!-- 6: part 1 the question + layers + four points, part 2 the question title + the four tips + source -->
+    <section class="card c5 L L6 L6-1" data-card="6" data-part="1" data-size-only="line" aria-labelledby="dn-t5-l1">
+          <p class="wm wm6" aria-hidden="true"><span data-copy="dn_wm6"></span></p>
+          <div class="c5-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-row">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c5_kicker"></p>
+                <h2 class="q-title" id="dn-t5-l1" data-copy="dn_c5_q"></h2>
+                <p class="q-ans" data-copy="dn_c5_a"></p>
+              </div>
+              <figure class="dev-c dev-c5"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="c5-mid">
+              <figure class="layers">
+                <img class="layers-art" src="assets/c6/layers.webp" alt="" aria-hidden="true" width="1000" height="668">
+                <img class="layers-hp" src="assets/c6/handpiece.webp" data-alt="dn_alt_hp" alt="" width="360" height="520">
+                <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="dn_c5_d_cool"></span></span>
+                <span class="ll l-bi" data-copy="dn_c5_d_bi"></span>
+                <span class="ll l-mono" data-copy="dn_c5_d_mono"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p1_t"></h3><p class="pt-d" data-copy="dn_c5_p1_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p2_t"></h3><p class="pt-d" data-copy="dn_c5_p2_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p3_t"></h3><p class="pt-d" data-copy="dn_c5_p3_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p4_t"></h3><p class="pt-d" data-copy="dn_c5_p4_d"></p></div></li>
+              </ol>
+            </div>
+            <div class="tips">
+              <h3 class="tips-t" data-copy="dn_c5_tips_t"></h3>
+              <ul class="tips-row">
+                <li class="tp tp-classic"><p class="tp-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t1_n"></span></p><p class="tp-e" data-copy="dn_c5_t1_e"></p></li>
+                <li class="tp tp-high"><p class="tp-top"><i class="dot d-high" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t2_n"></span></p><p class="tp-e" data-copy="dn_c5_t2_e"></p></li>
+                <li class="tp tp-alpha"><p class="tp-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t3_n"></span></p><p class="tp-x" data-copy="dn_c5_t3_x"></p><p class="tp-e" data-copy="dn_c5_t3_e"></p></li>
+                <li class="tp tp-boost"><p class="tp-top"><i class="dot d-boost" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t4_n"></span></p><p class="tp-x" data-copy="dn_c5_t4_x"></p><p class="tp-e" data-copy="dn_c5_t4_e"></p></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="dn_c5_src"></p>
+          </div>
+        </section>
+    <section class="card c5 L L6 L6-2" data-card="6" data-part="2" data-size-only="line" aria-labelledby="dn-t5-l2">
+          <p class="wm wm6" aria-hidden="true"><span data-copy="dn_wm6"></span></p>
+          <div class="c5-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-row">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c5_kicker"></p>
+                <h2 class="q-title" id="dn-t5-l2" data-copy="dn_c5_q"></h2>
+                <p class="q-ans" data-copy="dn_c5_a"></p>
+              </div>
+              <figure class="dev-c dev-c5"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="c5-mid">
+              <figure class="layers">
+                <img class="layers-art" src="assets/c6/layers.webp" alt="" aria-hidden="true" width="1000" height="668">
+                <img class="layers-hp" src="assets/c6/handpiece.webp" data-alt="dn_alt_hp" alt="" width="360" height="520">
+                <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="dn_c5_d_cool"></span></span>
+                <span class="ll l-bi" data-copy="dn_c5_d_bi"></span>
+                <span class="ll l-mono" data-copy="dn_c5_d_mono"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p1_t"></h3><p class="pt-d" data-copy="dn_c5_p1_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p2_t"></h3><p class="pt-d" data-copy="dn_c5_p2_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p3_t"></h3><p class="pt-d" data-copy="dn_c5_p3_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p4_t"></h3><p class="pt-d" data-copy="dn_c5_p4_d"></p></div></li>
+              </ol>
+            </div>
+            <div class="tips">
+              <h3 class="tips-t" data-copy="dn_c5_tips_t"></h3>
+              <ul class="tips-row">
+                <li class="tp tp-classic"><p class="tp-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t1_n"></span></p><p class="tp-e" data-copy="dn_c5_t1_e"></p></li>
+                <li class="tp tp-high"><p class="tp-top"><i class="dot d-high" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t2_n"></span></p><p class="tp-e" data-copy="dn_c5_t2_e"></p></li>
+                <li class="tp tp-alpha"><p class="tp-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t3_n"></span></p><p class="tp-x" data-copy="dn_c5_t3_x"></p><p class="tp-e" data-copy="dn_c5_t3_e"></p></li>
+                <li class="tp tp-boost"><p class="tp-top"><i class="dot d-boost" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t4_n"></span></p><p class="tp-x" data-copy="dn_c5_t4_x"></p><p class="tp-e" data-copy="dn_c5_t4_e"></p></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="dn_c5_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:6 -->
+    <!-- SZ:kakao:6 -->
+    <!-- 6: part 1 question + layers, part 2 the four points, part 3 the four tips + source -->
+    <section class="card c5 K K6 K6-1" data-card="6" data-part="1" data-size-only="kakao" aria-labelledby="dn-t5-k1">
+          <p class="wm wm6" aria-hidden="true"><span data-copy="dn_wm6"></span></p>
+          <div class="c5-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-row">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c5_kicker"></p>
+                <h2 class="q-title" id="dn-t5-k1" data-copy="dn_c5_q"></h2>
+                <p class="q-ans" data-copy="dn_c5_a"></p>
+              </div>
+              <figure class="dev-c dev-c5"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="c5-mid">
+              <figure class="layers">
+                <img class="layers-art" src="assets/c6/layers.webp" alt="" aria-hidden="true" width="1000" height="668">
+                <img class="layers-hp" src="assets/c6/handpiece.webp" data-alt="dn_alt_hp" alt="" width="360" height="520">
+                <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="dn_c5_d_cool"></span></span>
+                <span class="ll l-bi" data-copy="dn_c5_d_bi"></span>
+                <span class="ll l-mono" data-copy="dn_c5_d_mono"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p1_t"></h3><p class="pt-d" data-copy="dn_c5_p1_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p2_t"></h3><p class="pt-d" data-copy="dn_c5_p2_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p3_t"></h3><p class="pt-d" data-copy="dn_c5_p3_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p4_t"></h3><p class="pt-d" data-copy="dn_c5_p4_d"></p></div></li>
+              </ol>
+            </div>
+            <div class="tips">
+              <h3 class="tips-t" data-copy="dn_c5_tips_t"></h3>
+              <ul class="tips-row">
+                <li class="tp tp-classic"><p class="tp-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t1_n"></span></p><p class="tp-e" data-copy="dn_c5_t1_e"></p></li>
+                <li class="tp tp-high"><p class="tp-top"><i class="dot d-high" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t2_n"></span></p><p class="tp-e" data-copy="dn_c5_t2_e"></p></li>
+                <li class="tp tp-alpha"><p class="tp-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t3_n"></span></p><p class="tp-x" data-copy="dn_c5_t3_x"></p><p class="tp-e" data-copy="dn_c5_t3_e"></p></li>
+                <li class="tp tp-boost"><p class="tp-top"><i class="dot d-boost" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t4_n"></span></p><p class="tp-x" data-copy="dn_c5_t4_x"></p><p class="tp-e" data-copy="dn_c5_t4_e"></p></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="dn_c5_src"></p>
+          </div>
+        </section>
+    <section class="card c5 K K6 K6-2" data-card="6" data-part="2" data-size-only="kakao" aria-labelledby="dn-t5-k2">
+          <p class="wm wm6" aria-hidden="true"><span data-copy="dn_wm6"></span></p>
+          <div class="c5-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-row">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c5_kicker"></p>
+                <h2 class="q-title" id="dn-t5-k2" data-copy="dn_c5_q"></h2>
+                <p class="q-ans" data-copy="dn_c5_a"></p>
+              </div>
+              <figure class="dev-c dev-c5"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="c5-mid">
+              <figure class="layers">
+                <img class="layers-art" src="assets/c6/layers.webp" alt="" aria-hidden="true" width="1000" height="668">
+                <img class="layers-hp" src="assets/c6/handpiece.webp" data-alt="dn_alt_hp" alt="" width="360" height="520">
+                <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="dn_c5_d_cool"></span></span>
+                <span class="ll l-bi" data-copy="dn_c5_d_bi"></span>
+                <span class="ll l-mono" data-copy="dn_c5_d_mono"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p1_t"></h3><p class="pt-d" data-copy="dn_c5_p1_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p2_t"></h3><p class="pt-d" data-copy="dn_c5_p2_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p3_t"></h3><p class="pt-d" data-copy="dn_c5_p3_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p4_t"></h3><p class="pt-d" data-copy="dn_c5_p4_d"></p></div></li>
+              </ol>
+            </div>
+            <div class="tips">
+              <h3 class="tips-t" data-copy="dn_c5_tips_t"></h3>
+              <ul class="tips-row">
+                <li class="tp tp-classic"><p class="tp-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t1_n"></span></p><p class="tp-e" data-copy="dn_c5_t1_e"></p></li>
+                <li class="tp tp-high"><p class="tp-top"><i class="dot d-high" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t2_n"></span></p><p class="tp-e" data-copy="dn_c5_t2_e"></p></li>
+                <li class="tp tp-alpha"><p class="tp-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t3_n"></span></p><p class="tp-x" data-copy="dn_c5_t3_x"></p><p class="tp-e" data-copy="dn_c5_t3_e"></p></li>
+                <li class="tp tp-boost"><p class="tp-top"><i class="dot d-boost" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t4_n"></span></p><p class="tp-x" data-copy="dn_c5_t4_x"></p><p class="tp-e" data-copy="dn_c5_t4_e"></p></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="dn_c5_src"></p>
+          </div>
+        </section>
+    <section class="card c5 K K6 K6-3" data-card="6" data-part="3" data-size-only="kakao" aria-labelledby="dn-t5-k3">
+          <p class="wm wm6" aria-hidden="true"><span data-copy="dn_wm6"></span></p>
+          <div class="c5-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-row">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c5_kicker"></p>
+                <h2 class="q-title" id="dn-t5-k3" data-copy="dn_c5_q"></h2>
+                <p class="q-ans" data-copy="dn_c5_a"></p>
+              </div>
+              <figure class="dev-c dev-c5"><img class="dev" src="assets/dev/density.webp" data-alt="dn_alt_dev" alt="" width="365" height="936"></figure>
+            </div>
+            <div class="c5-mid">
+              <figure class="layers">
+                <img class="layers-art" src="assets/c6/layers.webp" alt="" aria-hidden="true" width="1000" height="668">
+                <img class="layers-hp" src="assets/c6/handpiece.webp" data-alt="dn_alt_hp" alt="" width="360" height="520">
+                <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="dn_c5_d_cool"></span></span>
+                <span class="ll l-bi" data-copy="dn_c5_d_bi"></span>
+                <span class="ll l-mono" data-copy="dn_c5_d_mono"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p1_t"></h3><p class="pt-d" data-copy="dn_c5_p1_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p2_t"></h3><p class="pt-d" data-copy="dn_c5_p2_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p3_t"></h3><p class="pt-d" data-copy="dn_c5_p3_d"></p></div></li>
+                <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="dn_c5_p4_t"></h3><p class="pt-d" data-copy="dn_c5_p4_d"></p></div></li>
+              </ol>
+            </div>
+            <div class="tips">
+              <h3 class="tips-t" data-copy="dn_c5_tips_t"></h3>
+              <ul class="tips-row">
+                <li class="tp tp-classic"><p class="tp-top"><i class="dot d-classic" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t1_n"></span></p><p class="tp-e" data-copy="dn_c5_t1_e"></p></li>
+                <li class="tp tp-high"><p class="tp-top"><i class="dot d-high" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t2_n"></span></p><p class="tp-e" data-copy="dn_c5_t2_e"></p></li>
+                <li class="tp tp-alpha"><p class="tp-top"><i class="dot d-alpha" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t3_n"></span></p><p class="tp-x" data-copy="dn_c5_t3_x"></p><p class="tp-e" data-copy="dn_c5_t3_e"></p></li>
+                <li class="tp tp-boost"><p class="tp-top"><i class="dot d-boost" aria-hidden="true"></i><span class="tp-n" data-copy="dn_c5_t4_n"></span></p><p class="tp-x" data-copy="dn_c5_t4_x"></p><p class="tp-e" data-copy="dn_c5_t4_e"></p></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="dn_c5_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:6 -->
 
     <!-- 7 / 8 : the treatment day (who it is for, four steps, treatment info). Round photo = layout reference of the team model G in a
          different pose and expression from the hero (v4/density12/gen/day-1104.json); the lead replaces this photo file at the same path and ratio. -->
-    <section class="card c6" data-card="7" aria-labelledby="dn-t6">
+    <section class="card c6" data-card="7" aria-labelledby="dn-t6" data-size-hide="line kakao">
       <p class="wm wm7" aria-hidden="true"><span data-copy="dn_wm7"></span></p>
       <div class="c6-in">
         <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -331,9 +1513,190 @@
         <p class="src" data-copy="dn_c6_src"></p>
       </div>
     </section>
+    <!-- SZ:line:7 -->
+    <!-- 7: part 1 photo + question + who + steps 1-2, part 2 the title + steps 3-4 + infos, tip, source -->
+    <section class="card c6 L L7 L7-1" data-card="7" data-part="1" data-size-only="line" aria-labelledby="dn-t6-l1">
+          <p class="wm wm7" aria-hidden="true"><span data-copy="dn_wm7"></span></p>
+          <div class="c6-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c6-headrow">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c6_kicker"></p>
+                <h2 class="q-title" id="dn-t6-l1" data-copy="dn_c6_q"></h2>
+                <p class="q-ans" data-copy="dn_c6_a"></p>
+              </div>
+              <figure class="c6-photo"><img class="model-photo" src="assets/model-day.jpg?v=1104a" data-alt="dn_alt_c6" alt="" width="640" height="640"></figure>
+            </div>
+            <div class="who">
+              <p class="who-lbl" data-copy="dn_c6_who_lbl"></p>
+              <ul class="who-row">
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w1_k"></span><span class="who-v" data-copy="dn_c6_w1_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w2_k"></span><span class="who-v" data-copy="dn_c6_w2_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w3_k"></span><span class="who-v" data-copy="dn_c6_w3_v"></span></li>
+              </ul>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s1_t"></h3><p class="st-d" data-copy="dn_c6_s1_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s2_t"></h3><p class="st-d" data-copy="dn_c6_s2_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-mask.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s3_t"></h3><p class="st-d" data-copy="dn_c6_s3_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-heart.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s4_t"></h3><p class="st-d" data-copy="dn_c6_s4_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i1_k"></span><span class="inf-v" data-copy="dn_c6_i1_v"></span><span class="inf-n" data-copy="dn_c6_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i2_k"></span><span class="inf-v" data-copy="dn_c6_i2_v"></span><span class="inf-n" data-copy="dn_c6_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i3_k"></span><span class="inf-v" data-copy="dn_c6_i3_v"></span><span class="inf-n" data-copy="dn_c6_i3_n"></span></li>
+            </ul>
+            <p class="c6-tip"><img class="tip-ast" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"><span data-copy="dn_c6_tip"></span></p>
+            <p class="src" data-copy="dn_c6_src"></p>
+          </div>
+        </section>
+    <section class="card c6 L L7 L7-2" data-card="7" data-part="2" data-size-only="line" aria-labelledby="dn-t6-l2">
+          <p class="wm wm7" aria-hidden="true"><span data-copy="dn_wm7"></span></p>
+          <div class="c6-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c6-headrow">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c6_kicker"></p>
+                <h2 class="q-title" id="dn-t6-l2" data-copy="dn_c6_q"></h2>
+                <p class="q-ans" data-copy="dn_c6_a"></p>
+              </div>
+              <figure class="c6-photo"><img class="model-photo" src="assets/model-day.jpg?v=1104a" data-alt="dn_alt_c6" alt="" width="640" height="640"></figure>
+            </div>
+            <div class="who">
+              <p class="who-lbl" data-copy="dn_c6_who_lbl"></p>
+              <ul class="who-row">
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w1_k"></span><span class="who-v" data-copy="dn_c6_w1_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w2_k"></span><span class="who-v" data-copy="dn_c6_w2_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w3_k"></span><span class="who-v" data-copy="dn_c6_w3_v"></span></li>
+              </ul>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s1_t"></h3><p class="st-d" data-copy="dn_c6_s1_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s2_t"></h3><p class="st-d" data-copy="dn_c6_s2_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-mask.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s3_t"></h3><p class="st-d" data-copy="dn_c6_s3_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-heart.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s4_t"></h3><p class="st-d" data-copy="dn_c6_s4_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i1_k"></span><span class="inf-v" data-copy="dn_c6_i1_v"></span><span class="inf-n" data-copy="dn_c6_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i2_k"></span><span class="inf-v" data-copy="dn_c6_i2_v"></span><span class="inf-n" data-copy="dn_c6_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i3_k"></span><span class="inf-v" data-copy="dn_c6_i3_v"></span><span class="inf-n" data-copy="dn_c6_i3_n"></span></li>
+            </ul>
+            <p class="c6-tip"><img class="tip-ast" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"><span data-copy="dn_c6_tip"></span></p>
+            <p class="src" data-copy="dn_c6_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:7 -->
+    <!-- SZ:kakao:7 -->
+    <!-- 7: part 1 photo + question + who, part 2 the four steps, part 3 infos, tip, source -->
+    <section class="card c6 K K7 K7-1" data-card="7" data-part="1" data-size-only="kakao" aria-labelledby="dn-t6-k1">
+          <p class="wm wm7" aria-hidden="true"><span data-copy="dn_wm7"></span></p>
+          <div class="c6-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c6-headrow">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c6_kicker"></p>
+                <h2 class="q-title" id="dn-t6-k1" data-copy="dn_c6_q"></h2>
+                <p class="q-ans" data-copy="dn_c6_a"></p>
+              </div>
+              <figure class="c6-photo"><img class="model-photo" src="assets/model-day.jpg?v=1104a" data-alt="dn_alt_c6" alt="" width="640" height="640"></figure>
+            </div>
+            <div class="who">
+              <p class="who-lbl" data-copy="dn_c6_who_lbl"></p>
+              <ul class="who-row">
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w1_k"></span><span class="who-v" data-copy="dn_c6_w1_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w2_k"></span><span class="who-v" data-copy="dn_c6_w2_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w3_k"></span><span class="who-v" data-copy="dn_c6_w3_v"></span></li>
+              </ul>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s1_t"></h3><p class="st-d" data-copy="dn_c6_s1_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s2_t"></h3><p class="st-d" data-copy="dn_c6_s2_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-mask.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s3_t"></h3><p class="st-d" data-copy="dn_c6_s3_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-heart.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s4_t"></h3><p class="st-d" data-copy="dn_c6_s4_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i1_k"></span><span class="inf-v" data-copy="dn_c6_i1_v"></span><span class="inf-n" data-copy="dn_c6_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i2_k"></span><span class="inf-v" data-copy="dn_c6_i2_v"></span><span class="inf-n" data-copy="dn_c6_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i3_k"></span><span class="inf-v" data-copy="dn_c6_i3_v"></span><span class="inf-n" data-copy="dn_c6_i3_n"></span></li>
+            </ul>
+            <p class="c6-tip"><img class="tip-ast" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"><span data-copy="dn_c6_tip"></span></p>
+            <p class="src" data-copy="dn_c6_src"></p>
+          </div>
+        </section>
+    <section class="card c6 K K7 K7-2" data-card="7" data-part="2" data-size-only="kakao" aria-labelledby="dn-t6-k2">
+          <p class="wm wm7" aria-hidden="true"><span data-copy="dn_wm7"></span></p>
+          <div class="c6-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c6-headrow">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c6_kicker"></p>
+                <h2 class="q-title" id="dn-t6-k2" data-copy="dn_c6_q"></h2>
+                <p class="q-ans" data-copy="dn_c6_a"></p>
+              </div>
+              <figure class="c6-photo"><img class="model-photo" src="assets/model-day.jpg?v=1104a" data-alt="dn_alt_c6" alt="" width="640" height="640"></figure>
+            </div>
+            <div class="who">
+              <p class="who-lbl" data-copy="dn_c6_who_lbl"></p>
+              <ul class="who-row">
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w1_k"></span><span class="who-v" data-copy="dn_c6_w1_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w2_k"></span><span class="who-v" data-copy="dn_c6_w2_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w3_k"></span><span class="who-v" data-copy="dn_c6_w3_v"></span></li>
+              </ul>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s1_t"></h3><p class="st-d" data-copy="dn_c6_s1_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s2_t"></h3><p class="st-d" data-copy="dn_c6_s2_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-mask.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s3_t"></h3><p class="st-d" data-copy="dn_c6_s3_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-heart.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s4_t"></h3><p class="st-d" data-copy="dn_c6_s4_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i1_k"></span><span class="inf-v" data-copy="dn_c6_i1_v"></span><span class="inf-n" data-copy="dn_c6_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i2_k"></span><span class="inf-v" data-copy="dn_c6_i2_v"></span><span class="inf-n" data-copy="dn_c6_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i3_k"></span><span class="inf-v" data-copy="dn_c6_i3_v"></span><span class="inf-n" data-copy="dn_c6_i3_n"></span></li>
+            </ul>
+            <p class="c6-tip"><img class="tip-ast" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"><span data-copy="dn_c6_tip"></span></p>
+            <p class="src" data-copy="dn_c6_src"></p>
+          </div>
+        </section>
+    <section class="card c6 K K7 K7-3" data-card="7" data-part="3" data-size-only="kakao" aria-labelledby="dn-t6-k3">
+          <p class="wm wm7" aria-hidden="true"><span data-copy="dn_wm7"></span></p>
+          <div class="c6-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c6-headrow">
+              <div class="q-head">
+                <p class="kicker" data-copy="dn_c6_kicker"></p>
+                <h2 class="q-title" id="dn-t6-k3" data-copy="dn_c6_q"></h2>
+                <p class="q-ans" data-copy="dn_c6_a"></p>
+              </div>
+              <figure class="c6-photo"><img class="model-photo" src="assets/model-day.jpg?v=1104a" data-alt="dn_alt_c6" alt="" width="640" height="640"></figure>
+            </div>
+            <div class="who">
+              <p class="who-lbl" data-copy="dn_c6_who_lbl"></p>
+              <ul class="who-row">
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w1_k"></span><span class="who-v" data-copy="dn_c6_w1_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w2_k"></span><span class="who-v" data-copy="dn_c6_w2_v"></span></li>
+                <li class="who-it"><span class="who-k" data-copy="dn_c6_w3_k"></span><span class="who-v" data-copy="dn_c6_w3_v"></span></li>
+              </ul>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s1_t"></h3><p class="st-d" data-copy="dn_c6_s1_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s2_t"></h3><p class="st-d" data-copy="dn_c6_s2_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-mask.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s3_t"></h3><p class="st-d" data-copy="dn_c6_s3_d"></p></div></li>
+              <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-heart.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="dn_c6_s4_t"></h3><p class="st-d" data-copy="dn_c6_s4_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i1_k"></span><span class="inf-v" data-copy="dn_c6_i1_v"></span><span class="inf-n" data-copy="dn_c6_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i2_k"></span><span class="inf-v" data-copy="dn_c6_i2_v"></span><span class="inf-n" data-copy="dn_c6_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="dn_c6_i3_k"></span><span class="inf-v" data-copy="dn_c6_i3_v"></span><span class="inf-n" data-copy="dn_c6_i3_n"></span></li>
+            </ul>
+            <p class="c6-tip"><img class="tip-ast" src="assets/dec/ast-ink.webp" alt="" aria-hidden="true"><span data-copy="dn_c6_tip"></span></p>
+            <p class="src" data-copy="dn_c6_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:7 -->
 
     <!-- 8 / 8 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12 / thermage12 / sofwave12) in this page's light tone -->
-    <section class="card c7" data-card="8" aria-labelledby="dn-t7">
+    <section class="card c7" data-card="8" aria-labelledby="dn-t7" data-size-hide="line kakao">
       <div class="cx-in">
         <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="bento">
@@ -402,6 +1765,356 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:8 -->
+    <!-- 8: part 1 the clinic introduction, part 2 directions, hours and booking -->
+    <section class="card c7 L L8 L8-1" data-card="8" data-part="1" data-size-only="line" aria-labelledby="dn-t7-l1">
+          <div class="cx-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="dn_ab_kicker"></p>
+                    <h2 class="ab-title" id="dn-t7-l1" data-copy="dn_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="dn_ab_intro1"></span><span data-copy="dn_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="dn_ab_dr_name"></span><span class="dr-quote" data-copy="dn_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="dn_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="dn_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="dn_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="dn_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="dn_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s1_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s2_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s3_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s4_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="dn_ab_loc"></p><h3 class="bt-t" data-copy="dn_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="dn_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="dn_ab_way_station"></span><span class="way-line" data-copy="dn_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="dn_ab_way_addr"></span><span class="way-desk"><span data-copy="dn_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="dn_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="dn_ab_h1"></li><li data-copy="dn_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="dn_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="dn_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr" alt="" width="424" height="424"><figcaption data-copy="dn_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="dn_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="dn_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="dn_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="bk-mark wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c7 L L8 L8-2" data-card="8" data-part="2" data-size-only="line" aria-labelledby="dn-t7-l2">
+          <div class="cx-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="dn_ab_kicker"></p>
+                    <h2 class="ab-title" id="dn-t7-l2" data-copy="dn_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="dn_ab_intro1"></span><span data-copy="dn_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="dn_ab_dr_name"></span><span class="dr-quote" data-copy="dn_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="dn_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="dn_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="dn_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="dn_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="dn_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s1_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s2_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s3_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s4_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="dn_ab_loc"></p><h3 class="bt-t" data-copy="dn_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="dn_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="dn_ab_way_station"></span><span class="way-line" data-copy="dn_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="dn_ab_way_addr"></span><span class="way-desk"><span data-copy="dn_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="dn_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="dn_ab_h1"></li><li data-copy="dn_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="dn_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="dn_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr" alt="" width="424" height="424"><figcaption data-copy="dn_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="dn_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="dn_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="dn_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="bk-mark wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:8 -->
+    <!-- SZ:kakao:8 -->
+    <section class="card c7 K K8 K8-1" data-card="8" data-part="1" data-size-only="kakao" aria-labelledby="dn-t7-k1">
+          <div class="cx-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="dn_ab_kicker"></p>
+                    <h2 class="ab-title" id="dn-t7-k1" data-copy="dn_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="dn_ab_intro1"></span><span data-copy="dn_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="dn_ab_dr_name"></span><span class="dr-quote" data-copy="dn_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="dn_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="dn_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="dn_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="dn_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="dn_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s1_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s2_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s3_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s4_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="dn_ab_loc"></p><h3 class="bt-t" data-copy="dn_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="dn_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="dn_ab_way_station"></span><span class="way-line" data-copy="dn_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="dn_ab_way_addr"></span><span class="way-desk"><span data-copy="dn_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="dn_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="dn_ab_h1"></li><li data-copy="dn_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="dn_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="dn_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr" alt="" width="424" height="424"><figcaption data-copy="dn_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="dn_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="dn_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="dn_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="bk-mark wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c7 K K8 K8-2" data-card="8" data-part="2" data-size-only="kakao" aria-labelledby="dn-t7-k2">
+          <div class="cx-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="dn_ab_kicker"></p>
+                    <h2 class="ab-title" id="dn-t7-k2" data-copy="dn_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="dn_ab_intro1"></span><span data-copy="dn_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="dn_ab_dr_name"></span><span class="dr-quote" data-copy="dn_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="dn_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="dn_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="dn_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="dn_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="dn_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s1_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s2_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s3_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s4_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="dn_ab_loc"></p><h3 class="bt-t" data-copy="dn_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="dn_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="dn_ab_way_station"></span><span class="way-line" data-copy="dn_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="dn_ab_way_addr"></span><span class="way-desk"><span data-copy="dn_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="dn_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="dn_ab_h1"></li><li data-copy="dn_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="dn_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="dn_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr" alt="" width="424" height="424"><figcaption data-copy="dn_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="dn_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="dn_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="dn_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="bk-mark wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c7 K K8 K8-3" data-card="8" data-part="3" data-size-only="kakao" aria-labelledby="dn-t7-k3">
+          <div class="cx-in">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="dn_ab_kicker"></p>
+                    <h2 class="ab-title" id="dn-t7-k3" data-copy="dn_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="dn_ab_intro1"></span><span data-copy="dn_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="dn_ab_dr_name"></span><span class="dr-quote" data-copy="dn_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="dn_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="dn_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="dn_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="dn_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="dn_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="dn_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s1_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s2_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s3_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="dn_ab_s4_t"></span><i class="dots-line" aria-hidden="true"></i></span><span class="ad" data-copy="dn_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="dn_ab_loc"></p><h3 class="bt-t" data-copy="dn_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="dn_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="dn_ab_way_station"></span><span class="way-line" data-copy="dn_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="dn_ab_way_addr"></span><span class="way-desk"><span data-copy="dn_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="dn_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="dn_ab_h1"></li><li data-copy="dn_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="dn_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="dn_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="dn_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="dn_alt_qr" alt="" width="424" height="424"><figcaption data-copy="dn_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="dn_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="dn_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="dn_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="bk-mark wordmark" src="assets/logo-wordmark-632713.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:8 -->
 
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="dn-notes">

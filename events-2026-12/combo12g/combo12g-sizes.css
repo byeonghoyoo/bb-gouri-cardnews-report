@@ -1,0 +1,158 @@
+/* generated from v4/combo12g/sizes/sizes.css by v4/combo12g/sizes/inject-sizes.cjs, edit that file */
+/* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) for CMB12G (combo12g). Becomes site/combo12g/combo12g-sizes.css
+   (inject-sizes.cjs), linked after combo12g.css on this page only: combo12g.css comes from the template shared with CMB12F and stays as the build
+   writes it. Every rule is inside main.bx. home 1080x1350 = combo12g.css, unchanged. line 1100x1000 and kakao 800x600 are new compositions of
+   the same elements and copy keys in size-only sections (v4/combo12g/sizes/line.html, kakao.html from gen-sizes.cjs); nothing is cropped or
+   scaled down from the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size. Fixed screens: plain px. */
+html[data-size="line"] main.bx{max-width:none;width:1100px}
+html[data-size="kakao"] main.bx{max-width:none;width:800px}
+html[data-size="line"] main.bx .sheet,html[data-size="kakao"] main.bx .sheet{--px:1px}
+html[data-size="line"] main.bx section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] main.bx section.card{width:800px;height:600px;aspect-ratio:auto}
+main.bx [data-size-only]{display:none!important}
+html[data-size="line"] main.bx [data-size-only~="line"],html[data-size="kakao"] main.bx [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] main.bx [data-size-hide~="line"],html[data-size="kakao"] main.bx [data-size-hide~="kakao"]{display:none!important}
+/* the hero model as a person cutout (v4/combo12g/a/cut/hero-a.png; its bottom and the lowest part of its left side are cut flat, so it stands
+   on the bottom-left corner) on the card colour, under the shade, the frame and the words like the home photo */
+main.bx .sz-model{position:absolute;z-index:0;left:0;bottom:0;display:block;width:auto;max-width:none;height:auto;pointer-events:none}
+
+/* ==================== LINE 1100 x 1000 ==================== */
+/* 1 A: the model on the left, the price box and the hook on the right inside the frame, the title over the shade, the band */
+html[data-size="line"] main.bx .L1a .sz-model{height:900px}
+html[data-size="line"] main.bx .L1a .h-shade{top:560px;height:440px}
+html[data-size="line"] main.bx .L1a .f-hero{left:60px;right:60px;top:110px;height:600px;bottom:auto}
+html[data-size="line"] main.bx .L1a .h-glint{top:84px}
+html[data-size="line"] main.bx .L1a .h-disc{top:610px}
+html[data-size="line"] main.bx .c1-top{top:44px}
+html[data-size="line"] main.bx .L1a .ca{top:170px;right:90px}
+html[data-size="line"] main.bx .L1a .cb{top:440px;right:80px}
+html[data-size="line"] main.bx .L1a .h-title{top:716px}
+html[data-size="line"] main.bx .c1 .band{top:938px}
+/* 1 B: the title on top, the price box and the hook on the left, the framed photo on the right */
+html[data-size="line"] main.bx .L1b .h-title{top:110px}
+html[data-size="line"] main.bx .L1b .c1-photo{inset:330px 64px auto auto;width:450px;height:560px}
+html[data-size="line"] main.bx .L1b .f-hero{left:60px;right:60px;top:90px;height:820px;bottom:auto}
+html[data-size="line"] main.bx .L1b .ca{top:360px}
+html[data-size="line"] main.bx .L1b .cb{top:580px}
+html[data-size="line"] main.bx .L1b .h-glint{top:96px}
+html[data-size="line"] main.bx .L1b .h-disc{top:760px;left:90px}
+/* 2 A / 3: two parts each by product group; 2 B: one card, the nine tiles three across */
+html[data-size="line"] main.bx .L2b .b-price-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* 5: the photo row then the four steps; part 2 = the notes, care and the sources */
+html[data-size="line"] main.bx .L52 .infos{margin-top:30px}
+/* 6: two parts. part 1 = about over the hours as one wide strip; part 2 = location (map left) over booking */
+html[data-size="line"] main.bx .L6 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="line"] main.bx .L61 .bt-about{grid-column:1;grid-row:1}
+html[data-size="line"] main.bx .L61 .ab-photos{height:220px}
+html[data-size="line"] main.bx .L61 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k h" "t h" "n h";grid-template-rows:auto auto 1fr;column-gap:44px;align-content:center;padding:22px 32px}
+html[data-size="line"] main.bx .L61 .bt-hours .bt-k{grid-area:k}
+html[data-size="line"] main.bx .L61 .bt-hours .bt-t{grid-area:t}
+html[data-size="line"] main.bx .L61 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="line"] main.bx .L61 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="line"] main.bx .L62 .bento{grid-template-rows:minmax(0,1fr) auto}
+html[data-size="line"] main.bx .L62 .bt-loc{grid-column:1;grid-row:1;display:grid;grid-template-columns:470px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:36px;padding:24px 32px}
+html[data-size="line"] main.bx .L62 .loc-body{display:contents}
+html[data-size="line"] main.bx .L62 .map{grid-column:1;grid-row:1 / 3;width:470px}
+html[data-size="line"] main.bx .L62 .loc-head{grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;padding-top:8px}
+html[data-size="line"] main.bx .L62 .way2{grid-column:2;grid-row:2;align-self:end;margin:0 0 8px}
+html[data-size="line"] main.bx .L62 .bt-book{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k row" "t row" "mk row";grid-template-rows:auto auto 1fr;column-gap:44px;padding:24px 32px}
+html[data-size="line"] main.bx .L62 .bt-book .bt-k{grid-area:k}
+html[data-size="line"] main.bx .L62 .bt-book .bt-t{grid-area:t}
+html[data-size="line"] main.bx .L62 .bk-row{grid-area:row;margin-top:0;grid-template-columns:170px minmax(0,1fr);gap:28px}
+html[data-size="line"] main.bx .L62 .bt-book > .wordmark{grid-area:mk;align-self:end;justify-self:start;margin:0}
+
+/* ==================== KAKAO 800 x 600 ==================== */
+html[data-size="kakao"] main.bx .cp-in,html[data-size="kakao"] main.bx .cx-in{padding:24px 40px 22px}
+html[data-size="kakao"] main.bx .f-card{left:16px;top:16px;right:16px;bottom:16px}
+html[data-size="kakao"] main.bx .c1-top{top:26px;right:40px}
+/* 1 A: two parts. part 1 = the model, the frame and the title over the shade; part 2 = the price box, the hook and the band */
+html[data-size="kakao"] main.bx .K1a1 .sz-model{height:580px}
+html[data-size="kakao"] main.bx .K1a1 .h-shade{top:290px;height:310px}
+html[data-size="kakao"] main.bx .K1a .f-hero{left:24px;right:24px;top:70px;height:470px;bottom:auto}
+html[data-size="kakao"] main.bx .K1a1 .h-glint{top:84px;right:60px}
+html[data-size="kakao"] main.bx .K1a1 .h-title{left:40px;right:40px;top:330px}
+html[data-size="kakao"] main.bx .K1a2 .ca{left:60px;right:auto;top:150px;width:360px}
+html[data-size="kakao"] main.bx .K1a2 .cb{left:auto;right:60px;top:180px;width:300px}
+html[data-size="kakao"] main.bx .K1a2 .h-disc{left:auto;right:120px;top:380px}
+html[data-size="kakao"] main.bx .c1 .band{left:40px;right:40px;top:548px}
+/* 1 B: two parts. part 1 = the title on top, the price box on the left, the framed photo on the right; part 2 = the hook and the band */
+html[data-size="kakao"] main.bx .K1b .f-hero{left:24px;right:24px;top:70px;height:470px;bottom:auto}
+html[data-size="kakao"] main.bx .K1b1 .h-title{left:40px;right:40px;top:80px}
+html[data-size="kakao"] main.bx .K1b1 .ca{left:40px;top:310px;width:380px}
+html[data-size="kakao"] main.bx .K1b1 .c1-photo{inset:300px 40px auto auto;width:300px;height:280px}
+html[data-size="kakao"] main.bx .K1b1 .h-glint{left:auto;right:44px;top:200px;width:80px}
+html[data-size="kakao"] main.bx .K1b2 .cb{left:60px;top:200px;width:440px}
+html[data-size="kakao"] main.bx .K1b2 .h-disc{left:auto;right:110px;top:220px}
+/* 2 A / 3: parts by product group in sheet order; part 1 has the full head, the others the title only; the 49% line on the last part of card 2 */
+html[data-size="kakao"] main.bx .cp .cp-head{margin-top:14px;max-width:none}
+html[data-size="kakao"] main.bx .cp .cp-mini .p-title{margin-top:0}
+html[data-size="kakao"] main.bx .cp .pboard,html[data-size="kakao"] main.bx .cp .b-price-grid{margin-top:18px}
+html[data-size="kakao"] main.bx .K2a .prod-h{padding:8px 0 2px}
+html[data-size="kakao"] main.bx .K2a .prow{padding-top:8px;padding-bottom:7px}
+/* text snaps to whole pixels: on card 3 part 3 the gift tag and its line sat half a pixel apart; the board half a pixel lower lines them up */
+html[data-size="kakao"] main.bx .K33 .pboard{margin-top:18.5px}
+html[data-size="kakao"] main.bx .cp .vat{padding-top:8px}
+html[data-size="kakao"] main.bx .uibeop{left:40px;bottom:28px}
+html[data-size="kakao"] main.bx .cp .p-snow{right:28px;bottom:22px;width:36px}
+/* 4: three parts. part 1 = the question and kinds 1-2; part 2 = kinds 3-5; part 3 = the title, how to read shots and kJ, the sources */
+html[data-size="kakao"] main.bx .xa .q-head{margin-top:14px}
+html[data-size="kakao"] main.bx .xa .q-mini .q-title{margin-top:0}
+html[data-size="kakao"] main.bx .K4 .kinds{margin-top:18px}
+html[data-size="kakao"] main.bx .K4 .kinds.k5 .kd-tx{grid-template-columns:210px minmax(0,1fr)}
+html[data-size="kakao"] main.bx .K41 .x-disc{right:40px;top:30px;width:90px}
+html[data-size="kakao"] main.bx .K43 .pick{margin-top:24px}
+/* 5: three parts. part 1 = the question with the photo and steps 1-2; part 2 = steps 3-4 and the notes; part 3 = the title, care, sources */
+html[data-size="kakao"] main.bx .K51 .xb-headrow{grid-template-columns:minmax(0,1fr) 220px;margin-top:6px}
+html[data-size="kakao"] main.bx .K51 .xb-photo{width:220px}
+html[data-size="kakao"] main.bx .K51 .steps,html[data-size="kakao"] main.bx .K52 .steps{margin-top:18px}
+html[data-size="kakao"] main.bx .K53 .q-head{margin-top:14px}
+html[data-size="kakao"] main.bx .K53 .q-mini .q-title{margin-top:0}
+html[data-size="kakao"] main.bx .K53 .care{margin-top:22px}
+/* 6: three parts. part 1 = about intro, the director and the photos; part 2 = strengths + hours; part 3 = location | booking */
+html[data-size="kakao"] main.bx .K6 .cx-in{padding:22px 30px 20px}
+html[data-size="kakao"] main.bx .K6 .bento{margin-top:12px}
+html[data-size="kakao"] main.bx .K61 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] main.bx .K61 .bt-about{display:flex;flex-direction:column;padding:20px 26px}
+html[data-size="kakao"] main.bx .K61 .ab-top{grid-template-columns:minmax(0,1fr) 206px;grid-template-rows:auto auto;column-gap:16px}
+html[data-size="kakao"] main.bx .K61 .dr{display:contents}
+html[data-size="kakao"] main.bx .K61 .ab-intro{grid-column:1;grid-row:1;padding:0 0 10px}
+html[data-size="kakao"] main.bx .K61 .dr-tx{grid-column:1;grid-row:2;text-align:left;padding:0 0 6px}
+html[data-size="kakao"] main.bx .K61 .dr-img{grid-column:2;grid-row:1 / 3;align-self:end}
+html[data-size="kakao"] main.bx .K61 .ab-photos{flex:1 1 auto;height:auto;min-height:140px}
+html[data-size="kakao"] main.bx .K62 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="kakao"] main.bx .K62 .bt-str{grid-column:1;grid-row:1;padding:20px 26px 22px}
+html[data-size="kakao"] main.bx .K62 .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+html[data-size="kakao"] main.bx .K62 .dots{display:none}
+html[data-size="kakao"] main.bx .K62 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:210px minmax(0,1fr);grid-template-areas:"k h" "t h" ". n";column-gap:30px;align-content:center}
+html[data-size="kakao"] main.bx .K62 .bt-hours .bt-k{grid-area:k}
+html[data-size="kakao"] main.bx .K62 .bt-hours .bt-t{grid-area:t}
+html[data-size="kakao"] main.bx .K62 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="kakao"] main.bx .K62 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="kakao"] main.bx .K63 .bento{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] main.bx .K63 .bt-loc{grid-column:1;grid-row:1}
+html[data-size="kakao"] main.bx .K63 .bt-book{grid-column:2;grid-row:1}
+html[data-size="kakao"] main.bx .K63 .map{width:100%}
+html[data-size="kakao"] main.bx .K63 .bk-row{flex:none;grid-template-columns:124px minmax(0,1fr);grid-template-areas:"qr links" "ph ph";row-gap:12px;align-items:center}
+html[data-size="kakao"] main.bx .K63 .bk-text{display:contents}
+html[data-size="kakao"] main.bx .K63 .qr{grid-area:qr}
+html[data-size="kakao"] main.bx .K63 .bk-links{grid-area:links}
+html[data-size="kakao"] main.bx .K63 .bk-phone{grid-area:ph;margin-top:0}
+html[data-size="kakao"] main.bx .K63 .bt-book > .wordmark{margin:auto 0 0 auto}
+/* ==== tc-fix: text snaps to whole pixels, so a few chips need their text or box moved at their size-card position (generated from
+   v4/combo12g/sizes/tcfix.json by the text-centre fixer; same box size within 1px) ==== */
+html[data-size="line"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] span.pchip[data-copy="c7_r106_chip"]{padding-top:1.40px;padding-bottom:0.00px}
+html[data-size="line"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] p.gift span.nw{position:relative;top:0.68px}
+html[data-size="line"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] span.gift-tag[data-copy="c7_gift_tag"]{padding-top:3.15px;padding-bottom:0.45px;margin-top:0px;margin-bottom:1px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="1"] span.otag[data-copy="c7_r100_tag"]{padding-top:2.03px;padding-bottom:2.33px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] span.pchip[data-copy="c7_r103_chip"]{padding-top:1.40px;padding-bottom:0.00px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.period[data-copy="c7_period"]{padding-top:6.70px;padding-bottom:10.70px;margin-top:1px;margin-bottom:0px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pt-cont[data-copy="c7_p_cont"]{padding-top:3.60px;padding-bottom:3.60px;margin-top:0px;margin-bottom:1px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pchip[data-copy="c7_r106_chip"]{padding-top:3.40px;padding-bottom:1.00px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.gift-tag[data-copy="c7_gift_tag"]{padding-top:3.15px;padding-bottom:0.45px;margin-top:1px;margin-bottom:0px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="6"]:not([data-variant])[data-part="1"] figcaption[data-copy="c7_ab_ph1"]{padding-top:3.66px;padding-bottom:5.74px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="6"]:not([data-variant])[data-part="1"] figcaption[data-copy="c7_ab_ph2"]{padding-top:3.66px;padding-bottom:5.74px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="6"]:not([data-variant])[data-part="1"] figcaption[data-copy="c7_ab_ph3"]{padding-top:3.66px;padding-bottom:5.74px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="6"]:not([data-variant])[data-part="3"] span.way-line[data-copy="c7_ab_way_line"]{padding-top:3.06px;padding-bottom:2.54px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] p.gift [data-copy="c7_gift_tag"]{position:relative;top:-0.49px}
+html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pchip[data-copy="c7_r105_chip"]{padding-top:2.40px;padding-bottom:1.00px}
+/* ==== /tc-fix ==== */

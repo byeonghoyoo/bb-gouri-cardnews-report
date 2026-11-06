@@ -694,3 +694,195 @@ a[data-link="phone"]{white-space:nowrap}
   .c4-photo{width:72px;height:90px}
   .c4-photo > img:first-child{border-radius:36px 36px 4px 4px}
 }
+
+/* ===== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md): ?size=line 1100x1000, ?size=kakao 800x600, home 1080x1350 unchanged.
+   Size mode is a fixed screen (the board draws it at 1440px and wider): no vw or screen-width media queries below. --px is 1px, so every
+   calc(N*var(--px)) keeps its 1080-design pixel size (text never smaller than the home design). The home cards are hidden in the sizes
+   (data-size-hide); every card is redrawn as size sections (v4/thermage12/sizes/line.html, kakao.html -> v4/events/tools/channel-sizes/inject.cjs)
+   on the same elements and copy keys; cards that do not fit are split into parts (data-part). ===== */
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+html[data-size="line"] main.tm{max-width:none;width:1100px}
+html[data-size="kakao"] main.tm{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] .notes,html[data-size="kakao"] .notes{display:none}
+/* ---------- LINE 1100x1000 ---------- */
+/* THM12 LINE 1100x1000 (2026-11-06, v4/events/CHANNEL_SIZES_20261106.md). Size sections are clones of the home cards (.L + .L<key>, parts .L<n>-<part>);
+   --px is 1px, so every home size stays; only position, width, wrapping, columns and parts change here. */
+/* 1A: the clean lavender set, the model cutout (person + velvet ribbon) right with bottom and right on the card edges, the script word over the
+   ribbon loop, the plum label box bottom left over her lower body (as at home) */
+html[data-size="line"] .L1a{background:var(--wall) var(--set-clean) center top/cover no-repeat}
+html[data-size="line"] .L1a .c1-photo{display:none}
+html[data-size="line"] .L1a .sz-hero{position:absolute;z-index:2;right:0;bottom:0;display:block;width:auto;height:960px;max-width:none;pointer-events:none}
+html[data-size="line"] .L1a .c1-top{left:56px;top:46px}
+html[data-size="line"] .L1a .c1-script{left:293px;right:0;top:150px}
+html[data-size="line"] .L1a .c1-box{left:56px;bottom:44px;transform:none}
+/* 1B: the plum panel left (500 as at home), the photo right in its frame (cover, as at home), the bow on the seam, the script over the photo */
+html[data-size="line"] .L1b .hb-ph{left:500px;width:600px}
+html[data-size="line"] .L1b .hb-head{margin-top:70px}
+html[data-size="line"] .L1b .hb-script{left:500px;right:0;top:110px;text-align:center}
+/* 2A: two parts in sheet order: 1 = the head with the model + 단독, 2 = the title head + 울써마지 + 소프써마지 + 의료법상 줄 + VAT */
+html[data-size="line"] .L2a .pboard{flex:none}
+html[data-size="line"] .L2a.L2-1 .g-ul,html[data-size="line"] .L2a.L2-1 .g-sf,html[data-size="line"] .L2a.L2-1 .uibeop,html[data-size="line"] .L2a.L2-1 .vat{display:none}
+html[data-size="line"] .L2a.L2-1 .c2-head{margin-top:90px}
+html[data-size="line"] .L2a.L2-1 .pboard{margin-top:40px}
+html[data-size="line"] .L2a.L2-2 .g-solo,html[data-size="line"] .L2a.L2-2 .c2-cut{display:none}
+html[data-size="line"] .L2a.L2-2 .c2-head{margin-top:40px;min-height:0}
+html[data-size="line"] .L2a.L2-2 .pboard{margin-top:36px}
+html[data-size="line"] .L2a.L2-2 .vat{margin-top:6px}
+/* part 2 uses the clean set: the bow of bg/bow.jpg would sit under the title once the model head is gone */
+html[data-size="line"] .L2a.L2-2{background-image:var(--set-clean)}
+/* 2B: the same split; the bands keep their own height */
+html[data-size="line"] .L2b .band{flex:none}
+html[data-size="line"] .L2b.L2-1 .g-ul,html[data-size="line"] .L2b.L2-1 .g-sf,html[data-size="line"] .L2b.L2-1 .c2b-foot{display:none}
+html[data-size="line"] .L2b.L2-1 .c2b-head{margin-top:80px;min-height:300px}
+html[data-size="line"] .L2b.L2-1 .bands{flex:none;margin-top:40px}
+html[data-size="line"] .L2b.L2-2 .g-solo,html[data-size="line"] .L2b.L2-2 .c2b-cut,html[data-size="line"] .L2b.L2-2 .c2b-bow{display:none}
+html[data-size="line"] .L2b.L2-2 .c2b-head{margin-top:30px;min-height:0;padding-left:0;justify-content:center}
+html[data-size="line"] .L2b.L2-2 .bands{flex:none;margin-top:30px}
+/* 3 B/A: the two pairs one above the other, photos smaller (no text inside the photos changes) */
+html[data-size="line"] .L3 .bb-ba__rows{width:640px;margin:20px auto 0;gap:20px}
+/* 4: part 1 question + cross-section + points; part 2 question title + device comparison + source */
+html[data-size="line"] .L4-1 .cmp,html[data-size="line"] .L4-1 .src{display:none}
+html[data-size="line"] .L4-1 .c3-mid{margin-top:44px}
+html[data-size="line"] .L4-2 .c3-mid,html[data-size="line"] .L4-2 .q-ans{display:none}
+html[data-size="line"] .L4-2 .cmp{margin-top:60px}
+/* 5: part 1 photo + question + steps 1-2; part 2 title + steps 3-4 + the three infos, tip and source */
+html[data-size="line"] .L5 .steps{flex:none;align-content:start}
+html[data-size="line"] .L5-1 .st:nth-child(n+3),html[data-size="line"] .L5-1 .infos,html[data-size="line"] .L5-1 .c4-tip,html[data-size="line"] .L5-1 .src{display:none}
+html[data-size="line"] .L5-1 .c4-headrow{margin-top:40px}
+html[data-size="line"] .L5-1 .steps{margin-top:40px;gap:30px}
+html[data-size="line"] .L5-1 .steps::before{bottom:auto;height:180px}
+html[data-size="line"] .L5-2 .st:nth-child(-n+2),html[data-size="line"] .L5-2 .c4-photo,html[data-size="line"] .L5-2 .q-ans{display:none}
+html[data-size="line"] .L5-2 .c4-headrow{grid-template-columns:minmax(0,1fr)}
+html[data-size="line"] .L5-2 .steps{margin-top:30px;gap:24px}
+html[data-size="line"] .L5-2 .steps::before{display:none}
+html[data-size="line"] .L5-2 .infos{margin-top:34px}
+/* 6 clinic: part 1 the introduction, part 2 directions, hours and booking */
+html[data-size="line"] .L6-1 .bt-loc,html[data-size="line"] .L6-1 .bt-hours,html[data-size="line"] .L6-1 .bt-book{display:none}
+html[data-size="line"] .L6-1 .bento{grid-template-rows:auto;align-content:start;margin-top:40px}
+html[data-size="line"] .L6-2 .bt-about{display:none}
+html[data-size="line"] .L6-2 .bento{grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+html[data-size="line"] .L6-2 .bt-loc{grid-row:1 / 3}
+html[data-size="line"] .L6-2 .bt-hours{grid-row:1}
+html[data-size="line"] .L6-2 .bt-book{grid-row:2}/* Text centring for the line positions (box-only nudges, see kakao.css) */
+html[data-size="line"] .L2a.L2-2 [data-copy="tm_r59_badge"]{padding-bottom:.96px!important;margin-bottom:1.26px}
+html[data-size="line"] .L2b.L2-1 [data-copy="tm_r51_badge"]{padding-bottom:3.55px!important;margin-bottom:-1.69px}
+html[data-size="line"] .L4-1 span.xl.xl-heat[data-copy="tm_c3_d_heat"]{padding-bottom:4.02px!important}
+html[data-size="line"] .L4-2 .cmp-it:nth-child(1) .cmp-t{padding-bottom:1.13px!important;margin-bottom:1.71px}
+/* ---------- /LINE ---------- */
+/* ---------- KAKAO 800x600 ---------- */
+/* THM12 KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). */
+html[data-size="kakao"] .K .c2-in,html[data-size="kakao"] .K .c2b-in,html[data-size="kakao"] .K .cba-in,html[data-size="kakao"] .K .c3-in,html[data-size="kakao"] .K .c4-in,html[data-size="kakao"] .K .cx-in{padding:22px 24px 18px}
+/* 1A: part 1 the model cutout right, the label box left (kicker, title on two lines, hook, period, contact); part 2 the script word and the whole box */
+html[data-size="kakao"] .K1a{background:var(--wall) var(--set-clean) center top/cover no-repeat}
+html[data-size="kakao"] .K1a .c1-photo{display:none}
+html[data-size="kakao"] .K1a .c1-top{left:24px;top:24px}
+html[data-size="kakao"] .K1a .sz-hero{position:absolute;z-index:2;right:0;bottom:0;display:block;width:auto;height:560px;max-width:none;pointer-events:none}
+html[data-size="kakao"] .K1-1.K1a .c1-script,html[data-size="kakao"] .K1-1.K1a .c1-price{display:none}
+html[data-size="kakao"] .K1-1.K1a .c1-box{left:24px;top:96px;bottom:auto;width:330px;transform:none}
+html[data-size="kakao"] .K1-1.K1a .hero-title .t2{display:block}
+html[data-size="kakao"] .K1-1.K1a .c1-foot{flex-direction:column;gap:10px}
+html[data-size="kakao"] .K1-2.K1a .hook{display:none}
+html[data-size="kakao"] .K1-2.K1a .c1-script{top:58px}
+html[data-size="kakao"] .K1-2.K1a .c1-box{bottom:24px}
+/* 1B: part 1 the panel with kicker, title and hook beside the photo (bow on the seam, the script over the photo); part 2 the panel across the card with
+   the device left and the price, period and contact right */
+html[data-size="kakao"] .K1b .hb-panel{width:470px;padding:24px 28px 22px}
+html[data-size="kakao"] .K1b .hb-ph{left:470px;width:330px}
+html[data-size="kakao"] .K1b .hb-bow{left:356px;top:14px}
+html[data-size="kakao"] .K1-1.K1b .hb-dev,html[data-size="kakao"] .K1-1.K1b .hb-price,html[data-size="kakao"] .K1-1.K1b .hb-foot{display:none}
+html[data-size="kakao"] .K1-1.K1b .hb-head{margin-top:200px}
+html[data-size="kakao"] .K1-1.K1b .hb-script{left:24px;right:auto;top:64px}
+html[data-size="kakao"] .K1-2.K1b .hb-head,html[data-size="kakao"] .K1-2.K1b .hb-script,html[data-size="kakao"] .K1-2.K1b .hb-ph,html[data-size="kakao"] .K1-2.K1b .hb-bow{display:none}
+html[data-size="kakao"] .K1-2.K1b .hb-panel{width:auto;right:0;display:grid;grid-template-columns:260px minmax(0,1fr);grid-template-rows:auto 1fr auto;column-gap:40px}
+html[data-size="kakao"] .K1-2.K1b .hb-top{grid-column:1 / -1}
+html[data-size="kakao"] .K1-2.K1b .hb-dev{grid-column:1;grid-row:2 / 4;margin:20px 0 0;height:440px}
+html[data-size="kakao"] .K1-2.K1b .hb-dev img{max-height:420px}
+html[data-size="kakao"] .K1-2.K1b .hb-price{grid-column:2;grid-row:2;align-self:end}
+html[data-size="kakao"] .K1-2.K1b .hb-foot{grid-column:2;grid-row:3}
+/* 2A: three parts: 1 the head (model small left, title + lead, devices) + 단독; 2 title + 울써마지; 3 title + 소프써마지 + 의료법상 줄 + VAT */
+/* the clean set: at 800x600 the bow of bg/bow.jpg would sit under the head text */
+html[data-size="kakao"] .K2a{background-image:var(--set-clean)}
+html[data-size="kakao"] .K2a .pboard{flex:none;width:auto;align-self:stretch;margin:10px 0 0;padding:4px 20px 10px}
+html[data-size="kakao"] .K2a .prow{grid-template-columns:minmax(0,1fr) 88px 136px;column-gap:10px}
+html[data-size="kakao"] .K2a .c2-head{margin-top:4px;min-height:0;grid-template-columns:180px minmax(0,1fr) 220px;align-items:center}
+html[data-size="kakao"] .K2a .p-mark{display:none}
+html[data-size="kakao"] .K2a .p-title{margin-top:0}
+html[data-size="kakao"] .K2a .c2-cut{left:4px;bottom:auto;top:0;height:300px}
+html[data-size="kakao"] .K2a .c2-dev{width:70px;height:140px}
+html[data-size="kakao"] .K2a.K2-1 .g-ul,html[data-size="kakao"] .K2a.K2-1 .g-sf,html[data-size="kakao"] .K2a.K2-1 .uibeop,html[data-size="kakao"] .K2a.K2-1 .vat{display:none}
+html[data-size="kakao"] .K2a.K2-2 .g-solo,html[data-size="kakao"] .K2a.K2-2 .g-sf,html[data-size="kakao"] .K2a.K2-2 .uibeop,html[data-size="kakao"] .K2a.K2-2 .vat{display:none}
+html[data-size="kakao"] .K2a.K2-3 .g-solo,html[data-size="kakao"] .K2a.K2-3 .g-ul{display:none}
+html[data-size="kakao"] .K2a.K2-2 .c2-cut,html[data-size="kakao"] .K2a.K2-3 .c2-cut,html[data-size="kakao"] .K2a.K2-2 .p-lead,html[data-size="kakao"] .K2a.K2-3 .p-lead{display:none}
+html[data-size="kakao"] .K2a.K2-2 .pgroup,html[data-size="kakao"] .K2a.K2-3 .pgroup{border-top:0}
+html[data-size="kakao"] .K2a.K2-3 .vat{margin-top:6px}
+/* 2B: the same three parts on the bands */
+html[data-size="kakao"] .K2b .band{flex:none;grid-template-columns:190px minmax(0,1fr)}
+html[data-size="kakao"] .K2b .bands{flex:none;margin-top:16px}
+html[data-size="kakao"] .K2b .brows{padding:4px 20px}
+html[data-size="kakao"] .K2b .c2b-head{margin-top:6px;min-height:0;padding-left:190px}
+html[data-size="kakao"] .K2b .c2b-mark,html[data-size="kakao"] .K2b .c2b-bow{display:none}
+html[data-size="kakao"] .K2b .c2b-cut{bottom:auto;top:2px;height:260px}
+html[data-size="kakao"] .K2b.K2-1 .g-ul,html[data-size="kakao"] .K2b.K2-1 .g-sf,html[data-size="kakao"] .K2b.K2-1 .c2b-foot{display:none}
+html[data-size="kakao"] .K2b.K2-2 .g-solo,html[data-size="kakao"] .K2b.K2-2 .g-sf,html[data-size="kakao"] .K2b.K2-2 .c2b-foot{display:none}
+html[data-size="kakao"] .K2b.K2-3 .g-solo,html[data-size="kakao"] .K2b.K2-3 .g-ul{display:none}
+html[data-size="kakao"] .K2b.K2-2 .c2b-cut,html[data-size="kakao"] .K2b.K2-3 .c2b-cut,html[data-size="kakao"] .K2b.K2-2 .c2b-bow,html[data-size="kakao"] .K2b.K2-3 .c2b-bow,html[data-size="kakao"] .K2b.K2-2 .c2b-lead,html[data-size="kakao"] .K2b.K2-3 .c2b-lead{display:none}
+html[data-size="kakao"] .K2b.K2-2 .c2b-head,html[data-size="kakao"] .K2b.K2-3 .c2b-head{padding-left:0}
+/* 3 B/A: one pair per part, the note on part 2 */
+html[data-size="kakao"] .K3 .bb-ba__eyebrow{margin-top:8px}
+html[data-size="kakao"] .K3 .bb-ba__rows{width:600px;margin:16px auto 0}
+html[data-size="kakao"] .K3-1 .bb-ba__row:last-child,html[data-size="kakao"] .K3-1 .bb-ba__note{display:none}
+html[data-size="kakao"] .K3-2 .bb-ba__row:first-child{display:none}
+/* 4: part 1 question + cross-section; part 2 the three points; part 3 the device comparison + source */
+html[data-size="kakao"] .K4 .q-head{margin-top:4px}
+html[data-size="kakao"] .K4-1 .points,html[data-size="kakao"] .K4-1 .cmp,html[data-size="kakao"] .K4-1 .src{display:none}
+html[data-size="kakao"] .K4-1 .c3-mid{margin-top:14px;grid-template-columns:300px;justify-content:center;padding:14px}
+html[data-size="kakao"] .K4-1 .xsec{width:300px}
+html[data-size="kakao"] .K4-2 .xsec,html[data-size="kakao"] .K4-2 .q-ans,html[data-size="kakao"] .K4-2 .kicker-script,html[data-size="kakao"] .K4-2 .cmp,html[data-size="kakao"] .K4-2 .src{display:none}
+html[data-size="kakao"] .K4-2 .c3-mid{margin-top:20px;grid-template-columns:minmax(0,1fr)}
+html[data-size="kakao"] .K4-2 .points{gap:26px}
+html[data-size="kakao"] .K4-3 .c3-mid,html[data-size="kakao"] .K4-3 .q-ans,html[data-size="kakao"] .K4-3 .kicker-script{display:none}
+html[data-size="kakao"] .K4-3 .cmp{margin-top:20px}
+html[data-size="kakao"] .K4-3 .cmp-row{width:auto}
+/* 5: part 1 photo + question + step 1; part 2 steps 2-3; part 3 step 4 + infos, tip, source */
+html[data-size="kakao"] .K5 .c4-headrow{margin-top:10px;grid-template-columns:150px minmax(0,1fr);column-gap:26px}
+html[data-size="kakao"] .K5 .c4-photo{width:150px;height:188px}
+html[data-size="kakao"] .K5 .steps{flex:none;grid-template-rows:none;grid-auto-rows:auto;align-content:start;margin-top:18px;gap:18px}
+html[data-size="kakao"] .K5 .steps::before{display:none}
+html[data-size="kakao"] .K5 .gsteps{flex-wrap:wrap}
+html[data-size="kakao"] .K5-1 .st:nth-child(n+2),html[data-size="kakao"] .K5-1 .infos,html[data-size="kakao"] .K5-1 .c4-tip,html[data-size="kakao"] .K5-1 .src{display:none}
+html[data-size="kakao"] .K5-2 .st:nth-child(1),html[data-size="kakao"] .K5-2 .st:nth-child(4),html[data-size="kakao"] .K5-2 .infos,html[data-size="kakao"] .K5-2 .c4-tip,html[data-size="kakao"] .K5-2 .src{display:none}
+html[data-size="kakao"] .K5-3 .st:nth-child(-n+3){display:none}
+html[data-size="kakao"] .K5-2 .c4-photo,html[data-size="kakao"] .K5-3 .c4-photo,html[data-size="kakao"] .K5-2 .q-ans,html[data-size="kakao"] .K5-3 .q-ans,html[data-size="kakao"] .K5-2 .kicker-script,html[data-size="kakao"] .K5-3 .kicker-script{display:none}
+html[data-size="kakao"] .K5-2 .c4-headrow,html[data-size="kakao"] .K5-3 .c4-headrow{grid-template-columns:minmax(0,1fr)}
+html[data-size="kakao"] .K5-3 .infos{margin-top:20px}
+/* 6 clinic: part 1 introduction + director; part 2 space photos + strengths; part 3 directions, hours, booking */
+html[data-size="kakao"] .K6-1 .ab-photos,html[data-size="kakao"] .K6-1 .ab-strengths,html[data-size="kakao"] .K6-1 .bt-loc,html[data-size="kakao"] .K6-1 .bt-hours,html[data-size="kakao"] .K6-1 .bt-book{display:none}
+html[data-size="kakao"] .K6-2 .ab-top,html[data-size="kakao"] .K6-2 .bt-loc,html[data-size="kakao"] .K6-2 .bt-hours,html[data-size="kakao"] .K6-2 .bt-book{display:none}
+html[data-size="kakao"] .K6-1 .bento,html[data-size="kakao"] .K6-2 .bento{grid-template-rows:auto;align-content:start}
+html[data-size="kakao"] .K6-1 .ab-top{grid-template-columns:minmax(0,1fr);row-gap:10px}
+html[data-size="kakao"] .K6-1 .dr{justify-self:end}
+html[data-size="kakao"] .K6-3 .bt-about{display:none}
+html[data-size="kakao"] .K6-3 .bento{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);grid-template-rows:auto auto;align-content:start}
+html[data-size="kakao"] .K6-3 .bt-loc{grid-row:1 / 3}
+html[data-size="kakao"] .K6-3 .bt-hours{grid-row:1}
+html[data-size="kakao"] .K6-3 .bt-book{grid-row:2}/* Text centring (qa/text-center-check.cjs, 1080-scale +-0.6 = +-0.44 real px at 800). Box-only nudges: the text stays where it is (it snaps to whole
+   px); the bottom padding moves the box edge and the margin keeps the layout. */
+html[data-size="kakao"] .K2a.K2-1 [data-copy="tm_r54_badge"]{padding-bottom:.44px!important;margin-bottom:1.69px}
+html[data-size="kakao"] .K2a.K2-3 [data-copy="tm_r58_badge"]{padding-bottom:.58px!important;margin-bottom:1.73px}
+html[data-size="kakao"] .K2b.K2-1 [data-copy="tm_r54_badge"]{padding-bottom:3.07px!important;margin-bottom:-.96px}
+html[data-size="kakao"] .K2b.K2-3 [data-copy="tm_r59_badge"]{padding-bottom:3.07px!important;margin-bottom:-.93px}
+html[data-size="kakao"] .K4-1 span.xl.xl-tip[data-copy="tm_c3_d_tip"]{padding-bottom:2.04px!important}
+html[data-size="kakao"] .K4-1 span.xl.xl-heat[data-copy="tm_c3_d_heat"]{padding-bottom:3.56px!important}
+html[data-size="kakao"] .K4-2 [data-copy="tm_c3_tip2_k"]{padding-bottom:3.22px!important;margin-bottom:-.96px}
+/* the shot chips centre their content (flex, min-height), so the text inside moves instead, as the home nudges do */
+/* text snaps to whole px, so the chip box moves .25px down and its text moves back by the same amount */
+html[data-size="kakao"] .K5-2 li.sh-it.pad,html[data-size="kakao"] .K5-2 li.sh-it.cool,html[data-size="kakao"] .K5-2 li.sh-it.heat{position:relative;top:.25px}
+html[data-size="kakao"] .K5-2 li.sh-it.pad > span{position:relative;top:-.25px}
+html[data-size="kakao"] .K5-2 li.sh-it.cool > span,html[data-size="kakao"] .K5-2 li.sh-it.heat > span{position:relative;top:calc(.03111em - .25px)}
+html[data-size="kakao"] .K6-3 .way-line{padding-bottom:1.32px!important;margin-bottom:1.48px}
+/* ---------- /KAKAO ---------- */

@@ -1,0 +1,178 @@
+/* generated from v4/combo12i/sizes/sizes.css by v4/combo12i/sizes/inject-sizes.cjs, edit that file */
+/* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) for CMB12I (combo12i). Becomes site/combo12i/combo12i-sizes.css
+   (inject-sizes.cjs), linked after combo12i.css on this page only (combo12i.css stays as it is; CMB12H keeps its own copy). Every rule is inside
+   main.b5. home 1080x1350 = combo12i.css, unchanged. line 1100x1000 and kakao 800x600 are new compositions of the same elements and copy keys
+   in size-only sections (v4/combo12i/sizes/line.html, kakao.html from gen-sizes.cjs); nothing is cropped or scaled down from the 1080x1350 card.
+   --px is 1px in both sizes, so every type size is at least the 1080 design size. Fixed screens: plain px. */
+html[data-size="line"] main.b5{max-width:none;width:1100px}
+html[data-size="kakao"] main.b5{max-width:none;width:800px}
+html[data-size="line"] main.b5 .sheet,html[data-size="kakao"] main.b5 .sheet{--px:1px}
+html[data-size="line"] main.b5 section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] main.b5 section.card{width:800px;height:600px;aspect-ratio:auto}
+main.b5 [data-size-only]{display:none!important}
+html[data-size="line"] main.b5 [data-size-only~="line"],html[data-size="kakao"] main.b5 [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] main.b5 [data-size-hide~="line"],html[data-size="kakao"] main.b5 [data-size-hide~="kakao"]{display:none!important}
+/* the hero model as a person cutout (v4/<slug>/a/cut/hero-a.png; its bottom and the lowest part of its right side are cut flat, so the flat right
+   side stays on the card edge or behind the band) on the card colour, like the home photo */
+main.b5 .sz-model{position:absolute;z-index:0;bottom:0;display:block;width:auto;max-width:none;height:auto;pointer-events:none}
+
+/* ==================== LINE 1100 x 1000 ==================== */
+/* 1 A: the title column on the left, the model in the middle, the band as a sidebar on the right (products over the teaser price) */
+html[data-size="line"] main.b5 .L1a .sz-model{right:200px;height:900px}
+html[data-size="line"] main.b5 .L1a .c1-left{top:100px}
+html[data-size="line"] main.b5 .L1a .band{left:auto;right:0;top:0;bottom:0;width:340px;height:auto;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:40px 30px}
+html[data-size="line"] main.b5 .L1a .band-prod{margin:0;padding:0;justify-content:center}
+html[data-size="line"] main.b5 .L1a .bp{--bph:210}
+html[data-size="line"] main.b5 .L1a .band-main{padding:0;gap:16px}
+html[data-size="line"] main.b5 .L1a .pill{white-space:normal}
+html[data-size="line"] main.b5 .L1a .gl2{left:380px;right:auto;top:470px}
+/* 4 tiles, 5 the day, 6 the clinic: two parts each */
+html[data-size="line"] main.b5 .L62 .infos{margin-top:30px}
+html[data-size="line"] main.b5 .cab .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="line"] main.b5 .L71 .bt-about{grid-column:1;grid-row:1}
+html[data-size="line"] main.b5 .L71 .ab-photos{height:220px}
+html[data-size="line"] main.b5 .L71 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k h" "t h" "n h";grid-template-rows:auto auto 1fr;column-gap:44px;align-content:center;padding:22px 32px}
+html[data-size="line"] main.b5 .L71 .bt-hours .bt-k{grid-area:k}
+html[data-size="line"] main.b5 .L71 .bt-hours .bt-t{grid-area:t}
+html[data-size="line"] main.b5 .L71 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="line"] main.b5 .L71 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="line"] main.b5 .L72 .bento{grid-template-rows:minmax(0,1fr) auto}
+html[data-size="line"] main.b5 .L72 .bt-loc{grid-column:1;grid-row:1;display:grid;grid-template-columns:470px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:36px;padding:24px 32px}
+html[data-size="line"] main.b5 .L72 .loc-body{display:contents}
+html[data-size="line"] main.b5 .L72 .map{grid-column:1;grid-row:1 / 3;width:470px}
+html[data-size="line"] main.b5 .L72 .loc-head{grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;padding-top:8px}
+html[data-size="line"] main.b5 .L72 .way2{grid-column:2;grid-row:2;align-self:end;margin:0 0 8px}
+html[data-size="line"] main.b5 .L72 .bt-book{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k row" "t row" "mk row";grid-template-rows:auto auto 1fr;column-gap:44px;padding:24px 32px}
+html[data-size="line"] main.b5 .L72 .bt-book .bt-k{grid-area:k}
+html[data-size="line"] main.b5 .L72 .bt-book .bt-t{grid-area:t}
+html[data-size="line"] main.b5 .L72 .bk-row{grid-area:row;margin-top:0;grid-template-columns:170px minmax(0,1fr);gap:28px}
+html[data-size="line"] main.b5 .L72 .bt-book > .wordmark{grid-area:mk;align-self:end;justify-self:start;margin:0}
+
+/* ==================== KAKAO 800 x 600 ==================== */
+html[data-size="kakao"] main.b5 .cp-in,html[data-size="kakao"] main.b5 .cx-in{padding:24px 40px 22px}
+html[data-size="kakao"] main.b5 .c1-top{left:40px;top:24px}
+/* 1 A: two parts. part 1 = the title column and the model; part 2 = the hook and the band (products and the teaser price) */
+html[data-size="kakao"] main.b5 .K1a1 .sz-model{right:0;height:560px}
+html[data-size="kakao"] main.b5 .K1a1 .c1-left{left:40px;top:64px}
+html[data-size="kakao"] main.b5 .K1a1 .gl1{left:380px;top:56px;width:100px}
+html[data-size="kakao"] main.b5 .K1a1 .gl2{right:20px;top:300px;width:90px}
+html[data-size="kakao"] main.b5 .K1a2 .c1-left{left:40px;top:92px;width:720px}
+html[data-size="kakao"] main.b5 .K1a2 .band{top:210px;height:390px;grid-template-columns:360px minmax(0,1fr);padding:0 40px 0 20px}
+html[data-size="kakao"] main.b5 .K1a2 .band-prod{margin-top:-56px;padding-bottom:30px}
+html[data-size="kakao"] main.b5 .K1a2 .bp{--bph:200}
+html[data-size="kakao"] main.b5 .K1a2 .pill{white-space:normal}
+/* price parts: part 1 has the full head, the others the title only; the 49% line on the last part of card 2 */
+html[data-size="kakao"] main.b5 .cp .cp-head{margin-top:14px;max-width:none}
+html[data-size="kakao"] main.b5 .cp .cp-mini .p-title{margin-top:0}
+html[data-size="kakao"] main.b5 .cp .pboard{margin-top:16px}
+/* the product groups keep the home row grid: a narrower name column and narrower price columns (the 1080 type sizes stay) */
+html[data-size="kakao"] main.b5 .cp .pg{grid-template-columns:250px minmax(0,1fr);column-gap:22px;padding:14px 22px 14px 20px}
+html[data-size="kakao"] main.b5 .cp .prow{grid-template-columns:minmax(70px,auto) minmax(0,1fr) 60px 150px;column-gap:8px}
+/* 2 B: the single product of parts 1 and 2 spans the card with its rows beside its name; part 3 keeps the two tiles side by side */
+html[data-size="kakao"] main.b5 .K2b1 .pboard,html[data-size="kakao"] main.b5 .K2b2 .pboard{grid-template-columns:1fr}
+html[data-size="kakao"] main.b5 .K2b1 .pg,html[data-size="kakao"] main.b5 .K2b2 .pg{display:grid;grid-template-columns:250px minmax(0,1fr);column-gap:22px;align-items:center;min-height:0;padding:20px 24px}
+html[data-size="kakao"] main.b5 .K2b3 .pg{min-height:0;padding:20px;gap:14px}
+html[data-size="kakao"] main.b5 .K2b .prow{grid-template-columns:1fr auto auto;min-height:0}
+html[data-size="kakao"] main.b5 .K2b .pboard{margin-top:16px;align-content:center}
+/* 4: three parts (the question and tile 1 | tiles 2-3 | tile 4 and the sources); 5: three parts; 6: three parts */
+html[data-size="kakao"] main.b5 .cx .q-head{margin-top:14px}
+html[data-size="kakao"] main.b5 .cx .q-mini .q-title{margin-top:0}
+html[data-size="kakao"] main.b5 .K61 .b-headrow{grid-template-columns:minmax(0,1fr) 240px}
+html[data-size="kakao"] main.b5 .K61 .b-photo{width:240px;height:300px}
+html[data-size="kakao"] main.b5 .K6 .steps{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}
+/* the steps are rows here: the icon beside the number, the name and the text */
+html[data-size="kakao"] main.b5 .K6 .st{display:grid;grid-template-columns:64px minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:16px;align-items:start;padding:18px 20px}
+html[data-size="kakao"] main.b5 .K6 .st-ico{grid-column:1;grid-row:1 / 4}
+html[data-size="kakao"] main.b5 .K6 .st-no,html[data-size="kakao"] main.b5 .K6 .st-t,html[data-size="kakao"] main.b5 .K6 .st-d{grid-column:2}
+html[data-size="kakao"] main.b5 .K6 .st-no{margin-top:0}
+html[data-size="kakao"] main.b5 .K63 .care{margin-top:22px}
+html[data-size="kakao"] main.b5 .K7 .cx-in{padding:22px 30px 20px}
+html[data-size="kakao"] main.b5 .K7 .bento{margin-top:12px}
+html[data-size="kakao"] main.b5 .K71 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] main.b5 .K71 .bt-about{display:flex;flex-direction:column;padding:20px 26px}
+html[data-size="kakao"] main.b5 .K71 .ab-top{grid-template-columns:minmax(0,1fr) 206px;grid-template-rows:auto auto;column-gap:16px}
+html[data-size="kakao"] main.b5 .K71 .dr{display:contents}
+html[data-size="kakao"] main.b5 .K71 .ab-intro{grid-column:1;grid-row:1;padding:0 0 10px}
+html[data-size="kakao"] main.b5 .K71 .dr-tx{grid-column:1;grid-row:2;text-align:left;padding:0 0 6px}
+html[data-size="kakao"] main.b5 .K71 .dr-img{grid-column:2;grid-row:1 / 3;align-self:end}
+html[data-size="kakao"] main.b5 .K71 .ab-photos{flex:1 1 auto;height:auto;min-height:140px}
+html[data-size="kakao"] main.b5 .K72 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="kakao"] main.b5 .K72 .bt-str{grid-column:1;grid-row:1;padding:20px 26px 22px}
+html[data-size="kakao"] main.b5 .K72 .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+html[data-size="kakao"] main.b5 .K72 .dots{display:none}
+html[data-size="kakao"] main.b5 .K72 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:210px minmax(0,1fr);grid-template-areas:"k h" "t h" ". n";column-gap:30px;align-content:center}
+html[data-size="kakao"] main.b5 .K72 .bt-hours .bt-k{grid-area:k}
+html[data-size="kakao"] main.b5 .K72 .bt-hours .bt-t{grid-area:t}
+html[data-size="kakao"] main.b5 .K72 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="kakao"] main.b5 .K72 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="kakao"] main.b5 .K73 .bento{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] main.b5 .K73 .bt-loc{grid-column:1;grid-row:1}
+html[data-size="kakao"] main.b5 .K73 .bt-book{grid-column:2;grid-row:1}
+html[data-size="kakao"] main.b5 .K73 .map{width:100%}
+html[data-size="kakao"] main.b5 .K73 .bk-row{flex:none;grid-template-columns:124px minmax(0,1fr);grid-template-areas:"qr links" "ph ph";row-gap:12px;align-items:center}
+html[data-size="kakao"] main.b5 .K73 .bk-text{display:contents}
+html[data-size="kakao"] main.b5 .K73 .qr{grid-area:qr}
+html[data-size="kakao"] main.b5 .K73 .bk-links{grid-area:links}
+html[data-size="kakao"] main.b5 .K73 .bk-phone{grid-area:ph;margin-top:0}
+html[data-size="kakao"] main.b5 .K73 .bt-book > .wordmark{margin:auto 0 0 auto}
+
+/* ==== CMB12I only ==== */
+/* 1 B (line): the device collage of the home card, a little tighter: the title, the pill, the two devices with the arch photo, the price card */
+html[data-size="line"] main.b5 .L1b .b1-in{padding:34px 56px 30px}
+html[data-size="line"] main.b5 .L1b .b1-head{margin-top:14px}
+html[data-size="line"] main.b5 .L1b .b1-stage{margin-top:14px;grid-template-columns:minmax(0,1fr) 230px}
+html[data-size="line"] main.b5 .L1b .b1-dv{height:230px}
+html[data-size="line"] main.b5 .L1b .b1-devs{padding-bottom:16px}
+html[data-size="line"] main.b5 .L1b .b1-arch{width:230px}
+html[data-size="line"] main.b5 .L1b .b1-info{margin-top:14px}
+/* 1 B (kakao): part 1 = the title and the pill; part 2 = the devices beside the arch photo, the price card */
+html[data-size="kakao"] main.b5 .K1b .b1-in{padding:24px 24px 22px}
+html[data-size="kakao"] main.b5 .K1b .top{padding:0 16px}
+html[data-size="kakao"] main.b5 .K1b1 .b1-head{margin-top:20px}
+html[data-size="kakao"] main.b5 .K1b1 .b1-stage{flex:none;margin-top:26px;display:flex;justify-content:center}
+html[data-size="kakao"] main.b5 .K1b2 .b1-stage{grid-template-columns:minmax(0,1fr) 220px;grid-template-rows:minmax(0,1fr);margin-top:14px;padding:0 16px}
+html[data-size="kakao"] main.b5 .K1b2 .b1-dv{height:230px}
+html[data-size="kakao"] main.b5 .K1b2 .b1-devs{padding-bottom:12px}
+html[data-size="kakao"] main.b5 .K1b2 .b1-arch{width:220px;align-self:end}
+html[data-size="kakao"] main.b5 .K1b2 .b1-info{margin:14px 16px 0;padding:18px 24px}
+html[data-size="kakao"] main.b5 .K1b2 .b1-gl1{right:40px;top:90px;width:90px}
+/* 5 how to choose (kakao): part 1 = the question and the two lasers; part 2 = the title, the toning band and the guide; part 3 = the title,
+   the skin check box and the sources */
+html[data-size="kakao"] main.b5 .K51 .devs{margin-top:16px}
+/* price heads in kakao: the two-line title would leave no room for the board, so on part 1 the lead stands beside the title (bottom-aligned) */
+html[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini){display:grid;grid-template-columns:448px minmax(0,1fr);grid-template-areas:"k k" "t l";column-gap:28px;align-items:end}
+/* card 3 and 4 titles carry the continued chip after their second line */
+html[data-size="kakao"] main.b5 .c3 .cp-head:not(.cp-mini),html[data-size="kakao"] main.b5 .c4 .cp-head:not(.cp-mini){grid-template-columns:552px minmax(0,1fr)}
+html[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini) .p-kick{grid-area:k}
+html[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini) .p-title{grid-area:t}
+html[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini) .p-lead{grid-area:l;margin:0 0 10px}
+/* rows a little tighter and the device photos of card 2 smaller (pictures only; the type stays at the 1080 sizes) */
+html[data-size="kakao"] main.b5 .cp .prow{padding-top:8px;padding-bottom:8px}
+html[data-size="kakao"] main.b5 .roomy .prow{padding-top:9px;padding-bottom:9px}
+html[data-size="kakao"] main.b5 .roomy .pg{padding-top:14px;padding-bottom:14px}
+html[data-size="kakao"] main.b5 .cp .pg-ph,html[data-size="kakao"] main.b5 .roomy .pg-ph{height:110px;margin-top:10px}
+html[data-size="kakao"] main.b5 .cp .pboard{align-content:start}
+/* 2 B tickets: a narrower stub, the three options keep their columns */
+html[data-size="kakao"] main.b5 .K2b .b2-tickets{margin-top:16px;grid-auto-rows:auto}
+html[data-size="kakao"] main.b5 .K2b .b2-tk{grid-template-columns:200px minmax(0,1fr)}
+html[data-size="kakao"] main.b5 .K2b .b2-stub{padding:18px 18px 0}
+html[data-size="kakao"] main.b5 .K2b .b2-ph,html[data-size="kakao"] main.b5 .K2b .b2-g2 .b2-ph{height:110px;padding-bottom:12px}
+html[data-size="kakao"] main.b5 .K2b .b2-o{padding:14px 8px;gap:8px}
+/* 5: four parts; each laser is a row (photo left, text right) */
+html[data-size="kakao"] main.b5 .K5 .devs{grid-template-columns:1fr}
+html[data-size="kakao"] main.b5 .K5 .dv{grid-template-columns:230px minmax(0,1fr);column-gap:26px;align-items:center}
+html[data-size="kakao"] main.b5 .K5 .dv-ph{height:220px}
+html[data-size="kakao"] main.b5 .K52 .devs{margin-top:16px}
+html[data-size="kakao"] main.b5 .K53 .guide,html[data-size="kakao"] main.b5 .K54 .dx{margin-top:22px}
+html[data-size="kakao"] main.b5 .K2b .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* ==== tc-fix: text snaps to whole pixels, so a few chips need their text or box moved at their size-card position (generated from
+   v4/combo12i/sizes/tcfix.json by the text-centre fixer; same box size) ==== */
+html[data-size="line"] main.b5 section[data-size-only][data-card="2"]:not([data-variant])[data-part="2"] span.pill-n[data-copy="c9_g2_head"]{padding-top:7.20px;padding-bottom:6.80px;line-height:32.25px;margin-bottom:1px}
+html[data-size="line"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="1"] span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:2.72px;padding-bottom:3.72px;line-height:21.15px;margin-bottom:1px}
+html[data-size="line"] main.b5 section[data-size-only][data-card="5"]:not([data-variant])[data-part="2"] div.dv3 span.nw{position:relative;top:0.85px}
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="2"]:not([data-variant])[data-part="2"] span.pill-n[data-copy="c9_g2_head"]{padding-top:7.20px;padding-bottom:6.80px;line-height:32.25px;margin-bottom:1px}
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="1"] span.pill-n[data-copy="c9_g3_head"]{padding-top:7.20px;padding-bottom:6.80px;line-height:32.25px;margin-bottom:1px}
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] span.pill-n[data-copy="c9_g4_head"]{padding-top:6.63px;padding-bottom:8.38px}
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pill-n[data-copy="c9_g5_head"]{padding-top:7.20px;padding-bottom:7.80px}
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="4"]:not([data-variant])[data-part="1"] span.pill-n[data-copy="c9_g6_head"]{padding-top:8.20px;padding-bottom:7.80px;line-height:30.25px;margin-top:1px}
+/* ==== /tc-fix ==== */

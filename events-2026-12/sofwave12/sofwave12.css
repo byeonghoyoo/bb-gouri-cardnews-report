@@ -709,3 +709,245 @@ main:has([data-card="1"]:not([data-variant="b"])):has([data-card="1"][data-varia
 @container (max-width:600px){
   .c5-headrow{grid-template-columns:minmax(0,1fr) 100px;column-gap:6px} /* keeps the 24px title on one line at 390 (was 120px / 10px) */
 }
+/* ===== SIZES START (generated from v4/sofwave12/sizes/sizes.css, do not edit here) ===== */
+/* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
+   ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
+   redrawn for the frame from the same copy keys, price rows and pictures (v4/sofwave12/sizes/line.html, kakao.html); nothing is cropped or
+   scaled down from the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size.
+   Card rules start with html[data-size]:not(#sz): the :not(#sz) part only lifts the weight so the size layout outranks the page's own
+   card rules (.c2v .vmenu ...); it matches every page. Source: v4/sofwave12/sizes/sizes.css, spliced into site/sofwave12/sofwave12.css
+   by v4/sofwave12/sizes/splice-css.cjs. ===== */
+html[data-size="line"] main.sw{max-width:none;width:1100px}
+html[data-size="kakao"] main.sw{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto;min-height:0;margin-bottom:0}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto;min-height:0;margin-bottom:0}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+html[data-size="home"] [data-size-only] section,
+html[data-size="line"] [data-size-only]:not([data-size-only~="line"]) section,html[data-size="kakao"] [data-size-only]:not([data-size-only~="kakao"]) section,
+html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] [data-size-hide~="kakao"] section{display:none!important}
+html[data-size]:not(#sz) .h-model{position:absolute;z-index:2;display:block;width:auto;max-width:none;pointer-events:none}
+
+/* ---------- LINE 1100x1000 ---------- */
+/* 1A: the whole hero photo (model with the water cards, flat cream) lower right on the same cream; title across the top, device left, info cards at the bottom */
+html[data-size]:not(#sz) .L1a .c1-photo{inset:auto;left:380px;top:100px;width:720px;height:900px}
+html[data-size]:not(#sz) .L1a .c1-dev{left:110px;right:auto;top:392px;bottom:auto;width:234px;height:470px}
+/* 1B: title block top left as home; the device stands left with the price card over its base, the framed model photo lower right */
+html[data-size]:not(#sz) .L1b .vb-dev{left:140px;top:410px;width:228px;height:459px}
+html[data-size]:not(#sz) .L1b .vb-frame{left:626px;top:322px;width:420px}
+html[data-size]:not(#sz) .L1b .vb-price{left:44px;top:800px}
+/* 2A: head row (device | Price + title on one line, lead under | the model cutout behind the board), the board in two columns:
+   rows 42-46 | the combo box 18-21, each row with its two prices stacked on the right */
+html[data-size]:not(#sz) .L2a .cp-in{padding:30px 44px 20px}
+html[data-size]:not(#sz) .L2a .c2-head{grid-template-columns:90px minmax(0,1fr) 280px;column-gap:12px;margin-top:12px;min-height:0}
+html[data-size]:not(#sz) .L2a .c2-devbox{width:74px;height:150px}
+html[data-size]:not(#sz) .L2a .c2-head .cp-htx{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:16px}
+html[data-size]:not(#sz) .L2a .p-lead{flex-basis:100%;margin-top:4px}
+html[data-size]:not(#sz) .L2a .c2-cut{right:6px;bottom:-120px;height:330px}
+html[data-size]:not(#sz) .L2a .pboard{margin-top:16px;padding:6px 10px;display:grid;grid-template-columns:552px minmax(0,1fr);column-gap:22px;align-items:start}
+html[data-size]:not(#sz) .L2a .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:16px 0 16px}
+html[data-size]:not(#sz) .L2a .prow .pn{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) .L2a .prow .plist{grid-column:2;grid-row:1;align-self:end;margin-bottom:4px}
+html[data-size]:not(#sz) .L2a .prow .psale{grid-column:2;grid-row:2;align-self:start}
+html[data-size]:not(#sz) .L2a .pgroup2{margin:0;padding:6px 14px 0}
+html[data-size]:not(#sz) .L2a .pgroup2 .pn{flex-wrap:wrap;row-gap:4px}
+html[data-size]:not(#sz) .L2a .pgroup2 .prow{padding:15px 0 15px}
+html[data-size]:not(#sz) .L2a .pname{white-space:normal}
+html[data-size]:not(#sz) .L2a .pchip{white-space:nowrap}
+html[data-size]:not(#sz) .L2a .c2-foot{padding-top:10px}
+/* 2B: the two menus side by side; the device pair moves up beside the combo name, tickets keep their own height */
+html[data-size]:not(#sz) .L2b .cp-in{padding:30px 44px 20px}
+html[data-size]:not(#sz) .L2b .vt-head{margin-top:8px}
+html[data-size]:not(#sz) .L2b .vmenus{margin-top:6px;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:22px}
+html[data-size]:not(#sz) .L2b .vm-head{min-height:0}
+html[data-size]:not(#sz) .L2b .vm2{position:relative}
+html[data-size]:not(#sz) .L2b .vm-pair{position:absolute;right:0;top:0;height:96px;margin:0;gap:12px}
+html[data-size]:not(#sz) .L2b .vm-pd{width:48px}
+html[data-size]:not(#sz) .L2b .vtk{flex:none;grid-auto-rows:auto;row-gap:8px;margin-top:8px}
+html[data-size]:not(#sz) .L2b .tk{padding:8px 16px 8px 18px}
+html[data-size]:not(#sz) .L2b .vt-foot{padding-top:10px}/* 3 B&A */
+html[data-size]:not(#sz) .L3 .cba-in{padding:36px 56px 26px}
+html[data-size]:not(#sz) .L3 .bb-ba__rows{margin:20px auto 0;width:680px;gap:20px}
+/* 4 in two parts: question, the skin section beside the four points | the two devices compared large; the picture/source note under both */
+html[data-size]:not(#sz) .L4 .c4-in{padding:32px 52px 22px}
+html[data-size]:not(#sz) .L4p1 .c4-mid{margin-top:22px}
+html[data-size]:not(#sz) .L4p1 .src{margin-top:auto;padding-top:10px}
+html[data-size]:not(#sz) .L4p1 .tp-5{left:16px;top:400px}
+html[data-size]:not(#sz) .L4p2 .cmp{margin:auto 0;padding-top:0}
+html[data-size]:not(#sz) .L4p2 .cmp-title{font-size:46px;line-height:1.2;letter-spacing:-.04em;color:var(--berry)}
+html[data-size]:not(#sz) .L4p2 .cmp-row{margin-top:34px;gap:28px}
+html[data-size]:not(#sz) .L4p2 .cmp-it{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;row-gap:22px;padding:32px 30px;border-radius:32px}
+html[data-size]:not(#sz) .L4p2 .cmp-dev{width:180px;height:362px}
+html[data-size]:not(#sz) .L4p2 .cmp-tx{align-items:center;gap:8px}
+html[data-size]:not(#sz) .L4p2 .cmp-t{font-size:19px}
+html[data-size]:not(#sz) .L4p2 .cmp-n{font-size:36px}
+html[data-size]:not(#sz) .L4p2 .cmp-d{font-size:24px}
+html[data-size]:not(#sz) .L4p2 .cmp-h{font-size:21px}
+html[data-size]:not(#sz) .L4p2 .tp-5{left:24px;top:auto;bottom:70px;width:250px;height:270px}
+/* 5: question with the photo, who, the four steps in one row, facts, tip, source (pictures and paddings tightened) */
+html[data-size]:not(#sz) .L5 .c5-in{padding:30px 52px 22px}
+html[data-size]:not(#sz) .L5 .c5-headrow{grid-template-columns:minmax(0,1fr) 300px;margin-top:0}
+html[data-size]:not(#sz) .L5 .c5-pics{height:300px}
+html[data-size]:not(#sz) .L5 .c5-photo{right:14px;top:4px;width:232px;height:290px}
+html[data-size]:not(#sz) .L5 .tp-6{left:0;top:56px;width:180px;height:220px}
+html[data-size]:not(#sz) .L5 .who{margin-top:10px}
+html[data-size]:not(#sz) .L5 .who-row{margin-top:8px}
+html[data-size]:not(#sz) .L5 .who-it{padding:12px 20px}
+html[data-size]:not(#sz) .L5 .steps{margin-top:12px;grid-template-columns:repeat(4,minmax(0,1fr))}
+html[data-size]:not(#sz) .L5 .st{padding:14px 20px 16px}
+html[data-size]:not(#sz) .L5 .infos{margin-top:12px}
+html[data-size]:not(#sz) .L5 .inf{padding:14px 20px 16px}
+html[data-size]:not(#sz) .L5 .c5-tip{padding-top:10px}
+html[data-size]:not(#sz) .L5 .src{margin-top:6px}/* 6 clinic intro in two parts (as OND12 / ULT5) */
+html[data-size]:not(#sz) .L6 .cx-in{padding:36px 48px 30px}
+html[data-size]:not(#sz) .L6 .bento{margin-top:22px}
+html[data-size]:not(#sz) .L6p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .L6p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:30px 36px}
+html[data-size]:not(#sz) .L6p1 .ab-title{font-size:44px}
+html[data-size]:not(#sz) .L6p1 .dr{grid-template-columns:250px 290px}
+html[data-size]:not(#sz) .L6p1 .ab-photos{height:350px;margin-top:4px}
+html[data-size]:not(#sz) .L6p1 .ab-strengths{margin-top:auto}
+html[data-size]:not(#sz) .L6p2 .bento{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);grid-template-rows:minmax(0,.78fr) minmax(0,1fr)}
+html[data-size]:not(#sz) .L6p2 .map{width:100%}
+html[data-size]:not(#sz) .L6p2 .loc-body{padding-top:18px}
+html[data-size]:not(#sz) .L6p2 .way{margin-top:18px}
+html[data-size]:not(#sz) .L6p2 .hrs{gap:14px}
+html[data-size]:not(#sz) .L6p2 .hrs li{font-size:25px}
+html[data-size]:not(#sz) .L6p2 .hrs-note{margin-top:18px;font-size:17px}
+html[data-size]:not(#sz) .L6p2 .bk-row{grid-template-columns:150px minmax(0,1fr);gap:22px}
+html[data-size]:not(#sz) .L6p2 .bk-links{font-size:20px}
+html[data-size]:not(#sz) .L6p2 .bk-phone{font-size:34px}
+html[data-size]:not(#sz) .L6p2 .bt-loc{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) .L6p2 .bt-hours{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) .L6p2 .bt-book{grid-column:2;grid-row:2}
+/* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by one pixel (or half, by growing one side) from its computed padding */
+html[data-size]:not(#sz) .L2a span.pchip[data-copy="sw_r19_detail"]{padding-top:3.194px!important;padding-bottom:1.926px!important}
+html[data-size]:not(#sz) .L2a span.badge[data-copy="sw_r20_badge"]{padding-top:4.2px!important;padding-bottom:0.92px!important}
+html[data-size]:not(#sz) .L2b span.ptag[data-copy="sw_r46_tag"]{padding-top:1.684px!important;padding-bottom:2.796px!important}
+html[data-size]:not(#sz) .L2b span.badge[data-copy="sw_r20_badge"]{padding-top:4.2px!important;padding-bottom:0.92px!important}
+html[data-size]:not(#sz) .L2b span.pchip[data-copy="sw_r20_detail"]{padding-top:4.304px!important;padding-bottom:0.816px!important}
+/* ---------- /LINE ---------- */
+
+/* ---------- KAKAO 800x600 ---------- */
+/* 1A: title across the top, the whole hero photo at the right on the same cream; price card left under the hook, the two info cards in one row
+   along the bottom (over the knit, as home), the device on the right water cards */
+html[data-size]:not(#sz) .K1a .c1-photo{inset:auto;left:432px;top:140px;width:368px;height:460px}
+html[data-size]:not(#sz) .K1a .c1-top{top:24px}
+html[data-size]:not(#sz) .K1a .c1-head{left:40px;right:40px;top:52px;align-items:flex-start;text-align:left}
+html[data-size]:not(#sz) .K1a .hook{max-width:380px}
+html[data-size]:not(#sz) .K1a .c1-dev{left:706px;right:auto;top:344px;bottom:auto;width:82px;height:165px}
+html[data-size]:not(#sz) .K1a .hpills{left:40px;right:auto;bottom:14px;grid-template-columns:max-content max-content;grid-template-areas:"p ." "a b";gap:8px}
+html[data-size]:not(#sz) .K1a .hp:nth-child(1){grid-area:p}
+html[data-size]:not(#sz) .K1a .hp:nth-child(2){grid-area:a}
+html[data-size]:not(#sz) .K1a .hp:nth-child(3){grid-area:b}
+html[data-size]:not(#sz) .K1a .hp-info{padding:10px 16px 11px}
+/* the pill is one pixel taller at the bottom so its text sits centred; the icon follows by half a pixel */
+html[data-size]:not(#sz) .K1a .hp-info .hp-ico{position:relative;top:.5px}
+html[data-size]:not(#sz) .K1a .hp-info .hp-tx{flex-direction:row;align-items:baseline;gap:10px}
+/* 1B: title block top left; period and contact in two rows under the hook, the price card under them, the device beside, the framed model at the right */
+html[data-size]:not(#sz) .K1b .vb-top{left:40px;top:20px}
+html[data-size]:not(#sz) .K1b .vb-head{left:40px;right:auto;width:620px;top:44px}
+html[data-size]:not(#sz) .K1b .vb-meta{flex-direction:column;flex-wrap:nowrap;gap:8px}
+html[data-size]:not(#sz) .K1b .vb-dev{left:400px;top:316px;width:132px;height:266px}
+html[data-size]:not(#sz) .K1b .vb-frame{left:568px;top:276px;width:204px}
+html[data-size]:not(#sz) .K1b .vb-price{left:40px;top:404px;width:340px}
+/* 2A in three parts: head + 42-44 | title + 45-46 | the combo box 18-21 with the note and the legal line */
+html[data-size]:not(#sz) .K2a .cp-in,html[data-size]:not(#sz) .K2b .cp-in{padding:22px 36px 14px}
+html[data-size]:not(#sz) .K2a .c2-head{grid-template-columns:80px minmax(0,1fr) 200px;column-gap:10px;margin-top:4px;min-height:0}
+html[data-size]:not(#sz) .K2a .c2-devbox{width:78px;height:158px}
+html[data-size]:not(#sz) .K2a .c2-cut{right:0;bottom:-96px;height:300px}
+html[data-size]:not(#sz) .K2ap2 .c2-head{display:block}
+html[data-size]:not(#sz) .K2a .pboard{margin-top:12px;padding:4px 28px}
+html[data-size]:not(#sz) .K2a .prow{padding:14px 0 12px}
+html[data-size]:not(#sz) .K2ap3 .pboard{margin-top:10px}
+html[data-size]:not(#sz) .K2a .pgroup2 .pn{flex-wrap:wrap;row-gap:4px}
+html[data-size]:not(#sz) .K2a .pgroup2 .prow{padding:8px 0 10px}
+html[data-size]:not(#sz) .K2ap3 .pgroup2 .prow{align-items:center;padding:6px 0 8px}
+/* centred rows: the 17px top margin puts the struck list price back on the sale price's baseline */
+html[data-size]:not(#sz) .K2ap3 .pgroup2 .plist{margin-top:17px}
+html[data-size]:not(#sz) .K2a .pname{white-space:normal}
+html[data-size]:not(#sz) .K2a .pchip{white-space:nowrap}
+/* 2B in four parts: one menu column; the device pair sits beside the combo name in part 3 */
+html[data-size]:not(#sz) .K2b .vt-head{margin-top:8px}
+html[data-size]:not(#sz) .K2b .vmenus{grid-template-columns:minmax(0,1fr);margin-top:8px}
+html[data-size]:not(#sz) .K2b .vm-head{min-height:0}
+html[data-size]:not(#sz) .K2b .vtk{flex:none;grid-auto-rows:auto;row-gap:8px;margin-top:8px}
+html[data-size]:not(#sz) .K2b .tk{padding:8px 18px 8px 20px}
+html[data-size]:not(#sz) .K2bp3 .vm2{position:relative}
+html[data-size]:not(#sz) .K2bp3 .vm-pair{position:absolute;right:0;top:0;height:96px;margin:0;gap:12px}
+html[data-size]:not(#sz) .K2bp3 .vm-pd{width:48px}/* 3 */
+html[data-size]:not(#sz) .K3 .cba-in{padding:22px 44px 16px}
+html[data-size]:not(#sz) .K3 .bb-ba__rows{margin:14px auto 0;width:640px}
+/* 4 in two parts: question + the four points (2 x 2) | the skin section beside the two devices compared, source */
+html[data-size]:not(#sz) .K4 .c4-in{padding:22px 40px 16px}
+html[data-size]:not(#sz) .K4p1 .q-ans{margin-top:8px}
+html[data-size]:not(#sz) .K4p1 .c4-mid{grid-template-columns:minmax(0,1fr);margin-top:14px}
+html[data-size]:not(#sz) .K4p1 .points{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+html[data-size]:not(#sz) .K4p1 .pt{padding:14px 18px 16px 16px}
+html[data-size]:not(#sz) .K4p1 .tp-5{left:12px;top:330px;width:190px;height:210px}
+html[data-size]:not(#sz) .K4p2 .c4-in{display:grid;grid-template-columns:390px minmax(0,1fr);grid-template-rows:auto auto auto;align-content:center;column-gap:20px}
+html[data-size]:not(#sz) .K4p2 .c4-in > .top{grid-column:1 / -1;align-self:start}
+html[data-size]:not(#sz) .K4p2 .c4-mid{grid-column:1;grid-row:2;display:block;margin-top:14px}
+html[data-size]:not(#sz) .K4p2 .cmp{grid-column:2;grid-row:2;margin-top:14px;padding-top:0}
+html[data-size]:not(#sz) .K4p2 .cmp-row{grid-template-columns:minmax(0,1fr);gap:10px}
+html[data-size]:not(#sz) .K4p2 .cmp-it{padding:10px 16px 10px 14px}
+html[data-size]:not(#sz) .K4p2 .src{grid-column:1 / -1;grid-row:3}
+html[data-size]:not(#sz) .K4p2 .tp-5{left:12px;top:300px;width:170px;height:200px}
+/* 5 in two parts: question, photo, who | the four steps (2 x 2), facts, tip, source */
+html[data-size]:not(#sz) .K5 .c5-in{padding:22px 40px 16px}
+html[data-size]:not(#sz) .K5p1 .c5-headrow{grid-template-columns:minmax(0,1fr) 216px;column-gap:12px;margin-top:4px}
+html[data-size]:not(#sz) .K5p1 .c5-pics{height:290px}
+html[data-size]:not(#sz) .K5p1 .c5-photo{right:6px;top:8px;width:200px;height:250px}
+html[data-size]:not(#sz) .K5p1 .tp-6{left:0;top:64px;width:130px;height:170px}
+html[data-size]:not(#sz) .K5p1 .who{margin-top:12px}
+html[data-size]:not(#sz) .K5p1 .who-it{padding:12px 16px}
+html[data-size]:not(#sz) .K5p2 .steps{margin-top:12px;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+html[data-size]:not(#sz) .K5p2 .st{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"num tx ico";align-items:start;column-gap:12px;padding:12px 16px 14px}
+html[data-size]:not(#sz) .K5p2 .st-num{padding-top:4px}
+html[data-size]:not(#sz) .K5p2 .infos{margin-top:10px;gap:10px}
+html[data-size]:not(#sz) .K5p2 .inf{padding:12px 16px 14px;gap:4px}
+html[data-size]:not(#sz) .K5p2 .c5-tip{padding-top:8px}
+html[data-size]:not(#sz) .K5p2 .src{margin-top:4px}/* 6 clinic intro in three parts (as OND12 / ULT5) */
+html[data-size]:not(#sz) .K6 .cx-in{padding:30px 44px 26px}
+html[data-size]:not(#sz) .K6 .bento{margin-top:16px}
+html[data-size]:not(#sz) .K6p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .K6p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:18px 22px}
+html[data-size]:not(#sz) .K6p1 .ab-top{grid-template-columns:minmax(0,1fr) 220px;grid-template-rows:auto auto auto auto;column-gap:16px;align-items:start}
+html[data-size]:not(#sz) .K6p1 .ab-intro,html[data-size]:not(#sz) .K6p1 .dr{display:contents}
+html[data-size]:not(#sz) .K6p1 .ab-intro .bt-k{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .K6p1 .ab-title{grid-column:1;grid-row:2;margin-top:6px}
+html[data-size]:not(#sz) .K6p1 .ab-lead{grid-column:1;grid-row:3;margin-top:10px}
+html[data-size]:not(#sz) .K6p1 .dr-tx{grid-column:1;grid-row:4;align-self:start;text-align:left;padding:14px 0 0}
+html[data-size]:not(#sz) .K6p1 .dr-quote{margin-top:4px}
+html[data-size]:not(#sz) .K6p1 .dr-img{grid-column:2;grid-row:1 / 5;align-self:end;width:220px}
+html[data-size]:not(#sz) .K6p1 .ab-photos{height:190px;margin-top:8px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.3fr)}
+html[data-size]:not(#sz) .K6p2 .bento{grid-template-columns:1fr;grid-template-rows:auto auto}
+html[data-size]:not(#sz) .K6p2 .bt-str{grid-column:1;grid-row:1;padding:18px 24px}
+html[data-size]:not(#sz) .K6p2 .bt-str .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 26px}
+html[data-size]:not(#sz) .K6p2 .bt-str .dots{display:none}
+html[data-size]:not(#sz) .K6p2 .bt-hours{grid-column:1;grid-row:2}
+html[data-size]:not(#sz) .K6p3 .bento{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size]:not(#sz) .K6p3 .bt-loc{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .K6p3 .bt-book{grid-column:2;grid-row:1}
+html[data-size]:not(#sz) .K6p3 .map{width:100%}
+html[data-size]:not(#sz) .K6p3 .bk-row{grid-template-columns:120px;grid-template-rows:auto auto;justify-items:start;align-content:center}
+/* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by one pixel (or half, by growing one side) from its computed padding */
+html[data-size]:not(#sz) .K1a .hp-info .hp-tx{padding-top:1px!important;padding-bottom:0px!important}
+html[data-size]:not(#sz) .K2ap2 span.ptag[data-copy="sw_r46_tag"]{padding-top:3.791px!important;padding-bottom:1.868px!important}
+html[data-size]:not(#sz) .K2ap3 span[data-copy="sw_g17_sub"]{padding-top:5.161px!important;padding-bottom:5.199px!important}
+html[data-size]:not(#sz) .K2ap3 span.pchip[data-copy="sw_r19_detail"]{padding-top:3.194px!important;padding-bottom:1.926px!important}
+html[data-size]:not(#sz) .K2ap3 span.badge[data-copy="sw_r20_badge"]{padding-top:4.2px!important;padding-bottom:0.92px!important}
+html[data-size]:not(#sz) .K2ap3 span.unit-k[data-copy="sw_p_unit_k"]{padding-top:4.74px!important;padding-bottom:3.42px!important}
+html[data-size]:not(#sz) .K2bp1 span.vb-period{padding-top:7.038px!important;padding-bottom:5.122px!important}
+html[data-size]:not(#sz) .K2bp2 span.ptag[data-copy="sw_r46_tag"]{padding-top:2.684px!important;padding-bottom:2.796px!important}
+html[data-size]:not(#sz) .K2bp3 span[data-copy="sw_g17_sub"]{padding-top:5.32px!important;padding-bottom:5.04px!important}
+html[data-size]:not(#sz) .K2bp4 span[data-copy="sw_g17_sub"]{padding-top:5.32px!important;padding-bottom:5.04px!important}
+html[data-size]:not(#sz) .K2bp4 span.badge[data-copy="sw_r20_badge"]{padding-top:4.2px!important;padding-bottom:0.92px!important}
+html[data-size]:not(#sz) .K2bp4 span.pchip[data-copy="sw_r20_detail"]{padding-top:4.304px!important;padding-bottom:0.816px!important}
+html[data-size]:not(#sz) .K4p2 span.ll.l-surface{padding-top:2.6px!important;padding-bottom:0.6px!important}
+html[data-size]:not(#sz) .K4p2 span.ll.l-fat{padding-top:3.184px!important;padding-bottom:2.136px!important}
+/* ---------- /KAKAO ---------- */
+/* ===================== /channel sizes ===================== */
+/* ===== SIZES END ===== */

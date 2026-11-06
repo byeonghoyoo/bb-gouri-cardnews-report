@@ -430,3 +430,196 @@ a[data-link="phone"]{white-space:nowrap}
 .c2[data-variant="b"] .prow{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"pn pn" "pl ps";gap:calc(10*var(--px));align-items:center;min-height:calc(200*var(--px));padding:calc(18*var(--px)) calc(24*var(--px));background:rgba(251,247,233,.94);border:1px solid rgba(40,40,40,.22);border-top:calc(4*var(--px)) solid var(--rose-d);border-radius:calc(12*var(--px))}.c2[data-variant="b"] .pn{grid-area:pn}.c2[data-variant="b"] .popt{font-size:calc(24*var(--px))}.c2[data-variant="b"] .plist{grid-area:pl;font-size:calc(21*var(--px));justify-self:start}.c2[data-variant="b"] .psale{grid-area:ps;font-size:calc(43*var(--px))}.c2[data-variant="b"] .band{height:calc(150*var(--px))}.c2[data-variant="b"] .uibeop{bottom:calc(12*var(--px))}
 .card[data-variant="b"]{margin-bottom:calc(round(down,calc(28*var(--px)),1px) - 28*var(--px))}
 @media(max-width:600px){.c1[data-variant="b"] .hero-tx{top:calc(160*var(--px))}.c1[data-variant="b"] .h-en{font-size:calc(115*var(--px))}.c1[data-variant="b"] .h-ko{font-size:calc(43*var(--px))}.c1[data-variant="b"] .hook{font-size:11px;line-height:1.4}.c1[data-variant="b"] .c1-photo{top:calc(480*var(--px));height:calc(550*var(--px))}.c1[data-variant="b"] .band-hero{height:calc(270*var(--px));padding:7px 10px}.c1[data-variant="b"] .band-offer{gap:0 4px}.c1[data-variant="b"] .tz-label,.c1[data-variant="b"] .tz-opt,.c1[data-variant="b"] .tz-tag,.c1[data-variant="b"] .tz-vat{font-size:10px}.c1[data-variant="b"] .tz-price{font-size:25px}.c1[data-variant="b"] .band-sm{font-size:10px}.c1[data-variant="b"] .band-sm span:first-child{font-size:10px}.c2[data-variant="b"] .head{grid-template-columns:65px 1fr;gap:5px 12px}.c2[data-variant="b"] .h-it{font-size:34px}.c2[data-variant="b"] .pt-main{font-size:18px}.c2[data-variant="b"] .pt-en{font-size:18px}.c2[data-variant="b"] .p-lead{font-size:11px}.c2[data-variant="b"] .prows{grid-template-columns:1fr;gap:9px}.c2[data-variant="b"] .prow{min-height:90px;padding:12px 16px}.c2[data-variant="b"] .popt{font-size:15px}.c2[data-variant="b"] .plist{font-size:13px}.c2[data-variant="b"] .psale{font-size:26px}.c2[data-variant="b"] .pg-name{font-size:17px}.c2[data-variant="b"] .band{height:auto;min-height:100px}.c2[data-variant="b"] .uibeop{bottom:6px;right:14px}}
+
+/* ===== SZ:css (generated from v4/ligament12/sizes/sizes.css by inject-sizes.cjs, edit that file) ===== */
+/* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md). home 1080x1350 = every rule above, unchanged. line 1100x1000 and kakao 800x600
+   are new compositions of the same elements and copy keys in size-only sections (v4/ligament12/sizes/line.html, kakao.html); nothing is cropped or
+   scaled down from the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size. Fixed screens: plain px,
+   no viewport units or width queries. */
+html[data-size="line"] main.lg{max-width:none;width:1100px}
+html[data-size="kakao"] main.lg{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+html[data-size="line"] .cp[data-size-only~="line"],html[data-size="line"] .cx[data-size-only~="line"],html[data-size="kakao"] .cp[data-size-only~="kakao"],html[data-size="kakao"] .cx[data-size-only~="kakao"]{display:flex!important}
+/* the group wrappers inside a card are <section> elements too: hide them with their card, so tools that look at the nearest section (price
+   coverage) see exactly the cards of the current size. No visual effect (their card is already display:none). */
+html[data-size="home"] [data-size-only] section,
+html[data-size="line"] [data-size-only]:not([data-size-only~="line"]) section,html[data-size="kakao"] [data-size-only]:not([data-size-only~="kakao"]) section,
+html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] [data-size-hide~="kakao"] section{display:none!important}
+/* the hero model as a person cutout (v4/ligament12/a/cut/hero-a.png; its right side and bottom are cut flat, so it sits on the card's right and bottom edges) */
+.sz-model{position:absolute;z-index:1;display:block;width:auto;max-width:none;height:auto;pointer-events:none}
+
+/* ==================== LINE 1100 x 1000 ==================== */
+/* 1 A: the studio backdrop with the model cutout on the right, the headline column on the left and the charcoal band as home */
+html[data-size="line"] .L1a .sz-model{right:0;bottom:0;height:910px}
+html[data-size="line"] .L1a .hero-tx{top:128px}
+/* 1 B: the editorial headline on the left, the portrait inset on the right (the whole head and hair inside the frame), the band as home */
+html[data-size="line"] .L1b .c1-photo{left:540px;top:70px;width:500px;height:612px;object-position:66% 22%}
+html[data-size="line"] .L1b .hero-tx{left:60px;top:156px;width:440px;text-align:left}
+html[data-size="line"] .L1b .h-en{white-space:normal}
+html[data-size="line"] .L1b .rule{margin:22px 0}
+html[data-size="line"] .L1b .hook{margin:18px 0 0}
+html[data-size="line"] .L1b .dk1{right:auto;left:466px;top:88px;width:84px}
+/* 2 A: two parts, the list look of home. part 1 = Volume Up (rows 6-9), part 2 = Regen (rows 10-11) and the 49% line */
+html[data-size="line"] .L2a .head,html[data-size="line"] .L3 .head{margin-top:16px}
+html[data-size="line"] .L2a .pboard,html[data-size="line"] .L3 .pboard{margin-top:18px}
+html[data-size="line"] .L2a2 .pboard,html[data-size="line"] .L3b .pboard{margin-top:auto;margin-bottom:auto}
+/* 2 B: one card, the tile look of home re-set four across (Regen two wide tiles) */
+html[data-size="line"] .L2b .head{margin-top:16px}
+html[data-size="line"] .L2b .pboard{margin-top:22px}
+html[data-size="line"] .L2b .prows{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+html[data-size="line"] .L2b .prows:last-child{grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-size="line"] .L2b .prow{min-height:150px;padding:18px 16px}
+/* 3: two parts. part 1 = Package (rows 12-15), part 2 = The Masterpiece (row 17) */
+/* 4: the two Before & After pairs as home, the shots smaller so both rows fit (shots stay square, whole photos) */
+html[data-size="line"] .L4 .bb-ba{padding:44px 60px 40px}
+html[data-size="line"] .L4 .bb-ba__title{margin-bottom:26px}
+html[data-size="line"] .L4 .bb-ba__pair{width:690px;margin:0 auto}
+html[data-size="line"] .L4 .bb-ba__row + .bb-ba__row{margin-top:22px}
+html[data-size="line"] .L4 .bb-ba__note{margin-top:22px}
+/* 5: two parts. part 1 = the question, the face diagram and the four ligaments; part 2 = the question and the three materials */
+html[data-size="line"] .L5 .head{margin-top:18px}
+html[data-size="line"] .L5a .c4-mid{grid-template-columns:440px minmax(0,1fr);column-gap:40px;margin-top:12px}
+html[data-size="line"] .L5a .face{width:440px}
+html[data-size="line"] .L5b .mat{margin:auto 0}
+html[data-size="line"] .L5b .mx{padding:26px 24px 28px}
+/* 6: two parts. part 1 = the question with the round photo and the four steps; part 2 = the question, method / numbing / back to daily life, time, care */
+html[data-size="line"] .L6a .steps{margin-top:36px}
+html[data-size="line"] .L6b .head{margin-top:18px}
+html[data-size="line"] .L6b .infos{margin-top:26px}
+/* 7: two parts. part 1 = about (photos taller) over the hours as one wide strip; part 2 = location (map left) over booking */
+html[data-size="line"] .L7 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="line"] .L7a .bt-about{padding:26px 32px 28px}
+html[data-size="line"] .L7a .ab-photos{height:236px}
+html[data-size="line"] .L7a .ab-strengths{margin-top:24px}
+html[data-size="line"] .L7a .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k h" "t h" "n h";grid-template-rows:auto auto 1fr;column-gap:44px;align-content:center;padding:22px 32px}
+html[data-size="line"] .L7a .bt-hours .bt-k{grid-area:k}
+html[data-size="line"] .L7a .bt-hours .bt-t{grid-area:t}
+html[data-size="line"] .L7a .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="line"] .L7a .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="line"] .L7b .bt-loc{grid-column:1;grid-row:1;display:grid;grid-template-columns:470px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:36px;padding:24px 32px}
+html[data-size="line"] .L7b .loc-body{display:contents}
+html[data-size="line"] .L7b .map{grid-column:1;grid-row:1 / 3;width:470px}
+html[data-size="line"] .L7b .loc-head{grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;padding-top:8px}
+html[data-size="line"] .L7b .way{grid-column:2;grid-row:2;align-self:end;margin:0 0 8px}
+html[data-size="line"] .L7b .bt-book{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k row" "t row" "mk row";grid-template-rows:auto auto 1fr;column-gap:44px;padding:24px 32px}
+html[data-size="line"] .L7b .bt-book .bt-k{grid-area:k}
+html[data-size="line"] .L7b .bt-book .bt-t{grid-area:t}
+html[data-size="line"] .L7b .bk-row{grid-area:row;margin-top:0;grid-template-columns:170px minmax(0,1fr);gap:28px}
+html[data-size="line"] .L7b .bk-mark{grid-area:mk;align-self:end;justify-self:start;margin-top:0}
+
+/* ==================== KAKAO 800 x 600 ==================== */
+html[data-size="kakao"] .K2a .cp-in,html[data-size="kakao"] .K2b .cp-in,html[data-size="kakao"] .K3 .cp-in,html[data-size="kakao"] .K5 .cx-body,html[data-size="kakao"] .K6 .cx-body{padding:24px 40px 16px}
+/* the charcoal band, shorter: serif line, thin rule, small line */
+html[data-size="kakao"] .K2a .band,html[data-size="kakao"] .K2b .band,html[data-size="kakao"] .K3 .band,html[data-size="kakao"] .K5 .band,html[data-size="kakao"] .K6 .band{height:auto;padding:16px 40px 14px}
+html[data-size="kakao"] .K2a .band-rule,html[data-size="kakao"] .K2b .band-rule,html[data-size="kakao"] .K3 .band-rule,html[data-size="kakao"] .K5 .band-rule,html[data-size="kakao"] .K6 .band-rule{margin:10px 0 9px}
+html[data-size="kakao"] .K2a .uibeop,html[data-size="kakao"] .K2b .uibeop{right:24px;bottom:12px}
+/* 1 A: two parts. part 1 = the poster (model cutout on the right, the headline column on the left); part 2 = the charcoal band as its own card */
+html[data-size="kakao"] .K1a1 .sz-model{right:0;bottom:0;height:590px}
+html[data-size="kakao"] .K1a .c1-top{left:40px;top:30px}
+html[data-size="kakao"] .K1a1 .hero-tx{left:40px;top:84px;width:420px}
+html[data-size="kakao"] .K1a1 .rule{margin:16px 0 14px}
+html[data-size="kakao"] .K1a1 .hook{margin-top:14px;width:400px}
+html[data-size="kakao"] .K1a1 .dk1{left:380px;top:66px}
+html[data-size="kakao"] .K1a2{background:var(--ink)}
+html[data-size="kakao"] .K1a2 .band-hero{top:0;height:100%;padding:40px 60px}
+html[data-size="kakao"] .K1a2 .band-rule{align-self:center;width:120px;margin:28px 0 30px}
+html[data-size="kakao"] .K1a2 .band-offer{margin-bottom:30px}
+html[data-size="kakao"] .K1a2 .dk1{left:auto;right:98px;top:112px;width:70px}
+/* 1 B: two parts. part 1 = the editorial headline over the band; part 2 = the landscape inset (the whole photo) with the serif line */
+html[data-size="kakao"] .K1b1 .hero-tx{left:36px;top:38px;width:728px}
+html[data-size="kakao"] .K1b1 .rule{margin:18px auto}
+html[data-size="kakao"] .K1b1 .hook{margin-top:14px}
+html[data-size="kakao"] .K1b1 .dk1{right:58px;top:34px;width:70px}
+html[data-size="kakao"] .K1b2 .c1-photo{left:40px;top:86px;width:720px;height:430px;object-position:65% 22%}
+html[data-size="kakao"] .K1b2 .c1-top{left:40px;top:34px}
+html[data-size="kakao"] .K1b2 .band-en{position:absolute;left:0;right:0;bottom:22px;text-align:center;color:var(--ink)}
+html[data-size="kakao"] .K1b2 .dk1{right:48px;top:66px;width:80px}
+/* 2 A: three parts, the list look of home. part 1 = the full head + rows 6-7; parts 2-3 = the title line + rows 8-9 / Regen rows 10-11, with the band */
+html[data-size="kakao"] .K2a1 .head,html[data-size="kakao"] .K2b1 .head,html[data-size="kakao"] .K3a .head{margin-top:12px}
+html[data-size="kakao"] .K2a1 .rule,html[data-size="kakao"] .K3a .rule{margin:14px 0 12px}
+html[data-size="kakao"] .head-mini{margin-top:12px}
+html[data-size="kakao"] .K2a .pboard,html[data-size="kakao"] .K3 .pboard{margin-top:14px;padding:10px 28px 4px}
+html[data-size="kakao"] .K2a .prow{padding:14px 0 13px}
+html[data-size="kakao"] .K2a2 .pboard,html[data-size="kakao"] .K2a3 .pboard,html[data-size="kakao"] .K3b .pboard,html[data-size="kakao"] .K3c .pboard{margin-top:auto;margin-bottom:auto}
+/* 2 B: three parts, the tile look of home (two tiles across) */
+html[data-size="kakao"] .K2b .pboard{margin-top:18px}
+html[data-size="kakao"] .K2b .prow{min-height:150px}
+html[data-size="kakao"] .K2b .prows{margin-bottom:0}
+html[data-size="kakao"] .K2b .head-mini{display:block}
+html[data-size="kakao"] .K2b .head-mini .p-title{flex-direction:row;align-items:baseline;gap:16px}
+html[data-size="kakao"] .K2b2 .pboard,html[data-size="kakao"] .K2b3 .pboard{margin-top:auto;margin-bottom:auto}
+/* 3: three parts. part 1 = the full head + rows 12-13; part 2 = the title line + rows 14-15; part 3 = The Masterpiece (row 17); narrower price columns */
+html[data-size="kakao"] .K3 .prow{grid-template-columns:minmax(0,1fr) 90px 130px}
+html[data-size="kakao"] .K3a .rule{margin:10px 0 8px}
+html[data-size="kakao"] .K3a .pgroup{padding:8px 0 6px}
+html[data-size="kakao"] .K3a .pboard{padding:8px 28px 2px}
+html[data-size="kakao"] .K3c .pg-head{white-space:normal;flex-wrap:wrap;row-gap:4px}
+html[data-size="kakao"] .K3c .pg-name{white-space:normal}
+/* 4: two parts, one Before & After pair each (front / 45 degrees), the AI note on both */
+html[data-size="kakao"] .K4 .bb-ba{padding:30px 40px 26px}
+html[data-size="kakao"] .K4 .bb-ba__title{margin-bottom:22px}
+html[data-size="kakao"] .K4 .bb-ba__pair{width:620px;margin:0 auto;gap:24px}
+html[data-size="kakao"] .K4 .bb-ba__note{margin-top:18px}
+/* 5: three parts. part 1 = the question and the four ligaments; part 2 = the face diagram; part 3 = the three materials with the band */
+html[data-size="kakao"] .K5 .head{margin-top:12px}
+html[data-size="kakao"] .K5a .lig{margin-top:16px}
+html[data-size="kakao"] .K5a .lig-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+html[data-size="kakao"] .K5a .lg-it:nth-last-child(2){border-bottom:0}
+html[data-size="kakao"] .K5b .c4-mid{grid-template-columns:420px minmax(0,1fr);column-gap:28px;margin-top:10px}
+html[data-size="kakao"] .K5b .face{width:420px}
+html[data-size="kakao"] .K5b .lig{align-self:center}
+html[data-size="kakao"] .K5c .mat{margin:auto 0}
+/* 6: three parts. part 1 = the question with the round photo + steps 1-2; part 2 = steps 3-4 + method / numbing / daily life; part 3 = time and care */
+html[data-size="kakao"] .K6a .c5-headrow{grid-template-columns:minmax(0,1fr) 200px;margin-top:10px}
+html[data-size="kakao"] .K6a .c5-photo{width:200px;height:200px}
+html[data-size="kakao"] .K6a .steps{margin-top:26px}
+html[data-size="kakao"] .K6b .steps{counter-reset:st 2;margin-top:16px}
+html[data-size="kakao"] .K6 .head-mini{margin-top:12px}
+html[data-size="kakao"] .K6c .c5-time{margin-top:24px}
+html[data-size="kakao"] .K6c .care{margin-top:26px}
+/* 7: three parts. part 1 = about intro, the director and the photos; part 2 = strengths + hours; part 3 = location | booking */
+html[data-size="kakao"] .K7 .cx-in{padding:22px 30px 20px}
+html[data-size="kakao"] .K7 .bento{margin-top:12px}
+html[data-size="kakao"] .K7a .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] .K7a .bt-about{display:flex;flex-direction:column;padding:20px 26px}
+html[data-size="kakao"] .K7a .ab-top{grid-template-columns:minmax(0,1fr) 206px;grid-template-rows:auto auto;column-gap:16px}
+html[data-size="kakao"] .K7a .dr{display:contents}
+html[data-size="kakao"] .K7a .ab-intro{grid-column:1;grid-row:1;padding:0 0 10px}
+html[data-size="kakao"] .K7a .dr-tx{grid-column:1;grid-row:2;text-align:left;padding:0 0 6px}
+html[data-size="kakao"] .K7a .dr-img{grid-column:2;grid-row:1 / 3;align-self:end}
+html[data-size="kakao"] .K7a .ab-photos{flex:1 1 auto;height:auto;min-height:140px}
+html[data-size="kakao"] .K7b .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="kakao"] .K7b .bt-str{grid-column:1;grid-row:1;padding:20px 26px 22px}
+html[data-size="kakao"] .K7b .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+html[data-size="kakao"] .K7b .dots{display:none}
+html[data-size="kakao"] .K7b .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:210px minmax(0,1fr);grid-template-areas:"k h" "t h" ". n";column-gap:30px;align-content:center}
+html[data-size="kakao"] .K7b .bt-hours .bt-k{grid-area:k}
+html[data-size="kakao"] .K7b .bt-hours .bt-t{grid-area:t}
+html[data-size="kakao"] .K7b .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="kakao"] .K7b .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="kakao"] .K7c .bento{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] .K7c .bt-loc{grid-column:1;grid-row:1}
+html[data-size="kakao"] .K7c .bt-book{grid-column:2;grid-row:1}
+html[data-size="kakao"] .K7c .map{width:100%}
+html[data-size="kakao"] .K7c .bk-row{flex:none;grid-template-columns:124px minmax(0,1fr);grid-template-areas:"qr links" "ph ph";row-gap:12px;align-items:center}
+html[data-size="kakao"] .K7c .bk-text{display:contents}
+html[data-size="kakao"] .K7c .qr{grid-area:qr}
+html[data-size="kakao"] .K7c .bk-links{grid-area:links}
+html[data-size="kakao"] .K7c .bk-phone{grid-area:ph;margin-top:0}
+html[data-size="kakao"] .K7c .bk-mark{margin-top:auto}
+
+/* text centring inside chips in the channel sizes (qa/text-center-check.cjs --size): the chips sit on new sub-pixel positions here, so the
+   measured padding shift is set again for the ones that moved */
+html[data-size="line"] .L5a .mk4 [data-copy]{top:0}
+html[data-size="kakao"] .K5b .mk4 [data-copy]{top:0}
+html[data-size="kakao"] .K3a .pg-tag[data-copy="lg_g12_tag"]{padding-top:calc(.13em + 1px)}
+html[data-size="kakao"] .K3c .pg-tag{position:relative;top:.5px}
+html[data-size="kakao"] .K3b .period{padding-top:.273em;padding-bottom:.167em}
+html[data-size="kakao"] .K3c .pparts .chip:nth-child(5){padding-top:.235em;padding-bottom:.165em}
+html[data-size="kakao"] .K3c .pparts .chip:nth-child(7){position:relative;top:.5px}
+/* ===== /SZ:css ===== */

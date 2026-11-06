@@ -7015,7 +7015,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 7
+      "cards": 7,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "ULT12",
@@ -7181,7 +7186,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "THM12",
@@ -7385,7 +7395,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "SOF12",
@@ -7579,7 +7594,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CRF12",
@@ -7808,7 +7828,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 7
+      "cards": 7,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "DEN12",
@@ -8037,7 +8062,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 8
+      "cards": 8,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "GOU12",
@@ -8182,7 +8212,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "LIG12",
@@ -8382,7 +8417,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 7
+      "cards": 7,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "ONE12",
@@ -8592,7 +8632,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12E",
@@ -8771,7 +8816,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 5
+      "cards": 5,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12A",
@@ -8963,7 +9013,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12B",
@@ -9155,7 +9210,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12C",
@@ -9308,7 +9368,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 5
+      "cards": 5,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12D",
@@ -9502,7 +9567,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12F",
@@ -9668,7 +9738,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 5
+      "cards": 5,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12G",
@@ -9878,7 +9953,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12H",
@@ -10084,7 +10164,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "CMB12I",
@@ -10324,7 +10409,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 7
+      "cards": 7,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "DIE12A",
@@ -10891,7 +10981,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "FIL12B",
@@ -11088,7 +11183,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "FIL12C",
@@ -11288,7 +11388,12 @@
       "locales": [
         "KO"
       ],
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "IVS12",
@@ -11934,6 +12039,137 @@
         "line",
         "kakao"
       ]
+    },
+    {
+      "id": "NAD11",
+      "label": "NAD+ 수액 · 11.06 – 02.28",
+      "kind": "landing",
+      "page": "nad11/index.html",
+      "note": "5장 캐러셀(새 페이지, 요청서 gid 11699506). 메인 레퍼런스(하늘색 바탕 이벤트 포스터)에서 구도·물방울 구슬·말풍선 태그·흰 금액 판·굵은 두 줄 제목 대비만, 톤&매너 레퍼런스(블러시 핑크 그라데이션, '+' 분홍 라벨 칩, 검정+분홍 두 줄 제목, 아래 분홍 띠)에서 색과 무드를 가져왔습니다. 1 히어로 A안(가운데 큰 모델 누끼, 유리 물방울·분홍 젤리 '+' 장식, 말풍선 태그 '셀 리부트'·'백옥 글로우', 가슴께에 겹친 두 줄 제목 'NAD+ 수액 / NEW OPEN!', 아래 흰 둥근 판에 팀 문구 2줄과 예약 문의) / B안(위 두 줄 제목과 팀 문구, 두 손을 볼에 댄 모델 누끼, '+' 라벨 칩 3개, 아래 분홍 띠에 워드마크·기간·예약 문의) · 2 금액 A안(위 왼쪽 제목, 오른쪽 모델 누끼, 흰 금액판 4행) / B안(2×2 타일): 시트 rq_nad11 4행 그대로(15·16행 구성 줄 포함), 아래쪽에 의료법상 최대 49% 할인 작은 줄·VAT 10% 별도 · 3 NAD+와 두 수액 구성 비교(성분 일반명, 출처 식약처 의약품 정보·홈페이지 주사 안내) · 4 시술 당일은 이렇게 진행돼요(상담·문진 → 수액 투여 → 휴식·귀가, 마취·일상 복귀·소요 시간, 받은 뒤 관리) · 5 병원 소개 + 확인해 주세요. B/A 없음. 1·2장은 A안·B안 중 하나만 보입니다. 모델 사진 4칸은 레이아웃 기준 컷이라 Higgsfield 컷으로 같은 경로·비율로 바꿉니다(MODEL_SLOTS.md). 그림(배경·물방울·젤리 '+'·반짝임·아이콘)은 생성 이미지이고 글자는 편집형입니다. 이름·금액은 시트에서 그대로 넣었습니다. 글자를 누르면 바로 고칠 수 있고, Enter를 누르거나 다른 곳을 누르면 공유 저장됩니다(Esc는 취소). 추가 안내 칸은 편집 모드에서만 보입니다. 채널 사이즈: 기본 1080×1350, 라인 1100×1000(?size=line), 카카오톡 800×600(?size=kakao). 라인은 1~4장 한 장씩·5장 두 부분, 카카오톡은 1장 A·B 두 부분·2장 A안 세 부분(제목·모델 / 13·14 / 15·16 + 의료법상 줄)·B안 두 부분·3장 두 부분·4장 두 부분(모델·제목·사실 3칸 / 단계·관리 띠)·5장 세 부분. 장마다 그 사이즈 구도로 새로 배치했고 글자는 기본보다 작지 않습니다.",
+      "fields": {
+        "KO": {
+          "nd_period": "11.06 – 02.28",
+          "nd_vat": "VAT 10% 별도",
+          "nd_uibeop": "의료법상 최대 49% 할인",
+          "nd_contact": "예약 및 문의 02-336-7511",
+          "nd_tag1": "셀 리부트",
+          "nd_tag2": "백옥 글로우",
+          "nd_chip1": "NAD+ 단품",
+          "nd_alt_hero_a": "연분홍 실크 캐미솔을 입고 고개를 살짝 기울인 채 정면을 보며 미소 짓는 모델",
+          "nd_alt_hero_b": "두 손을 볼에 살짝 대고 밝게 웃는 모델",
+          "nd_p_kicker": "EVENT PRICE",
+          "nd_p_lead": "NAD+ 단품부터 수액 구성까지, 상담에서 함께 골라요.",
+          "nd_alt_c2": "몸을 살짝 돌리고 손끝을 쇄골에 댄 채 잔잔하게 웃는 모델",
+          "nd_c3_kicker": "WHAT'S INSIDE",
+          "nd_c3_q": "NAD+ 수액, 무엇이 들어 있나요?",
+          "nd_c3_a": "두 수액 모두 같은 기본 성분 두 가지에, 서로 다른 성분 두 가지를 더했어요.",
+          "nd_c3_nad_k": "NAD+",
+          "nd_c3_nad_t": "세포 속에 있는 조효소예요",
+          "nd_c3_nad_d": "에너지 대사에 관여하고, 몸에서는 비타민 B3(나이아신)를 원료로 만들어져요.",
+          "nd_c3_single_t": "NAD+ 단품",
+          "nd_c3_single_d": "비타민 B3(나이아신) 한 가지를 50mg 또는 100mg으로 맞아요.",
+          "nd_c3_same": "함께 들어가요",
+          "nd_c3_diff": "이 두 가지가 달라요",
+          "nd_c3_i_b3": "비타민 B3(나이아신)",
+          "nd_c3_i_c": "비타민 C",
+          "nd_c3_k1_i1": "비타민 B군",
+          "nd_c3_k1_i2": "L-카르니틴",
+          "nd_c3_k2_i1": "알파리포산",
+          "nd_c3_k2_i2": "글루타치온",
+          "nd_c3_note": "성분 구성과 처방·투여는 진료 후 의사가 정해요.",
+          "nd_c3_src": "성분 출처: 식품의약품안전처 의약품 정보, 뷰티블라썸 홈페이지 주사 안내",
+          "nd_c4_kicker": "HOW IT GOES",
+          "nd_c4_q": "시술 당일은 이렇게 진행돼요",
+          "nd_c4_a": "건강 상태를 먼저 확인하고, 편하게 쉬면서 수액을 맞아요.",
+          "nd_c4_s1_t": "상담·문진",
+          "nd_c4_s1_d": "복용 중인 약과 건강기능식품, 알레르기, 기저질환, 임신·수유 여부를 확인해요.",
+          "nd_c4_s2_t": "수액 투여",
+          "nd_c4_s2_d": "편하게 쉬면서 정맥으로 수액을 맞아요. 얼굴이 붉어지거나 화끈하면 바로 말씀해 주세요.",
+          "nd_c4_s3_t": "휴식·귀가",
+          "nd_c4_s3_d": "주사 부위와 몸 상태를 확인하고, 귀가 후 관리 방법을 안내해 드려요.",
+          "nd_c4_i1_k": "마취",
+          "nd_c4_i1_v": "하지 않아요",
+          "nd_c4_i2_k": "일상 복귀",
+          "nd_c4_i2_v": "바로 일상으로",
+          "nd_c4_i3_k": "소요 시간",
+          "nd_c4_i3_v": "예약 때 안내해 드려요",
+          "nd_c4_care": "받은 뒤에는 물을 충분히 마시고 쉬어 주세요. 주사 부위에 멍이 생길 수 있어요.",
+          "nd_alt_c4": "연분홍 캐미솔 위에 크림색 카디건을 걸치고 옆을 보며 편안하게 웃는 모델",
+          "nd_ab_kicker": "ABOUT BEAUTY BLOSSOM",
+          "nd_ab_title": "당신의 하루를 빛나게, 뷰티블라썸",
+          "nd_ab_intro1": "고객 한 분 한 분의 개성을 존중하는 맞춤 진료,",
+          "nd_ab_intro2": "모든 과정을 투명하게 안내해 드려요.",
+          "nd_ab_dr_name": "이건호 대표원장",
+          "nd_ab_dr_quote": "자연스러운 아름다움을 위해 늘 함께하겠습니다.",
+          "nd_ab_ph1": "RECEPTION",
+          "nd_ab_ph2": "CARE ROOM",
+          "nd_ab_ph3": "TREATMENT ROOM",
+          "nd_ab_s1_t": "정품·정량",
+          "nd_ab_s1_d": "정품 약물과 장비, 정량을 지켜요",
+          "nd_ab_s2_t": "개인별 맞춤상담",
+          "nd_ab_s2_d": "피부 상태와 원하는 목표를 보고 계획을 세워요",
+          "nd_ab_s3_t": "저녁·주말 진료",
+          "nd_ab_s3_d": "평일 저녁 8시까지, 점심시간 없이 진료해요",
+          "nd_ab_s4_t": "외국어 통역",
+          "nd_ab_s4_d": "영어·중국어·일본어·태국어 통역이 상주해요",
+          "nd_ab_loc": "LOCATION",
+          "nd_ab_loc_title": "찾아오시는 길",
+          "nd_ab_way_station": "합정역 3번 출구",
+          "nd_ab_way_line": "2·6호선",
+          "nd_ab_way_addr": "서울 마포구 양화로 66 메디원메디컬센터 6·8층",
+          "nd_ab_way_desk": "6층 접수",
+          "nd_ab_hours_kicker": "OPENING HOURS",
+          "nd_ab_hours_lbl": "진료시간",
+          "nd_ab_h1": "평일 10:00–20:00",
+          "nd_ab_h2": "주말·대체공휴일 10:00–16:30",
+          "nd_ab_h3": "점심시간 없이 진료해요",
+          "nd_ab_bk_kicker": "RESERVATION",
+          "nd_ab_bk_title": "예약안내",
+          "nd_ab_bk_naver": "네이버 예약",
+          "nd_ab_bk_kakao": "카카오톡 '뷰티블라썸의원'",
+          "nd_ab_phone": "02-336-7511",
+          "nd_ab_qr": "네이버 예약 QR",
+          "nd_alt_ph1": "아치형 조명 벽 앞 6층 리셉션 데스크",
+          "nd_alt_ph2": "커튼으로 나뉜 관리실 베드",
+          "nd_alt_ph3": "시술 체어와 파티션이 있는 6층 시술실",
+          "nd_alt_director": "팔짱을 낀 이건호 대표원장",
+          "nd_alt_map": "합정역 3번 출구 근처 뷰티블라썸의원 위치를 표시한 지도",
+          "nd_alt_qr": "네이버 예약으로 연결되는 QR 코드",
+          "nd_note_title": "확인해 주세요",
+          "nd_cond1": "표시 금액은 모두 VAT 10% 별도예요.",
+          "nd_cond2": "수액 구성과 처방·투여는 진료 후 의사가 정해요. 건강 상태와 복용 중인 약에 따라 받기 어려울 수 있어요.",
+          "nd_cond3": "투여 중 얼굴이 붉어지거나 열감, 메스꺼움이 느껴지면 바로 의료진에게 알려 주세요. 반응은 개인에 따라 달라요.",
+          "nd_cond4": "모델 사진과 그림은 연출된 이미지예요.",
+          "nd_cond5": "",
+          "nd_h_title": "NAD+ 수액 NEW OPEN!",
+          "nd_h_line2": "에너지 대사에 관여하는 NAD+,",
+          "nd_h_line3": "나의 컨디션에 맞춘 영양 수액 케어!",
+          "nd_event": "NAD+ 수액 NEW OPEN!",
+          "nd_r13_name": "NAD 브이트리 50mg",
+          "nd_r13_list": "22만원",
+          "nd_r13_sale": "12만원",
+          "nd_r14_name": "NAD 브이트리 100mg",
+          "nd_r14_list": "44만원",
+          "nd_r14_sale": "24만원",
+          "nd_r15_name": "NAD+ 셀 리부트 수액",
+          "nd_r15_desc": "브이트리1A + 삐콤1A + 아스코르브산1A + 제일팻리스1A",
+          "nd_r15_list": "45만원",
+          "nd_r15_sale": "25만원",
+          "nd_r16_name": "NAD+ 백옥 글로우 수액",
+          "nd_r16_desc": "브이트리1A + 신데렐라 + 아스코르브산1A + 글루타치온",
+          "nd_r16_list": "45만원",
+          "nd_r16_sale": "25만원"
+        }
+      },
+      "locales": [
+        "KO"
+      ],
+      "cards": 5,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     }
   ],
   "references": [
@@ -12035,11 +12271,11 @@
       "id": "winter-combo",
       "label": "겨울 시즌(12~2월) 이벤트 · 통합이벤트 9페이지",
       "items": [
-        "CMB12E",
         "CMB12A",
         "CMB12B",
         "CMB12C",
         "CMB12D",
+        "CMB12E",
         "CMB12F",
         "CMB12G",
         "CMB12H",
@@ -12065,11 +12301,12 @@
     },
     {
       "id": "nov-events-11",
-      "label": "11월 이벤트 · 울쎄라 5% 할인 · 블랙프라이데이 · 수능",
+      "label": "11월 이벤트 · 울쎄라 5% 할인 · 블랙프라이데이 · 수능 · NAD+ 수액",
       "items": [
         "ULT5",
         "BLF11",
-        "SUN11"
+        "SUN11",
+        "NAD11"
       ]
     }
   ]

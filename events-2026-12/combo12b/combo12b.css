@@ -382,3 +382,194 @@ a[data-link="phone"]{white-space:nowrap}
  .bv.c1 .hero-ph{position:absolute;top:110px;right:12px;width:45%;height:245px;border-width:3px;border-radius:12px}.bv.c1 .h-head{top:100px;left:16px;width:46%}.bv.c1 .h-title{font-size:28px;margin-top:16px}.bv.c1 .h-box{padding:8px;margin-top:16px}.bv.c1 .h-sub{font-size:12px;line-height:1.5}.bv.c1 .pill{font-size:11px;padding:.45em .65em}.bv.c1 .ribbon{display:none}
  .bv.c2 .pboard{gap:12px;margin-top:18px}.bv.c2 .prod{display:block;padding:14px;border-radius:14px}.bv.c2 .prod-h{gap:8px}.bv.c2 .prod-ico{width:28px;height:28px}.bv.c2 .prod-n{font-size:16px}.bv.c2 .prod-s{font-size:11px;margin:4px 0 0}.bv.c2 .prod-note{font-size:11px;margin:6px 0 0}.bv.c2 .prows{margin-top:12px}.bv.c2 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";gap:4px 8px;min-height:44px;padding:10px 0}.bv.c2 .popt{font-size:12px}.bv.c2 .plist{font-size:11px}.bv.c2 .psale{font-size:24px}
 }
+
+/* ===== SZ:css (generated from v4/combo12b/sizes/sizes.css by inject-sizes.cjs, edit that file) ===== */
+/* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) for the bundle ① pages (combo12a, combo12b: same layout system).
+   home 1080x1350 = every rule above, unchanged. line 1100x1000 and kakao 800x600 are new compositions of the same elements and copy keys in
+   size-only sections (v4/<slug>/sizes/line.html, kakao.html, written by v4/combo12a/sizes/gen-sizes.cjs); nothing is cropped or scaled down from
+   the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size. Fixed screens: plain px, no viewport units
+   or width queries. Appended to the page CSS by v4/<slug>/sizes/inject-sizes.cjs after the bundle build. */
+html[data-size="line"] main.cb{max-width:none;width:1100px}
+html[data-size="kakao"] main.cb{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+/* the group wrappers inside a card are <section> elements too: hide them with their card (no visual effect) */
+html[data-size="home"] [data-size-only] section,
+html[data-size="line"] [data-size-only]:not([data-size-only~="line"]) section,html[data-size="kakao"] [data-size-only]:not([data-size-only~="kakao"]) section,
+html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] [data-size-hide~="kakao"] section{display:none!important}
+/* the hero model as a person cutout (v4/<slug>/a/cut/hero-a.png; only its bottom is cut flat, so it stands on the card's bottom edge) */
+.sz-model{position:absolute;z-index:1;display:block;width:auto;max-width:none;height:auto;pointer-events:none}
+/* line 1 A: the subtitle box in two lines (the B box) in the narrower title column, at the 1080 type size (no fit shrink) */
+html[data-size="line"] .L1a .h-box{width:100%;padding:20px;display:block;margin-top:30px}
+html[data-size="line"] .L1a .h-sub{font-size:30px;line-height:1.6;white-space:normal}
+html[data-size="line"] .L1a .h-sub .sub1,html[data-size="line"] .L1a .h-sub .sub2{display:block;white-space:normal;margin-left:0}
+html[data-size="line"] .L1a .h-sub-ico{display:none}
+
+/* ==================== LINE 1100 x 1000 ==================== */
+/* 1 A: the sticker title column on the left, the model cutout on the right, the ribbon tape on her shoulder, the product stage and the band at the bottom */
+html[data-size="line"] .L1a .sz-model{right:0;bottom:0;height:700px}
+html[data-size="line"] .L1a .h-head{left:56px;right:auto;top:150px;width:470px}
+html[data-size="line"] main.acc-arctic .L1a .h-head{width:490px}
+html[data-size="line"] .L1a .ribbon{left:756px;top:172px;width:330px}
+html[data-size="line"] .L1a .stage,html[data-size="line"] .L1b .stage{top:732px}
+/* the arctic page's big teaser number reaches 3 px under its divider box (as at home); 4 px more box here keeps it inside */
+html[data-size="line"] main.acc-arctic .c1 .stage .tz{padding-bottom:4px}
+html[data-size="line"] .L1a .bb1{left:66px;top:136px;width:70px}
+html[data-size="line"] .L1a .bb2{left:40px;top:614px}
+html[data-size="line"] .L1a .bb3{left:536px;top:250px}
+html[data-size="line"] .L1a .sp1{left:470px;top:150px}
+/* 1 B: the framed portrait on the right (the whole head inside the frame), the words on the left */
+html[data-size="line"] .L1b .hero-ph{right:48px;top:120px;width:470px;height:590px}
+html[data-size="line"] .L1b .hero-img{object-position:50% 12%}
+html[data-size="line"] .L1b .h-head{top:150px;width:470px}
+html[data-size="line"] .L1b .ribbon{left:514px;top:156px;width:300px}
+/* 2 / 3: price parts in sheet order (split per page in gen-sizes.cjs); the board sits in the middle of the free room on the shorter parts */
+html[data-size="line"] .L2a .pboard,html[data-size="line"] .L3 .pboard{margin-top:30px}
+/* 2 B with three products in one card: the product tickets three across (name on top, the options below it, list price and price on one line) */
+html[data-size="line"] .L2b.pn3 .pboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:18px}
+html[data-size="line"] .L2b.pn3 .prod{display:flex;flex-direction:column;padding:22px 22px 14px}
+html[data-size="line"] .L2b.pn3 .prod+.prod{border-top:2px solid var(--main)}
+html[data-size="line"] .L2b.pn3 .prod-h{padding:0 0 4px}
+html[data-size="line"] .L2b.pn3 .prod-note{margin:8px 0 6px}
+html[data-size="line"] .L2b.pn3 .prows{margin-top:8px}
+html[data-size="line"] .L2b.pn3 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:6px;column-gap:10px;padding:14px 0 12px;min-height:0;border-top:1px dashed rgba(61,10,20,.18)}
+html[data-size="line"] .L2b.pn3 .prow:first-child{padding-top:10px;border-top:0}
+html[data-size="line"] .L2b.pn3 .prow .pn{grid-area:pn}
+html[data-size="line"] .L2b.pn3 .prow .plist{grid-area:pl;justify-self:start;align-self:center}
+html[data-size="line"] .L2b.pn3 .prow .psale{grid-area:ps}
+/* 4: two parts. part 1 = the question and the three product blocks; part 2 = the question and how to choose */
+html[data-size="line"] .L42 .choose{margin:auto 0}
+/* 5: two parts. part 1 = the photo, the question and the four steps; part 2 = the question, numbing / after / sessions, things to tell, care */
+html[data-size="line"] .L51 .steps{margin-top:40px}
+html[data-size="line"] .L52 .infos{margin-top:30px}
+/* 6: two parts. part 1 = about (photos taller) over the hours as one wide strip; part 2 = location (map left) over booking */
+html[data-size="line"] .L6 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="line"] .L61 .bt-about{padding:26px 32px 28px}
+html[data-size="line"] .L61 .ab-photos{height:236px}
+html[data-size="line"] .L61 .ab-strengths{margin-top:24px}
+html[data-size="line"] .L61 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k h" "t h" "n h";grid-template-rows:auto auto 1fr;column-gap:44px;align-content:center;padding:22px 32px}
+html[data-size="line"] .L61 .bt-hours .bt-k{grid-area:k}
+html[data-size="line"] .L61 .bt-hours .bt-t{grid-area:t}
+html[data-size="line"] .L61 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="line"] .L61 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="line"] .L62 .bt-loc{grid-column:1;grid-row:1;display:grid;grid-template-columns:470px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:36px;padding:24px 32px}
+html[data-size="line"] .L62 .loc-body{display:contents}
+html[data-size="line"] .L62 .map{grid-column:1;grid-row:1 / 3;width:470px}
+html[data-size="line"] .L62 .loc-head{grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;padding-top:8px}
+html[data-size="line"] .L62 .way{grid-column:2;grid-row:2;align-self:end;margin:0 0 8px}
+html[data-size="line"] .L62 .bt-book{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k row" "t row" "mk row";grid-template-rows:auto auto 1fr;column-gap:44px;padding:24px 32px}
+html[data-size="line"] .L62 .bt-book .bt-k{grid-area:k}
+html[data-size="line"] .L62 .bt-book .bt-t{grid-area:t}
+html[data-size="line"] .L62 .bk-row{grid-area:row;margin-top:0;grid-template-columns:170px minmax(0,1fr);gap:28px}
+html[data-size="line"] .L62 .bt-book > .wordmark{grid-area:mk;align-self:end;justify-self:start;margin:0}
+
+/* ==================== KAKAO 800 x 600 ==================== */
+/* the kakao card is 800 px wide, so the home tablet-width block (@container (max-width:800px) and (min-width:601px)) matches it too; kakao uses
+   the 1080 design scale, so these chips take the desktop values again */
+html[data-size="kakao"] .pill>span{top:0}
+html[data-size="kakao"] .ab-photos figcaption{padding-top:.38em;padding-bottom:.22em}
+html[data-size="kakao"] .way-line{padding-top:.23em;padding-bottom:.17em}
+html[data-size="kakao"] .cp-in,html[data-size="kakao"] .cx-in{padding:24px 40px 22px}
+html[data-size="kakao"] .c1 > .top{left:40px;right:40px;top:24px}
+/* 1 A: two parts. part 1 = the title poster as at home (pill, two-line title, one-line subtitle box) with the product line-up under it;
+   part 2 = the model cutout standing on the bottom edge, the ribbon, the teaser price box (the stage without its line-up) and the band */
+html[data-size="kakao"] .K1a1 .h-head{left:40px;right:40px;top:88px}
+html[data-size="kakao"] .K1a1 .h-title{margin-top:10px}
+html[data-size="kakao"] .K1a1 .h-box{margin-top:12px}
+html[data-size="kakao"] .K1a1 .h-sub{font-size:30px}
+html[data-size="kakao"] .K1a1 .lineup{--px:.62px;left:0;right:0;bottom:14px;width:auto;z-index:4}
+html[data-size="kakao"] .K1a1 .bb1{left:676px;top:118px;width:92px}
+html[data-size="kakao"] .K1a1 .bb2{left:36px;top:300px;width:64px}
+html[data-size="kakao"] .K1a1 .bb3{left:690px;top:470px;width:54px}
+html[data-size="kakao"] .K1a1 .sp1{left:120px;top:150px}
+html[data-size="kakao"] .K1a2 .sz-model{right:0;bottom:0;height:524px}
+html[data-size="kakao"] .K1a2 .ribbon{left:46px;top:150px;width:300px}
+html[data-size="kakao"] .K1a2 .stage{left:40px;right:auto;top:auto;bottom:104px;width:470px;height:auto;display:block;padding:24px 28px 26px}
+html[data-size="kakao"] .K1a2 .stage .tz{border:0;padding:0}
+html[data-size="kakao"] .K1a2 .bb1{left:366px;top:104px;width:72px}
+html[data-size="kakao"] .K1b2 .stage{left:40px;right:40px;top:250px;height:200px;grid-template-columns:minmax(0,1fr) 320px;padding:0 24px 20px}
+html[data-size="kakao"] .K1b2 .lineup{right:24px;bottom:22px;width:320px;gap:14px}
+html[data-size="kakao"] .K1b2 .tz{padding-left:6px;padding-right:20px}
+/* text snaps to whole pixels: the arctic option chip drew its text 0.5 px above the middle here; half a pixel higher box centres it */
+html[data-size="kakao"] main.acc-arctic .K1b2 .tz-opt{margin-top:-1px}
+/* 1 B: two parts. part 1 = the words on the left and the framed portrait on the right; part 2 = the product stage and the band */
+html[data-size="kakao"] .K1b1 .hero-ph{right:40px;top:100px;width:290px;height:470px}
+html[data-size="kakao"] .K1b1 .hero-img{object-position:50% 12%}
+html[data-size="kakao"] .K1b1 .h-head{left:40px;top:110px;width:420px}
+html[data-size="kakao"] .K1b1 .ribbon{left:470px;top:500px;width:240px}
+/* 2 / 3: price parts in sheet order. Part 1 has the full head (on the pink page the kicker and the title share one row: its title fits at the
+   1080 size beside the kicker); the other parts have the title only; the 49% line on the last part of card 2 */
+html[data-size="kakao"] .cp .cp-head{margin-top:14px;max-width:none}
+html[data-size="kakao"] main.acc-pink .cp .cp-head{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:18px}
+html[data-size="kakao"] main.acc-pink .cp .p-title{margin-top:0;flex:1 1 0}
+html[data-size="kakao"] main.acc-pink .cp .p-lead{flex:0 0 100%;margin-top:10px}
+html[data-size="kakao"] .cp .cp-mini .p-title{margin-top:0}
+html[data-size="kakao"] .cp .dk2{right:40px;top:96px}
+html[data-size="kakao"] .cp .dk3{left:44px;right:auto;top:auto;bottom:26px}
+html[data-size="kakao"] .K41 .dk4{top:auto;bottom:24px;right:48px}
+html[data-size="kakao"] .cp .pboard{margin-top:18px}
+html[data-size="kakao"] .cp .vat{padding-top:8px}
+html[data-size="kakao"] .K2a .prod-h{padding:6px 0 2px}
+html[data-size="kakao"] .K2a .prow{padding:8px 0 7px 58px}
+html[data-size="kakao"] .K3 .prod-h{padding:8px 0 4px}
+html[data-size="kakao"] .K3 .prow{padding:8px 0 7px 58px}
+html[data-size="kakao"] .uibeop{left:40px;bottom:22px}
+/* text snaps to whole pixels: at this height the continued chip on card 3 drew its text 0.63 px above the middle; half a pixel lower box centres it */
+html[data-size="kakao"] .K3 .pt-cont{margin-bottom:-1px}
+html[data-size="kakao"] .K2b .pboard{gap:14px}
+html[data-size="kakao"] .K2b .prod{grid-template-columns:240px minmax(0,1fr);padding:18px}
+html[data-size="kakao"] .K2b .prow{grid-template-columns:minmax(0,1fr) 90px 140px}
+/* 4: three parts. part 1 = the question and block 1; part 2 = kicker + title and blocks 2-3; part 3 = kicker + title, how to choose and the sources.
+   The blocks are rows here (the product photo on the left, scaled with a local --px: no text in it) */
+html[data-size="kakao"] .K4 .q-head{margin-top:14px}
+html[data-size="kakao"] .K4 .q-mini .q-title{margin-top:0}
+html[data-size="kakao"] .K41 .blocks,html[data-size="kakao"] .K42 .blocks{grid-template-columns:1fr;gap:12px;margin-top:18px}
+html[data-size="kakao"] .K41 .blk,html[data-size="kakao"] .K42 .blk{display:grid;grid-template-columns:180px minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:26px;padding:14px 22px 16px}
+html[data-size="kakao"] .K41 .blk-ph,html[data-size="kakao"] .K42 .blk-ph{--px:.72px;grid-column:1;grid-row:1 / 4;height:auto;align-items:center;padding:0;border-bottom:0;border-right:1.5px dashed rgba(61,10,20,.18)}
+html[data-size="kakao"] .K41 .blk-k,html[data-size="kakao"] .K42 .blk-k{grid-column:2;margin-top:2px}
+html[data-size="kakao"] .K41 .blk-n,html[data-size="kakao"] .K42 .blk-n,html[data-size="kakao"] .K41 .blk-d,html[data-size="kakao"] .K42 .blk-d{grid-column:2}
+html[data-size="kakao"] .K43 .choose{margin-top:20px}
+/* text snaps to whole pixels: block 2's chip sat at a .17 px fraction (0.77 px low); 0.7 px more top margin puts both chips at a fraction that renders centred */
+html[data-size="kakao"] .K42 .blocks{margin-top:18.7px}
+/* 5: three parts. part 1 = the question with the round photo and steps 1-2; part 2 = steps 3-4 and numbing / after / sessions; part 3 = things to tell and care */
+html[data-size="kakao"] .K51 .c5-headrow{grid-template-columns:minmax(0,1fr) 200px}
+html[data-size="kakao"] .K51 .c5-photo{width:200px;height:200px}
+html[data-size="kakao"] .K51 .q-title{white-space:normal}
+html[data-size="kakao"] .K51 .steps,html[data-size="kakao"] .K52 .steps{margin-top:22px}
+html[data-size="kakao"] .K52 .steps{counter-reset:st 2}
+html[data-size="kakao"] .K53 .ask{margin-top:22px}
+/* 6: three parts. part 1 = about intro, the director and the photos; part 2 = strengths + hours; part 3 = location | booking */
+html[data-size="kakao"] .K6 .cx-in{padding:22px 30px 20px}
+html[data-size="kakao"] .K6 .bento{margin-top:12px}
+html[data-size="kakao"] .K61 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] .K61 .bt-about{display:flex;flex-direction:column;padding:20px 26px}
+html[data-size="kakao"] .K61 .ab-top{grid-template-columns:minmax(0,1fr) 206px;grid-template-rows:auto auto;column-gap:16px}
+html[data-size="kakao"] .K61 .dr{display:contents}
+html[data-size="kakao"] .K61 .ab-intro{grid-column:1;grid-row:1;padding:0 0 10px}
+html[data-size="kakao"] .K61 .dr-tx{grid-column:1;grid-row:2;text-align:left;padding:0 0 6px}
+html[data-size="kakao"] .K61 .dr-img{grid-column:2;grid-row:1 / 3;align-self:end}
+html[data-size="kakao"] .K61 .ab-photos{flex:1 1 auto;height:auto;min-height:140px}
+html[data-size="kakao"] .K62 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="kakao"] .K62 .bt-str{grid-column:1;grid-row:1;padding:20px 26px 22px}
+html[data-size="kakao"] .K62 .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+html[data-size="kakao"] .K62 .dots{display:none}
+html[data-size="kakao"] .K62 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:210px minmax(0,1fr);grid-template-areas:"k h" "t h" ". n";column-gap:30px;align-content:center}
+html[data-size="kakao"] .K62 .bt-hours .bt-k{grid-area:k}
+html[data-size="kakao"] .K62 .bt-hours .bt-t{grid-area:t}
+html[data-size="kakao"] .K62 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="kakao"] .K62 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="kakao"] .K63 .bento{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] .K63 .bt-loc{grid-column:1;grid-row:1}
+html[data-size="kakao"] .K63 .bt-book{grid-column:2;grid-row:1}
+html[data-size="kakao"] .K63 .map{width:100%}
+html[data-size="kakao"] .K63 .bk-row{flex:none;grid-template-columns:124px minmax(0,1fr);grid-template-areas:"qr links" "ph ph";row-gap:12px;align-items:center}
+html[data-size="kakao"] .K63 .bk-text{display:contents}
+html[data-size="kakao"] .K63 .qr{grid-area:qr}
+html[data-size="kakao"] .K63 .bk-links{grid-area:links}
+html[data-size="kakao"] .K63 .bk-phone{grid-area:ph;margin-top:0}
+html[data-size="kakao"] .K63 .bt-book > .wordmark{margin:auto 0 0 auto}
+/* ===== /SZ:css ===== */

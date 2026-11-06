@@ -399,3 +399,182 @@ a[data-link="phone"]{white-space:nowrap}
 
 .v-b.c2 .pboard{outline:0}
 @container(max-width:600px){.v-b.c1{display:block;height:650px;aspect-ratio:auto}.v-b.c1 .c1-photo{position:absolute;left:50%;right:0;top:180px;bottom:0;aspect-ratio:auto;height:auto}.v-b.c1 .c1-head{position:absolute;left:14px;right:14px;top:20px;padding:0;text-align:left}.v-b.c1 .d-en{font-size:38px;margin-top:20px;width:fit-content;margin-left:0}.v-b.c1 .d-sub{font-size:11px;margin:8px 0 0;width:fit-content;white-space:nowrap}.v-b.c1 .h-ko{font-size:25px;margin-top:18px}.v-b.c1 .hook{font-size:12px;margin-top:10px;width:45%;margin-left:0;line-height:1.6}.v-b.c1 .tz{position:absolute;top:330px;left:14px;width:43%;margin:0}.v-b.c1 .tz-label{font-size:13px}.v-b.c1 .tz-top{flex-wrap:wrap}.v-b.c1 .tz-price{font-size:34px}.v-b.c1 .tz-opt{font-size:11px}.v-b.c1 .c1-foot{position:absolute;left:14px;bottom:18px;width:43%;margin:0}.v-b.c1 .c1-period,.v-b.c1 .c1-contact{font-size:11px;white-space:normal}.v-b.c1 .sp1a{left:auto;right:20px}.v-b.c1 .sp1b{display:none}.v-b.c2{padding-bottom:36px}.v-b.c2 .uibeop{position:absolute;bottom:12px;left:14px;transform:none;margin:0;font-size:11px}}
+
+/* ===== SZ:css (generated from v4/oneday12/sizes/sizes.css by inject-sizes.cjs, edit that file) ===== */
+/* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md). home 1080x1350 = every rule above, unchanged. line 1100x1000 and kakao 800x600
+   are new compositions of the same elements and copy keys in size-only sections (v4/oneday12/sizes/line.html, kakao.html); nothing is cropped or
+   scaled down from the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size. Fixed screens: plain px,
+   no viewport units or width queries. */
+html[data-size="line"] main.on{max-width:none;width:1100px}
+html[data-size="kakao"] main.on{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+/* the group wrappers inside a card are <section> elements too: hide them with their card, so tools that look at the nearest section (price
+   coverage) see exactly the cards of the current size. No visual effect (their card is already display:none). */
+html[data-size="home"] [data-size-only] section,
+html[data-size="line"] [data-size-only]:not([data-size-only~="line"]) section,html[data-size="kakao"] [data-size-only]:not([data-size-only~="kakao"]) section,
+html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] [data-size-hide~="kakao"] section{display:none!important}
+/* the hero model as a person cutout (v4/oneday12/a/cut/hero-a.png; its right side and bottom are cut flat, so it sits on the card's right and bottom edges) */
+.sz-model{position:absolute;z-index:1;display:block;width:auto;max-width:none;height:auto;pointer-events:none}
+.c1-mark .wordmark{margin:0}
+
+/* ==================== LINE 1100 x 1000 ==================== */
+/* 1 A: the centred title stack on the night sky, the model cutout below it on the right, the offer and the period / contact on the left */
+html[data-size="line"] .L1a .sz-model{right:0;bottom:0;height:604px}
+html[data-size="line"] .L1a .c1-head{top:40px}
+html[data-size="line"] .L1a .tz{top:560px}
+html[data-size="line"] .L1a .tr1{left:30px;top:452px;width:430px}
+/* 1 B: the split as home: words on the left, the portrait on the right half (head and shoulders inside the frame) */
+html[data-size="line"] .L1b .model-photo{object-position:50% 0%}
+html[data-size="line"] .L1b .c1-head{top:66px}
+html[data-size="line"] .L1b .d-en{margin-top:56px}
+html[data-size="line"] .L1b .tz{top:624px}
+html[data-size="line"] .L1b .sp1b{top:560px}
+/* 2 A / 2 B / 3: two parts each (rows in sheet order, the 49% line on the last part of card 2) */
+html[data-size="line"] .L2a2 .pboard,html[data-size="line"] .L2b2 .pboard,html[data-size="line"] .L32 .pboard{margin-top:auto;margin-bottom:auto}
+html[data-size="line"] .L2a2 .cp-foot,html[data-size="line"] .L2b2 .cp-foot,html[data-size="line"] .L32 .cp-foot{margin-top:0}
+/* 4: two parts. part 1 = the question and the four solutions; part 2 = the layer diagram and the four devices */
+html[data-size="line"] .L41 .tiers{margin:auto 0;gap:16px}
+html[data-size="line"] .L41 .tier{min-height:236px;padding:30px 34px 32px}
+html[data-size="line"] .L41 .tier-k{font-size:30px}
+html[data-size="line"] .L42 .lay{margin:auto 0}
+/* 5: two parts. part 1 = the photo, the question and the four steps; part 2 = the question, method / numbing / daily life, things to tell, care */
+html[data-size="line"] .L52 .infos{margin-top:30px}
+html[data-size="line"] .L52 .ask{margin-top:18px}
+/* 6: two parts. part 1 = about (photos taller) over the hours as one wide strip; part 2 = location (map left) over booking */
+html[data-size="line"] .L6 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="line"] .L61 .bt-about{padding:26px 32px 28px}
+html[data-size="line"] .L61 .ab-photos{height:236px}
+html[data-size="line"] .L61 .ab-strengths{margin-top:24px}
+html[data-size="line"] .L61 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k h" "t h" "n h";grid-template-rows:auto auto 1fr;column-gap:44px;align-content:center;padding:22px 32px}
+html[data-size="line"] .L61 .bt-hours .bt-k{grid-area:k}
+html[data-size="line"] .L61 .bt-hours .bt-t{grid-area:t}
+html[data-size="line"] .L61 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="line"] .L61 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="line"] .L62 .bt-loc{grid-column:1;grid-row:1;display:grid;grid-template-columns:470px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:36px;padding:24px 32px}
+html[data-size="line"] .L62 .loc-body{display:contents}
+html[data-size="line"] .L62 .map{grid-column:1;grid-row:1 / 3;width:470px}
+html[data-size="line"] .L62 .loc-head{grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;padding-top:8px}
+html[data-size="line"] .L62 .way{grid-column:2;grid-row:2;align-self:end;margin:0 0 8px}
+html[data-size="line"] .L62 .bt-book{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k row" "t row" "mk row";grid-template-rows:auto auto 1fr;column-gap:44px;padding:24px 32px}
+html[data-size="line"] .L62 .bt-book .bt-k{grid-area:k}
+html[data-size="line"] .L62 .bt-book .bt-t{grid-area:t}
+html[data-size="line"] .L62 .bk-row{grid-area:row;margin-top:0;grid-template-columns:170px minmax(0,1fr);gap:28px}
+html[data-size="line"] .L62 .bt-book .wordmark{grid-area:mk;align-self:end;justify-self:start;margin:0}
+
+/* ==================== KAKAO 800 x 600 ==================== */
+html[data-size="kakao"] .K2a .cp-in,html[data-size="kakao"] .K2b .cp-in,html[data-size="kakao"] .K3 .cp-in{padding:24px 40px 16px}
+html[data-size="kakao"] .K4 .cx-in,html[data-size="kakao"] .K5 .cx-in{padding:24px 40px 20px}
+/* 1 A: two parts. part 1 = the title stack with the star trail; part 2 = the model cutout with the offer and the period / contact */
+html[data-size="kakao"] .K1a1 .c1-head{left:40px;right:40px;top:58px}
+html[data-size="kakao"] .K1a1 .tr1{left:90px;top:446px;width:560px;transform:rotate(-9deg)}
+html[data-size="kakao"] .K1a1 .sp1a{right:70px;top:62px}
+html[data-size="kakao"] .K1a1 .sp1b{left:96px;top:150px}
+html[data-size="kakao"] .K1a2 .sz-model{right:0;bottom:0;height:590px}
+html[data-size="kakao"] .K1a2 .c1-mark{left:40px;right:auto;top:30px}
+html[data-size="kakao"] .K1a2 .tz{left:40px;top:196px;width:350px}
+html[data-size="kakao"] .K1a2 .c1-foot{left:40px;bottom:40px}
+html[data-size="kakao"] .K1a2 .sp1a{right:auto;left:330px;top:96px}
+html[data-size="kakao"] .K1a2 .sp1b{left:250px;top:470px}
+/* 1 B: two parts. part 1 = the words and the portrait (head and shoulders); part 2 = the offer and the period / contact */
+html[data-size="kakao"] .K1b1 .c1-photo{left:470px}
+html[data-size="kakao"] .K1b1 .model-photo{object-position:50% 0%}
+html[data-size="kakao"] .K1b1 .c1-head{left:40px;right:auto;width:430px;top:40px}
+html[data-size="kakao"] .K1b1 .d-en{margin-top:40px}
+html[data-size="kakao"] .K1b1 .h-ko{margin-top:34px}
+html[data-size="kakao"] .K1b1 .hook{margin-top:18px;max-width:390px}
+html[data-size="kakao"] .K1b1 .sp1a{left:400px;top:70px}
+html[data-size="kakao"] .K1b1 .sp1b{left:420px;top:470px}
+html[data-size="kakao"] .K1b2 .c1-mark{left:40px;right:auto;top:30px}
+html[data-size="kakao"] .K1b2 .tz{left:40px;top:190px;width:460px}
+html[data-size="kakao"] .K1b2 .c1-foot{left:40px;bottom:40px}
+html[data-size="kakao"] .K1b2 .sp1a{left:auto;right:120px;top:120px;width:80px}
+html[data-size="kakao"] .K1b2 .sp1b{left:auto;right:240px;top:330px;width:40px}
+/* 2 A / 2 B / 3: four parts each; part 1 = the full head, the others = the brand and the title line; the board stays in the middle of the free room */
+html[data-size="kakao"] .head-mini .p-title{margin-top:10px}
+html[data-size="kakao"] .K2a .pboard,html[data-size="kakao"] .K2b .pboard,html[data-size="kakao"] .K3 .pboard{margin-top:14px}
+html[data-size="kakao"] .K2a .prow{grid-template-columns:minmax(0,1fr) 74px 122px;padding:8px 0 7px}
+html[data-size="kakao"] .K2a .prod-h{padding:8px 0 2px}
+html[data-size="kakao"] .K2a2 .cp-foot,html[data-size="kakao"] .K2a3 .cp-foot{padding-top:6px}
+html[data-size="kakao"] .K3 .prow{grid-template-columns:minmax(0,1fr) 80px 150px}
+html[data-size="kakao"] .K2b .pboard{margin-top:12px;gap:14px}
+html[data-size="kakao"] .K2b .prod,html[data-size="kakao"] .K2b .singles>.prow{padding:14px 18px}
+html[data-size="kakao"] .K2b1 .prod,html[data-size="kakao"] .K2b3 .singles>.prow,html[data-size="kakao"] .K2b4 .prod,html[data-size="kakao"] .K2b4 .singles>.prow{grid-column:1/-1}
+html[data-size="kakao"] .K2b2 .singles>.prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:10px;align-content:start}
+html[data-size="kakao"] .K2b2 .singles>.prow .pn{grid-area:pn}
+html[data-size="kakao"] .K2b2 .singles>.prow .plist{grid-area:pl;justify-self:start;align-self:center}
+html[data-size="kakao"] .K2b2 .singles>.prow .psale{grid-area:ps}
+html[data-size="kakao"] .K2a .cp-foot,html[data-size="kakao"] .K2b .cp-foot,html[data-size="kakao"] .K3 .cp-foot{padding-top:10px}
+html[data-size="kakao"] .K2a .uibeop,html[data-size="kakao"] .K2b .uibeop{bottom:22px}
+/* 4: two parts. part 1 = the question and the four solutions; part 2 = the layer diagram and the four devices */
+html[data-size="kakao"] .K41 .tiers{margin-top:18px}
+html[data-size="kakao"] .K41 .tier{min-height:0;padding:16px 22px 18px}
+html[data-size="kakao"] .K42 .lay{margin-top:10px}
+html[data-size="kakao"] .K42 .lay-body{grid-template-columns:320px minmax(0,1fr);column-gap:24px;margin-top:12px}
+html[data-size="kakao"] .K42 .lay-fig{width:320px}
+html[data-size="kakao"] .K42 .devs{gap:10px}
+html[data-size="kakao"] .K42 .dv{grid-template-columns:76px minmax(0,1fr);column-gap:12px;padding-bottom:8px}
+html[data-size="kakao"] .K42 .dv-img{width:76px;height:76px}
+/* 5: three parts. part 1 = the photo, the question and steps 1-2; part 2 = steps 3-4 and method / numbing / daily life; part 3 = things to tell and care */
+html[data-size="kakao"] .K51 .c5-photo{width:150px;height:150px;margin-top:10px}
+html[data-size="kakao"] .K51 .steps{margin-top:18px}
+html[data-size="kakao"] .K52 .steps{counter-reset:st 2;margin-top:18px}
+html[data-size="kakao"] .K52 .st,html[data-size="kakao"] .K51 .st{padding:22px 22px 24px}
+html[data-size="kakao"] .K53 .ask{margin-top:22px}
+/* 6: three parts. part 1 = about intro, the director and the photos; part 2 = strengths + hours; part 3 = location | booking */
+html[data-size="kakao"] .K6 .cx-in{padding:22px 30px 20px}
+html[data-size="kakao"] .K6 .bento{margin-top:12px}
+html[data-size="kakao"] .K61 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] .K61 .bt-about{display:flex;flex-direction:column;padding:20px 26px}
+html[data-size="kakao"] .K61 .ab-top{grid-template-columns:minmax(0,1fr) 206px;grid-template-rows:auto auto;column-gap:16px}
+html[data-size="kakao"] .K61 .dr{display:contents}
+html[data-size="kakao"] .K61 .ab-intro{grid-column:1;grid-row:1;padding:0 0 10px}
+html[data-size="kakao"] .K61 .dr-tx{grid-column:1;grid-row:2;text-align:left;padding:0 0 6px}
+html[data-size="kakao"] .K61 .dr-img{grid-column:2;grid-row:1 / 3;align-self:end}
+html[data-size="kakao"] .K61 .ab-photos{flex:1 1 auto;height:auto;min-height:140px}
+html[data-size="kakao"] .K62 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="kakao"] .K62 .bt-str{grid-column:1;grid-row:1;padding:20px 26px 22px}
+html[data-size="kakao"] .K62 .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+html[data-size="kakao"] .K62 .dots{display:none}
+html[data-size="kakao"] .K62 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:210px minmax(0,1fr);grid-template-areas:"k h" "t h" ". n";column-gap:30px;align-content:center}
+html[data-size="kakao"] .K62 .bt-hours .bt-k{grid-area:k}
+html[data-size="kakao"] .K62 .bt-hours .bt-t{grid-area:t}
+html[data-size="kakao"] .K62 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="kakao"] .K62 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="kakao"] .K63 .bento{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] .K63 .bt-loc{grid-column:1;grid-row:1}
+html[data-size="kakao"] .K63 .bt-book{grid-column:2;grid-row:1}
+html[data-size="kakao"] .K63 .map{width:100%}
+html[data-size="kakao"] .K63 .bk-row{flex:none;grid-template-columns:124px minmax(0,1fr);grid-template-areas:"qr links" "ph ph";row-gap:12px;align-items:center}
+html[data-size="kakao"] .K63 .bk-text{display:contents}
+html[data-size="kakao"] .K63 .qr{grid-area:qr}
+html[data-size="kakao"] .K63 .bk-links{grid-area:links}
+html[data-size="kakao"] .K63 .bk-phone{grid-area:ph;margin-top:0}
+html[data-size="kakao"] .K63 .bt-book .wordmark{margin:auto 0 0 auto}
+
+/* the kakao card is 800 px wide, so the home tablet-width centring block (@container (max-width:800px) and (min-width:601px), tuned for the
+   scaled-down tablet card) matches it too; kakao uses the 1080 design scale, so these chips take the desktop values of the 2026-11-05 fixpass again */
+html[data-size="kakao"] .c2 .pparts .chip,html[data-size="kakao"] .c3 .pparts .chip,html[data-size="kakao"] .c3 [data-copy="on_r26_parts"] .chip:nth-child(n),html[data-size="kakao"] .c3 [data-copy="on_r27_parts"] .chip:nth-child(n){padding-top:.27em;padding-bottom:.13em}
+html[data-size="kakao"] .gh-k,html[data-size="kakao"] .c3 .gh-k,html[data-size="kakao"] .c3 [data-copy="on_g23_k"]{padding-top:.04em;padding-bottom:0}
+html[data-size="kakao"] .pchip{padding-top:.1em;padding-bottom:.1em}
+html[data-size="kakao"] .ptier{line-height:1.3;padding-top:.1em;padding-bottom:.1em}
+html[data-size="kakao"] .ly1,html[data-size="kakao"] .ly4{padding-top:.20em;padding-bottom:.12em}
+html[data-size="kakao"] .ly2,html[data-size="kakao"] .ly3{padding-top:.06em;padding-bottom:0}
+html[data-size="kakao"] .dv-e{padding-top:.12em;padding-bottom:.12em}
+html[data-size="kakao"] .ab-photos figcaption{padding-top:.36em;padding-bottom:.24em}
+html[data-size="kakao"] .way-line{position:relative;top:.055em;padding-top:.2em;padding-bottom:.2em}
+/* chips that sit on new sub-pixel positions in the channel sizes (qa/text-center-check.cjs --size): the measured shift is set again */
+html[data-size="kakao"] .gh-k{width:45px;height:45px}
+html[data-size="kakao"] .K1a2 .tz-top,html[data-size="kakao"] .K1b2 .tz-top{align-items:flex-start}
+html[data-size="kakao"] .K1a2 .tz-opt,html[data-size="kakao"] .K1b2 .tz-opt{margin-top:2px;padding-bottom:calc(.11em + 2px)}
+html[data-size="kakao"] .K2b1 .gh{border-top:1.5px solid transparent}
+html[data-size="kakao"] .K33 [data-copy="on_r26_parts"] .chip:nth-child(-n+5),html[data-size="kakao"] .K34 [data-copy="on_r27_parts"] .chip:nth-child(-n+5){padding-bottom:calc(.13em + 1px)}
+html[data-size="kakao"] .K42 .ly3 [data-copy]{position:relative;top:.6px}
+html[data-size="kakao"] .K63 .way-line{top:.1em}
+html[data-size="line"] .L42 .ly2 [data-copy],html[data-size="line"] .L42 .ly3 [data-copy]{position:relative;top:.6px}
+html[data-size="line"] .L62 .way-line{padding-top:.268em;padding-bottom:.132em}
+/* ===== /SZ:css ===== */

@@ -590,3 +590,183 @@ a[data-link="phone"]{white-space:nowrap}
 /* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
    '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
 [data-copy="dn_c6_q"]{text-wrap:balance}
+
+/* ===== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md): ?size=line 1100x1000, ?size=kakao 800x600, home 1080x1350 unchanged.
+   Size mode is a fixed screen (the board draws it at 1440px and wider): no vw or screen-width media queries below. --px is 1px, so every
+   calc(N*var(--px)) keeps its 1080-design pixel size (text never smaller than the home design). The home cards are hidden in the sizes
+   (data-size-hide); every card is redrawn as size sections (v4/density12/sizes/line.html, kakao.html -> v4/events/tools/channel-sizes/inject.cjs)
+   on the same elements and copy keys; cards that do not fit are split into parts (data-part). ===== */
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+html[data-size="line"] main.dn{max-width:none;width:1100px}
+html[data-size="kakao"] main.dn{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] .notes,html[data-size="kakao"] .notes{display:none}
+/* ---------- LINE 1100x1000 ---------- */
+/* DEN12 LINE 1100x1000 (2026-11-06, v4/events/CHANNEL_SIZES_20261106.md). Size sections are clones of the home cards (.L + .L<key>, parts .L<n>-<part>);
+   --px is 1px, so every home size stays; only position, width, wrapping, columns and parts change here. The big watermark words stay inside the card. */
+/* 1A: the model cutout right on the card's peach, its right and bottom on the card edges; the launch line, title, hook, callouts and contact left */
+html[data-size="line"] .L1a .c1-photo{display:none}
+html[data-size="line"] .L1a .sz-hero{position:absolute;z-index:1;right:0;bottom:0;display:block;width:auto;height:960px;max-width:none;pointer-events:none}
+html[data-size="line"] .L1a .wm1{left:0;top:418px}
+html[data-size="line"] .L1a .callouts{top:520px}
+/* 1B: the head left, the arch photo right (cover in its frame, as at home), the callouts band and contact below */
+html[data-size="line"] .L1b .c1-photo{right:50px;top:206px;width:460px;height:544px}
+html[data-size="line"] .L1b .wm1{display:none}
+html[data-size="line"] .L1b .c1-head{top:110px}
+html[data-size="line"] .L1b .callouts{bottom:120px}
+/* 2A / 2B: two parts in sheet order (300샷 | 600샷 + the foot with 의료법상 줄 and VAT) */
+html[data-size="line"] .L2a .wm2,html[data-size="line"] .L2b .wm2{right:0}
+html[data-size="line"] .L2-1 .pgroup:nth-child(2),html[data-size="line"] .L2-1 .c2-foot{display:none}
+html[data-size="line"] .L2-2 .pgroup:nth-child(1){display:none}
+html[data-size="line"] .L2a .cp-head{margin-top:40px}
+html[data-size="line"] .L2a .pgroups{margin-top:40px}
+html[data-size="line"] .L2b .pgroups{grid-template-columns:minmax(0,1fr);margin-top:30px}
+html[data-size="line"] .L2b .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:18px}
+/* the B tiles stand upright in the row (picture over the prices), as the A tiles do */
+html[data-size="line"] .L2b .tile{display:flex;flex-direction:column;min-height:300px;border-bottom:0}
+html[data-size="line"] .L2b .tl-img{align-self:center;width:136px;height:96px;margin:12px 0 8px}
+html[data-size="line"] .L2b .tl-price{margin-top:auto;padding-top:10px}
+html[data-size="line"] .L2b .pg-head{min-height:0}
+/* 3: part 1 the boost-tip head + rows 72-74, part 2 the title + rows 75-76 + VAT */
+html[data-size="line"] .L3 .wm3{right:0}
+html[data-size="line"] .L3-1 .prow:nth-child(n+4),html[data-size="line"] .L3-1 .c3-foot{display:none}
+html[data-size="line"] .L3-2 .prow:nth-child(-n+3),html[data-size="line"] .L3-2 .b-tip,html[data-size="line"] .L3-2 .b-chip,html[data-size="line"] .L3-2 .p-lead{display:none}
+html[data-size="line"] .L3-2 .b-head{grid-template-columns:minmax(0,1fr)}
+html[data-size="line"] .L3-2 .c3-foot{min-height:0}
+/* 4: part 1 the head + 덴서티지, part 2 the head + 울서티 + VAT + booking line */
+html[data-size="line"] .L4 .wm4{right:0}
+html[data-size="line"] .L4-1 .dgroup:nth-child(2),html[data-size="line"] .L4-1 .cp-in > .vat,html[data-size="line"] .L4-1 .bk-line{display:none}
+html[data-size="line"] .L4-2 .dgroup:nth-child(1){display:none}
+html[data-size="line"] .L4-1 .duo{margin-top:40px}
+/* 5 B/A: the two pairs one above the other, photos smaller */
+html[data-size="line"] .L5 .bb-ba__rows{width:640px;margin:20px auto 0;gap:20px}
+/* 6: part 1 the question + layers + points, part 2 the question title + tips + source */
+html[data-size="line"] .L6 .wm6{top:60px}
+html[data-size="line"] .L6-1 .tips,html[data-size="line"] .L6-1 .src{display:none}
+html[data-size="line"] .L6-1 .q-row{margin-top:8px}
+html[data-size="line"] .L6-1 .c5-mid{margin-top:16px}
+html[data-size="line"] .L6-2 .c5-mid,html[data-size="line"] .L6-2 .q-ans{display:none}
+html[data-size="line"] .L6-2 .tips{margin-top:50px}
+/* 7: part 1 photo + question + who + steps 1-2, part 2 the title + steps 3-4 + infos, tip, source */
+html[data-size="line"] .L7 .wm7{right:0;top:60px}
+html[data-size="line"] .L7-1 .st:nth-child(n+3),html[data-size="line"] .L7-1 .infos,html[data-size="line"] .L7-1 .c6-tip,html[data-size="line"] .L7-1 .src{display:none}
+html[data-size="line"] .L7-2 .c6-photo,html[data-size="line"] .L7-2 .q-ans,html[data-size="line"] .L7-2 .who,html[data-size="line"] .L7-2 .st:nth-child(-n+2){display:none}
+html[data-size="line"] .L7-2 .c6-headrow{grid-template-columns:minmax(0,1fr)}
+html[data-size="line"] .L7-2 .steps{margin-top:30px}
+/* 8 clinic: part 1 the introduction, part 2 directions, hours and booking */
+html[data-size="line"] .L8-1 .bt-loc,html[data-size="line"] .L8-1 .bt-hours,html[data-size="line"] .L8-1 .bt-book{display:none}
+html[data-size="line"] .L8-1 .bento{grid-template-rows:auto;align-content:start;margin-top:40px}
+html[data-size="line"] .L8-2 .bt-about{display:none}
+html[data-size="line"] .L8-2 .bento{grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+html[data-size="line"] .L8-2 .bt-loc{grid-row:1 / 3}
+html[data-size="line"] .L8-2 .bt-hours{grid-row:1}
+html[data-size="line"] .L8-2 .bt-book{grid-row:2}
+/* ---------- /LINE ---------- */
+/* ---------- KAKAO 800x600 ---------- */
+/* DEN12 KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). */
+html[data-size="kakao"] .K .cp-in,html[data-size="kakao"] .K .cba-in,html[data-size="kakao"] .K .c5-in,html[data-size="kakao"] .K .c6-in,html[data-size="kakao"] .K .cx-in{padding:22px 24px 18px}
+/* 1A: part 1 the model cutout right (right and bottom on the card edges), the launch line, title and hook left, the watermark and contact below;
+   part 2 the launch line and title, the two callouts side by side and the contact */
+html[data-size="kakao"] .K1a .c1-photo{display:none}
+html[data-size="kakao"] .K1a .c1-top{left:24px;top:24px}
+html[data-size="kakao"] .K1a .sz-hero{position:absolute;z-index:1;right:0;bottom:0;display:block;width:auto;height:580px;max-width:none;pointer-events:none}
+html[data-size="kakao"] .K1a .c1-head{left:24px;top:70px;width:480px}
+html[data-size="kakao"] .K1a .c1-contact{left:24px;bottom:24px}
+html[data-size="kakao"] .K1-1.K1a .callouts{display:none}
+html[data-size="kakao"] .K1-1.K1a .wm1{left:0;top:404px}
+html[data-size="kakao"] .K1-2.K1a .hook{display:none}
+html[data-size="kakao"] .K1-2.K1a .c1-head{top:64px;width:752px}
+html[data-size="kakao"] .K1-2.K1a .wm1{left:auto;right:24px;top:150px}
+html[data-size="kakao"] .K1-2.K1a .callouts{left:24px;top:300px;width:752px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+html[data-size="kakao"] .K1-2.K1a .callouts::before,html[data-size="kakao"] .K1-2.K1a .co .mk{display:none}
+html[data-size="kakao"] .K1-2.K1a .co{padding-right:0}
+/* 1B: part 1 the head left and the arch photo right; part 2 the title, the callouts band and contact */
+html[data-size="kakao"] .K1b .wm1{display:none}
+html[data-size="kakao"] .K1b .c1-top{left:24px;top:24px}
+html[data-size="kakao"] .K1b .c1-head{left:24px;top:70px;width:480px}
+html[data-size="kakao"] .K1b .c1-contact{left:24px;bottom:24px}
+html[data-size="kakao"] .K1-1.K1b .c1-photo{right:24px;top:130px;width:300px;height:355px}
+html[data-size="kakao"] .K1-1.K1b .callouts{display:none}
+html[data-size="kakao"] .K1-2.K1b .c1-photo,html[data-size="kakao"] .K1-2.K1b .hook{display:none}
+html[data-size="kakao"] .K1-2.K1b .c1-head{width:752px}
+html[data-size="kakao"] .K1-2.K1b .callouts{left:24px;bottom:110px;width:752px}
+/* 2A / 2B: three parts: the head | 300샷 | 600샷 + the foot (눈가 팁 안내, 의료법상 줄, VAT) */
+html[data-size="kakao"] .K2a .wm2,html[data-size="kakao"] .K2b .wm2{right:0}
+html[data-size="kakao"] .K2-1 .pgroups,html[data-size="kakao"] .K2-1 .c2-foot{display:none}
+html[data-size="kakao"] .K2-1 .cp-head{margin-top:70px;grid-template-columns:minmax(0,1fr) 160px}
+html[data-size="kakao"] .K2-1 .dev-c{width:160px;height:160px}
+html[data-size="kakao"] .K2-2 .cp-head,html[data-size="kakao"] .K2-3 .cp-head,html[data-size="kakao"] .K2-2 .c2-foot{display:none}
+html[data-size="kakao"] .K2-2 .pgroup:nth-child(2),html[data-size="kakao"] .K2-3 .pgroup:nth-child(1){display:none}
+html[data-size="kakao"] .K2-2 .pgroups,html[data-size="kakao"] .K2-3 .pgroups{margin-top:20px}
+html[data-size="kakao"] .K2b .pgroups{grid-template-columns:minmax(0,1fr)}
+html[data-size="kakao"] .K2b .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:14px}
+html[data-size="kakao"] .K2b .tile{display:flex;flex-direction:column;min-height:0;border-bottom:0}
+html[data-size="kakao"] .K2b .tl-img{align-self:center;margin:10px 0 6px}
+html[data-size="kakao"] .K2b .tl-price{margin-top:auto;padding-top:8px}
+html[data-size="kakao"] .K2b .pg-head{min-height:0}
+/* 3: part 1 the boost-tip head, part 2 rows 72-74, part 3 rows 75-76 + VAT */
+html[data-size="kakao"] .K3 .wm3{right:0}
+html[data-size="kakao"] .K3-1 .pboard,html[data-size="kakao"] .K3-1 .c3-foot{display:none}
+/* the title needs the full width: the boost tip ring stands right of the chip and lead */
+html[data-size="kakao"] .K3-1 .b-head{position:relative;margin-top:50px;grid-template-columns:minmax(0,1fr)}
+html[data-size="kakao"] .K3-1 .b-tip{position:absolute;right:0;top:150px;width:240px}
+html[data-size="kakao"] .K3-1 .b-ring{width:200px;height:200px;margin:0 auto}
+html[data-size="kakao"] .K3-1 .p-lead{max-width:480px}
+html[data-size="kakao"] .K3 .pboard{padding-left:20px;padding-right:20px}
+html[data-size="kakao"] .K3 .prow{grid-template-columns:minmax(0,1fr) 96px 170px;column-gap:12px}
+html[data-size="kakao"] .K3-2 .b-head,html[data-size="kakao"] .K3-3 .b-head,html[data-size="kakao"] .K3-2 .c3-foot{display:none}
+html[data-size="kakao"] .K3-2 .prow:nth-child(n+4),html[data-size="kakao"] .K3-3 .prow:nth-child(-n+3){display:none}
+html[data-size="kakao"] .K3-2 .pboard,html[data-size="kakao"] .K3-3 .pboard{margin-top:20px}
+html[data-size="kakao"] .K3-3 .c3-foot{min-height:0}
+/* 4: part 1 the head + booking line, part 2 덴서티지, part 3 울서티 + VAT */
+html[data-size="kakao"] .K4 .wm4{right:0}
+html[data-size="kakao"] .K4-1 .duo,html[data-size="kakao"] .K4-1 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K4-1 .c4-head{margin-top:60px}
+html[data-size="kakao"] .K4-2 .c4-head,html[data-size="kakao"] .K4-3 .c4-head,html[data-size="kakao"] .K4-2 .bk-line,html[data-size="kakao"] .K4-3 .bk-line,html[data-size="kakao"] .K4-2 .cp-in > .vat{display:none}
+html[data-size="kakao"] .K4-2 .dgroup:nth-child(2),html[data-size="kakao"] .K4-3 .dgroup:nth-child(1){display:none}
+html[data-size="kakao"] .K4-2 .duo,html[data-size="kakao"] .K4-3 .duo{margin-top:20px}
+/* 5 B/A: one pair per part, the note on part 2 */
+html[data-size="kakao"] .K5 .bb-ba__eyebrow{margin-top:8px}
+html[data-size="kakao"] .K5 .bb-ba__rows{width:600px;margin:16px auto 0}
+html[data-size="kakao"] .K5-1 .bb-ba__row:last-child,html[data-size="kakao"] .K5-1 .bb-ba__note{display:none}
+html[data-size="kakao"] .K5-2 .bb-ba__row:first-child{display:none}
+/* 6: part 1 question + layers, part 2 the four points (2 x 2), part 3 the four tips + source */
+html[data-size="kakao"] .K6 .wm6{top:60px}
+html[data-size="kakao"] .K6 .dev-c5{width:150px;height:150px}
+html[data-size="kakao"] .K6 .q-row{grid-template-columns:minmax(0,1fr) 150px;margin-top:8px}
+html[data-size="kakao"] .K6-1 .points,html[data-size="kakao"] .K6-1 .tips,html[data-size="kakao"] .K6-1 .src{display:none}
+html[data-size="kakao"] .K6-1 .c5-mid{margin-top:12px;grid-template-columns:300px;justify-content:center}
+html[data-size="kakao"] .K6-1 .layers{width:300px}
+html[data-size="kakao"] .K6-2 .c5-mid .layers,html[data-size="kakao"] .K6-2 .q-ans,html[data-size="kakao"] .K6-2 .dev-c5,html[data-size="kakao"] .K6-2 .tips,html[data-size="kakao"] .K6-2 .src{display:none}
+html[data-size="kakao"] .K6-2 .c5-mid{margin-top:18px;grid-template-columns:minmax(0,1fr)}
+html[data-size="kakao"] .K6-2 .points{grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-size="kakao"] .K6-3 .c5-mid,html[data-size="kakao"] .K6-3 .q-ans,html[data-size="kakao"] .K6-3 .dev-c5{display:none}
+html[data-size="kakao"] .K6-3 .tips{margin-top:24px}
+/* 7: part 1 photo + question + who, part 2 the title + steps 1-2, part 3 steps 3-4 + infos, tip, source */
+html[data-size="kakao"] .K7 .wm7{right:0;top:60px}
+html[data-size="kakao"] .K7 .c6-headrow{grid-template-columns:minmax(0,1fr) 220px}
+html[data-size="kakao"] .K7 .c6-photo{width:196px;height:196px;margin:12px}
+html[data-size="kakao"] .K7-1 .steps,html[data-size="kakao"] .K7-1 .infos,html[data-size="kakao"] .K7-1 .c6-tip,html[data-size="kakao"] .K7-1 .src{display:none}
+html[data-size="kakao"] .K7-2 .c6-photo,html[data-size="kakao"] .K7-2 .q-ans,html[data-size="kakao"] .K7-2 .who,html[data-size="kakao"] .K7-2 .st:nth-child(n+3),html[data-size="kakao"] .K7-2 .infos,html[data-size="kakao"] .K7-2 .c6-tip,html[data-size="kakao"] .K7-2 .src{display:none}
+html[data-size="kakao"] .K7-3 .c6-headrow,html[data-size="kakao"] .K7-3 .who,html[data-size="kakao"] .K7-3 .st:nth-child(-n+2){display:none}
+html[data-size="kakao"] .K7-2 .c6-headrow{grid-template-columns:minmax(0,1fr)}
+html[data-size="kakao"] .K7-2 .steps{margin-top:24px}
+/* 8 clinic: part 1 introduction + director; part 2 space photos + strengths; part 3 directions, hours, booking */
+html[data-size="kakao"] .K8-1 .ab-photos,html[data-size="kakao"] .K8-1 .ab-strengths,html[data-size="kakao"] .K8-1 .bt-loc,html[data-size="kakao"] .K8-1 .bt-hours,html[data-size="kakao"] .K8-1 .bt-book{display:none}
+html[data-size="kakao"] .K8-2 .ab-top,html[data-size="kakao"] .K8-2 .bt-loc,html[data-size="kakao"] .K8-2 .bt-hours,html[data-size="kakao"] .K8-2 .bt-book{display:none}
+html[data-size="kakao"] .K8-1 .bento,html[data-size="kakao"] .K8-2 .bento{grid-template-rows:auto;align-content:start}
+html[data-size="kakao"] .K8-1 .ab-top{grid-template-columns:minmax(0,1fr);row-gap:10px}
+html[data-size="kakao"] .K8-1 .dr{justify-self:end}
+html[data-size="kakao"] .K8-3 .bt-about{display:none}
+html[data-size="kakao"] .K8-3 .bento{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);grid-template-rows:auto auto;align-content:start}
+html[data-size="kakao"] .K8-3 .bt-loc{grid-row:1 / 3}
+html[data-size="kakao"] .K8-3 .bt-hours{grid-row:1}
+html[data-size="kakao"] .K8-3 .bt-book{grid-row:2}/* Text centring (qa/text-center-check.cjs, 1080-scale +-0.6 = +-0.44 real px at 800). The text stays where it is (it snaps to whole px):
+   the tag's bottom padding moves its box edge (the margin keeps the layout); the B/A arrow circle grows 1px at the bottom with the same content box. */
+html[data-size="kakao"] .K1-2.K1b span.tz-tag[data-copy="dn_hero_tag"]{padding-bottom:1.9px!important;margin-bottom:.98px}
+html[data-size="kakao"] .K5 span.bb-ba__arrow[data-copy="dn_ba_arrow"]{width:59.06px;height:59.06px;padding-bottom:5.26px!important}
+/* ---------- /KAKAO ---------- */

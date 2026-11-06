@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <script>(function(){var m=/[?&]size=(line|kakao)(?:&|$)/.exec(location.search);document.documentElement.setAttribute('data-size',m?m[1]:'home');})();</script>
+  <meta name="bb-sizes" content="home,line,kakao">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>써마지 FLX · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&amp;family=Pinyon+Script&amp;family=Space+Grotesk:wght@300..700&amp;display=swap">
-  <link rel="stylesheet" href="thermage12.css?v=20261106-thermage12d">
-  <script src="copy-data.js?v=20261106-thermage12d" defer></script>
-  <script src="../inline-edit.js?v=20261106-thermage12d" defer></script>
-  <script src="thermage12.js?v=20261106-thermage12d" defer></script>
+  <link rel="stylesheet" href="thermage12.css?v=20261106-thermage12e">
+  <script src="copy-data.js?v=20261106-thermage12e" defer></script>
+  <script src="../inline-edit.js?v=20261106-thermage12e" defer></script>
+  <script src="thermage12.js?v=20261106-thermage12e" defer></script>
 </head>
 <body>
 <!-- THM12 써마지 · 겨울 시즌 (Korean first), 2026-11-04 rebuild on the completed reference sheet (row 26):
@@ -27,7 +29,7 @@
 
     <!-- 1 / 6 : hero. The generated photo carries F's set: the model stands centred under the velvet bow whose tails frame her (gen/hero-1104-v1.json).
          F's script word sits between the bow and her head; F's product box becomes the plum label box at the bottom centre. -->
-    <section class="card c1" data-card="1" aria-labelledby="tm-t1">
+    <section class="card c1" data-card="1" aria-labelledby="tm-t1" data-size-hide="line kakao">
       <img class="c1-photo" src="assets/hero.jpg?v=1104" data-alt="tm_alt_hero" alt="" width="1080" height="1350">
       <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
       <p class="script c1-script" aria-hidden="true" data-copy="tm_s1"></p>
@@ -46,11 +48,80 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:1a -->
+    <!-- 1A: the hero photo has the model in it, so the size card puts the model cutout (v4/thermage12/a/cut/hero-clean.png: person + velvet ribbon,
+         haze removed, see hero-clean.json) on the clean lavender set (bg/clean.jpg, the card background), bottom and right on the card edges;
+         the script word over the ribbon loop, the plum label box bottom left over her lower body as at home -->
+    <section class="card c1 L L1a" data-card="1" data-size-only="line" aria-labelledby="tm-t1-l">
+    <img class="person sz-hero" src="assets/hero-cut.webp" data-alt="tm_alt_hero" alt="" width="1345" height="1600">
+    
+          <img class="c1-photo" src="assets/hero.jpg?v=1104" data-alt="tm_alt_hero" alt="" width="1080" height="1350">
+          <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <p class="script c1-script" aria-hidden="true" data-copy="tm_s1"></p>
+          
+          <div class="c1-box">
+            <p class="kicker-serif" data-copy="tm_kicker"></p>
+            <h1 class="title hero-title" id="tm-t1-l" data-copy="tm_title"></h1>
+            <p class="hook" data-copy="tm_hook"></p>
+            <div class="c1-price">
+              <p class="tz-top"><span class="tz-label" data-copy="tm_hero_label"></span><span class="tz-tag" data-copy="tm_hero_tag"></span></p>
+              <p class="tz-main"><span class="tz-price money" data-copy="tm_hero_price"></span><span class="tz-vat" data-copy="tm_vat"></span></p>
+            </div>
+            <div class="c1-foot">
+              <p class="period"><span data-copy="tm_period"></span></p>
+              <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="tm_contact"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:1a -->
+    <!-- SZ:kakao:1a -->
+    <!-- 1A: part 1 the model cutout right with the label box left (title, hook, period, contact); part 2 the script word and the whole label box with the price -->
+    <section class="card c1 K K1a K1-1" data-card="1" data-part="1" data-size-only="kakao" aria-labelledby="tm-t1-k1">
+    <img class="person sz-hero" src="assets/hero-cut.webp" data-alt="tm_alt_hero" alt="" width="1345" height="1600">
+    
+          <img class="c1-photo" src="assets/hero.jpg?v=1104" data-alt="tm_alt_hero" alt="" width="1080" height="1350">
+          <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <p class="script c1-script" aria-hidden="true" data-copy="tm_s1"></p>
+          
+          <div class="c1-box">
+            <p class="kicker-serif" data-copy="tm_kicker"></p>
+            <h1 class="title hero-title" id="tm-t1-k1" data-copy="tm_title"></h1>
+            <p class="hook" data-copy="tm_hook"></p>
+            <div class="c1-price">
+              <p class="tz-top"><span class="tz-label" data-copy="tm_hero_label"></span><span class="tz-tag" data-copy="tm_hero_tag"></span></p>
+              <p class="tz-main"><span class="tz-price money" data-copy="tm_hero_price"></span><span class="tz-vat" data-copy="tm_vat"></span></p>
+            </div>
+            <div class="c1-foot">
+              <p class="period"><span data-copy="tm_period"></span></p>
+              <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="tm_contact"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card c1 K K1a K1-2" data-card="1" data-part="2" data-size-only="kakao" aria-labelledby="tm-t1-k2">
+          <img class="c1-photo" src="assets/hero.jpg?v=1104" data-alt="tm_alt_hero" alt="" width="1080" height="1350">
+          <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <p class="script c1-script" aria-hidden="true" data-copy="tm_s1"></p>
+          
+          <div class="c1-box">
+            <p class="kicker-serif" data-copy="tm_kicker"></p>
+            <h1 class="title hero-title" id="tm-t1-k2" data-copy="tm_title"></h1>
+            <p class="hook" data-copy="tm_hook"></p>
+            <div class="c1-price">
+              <p class="tz-top"><span class="tz-label" data-copy="tm_hero_label"></span><span class="tz-tag" data-copy="tm_hero_tag"></span></p>
+              <p class="tz-main"><span class="tz-price money" data-copy="tm_hero_price"></span><span class="tz-vat" data-copy="tm_vat"></span></p>
+            </div>
+            <div class="c1-foot">
+              <p class="period"><span data-copy="tm_period"></span></p>
+              <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="tm_contact"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:1a -->
 
     <!-- 1 / 6 B (2026-11-05): split poster. Left: a full-height plum type panel (the A label box opened into a column); right: a tall model photo on the
          lavender set; F's white script word and a velvet bow sit across the seam. Same copy keys as A. The photo is a temporary 2:3 crop of the A hero;
          the lead replaces it with a new Higgsfield cut (v4/thermage12/MODEL_SLOTS.md). No medal. -->
-    <section class="card c1b" data-card="1" data-variant="b" aria-labelledby="tm-t1b">
+    <section class="card c1b" data-card="1" data-variant="b" aria-labelledby="tm-t1b" data-size-hide="line kakao">
       <figure class="hb-ph"><img class="hb-photo" src="assets/hero-b.jpg?v=1105" data-alt="tm_alt_hero_b" alt="" width="900" height="1350"></figure>
       <img class="hb-bow" src="assets/dec/bow-lilac.webp" alt="" aria-hidden="true" width="360" height="209">
       <div class="hb-panel">
@@ -72,10 +143,81 @@
       </div>
       <p class="script hb-script" aria-hidden="true" data-copy="tm_s1"></p>
     </section>
+    <!-- SZ:line:1b -->
+    <section class="card c1b L L1b" data-card="1" data-variant="b" data-size-only="line" aria-labelledby="tm-t1b-l">
+          <figure class="hb-ph"><img class="hb-photo" src="assets/hero-b.jpg?v=1105" data-alt="tm_alt_hero_b" alt="" width="900" height="1350"></figure>
+          <img class="hb-bow" src="assets/dec/bow-lilac.webp" alt="" aria-hidden="true" width="360" height="209">
+          <div class="hb-panel">
+            <header class="hb-top"><img class="wordmark" src="assets/logo-wordmark-faeadd.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="hb-head">
+              <p class="kicker-serif" data-copy="tm_kicker"></p>
+              <h1 class="title hero-title" id="tm-t1b-l" data-copy="tm_title"></h1>
+              <p class="hook" data-copy="tm_hook"></p>
+            </div>
+            <figure class="hb-dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure>
+            <div class="hb-price">
+              <p class="hb-tz"><span class="tz-label" data-copy="tm_hero_label"></span><span class="hb-tag" data-copy="tm_hero_tag"></span></p>
+              <p class="hb-main"><span class="tz-price money" data-copy="tm_hero_price"></span><span class="hb-vat" data-copy="tm_vat"></span></p>
+            </div>
+            <div class="hb-foot">
+              <p class="period"><span data-copy="tm_period"></span></p>
+              <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="tm_contact"></span></p>
+            </div>
+          </div>
+          <p class="script hb-script" aria-hidden="true" data-copy="tm_s1"></p>
+        </section>
+    <!-- /SZ:line:1b -->
+    <!-- SZ:kakao:1b -->
+    <!-- 1B: part 1 the plum panel with the title and the photo; part 2 the panel with the device, price, period and contact -->
+    <section class="card c1b K K1b K1-1" data-card="1" data-variant="b" data-part="1" data-size-only="kakao" aria-labelledby="tm-t1b-k1">
+          <figure class="hb-ph"><img class="hb-photo" src="assets/hero-b.jpg?v=1105" data-alt="tm_alt_hero_b" alt="" width="900" height="1350"></figure>
+          <img class="hb-bow" src="assets/dec/bow-lilac.webp" alt="" aria-hidden="true" width="360" height="209">
+          <div class="hb-panel">
+            <header class="hb-top"><img class="wordmark" src="assets/logo-wordmark-faeadd.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="hb-head">
+              <p class="kicker-serif" data-copy="tm_kicker"></p>
+              <h1 class="title hero-title" id="tm-t1b-k1" data-copy="tm_title"></h1>
+              <p class="hook" data-copy="tm_hook"></p>
+            </div>
+            <figure class="hb-dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure>
+            <div class="hb-price">
+              <p class="hb-tz"><span class="tz-label" data-copy="tm_hero_label"></span><span class="hb-tag" data-copy="tm_hero_tag"></span></p>
+              <p class="hb-main"><span class="tz-price money" data-copy="tm_hero_price"></span><span class="hb-vat" data-copy="tm_vat"></span></p>
+            </div>
+            <div class="hb-foot">
+              <p class="period"><span data-copy="tm_period"></span></p>
+              <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="tm_contact"></span></p>
+            </div>
+          </div>
+          <p class="script hb-script" aria-hidden="true" data-copy="tm_s1"></p>
+        </section>
+    <section class="card c1b K K1b K1-2" data-card="1" data-variant="b" data-part="2" data-size-only="kakao" aria-labelledby="tm-t1b-k2">
+          <figure class="hb-ph"><img class="hb-photo" src="assets/hero-b.jpg?v=1105" data-alt="tm_alt_hero_b" alt="" width="900" height="1350"></figure>
+          <img class="hb-bow" src="assets/dec/bow-lilac.webp" alt="" aria-hidden="true" width="360" height="209">
+          <div class="hb-panel">
+            <header class="hb-top"><img class="wordmark" src="assets/logo-wordmark-faeadd.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="hb-head">
+              <p class="kicker-serif" data-copy="tm_kicker"></p>
+              <h1 class="title hero-title" id="tm-t1b-k2" data-copy="tm_title"></h1>
+              <p class="hook" data-copy="tm_hook"></p>
+            </div>
+            <figure class="hb-dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure>
+            <div class="hb-price">
+              <p class="hb-tz"><span class="tz-label" data-copy="tm_hero_label"></span><span class="hb-tag" data-copy="tm_hero_tag"></span></p>
+              <p class="hb-main"><span class="tz-price money" data-copy="tm_hero_price"></span><span class="hb-vat" data-copy="tm_vat"></span></p>
+            </div>
+            <div class="hb-foot">
+              <p class="period"><span data-copy="tm_period"></span></p>
+              <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="tm_contact"></span></p>
+            </div>
+          </div>
+          <p class="script hb-script" aria-hidden="true" data-copy="tm_s1"></p>
+        </section>
+    <!-- /SZ:kakao:1b -->
 
     <!-- 2 / 6 : prices, all eleven rows of 11_lifting B50:K61 in sheet order (header B49 -> card title; [tags] -> group heads).
          Background: the generated velvet-bow set (bg/bow.jpg); the Rosarian price sheet stands in the empty centre like F's box. -->
-    <section class="card c2" data-card="2" aria-labelledby="tm-t2">
+    <section class="card c2" data-card="2" aria-labelledby="tm-t2" data-size-hide="line kakao">
       <div class="c2-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
         <!-- 2026-11-05 team comments THM12 #2 (devices out of the sheet, larger) and #3 (smaller 'Price', the hero model in this card):
@@ -128,10 +270,281 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:2a -->
+    <!-- 2A: two parts in sheet order: 1 = 단독 (써마지 FLX · 아이써마지), 2 = 울써마지 + 소프써마지 + 의료법상 줄 · VAT -->
+    <section class="card c2 L L2a L2-1" data-card="2" data-part="1" data-size-only="line" aria-labelledby="tm-t2-l1">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <!-- 2026-11-05 team comments THM12 #2 (devices out of the sheet, larger) and #3 (smaller 'Price', the hero model in this card):
+                 the model left (2026-11-05 user rule: a person cutout on the card background, no photo box, its body going behind the price sheet),
+                 title centre under the bow, the three real device cut-outs right -->
+            <div class="c2-head">
+              <img class="c2-cut" src="assets/model-c2-cut.webp?v=1105" data-alt="tm_alt_c2" alt="" width="690" height="1080">
+              <div class="c2-tx">
+                <p class="script p-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+                <h2 class="p-title" id="tm-t2-l1" data-copy="tm_p_title"></h2>
+                <p class="p-lead" data-copy="tm_p_lead"></p>
+              </div>
+              <div class="c2-devs"><figure class="c2-dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><figure class="c2-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><figure class="c2-dev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure></div>
+            </div>
+            
+            <div class="pboard">
+              <section class="pgroup g-solo" aria-labelledby="tm-g-solo-l1">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-solo-l1" data-copy="tm_g_solo_name"></h3><p class="pg-sub" data-copy="tm_g_solo_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:50"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="prow has-badge" data-price-row="11_lifting:51"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:52"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="prow eye first-eye" data-price-row="11_lifting:53"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="prow eye has-badge" data-price-row="11_lifting:54"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-ul" aria-labelledby="tm-g-ul-l1">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-ul-l1" data-copy="tm_g_ul_name"></h3><p class="pg-sub" data-copy="tm_g_ul_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo" data-price-row="11_lifting:55"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:56"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:57"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-sf" aria-labelledby="tm-g-sf-l1">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-sf-l1" data-copy="tm_g_sf_name"></h3><p class="pg-sub" data-copy="tm_g_sf_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo has-badge" data-price-row="11_lifting:58"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:59"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:60"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+              <p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card c2 L L2a L2-2" data-card="2" data-part="2" data-size-only="line" aria-labelledby="tm-t2-l2">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <!-- 2026-11-05 team comments THM12 #2 (devices out of the sheet, larger) and #3 (smaller 'Price', the hero model in this card):
+                 the model left (2026-11-05 user rule: a person cutout on the card background, no photo box, its body going behind the price sheet),
+                 title centre under the bow, the three real device cut-outs right -->
+            <div class="c2-head">
+              <img class="c2-cut" src="assets/model-c2-cut.webp?v=1105" data-alt="tm_alt_c2" alt="" width="690" height="1080">
+              <div class="c2-tx">
+                <p class="script p-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+                <h2 class="p-title" id="tm-t2-l2" data-copy="tm_p_title"></h2>
+                <p class="p-lead" data-copy="tm_p_lead"></p>
+              </div>
+              <div class="c2-devs"><figure class="c2-dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><figure class="c2-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><figure class="c2-dev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure></div>
+            </div>
+            
+            <div class="pboard">
+              <section class="pgroup g-solo" aria-labelledby="tm-g-solo-l2">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-solo-l2" data-copy="tm_g_solo_name"></h3><p class="pg-sub" data-copy="tm_g_solo_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:50"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="prow has-badge" data-price-row="11_lifting:51"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:52"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="prow eye first-eye" data-price-row="11_lifting:53"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="prow eye has-badge" data-price-row="11_lifting:54"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-ul" aria-labelledby="tm-g-ul-l2">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-ul-l2" data-copy="tm_g_ul_name"></h3><p class="pg-sub" data-copy="tm_g_ul_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo" data-price-row="11_lifting:55"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:56"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:57"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-sf" aria-labelledby="tm-g-sf-l2">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-sf-l2" data-copy="tm_g_sf_name"></h3><p class="pg-sub" data-copy="tm_g_sf_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo has-badge" data-price-row="11_lifting:58"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:59"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:60"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+              <p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:2a -->
+    <!-- SZ:kakao:2a -->
+    <!-- 2A / 2B: three parts in sheet order: 단독 | 울써마지 | 소프써마지 + 의료법상 줄 · VAT -->
+    <section class="card c2 K K2a K2-1" data-card="2" data-part="1" data-size-only="kakao" aria-labelledby="tm-t2-k1">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <!-- 2026-11-05 team comments THM12 #2 (devices out of the sheet, larger) and #3 (smaller 'Price', the hero model in this card):
+                 the model left (2026-11-05 user rule: a person cutout on the card background, no photo box, its body going behind the price sheet),
+                 title centre under the bow, the three real device cut-outs right -->
+            <div class="c2-head">
+              <img class="c2-cut" src="assets/model-c2-cut.webp?v=1105" data-alt="tm_alt_c2" alt="" width="690" height="1080">
+              <div class="c2-tx">
+                <p class="script p-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+                <h2 class="p-title" id="tm-t2-k1" data-copy="tm_p_title"></h2>
+                <p class="p-lead" data-copy="tm_p_lead"></p>
+              </div>
+              <div class="c2-devs"><figure class="c2-dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><figure class="c2-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><figure class="c2-dev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure></div>
+            </div>
+            
+            <div class="pboard">
+              <section class="pgroup g-solo" aria-labelledby="tm-g-solo-k1">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-solo-k1" data-copy="tm_g_solo_name"></h3><p class="pg-sub" data-copy="tm_g_solo_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:50"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="prow has-badge" data-price-row="11_lifting:51"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:52"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="prow eye first-eye" data-price-row="11_lifting:53"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="prow eye has-badge" data-price-row="11_lifting:54"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-ul" aria-labelledby="tm-g-ul-k1">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-ul-k1" data-copy="tm_g_ul_name"></h3><p class="pg-sub" data-copy="tm_g_ul_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo" data-price-row="11_lifting:55"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:56"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:57"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-sf" aria-labelledby="tm-g-sf-k1">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-sf-k1" data-copy="tm_g_sf_name"></h3><p class="pg-sub" data-copy="tm_g_sf_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo has-badge" data-price-row="11_lifting:58"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:59"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:60"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+              <p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card c2 K K2a K2-2" data-card="2" data-part="2" data-size-only="kakao" aria-labelledby="tm-t2-k2">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <!-- 2026-11-05 team comments THM12 #2 (devices out of the sheet, larger) and #3 (smaller 'Price', the hero model in this card):
+                 the model left (2026-11-05 user rule: a person cutout on the card background, no photo box, its body going behind the price sheet),
+                 title centre under the bow, the three real device cut-outs right -->
+            <div class="c2-head">
+              <img class="c2-cut" src="assets/model-c2-cut.webp?v=1105" data-alt="tm_alt_c2" alt="" width="690" height="1080">
+              <div class="c2-tx">
+                <p class="script p-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+                <h2 class="p-title" id="tm-t2-k2" data-copy="tm_p_title"></h2>
+                <p class="p-lead" data-copy="tm_p_lead"></p>
+              </div>
+              <div class="c2-devs"><figure class="c2-dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><figure class="c2-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><figure class="c2-dev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure></div>
+            </div>
+            
+            <div class="pboard">
+              <section class="pgroup g-solo" aria-labelledby="tm-g-solo-k2">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-solo-k2" data-copy="tm_g_solo_name"></h3><p class="pg-sub" data-copy="tm_g_solo_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:50"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="prow has-badge" data-price-row="11_lifting:51"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:52"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="prow eye first-eye" data-price-row="11_lifting:53"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="prow eye has-badge" data-price-row="11_lifting:54"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-ul" aria-labelledby="tm-g-ul-k2">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-ul-k2" data-copy="tm_g_ul_name"></h3><p class="pg-sub" data-copy="tm_g_ul_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo" data-price-row="11_lifting:55"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:56"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:57"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-sf" aria-labelledby="tm-g-sf-k2">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-sf-k2" data-copy="tm_g_sf_name"></h3><p class="pg-sub" data-copy="tm_g_sf_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo has-badge" data-price-row="11_lifting:58"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:59"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:60"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+              <p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <section class="card c2 K K2a K2-3" data-card="2" data-part="3" data-size-only="kakao" aria-labelledby="tm-t2-k3">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <!-- 2026-11-05 team comments THM12 #2 (devices out of the sheet, larger) and #3 (smaller 'Price', the hero model in this card):
+                 the model left (2026-11-05 user rule: a person cutout on the card background, no photo box, its body going behind the price sheet),
+                 title centre under the bow, the three real device cut-outs right -->
+            <div class="c2-head">
+              <img class="c2-cut" src="assets/model-c2-cut.webp?v=1105" data-alt="tm_alt_c2" alt="" width="690" height="1080">
+              <div class="c2-tx">
+                <p class="script p-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+                <h2 class="p-title" id="tm-t2-k3" data-copy="tm_p_title"></h2>
+                <p class="p-lead" data-copy="tm_p_lead"></p>
+              </div>
+              <div class="c2-devs"><figure class="c2-dev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><figure class="c2-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><figure class="c2-dev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure></div>
+            </div>
+            
+            <div class="pboard">
+              <section class="pgroup g-solo" aria-labelledby="tm-g-solo-k3">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-solo-k3" data-copy="tm_g_solo_name"></h3><p class="pg-sub" data-copy="tm_g_solo_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow" data-price-row="11_lifting:50"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="prow has-badge" data-price-row="11_lifting:51"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="prow" data-price-row="11_lifting:52"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="prow eye first-eye" data-price-row="11_lifting:53"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="prow eye has-badge" data-price-row="11_lifting:54"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-ul" aria-labelledby="tm-g-ul-k3">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-ul-k3" data-copy="tm_g_ul_name"></h3><p class="pg-sub" data-copy="tm_g_ul_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo" data-price-row="11_lifting:55"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:56"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:57"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="pgroup g-sf" aria-labelledby="tm-g-sf-k3">
+                <div class="phead">
+                  <div class="pg-tx"><h3 class="pg-name" id="tm-g-sf-k3" data-copy="tm_g_sf_name"></h3><p class="pg-sub" data-copy="tm_g_sf_sub"></p></div>
+                </div>
+                <ul class="prows">
+                  <li class="prow combo has-badge" data-price-row="11_lifting:58"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="prow combo has-badge" data-price-row="11_lifting:59"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="prow combo" data-price-row="11_lifting:60"><span class="pname"><span class="pl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+              <p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:2a -->
 
     <!-- 2 / 6 B (2026-11-05): device bands. The same eleven rows in sheet order, one band per group: a plum device panel on the left (group name,
          make-up, real device cut-outs) and the Rosarian row list on the right. Same copy keys as A; '의료법상 최대 49% 할인' once at the bottom. -->
-    <section class="card c2b" data-card="2" data-variant="b" aria-labelledby="tm-t2b">
+    <section class="card c2b" data-card="2" data-variant="b" aria-labelledby="tm-t2b" data-size-hide="line kakao">
       <div class="c2b-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
         <div class="c2b-head">
@@ -171,10 +584,214 @@
         <div class="c2b-foot"><p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p></div>
       </div>
     </section>
+    <!-- SZ:line:2b -->
+    <section class="card c2b L L2b L2-1" data-card="2" data-variant="b" data-part="1" data-size-only="line" aria-labelledby="tm-t2b-l1">
+          <div class="c2b-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <div class="c2b-head">
+              <p class="script c2b-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+              <div class="c2b-tx"><h2 class="p-title c2b-title" id="tm-t2b-l1" data-copy="tm_p_title"></h2><p class="c2b-lead" data-copy="tm_p_lead"></p></div>
+              <img class="c2b-cut" src="assets/model-c2b-cut.webp?v=1105" data-alt="tm_alt_c2b" alt="" width="690" height="980">
+              <img class="c2b-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207">
+            </div>
+            <div class="bands">
+              <section class="band g-solo" aria-labelledby="tm-g-solo-b-l1">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-solo-b-l1" data-copy="tm_g_solo_name"></h3><p class="bd-sub" data-copy="tm_g_solo_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:50"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:51"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:52"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:53"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:54"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-ul" aria-labelledby="tm-g-ul-b-l1">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-ul-b-l1" data-copy="tm_g_ul_name"></h3><p class="bd-sub" data-copy="tm_g_ul_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:55"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:56"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:57"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-sf" aria-labelledby="tm-g-sf-b-l1">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-sf-b-l1" data-copy="tm_g_sf_name"></h3><p class="bd-sub" data-copy="tm_g_sf_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:58"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:59"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:60"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+            </div>
+            <div class="c2b-foot"><p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p></div>
+          </div>
+        </section>
+    <section class="card c2b L L2b L2-2" data-card="2" data-variant="b" data-part="2" data-size-only="line" aria-labelledby="tm-t2b-l2">
+          <div class="c2b-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <div class="c2b-head">
+              <p class="script c2b-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+              <div class="c2b-tx"><h2 class="p-title c2b-title" id="tm-t2b-l2" data-copy="tm_p_title"></h2><p class="c2b-lead" data-copy="tm_p_lead"></p></div>
+              <img class="c2b-cut" src="assets/model-c2b-cut.webp?v=1105" data-alt="tm_alt_c2b" alt="" width="690" height="980">
+              <img class="c2b-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207">
+            </div>
+            <div class="bands">
+              <section class="band g-solo" aria-labelledby="tm-g-solo-b-l2">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-solo-b-l2" data-copy="tm_g_solo_name"></h3><p class="bd-sub" data-copy="tm_g_solo_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:50"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:51"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:52"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:53"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:54"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-ul" aria-labelledby="tm-g-ul-b-l2">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-ul-b-l2" data-copy="tm_g_ul_name"></h3><p class="bd-sub" data-copy="tm_g_ul_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:55"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:56"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:57"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-sf" aria-labelledby="tm-g-sf-b-l2">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-sf-b-l2" data-copy="tm_g_sf_name"></h3><p class="bd-sub" data-copy="tm_g_sf_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:58"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:59"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:60"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+            </div>
+            <div class="c2b-foot"><p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p></div>
+          </div>
+        </section>
+    <!-- /SZ:line:2b -->
+    <!-- SZ:kakao:2b -->
+    <section class="card c2b K K2b K2-1" data-card="2" data-variant="b" data-part="1" data-size-only="kakao" aria-labelledby="tm-t2b-k1">
+          <div class="c2b-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <div class="c2b-head">
+              <p class="script c2b-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+              <div class="c2b-tx"><h2 class="p-title c2b-title" id="tm-t2b-k1" data-copy="tm_p_title"></h2><p class="c2b-lead" data-copy="tm_p_lead"></p></div>
+              <img class="c2b-cut" src="assets/model-c2b-cut.webp?v=1105" data-alt="tm_alt_c2b" alt="" width="690" height="980">
+              <img class="c2b-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207">
+            </div>
+            <div class="bands">
+              <section class="band g-solo" aria-labelledby="tm-g-solo-b-k1">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-solo-b-k1" data-copy="tm_g_solo_name"></h3><p class="bd-sub" data-copy="tm_g_solo_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:50"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:51"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:52"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:53"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:54"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-ul" aria-labelledby="tm-g-ul-b-k1">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-ul-b-k1" data-copy="tm_g_ul_name"></h3><p class="bd-sub" data-copy="tm_g_ul_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:55"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:56"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:57"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-sf" aria-labelledby="tm-g-sf-b-k1">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-sf-b-k1" data-copy="tm_g_sf_name"></h3><p class="bd-sub" data-copy="tm_g_sf_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:58"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:59"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:60"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+            </div>
+            <div class="c2b-foot"><p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p></div>
+          </div>
+        </section>
+    <section class="card c2b K K2b K2-2" data-card="2" data-variant="b" data-part="2" data-size-only="kakao" aria-labelledby="tm-t2b-k2">
+          <div class="c2b-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <div class="c2b-head">
+              <p class="script c2b-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+              <div class="c2b-tx"><h2 class="p-title c2b-title" id="tm-t2b-k2" data-copy="tm_p_title"></h2><p class="c2b-lead" data-copy="tm_p_lead"></p></div>
+              <img class="c2b-cut" src="assets/model-c2b-cut.webp?v=1105" data-alt="tm_alt_c2b" alt="" width="690" height="980">
+              <img class="c2b-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207">
+            </div>
+            <div class="bands">
+              <section class="band g-solo" aria-labelledby="tm-g-solo-b-k2">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-solo-b-k2" data-copy="tm_g_solo_name"></h3><p class="bd-sub" data-copy="tm_g_solo_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:50"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:51"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:52"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:53"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:54"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-ul" aria-labelledby="tm-g-ul-b-k2">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-ul-b-k2" data-copy="tm_g_ul_name"></h3><p class="bd-sub" data-copy="tm_g_ul_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:55"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:56"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:57"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-sf" aria-labelledby="tm-g-sf-b-k2">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-sf-b-k2" data-copy="tm_g_sf_name"></h3><p class="bd-sub" data-copy="tm_g_sf_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:58"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:59"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:60"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+            </div>
+            <div class="c2b-foot"><p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p></div>
+          </div>
+        </section>
+    <section class="card c2b K K2b K2-3" data-card="2" data-variant="b" data-part="3" data-size-only="kakao" aria-labelledby="tm-t2b-k3">
+          <div class="c2b-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="tm_period"></span></span></header>
+            <div class="c2b-head">
+              <p class="script c2b-mark" aria-hidden="true" data-copy="tm_p_mark"></p>
+              <div class="c2b-tx"><h2 class="p-title c2b-title" id="tm-t2b-k3" data-copy="tm_p_title"></h2><p class="c2b-lead" data-copy="tm_p_lead"></p></div>
+              <img class="c2b-cut" src="assets/model-c2b-cut.webp?v=1105" data-alt="tm_alt_c2b" alt="" width="690" height="980">
+              <img class="c2b-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207">
+            </div>
+            <div class="bands">
+              <section class="band g-solo" aria-labelledby="tm-g-solo-b-k3">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-solo-b-k3" data-copy="tm_g_solo_name"></h3><p class="bd-sub" data-copy="tm_g_solo_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:50"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r50_name"></span></span><span class="pd" data-copy="tm_r50_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r50_list"></span><span class="psale money" data-price-sale data-copy="tm_r50_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:51"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r51_name"></span><span class="badge" data-copy="tm_r51_badge"></span></span><span class="pd" data-copy="tm_r51_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r51_list"></span><span class="psale money" data-price-sale data-copy="tm_r51_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:52"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r52_name"></span></span><span class="pd" data-copy="tm_r52_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r52_list"></span><span class="psale money" data-price-sale data-copy="tm_r52_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:53"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r53_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r53_list"></span><span class="psale money" data-price-sale data-copy="tm_r53_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:54"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r54_name"></span><span class="badge" data-copy="tm_r54_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r54_list"></span><span class="psale money" data-price-sale data-copy="tm_r54_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-ul" aria-labelledby="tm-g-ul-b-k3">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-ul-b-k3" data-copy="tm_g_ul_name"></h3><p class="bd-sub" data-copy="tm_g_ul_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:55"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r55_name"></span></span><span class="pd" data-copy="tm_r55_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r55_list"></span><span class="psale money" data-price-sale data-copy="tm_r55_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:56"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r56_name"></span><span class="badge" data-copy="tm_r56_badge"></span></span><span class="pd" data-copy="tm_r56_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r56_list"></span><span class="psale money" data-price-sale data-copy="tm_r56_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:57"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r57_name"></span></span><span class="pd" data-copy="tm_r57_detail"></span></span><span class="plist money" data-price-list data-copy="tm_r57_list"></span><span class="psale money" data-price-sale data-copy="tm_r57_sale"></span></li>
+                </ul>
+              </section>
+              <section class="band g-sf" aria-labelledby="tm-g-sf-b-k3">
+                <div class="bd-side"><div class="bd-tx"><h3 class="bd-name" id="tm-g-sf-b-k3" data-copy="tm_g_sf_name"></h3><p class="bd-sub" data-copy="tm_g_sf_sub"></p></div><div class="bd-devs"><figure class="bdev"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><span class="bd-plus" aria-hidden="true" data-copy="tm_plus"></span><figure class="bdev"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure></div></div>
+                <ul class="brows">
+                  <li class="brow" data-price-row="11_lifting:58"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r58_name"></span><span class="badge hit" data-copy="tm_r58_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r58_list"></span><span class="psale money" data-price-sale data-copy="tm_r58_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:59"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r59_name"></span><span class="badge" data-copy="tm_r59_badge"></span></span></span><span class="plist money" data-price-list data-copy="tm_r59_list"></span><span class="psale money" data-price-sale data-copy="tm_r59_sale"></span></li>
+                  <li class="brow" data-price-row="11_lifting:60"><span class="bname"><span class="bpl"><span class="pn" data-copy="tm_r60_name"></span></span></span><span class="plist money" data-price-list data-copy="tm_r60_list"></span><span class="psale money" data-price-sale data-copy="tm_r60_sale"></span></li>
+                </ul>
+              </section>
+            </div>
+            <div class="c2b-foot"><p class="uibeop" data-copy="tm_uibeop"></p><p class="vat"><span data-copy="tm_vat"></span></p></div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:2b -->
 
     <!-- 3 / 6 : Before & After (approved bb-ba component of v4/_shared/ba/winter-ba-9/thermage; the four photos are copied unchanged into assets/ba).
          Only the colours follow the new design (--ba-* variables, generated lavender set behind); the arrow is the text '›' (no inline SVG). -->
-    <section class="card cba bb-ba" data-card="3" aria-labelledby="tm-tba">
+    <section class="card cba bb-ba" data-card="3" aria-labelledby="tm-tba" data-size-hide="line kakao">
       <div class="cba-in bb-ba__inner">
         <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <p class="bb-ba__eyebrow" data-copy="tm_ba_kicker"></p>
@@ -198,11 +815,87 @@
         <p class="bb-ba__note" data-copy="tm_ba_note"></p>
       </div>
     </section>
+    <!-- SZ:line:3 -->
+    <section class="card cba bb-ba L L3" data-card="3" data-size-only="line" aria-labelledby="tm-tba-l">
+          <div class="cba-in bb-ba__inner">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <p class="bb-ba__eyebrow" data-copy="tm_ba_kicker"></p>
+            <h2 class="bb-ba__title" id="tm-tba-l" data-copy="tm_ba_title"></h2>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-front-before.jpg" data-alt="tm_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="tm_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="tm_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-front-after.jpg" data-alt="tm_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="tm_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-45-before.jpg" data-alt="tm_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="tm_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="tm_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-45-after.jpg" data-alt="tm_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="tm_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="tm_ba_note"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:3 -->
+    <!-- SZ:kakao:3 -->
+    <section class="card cba bb-ba K K3 K3-1" data-card="3" data-part="1" data-size-only="kakao" aria-labelledby="tm-tba-k1">
+          <div class="cba-in bb-ba__inner">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <p class="bb-ba__eyebrow" data-copy="tm_ba_kicker"></p>
+            <h2 class="bb-ba__title" id="tm-tba-k1" data-copy="tm_ba_title"></h2>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-front-before.jpg" data-alt="tm_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="tm_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="tm_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-front-after.jpg" data-alt="tm_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="tm_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-45-before.jpg" data-alt="tm_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="tm_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="tm_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-45-after.jpg" data-alt="tm_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="tm_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="tm_ba_note"></p>
+          </div>
+        </section>
+    <section class="card cba bb-ba K K3 K3-2" data-card="3" data-part="2" data-size-only="kakao" aria-labelledby="tm-tba-k2">
+          <div class="cba-in bb-ba__inner">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <p class="bb-ba__eyebrow" data-copy="tm_ba_kicker"></p>
+            <h2 class="bb-ba__title" id="tm-tba-k2" data-copy="tm_ba_title"></h2>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-front-before.jpg" data-alt="tm_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="tm_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="tm_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-front-after.jpg" data-alt="tm_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="tm_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-45-before.jpg" data-alt="tm_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="tm_ba_tag_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true" data-copy="tm_ba_arrow"></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/thermage-45-after.jpg" data-alt="tm_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="tm_ba_tag_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="tm_ba_note"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:3 -->
 
     <!-- 4 / 6 : what the device is (facts: v4/thermage12/REFERENCE_AND_PLAN.md). The skin section is a generated picture without text; the labels are
          HTML text placed on its layers; the tip is the manufacturer's real tip photo at its native size (v3/products/cut/thermage-total-tip.png, turned).
          The three devices stand on Rosarian plinths like F's product on its box (trimmed cut-outs, equal boxes). -->
-    <section class="card c3" data-card="4" aria-labelledby="tm-t3">
+    <section class="card c3" data-card="4" aria-labelledby="tm-t3" data-size-hide="line kakao">
       <div class="c3-in">
         <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="q-head">
@@ -239,10 +932,201 @@
         <p class="src" data-copy="tm_c3_src"></p>
       </div>
     </section>
+    <!-- SZ:line:4 -->
+    <!-- 4: part 1 the question, the cross-section and the three points; part 2 the device comparison and the source -->
+    <section class="card c3 L L4 L4-1" data-card="4" data-part="1" data-size-only="line" aria-labelledby="tm-t3-l1">
+          <div class="c3-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="script kicker-script" aria-hidden="true" data-copy="tm_c3_kicker"></p>
+              <h2 class="q-title" id="tm-t3-l1" data-copy="tm_c3_q"></h2>
+              <p class="q-ans" data-copy="tm_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="xsec">
+                <img class="xsec-art" src="assets/c4/skin.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                <img class="xsec-tip" src="assets/c4/tip.webp" data-alt="tm_alt_tip" alt="" width="131" height="153">
+                <span class="xl xl-tip" data-copy="tm_c3_d_tip"></span>
+                <span class="xl xl-cool" data-copy="tm_c3_d_cool"></span>
+                <span class="xl xl-heat" data-copy="tm_c3_d_heat"></span>
+                <span class="xm xm-epi" data-copy="tm_c3_d_epi"></span>
+                <span class="xm xm-dermis" data-copy="tm_c3_d_dermis"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p1_t"></h3><p class="pt-d" data-copy="tm_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p2_t"></h3><p class="pt-d" data-copy="tm_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p3_t"></h3><p class="pt-d" data-copy="tm_c3_p3_d"></p>
+                  <!-- 2026-11-05 team comment THM12 #7: what each tip is for (homepage + Solta Medical Korea, no effect figures) -->
+                  <ul class="tips"><li class="tip"><span class="tip-k" data-copy="tm_c3_tip1_k"></span><span class="tip-d" data-copy="tm_c3_tip1_d"></span></li><li class="tip"><span class="tip-k" data-copy="tm_c3_tip2_k"></span><span class="tip-d" data-copy="tm_c3_tip2_d"></span></li></ul></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="tm_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="cmp-it is-main"><figure class="dev-l"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e1_name"></span><span class="cmp-t" data-copy="tm_c3_e1_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e2_name"></span><span class="cmp-t" data-copy="tm_c3_e2_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e3_name"></span><span class="cmp-t" data-copy="tm_c3_e3_type"></span></div></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="tm_c3_src"></p>
+          </div>
+        </section>
+    <section class="card c3 L L4 L4-2" data-card="4" data-part="2" data-size-only="line" aria-labelledby="tm-t3-l2">
+          <div class="c3-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="script kicker-script" aria-hidden="true" data-copy="tm_c3_kicker"></p>
+              <h2 class="q-title" id="tm-t3-l2" data-copy="tm_c3_q"></h2>
+              <p class="q-ans" data-copy="tm_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="xsec">
+                <img class="xsec-art" src="assets/c4/skin.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                <img class="xsec-tip" src="assets/c4/tip.webp" data-alt="tm_alt_tip" alt="" width="131" height="153">
+                <span class="xl xl-tip" data-copy="tm_c3_d_tip"></span>
+                <span class="xl xl-cool" data-copy="tm_c3_d_cool"></span>
+                <span class="xl xl-heat" data-copy="tm_c3_d_heat"></span>
+                <span class="xm xm-epi" data-copy="tm_c3_d_epi"></span>
+                <span class="xm xm-dermis" data-copy="tm_c3_d_dermis"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p1_t"></h3><p class="pt-d" data-copy="tm_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p2_t"></h3><p class="pt-d" data-copy="tm_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p3_t"></h3><p class="pt-d" data-copy="tm_c3_p3_d"></p>
+                  <!-- 2026-11-05 team comment THM12 #7: what each tip is for (homepage + Solta Medical Korea, no effect figures) -->
+                  <ul class="tips"><li class="tip"><span class="tip-k" data-copy="tm_c3_tip1_k"></span><span class="tip-d" data-copy="tm_c3_tip1_d"></span></li><li class="tip"><span class="tip-k" data-copy="tm_c3_tip2_k"></span><span class="tip-d" data-copy="tm_c3_tip2_d"></span></li></ul></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="tm_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="cmp-it is-main"><figure class="dev-l"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e1_name"></span><span class="cmp-t" data-copy="tm_c3_e1_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e2_name"></span><span class="cmp-t" data-copy="tm_c3_e2_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e3_name"></span><span class="cmp-t" data-copy="tm_c3_e3_type"></span></div></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="tm_c3_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:4 -->
+    <!-- SZ:kakao:4 -->
+    <!-- 4: part 1 question + cross-section, part 2 the three points, part 3 the device comparison + source -->
+    <section class="card c3 K K4 K4-1" data-card="4" data-part="1" data-size-only="kakao" aria-labelledby="tm-t3-k1">
+          <div class="c3-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="script kicker-script" aria-hidden="true" data-copy="tm_c3_kicker"></p>
+              <h2 class="q-title" id="tm-t3-k1" data-copy="tm_c3_q"></h2>
+              <p class="q-ans" data-copy="tm_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="xsec">
+                <img class="xsec-art" src="assets/c4/skin.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                <img class="xsec-tip" src="assets/c4/tip.webp" data-alt="tm_alt_tip" alt="" width="131" height="153">
+                <span class="xl xl-tip" data-copy="tm_c3_d_tip"></span>
+                <span class="xl xl-cool" data-copy="tm_c3_d_cool"></span>
+                <span class="xl xl-heat" data-copy="tm_c3_d_heat"></span>
+                <span class="xm xm-epi" data-copy="tm_c3_d_epi"></span>
+                <span class="xm xm-dermis" data-copy="tm_c3_d_dermis"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p1_t"></h3><p class="pt-d" data-copy="tm_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p2_t"></h3><p class="pt-d" data-copy="tm_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p3_t"></h3><p class="pt-d" data-copy="tm_c3_p3_d"></p>
+                  <!-- 2026-11-05 team comment THM12 #7: what each tip is for (homepage + Solta Medical Korea, no effect figures) -->
+                  <ul class="tips"><li class="tip"><span class="tip-k" data-copy="tm_c3_tip1_k"></span><span class="tip-d" data-copy="tm_c3_tip1_d"></span></li><li class="tip"><span class="tip-k" data-copy="tm_c3_tip2_k"></span><span class="tip-d" data-copy="tm_c3_tip2_d"></span></li></ul></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="tm_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="cmp-it is-main"><figure class="dev-l"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e1_name"></span><span class="cmp-t" data-copy="tm_c3_e1_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e2_name"></span><span class="cmp-t" data-copy="tm_c3_e2_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e3_name"></span><span class="cmp-t" data-copy="tm_c3_e3_type"></span></div></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="tm_c3_src"></p>
+          </div>
+        </section>
+    <section class="card c3 K K4 K4-2" data-card="4" data-part="2" data-size-only="kakao" aria-labelledby="tm-t3-k2">
+          <div class="c3-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="script kicker-script" aria-hidden="true" data-copy="tm_c3_kicker"></p>
+              <h2 class="q-title" id="tm-t3-k2" data-copy="tm_c3_q"></h2>
+              <p class="q-ans" data-copy="tm_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="xsec">
+                <img class="xsec-art" src="assets/c4/skin.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                <img class="xsec-tip" src="assets/c4/tip.webp" data-alt="tm_alt_tip" alt="" width="131" height="153">
+                <span class="xl xl-tip" data-copy="tm_c3_d_tip"></span>
+                <span class="xl xl-cool" data-copy="tm_c3_d_cool"></span>
+                <span class="xl xl-heat" data-copy="tm_c3_d_heat"></span>
+                <span class="xm xm-epi" data-copy="tm_c3_d_epi"></span>
+                <span class="xm xm-dermis" data-copy="tm_c3_d_dermis"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p1_t"></h3><p class="pt-d" data-copy="tm_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p2_t"></h3><p class="pt-d" data-copy="tm_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p3_t"></h3><p class="pt-d" data-copy="tm_c3_p3_d"></p>
+                  <!-- 2026-11-05 team comment THM12 #7: what each tip is for (homepage + Solta Medical Korea, no effect figures) -->
+                  <ul class="tips"><li class="tip"><span class="tip-k" data-copy="tm_c3_tip1_k"></span><span class="tip-d" data-copy="tm_c3_tip1_d"></span></li><li class="tip"><span class="tip-k" data-copy="tm_c3_tip2_k"></span><span class="tip-d" data-copy="tm_c3_tip2_d"></span></li></ul></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="tm_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="cmp-it is-main"><figure class="dev-l"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e1_name"></span><span class="cmp-t" data-copy="tm_c3_e1_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e2_name"></span><span class="cmp-t" data-copy="tm_c3_e2_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e3_name"></span><span class="cmp-t" data-copy="tm_c3_e3_type"></span></div></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="tm_c3_src"></p>
+          </div>
+        </section>
+    <section class="card c3 K K4 K4-3" data-card="4" data-part="3" data-size-only="kakao" aria-labelledby="tm-t3-k3">
+          <div class="c3-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="script kicker-script" aria-hidden="true" data-copy="tm_c3_kicker"></p>
+              <h2 class="q-title" id="tm-t3-k3" data-copy="tm_c3_q"></h2>
+              <p class="q-ans" data-copy="tm_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="xsec">
+                <img class="xsec-art" src="assets/c4/skin.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                <img class="xsec-tip" src="assets/c4/tip.webp" data-alt="tm_alt_tip" alt="" width="131" height="153">
+                <span class="xl xl-tip" data-copy="tm_c3_d_tip"></span>
+                <span class="xl xl-cool" data-copy="tm_c3_d_cool"></span>
+                <span class="xl xl-heat" data-copy="tm_c3_d_heat"></span>
+                <span class="xm xm-epi" data-copy="tm_c3_d_epi"></span>
+                <span class="xm xm-dermis" data-copy="tm_c3_d_dermis"></span>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p1_t"></h3><p class="pt-d" data-copy="tm_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p2_t"></h3><p class="pt-d" data-copy="tm_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="tm_c3_p3_t"></h3><p class="pt-d" data-copy="tm_c3_p3_d"></p>
+                  <!-- 2026-11-05 team comment THM12 #7: what each tip is for (homepage + Solta Medical Korea, no effect figures) -->
+                  <ul class="tips"><li class="tip"><span class="tip-k" data-copy="tm_c3_tip1_k"></span><span class="tip-d" data-copy="tm_c3_tip1_d"></span></li><li class="tip"><span class="tip-k" data-copy="tm_c3_tip2_k"></span><span class="tip-d" data-copy="tm_c3_tip2_d"></span></li></ul></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="tm_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="cmp-it is-main"><figure class="dev-l"><img src="assets/dev/thermage-flx.webp" data-alt="tm_alt_dev_thermage" alt="" width="490" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e1_name"></span><span class="cmp-t" data-copy="tm_c3_e1_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/ultherapy-prime.webp" data-alt="tm_alt_dev_ulthera" alt="" width="455" height="912"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e2_name"></span><span class="cmp-t" data-copy="tm_c3_e2_type"></span></div></li>
+                <li class="cmp-it"><figure class="dev-l"><img src="assets/dev/sofwave.webp" data-alt="tm_alt_dev_sofwave" alt="" width="436" height="874"></figure><div class="cmp-base"><span class="cmp-n" data-copy="tm_c3_e3_name"></span><span class="cmp-t" data-copy="tm_c3_e3_type"></span></div></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="tm_c3_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:4 -->
 
     <!-- 5 / 6 : the treatment day, step by step (genuine tip check = Solta Medical Korea: hologram sticker -> purple double sticker -> QR). All icons are generated.
          The arch photo is the second model cut (gen/day-1104-v1.json): a different pose and expression from the hero. -->
-    <section class="card c4" data-card="5" aria-labelledby="tm-t4">
+    <section class="card c4" data-card="5" aria-labelledby="tm-t4" data-size-hide="line kakao">
       <div class="c4-in">
         <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="c4-headrow">
@@ -293,9 +1177,270 @@
         <p class="src" data-copy="tm_c4_src"></p>
       </div>
     </section>
+    <!-- SZ:line:5 -->
+    <!-- 5: part 1 photo + question + steps 1-2; part 2 the title, steps 3-4, infos, tip and source -->
+    <section class="card c4 L L5 L5-1" data-card="5" data-part="1" data-size-only="line" aria-labelledby="tm-t4-l1">
+          <div class="c4-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="c4-photo"><img src="assets/model-day.jpg?v=1104" data-alt="tm_alt_c4" alt="" width="640" height="800"><img class="c4-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"></figure>
+              <div class="q-head">
+                <p class="script kicker-script" aria-hidden="true" data-copy="tm_c4_kicker"></p>
+                <h2 class="q-title" id="tm-t4-l1" data-copy="tm_c4_q"></h2>
+                <p class="q-ans" data-copy="tm_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-consult.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s1_t"></h3><p class="st-d" data-copy="tm_c4_s1_d"></p>
+                <ul class="chips">
+                  <li class="chip"><span data-copy="tm_c4_c1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c2"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c3"></span></li>
+                </ul></div></li>
+              <li class="st st-genuine"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-genuine.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s2_t"></h3><p class="st-d" data-copy="tm_c4_s2_d"></p>
+                <ol class="gsteps">
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-hologram.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g1"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-sticker.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g2"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-qr.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g3"></span></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-heat.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s3_t"></h3><p class="st-d" data-copy="tm_c4_s3_d"></p>
+                <ol class="shot">
+                  <li class="sh-it pad"><span data-copy="tm_c4_h0"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h1"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it heat"><img class="sh-ico" src="assets/icons/ic-heat.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h2"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h3"></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-care.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s4_t"></h3><p class="st-d" data-copy="tm_c4_s4_d"></p>
+                <ul class="chips soft">
+                  <li class="chip"><span data-copy="tm_c4_a1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_a2"></span></li>
+                </ul></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i1_k"></span><span class="inf-v" data-copy="tm_c4_i1_v"></span><span class="inf-n" data-copy="tm_c4_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i2_k"></span><span class="inf-v" data-copy="tm_c4_i2_v"></span><span class="inf-n" data-copy="tm_c4_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i3_k"></span><span class="inf-v" data-copy="tm_c4_i3_v"></span><span class="inf-n" data-copy="tm_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"><span data-copy="tm_c4_tip"></span></p>
+            <p class="src" data-copy="tm_c4_src"></p>
+          </div>
+        </section>
+    <section class="card c4 L L5 L5-2" data-card="5" data-part="2" data-size-only="line" aria-labelledby="tm-t4-l2">
+          <div class="c4-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="c4-photo"><img src="assets/model-day.jpg?v=1104" data-alt="tm_alt_c4" alt="" width="640" height="800"><img class="c4-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"></figure>
+              <div class="q-head">
+                <p class="script kicker-script" aria-hidden="true" data-copy="tm_c4_kicker"></p>
+                <h2 class="q-title" id="tm-t4-l2" data-copy="tm_c4_q"></h2>
+                <p class="q-ans" data-copy="tm_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-consult.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s1_t"></h3><p class="st-d" data-copy="tm_c4_s1_d"></p>
+                <ul class="chips">
+                  <li class="chip"><span data-copy="tm_c4_c1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c2"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c3"></span></li>
+                </ul></div></li>
+              <li class="st st-genuine"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-genuine.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s2_t"></h3><p class="st-d" data-copy="tm_c4_s2_d"></p>
+                <ol class="gsteps">
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-hologram.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g1"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-sticker.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g2"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-qr.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g3"></span></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-heat.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s3_t"></h3><p class="st-d" data-copy="tm_c4_s3_d"></p>
+                <ol class="shot">
+                  <li class="sh-it pad"><span data-copy="tm_c4_h0"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h1"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it heat"><img class="sh-ico" src="assets/icons/ic-heat.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h2"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h3"></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-care.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s4_t"></h3><p class="st-d" data-copy="tm_c4_s4_d"></p>
+                <ul class="chips soft">
+                  <li class="chip"><span data-copy="tm_c4_a1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_a2"></span></li>
+                </ul></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i1_k"></span><span class="inf-v" data-copy="tm_c4_i1_v"></span><span class="inf-n" data-copy="tm_c4_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i2_k"></span><span class="inf-v" data-copy="tm_c4_i2_v"></span><span class="inf-n" data-copy="tm_c4_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i3_k"></span><span class="inf-v" data-copy="tm_c4_i3_v"></span><span class="inf-n" data-copy="tm_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"><span data-copy="tm_c4_tip"></span></p>
+            <p class="src" data-copy="tm_c4_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:5 -->
+    <!-- SZ:kakao:5 -->
+    <!-- 5: part 1 photo + question + step 1, part 2 steps 2-3, part 3 step 4 + infos, tip, source -->
+    <section class="card c4 K K5 K5-1" data-card="5" data-part="1" data-size-only="kakao" aria-labelledby="tm-t4-k1">
+          <div class="c4-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="c4-photo"><img src="assets/model-day.jpg?v=1104" data-alt="tm_alt_c4" alt="" width="640" height="800"><img class="c4-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"></figure>
+              <div class="q-head">
+                <p class="script kicker-script" aria-hidden="true" data-copy="tm_c4_kicker"></p>
+                <h2 class="q-title" id="tm-t4-k1" data-copy="tm_c4_q"></h2>
+                <p class="q-ans" data-copy="tm_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-consult.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s1_t"></h3><p class="st-d" data-copy="tm_c4_s1_d"></p>
+                <ul class="chips">
+                  <li class="chip"><span data-copy="tm_c4_c1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c2"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c3"></span></li>
+                </ul></div></li>
+              <li class="st st-genuine"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-genuine.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s2_t"></h3><p class="st-d" data-copy="tm_c4_s2_d"></p>
+                <ol class="gsteps">
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-hologram.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g1"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-sticker.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g2"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-qr.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g3"></span></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-heat.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s3_t"></h3><p class="st-d" data-copy="tm_c4_s3_d"></p>
+                <ol class="shot">
+                  <li class="sh-it pad"><span data-copy="tm_c4_h0"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h1"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it heat"><img class="sh-ico" src="assets/icons/ic-heat.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h2"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h3"></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-care.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s4_t"></h3><p class="st-d" data-copy="tm_c4_s4_d"></p>
+                <ul class="chips soft">
+                  <li class="chip"><span data-copy="tm_c4_a1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_a2"></span></li>
+                </ul></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i1_k"></span><span class="inf-v" data-copy="tm_c4_i1_v"></span><span class="inf-n" data-copy="tm_c4_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i2_k"></span><span class="inf-v" data-copy="tm_c4_i2_v"></span><span class="inf-n" data-copy="tm_c4_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i3_k"></span><span class="inf-v" data-copy="tm_c4_i3_v"></span><span class="inf-n" data-copy="tm_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"><span data-copy="tm_c4_tip"></span></p>
+            <p class="src" data-copy="tm_c4_src"></p>
+          </div>
+        </section>
+    <section class="card c4 K K5 K5-2" data-card="5" data-part="2" data-size-only="kakao" aria-labelledby="tm-t4-k2">
+          <div class="c4-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="c4-photo"><img src="assets/model-day.jpg?v=1104" data-alt="tm_alt_c4" alt="" width="640" height="800"><img class="c4-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"></figure>
+              <div class="q-head">
+                <p class="script kicker-script" aria-hidden="true" data-copy="tm_c4_kicker"></p>
+                <h2 class="q-title" id="tm-t4-k2" data-copy="tm_c4_q"></h2>
+                <p class="q-ans" data-copy="tm_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-consult.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s1_t"></h3><p class="st-d" data-copy="tm_c4_s1_d"></p>
+                <ul class="chips">
+                  <li class="chip"><span data-copy="tm_c4_c1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c2"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c3"></span></li>
+                </ul></div></li>
+              <li class="st st-genuine"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-genuine.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s2_t"></h3><p class="st-d" data-copy="tm_c4_s2_d"></p>
+                <ol class="gsteps">
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-hologram.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g1"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-sticker.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g2"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-qr.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g3"></span></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-heat.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s3_t"></h3><p class="st-d" data-copy="tm_c4_s3_d"></p>
+                <ol class="shot">
+                  <li class="sh-it pad"><span data-copy="tm_c4_h0"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h1"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it heat"><img class="sh-ico" src="assets/icons/ic-heat.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h2"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h3"></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-care.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s4_t"></h3><p class="st-d" data-copy="tm_c4_s4_d"></p>
+                <ul class="chips soft">
+                  <li class="chip"><span data-copy="tm_c4_a1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_a2"></span></li>
+                </ul></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i1_k"></span><span class="inf-v" data-copy="tm_c4_i1_v"></span><span class="inf-n" data-copy="tm_c4_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i2_k"></span><span class="inf-v" data-copy="tm_c4_i2_v"></span><span class="inf-n" data-copy="tm_c4_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i3_k"></span><span class="inf-v" data-copy="tm_c4_i3_v"></span><span class="inf-n" data-copy="tm_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"><span data-copy="tm_c4_tip"></span></p>
+            <p class="src" data-copy="tm_c4_src"></p>
+          </div>
+        </section>
+    <section class="card c4 K K5 K5-3" data-card="5" data-part="3" data-size-only="kakao" aria-labelledby="tm-t4-k3">
+          <div class="c4-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="c4-photo"><img src="assets/model-day.jpg?v=1104" data-alt="tm_alt_c4" alt="" width="640" height="800"><img class="c4-bow" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"></figure>
+              <div class="q-head">
+                <p class="script kicker-script" aria-hidden="true" data-copy="tm_c4_kicker"></p>
+                <h2 class="q-title" id="tm-t4-k3" data-copy="tm_c4_q"></h2>
+                <p class="q-ans" data-copy="tm_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-consult.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s1_t"></h3><p class="st-d" data-copy="tm_c4_s1_d"></p>
+                <ul class="chips">
+                  <li class="chip"><span data-copy="tm_c4_c1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c2"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_c3"></span></li>
+                </ul></div></li>
+              <li class="st st-genuine"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-genuine.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s2_t"></h3><p class="st-d" data-copy="tm_c4_s2_d"></p>
+                <ol class="gsteps">
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-hologram.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g1"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-sticker.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g2"></span></span></li>
+                  <li class="gs-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="gs"><img class="gs-ico" src="assets/icons/ic-qr.webp" alt="" aria-hidden="true"><span class="gs-tx"><span class="gs-n" aria-hidden="true"></span><span class="gs-t" data-copy="tm_c4_g3"></span></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-heat.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s3_t"></h3><p class="st-d" data-copy="tm_c4_s3_d"></p>
+                <ol class="shot">
+                  <li class="sh-it pad"><span data-copy="tm_c4_h0"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h1"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it heat"><img class="sh-ico" src="assets/icons/ic-heat.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h2"></span></li>
+                  <li class="sh-ar" aria-hidden="true"><span data-copy="tm_c4_arrow"></span></li>
+                  <li class="sh-it cool"><img class="sh-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="tm_c4_h3"></span></li>
+                </ol></div></li>
+              <li class="st"><span class="st-ico" aria-hidden="true"><img src="assets/icons/ic-care.webp" alt=""></span><div class="st-tx"><h3 class="st-t" data-copy="tm_c4_s4_t"></h3><p class="st-d" data-copy="tm_c4_s4_d"></p>
+                <ul class="chips soft">
+                  <li class="chip"><span data-copy="tm_c4_a1"></span></li>
+                  <li class="chip"><span data-copy="tm_c4_a2"></span></li>
+                </ul></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i1_k"></span><span class="inf-v" data-copy="tm_c4_i1_v"></span><span class="inf-n" data-copy="tm_c4_i1_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i2_k"></span><span class="inf-v" data-copy="tm_c4_i2_v"></span><span class="inf-n" data-copy="tm_c4_i2_n"></span></li>
+              <li class="inf"><span class="inf-k" data-copy="tm_c4_i3_k"></span><span class="inf-v" data-copy="tm_c4_i3_v"></span><span class="inf-n" data-copy="tm_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/bow-plum.webp" alt="" aria-hidden="true" width="360" height="207"><span data-copy="tm_c4_tip"></span></p>
+            <p class="src" data-copy="tm_c4_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:5 -->
 
     <!-- 6 / 6 : clinic intro, the V4 bento grid (same content and order as onda12 / ulthera12 / FV12) on the generated lavender set, Rosarian panels and a Solarized booking panel -->
-    <section class="card c5" data-card="6" aria-labelledby="tm-t5">
+    <section class="card c5" data-card="6" aria-labelledby="tm-t5" data-size-hide="line kakao">
       <div class="cx-in">
         <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="bento">
@@ -364,6 +1509,356 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:6 -->
+    <!-- 6: part 1 the clinic introduction (photos, strengths); part 2 directions, hours and booking -->
+    <section class="card c5 L L6 L6-1" data-card="6" data-part="1" data-size-only="line" aria-labelledby="tm-t5-l1">
+          <div class="cx-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="tm_ab_kicker"></p>
+                    <h2 class="ab-title" id="tm-t5-l1" data-copy="tm_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="tm_ab_intro1"></span><span data-copy="tm_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="tm_ab_dr_name"></span><span class="dr-quote" data-copy="tm_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="tm_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="tm_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="tm_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="tm_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="tm_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="tm_ab_loc"></p><h3 class="bt-t" data-copy="tm_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="tm_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="tm_ab_way_station"></span><span class="way-line" data-copy="tm_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="tm_ab_way_addr"></span><span class="way-desk"><span data-copy="tm_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="tm_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="tm_ab_h1"></li><li data-copy="tm_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="tm_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="tm_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="tm_alt_qr" alt="" width="424" height="424"><figcaption data-copy="tm_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="tm_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="tm_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="tm_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c5 L L6 L6-2" data-card="6" data-part="2" data-size-only="line" aria-labelledby="tm-t5-l2">
+          <div class="cx-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="tm_ab_kicker"></p>
+                    <h2 class="ab-title" id="tm-t5-l2" data-copy="tm_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="tm_ab_intro1"></span><span data-copy="tm_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="tm_ab_dr_name"></span><span class="dr-quote" data-copy="tm_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="tm_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="tm_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="tm_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="tm_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="tm_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="tm_ab_loc"></p><h3 class="bt-t" data-copy="tm_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="tm_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="tm_ab_way_station"></span><span class="way-line" data-copy="tm_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="tm_ab_way_addr"></span><span class="way-desk"><span data-copy="tm_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="tm_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="tm_ab_h1"></li><li data-copy="tm_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="tm_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="tm_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="tm_alt_qr" alt="" width="424" height="424"><figcaption data-copy="tm_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="tm_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="tm_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="tm_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:6 -->
+    <!-- SZ:kakao:6 -->
+    <section class="card c5 K K6 K6-1" data-card="6" data-part="1" data-size-only="kakao" aria-labelledby="tm-t5-k1">
+          <div class="cx-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="tm_ab_kicker"></p>
+                    <h2 class="ab-title" id="tm-t5-k1" data-copy="tm_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="tm_ab_intro1"></span><span data-copy="tm_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="tm_ab_dr_name"></span><span class="dr-quote" data-copy="tm_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="tm_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="tm_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="tm_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="tm_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="tm_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="tm_ab_loc"></p><h3 class="bt-t" data-copy="tm_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="tm_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="tm_ab_way_station"></span><span class="way-line" data-copy="tm_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="tm_ab_way_addr"></span><span class="way-desk"><span data-copy="tm_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="tm_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="tm_ab_h1"></li><li data-copy="tm_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="tm_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="tm_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="tm_alt_qr" alt="" width="424" height="424"><figcaption data-copy="tm_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="tm_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="tm_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="tm_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c5 K K6 K6-2" data-card="6" data-part="2" data-size-only="kakao" aria-labelledby="tm-t5-k2">
+          <div class="cx-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="tm_ab_kicker"></p>
+                    <h2 class="ab-title" id="tm-t5-k2" data-copy="tm_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="tm_ab_intro1"></span><span data-copy="tm_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="tm_ab_dr_name"></span><span class="dr-quote" data-copy="tm_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="tm_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="tm_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="tm_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="tm_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="tm_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="tm_ab_loc"></p><h3 class="bt-t" data-copy="tm_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="tm_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="tm_ab_way_station"></span><span class="way-line" data-copy="tm_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="tm_ab_way_addr"></span><span class="way-desk"><span data-copy="tm_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="tm_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="tm_ab_h1"></li><li data-copy="tm_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="tm_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="tm_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="tm_alt_qr" alt="" width="424" height="424"><figcaption data-copy="tm_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="tm_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="tm_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="tm_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c5 K K6 K6-3" data-card="6" data-part="3" data-size-only="kakao" aria-labelledby="tm-t5-k3">
+          <div class="cx-in">
+            <header class="top solo"><img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="tm_ab_kicker"></p>
+                    <h2 class="ab-title" id="tm-t5-k3" data-copy="tm_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="tm_ab_intro1"></span><span data-copy="tm_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="tm_ab_dr_name"></span><span class="dr-quote" data-copy="tm_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="tm_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="tm_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="tm_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="tm_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="tm_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="tm_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="tm_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="tm_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="tm_ab_loc"></p><h3 class="bt-t" data-copy="tm_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="tm_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="tm_ab_way_station"></span><span class="way-line" data-copy="tm_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="tm_ab_way_addr"></span><span class="way-desk"><span data-copy="tm_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt bt-hours">
+                <p class="bt-k" data-copy="tm_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="tm_ab_h1"></li><li data-copy="tm_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="tm_ab_h3"></p>
+              </div>
+              <div class="bt bt-book">
+                <p class="bt-k" data-copy="tm_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="tm_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="tm_alt_qr" alt="" width="424" height="424"><figcaption data-copy="tm_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="tm_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="tm_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="tm_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-522a6f.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:6 -->
 
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="tm-notes">

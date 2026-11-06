@@ -1,0 +1,162 @@
+/* generated from v4/combo12c/sizes/sizes.css by v4/combo12c/sizes/inject-sizes.cjs, edit that file */
+/* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) for CMB12C (combo12c). Becomes site/combo12c/combo12c-sizes.css (inject-sizes.cjs),
+   linked after combo12c.css on this page only: combo12c.css is copied byte for byte into combo12d, so nothing here reaches that page. Every rule
+   is inside main.p-c. home 1080x1350 = combo12c.css, unchanged. line 1100x1000 and kakao 800x600 are new compositions of the same elements and
+   copy keys in size-only sections (v4/combo12c/sizes/line.html, kakao.html from gen-sizes.cjs); nothing is cropped or scaled down from the
+   1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size. Fixed screens: plain px, no viewport units
+   or width queries. */
+html[data-size="line"] main.p-c{max-width:none;width:1100px}
+html[data-size="kakao"] main.p-c{max-width:none;width:800px}
+html[data-size="line"] main.p-c .sheet,html[data-size="kakao"] main.p-c .sheet{--px:1px}
+html[data-size="line"] main.p-c section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] main.p-c section.card{width:800px;height:600px;aspect-ratio:auto}
+main.p-c [data-size-only]{display:none!important}
+html[data-size="line"] main.p-c [data-size-only~="line"],html[data-size="kakao"] main.p-c [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] main.p-c [data-size-hide~="line"],html[data-size="kakao"] main.p-c [data-size-hide~="kakao"]{display:none!important}
+/* the hero model as a person cutout (v4/combo12c/a/cut/hero-a.png; only its bottom is cut flat, so it stands on the card's bottom edge) on the
+   yellow texture of the other cards (the home hero photo has its backdrop baked in, so it is not used here) */
+main.p-c .sz-model{position:absolute;z-index:1;display:block;width:auto;max-width:none;height:auto;pointer-events:none}
+
+/* ==================== LINE 1100 x 1000 ==================== */
+/* 1 A: the model on the left standing on the band, the speech bubble by her face, the title on the right, the band at the bottom */
+html[data-size="line"] main.p-c .L1a .sz-model{left:30px;bottom:0;height:900px}
+html[data-size="line"] main.p-c .L1a .bubble{right:40px;top:200px}
+html[data-size="line"] main.p-c .L1a .h-title{right:56px;top:440px}
+html[data-size="line"] main.p-c .L1a .hz1{left:24px;top:150px}
+html[data-size="line"] main.p-c .L1a .hz2{left:40px;top:640px}
+html[data-size="line"] main.p-c .L1a .hz3{right:14px;top:364px}
+html[data-size="line"] main.p-c .L1a .sn1{right:430px;top:120px}
+/* 1 B: the words on the left, the arch photo on the right (the whole head inside), the band at the bottom */
+html[data-size="line"] main.p-c .L1b .h-photo{inset:110px 48px 190px auto;width:470px}
+html[data-size="line"] main.p-c .L1b .h-title{top:200px}
+html[data-size="line"] main.p-c .L1b .b-hook{top:540px}
+html[data-size="line"] main.p-c .L1b .hz1{top:110px}
+html[data-size="line"] main.p-c .L1b .hz2{top:690px}
+html[data-size="line"] main.p-c .L1b .hz3{top:730px}
+html[data-size="line"] main.p-c .L1b .sn1{top:760px}
+/* 2 A: two parts (product 46 with its five options | product 51 and the set) */
+html[data-size="line"] main.p-c .L2a .pboard{margin-top:30px}
+/* 2 B: one card, the nine tickets three across */
+html[data-size="line"] main.p-c .L2b .b-ticket-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:30px}
+/* 3: two parts. part 1 = the question and the two ways; part 2 = kicker + title, the device and the sources */
+html[data-size="line"] main.p-c .L32 .dev{margin-top:40px}
+/* 4: two parts. part 1 = the question with the arch photo and the four steps; part 2 = kicker + title, the three notes, care and the sources */
+html[data-size="line"] main.p-c .L42 .infos{margin-top:40px}
+/* 5: two parts. part 1 = about over the hours as one wide strip; part 2 = location (map left) over booking */
+html[data-size="line"] main.p-c .L5 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="line"] main.p-c .L51 .bt-about{grid-column:1;grid-row:1}
+html[data-size="line"] main.p-c .L51 .ab-photos{height:220px}
+html[data-size="line"] main.p-c .L51 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k h" "t h" "n h";grid-template-rows:auto auto 1fr;column-gap:44px;align-content:center;padding:22px 32px}
+html[data-size="line"] main.p-c .L51 .bt-hours .bt-k{grid-area:k}
+html[data-size="line"] main.p-c .L51 .bt-hours .bt-t{grid-area:t}
+html[data-size="line"] main.p-c .L51 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="line"] main.p-c .L51 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="line"] main.p-c .L52 .bento{grid-template-rows:minmax(0,1fr) auto}
+html[data-size="line"] main.p-c .L52 .bt-loc{grid-column:1;grid-row:1;display:grid;grid-template-columns:470px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:36px;padding:24px 32px}
+html[data-size="line"] main.p-c .L52 .loc-body{display:contents}
+html[data-size="line"] main.p-c .L52 .map{grid-column:1;grid-row:1 / 3;width:470px}
+html[data-size="line"] main.p-c .L52 .loc-head{grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;padding-top:8px}
+html[data-size="line"] main.p-c .L52 .way2{grid-column:2;grid-row:2;align-self:end;margin:0 0 8px}
+html[data-size="line"] main.p-c .L52 .bt-book{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k row" "t row" "mk row";grid-template-rows:auto auto 1fr;column-gap:44px;padding:24px 32px}
+html[data-size="line"] main.p-c .L52 .bt-book .bt-k{grid-area:k}
+html[data-size="line"] main.p-c .L52 .bt-book .bt-t{grid-area:t}
+html[data-size="line"] main.p-c .L52 .bk-row{grid-area:row;margin-top:0;grid-template-columns:170px minmax(0,1fr);gap:28px}
+html[data-size="line"] main.p-c .L52 .bt-book > .wordmark{grid-area:mk;align-self:end;justify-self:start;margin:0}
+
+/* ==================== KAKAO 800 x 600 ==================== */
+html[data-size="kakao"] main.p-c .cp-in,html[data-size="kakao"] main.p-c .cx-in{padding:24px 40px 22px}
+html[data-size="kakao"] main.p-c .c1-top{left:40px;right:40px;top:24px}
+/* 1 A: two parts. part 1 = the model, the title and the speech bubble; part 2 = the teaser price and the contact as one panel */
+html[data-size="kakao"] main.p-c .K1a1 .sz-model{left:20px;bottom:0;height:520px}
+html[data-size="kakao"] main.p-c .K1a1 .h-title{right:40px;top:96px}
+html[data-size="kakao"] main.p-c .K1a1 .bubble{right:30px;top:400px}
+html[data-size="kakao"] main.p-c .K1a1 .hz1{left:414px;top:322px;width:82px}
+html[data-size="kakao"] main.p-c .K1a1 .hz2{left:30px;top:480px;width:70px}
+html[data-size="kakao"] main.p-c .K1a1 .hz3{right:12px;top:366px;width:80px}
+html[data-size="kakao"] main.p-c .K1a1 .sn1{right:356px;top:110px}
+html[data-size="kakao"] main.p-c .K1a2 .h-band,html[data-size="kakao"] main.p-c .K1b2 .h-band{left:40px;right:40px;top:206px;bottom:auto;grid-template-columns:1fr;row-gap:26px;padding:40px 44px 36px;border-radius:28px}
+html[data-size="kakao"] main.p-c .K1a2 .h-contact,html[data-size="kakao"] main.p-c .K1b2 .h-contact{padding-bottom:0}
+html[data-size="kakao"] main.p-c .K1a2 .hz1,html[data-size="kakao"] main.p-c .K1b2 .hz1{left:52px;top:470px;width:110px}
+html[data-size="kakao"] main.p-c .K1a2 .sn1,html[data-size="kakao"] main.p-c .K1b2 .sn1{right:70px;top:100px}
+/* 1 B: two parts. part 1 = the words on the left and the arch photo on the right; part 2 = the price panel */
+html[data-size="kakao"] main.p-c .K1b1 .h-photo{inset:96px 40px 24px auto;width:300px}
+html[data-size="kakao"] main.p-c .K1b1 .h-title{left:40px;top:110px;width:400px}
+html[data-size="kakao"] main.p-c .K1b1 .b-hook{left:44px;top:420px}
+html[data-size="kakao"] main.p-c .K1b1 .hz1{left:366px;top:66px;width:96px}
+html[data-size="kakao"] main.p-c .K1b1 .hz2{left:40px;top:530px;width:64px}
+html[data-size="kakao"] main.p-c .K1b1 .hz3{right:20px;top:470px;width:86px}
+html[data-size="kakao"] main.p-c .K1b1 .sn1{right:370px;top:520px}
+/* 2 A: three parts in sheet order (product 46 rows 46-47 | 48-50 with its head again | product 51 and the set); part 1 has the full head, the others
+   the title only; the 49% line on the last part */
+html[data-size="kakao"] main.p-c .cp .cp-head{margin-top:14px;max-width:none}
+html[data-size="kakao"] main.p-c .cp .cp-mini .p-title{margin-top:0}
+html[data-size="kakao"] main.p-c .cp .pboard{margin-top:18px}
+/* 2 A board: narrower price columns so every option stays on one line (the 1080 type sizes) */
+html[data-size="kakao"] main.p-c .K2a .cp-in{padding-left:36px;padding-right:36px}
+html[data-size="kakao"] main.p-c .K2a .pboard{padding:8px 20px 10px}
+html[data-size="kakao"] main.p-c .K2a .prow{grid-template-columns:minmax(0,1fr) 60px 124px;column-gap:10px;padding-top:10px;padding-bottom:9px}
+html[data-size="kakao"] main.p-c .K2a .opts .prow{padding-left:12px}
+html[data-size="kakao"] main.p-c .K2a .prod-h{padding:10px 0 6px}
+html[data-size="kakao"] main.p-c .cp .vat{padding-top:8px}
+html[data-size="kakao"] main.p-c .uibeop{left:40px;bottom:24px}
+html[data-size="kakao"] main.p-c .cp .dkb1{right:40px;top:96px}
+/* 2 B: three parts of tickets two across */
+html[data-size="kakao"] main.p-c .K2b .b-ticket-grid{margin-top:18px}
+/* 3: three parts. part 1 = the question and way 1; part 2 = the title and way 2; part 3 = the title, the device and the sources.
+   The way is a row here (the icon and its chip on the left) */
+html[data-size="kakao"] main.p-c .c3 .q-head{margin-top:14px}
+html[data-size="kakao"] main.p-c .c3 .q-mini .q-title{margin-top:0}
+html[data-size="kakao"] main.p-c .K3 .ways{grid-template-columns:1fr;margin-top:20px}
+html[data-size="kakao"] main.p-c .K3 .way{display:grid;grid-template-columns:128px minmax(0,1fr);column-gap:24px;align-content:start;padding:24px 28px 22px}
+html[data-size="kakao"] main.p-c .K3 .way-head{grid-column:1;grid-row:1 / 6;flex-direction:column;align-items:flex-start;gap:12px}
+html[data-size="kakao"] main.p-c .K3 .way-t,html[data-size="kakao"] main.p-c .K3 .way-d,html[data-size="kakao"] main.p-c .K3 .way-for,html[data-size="kakao"] main.p-c .K3 .way-pick{grid-column:2}
+html[data-size="kakao"] main.p-c .K3 .way-t{margin-top:0}
+html[data-size="kakao"] main.p-c .K3 .way-for{padding-top:14px}
+html[data-size="kakao"] main.p-c .K33 .dev{--px:.72px;margin-top:22px}
+html[data-size="kakao"] main.p-c .K33 .dev-tx{--px:1px}
+/* 4: three parts. part 1 = the question with the arch photo and steps 1-2; part 2 = steps 3-4 and the three notes; part 3 = the title, care, sources */
+html[data-size="kakao"] main.p-c .c4 .q-head{margin-top:0}
+html[data-size="kakao"] main.p-c .K41 .day-head{grid-template-columns:minmax(0,1fr) 160px;margin-top:14px}
+html[data-size="kakao"] main.p-c .K41 .arch{width:160px}
+html[data-size="kakao"] main.p-c .K4 .steps{grid-template-columns:1fr;margin-top:20px}
+html[data-size="kakao"] main.p-c .K42 .steps{counter-reset:st 1}
+html[data-size="kakao"] main.p-c .K43 .infos{margin-top:18px}
+html[data-size="kakao"] main.p-c .K43 .care{margin-top:24px}
+html[data-size="kakao"] main.p-c .K43 .q-head{margin-top:14px}
+html[data-size="kakao"] main.p-c .K43 .q-mini .q-title{margin-top:0}
+/* 5: three parts. part 1 = about intro, the director and the photos; part 2 = strengths + hours; part 3 = location | booking */
+html[data-size="kakao"] main.p-c .K5 .cx-in{padding:22px 30px 20px}
+html[data-size="kakao"] main.p-c .K5 .bento{margin-top:12px}
+html[data-size="kakao"] main.p-c .K51 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] main.p-c .K51 .bt-about{display:flex;flex-direction:column;padding:20px 26px}
+html[data-size="kakao"] main.p-c .K51 .ab-top{grid-template-columns:minmax(0,1fr) 206px;grid-template-rows:auto auto;column-gap:16px}
+html[data-size="kakao"] main.p-c .K51 .dr{display:contents}
+html[data-size="kakao"] main.p-c .K51 .ab-intro{grid-column:1;grid-row:1;padding:0 0 10px}
+html[data-size="kakao"] main.p-c .K51 .dr-tx{grid-column:1;grid-row:2;text-align:left;padding:0 0 6px}
+html[data-size="kakao"] main.p-c .K51 .dr-img{grid-column:2;grid-row:1 / 3;align-self:end}
+html[data-size="kakao"] main.p-c .K51 .ab-photos{flex:1 1 auto;height:auto;min-height:140px}
+html[data-size="kakao"] main.p-c .K52 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="kakao"] main.p-c .K52 .bt-str{grid-column:1;grid-row:1;padding:20px 26px 22px}
+html[data-size="kakao"] main.p-c .K52 .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+html[data-size="kakao"] main.p-c .K52 .dots{display:none}
+html[data-size="kakao"] main.p-c .K52 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:210px minmax(0,1fr);grid-template-areas:"k h" "t h" ". n";column-gap:30px;align-content:center}
+html[data-size="kakao"] main.p-c .K52 .bt-hours .bt-k{grid-area:k}
+html[data-size="kakao"] main.p-c .K52 .bt-hours .bt-t{grid-area:t}
+html[data-size="kakao"] main.p-c .K52 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="kakao"] main.p-c .K52 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="kakao"] main.p-c .K53 .bento{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] main.p-c .K53 .bt-loc{grid-column:1;grid-row:1}
+html[data-size="kakao"] main.p-c .K53 .bt-book{grid-column:2;grid-row:1}
+html[data-size="kakao"] main.p-c .K53 .map{width:100%}
+html[data-size="kakao"] main.p-c .K53 .bk-row{flex:none;grid-template-columns:124px minmax(0,1fr);grid-template-areas:"qr links" "ph ph";row-gap:12px;align-items:center}
+html[data-size="kakao"] main.p-c .K53 .bk-text{display:contents}
+html[data-size="kakao"] main.p-c .K53 .qr{grid-area:qr}
+html[data-size="kakao"] main.p-c .K53 .bk-links{grid-area:links}
+html[data-size="kakao"] main.p-c .K53 .bk-phone{grid-area:ph;margin-top:0}
+html[data-size="kakao"] main.p-c .K53 .bt-book > .wordmark{margin:auto 0 0 auto}
+/* text snaps to whole pixels: these chips drew their text about half a pixel below the middle at their size-card positions; a half-pixel
+   layout shift of the chip box (not a transform) centres it */
+html[data-size="line"] main.p-c .L52 .way-line{margin-top:-1px}
+html[data-size="kakao"] main.p-c .K2a2 .prod-chip{margin-top:-1px}
+html[data-size="kakao"] main.p-c .K31 .way-k{margin-top:-.5px}
+html[data-size="kakao"] main.p-c .K33 .dev-n .dev-e{vertical-align:calc(.12em + .5px)}

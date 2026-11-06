@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <script>(function(){var m=/[?&]size=(line|kakao)(?:&|$)/.exec(location.search);document.documentElement.setAttribute('data-size',m?m[1]:'home');})();</script>
+  <meta name="bb-sizes" content="home,line,kakao">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>세르프 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,600&amp;family=DM+Sans:opsz,wght@9..40,200..800&amp;display=swap">
-  <link rel="stylesheet" href="cerf12.css?v=20261106-cerf12f">
-  <script src="copy-data.js?v=20261106-cerf12f" defer></script>
-  <script src="../inline-edit.js?v=20261106-cerf12f" defer></script>
-  <script src="cerf12.js?v=20261106-cerf12f" defer></script>
+  <link rel="stylesheet" href="cerf12.css?v=20261106-cerf12g">
+  <script src="copy-data.js?v=20261106-cerf12g" defer></script>
+  <script src="../inline-edit.js?v=20261106-cerf12g" defer></script>
+  <script src="cerf12.js?v=20261106-cerf12g" defer></script>
 </head>
 <body>
 <!-- CRF12 세르프 · 겨울 시즌 (Korean first), 2026-11-04 redesign from the completed reference sheet (row 34):
@@ -27,7 +29,7 @@
   <div class="sheet">
 
     <!-- 1 / 7 : hero (layout reference model photo, v4/cerf12/gen/hero-1104.json, replaced later at the same path); title, teaser name, care line and price come from the sheet (page name, row 86) -->
-    <section class="card c1" data-card="1" aria-labelledby="cf-t1">
+    <section class="card c1" data-card="1" data-size-hide="line kakao" aria-labelledby="cf-t1">
       <img class="c1-photo" src="assets/hero.jpg?v=b" data-alt="cf_alt_hero" alt="" width="1080" height="1350">
       <img class="c1-mesh" src="assets/dec/mesh.webp" alt="" aria-hidden="true" width="650" height="235">
       <img class="c1-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true" width="900" height="914">
@@ -49,8 +51,58 @@
       </div>
       <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="cf_contact"></span></p>
     </section>
+    <!-- SZ:line:1a -->
+    <!-- line 1A: the hero model cutout on the light studio colour, the disc with the title and the offer on the left -->
+    <section class="card c1 L L1a" data-card="1" data-size-only="line" aria-labelledby="cf-t1-l">
+      <img class="h-model" src="assets/hero-cut.webp" data-alt="cf_alt_hero" alt="" width="980" height="1800">
+      <img class="c1-mesh" src="assets/dec/mesh.webp" alt="" aria-hidden="true" width="650" height="235">
+      <img class="c1-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true" width="900" height="914">
+      <figure class="c1-dev"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+      <img class="glint g1" src="assets/dec/glint.webp" alt="" aria-hidden="true" width="309" height="345">
+      <img class="glint g2" src="assets/dec/glint-s.webp" alt="" aria-hidden="true" width="128" height="117">
+      <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-730a16.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+      <div class="hero-lead">
+        <p class="kicker-latin" data-copy="cf_kicker"></p>
+        <p class="hook"><span class="hk hk1" data-copy="cf_hook"></span><span class="hk hk2" data-copy="cf_hook2"></span></p>
+      </div>
+      <div class="hero-disc">
+        <h1 class="hero-title" id="cf-t1-l"><span class="ht-ko" data-copy="cf_title"></span><span class="ht-en" data-copy="cf_title_en"></span></h1>
+        <div class="tz">
+          <p class="tz-top"><span class="tz-label" data-copy="cf_hero_label"></span><span class="tz-tag" data-copy="cf_hero_tag"></span></p>
+          <p class="tz-care" data-copy="cf_hero_care"></p>
+          <p class="tz-main"><span class="tz-price money" data-copy="cf_hero_price"></span><span class="tz-vat" data-copy="cf_vat"></span></p>
+        </div>
+      </div>
+      <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="cf_contact"></span></p>
+    </section>
+    <!-- /SZ:line:1a -->
+    <!-- SZ:kakao:1a -->
+    <!-- kakao 1A: the hero model cutout on the right, the disc with the title and the offer on the left -->
+    <section class="card c1 K K1a" data-card="1" data-size-only="kakao" aria-labelledby="cf-t1-k">
+      <img class="h-model" src="assets/hero-cut.webp" data-alt="cf_alt_hero" alt="" width="980" height="1800">
+      <img class="c1-mesh" src="assets/dec/mesh.webp" alt="" aria-hidden="true" width="650" height="235">
+      <img class="c1-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true" width="900" height="914">
+      <figure class="c1-dev"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+      <img class="glint g1" src="assets/dec/glint.webp" alt="" aria-hidden="true" width="309" height="345">
+      <img class="glint g2" src="assets/dec/glint-s.webp" alt="" aria-hidden="true" width="128" height="117">
+      <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-730a16.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+      <div class="hero-lead">
+        <p class="kicker-latin" data-copy="cf_kicker"></p>
+        <p class="hook"><span class="hk hk1" data-copy="cf_hook"></span><span class="hk hk2" data-copy="cf_hook2"></span></p>
+      </div>
+      <div class="hero-disc">
+        <h1 class="hero-title" id="cf-t1-k"><span class="ht-ko" data-copy="cf_title"></span><span class="ht-en" data-copy="cf_title_en"></span></h1>
+        <div class="tz">
+          <p class="tz-top"><span class="tz-label" data-copy="cf_hero_label"></span><span class="tz-tag" data-copy="cf_hero_tag"></span></p>
+          <p class="tz-care" data-copy="cf_hero_care"></p>
+          <p class="tz-main"><span class="tz-price money" data-copy="cf_hero_price"></span><span class="tz-vat" data-copy="cf_vat"></span></p>
+        </div>
+      </div>
+      <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="cf_contact"></span></p>
+    </section>
+    <!-- /SZ:kakao:1a -->
 <!-- BVARIANT START 1 -->
-<section class="card c1" data-card="1" data-variant="b" aria-labelledby="cf-t1-b">
+<section class="card c1" data-card="1" data-variant="b" data-size-hide="line kakao" aria-labelledby="cf-t1-b">
       <img class="c1-photo" src="assets/hero-b.jpg" data-alt="cf_alt_hero" alt="" width="1080" height="1350">
       <img class="c1-mesh" src="assets/dec/mesh.webp" alt="" aria-hidden="true" width="650" height="235">
       <img class="c1-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true" width="900" height="914">
@@ -73,12 +125,64 @@
       </div>
       <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="cf_contact"></span></p>
     </section>
+    <!-- SZ:line:1b -->
+    <!-- line 1B: wine card, the arched photo on the left, title and offer on the right -->
+    <section class="card c1 L L1b" data-card="1" data-variant="b" data-size-only="line" aria-labelledby="cf-t1-b-l">
+          <img class="c1-photo" src="assets/hero-b.jpg" data-alt="cf_alt_hero" alt="" width="1080" height="1350">
+          <img class="c1-mesh" src="assets/dec/mesh.webp" alt="" aria-hidden="true" width="650" height="235">
+          <img class="c1-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true" width="900" height="914">
+          <figure class="c1-dev"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+          <img class="glint g1" src="assets/dec/glint.webp" alt="" aria-hidden="true" width="309" height="345">
+          <img class="glint g2" src="assets/dec/glint-s.webp" alt="" aria-hidden="true" width="128" height="117">
+          <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+          <div class="hero-lead">
+            <p class="kicker-latin" data-copy="cf_kicker"></p>
+            <p class="hook"><span class="hk hk1" data-copy="cf_hook"></span><span class="hk hk2" data-copy="cf_hook2"></span></p>
+          </div>
+          <h1 class="hero-title" id="cf-t1-b-l"><span class="ht-ko" data-copy="cf_title"></span><span class="ht-en" data-copy="cf_title_en"></span></h1>
+    <div class="hero-disc">
+            
+            <div class="tz">
+              <p class="tz-top"><span class="tz-label" data-copy="cf_hero_label"></span><span class="tz-tag" data-copy="cf_hero_tag"></span></p>
+              <p class="tz-care" data-copy="cf_hero_care"></p>
+              <p class="tz-main"><span class="tz-price money" data-copy="cf_hero_price"></span><span class="tz-vat" data-copy="cf_vat"></span></p>
+            </div>
+          </div>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="cf_contact"></span></p>
+        </section>
+    <!-- /SZ:line:1b -->
+    <!-- SZ:kakao:1b -->
+    <!-- kakao 1B: wine card, the arched photo on the left, title and offer on the right -->
+    <section class="card c1 K K1b" data-card="1" data-variant="b" data-size-only="kakao" aria-labelledby="cf-t1-b-k">
+          <img class="c1-photo" src="assets/hero-b.jpg" data-alt="cf_alt_hero" alt="" width="1080" height="1350">
+          <img class="c1-mesh" src="assets/dec/mesh.webp" alt="" aria-hidden="true" width="650" height="235">
+          <img class="c1-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true" width="900" height="914">
+          <figure class="c1-dev"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+          <img class="glint g1" src="assets/dec/glint.webp" alt="" aria-hidden="true" width="309" height="345">
+          <img class="glint g2" src="assets/dec/glint-s.webp" alt="" aria-hidden="true" width="128" height="117">
+          <header class="c1-top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+          <div class="hero-lead">
+            <p class="kicker-latin" data-copy="cf_kicker"></p>
+            <p class="hook"><span class="hk hk1" data-copy="cf_hook"></span><span class="hk hk2" data-copy="cf_hook2"></span></p>
+          </div>
+          <h1 class="hero-title" id="cf-t1-b-k"><span class="ht-ko" data-copy="cf_title"></span><span class="ht-en" data-copy="cf_title_en"></span></h1>
+    <div class="hero-disc">
+            
+            <div class="tz">
+              <p class="tz-top"><span class="tz-label" data-copy="cf_hero_label"></span><span class="tz-tag" data-copy="cf_hero_tag"></span></p>
+              <p class="tz-care" data-copy="cf_hero_care"></p>
+              <p class="tz-main"><span class="tz-price money" data-copy="cf_hero_price"></span><span class="tz-vat" data-copy="cf_vat"></span></p>
+            </div>
+          </div>
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="cf_contact"></span></p>
+        </section>
+    <!-- /SZ:kakao:1b -->
 <!-- BVARIANT END 1 -->
 
     <!-- 2 / 7 : prices 2-1, sheet rows 86-92 of 11_lifting B86:K104 in sheet order (rows 86-88 single XERF, group row 89 -> subheading, rows 90-92 eye tips).
          2026-11-05 team comments: #5 the device stands on the left of the head row, #4 the official model on the right (2026-11-05 cutout assets/model-c2-cut.webp, no frame, lower body behind the board; A and B share it),
          #7 no gift icons on the rows, a BEST badge on the 세르프 600 row, #8 the D34 gift wording once as a band at the bottom of the card, #3 the '샷' chip is gone. -->
-    <section class="card cp c2 c2n" data-card="2" aria-labelledby="cf-t2">
+    <section class="card cp c2 c2n" data-card="2" data-size-hide="line kakao" aria-labelledby="cf-t2">
       <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
       <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
@@ -116,8 +220,105 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:2a -->
+    <!-- line 2A: the whole card -->
+    <section class="card cp c2 c2n L L2a" data-card="2" data-size-only="line" aria-labelledby="cf-t2-l">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head">
+          <figure class="dev-stage ds-2"><img class="dev" src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+            <h2 class="p-title" id="cf-t2-l"><span class="pt-main" data-copy="cf_p_title"></span><span class="pt-en" data-copy="cf_p_en"></span></h2>
+            <p class="p-lead" data-copy="cf_p_lead"></p>
+            <p class="p-unit"><span class="unit-d" data-copy="cf_p_unit_d"></span></p>
+          </div>
+          <img class="c2-cut" src="assets/model-c2-cut.webp?v=a" data-alt="cf_alt_model_c2" alt="" width="566" height="1040">
+        </div>
+        <div class="pboard">
+          <div class="pcol pcol1"><ul class="prows">
+            <li class="prow" data-price-row="11_lifting:86"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r86_name"></span></p><p class="pcare" data-copy="cf_r86_care"></p></div><span class="plist money" data-price-list data-copy="cf_r86_list"></span><span class="psale money" data-price-sale data-copy="cf_r86_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:87"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r87_name"></span><span class="badge" data-copy="cf_r87_badge"></span></p><p class="pcare" data-copy="cf_r87_care"></p></div><span class="plist money" data-price-list data-copy="cf_r87_list"></span><span class="psale money" data-price-sale data-copy="cf_r87_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:88"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r88_name"></span></p><p class="pcare" data-copy="cf_r88_care"></p></div><span class="plist money" data-price-list data-copy="cf_r88_list"></span><span class="psale money" data-price-sale data-copy="cf_r88_sale"></span></li>
+          </ul>
+          </div><div class="pcol pcol2"><div class="pgroup">
+            <p class="pg-head"><span class="pg-name" data-copy="cf_g89_name"></span><span class="pg-sub" data-copy="cf_g89_sub"></span></p>
+            <p class="pg-note" data-copy="cf_g89_note"></p>
+          </div>
+          <ul class="prows">
+            <li class="prow" data-price-row="11_lifting:90"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r90_name"></span><span class="pchip" data-copy="cf_r90_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r90_list"></span><span class="psale money" data-price-sale data-copy="cf_r90_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:91"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r91_name"></span><span class="pchip" data-copy="cf_r91_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r91_list"></span><span class="psale money" data-price-sale data-copy="cf_r91_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:92"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r92_name"></span><span class="pchip" data-copy="cf_r92_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r92_list"></span><span class="psale money" data-price-sale data-copy="cf_r92_sale"></span></li>
+          </ul></div>
+        </div>
+        <p class="gift-band c2-gift"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="cf_gift"></span></p>
+        <div class="c2-foot">
+          <p class="uibeop" data-copy="cf_uibeop"></p><p class="vat"><span data-copy="cf_vat"></span></p>
+        </div>
+      </div>
+    </section>
+    <!-- /SZ:line:2a -->
+    <!-- SZ:kakao:2a -->
+    <!-- kakao 2A in two parts: head + rows 86-88 | small head, the eye group 89 with rows 90-92, the gift band, the '의료법상' line and VAT -->
+    <section class="card cp c2 c2n K K2a K2ap1" data-card="2" data-part="1" data-size-only="kakao" aria-labelledby="cf-t2-k1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head">
+          <figure class="dev-stage ds-2"><img class="dev" src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+            <h2 class="p-title" id="cf-t2-k1"><span class="pt-main" data-copy="cf_p_title"></span><span class="pt-en" data-copy="cf_p_en"></span></h2>
+            <p class="p-lead" data-copy="cf_p_lead"></p>
+          </div>
+          <img class="c2-cut" src="assets/model-c2-cut.webp?v=a" data-alt="cf_alt_model_c2" alt="" width="566" height="1040">
+        </div>
+        <div class="pboard">
+          <ul class="prows">
+            <li class="prow" data-price-row="11_lifting:86"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r86_name"></span></p><p class="pcare" data-copy="cf_r86_care"></p></div><span class="plist money" data-price-list data-copy="cf_r86_list"></span><span class="psale money" data-price-sale data-copy="cf_r86_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:87"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r87_name"></span><span class="badge" data-copy="cf_r87_badge"></span></p><p class="pcare" data-copy="cf_r87_care"></p></div><span class="plist money" data-price-list data-copy="cf_r87_list"></span><span class="psale money" data-price-sale data-copy="cf_r87_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:88"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r88_name"></span></p><p class="pcare" data-copy="cf_r88_care"></p></div><span class="plist money" data-price-list data-copy="cf_r88_list"></span><span class="psale money" data-price-sale data-copy="cf_r88_sale"></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="card cp c2 c2n K K2a K2ap2" data-card="2" data-part="2" data-size-only="kakao" aria-label="세르프 이벤트가 계속">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head">
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+            <p class="p-unit"><span class="unit-d" data-copy="cf_p_unit_d"></span></p>
+          </div>
+        </div>
+        <div class="pboard">
+          <div class="pgroup">
+            <p class="pg-head"><span class="pg-name" data-copy="cf_g89_name"></span><span class="pg-sub" data-copy="cf_g89_sub"></span></p>
+            <p class="pg-note" data-copy="cf_g89_note"></p>
+          </div>
+          <ul class="prows">
+            <li class="prow" data-price-row="11_lifting:90"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r90_name"></span><span class="pchip" data-copy="cf_r90_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r90_list"></span><span class="psale money" data-price-sale data-copy="cf_r90_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:91"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r91_name"></span><span class="pchip" data-copy="cf_r91_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r91_list"></span><span class="psale money" data-price-sale data-copy="cf_r91_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:92"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r92_name"></span><span class="pchip" data-copy="cf_r92_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r92_list"></span><span class="psale money" data-price-sale data-copy="cf_r92_sale"></span></li>
+          </ul>
+        </div>
+        <p class="gift-band c2-gift"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="cf_gift"></span></p>
+        <div class="c2-foot">
+          <p class="uibeop" data-copy="cf_uibeop"></p><p class="vat"><span data-copy="cf_vat"></span></p>
+        </div>
+      </div>
+    </section>
+    <!-- /SZ:kakao:2a -->
 <!-- BVARIANT START 2 -->
-<section class="card cp c2 c2bn" data-card="2" data-variant="b" aria-labelledby="cf-t2-b">
+<section class="card cp c2 c2bn" data-card="2" data-variant="b" data-size-hide="line kakao" aria-labelledby="cf-t2-b">
       <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
       <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
@@ -155,10 +356,107 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:2b -->
+    <!-- line 2B: the whole card -->
+    <section class="card cp c2 c2bn L L2b" data-card="2" data-variant="b" data-size-only="line" aria-labelledby="cf-t2-b-l">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head">
+          <figure class="dev-stage ds-2"><img class="dev" src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+            <h2 class="p-title" id="cf-t2-b-l"><span class="pt-main" data-copy="cf_p_title"></span><span class="pt-en" data-copy="cf_p_en"></span></h2>
+            <p class="p-lead" data-copy="cf_p_lead"></p>
+            <p class="p-unit"><span class="unit-d" data-copy="cf_p_unit_d"></span></p>
+          </div>
+          <img class="c2-cut" src="assets/model-c2-cut.webp?v=a" data-alt="cf_alt_model_c2" alt="" width="566" height="1040">
+        </div>
+        <div class="pboard">
+          <ul class="prows">
+            <li class="prow" data-price-row="11_lifting:86"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r86_name"></span></p><p class="pcare" data-copy="cf_r86_care"></p></div><span class="plist money" data-price-list data-copy="cf_r86_list"></span><span class="psale money" data-price-sale data-copy="cf_r86_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:87"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r87_name"></span><span class="badge" data-copy="cf_r87_badge"></span></p><p class="pcare" data-copy="cf_r87_care"></p></div><span class="plist money" data-price-list data-copy="cf_r87_list"></span><span class="psale money" data-price-sale data-copy="cf_r87_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:88"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r88_name"></span></p><p class="pcare" data-copy="cf_r88_care"></p></div><span class="plist money" data-price-list data-copy="cf_r88_list"></span><span class="psale money" data-price-sale data-copy="cf_r88_sale"></span></li>
+          </ul>
+          <div class="pgroup">
+            <p class="pg-head"><span class="pg-name" data-copy="cf_g89_name"></span><span class="pg-sub" data-copy="cf_g89_sub"></span></p>
+            <p class="pg-note" data-copy="cf_g89_note"></p>
+          </div>
+          <ul class="prows">
+            <li class="prow" data-price-row="11_lifting:90"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r90_name"></span><span class="pchip" data-copy="cf_r90_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r90_list"></span><span class="psale money" data-price-sale data-copy="cf_r90_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:91"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r91_name"></span><span class="pchip" data-copy="cf_r91_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r91_list"></span><span class="psale money" data-price-sale data-copy="cf_r91_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:92"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r92_name"></span><span class="pchip" data-copy="cf_r92_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r92_list"></span><span class="psale money" data-price-sale data-copy="cf_r92_sale"></span></li>
+          </ul>
+        </div>
+        <p class="gift-band c2-gift"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="cf_gift"></span></p>
+        <div class="c2-foot">
+          <p class="uibeop" data-copy="cf_uibeop"></p><p class="vat"><span data-copy="cf_vat"></span></p>
+        </div>
+      </div>
+    </section>
+    <!-- /SZ:line:2b -->
+    <!-- SZ:kakao:2b -->
+    <!-- kakao 2B in two parts: head + rows 86-88 | small head, the eye group 89 with rows 90-92, the gift band, the '의료법상' line and VAT -->
+    <section class="card cp c2 c2bn K K2b K2bp1" data-card="2" data-variant="b" data-part="1" data-size-only="kakao" aria-labelledby="cf-t2-b-k1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head">
+          <figure class="dev-stage ds-2"><img class="dev" src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+            <h2 class="p-title" id="cf-t2-b-k1"><span class="pt-main" data-copy="cf_p_title"></span><span class="pt-en" data-copy="cf_p_en"></span></h2>
+            <p class="p-lead" data-copy="cf_p_lead"></p>
+            <p class="p-unit"><span class="unit-d" data-copy="cf_p_unit_d"></span></p>
+          </div>
+          <img class="c2-cut" src="assets/model-c2-cut.webp?v=a" data-alt="cf_alt_model_c2" alt="" width="566" height="1040">
+        </div>
+        <div class="pboard">
+          <ul class="prows">
+            <li class="prow" data-price-row="11_lifting:86"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r86_name"></span></p><p class="pcare" data-copy="cf_r86_care"></p></div><span class="plist money" data-price-list data-copy="cf_r86_list"></span><span class="psale money" data-price-sale data-copy="cf_r86_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:87"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r87_name"></span><span class="badge" data-copy="cf_r87_badge"></span></p><p class="pcare" data-copy="cf_r87_care"></p></div><span class="plist money" data-price-list data-copy="cf_r87_list"></span><span class="psale money" data-price-sale data-copy="cf_r87_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:88"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r88_name"></span></p><p class="pcare" data-copy="cf_r88_care"></p></div><span class="plist money" data-price-list data-copy="cf_r88_list"></span><span class="psale money" data-price-sale data-copy="cf_r88_sale"></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="card cp c2 c2bn K K2b K2bp2" data-card="2" data-variant="b" data-part="2" data-size-only="kakao" aria-label="세르프 이벤트가 계속">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d2" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g3" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g4" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head">
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+          </div>
+        </div>
+        <div class="pboard">
+          <div class="pgroup">
+            <p class="pg-head"><span class="pg-name" data-copy="cf_g89_name"></span><span class="pg-sub" data-copy="cf_g89_sub"></span></p>
+            <p class="pg-note" data-copy="cf_g89_note"></p>
+          </div>
+          <ul class="prows">
+            <li class="prow" data-price-row="11_lifting:90"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r90_name"></span><span class="pchip" data-copy="cf_r90_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r90_list"></span><span class="psale money" data-price-sale data-copy="cf_r90_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:91"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r91_name"></span><span class="pchip" data-copy="cf_r91_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r91_list"></span><span class="psale money" data-price-sale data-copy="cf_r91_sale"></span></li>
+            <li class="prow" data-price-row="11_lifting:92"><div class="pn"><p class="pname"><span class="pnm" data-copy="cf_r92_name"></span><span class="pchip" data-copy="cf_r92_detail"></span></p></div><span class="plist money" data-price-list data-copy="cf_r92_list"></span><span class="psale money" data-price-sale data-copy="cf_r92_sale"></span></li>
+          </ul>
+        </div>
+        <p class="gift-band c2-gift"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="cf_gift"></span></p>
+        <div class="c2-foot">
+          <p class="uibeop" data-copy="cf_uibeop"></p><p class="vat"><span data-copy="cf_vat"></span></p>
+        </div>
+      </div>
+    </section>
+    <!-- /SZ:kakao:2b -->
 <!-- BVARIANT END 2 -->
 
     <!-- 3 / 7 : prices 2-2, sheet rows 93-101 of 11_lifting B86:K104 in sheet order (same table, title + '계속'); the blank sheet rows 96 / 100 split the three combo groups -->
-    <section class="card cp c3" data-card="3" aria-labelledby="cf-t3">
+    <section class="card cp c3" data-card="3" data-size-hide="line kakao" aria-labelledby="cf-t3">
       <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <img class="disc d3" src="assets/dec/disc-green.webp" alt="" aria-hidden="true">
       <img class="glint g5" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
@@ -199,9 +497,127 @@
         <p class="vat"><span data-copy="cf_vat"></span></p>
       </div>
     </section>
+    <!-- SZ:line:3 -->
+    <!-- line 3: head with the three devices, the gift band and the combo groups in two columns (1 | 2 and 3) -->
+    <section class="card cp c3 L L3" data-card="3" data-size-only="line" aria-labelledby="cf-t3-l">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d3" src="assets/dec/disc-green.webp" alt="" aria-hidden="true">
+      <img class="glint g5" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head c3-head">
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+            <h2 class="p-title" id="cf-t3-l"><span class="pt-main" data-copy="cf_p_title"></span><span class="pt-cont" data-copy="cf_cont"></span></h2>
+            <p class="p-lead" data-copy="cf_p3_lead"></p>
+            <p class="p-unit"><span class="unit-k" data-copy="cf_p_unit_k"></span><span class="unit-d" data-copy="cf_p3_unit"></span></p>
+          </div>
+          <ul class="trio">
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure><span class="td-n" data-copy="cf_dev1_n"></span><span class="td-t" data-copy="cf_dev1_t"></span></li>
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/ultherapy-prime.webp" data-alt="cf_alt_dev_ulthera" alt="" width="443" height="900"></figure><span class="td-n" data-copy="cf_dev2_n"></span><span class="td-t" data-copy="cf_dev2_t"></span></li>
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/sofwave.webp" data-alt="cf_alt_dev_sofwave" alt="" width="424" height="862"></figure><span class="td-n" data-copy="cf_dev3_n"></span><span class="td-t" data-copy="cf_dev3_t"></span></li>
+          </ul>
+        </div>
+        <div class="pboard">
+          <p class="gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="cf_gift"></span></p>
+          <div class="pcol pcol1"><p class="pk"><span data-copy="cf_k1"></span></p>
+          <ul class="prows combo">
+            <li class="prow" data-price-row="11_lifting:93"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r93_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r93_list"></span><span class="psale money" data-price-sale data-copy="cf_r93_sale"></span></li>
+            <li class="prow has-gift" data-price-row="11_lifting:94"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r94_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r94_list"></span><span class="psale money" data-price-sale data-copy="cf_r94_sale"></span></li>
+            <li class="prow has-gift" data-price-row="11_lifting:95"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r95_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r95_list"></span><span class="psale money" data-price-sale data-copy="cf_r95_sale"></span></li>
+          </ul>
+          </div><div class="pcol pcol2"><p class="pk"><span data-copy="cf_k2"></span></p>
+          <ul class="prows combo">
+            <li class="prow" data-price-row="11_lifting:97"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r97_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r97_list"></span><span class="psale money" data-price-sale data-copy="cf_r97_sale"></span></li>
+            <li class="prow has-gift" data-price-row="11_lifting:98"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r98_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r98_list"></span><span class="psale money" data-price-sale data-copy="cf_r98_sale"></span></li>
+            <li class="prow has-gift" data-price-row="11_lifting:99"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r99_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r99_list"></span><span class="psale money" data-price-sale data-copy="cf_r99_sale"></span></li>
+          </ul>
+          <p class="pk"><span data-copy="cf_k3"></span></p>
+          <ul class="prows combo">
+            <li class="prow has-gift" data-price-row="11_lifting:101"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r101_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r101_list"></span><span class="psale money" data-price-sale data-copy="cf_r101_sale"></span></li>
+          </ul></div>
+        </div>
+        <p class="vat"><span data-copy="cf_vat"></span></p>
+      </div>
+    </section>
+    <!-- /SZ:line:3 -->
+    <!-- SZ:kakao:3 -->
+    <!-- kakao 3 in three parts: title, the gift band, combos 93-95 | the lead and shot note, combos 97-99 | the three devices, combo 101, VAT -->
+    <section class="card cp c3 K K3 K3p1" data-card="3" data-part="1" data-size-only="kakao" aria-labelledby="cf-t3-k1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d3" src="assets/dec/disc-green.webp" alt="" aria-hidden="true">
+      <img class="glint g5" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head c3-head">
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+            <h2 class="p-title" id="cf-t3-k1"><span class="pt-main" data-copy="cf_p_title"></span><span class="pt-cont" data-copy="cf_cont"></span></h2>
+          </div>
+        </div>
+        <div class="pboard">
+          <p class="gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="cf_gift"></span></p>
+          <p class="pk"><span data-copy="cf_k1"></span></p>
+          <ul class="prows combo">
+            <li class="prow" data-price-row="11_lifting:93"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r93_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r93_list"></span><span class="psale money" data-price-sale data-copy="cf_r93_sale"></span></li>
+            <li class="prow has-gift" data-price-row="11_lifting:94"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r94_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r94_list"></span><span class="psale money" data-price-sale data-copy="cf_r94_sale"></span></li>
+            <li class="prow has-gift" data-price-row="11_lifting:95"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r95_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r95_list"></span><span class="psale money" data-price-sale data-copy="cf_r95_sale"></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="card cp c3 K K3 K3p2" data-card="3" data-part="2" data-size-only="kakao" aria-label="세르프 복합 구성 계속">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d3" src="assets/dec/disc-green.webp" alt="" aria-hidden="true">
+      <img class="glint g5" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head c3-head">
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+            <p class="p-lead" data-copy="cf_p3_lead"></p>
+            <p class="p-unit"><span class="unit-k" data-copy="cf_p_unit_k"></span><span class="unit-d" data-copy="cf_p3_unit"></span></p>
+          </div>
+        </div>
+        <div class="pboard">
+          <p class="pk"><span data-copy="cf_k2"></span></p>
+          <ul class="prows combo">
+            <li class="prow" data-price-row="11_lifting:97"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r97_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r97_list"></span><span class="psale money" data-price-sale data-copy="cf_r97_sale"></span></li>
+            <li class="prow has-gift" data-price-row="11_lifting:98"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r98_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r98_list"></span><span class="psale money" data-price-sale data-copy="cf_r98_sale"></span></li>
+            <li class="prow has-gift" data-price-row="11_lifting:99"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r99_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r99_list"></span><span class="psale money" data-price-sale data-copy="cf_r99_sale"></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="card cp c3 K K3 K3p3" data-card="3" data-part="3" data-size-only="kakao" aria-label="세르프 세 장비 구성">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d3" src="assets/dec/disc-green.webp" alt="" aria-hidden="true">
+      <img class="glint g5" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="cp-in">
+        <header class="top"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"><span class="period"><span data-copy="cf_period"></span></span></header>
+        <div class="cp-head c3-head">
+          <div class="cp-htx">
+            <p class="kicker p-kicker" data-copy="cf_p_mark"></p>
+          </div>
+          <ul class="trio">
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure><span class="td-n" data-copy="cf_dev1_n"></span><span class="td-t" data-copy="cf_dev1_t"></span></li>
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/ultherapy-prime.webp" data-alt="cf_alt_dev_ulthera" alt="" width="443" height="900"></figure><span class="td-n" data-copy="cf_dev2_n"></span><span class="td-t" data-copy="cf_dev2_t"></span></li>
+            <li class="tdev"><figure class="td-img"><img src="assets/dev/sofwave.webp" data-alt="cf_alt_dev_sofwave" alt="" width="424" height="862"></figure><span class="td-n" data-copy="cf_dev3_n"></span><span class="td-t" data-copy="cf_dev3_t"></span></li>
+          </ul>
+        </div>
+        <div class="pboard">
+          <p class="pk"><span data-copy="cf_k3"></span></p>
+          <ul class="prows combo">
+            <li class="prow has-gift" data-price-row="11_lifting:101"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><div class="pn"><p class="pname"><span class="pnm cmb" data-copy="cf_r101_name"></span></p></div><span class="plist money" data-price-list data-copy="cf_r101_list"></span><span class="psale money" data-price-sale data-copy="cf_r101_sale"></span></li>
+          </ul>
+        </div>
+        <p class="vat"><span data-copy="cf_vat"></span></p>
+      </div>
+    </section>
+    <!-- /SZ:kakao:3 -->
 
     <!-- 4 / 7 : Before & After (v4/_shared/ba/BA_SECTION.md; photos v4/_shared/ba/winter-ba-9/serf used as they are; colours via --ba-*) -->
-    <section class="card cba bb-ba" data-card="4" aria-labelledby="cf-tba">
+    <section class="card cba bb-ba" data-card="4" data-size-hide="line kakao" aria-labelledby="cf-tba">
       <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <img class="glint g6" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g7" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
       <div class="ba-in">
@@ -225,9 +641,79 @@
         <p class="ba-note" data-copy="cf_ba_note"></p>
       </div>
     </section>
+    <!-- SZ:line:4 -->
+    <!-- line 4: the two before/after pairs stacked -->
+    <section class="card cba bb-ba L L4" data-card="4" data-size-only="line" aria-labelledby="cf-tba-l">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g6" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g7" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="ba-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="ba-head">
+          <p class="ba-eyebrow" data-copy="cf_ba_kicker"></p>
+          <h2 class="ba-title" id="cf-tba-l" data-copy="cf_ba_title"></h2>
+        </div>
+        <div class="ba-rows">
+          <div class="ba-pair">
+            <figure class="ba-shot"><img src="assets/ba/serf-front-before.jpg" data-alt="cf_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="cf_ba_before"></figcaption></figure>
+            <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+            <figure class="ba-shot"><img src="assets/ba/serf-front-after.jpg" data-alt="cf_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="cf_ba_after"></figcaption></figure>
+          </div>
+          <div class="ba-pair">
+            <figure class="ba-shot"><img src="assets/ba/serf-45-before.jpg" data-alt="cf_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="cf_ba_before"></figcaption></figure>
+            <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+            <figure class="ba-shot"><img src="assets/ba/serf-45-after.jpg" data-alt="cf_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="cf_ba_after"></figcaption></figure>
+          </div>
+        </div>
+        <p class="ba-note" data-copy="cf_ba_note"></p>
+      </div>
+    </section>
+    <!-- /SZ:line:4 -->
+    <!-- SZ:kakao:4 -->
+    <!-- kakao 4 in two parts: the front pair | the 45-degree pair (the AI-image note under both) -->
+    <section class="card cba bb-ba K K4 K4p1" data-card="4" data-part="1" data-size-only="kakao" aria-labelledby="cf-tba-k1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g6" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g7" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="ba-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="ba-head">
+          <p class="ba-eyebrow" data-copy="cf_ba_kicker"></p>
+          <h2 class="ba-title" id="cf-tba-k1" data-copy="cf_ba_title"></h2>
+        </div>
+        <div class="ba-rows">
+          <div class="ba-pair">
+            <figure class="ba-shot"><img src="assets/ba/serf-front-before.jpg" data-alt="cf_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="cf_ba_before"></figcaption></figure>
+            <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+            <figure class="ba-shot"><img src="assets/ba/serf-front-after.jpg" data-alt="cf_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="cf_ba_after"></figcaption></figure>
+          </div>
+          
+        </div>
+        <p class="ba-note" data-copy="cf_ba_note"></p>
+      </div>
+    </section>
+    <section class="card cba bb-ba K K4 K4p2" data-card="4" data-part="2" data-size-only="kakao" aria-labelledby="cf-tba-k2">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g6" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g7" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="ba-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="ba-head">
+          <p class="ba-eyebrow" data-copy="cf_ba_kicker"></p>
+          <h2 class="ba-title" id="cf-tba-k2" data-copy="cf_ba_title"></h2>
+        </div>
+        <div class="ba-rows">
+          
+          <div class="ba-pair">
+            <figure class="ba-shot"><img src="assets/ba/serf-45-before.jpg" data-alt="cf_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="cf_ba_before"></figcaption></figure>
+            <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+            <figure class="ba-shot"><img src="assets/ba/serf-45-after.jpg" data-alt="cf_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="cf_ba_after"></figcaption></figure>
+          </div>
+        </div>
+        <p class="ba-note" data-copy="cf_ba_note"></p>
+      </div>
+    </section>
+    <!-- /SZ:kakao:4 -->
 
     <!-- 5 / 7 : what the device is (facts: v4/cerf12/REFERENCE_AND_PLAN.md); the skin cross-section is a generated illustration (v4/cerf12/gen/layers-v1.json), labels are HTML -->
-    <section class="card c4" data-card="5" aria-labelledby="cf-t4">
+    <section class="card c4" data-card="5" data-size-hide="line kakao" aria-labelledby="cf-t4">
       <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <img class="disc d5" src="assets/dec/disc.webp" alt="" aria-hidden="true">
       <img class="glint g8" src="assets/dec/glint.webp" alt="" aria-hidden="true">
@@ -278,9 +764,143 @@
         <p class="src" data-copy="cf_c4_src"></p>
       </div>
     </section>
+    <!-- SZ:line:5 -->
+    <!-- line 5 in two parts: question head with the device, the skin section beside the four points | tips and the combo devices, source -->
+    <section class="card c4 L L5 L5p1" data-card="5" data-part="1" data-size-only="line" aria-labelledby="cf-t4-l1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d5" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g8" src="assets/dec/glint.webp" alt="" aria-hidden="true">
+      <div class="c4-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="c4-head">
+          <div class="q-head">
+            <p class="kicker" data-copy="cf_c4_kicker"></p>
+            <h2 class="q-title" id="cf-t4-l1" data-copy="cf_c4_q"></h2>
+            <p class="q-ans" data-copy="cf_c4_a"></p>
+          </div>
+          <figure class="dev-stage ds-5"><img class="dev" src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+        </div>
+        <div class="c4-mid">
+          <figure class="layers">
+            <img class="layers-art" src="assets/diagram/layers.webp" data-alt="cf_alt_layers" alt="" width="1000" height="743">
+            <span class="ll l-f1" data-copy="cf_c4_d_f1"></span>
+            <span class="ll l-f2" data-copy="cf_c4_d_f2"></span>
+            <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="cf_c4_d_cool"></span></span>
+            <span class="ll l-sh" data-copy="cf_c4_d_shallow"></span>
+            <span class="ll l-mi" data-copy="cf_c4_d_middle"></span>
+            <span class="ll l-de" data-copy="cf_c4_d_deep"></span>
+          </figure>
+          <ol class="points">
+            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="cf_c4_p1_t"></h3><p class="pt-d" data-copy="cf_c4_p1_d"></p></div></li>
+            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="cf_c4_p2_t"></h3><p class="pt-d" data-copy="cf_c4_p2_d"></p></div></li>
+            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="cf_c4_p3_t"></h3><p class="pt-d" data-copy="cf_c4_p3_d"></p></div></li>
+            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="cf_c4_p4_t"></h3><p class="pt-d" data-copy="cf_c4_p4_d"></p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="card c4 L L5 L5p2" data-card="5" data-part="2" data-size-only="line" aria-label="세르프 팁과 복합 구성 장비">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d5" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g8" src="assets/dec/glint.webp" alt="" aria-hidden="true">
+      <div class="c4-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="tips">
+          <h3 class="tips-title" data-copy="cf_c4_tip_title"></h3>
+          <ul class="tip-row">
+            <li class="tip t05"><span class="tip-box" aria-hidden="true"><i class="tip-shape"></i></span><span class="tip-n" data-copy="cf_c4_t1_n"></span><span class="tip-s" data-copy="cf_c4_t1_s"></span><span class="tip-d" data-copy="cf_c4_t1_d"></span></li>
+            <li class="tip t10"><span class="tip-box" aria-hidden="true"><i class="tip-shape"></i></span><span class="tip-n" data-copy="cf_c4_t2_n"></span><span class="tip-s" data-copy="cf_c4_t2_s"></span><span class="tip-d" data-copy="cf_c4_t2_d"></span></li>
+            <li class="tip t40"><span class="tip-box" aria-hidden="true"><i class="tip-shape"></i></span><span class="tip-n" data-copy="cf_c4_t3_n"></span><span class="tip-s" data-copy="cf_c4_t3_s"></span><span class="tip-d" data-copy="cf_c4_t3_d"></span></li>
+            <li class="tip t60"><span class="tip-box" aria-hidden="true"><i class="tip-shape"></i></span><span class="tip-n" data-copy="cf_c4_t4_n"></span><span class="tip-s" data-copy="cf_c4_t4_s"></span><span class="tip-d" data-copy="cf_c4_t4_d"></span></li>
+          </ul>
+        </div>
+        <div class="cmb4">
+          <h3 class="tips-title" data-copy="cf_c4_cmb_title"></h3>
+          <ul class="cmb4-row">
+            <li class="cmb4-it is-on"><figure class="cmb4-dev"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e1_t"></span><span class="cmb4-n" data-copy="cf_c4_e1_n"></span><span class="cmb4-d" data-copy="cf_c4_e1_d"></span></div></li>
+            <li class="cmb4-it"><figure class="cmb4-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="cf_alt_dev_ulthera" alt="" width="443" height="900"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e2_t"></span><span class="cmb4-n" data-copy="cf_c4_e2_n"></span><span class="cmb4-d" data-copy="cf_c4_e2_d"></span></div></li>
+            <li class="cmb4-it"><figure class="cmb4-dev"><img src="assets/dev/sofwave.webp" data-alt="cf_alt_dev_sofwave" alt="" width="424" height="862"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e3_t"></span><span class="cmb4-n" data-copy="cf_c4_e3_n"></span><span class="cmb4-d" data-copy="cf_c4_e3_d"></span></div></li>
+          </ul>
+        </div>
+        <p class="src" data-copy="cf_c4_src"></p>
+      </div>
+    </section>
+    <!-- /SZ:line:5 -->
+    <!-- SZ:kakao:5 -->
+    <!-- kakao 5 in three parts: question, device, four points | the skin section and the four tips | the combo devices and the source -->
+    <section class="card c4 K K5 K5p1" data-card="5" data-part="1" data-size-only="kakao" aria-labelledby="cf-t4-k1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d5" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g8" src="assets/dec/glint.webp" alt="" aria-hidden="true">
+      <div class="c4-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="c4-head">
+          <div class="q-head">
+            <p class="kicker" data-copy="cf_c4_kicker"></p>
+            <h2 class="q-title" id="cf-t4-k1" data-copy="cf_c4_q"></h2>
+            <p class="q-ans" data-copy="cf_c4_a"></p>
+          </div>
+          <figure class="dev-stage ds-5"><img class="dev" src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure>
+        </div>
+        <div class="c4-mid">
+          <ol class="points">
+            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="cf_c4_p1_t"></h3><p class="pt-d" data-copy="cf_c4_p1_d"></p></div></li>
+            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="cf_c4_p2_t"></h3><p class="pt-d" data-copy="cf_c4_p2_d"></p></div></li>
+            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="cf_c4_p3_t"></h3><p class="pt-d" data-copy="cf_c4_p3_d"></p></div></li>
+            <li class="pt"><span class="pt-n" aria-hidden="true"></span><div class="pt-tx"><h3 class="pt-t" data-copy="cf_c4_p4_t"></h3><p class="pt-d" data-copy="cf_c4_p4_d"></p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="card c4 K K5 K5p2" data-card="5" data-part="2" data-size-only="kakao" aria-label="세르프 피부 단면과 팁">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d5" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g8" src="assets/dec/glint.webp" alt="" aria-hidden="true">
+      <div class="c4-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="c4-mid">
+          <figure class="layers">
+            <img class="layers-art" src="assets/diagram/layers.webp" data-alt="cf_alt_layers" alt="" width="1000" height="743">
+            <span class="ll l-f1" data-copy="cf_c4_d_f1"></span>
+            <span class="ll l-f2" data-copy="cf_c4_d_f2"></span>
+            <span class="ll l-cool"><img class="ll-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><span data-copy="cf_c4_d_cool"></span></span>
+            <span class="ll l-sh" data-copy="cf_c4_d_shallow"></span>
+            <span class="ll l-mi" data-copy="cf_c4_d_middle"></span>
+            <span class="ll l-de" data-copy="cf_c4_d_deep"></span>
+          </figure>
+        </div>
+        <div class="tips">
+          <h3 class="tips-title" data-copy="cf_c4_tip_title"></h3>
+          <ul class="tip-row">
+            <li class="tip t05"><span class="tip-box" aria-hidden="true"><i class="tip-shape"></i></span><span class="tip-n" data-copy="cf_c4_t1_n"></span><span class="tip-s" data-copy="cf_c4_t1_s"></span><span class="tip-d" data-copy="cf_c4_t1_d"></span></li>
+            <li class="tip t10"><span class="tip-box" aria-hidden="true"><i class="tip-shape"></i></span><span class="tip-n" data-copy="cf_c4_t2_n"></span><span class="tip-s" data-copy="cf_c4_t2_s"></span><span class="tip-d" data-copy="cf_c4_t2_d"></span></li>
+            <li class="tip t40"><span class="tip-box" aria-hidden="true"><i class="tip-shape"></i></span><span class="tip-n" data-copy="cf_c4_t3_n"></span><span class="tip-s" data-copy="cf_c4_t3_s"></span><span class="tip-d" data-copy="cf_c4_t3_d"></span></li>
+            <li class="tip t60"><span class="tip-box" aria-hidden="true"><i class="tip-shape"></i></span><span class="tip-n" data-copy="cf_c4_t4_n"></span><span class="tip-s" data-copy="cf_c4_t4_s"></span><span class="tip-d" data-copy="cf_c4_t4_d"></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="card c4 K K5 K5p3" data-card="5" data-part="3" data-size-only="kakao" aria-label="복합 구성 장비">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="disc d5" src="assets/dec/disc.webp" alt="" aria-hidden="true">
+      <img class="glint g8" src="assets/dec/glint.webp" alt="" aria-hidden="true">
+      <div class="c4-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="cmb4">
+          <h3 class="tips-title" data-copy="cf_c4_cmb_title"></h3>
+          <ul class="cmb4-row">
+            <li class="cmb4-it is-on"><figure class="cmb4-dev"><img src="assets/dev/xerf.webp" data-alt="cf_alt_dev_xerf" alt="" width="347" height="900"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e1_t"></span><span class="cmb4-n" data-copy="cf_c4_e1_n"></span><span class="cmb4-d" data-copy="cf_c4_e1_d"></span></div></li>
+            <li class="cmb4-it"><figure class="cmb4-dev"><img src="assets/dev/ultherapy-prime.webp" data-alt="cf_alt_dev_ulthera" alt="" width="443" height="900"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e2_t"></span><span class="cmb4-n" data-copy="cf_c4_e2_n"></span><span class="cmb4-d" data-copy="cf_c4_e2_d"></span></div></li>
+            <li class="cmb4-it"><figure class="cmb4-dev"><img src="assets/dev/sofwave.webp" data-alt="cf_alt_dev_sofwave" alt="" width="424" height="862"></figure><div class="cmb4-tx"><span class="cmb4-t" data-copy="cf_c4_e3_t"></span><span class="cmb4-n" data-copy="cf_c4_e3_n"></span><span class="cmb4-d" data-copy="cf_c4_e3_d"></span></div></li>
+          </ul>
+        </div>
+        <p class="src" data-copy="cf_c4_src"></p>
+      </div>
+    </section>
+    <!-- /SZ:kakao:5 -->
 
     <!-- 6 / 7 : the treatment day (who it is for, four steps, treatment info, care); the circle photo is its own layout reference cut (v4/cerf12/gen/day-1104.json), not a crop of the hero -->
-    <section class="card c5" data-card="6" aria-labelledby="cf-t5">
+    <section class="card c5" data-card="6" data-size-hide="line kakao" aria-labelledby="cf-t5">
       <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <img class="glint g9" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g10" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
       <div class="c5-in">
@@ -320,9 +940,109 @@
         <p class="src" data-copy="cf_c5_src"></p>
       </div>
     </section>
+    <!-- SZ:line:6 -->
+    <!-- line 6: question with the photo, who, the four steps in one row, facts, combo note, care tips -->
+    <section class="card c5 L L6" data-card="6" data-size-only="line" aria-labelledby="cf-t5-l">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g9" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g10" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="c5-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="c5-headrow">
+          <div class="q-head">
+            <p class="kicker" data-copy="cf_c5_kicker"></p>
+            <h2 class="q-title" id="cf-t5-l" data-copy="cf_c5_q"></h2>
+            <p class="q-ans" data-copy="cf_c5_a"></p>
+          </div>
+          <div class="c5-pic"><img class="c5-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true"><figure class="c5-photo"><img src="assets/model-day.jpg?v=b" data-alt="cf_alt_day" alt="" width="640" height="640"></figure></div>
+        </div>
+        <div class="who">
+          <p class="who-lbl" data-copy="cf_c5_who_lbl"></p>
+          <ul class="who-row">
+            <li class="who-it"><span class="who-k" data-copy="cf_c5_w1_k"></span><span class="who-v" data-copy="cf_c5_w1_v"></span></li>
+            <li class="who-it"><span class="who-k" data-copy="cf_c5_w2_k"></span><span class="who-v" data-copy="cf_c5_w2_v"></span></li>
+            <li class="who-it"><span class="who-k" data-copy="cf_c5_w3_k"></span><span class="who-v" data-copy="cf_c5_w3_v"></span></li>
+          </ul>
+        </div>
+        <ol class="steps">
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="cf_c5_s1_t"></h3><p class="st-d" data-copy="cf_c5_s1_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-check.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="cf_c5_s2_t"></h3><p class="st-d" data-copy="cf_c5_s2_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="cf_c5_s3_t"></h3><p class="st-d" data-copy="cf_c5_s3_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-heart.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="cf_c5_s4_t"></h3><p class="st-d" data-copy="cf_c5_s4_d"></p></div></li>
+        </ol>
+        <ul class="infos">
+          <li class="inf"><span class="inf-k" data-copy="cf_c5_i1_k"></span><span class="inf-v" data-copy="cf_c5_i1_v"></span><span class="inf-n" data-copy="cf_c5_i1_n"></span></li>
+          <li class="inf"><span class="inf-k" data-copy="cf_c5_i2_k"></span><span class="inf-v" data-copy="cf_c5_i2_v"></span><span class="inf-n" data-copy="cf_c5_i2_n"></span></li>
+          <li class="inf"><span class="inf-k" data-copy="cf_c5_i3_k"></span><span class="inf-v" data-copy="cf_c5_i3_v"></span><span class="inf-n" data-copy="cf_c5_i3_n"></span></li>
+        </ul>
+        <p class="c5-combo" data-copy="cf_c5_combo"></p>
+        <div class="c5-foot">
+          <p class="c5-tip"><img class="tip-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span data-copy="cf_c5_tip"></span></p>
+          <p class="c5-tip"><img class="tip-ico" src="assets/icons/ic-sun.webp" alt="" aria-hidden="true"><span data-copy="cf_c5_care"></span></p>
+        </div>
+        <p class="src" data-copy="cf_c5_src"></p>
+      </div>
+    </section>
+    <!-- /SZ:line:6 -->
+    <!-- SZ:kakao:6 -->
+    <!-- kakao 6 in three parts: question, photo, who | the four steps and the three facts | combo note, care tips, source -->
+    <section class="card c5 K K6 K6p1" data-card="6" data-part="1" data-size-only="kakao" aria-labelledby="cf-t5-k1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g9" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g10" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="c5-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="c5-headrow">
+          <div class="q-head">
+            <p class="kicker" data-copy="cf_c5_kicker"></p>
+            <h2 class="q-title" id="cf-t5-k1" data-copy="cf_c5_q"></h2>
+            <p class="q-ans" data-copy="cf_c5_a"></p>
+          </div>
+          <div class="c5-pic"><img class="c5-disc" src="assets/dec/disc.webp" alt="" aria-hidden="true"><figure class="c5-photo"><img src="assets/model-day.jpg?v=b" data-alt="cf_alt_day" alt="" width="640" height="640"></figure></div>
+        </div>
+        <div class="who">
+          <p class="who-lbl" data-copy="cf_c5_who_lbl"></p>
+          <ul class="who-row">
+            <li class="who-it"><span class="who-k" data-copy="cf_c5_w1_k"></span><span class="who-v" data-copy="cf_c5_w1_v"></span></li>
+            <li class="who-it"><span class="who-k" data-copy="cf_c5_w2_k"></span><span class="who-v" data-copy="cf_c5_w2_v"></span></li>
+            <li class="who-it"><span class="who-k" data-copy="cf_c5_w3_k"></span><span class="who-v" data-copy="cf_c5_w3_v"></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="card c5 K K6 K6p2" data-card="6" data-part="2" data-size-only="kakao" aria-label="시술 당일 진행 순서">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g9" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g10" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="c5-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <ol class="steps">
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="cf_c5_s1_t"></h3><p class="st-d" data-copy="cf_c5_s1_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-check.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="cf_c5_s2_t"></h3><p class="st-d" data-copy="cf_c5_s2_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-snow.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="cf_c5_s3_t"></h3><p class="st-d" data-copy="cf_c5_s3_d"></p></div></li>
+          <li class="st"><span class="st-num" aria-hidden="true"></span><img class="st-ico" src="assets/icons/ic-heart.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="cf_c5_s4_t"></h3><p class="st-d" data-copy="cf_c5_s4_d"></p></div></li>
+        </ol>
+        <ul class="infos">
+          <li class="inf"><span class="inf-k" data-copy="cf_c5_i1_k"></span><span class="inf-v" data-copy="cf_c5_i1_v"></span><span class="inf-n" data-copy="cf_c5_i1_n"></span></li>
+          <li class="inf"><span class="inf-k" data-copy="cf_c5_i2_k"></span><span class="inf-v" data-copy="cf_c5_i2_v"></span><span class="inf-n" data-copy="cf_c5_i2_n"></span></li>
+          <li class="inf"><span class="inf-k" data-copy="cf_c5_i3_k"></span><span class="inf-v" data-copy="cf_c5_i3_v"></span><span class="inf-n" data-copy="cf_c5_i3_n"></span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="card c5 K K6 K6p3" data-card="6" data-part="3" data-size-only="kakao" aria-label="시술 당일 안내">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <img class="glint g9" src="assets/dec/glint.webp" alt="" aria-hidden="true"><img class="glint g10" src="assets/dec/glint-s.webp" alt="" aria-hidden="true">
+      <div class="c5-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <p class="c5-combo" data-copy="cf_c5_combo"></p>
+        <div class="c5-foot">
+          <p class="c5-tip"><img class="tip-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span data-copy="cf_c5_tip"></span></p>
+          <p class="c5-tip"><img class="tip-ico" src="assets/icons/ic-sun.webp" alt="" aria-hidden="true"><span data-copy="cf_c5_care"></span></p>
+        </div>
+        <p class="src" data-copy="cf_c5_src"></p>
+      </div>
+    </section>
+    <!-- /SZ:kakao:6 -->
 
     <!-- 7 / 7 : clinic intro, the V4 bento grid (same content and order as oligio12 / FV12 / onda12 / ulthera12 / sofwave12) on this page's dark wine background -->
-    <section class="card c6" data-card="7" aria-labelledby="cf-t6">
+    <section class="card c6" data-card="7" data-size-hide="line kakao" aria-labelledby="cf-t6">
       <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
       <div class="cx-in">
         <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -392,6 +1112,177 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:7 -->
+    <!-- line 7 in two parts: who we are | directions, hours, booking -->
+    <section class="card c6 L L7 L7p1" data-card="7" data-part="1" data-size-only="line" aria-labelledby="cf-t6-l1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <div class="cx-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="bento">
+          <div class="bt bt-about">
+            <div class="ab-top">
+              <div class="ab-intro">
+                <p class="bt-k" data-copy="cf_ab_kicker"></p>
+                <h2 class="ab-title" id="cf-t6-l1" data-copy="cf_ab_title"></h2>
+                <p class="ab-lead"><span data-copy="cf_ab_intro1"></span><span data-copy="cf_ab_intro2"></span></p>
+              </div>
+              <figure class="dr">
+                <figcaption class="dr-tx"><span class="dr-name" data-copy="cf_ab_dr_name"></span><span class="dr-quote" data-copy="cf_ab_dr_quote"></span></figcaption>
+                <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="cf_alt_director" alt="" width="640" height="640">
+              </figure>
+            </div>
+            <div class="ab-photos">
+              <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="cf_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="cf_ab_ph1"></figcaption></figure>
+              <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="cf_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="cf_ab_ph2"></figcaption></figure>
+              <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="cf_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="cf_ab_ph3"></figcaption></figure>
+            </div>
+            <ul class="ab-strengths">
+              <li><span class="sh"><img class="si" src="assets/icons/ic-shield.webp" alt="" aria-hidden="true"><span class="at" data-copy="cf_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="cf_ab_s1_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="cf_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="cf_ab_s2_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="at" data-copy="cf_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="cf_ab_s3_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="cf_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="cf_ab_s4_d"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="card c6 L L7 L7p2" data-card="7" data-part="2" data-size-only="line" aria-labelledby="cf-t6loc-l2">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <div class="cx-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="bento">
+          <div class="bt bt-loc">
+            <div class="loc-head"><p class="bt-k" data-copy="cf_ab_loc"></p><h3 class="bt-t" id="cf-t6loc-l2" data-copy="cf_ab_loc_title"></h3></div>
+            <div class="loc-body">
+              <figure class="map">
+                <picture>
+                  <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                  <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                  <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="cf_alt_map" alt="" width="460" height="425">
+                </picture>
+              </figure>
+              <div class="way">
+                <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                <div class="way-tx">
+                  <p class="way-top"><span class="way-st" data-copy="cf_ab_way_station"></span><span class="way-line" data-copy="cf_ab_way_line"></span></p>
+                  <p class="way-addr"><span data-copy="cf_ab_way_addr"></span><span class="way-desk"><span data-copy="cf_ab_way_desk"></span></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bt bt-hours">
+            <p class="bt-k" data-copy="cf_ab_hours_kicker"></p>
+            <h3 class="bt-t" data-copy="cf_ab_hours_lbl"></h3>
+            <ul class="hrs"><li data-copy="cf_ab_h1"></li><li data-copy="cf_ab_h2"></li></ul>
+            <p class="hrs-note" data-copy="cf_ab_h3"></p>
+          </div>
+          <div class="bt bt-book">
+            <p class="bt-k" data-copy="cf_ab_bk_kicker"></p>
+            <h3 class="bt-t" data-copy="cf_ab_bk_title"></h3>
+            <div class="bk-row">
+              <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="cf_alt_qr" alt="" width="424" height="424"><figcaption data-copy="cf_ab_qr"></figcaption></figure>
+              <div class="bk-text">
+                <p class="bk-links"><a data-link="booking"><span data-copy="cf_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="cf_ab_bk_kakao"></span></a></span></p>
+                <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="cf_ab_phone"></span></a></p>
+              </div>
+            </div>
+            <img class="bk-mark wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /SZ:line:7 -->
+    <!-- SZ:kakao:7 -->
+    <!-- kakao 7 in three parts: who we are (title, director, photos) | four strengths and opening hours | directions and booking -->
+    <section class="card c6 K K7 K7p1" data-card="7" data-part="1" data-size-only="kakao" aria-labelledby="cf-t6-k1">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <div class="cx-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="bento">
+          <div class="bt bt-about">
+            <div class="ab-top">
+              <div class="ab-intro">
+                <p class="bt-k" data-copy="cf_ab_kicker"></p>
+                <h2 class="ab-title" id="cf-t6-k1" data-copy="cf_ab_title"></h2>
+                <p class="ab-lead"><span data-copy="cf_ab_intro1"></span><span data-copy="cf_ab_intro2"></span></p>
+              </div>
+              <figure class="dr">
+                <figcaption class="dr-tx"><span class="dr-name" data-copy="cf_ab_dr_name"></span><span class="dr-quote" data-copy="cf_ab_dr_quote"></span></figcaption>
+                <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="cf_alt_director" alt="" width="640" height="640">
+              </figure>
+            </div>
+            <div class="ab-photos">
+              <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="cf_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="cf_ab_ph1"></figcaption></figure>
+              <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="cf_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="cf_ab_ph2"></figcaption></figure>
+              <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="cf_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="cf_ab_ph3"></figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="card c6 K K7 K7p2" data-card="7" data-part="2" data-size-only="kakao" aria-labelledby="cf-t6s-k2">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <div class="cx-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="bento">
+          <div class="bt bt-about bt-str">
+            <p class="bt-k" id="cf-t6s-k2" data-copy="cf_ab_kicker"></p>
+            <ul class="ab-strengths">
+              <li><span class="sh"><img class="si" src="assets/icons/ic-shield.webp" alt="" aria-hidden="true"><span class="at" data-copy="cf_ab_s1_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="cf_ab_s1_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="cf_ab_s2_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="cf_ab_s2_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="at" data-copy="cf_ab_s3_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="cf_ab_s3_d"></span></li>
+              <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="cf_ab_s4_t"></span><i class="dots" aria-hidden="true"></i></span><span class="ad" data-copy="cf_ab_s4_d"></span></li>
+            </ul>
+          </div>
+          <div class="bt bt-hours">
+            <p class="bt-k" data-copy="cf_ab_hours_kicker"></p>
+            <h3 class="bt-t" data-copy="cf_ab_hours_lbl"></h3>
+            <ul class="hrs"><li data-copy="cf_ab_h1"></li><li data-copy="cf_ab_h2"></li></ul>
+            <p class="hrs-note" data-copy="cf_ab_h3"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="card c6 K K7 K7p3" data-card="7" data-part="3" data-size-only="kakao" aria-labelledby="cf-t6loc-k3">
+      <img class="bg" src="assets/bg/dark.jpg" alt="" aria-hidden="true">
+      <div class="cx-in">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="bento">
+          <div class="bt bt-loc">
+            <div class="loc-head"><p class="bt-k" data-copy="cf_ab_loc"></p><h3 class="bt-t" id="cf-t6loc-k3" data-copy="cf_ab_loc_title"></h3></div>
+            <div class="loc-body">
+              <figure class="map">
+                <picture>
+                  <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                  <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                  <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="cf_alt_map" alt="" width="460" height="425">
+                </picture>
+              </figure>
+              <div class="way">
+                <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                <div class="way-tx">
+                  <p class="way-top"><span class="way-st" data-copy="cf_ab_way_station"></span><span class="way-line" data-copy="cf_ab_way_line"></span></p>
+                  <p class="way-addr"><span data-copy="cf_ab_way_addr"></span><span class="way-desk"><span data-copy="cf_ab_way_desk"></span></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bt bt-book">
+            <p class="bt-k" data-copy="cf_ab_bk_kicker"></p>
+            <h3 class="bt-t" data-copy="cf_ab_bk_title"></h3>
+            <div class="bk-row">
+              <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="cf_alt_qr" alt="" width="424" height="424"><figcaption data-copy="cf_ab_qr"></figcaption></figure>
+              <div class="bk-text">
+                <p class="bk-links"><a data-link="booking"><span data-copy="cf_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="cf_ab_bk_kakao"></span></a></span></p>
+                <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="cf_ab_phone"></span></a></p>
+              </div>
+            </div>
+            <img class="bk-mark wordmark" src="assets/logo-wordmark-fbf7e9.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /SZ:kakao:7 -->
 
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="cf-notes">

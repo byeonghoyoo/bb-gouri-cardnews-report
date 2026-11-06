@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="ko">
 <head>
+  <script>(function(){var m=/[?&]size=(line|kakao)(?:&|$)/.exec(location.search);document.documentElement.setAttribute('data-size',m?m[1]:'home');})();</script>
+  <meta name="bb-sizes" content="home,line,kakao">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
@@ -8,10 +10,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400..800;1,400..600&amp;display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap">
-  <link rel="stylesheet" href="ulthera12.css?v=20261106-ulthera12e">
-  <script src="copy-data.js?v=20261106-ulthera12e" defer></script>
-  <script src="../inline-edit.js?v=20261106-ulthera12e" defer></script>
-  <script src="ulthera12.js?v=20261106-ulthera12e" defer></script>
+  <link rel="stylesheet" href="ulthera12.css?v=20261106-ulthera12f">
+  <script src="copy-data.js?v=20261106-ulthera12f" defer></script>
+  <script src="../inline-edit.js?v=20261106-ulthera12f" defer></script>
+  <script src="ulthera12.js?v=20261106-ulthera12f" defer></script>
 </head>
 <body>
 <!-- ULT12 울쎄라 · 겨울 시즌 (Korean first). 2026-11-04 reference sheet: design language from F (a cosmetics ad poster: airy white-to-butter backdrop,
@@ -26,7 +28,7 @@
   <div class="sheet">
 
     <!-- 1 / 6 : hero. Model photo: v4/ulthera12/gen/hero-1104-v1.json (G master face + F layout). Right column: two F frames with pills. -->
-    <section class="card c1" data-card="1" aria-labelledby="ut-t1">
+    <section class="card c1" data-card="1" aria-labelledby="ut-t1" data-size-hide="line kakao">
       <img class="c1-photo" src="assets/hero.jpg?v=c" data-alt="ut_alt_hero" alt="" width="1080" height="1350">
       <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
       <div class="c1-copy">
@@ -50,13 +52,104 @@
       
       <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="ut_contact"></span></p>
     </section>
+    <!-- SZ:line:1a -->
+    <!-- 1A: the hero photo has the model in it, so the size card uses the photo's own empty backdrop (assets/bg/backdrop.jpg) and the model cutout
+         (a/cut/hero.png from a/hf/hero-a1, person-cutout); copy and the price box left, the model right, the device frame in front of her lower body -->
+    <section class="card c1 L L1a" data-card="1" data-size-only="line" aria-labelledby="ut-t1-l">
+    <img class="bg sz-bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true"><img class="person sz-hero" src="assets/hero-cut.webp" data-alt="ut_alt_hero" alt="" width="1167" height="1600">
+    
+          <img class="c1-photo" src="assets/hero.jpg?v=c" data-alt="ut_alt_hero" alt="" width="1080" height="1350">
+          <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-copy">
+            <p class="kicker-f" data-copy="ut_kicker"></p>
+            <h1 class="title hero-title" id="ut-t1-l" data-copy="ut_title"></h1>
+            <p class="hero-sub" data-copy="ut_hook"></p><p class="label-box"><span data-copy="ut_period"></span></p>
+          </div>
+          <div class="c1-col">
+            <figure class="fr fr-hero">
+              <div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+              
+              <img class="dots dots-hero" src="assets/dec/dots-b.webp" alt="" aria-hidden="true">
+              <span class="pill pill-l p-hero" data-copy="ut_hero_pill"></span>
+            </figure>
+            <div class="fr fr-tz">
+              <p class="tz-main"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-price money" data-copy="ut_hero_price"></span></p>
+              <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
+              <span class="pill pill-r p-tz" data-copy="ut_hero_label"></span>
+            </div>
+          </div>
+          
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="ut_contact"></span></p>
+        </section>
+    <!-- /SZ:line:1a -->
+    <!-- SZ:kakao:1a -->
+    <section class="card c1 K K1a K1-1" data-card="1" data-part="1" data-size-only="kakao" aria-labelledby="ut-t1-k1">
+    <img class="bg sz-bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true"><img class="person sz-hero" src="assets/hero-cut.webp" data-alt="ut_alt_hero" alt="" width="1167" height="1600">
+    
+          <img class="c1-photo" src="assets/hero.jpg?v=c" data-alt="ut_alt_hero" alt="" width="1080" height="1350">
+          <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-copy">
+            <p class="kicker-f" data-copy="ut_kicker"></p>
+            <h1 class="title hero-title" id="ut-t1-k1" data-copy="ut_title"></h1>
+            <p class="hero-sub" data-copy="ut_hook"></p><p class="label-box"><span data-copy="ut_period"></span></p>
+          </div>
+          <div class="c1-col">
+            <figure class="fr fr-hero">
+              <div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+              
+              <img class="dots dots-hero" src="assets/dec/dots-b.webp" alt="" aria-hidden="true">
+              <span class="pill pill-l p-hero" data-copy="ut_hero_pill"></span>
+            </figure>
+            <div class="fr fr-tz">
+              <p class="tz-main"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-price money" data-copy="ut_hero_price"></span></p>
+              <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
+              <span class="pill pill-r p-tz" data-copy="ut_hero_label"></span>
+            </div>
+          </div>
+          
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="ut_contact"></span></p>
+        </section>
+    <section class="card c1 K K1a K1-2" data-card="1" data-part="2" data-size-only="kakao" aria-labelledby="ut-t1-k2">
+    <img class="bg sz-bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+    
+          <img class="c1-photo" src="assets/hero.jpg?v=c" data-alt="ut_alt_hero" alt="" width="1080" height="1350">
+          <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+          <div class="c1-copy">
+            <p class="kicker-f" data-copy="ut_kicker"></p>
+            <h1 class="title hero-title" id="ut-t1-k2" data-copy="ut_title"></h1>
+            <p class="hero-sub" data-copy="ut_hook"></p><p class="label-box"><span data-copy="ut_period"></span></p>
+          </div>
+          <div class="c1-col">
+            <figure class="fr fr-hero">
+              <div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+              
+              <img class="dots dots-hero" src="assets/dec/dots-b.webp" alt="" aria-hidden="true">
+              <span class="pill pill-l p-hero" data-copy="ut_hero_pill"></span>
+            </figure>
+            <div class="fr fr-tz">
+              <p class="tz-main"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-price money" data-copy="ut_hero_price"></span></p>
+              <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
+              <span class="pill pill-r p-tz" data-copy="ut_hero_label"></span>
+            </div>
+          </div>
+          
+          <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="ut_contact"></span></p>
+        </section>
+    <!-- /SZ:kakao:1a -->
 <!-- BVARIANT START 1 -->
-<section class="card rb1" data-card="1" data-variant="b" aria-labelledby="ut-b1-title"><img class="rb-bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true"><header class="rb-top"><span class="rb-period" data-copy="ut_period"></span><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header><img class="rb-model" src="assets/hero-b.jpg" data-alt="ut_alt_hero" alt="" width="600" height="750"><div class="rb-title"><p data-copy="ut_kicker"></p><h1 id="ut-b1-title" data-copy="ut_title"></h1><p data-copy="ut_hook"></p></div><figure class="rb-device"><img src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></figure><div class="rb-offer"><p class="rb-band" data-copy="ut_hero_pill"></p><p data-copy="ut_hero_label"></p><p><span data-copy="ut_hero_tag"></span> <span class="money" data-copy="ut_hero_price"></span></p><p data-copy="ut_vat"></p></div><p class="rb-gift" data-copy="ut_gift"></p><p class="rb-contact" data-copy="ut_contact"></p></section>
+<section class="card rb1" data-card="1" data-variant="b" aria-labelledby="ut-b1-title" data-size-hide="line kakao"><img class="rb-bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true"><header class="rb-top"><span class="rb-period" data-copy="ut_period"></span><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header><img class="rb-model" src="assets/hero-b.jpg" data-alt="ut_alt_hero" alt="" width="600" height="750"><div class="rb-title"><p data-copy="ut_kicker"></p><h1 id="ut-b1-title" data-copy="ut_title"></h1><p data-copy="ut_hook"></p></div><figure class="rb-device"><img src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></figure><div class="rb-offer"><p class="rb-band" data-copy="ut_hero_pill"></p><p data-copy="ut_hero_label"></p><p><span data-copy="ut_hero_tag"></span> <span class="money" data-copy="ut_hero_price"></span></p><p data-copy="ut_vat"></p></div><p class="rb-gift" data-copy="ut_gift"></p><p class="rb-contact" data-copy="ut_contact"></p></section>
+    <!-- SZ:line:1b -->
+    <section class="card rb1 L L1b" data-card="1" data-variant="b" data-size-only="line" aria-labelledby="ut-b1-title-l"><img class="rb-bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true"><header class="rb-top"><span class="rb-period" data-copy="ut_period"></span><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header><img class="rb-model" src="assets/hero-b.jpg" data-alt="ut_alt_hero" alt="" width="600" height="750"><div class="rb-title"><p data-copy="ut_kicker"></p><h1 id="ut-b1-title-l" data-copy="ut_title"></h1><p data-copy="ut_hook"></p></div><figure class="rb-device"><img src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></figure><div class="rb-offer"><p class="rb-band" data-copy="ut_hero_pill"></p><p data-copy="ut_hero_label"></p><p><span data-copy="ut_hero_tag"></span> <span class="money" data-copy="ut_hero_price"></span></p><p data-copy="ut_vat"></p></div><p class="rb-gift" data-copy="ut_gift"></p><p class="rb-contact" data-copy="ut_contact"></p></section>
+    <!-- /SZ:line:1b -->
+    <!-- SZ:kakao:1b -->
+    <section class="card rb1 K K1b K1-1" data-card="1" data-variant="b" data-part="1" data-size-only="kakao" aria-labelledby="ut-b1-title-k1"><img class="rb-bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true"><header class="rb-top"><span class="rb-period" data-copy="ut_period"></span><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header><img class="rb-model" src="assets/hero-b.jpg" data-alt="ut_alt_hero" alt="" width="600" height="750"><div class="rb-title"><p data-copy="ut_kicker"></p><h1 id="ut-b1-title-k1" data-copy="ut_title"></h1><p data-copy="ut_hook"></p></div><figure class="rb-device"><img src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></figure><div class="rb-offer"><p class="rb-band" data-copy="ut_hero_pill"></p><p data-copy="ut_hero_label"></p><p><span data-copy="ut_hero_tag"></span> <span class="money" data-copy="ut_hero_price"></span></p><p data-copy="ut_vat"></p></div><p class="rb-gift" data-copy="ut_gift"></p><p class="rb-contact" data-copy="ut_contact"></p></section>
+    <section class="card rb1 K K1b K1-2" data-card="1" data-variant="b" data-part="2" data-size-only="kakao" aria-labelledby="ut-b1-title-k2"><img class="rb-bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true"><header class="rb-top"><span class="rb-period" data-copy="ut_period"></span><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header><img class="rb-model" src="assets/hero-b.jpg" data-alt="ut_alt_hero" alt="" width="600" height="750"><div class="rb-title"><p data-copy="ut_kicker"></p><h1 id="ut-b1-title-k2" data-copy="ut_title"></h1><p data-copy="ut_hook"></p></div><figure class="rb-device"><img src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></figure><div class="rb-offer"><p class="rb-band" data-copy="ut_hero_pill"></p><p data-copy="ut_hero_label"></p><p><span data-copy="ut_hero_tag"></span> <span class="money" data-copy="ut_hero_price"></span></p><p data-copy="ut_vat"></p></div><p class="rb-gift" data-copy="ut_gift"></p><p class="rb-contact" data-copy="ut_contact"></p></section>
+    <!-- /SZ:kakao:1b -->
 <!-- BVARIANT END 1 -->
 
     <!-- 2 / 6 : prices, all eight rows of 11_lifting B5:K16 in sheet order (title -> card title, group rows -> pills). Each group is an F frame:
          device picture on the left, rows on the right, composition / gift wording in the frame band. -->
-    <section class="card c2" data-card="2" aria-labelledby="ut-t2">
+    <section class="card c2" data-card="2" aria-labelledby="ut-t2" data-size-hide="line kakao">
       <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
       <div class="c2-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -112,8 +205,293 @@
         <div class="c2-foot"><p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p></div>
       </div>
     </section>
+    <!-- SZ:line:2a -->
+    <!-- 2A: two parts, the sheet groups in order (울쎄라피 프라임 · 아이울쎄라 | 프라임온쎄라 · 프라임울써마지 + 의료법상 줄 · VAT) -->
+    <section class="card c2 L L2a L2-1" data-card="2" data-part="1" data-size-only="line" aria-labelledby="ut-t2-l1">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="529" height="940">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-l1" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <div class="c2-foot"><p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p></div>
+          </div>
+        </section>
+    <section class="card c2 L L2a L2-2" data-card="2" data-part="2" data-size-only="line" aria-labelledby="ut-t2-l2">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="529" height="940">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-l2" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <div class="c2-foot"><p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p></div>
+          </div>
+        </section>
+    <!-- /SZ:line:2a -->
+    <!-- SZ:kakao:2a -->
+    <section class="card c2 K K2a K2-1" data-card="2" data-part="1" data-size-only="kakao" aria-labelledby="ut-t2-k1">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="529" height="940">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-k1" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <div class="c2-foot"><p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p></div>
+          </div>
+        </section>
+    <section class="card c2 K K2a K2-2" data-card="2" data-part="2" data-size-only="kakao" aria-labelledby="ut-t2-k2">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="529" height="940">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-k2" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <div class="c2-foot"><p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p></div>
+          </div>
+        </section>
+    <section class="card c2 K K2a K2-3" data-card="2" data-part="3" data-size-only="kakao" aria-labelledby="ut-t2-k3">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="529" height="940">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-k3" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <div class="c2-foot"><p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p></div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:2a -->
 <!-- BVARIANT START 2 -->
-<section class="card c2 rb2" data-card="2" data-variant="b" aria-labelledby="ut-t2-b">
+<section class="card c2 rb2" data-card="2" data-variant="b" aria-labelledby="ut-t2-b" data-size-hide="line kakao">
       <img class="bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true">
       <div class="c2-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -169,10 +547,294 @@
         <p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p>
       </div>
     </section>
+    <!-- SZ:line:2b -->
+    <section class="card c2 rb2 L L2b L2-1" data-card="2" data-variant="b" data-part="1" data-size-only="line" aria-labelledby="ut-t2-b-l1">
+          <img class="bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-b-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="637" height="880">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-b-l1" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p>
+          </div>
+        </section>
+    <section class="card c2 rb2 L L2b L2-2" data-card="2" data-variant="b" data-part="2" data-size-only="line" aria-labelledby="ut-t2-b-l2">
+          <img class="bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-b-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="637" height="880">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-b-l2" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p>
+          </div>
+        </section>
+    <!-- /SZ:line:2b -->
+    <!-- SZ:kakao:2b -->
+    <section class="card c2 rb2 K K2b K2-1" data-card="2" data-variant="b" data-part="1" data-size-only="kakao" aria-labelledby="ut-t2-b-k1">
+          <img class="bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-b-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="637" height="880">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-b-k1" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p>
+          </div>
+        </section>
+    <section class="card c2 rb2 K K2b K2-2" data-card="2" data-variant="b" data-part="2" data-size-only="kakao" aria-labelledby="ut-t2-b-k2">
+          <img class="bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-b-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="637" height="880">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-b-k2" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p>
+          </div>
+        </section>
+    <section class="card c2 rb2 K K2b K2-3" data-card="2" data-variant="b" data-part="3" data-size-only="kakao" aria-labelledby="ut-t2-b-k3">
+          <img class="bg" src="assets/bg/comment-b.jpg" alt="" aria-hidden="true">
+          <div class="c2-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c2-head"><img class="c2-cut" src="assets/model-c2-b-cut.webp?v=d" data-alt="ut_alt_hero" alt="" width="637" height="880">
+              <p class="kicker-f" aria-hidden="true" data-copy="ut_p_mark"></p>
+              <h2 class="p-title" id="ut-t2-b-k3" data-copy="ut_p_title"></h2>
+              <p class="c2-lead"><span class="label-box p-lead" data-copy="ut_p_lead"></span><span class="period"><span data-copy="ut_period"></span></span></p>
+            </div>
+            
+            <div class="pboard">
+              <section class="fr pcard pc-solo" aria-label="울쎄라피 프라임">
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:6"><span class="pname" data-copy="ut_r6_name"></span><span class="plist money" data-price-list data-copy="ut_r6_list"></span><span class="psale money" data-price-sale data-copy="ut_r6_sale"></span></li>
+                    <li class="prow has-gift" data-price-row="11_lifting:7"><span class="event-badge" data-copy="ut_best"></span><span class="pname" data-copy="ut_r7_name"></span><span class="plist money" data-price-list data-copy="ut_r7_list"></span><span class="psale money" data-price-sale data-copy="ut_r7_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band gift-band"><img class="gift-ico" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span data-copy="ut_gift"></span></p>
+              </section>
+              <section class="fr pcard pc-eye">
+                <h3 class="pill pg-name" data-copy="ut_g9_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev one"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow" data-price-row="11_lifting:10"><span class="pname" data-copy="ut_r10_name"></span><span class="plist money" data-price-list data-copy="ut_r10_list"></span><span class="psale money" data-price-sale data-copy="ut_r10_sale"></span></li>
+                  </ul>
+                </div>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g11_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:12"><span class="event-badge" data-copy="ut_hit"></span><span class="pname" data-copy="ut_r12_name"></span><span class="plist money" data-price-list data-copy="ut_r12_list"></span><span class="psale money" data-price-sale data-copy="ut_r12_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:13"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r13_name"></span><span class="plist money" data-price-list data-copy="ut_r13_list"></span><span class="psale money" data-price-sale data-copy="ut_r13_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g11_sub"></span></p>
+              </section>
+              <section class="fr pcard pc-combo">
+                <h3 class="pill pg-name" data-copy="ut_g14_name"></h3>
+                <div class="pbody">
+                  <div class="pg-dev two"><img class="pdev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"><img class="plus" src="assets/icons/ic-plus.webp" alt="" aria-hidden="true"><img class="pdev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div>
+                  <ul class="prows">
+                    <li class="prow combo" data-price-row="11_lifting:15"><span class="pname" data-copy="ut_r15_name"></span><span class="plist money" data-price-list data-copy="ut_r15_list"></span><span class="psale money" data-price-sale data-copy="ut_r15_sale"></span></li>
+                    <li class="prow combo has-gift" data-price-row="11_lifting:16"><img class="gift-mark" src="assets/icons/ic-gift.webp" alt="" aria-hidden="true"><span class="pname" data-copy="ut_r16_name"></span><span class="plist money" data-price-list data-copy="ut_r16_list"></span><span class="psale money" data-price-sale data-copy="ut_r16_sale"></span></li>
+                  </ul>
+                </div>
+                <p class="fr-band pg-sub"><span data-copy="ut_g14_sub"></span></p>
+              </section>
+            </div>
+            <p class="uibeop" data-copy="ut_uibeop"></p><p class="vat"><span data-copy="ut_vat"></span></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:2b -->
 <!-- BVARIANT END 2 -->
 
     <!-- 3 / 6 : Before & After (v4/_shared/ba/BA_SECTION.md; photos v4/_shared/ba/winter-ba-9/ulthera used as they are; only the --ba-* colours follow the new tone) -->
-    <section class="card cba bb-ba" data-card="3" aria-labelledby="ut-tba">
+    <section class="card cba bb-ba" data-card="3" aria-labelledby="ut-tba" data-size-hide="line kakao">
       <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
       <div class="ba-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -195,10 +857,83 @@
         <p class="ba-note" data-copy="ut_ba_note"></p>
       </div>
     </section>
+    <!-- SZ:line:3 -->
+    <section class="card cba bb-ba L L3" data-card="3" data-size-only="line" aria-labelledby="ut-tba-l">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="ba-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="ba-head">
+              <p class="ba-eyebrow" data-copy="ut_ba_eyebrow"></p>
+              <h2 class="ba-title" id="ut-tba-l" data-copy="ut_ba_title"></h2>
+            </div>
+            <div class="ba-rows">
+              <div class="ba-pair">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-front-before.jpg" data-alt="ut_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="ut_ba_before"></figcaption></figure>
+                <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-front-after.jpg" data-alt="ut_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="ut_ba_after"></figcaption></figure>
+              </div>
+              <div class="ba-pair">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-45-before.jpg" data-alt="ut_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="ut_ba_before"></figcaption></figure>
+                <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-45-after.jpg" data-alt="ut_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="ut_ba_after"></figcaption></figure>
+              </div>
+            </div>
+            <p class="ba-note" data-copy="ut_ba_note"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:3 -->
+    <!-- SZ:kakao:3 -->
+    <section class="card cba bb-ba K K3 K3-1" data-card="3" data-part="1" data-size-only="kakao" aria-labelledby="ut-tba-k1">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="ba-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="ba-head">
+              <p class="ba-eyebrow" data-copy="ut_ba_eyebrow"></p>
+              <h2 class="ba-title" id="ut-tba-k1" data-copy="ut_ba_title"></h2>
+            </div>
+            <div class="ba-rows">
+              <div class="ba-pair">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-front-before.jpg" data-alt="ut_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="ut_ba_before"></figcaption></figure>
+                <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-front-after.jpg" data-alt="ut_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="ut_ba_after"></figcaption></figure>
+              </div>
+              <div class="ba-pair">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-45-before.jpg" data-alt="ut_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="ut_ba_before"></figcaption></figure>
+                <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-45-after.jpg" data-alt="ut_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="ut_ba_after"></figcaption></figure>
+              </div>
+            </div>
+            <p class="ba-note" data-copy="ut_ba_note"></p>
+          </div>
+        </section>
+    <section class="card cba bb-ba K K3 K3-2" data-card="3" data-part="2" data-size-only="kakao" aria-labelledby="ut-tba-k2">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="ba-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="ba-head">
+              <p class="ba-eyebrow" data-copy="ut_ba_eyebrow"></p>
+              <h2 class="ba-title" id="ut-tba-k2" data-copy="ut_ba_title"></h2>
+            </div>
+            <div class="ba-rows">
+              <div class="ba-pair">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-front-before.jpg" data-alt="ut_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="ut_ba_before"></figcaption></figure>
+                <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-front-after.jpg" data-alt="ut_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="ut_ba_after"></figcaption></figure>
+              </div>
+              <div class="ba-pair">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-45-before.jpg" data-alt="ut_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="ba-tag" data-copy="ut_ba_before"></figcaption></figure>
+                <img class="ba-arrow" src="assets/icons/ic-next.webp" alt="" aria-hidden="true">
+                <figure class="ba-shot"><img src="assets/ba/ulthera-45-after.jpg" data-alt="ut_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="ba-tag ba-tag--after" data-copy="ut_ba_after"></figcaption></figure>
+              </div>
+            </div>
+            <p class="ba-note" data-copy="ut_ba_note"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:3 -->
 
     <!-- 4 / 6 : what the device is (facts: v4/ulthera12/REFERENCE_AND_PLAN.md). The skin cross-section is a generated picture without text;
          the layer names and depths are HTML text placed on its measured bands and focal points (gen/cut-assets.json). Three device frames below. -->
-    <section class="card c3" data-card="4" aria-labelledby="ut-t3">
+    <section class="card c3" data-card="4" aria-labelledby="ut-t3" data-size-hide="line kakao">
       <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
       <div class="c3-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -239,10 +974,220 @@
         <p class="src" data-copy="ut_c3_src"></p>
       </div>
     </section>
+    <!-- SZ:line:4 -->
+    <!-- 4: part 1 the question, the depth picture and the three points; part 2 the device comparison and the source -->
+    <section class="card c3 L L4 L4-1" data-card="4" data-part="1" data-size-only="line" aria-labelledby="ut-t3-l1">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c3-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="kicker-f" data-copy="ut_c3_kicker"></p>
+              <h2 class="q-title" id="ut-t3-l1" data-copy="ut_c3_q"></h2>
+              <p class="q-ans" data-copy="ut_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="fr fr-depth">
+                <div class="depth">
+                  <img class="depth-art" src="assets/c3/layers.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                  <span class="dl l-epi" data-copy="ut_c3_d_epi"></span>
+                  <span class="dl l-dermis" data-copy="ut_c3_d_dermis"></span>
+                  <span class="dl l-fat" data-copy="ut_c3_d_fat"></span>
+                  <span class="dl l-smas" data-copy="ut_c3_d_smas"></span>
+                  <span class="dl l-muscle" data-copy="ut_c3_d_muscle"></span>
+                  <span class="dm dm1" data-copy="ut_c3_d1"></span>
+                  <span class="dm dm2" data-copy="ut_c3_d2"></span>
+                  <span class="dm dm3" data-copy="ut_c3_d3"></span>
+                </div>
+                <figcaption class="fr-band"><span data-copy="ut_c3_fig_band"></span></figcaption>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p1_t"></h3><p class="pt-d" data-copy="ut_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p2_t"></h3><p class="pt-d" data-copy="ut_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p3_t"></h3><p class="pt-d" data-copy="ut_c3_p3_d"></p></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="ut_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e1_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e1_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e2_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e2_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e3_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e3_type"></span></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="ut_c3_src"></p>
+          </div>
+        </section>
+    <section class="card c3 L L4 L4-2" data-card="4" data-part="2" data-size-only="line" aria-labelledby="ut-t3-l2">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c3-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="kicker-f" data-copy="ut_c3_kicker"></p>
+              <h2 class="q-title" id="ut-t3-l2" data-copy="ut_c3_q"></h2>
+              <p class="q-ans" data-copy="ut_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="fr fr-depth">
+                <div class="depth">
+                  <img class="depth-art" src="assets/c3/layers.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                  <span class="dl l-epi" data-copy="ut_c3_d_epi"></span>
+                  <span class="dl l-dermis" data-copy="ut_c3_d_dermis"></span>
+                  <span class="dl l-fat" data-copy="ut_c3_d_fat"></span>
+                  <span class="dl l-smas" data-copy="ut_c3_d_smas"></span>
+                  <span class="dl l-muscle" data-copy="ut_c3_d_muscle"></span>
+                  <span class="dm dm1" data-copy="ut_c3_d1"></span>
+                  <span class="dm dm2" data-copy="ut_c3_d2"></span>
+                  <span class="dm dm3" data-copy="ut_c3_d3"></span>
+                </div>
+                <figcaption class="fr-band"><span data-copy="ut_c3_fig_band"></span></figcaption>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p1_t"></h3><p class="pt-d" data-copy="ut_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p2_t"></h3><p class="pt-d" data-copy="ut_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p3_t"></h3><p class="pt-d" data-copy="ut_c3_p3_d"></p></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="ut_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e1_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e1_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e2_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e2_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e3_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e3_type"></span></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="ut_c3_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:4 -->
+    <!-- SZ:kakao:4 -->
+    <section class="card c3 K K4 K4-1" data-card="4" data-part="1" data-size-only="kakao" aria-labelledby="ut-t3-k1">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c3-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="kicker-f" data-copy="ut_c3_kicker"></p>
+              <h2 class="q-title" id="ut-t3-k1" data-copy="ut_c3_q"></h2>
+              <p class="q-ans" data-copy="ut_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="fr fr-depth">
+                <div class="depth">
+                  <img class="depth-art" src="assets/c3/layers.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                  <span class="dl l-epi" data-copy="ut_c3_d_epi"></span>
+                  <span class="dl l-dermis" data-copy="ut_c3_d_dermis"></span>
+                  <span class="dl l-fat" data-copy="ut_c3_d_fat"></span>
+                  <span class="dl l-smas" data-copy="ut_c3_d_smas"></span>
+                  <span class="dl l-muscle" data-copy="ut_c3_d_muscle"></span>
+                  <span class="dm dm1" data-copy="ut_c3_d1"></span>
+                  <span class="dm dm2" data-copy="ut_c3_d2"></span>
+                  <span class="dm dm3" data-copy="ut_c3_d3"></span>
+                </div>
+                <figcaption class="fr-band"><span data-copy="ut_c3_fig_band"></span></figcaption>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p1_t"></h3><p class="pt-d" data-copy="ut_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p2_t"></h3><p class="pt-d" data-copy="ut_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p3_t"></h3><p class="pt-d" data-copy="ut_c3_p3_d"></p></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="ut_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e1_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e1_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e2_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e2_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e3_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e3_type"></span></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="ut_c3_src"></p>
+          </div>
+        </section>
+    <section class="card c3 K K4 K4-2" data-card="4" data-part="2" data-size-only="kakao" aria-labelledby="ut-t3-k2">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c3-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="kicker-f" data-copy="ut_c3_kicker"></p>
+              <h2 class="q-title" id="ut-t3-k2" data-copy="ut_c3_q"></h2>
+              <p class="q-ans" data-copy="ut_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="fr fr-depth">
+                <div class="depth">
+                  <img class="depth-art" src="assets/c3/layers.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                  <span class="dl l-epi" data-copy="ut_c3_d_epi"></span>
+                  <span class="dl l-dermis" data-copy="ut_c3_d_dermis"></span>
+                  <span class="dl l-fat" data-copy="ut_c3_d_fat"></span>
+                  <span class="dl l-smas" data-copy="ut_c3_d_smas"></span>
+                  <span class="dl l-muscle" data-copy="ut_c3_d_muscle"></span>
+                  <span class="dm dm1" data-copy="ut_c3_d1"></span>
+                  <span class="dm dm2" data-copy="ut_c3_d2"></span>
+                  <span class="dm dm3" data-copy="ut_c3_d3"></span>
+                </div>
+                <figcaption class="fr-band"><span data-copy="ut_c3_fig_band"></span></figcaption>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p1_t"></h3><p class="pt-d" data-copy="ut_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p2_t"></h3><p class="pt-d" data-copy="ut_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p3_t"></h3><p class="pt-d" data-copy="ut_c3_p3_d"></p></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="ut_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e1_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e1_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e2_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e2_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e3_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e3_type"></span></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="ut_c3_src"></p>
+          </div>
+        </section>
+    <section class="card c3 K K4 K4-3" data-card="4" data-part="3" data-size-only="kakao" aria-labelledby="ut-t3-k3">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c3-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="q-head">
+              <p class="kicker-f" data-copy="ut_c3_kicker"></p>
+              <h2 class="q-title" id="ut-t3-k3" data-copy="ut_c3_q"></h2>
+              <p class="q-ans" data-copy="ut_c3_a"></p>
+            </div>
+            <div class="c3-mid">
+              <figure class="fr fr-depth">
+                <div class="depth">
+                  <img class="depth-art" src="assets/c3/layers.webp" alt="" aria-hidden="true" width="1000" height="1000">
+                  <span class="dl l-epi" data-copy="ut_c3_d_epi"></span>
+                  <span class="dl l-dermis" data-copy="ut_c3_d_dermis"></span>
+                  <span class="dl l-fat" data-copy="ut_c3_d_fat"></span>
+                  <span class="dl l-smas" data-copy="ut_c3_d_smas"></span>
+                  <span class="dl l-muscle" data-copy="ut_c3_d_muscle"></span>
+                  <span class="dm dm1" data-copy="ut_c3_d1"></span>
+                  <span class="dm dm2" data-copy="ut_c3_d2"></span>
+                  <span class="dm dm3" data-copy="ut_c3_d3"></span>
+                </div>
+                <figcaption class="fr-band"><span data-copy="ut_c3_fig_band"></span></figcaption>
+              </figure>
+              <ol class="points">
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p1_t"></h3><p class="pt-d" data-copy="ut_c3_p1_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p2_t"></h3><p class="pt-d" data-copy="ut_c3_p2_d"></p></li>
+                <li class="pt"><h3 class="pt-t" data-copy="ut_c3_p3_t"></h3><p class="pt-d" data-copy="ut_c3_p3_d"></p></li>
+              </ol>
+            </div>
+            <div class="cmp">
+              <h3 class="cmp-title" data-copy="ut_c3_cmp_title"></h3>
+              <ul class="cmp-row">
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e1_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e1_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e2_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/onda.webp" data-alt="ut_alt_dev_onda" alt="" width="417" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e2_type"></span></li>
+                <li class="fr cmp-it"><span class="pill cmp-n" data-copy="ut_c3_e3_name"></span><div class="fr-pic"><img class="fr-dev" src="assets/dev/thermage-flx.webp" data-alt="ut_alt_dev_thermage" alt="" width="478" height="900"></div><span class="fr-band cmp-t" data-copy="ut_c3_e3_type"></span></li>
+              </ul>
+            </div>
+            <p class="src" data-copy="ut_c3_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:4 -->
 
     <!-- 5 / 6 : the treatment day, step by step (genuine check = Merz 'Touch Prime': device NFC + tip QR). The square photo is its own generated cut
          (gen/day-1104-v1.json: head turned, open smile, hands out of frame), never a crop of the hero photo. It sits left so her gaze leads into the text. -->
-    <section class="card c4" data-card="5" aria-labelledby="ut-t4">
+    <section class="card c4" data-card="5" aria-labelledby="ut-t4" data-size-hide="line kakao">
       <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
       <div class="c4-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -270,9 +1215,125 @@
         <p class="src" data-copy="ut_c4_src"></p>
       </div>
     </section>
+    <!-- SZ:line:5 -->
+    <section class="card c4 L L5" data-card="5" data-size-only="line" aria-labelledby="ut-t4-l">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c4-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="fr c4-photo"><img src="assets/model-day.jpg?v=b" data-alt="ut_alt_c4" alt="" width="640" height="640"></figure>
+              <div class="q-head">
+                <p class="kicker-f" data-copy="ut_c4_kicker"></p>
+                <h2 class="q-title" id="ut-t4-l" data-copy="ut_c4_q"></h2>
+                <p class="q-ans" data-copy="ut_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s1_t"></h3><p class="st-d" data-copy="ut_c4_s1_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-nfc.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s2_t"></h3><p class="st-d" data-copy="ut_c4_s2_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-cream.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s3_t"></h3><p class="st-d" data-copy="ut_c4_s3_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-monitor.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s4_t"></h3><p class="st-d" data-copy="ut_c4_s4_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-care.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s5_t"></h3><p class="st-d" data-copy="ut_c4_s5_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i1_k"></span><img class="inf-ico" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i1_v"></span><span class="inf-n" data-copy="ut_c4_i1_n"></span></li>
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i2_k"></span><img class="inf-ico" src="assets/icons/ic-cream.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i2_v"></span><span class="inf-n" data-copy="ut_c4_i2_n"></span></li>
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i3_k"></span><img class="inf-ico" src="assets/icons/ic-sun.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i3_v"></span><span class="inf-n" data-copy="ut_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/spark-bistre.webp" alt="" aria-hidden="true"><span data-copy="ut_c4_tip"></span></p>
+            <p class="src" data-copy="ut_c4_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:5 -->
+    <!-- SZ:kakao:5 -->
+    <section class="card c4 K K5 K5-1" data-card="5" data-part="1" data-size-only="kakao" aria-labelledby="ut-t4-k1">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c4-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="fr c4-photo"><img src="assets/model-day.jpg?v=b" data-alt="ut_alt_c4" alt="" width="640" height="640"></figure>
+              <div class="q-head">
+                <p class="kicker-f" data-copy="ut_c4_kicker"></p>
+                <h2 class="q-title" id="ut-t4-k1" data-copy="ut_c4_q"></h2>
+                <p class="q-ans" data-copy="ut_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s1_t"></h3><p class="st-d" data-copy="ut_c4_s1_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-nfc.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s2_t"></h3><p class="st-d" data-copy="ut_c4_s2_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-cream.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s3_t"></h3><p class="st-d" data-copy="ut_c4_s3_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-monitor.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s4_t"></h3><p class="st-d" data-copy="ut_c4_s4_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-care.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s5_t"></h3><p class="st-d" data-copy="ut_c4_s5_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i1_k"></span><img class="inf-ico" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i1_v"></span><span class="inf-n" data-copy="ut_c4_i1_n"></span></li>
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i2_k"></span><img class="inf-ico" src="assets/icons/ic-cream.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i2_v"></span><span class="inf-n" data-copy="ut_c4_i2_n"></span></li>
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i3_k"></span><img class="inf-ico" src="assets/icons/ic-sun.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i3_v"></span><span class="inf-n" data-copy="ut_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/spark-bistre.webp" alt="" aria-hidden="true"><span data-copy="ut_c4_tip"></span></p>
+            <p class="src" data-copy="ut_c4_src"></p>
+          </div>
+        </section>
+    <section class="card c4 K K5 K5-2" data-card="5" data-part="2" data-size-only="kakao" aria-labelledby="ut-t4-k2">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c4-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="fr c4-photo"><img src="assets/model-day.jpg?v=b" data-alt="ut_alt_c4" alt="" width="640" height="640"></figure>
+              <div class="q-head">
+                <p class="kicker-f" data-copy="ut_c4_kicker"></p>
+                <h2 class="q-title" id="ut-t4-k2" data-copy="ut_c4_q"></h2>
+                <p class="q-ans" data-copy="ut_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s1_t"></h3><p class="st-d" data-copy="ut_c4_s1_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-nfc.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s2_t"></h3><p class="st-d" data-copy="ut_c4_s2_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-cream.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s3_t"></h3><p class="st-d" data-copy="ut_c4_s3_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-monitor.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s4_t"></h3><p class="st-d" data-copy="ut_c4_s4_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-care.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s5_t"></h3><p class="st-d" data-copy="ut_c4_s5_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i1_k"></span><img class="inf-ico" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i1_v"></span><span class="inf-n" data-copy="ut_c4_i1_n"></span></li>
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i2_k"></span><img class="inf-ico" src="assets/icons/ic-cream.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i2_v"></span><span class="inf-n" data-copy="ut_c4_i2_n"></span></li>
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i3_k"></span><img class="inf-ico" src="assets/icons/ic-sun.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i3_v"></span><span class="inf-n" data-copy="ut_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/spark-bistre.webp" alt="" aria-hidden="true"><span data-copy="ut_c4_tip"></span></p>
+            <p class="src" data-copy="ut_c4_src"></p>
+          </div>
+        </section>
+    <section class="card c4 K K5 K5-3" data-card="5" data-part="3" data-size-only="kakao" aria-labelledby="ut-t4-k3">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="c4-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="c4-headrow">
+              <figure class="fr c4-photo"><img src="assets/model-day.jpg?v=b" data-alt="ut_alt_c4" alt="" width="640" height="640"></figure>
+              <div class="q-head">
+                <p class="kicker-f" data-copy="ut_c4_kicker"></p>
+                <h2 class="q-title" id="ut-t4-k3" data-copy="ut_c4_q"></h2>
+                <p class="q-ans" data-copy="ut_c4_a"></p>
+              </div>
+            </div>
+            <ol class="steps">
+              <li class="st"><img class="st-ico" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s1_t"></h3><p class="st-d" data-copy="ut_c4_s1_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-nfc.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s2_t"></h3><p class="st-d" data-copy="ut_c4_s2_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-cream.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s3_t"></h3><p class="st-d" data-copy="ut_c4_s3_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-monitor.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s4_t"></h3><p class="st-d" data-copy="ut_c4_s4_d"></p></div></li>
+              <li class="st"><img class="st-ico" src="assets/icons/ic-care.webp" alt="" aria-hidden="true"><div class="st-tx"><h3 class="st-t" data-copy="ut_c4_s5_t"></h3><p class="st-d" data-copy="ut_c4_s5_d"></p></div></li>
+            </ol>
+            <ul class="infos">
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i1_k"></span><img class="inf-ico" src="assets/icons/ic-clock.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i1_v"></span><span class="inf-n" data-copy="ut_c4_i1_n"></span></li>
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i2_k"></span><img class="inf-ico" src="assets/icons/ic-cream.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i2_v"></span><span class="inf-n" data-copy="ut_c4_i2_n"></span></li>
+              <li class="fr inf"><span class="pill inf-k" data-copy="ut_c4_i3_k"></span><img class="inf-ico" src="assets/icons/ic-sun.webp" alt="" aria-hidden="true"><span class="inf-v" data-copy="ut_c4_i3_v"></span><span class="inf-n" data-copy="ut_c4_i3_n"></span></li>
+            </ul>
+            <p class="c4-tip"><img class="tip-ico" src="assets/dec/spark-bistre.webp" alt="" aria-hidden="true"><span data-copy="ut_c4_tip"></span></p>
+            <p class="src" data-copy="ut_c4_src"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:5 -->
 
     <!-- 6 / 6 : clinic intro, the V4 bento grid (same content and order as oligio12 / aptos12 / FV12); panels are F frames, the booking panel is Maize -->
-    <section class="card c5" data-card="6" aria-labelledby="ut-t5">
+    <section class="card c5" data-card="6" aria-labelledby="ut-t5" data-size-hide="line kakao">
       <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
       <div class="cx-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
@@ -342,6 +1403,361 @@
         </div>
       </div>
     </section>
+    <!-- SZ:line:6 -->
+    <!-- 6: part 1 the clinic introduction (photos, strengths); part 2 directions, hours and booking -->
+    <section class="card c5 L L6 L6-1" data-card="6" data-part="1" data-size-only="line" aria-labelledby="ut-t5-l1">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="cx-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt fr bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="ut_ab_kicker"></p>
+                    <h2 class="ab-title" id="ut-t5-l1" data-copy="ut_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="ut_ab_intro1"></span><span data-copy="ut_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="ut_ab_dr_name"></span><span class="dr-quote" data-copy="ut_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="ut_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="ut_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="ut_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="ut_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="ut_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s1_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s2_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s3_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s4_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt fr bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="ut_ab_loc"></p><h3 class="bt-t" data-copy="ut_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="ut_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="ut_ab_way_station"></span><span class="way-line" data-copy="ut_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="ut_ab_way_addr"></span><span class="way-desk"><span data-copy="ut_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt fr bt-hours">
+                <p class="bt-k" data-copy="ut_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="ut_ab_h1"></li><li data-copy="ut_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="ut_ab_h3"></p>
+              </div>
+              <div class="bt fr bt-book">
+                <p class="bt-k" data-copy="ut_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="ut_alt_qr" alt="" width="424" height="424"><figcaption data-copy="ut_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="ut_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="ut_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="ut_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c5 L L6 L6-2" data-card="6" data-part="2" data-size-only="line" aria-labelledby="ut-t5-l2">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="cx-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt fr bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="ut_ab_kicker"></p>
+                    <h2 class="ab-title" id="ut-t5-l2" data-copy="ut_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="ut_ab_intro1"></span><span data-copy="ut_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="ut_ab_dr_name"></span><span class="dr-quote" data-copy="ut_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="ut_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="ut_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="ut_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="ut_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="ut_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s1_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s2_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s3_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s4_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt fr bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="ut_ab_loc"></p><h3 class="bt-t" data-copy="ut_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="ut_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="ut_ab_way_station"></span><span class="way-line" data-copy="ut_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="ut_ab_way_addr"></span><span class="way-desk"><span data-copy="ut_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt fr bt-hours">
+                <p class="bt-k" data-copy="ut_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="ut_ab_h1"></li><li data-copy="ut_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="ut_ab_h3"></p>
+              </div>
+              <div class="bt fr bt-book">
+                <p class="bt-k" data-copy="ut_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="ut_alt_qr" alt="" width="424" height="424"><figcaption data-copy="ut_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="ut_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="ut_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="ut_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:line:6 -->
+    <!-- SZ:kakao:6 -->
+    <section class="card c5 K K6 K6-1" data-card="6" data-part="1" data-size-only="kakao" aria-labelledby="ut-t5-k1">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="cx-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt fr bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="ut_ab_kicker"></p>
+                    <h2 class="ab-title" id="ut-t5-k1" data-copy="ut_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="ut_ab_intro1"></span><span data-copy="ut_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="ut_ab_dr_name"></span><span class="dr-quote" data-copy="ut_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="ut_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="ut_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="ut_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="ut_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="ut_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s1_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s2_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s3_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s4_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt fr bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="ut_ab_loc"></p><h3 class="bt-t" data-copy="ut_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="ut_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="ut_ab_way_station"></span><span class="way-line" data-copy="ut_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="ut_ab_way_addr"></span><span class="way-desk"><span data-copy="ut_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt fr bt-hours">
+                <p class="bt-k" data-copy="ut_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="ut_ab_h1"></li><li data-copy="ut_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="ut_ab_h3"></p>
+              </div>
+              <div class="bt fr bt-book">
+                <p class="bt-k" data-copy="ut_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="ut_alt_qr" alt="" width="424" height="424"><figcaption data-copy="ut_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="ut_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="ut_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="ut_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c5 K K6 K6-2" data-card="6" data-part="2" data-size-only="kakao" aria-labelledby="ut-t5-k2">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="cx-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt fr bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="ut_ab_kicker"></p>
+                    <h2 class="ab-title" id="ut-t5-k2" data-copy="ut_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="ut_ab_intro1"></span><span data-copy="ut_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="ut_ab_dr_name"></span><span class="dr-quote" data-copy="ut_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="ut_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="ut_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="ut_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="ut_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="ut_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s1_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s2_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s3_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s4_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt fr bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="ut_ab_loc"></p><h3 class="bt-t" data-copy="ut_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="ut_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="ut_ab_way_station"></span><span class="way-line" data-copy="ut_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="ut_ab_way_addr"></span><span class="way-desk"><span data-copy="ut_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt fr bt-hours">
+                <p class="bt-k" data-copy="ut_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="ut_ab_h1"></li><li data-copy="ut_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="ut_ab_h3"></p>
+              </div>
+              <div class="bt fr bt-book">
+                <p class="bt-k" data-copy="ut_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="ut_alt_qr" alt="" width="424" height="424"><figcaption data-copy="ut_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="ut_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="ut_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="ut_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <section class="card c5 K K6 K6-3" data-card="6" data-part="3" data-size-only="kakao" aria-labelledby="ut-t5-k3">
+          <img class="bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
+          <div class="cx-in">
+            <header class="top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bento">
+              <div class="bt fr bt-about">
+                <div class="ab-top">
+                  <div class="ab-intro">
+                    <p class="bt-k" data-copy="ut_ab_kicker"></p>
+                    <h2 class="ab-title" id="ut-t5-k3" data-copy="ut_ab_title"></h2>
+                    <p class="ab-lead"><span data-copy="ut_ab_intro1"></span><span data-copy="ut_ab_intro2"></span></p>
+                  </div>
+                  <figure class="dr">
+                    <figcaption class="dr-tx"><span class="dr-name" data-copy="ut_ab_dr_name"></span><span class="dr-quote" data-copy="ut_ab_dr_quote"></span></figcaption>
+                    <img class="dr-img" src="assets/director-lee.webp?v=a" data-alt="ut_alt_director" alt="" width="640" height="640">
+                  </figure>
+                </div>
+                <div class="ab-photos">
+                  <figure class="ph-w"><img src="assets/hp-reception.jpg?v=a" data-alt="ut_alt_ph1" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph1"></figcaption></figure>
+                  <figure class="ph-n"><img src="assets/hp-care.png?v=a" data-alt="ut_alt_ph2" alt="" width="600" height="280"><figcaption data-copy="ut_ab_ph2"></figcaption></figure>
+                  <figure class="ph-w"><img src="assets/hp-treatment.jpg?v=a" data-alt="ut_alt_ph3" alt="" width="960" height="450"><figcaption data-copy="ut_ab_ph3"></figcaption></figure>
+                </div>
+                <ul class="ab-strengths">
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-genuine.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s1_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s1_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-consult.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s2_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s2_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-evening.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s3_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s3_d"></span></li>
+                  <li><span class="sh"><img class="si" src="assets/icons/ic-globe.webp" alt="" aria-hidden="true"><span class="at" data-copy="ut_ab_s4_t"></span><i class="dots-l" aria-hidden="true"></i></span><span class="ad" data-copy="ut_ab_s4_d"></span></li>
+                </ul>
+              </div>
+              <!-- B: directions. The Google Maps capture is shown untouched (Google marker, logo and attribution inside the image); one file per width tier. -->
+              <div class="bt fr bt-loc">
+                <div class="loc-head"><p class="bt-k" data-copy="ut_ab_loc"></p><h3 class="bt-t" data-copy="ut_ab_loc_title"></h3></div>
+                <div class="loc-body">
+                  <figure class="map">
+                    <picture>
+                      <source media="(max-width: 600px)" srcset="assets/gmap/gmap-oligio12-mob-KO.webp" width="332" height="200" data-gmap="mob">
+                      <source media="(max-width: 1023px)" srcset="assets/gmap/gmap-oligio12-tab-KO.webp" width="384" height="355" data-gmap="tab">
+                      <img class="map-img" src="assets/gmap/gmap-oligio12-desk-KO.webp" data-gmap="desk" data-alt="ut_alt_map" alt="" width="460" height="425">
+                    </picture>
+                  </figure>
+                  <div class="way">
+                    <img class="way-pin" src="assets/icons/ic-pin.webp" alt="" aria-hidden="true">
+                    <div class="way-tx">
+                      <p class="way-top"><span class="way-st" data-copy="ut_ab_way_station"></span><span class="way-line" data-copy="ut_ab_way_line"></span></p>
+                      <p class="way-addr"><span data-copy="ut_ab_way_addr"></span><span class="way-desk"><span data-copy="ut_ab_way_desk"></span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bt fr bt-hours">
+                <p class="bt-k" data-copy="ut_ab_hours_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_hours_lbl"></h3>
+                <ul class="hrs"><li data-copy="ut_ab_h1"></li><li data-copy="ut_ab_h2"></li></ul>
+                <p class="hrs-note" data-copy="ut_ab_h3"></p>
+              </div>
+              <div class="bt fr bt-book">
+                <p class="bt-k" data-copy="ut_ab_bk_kicker"></p>
+                <h3 class="bt-t" data-copy="ut_ab_bk_title"></h3>
+                <div class="bk-row">
+                  <figure class="qr"><img src="assets/naver-booking-qr.png" data-qr data-alt="ut_alt_qr" alt="" width="424" height="424"><figcaption data-copy="ut_ab_qr"></figcaption></figure>
+                  <div class="bk-text">
+                    <p class="bk-links"><a data-link="booking"><span data-copy="ut_ab_bk_naver"></span></a><span class="bk-alt" data-bk-alt><span class="bk-sep" aria-hidden="true">/</span><a data-link="kakao"><span data-copy="ut_ab_bk_kakao"></span></a></span></p>
+                    <p class="bk-phone"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><a data-link="phone"><span data-copy="ut_ab_phone"></span></a></p>
+                  </div>
+                </div>
+                <img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111">
+              </div>
+            </div>
+          </div>
+        </section>
+    <!-- /SZ:kakao:6 -->
 
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="ut-notes">
