@@ -23,7 +23,7 @@
   var ID_RE = /^[A-Za-z0-9]+$/;
   var LOCALE_RE = /^[A-Z]{2}$/;
   /* v4 (2026-11-04, v4/events/BOARD_V4_PLAN.md): mode tabs, hero/2nd-section A/B, pinned comments, beauty-app tab */
-  var BOARD_V = '20261106-v4f'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
+  var BOARD_V = '20261106-v4g'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
   var PAGE_V = '&v=20261104-v4a'; /* cache version of the own-page iframes (qa/v2-cache.test.cjs) */
   var VARIANT_SLOTS = [1, 2];
   var COMMENT_SAVE_MS = 800;
@@ -1239,7 +1239,7 @@
       var note = H('p', { class: 'img-dl-note', text: homeNote });
       var sizeBtns = [];
       var sizeRow = sizes.length > 1 ? H('div', { class: 'img-dl-row img-dl-sizes', role: 'group', 'aria-label': '사이즈' }, [H('strong', { class: 'img-dl-label', text: '사이즈' })].concat(sizes.map(function (s) {
-        var b = H('button', { type: 'button', class: 'btn small size-btn', 'data-size': s.id, text: s.label + ' ' + s.w + '×' + s.h, onclick: function () { if (state.capture) return; cur = s; state.dlSize[it.id] = s.id; refreshSize(); } });
+        var b = H('button', { type: 'button', class: 'btn small size-btn', 'data-size': s.id, text: s.label + ' ' + s.w + '×' + s.h, onclick: function () { if (state.capture) return; if (cur !== s) status.textContent = ''; /* the last result named the old size */ cur = s; state.dlSize[it.id] = s.id; refreshSize(); } });
         sizeBtns.push(b); return b;
       }))) : null;
       var host = H('div', { class: 'img-download', 'data-img-download': it.id }, [

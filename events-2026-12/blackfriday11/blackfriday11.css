@@ -275,26 +275,26 @@ a[data-link="phone"]{white-space:nowrap}
 .c1b .d-zig{left:calc(470*var(--px));top:calc(364*var(--px));width:calc(120*var(--px));transform:rotate(-6deg)}
 .c2b .pi-13{width:calc(68.6*var(--ips,var(--px)));height:calc(42.5*var(--ips,var(--px)))}
 .c2b .pi-14{width:calc(57.7*var(--ips,var(--px)));height:calc(50.6*var(--ips,var(--px)))}
-.c2b .pi-16{width:calc(54.4*var(--ips,var(--px)));height:calc(53.6*var(--ips,var(--px)))}
+.c2b .pi-16{width:calc(37.8*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
 .c2b .pi-17{width:calc(43.1*var(--ips,var(--px)));height:calc(67.7*var(--ips,var(--px)))}
 .c2b .pi-18{width:calc(31.3*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
-.c2b .pi-19{width:calc(34.6*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
+.c2b .pi-19{width:calc(34.3*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
 .c2b .pi-20{width:calc(70.4*var(--ips,var(--px)));height:calc(41.4*var(--ips,var(--px)))}
 .c2b .pi-21{width:calc(62.1*var(--ips,var(--px)));height:calc(46.9*var(--ips,var(--px)))}
 .c2b .pi-22{width:calc(29.4*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
 .c2b .pi-23{width:calc(44.9*var(--ips,var(--px)));height:calc(64.9*var(--ips,var(--px)))}
-.c2b .pi-24{width:calc(54.8*var(--ips,var(--px)));height:calc(53.2*var(--ips,var(--px)))}
+.c2b .pi-24{width:calc(39*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
 .c2a .pi-13{width:calc(73.7*var(--ips,var(--px)));height:calc(45.6*var(--ips,var(--px)))}
 .c2a .pi-14{width:calc(62*var(--ips,var(--px)));height:calc(54.3*var(--ips,var(--px)))}
-.c2a .pi-16{width:calc(58.4*var(--ips,var(--px)));height:calc(57.6*var(--ips,var(--px)))}
+.c2a .pi-16{width:calc(36.7*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
 .c2a .pi-17{width:calc(44.6*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
 .c2a .pi-18{width:calc(30.4*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
-.c2a .pi-19{width:calc(33.6*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
+.c2a .pi-19{width:calc(33.4*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
 .c2a .pi-20{width:calc(75.6*var(--ips,var(--px)));height:calc(44.5*var(--ips,var(--px)))}
 .c2a .pi-21{width:calc(66.7*var(--ips,var(--px)));height:calc(50.4*var(--ips,var(--px)))}
 .c2a .pi-22{width:calc(28.5*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
 .c2a .pi-23{width:calc(48.3*var(--ips,var(--px)));height:calc(69.7*var(--ips,var(--px)))}
-.c2a .pi-24{width:calc(58.8*var(--ips,var(--px)));height:calc(57.2*var(--ips,var(--px)))}
+.c2a .pi-24{width:calc(38*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
 
 /* ---------- text centring inside chips (2026-11-05 rule; measured with qa/text-center-check.cjs at 1080 and at the 780 board width).
    Heights stay the same: the vertical padding moves by the same em amount from bottom to top (text sits high in these fonts). ---------- */
