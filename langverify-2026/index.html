@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>언어베리 워크트리 · 이벤트 랜딩 · 뷰티블라썸</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root { --bg: #0f1218; --panel: #161a22; --card: #1b2029; --line: #2a303b; --ink: #eef1f6; --muted: #9aa3b2; --pink: #f4a6c4; --pink-d: #e5487f; --green: #3fbf7f; --amber: #f2b84b; --blue: #6aa8ff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; }
+  a { color: inherit; }
+  .app { display: grid; grid-template-columns: 270px 1fr; min-height: 100vh; }
+  .side { background: var(--panel); border-right: 1px solid var(--line); padding: 24px 18px; position: sticky; top: 0; height: 100vh; overflow: auto; }
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .brand-mark { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, #f7b7cf, #e5487f); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: 20px; }
+  .brand b { display: block; font-size: 16px; }
+  .brand small { color: var(--muted); font-size: 12px; }
+  .hub { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 12px 14px; margin-bottom: 6px; border: 0; border-radius: 12px; background: transparent; color: var(--ink); font: inherit; font-weight: 700; text-align: left; cursor: pointer; }
+  .hub:hover { background: #20252f; }
+  .hub.current { background: #2b1f27; color: var(--pink); }
+  .hub .n { display: inline-flex; align-items: center; justify-content: center; min-width: 30px; height: 22px; padding: 0 8px; border-radius: 999px; background: #262c37; color: var(--muted); font-size: 12px; line-height: 1; }
+  .side-note { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  .side-note b { display: block; color: var(--ink); font-size: 13px; margin-bottom: 4px; }
+  .main { padding: 28px 40px 80px; min-width: 0; }
+  .crumb { color: var(--muted); font-weight: 700; margin-bottom: 26px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .who { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+  .who input { width: 140px; height: 34px; padding: 0 10px; border-radius: 9px; border: 1px solid var(--line); background: #11151c; color: var(--ink); font: inherit; }
+  h1 { margin: 0 0 6px; font-size: 40px; letter-spacing: -0.02em; }
+  .lead { margin: 0 0 4px; color: #c9d0db; }
+  .sync { font-size: 12px; font-weight: 700; color: var(--green); min-height: 18px; }
+  .sync.bad { color: #ff8a8a; }
+  .tools { margin: 24px 0 18px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+  .tool-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .search { flex: 1; min-width: 220px; height: 42px; padding: 0 14px; border-radius: 11px; border: 1px solid var(--line); background: #11151c; color: var(--ink); font: inherit; }
+  select { height: 42px; padding: 0 12px; border-radius: 11px; border: 1px solid var(--line); background: #11151c; color: var(--ink); font: inherit; font-weight: 700; }
+  .count { color: var(--muted); font-weight: 700; margin-left: auto; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .chip { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: #11151c; color: var(--ink); font: inherit; font-size: 13px; font-weight: 700; line-height: 1; cursor: pointer; }
+  .chip.current { background: var(--ink); color: #11151c; border-color: var(--ink); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .d-wait { background: var(--amber); } .d-doing { background: var(--blue); } .d-done { background: var(--green); } .d-up { background: var(--pink); }
+  .help { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(430px, 1fr)); gap: 18px; }
+  .group-title { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin: 14px 0 0; font-size: 17px; font-weight: 800; }
+  .group-title small { color: var(--muted); font-weight: 700; }
+  .card { border: 2px solid var(--line); border-radius: 18px; background: var(--card); padding: 20px 22px; min-width: 0; }
+  .card.st-done { border-color: #2f7e57; } .card.st-up { border-color: #a8456c; }
+  .card-id { color: var(--muted); font-size: 12px; font-weight: 700; }
+  .card h2 { margin: 2px 0 8px; font-size: 21px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 8px; border: 1px solid #5b4a2a; background: #2a2416; color: #f3cf7a; font-size: 12px; font-weight: 800; line-height: 1; }
+  .state { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px; margin-bottom: 12px; }
+  .links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--line); background: #151922; color: var(--ink); font-weight: 800; font-size: 14px; line-height: 1; text-decoration: none; }
+  .btn:hover { border-color: #3a4250; }
+  .btn.pink { border-color: #8e3d5e; background: #2b1a22; color: #ffd0e1; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; color: var(--muted); font-size: 12px; font-weight: 700; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+  th.c, td.c { text-align: center; width: 84px; }
+  td { padding: 9px 4px; border-bottom: 1px solid #232833; font-weight: 700; }
+  td small { color: var(--muted); font-weight: 700; margin-left: 4px; }
+  td a { text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .box { width: 22px; height: 22px; accent-color: var(--green); cursor: pointer; vertical-align: middle; }
+  .box:disabled { cursor: not-allowed; opacity: .5; }
+  .dash { color: var(--muted); }
+  .who-tag { display: block; font-size: 10px; color: var(--muted); font-weight: 600; line-height: 1.2; margin-top: 2px; min-height: 12px; }
+  .bar { height: 6px; border-radius: 3px; background: #262c37; overflow: hidden; margin: 4px 0 12px; }
+  .bar i { display: block; height: 100%; background: var(--green); }
+  .empty { color: var(--muted); padding: 30px 0; }
+  @media (max-width: 900px) { .app { grid-template-columns: 1fr; } .side { position: static; height: auto; } .main { padding: 20px 16px 60px; } .grid { grid-template-columns: 1fr; } h1 { font-size: 30px; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="brand-mark">B</div><div><b>Beauty Blossom</b><small>이벤트 랜딩 언어베리</small></div></div>
+    <nav id="hubs" aria-label="이벤트 묶음"></nav>
+    <div class="side-note"><b>작업은 한곳에서</b>시트를 열어 검토하고, 끝낸 국가를 체크해 주세요. 체크는 팀 공용이라 다른 PC에도 바로 보입니다.</div>
+  </aside>
+  <main class="main">
+    <div class="crumb"><span>Beauty Blossom / 언어베리 작업실</span><label class="who">이름 <input id="who" maxlength="20" placeholder="체크한 사람 이름"></label></div>
+    <h1 id="title">언어베리</h1>
+    <p class="lead">이벤트 랜딩 6개국 문구 검토 · 시트를 열고, 끝낸 국가를 체크하세요.</p>
+    <div class="sync" id="sync" role="status">팀 저장 연결 중…</div>
+    <section class="tools">
+      <div class="tool-row">
+        <input class="search" id="q" type="search" placeholder="이벤트명 · ID 검색" aria-label="검색">
+        <label>국가별 미완료 <select id="loc" aria-label="국가별 미완료"><option value="">전체 국가</option></select></label>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="상태"></div>
+    </section>
+    <p class="help">언어검토 체크는 그 나라 담당자가 시트 검토를 끝냈다는 표시입니다(G열 수정문구가 없어도 됩니다). 업로드 체크는 그 나라 홈페이지에 올린 뒤에 표시합니다.</p>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+<script>
+(function () {
+  var DATA = {"hubs":[{"id":"nov","label":"11월 이벤트"},{"id":"lifting","label":"겨울 시즌 · 시술별"},{"id":"combo","label":"겨울 시즌 · 통합이벤트"},{"id":"filler","label":"겨울 시즌 · 필러 2주년"},{"id":"diet","label":"겨울 시즌 · 다이어트"},{"id":"launch","label":"겨울 시즌 · 올리지오·압토스"}],"events":[{"id":"ULT5","hub":"nov","label":"울쎄라 5% 할인","rows":153,"sheet":"https://docs.google.com/spreadsheets/d/1OGvkuXPMVMnoh0KCTWuS2dzIX90rK5kcMB9rd-fPyz0/edit","gids":{"EN":"1439292350","JP":"1650295394","CN":"1045584625","TW":"817775859","TH":"524752172","HK":"868708071"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#ULT5/KO","date":"2026-11-06"},{"id":"BLF11","hub":"nov","label":"블랙프라이데이 · 11월 이벤트","rows":96,"sheet":"https://docs.google.com/spreadsheets/d/1ugxGSH7JRp6EECvG8AD95XaIIQgjdvJn1S0EIs60Uq4/edit","gids":{"EN":"2043165456","JP":"481304328","CN":"1560776692","TW":"61978950","TH":"1573712883","HK":"419270408"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#BLF11/KO","date":"2026-11-06"},{"id":"SUN11","hub":"nov","label":"수능이벤트 · 11.19 – 12.31","rows":120,"sheet":"https://docs.google.com/spreadsheets/d/1ZTiIiBnjQ6r084z8TLL2XxyX8mcHSO-7fcdQ8qPo_uU/edit","gids":{"EN":"1940844069","JP":"1292449456","CN":"996238242","TW":"801876661","TH":"782373160","HK":"758582569"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#SUN11/KO","date":"2026-11-06"},{"id":"OND12","hub":"lifting","label":"온다","rows":159,"sheet":"https://docs.google.com/spreadsheets/d/1_SwzZeNKPT31m0cHvTgYQA5XfBOhXQzdBMWf1KaipXM/edit","gids":{"EN":"260970521","JP":"168196189","CN":"2068044802","TW":"622637033","TH":"289695558","HK":"1558680032"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#OND12/KO","date":"2026-11-06"},{"id":"ULT12","hub":"lifting","label":"울쎄라","rows":132,"sheet":"https://docs.google.com/spreadsheets/d/1G87ue36oJRCAwkRfcMDTH3mnPmznGJPb2HOSuk_-7BY/edit","gids":{"EN":"1186609102","JP":"2000491115","CN":"338024819","TW":"916194370","TH":"1433763151","HK":"1857584541"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#ULT12/KO","date":"2026-11-06"},{"id":"THM12","hub":"lifting","label":"써마지","rows":166,"sheet":"https://docs.google.com/spreadsheets/d/132DG5vVgfjhNY2Sq1Aq8Ps3_FByX_rNkmAMoKC9FA-k/edit","gids":{"EN":"1261875803","JP":"1137351842","CN":"1250776486","TW":"436274661","TH":"46865642","HK":"1079542389"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#THM12/KO","date":"2026-11-06"},{"id":"SOF12","hub":"lifting","label":"소프웨이브","rows":158,"sheet":"https://docs.google.com/spreadsheets/d/1Lk9tnbcqS1GfU1n-YD8Frfo1qvRza9AIHAVprRFIcv4/edit","gids":{"EN":"1061164737","JP":"1837933302","CN":"967852599","TW":"1104009722","TH":"1149638824","HK":"2088218145"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#SOF12/KO","date":"2026-11-06"},{"id":"CRF12","hub":"lifting","label":"세르프","rows":190,"sheet":"https://docs.google.com/spreadsheets/d/1NdfzBA-_knFRs1gwybqXC2J99kHW07PBzaSsaQO7DbE/edit","gids":{"EN":"1558426495","JP":"551358118","CN":"1471167827","TW":"792683986","TH":"1961044441","HK":"1916104363"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CRF12/KO","date":"2026-11-06"},{"id":"DEN12","hub":"lifting","label":"덴서티","rows":190,"sheet":"https://docs.google.com/spreadsheets/d/1Ud69cLmowBKNL-p-E_QWbFiMgmGPQmGn5kHPNSDl2zw/edit","gids":{"EN":"1477937398","JP":"530817610","CN":"1387792513","TW":"276075276","TH":"739057099","HK":"612626847"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#DEN12/KO","date":"2026-11-06"},{"id":"GOU12","hub":"lifting","label":"고우리","rows":114,"sheet":"https://docs.google.com/spreadsheets/d/1qxNhTiohMj0-kR9DxXuRNoops1hC6Dze9RPIl8NRdpM/edit","gids":{"EN":"439658373","JP":"1213454348","CN":"984236889","TW":"1281395591","TH":"1820920252","HK":"401010798"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#GOU12/KO","date":"2026-11-06"},{"id":"LIG12","hub":"lifting","label":"유지인대","rows":165,"sheet":"https://docs.google.com/spreadsheets/d/1tZtJoDU0c_exQF878nUwVn5_ew2lnga9qiXhmzNjyWQ/edit","gids":{"EN":"1234310522","JP":"1613188516","CN":"835451467","TW":"1559810777","TH":"1832309953","HK":"1634623296"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#LIG12/KO","date":"2026-11-06"},{"id":"ONE12","hub":"lifting","label":"원데이","rows":176,"sheet":"https://docs.google.com/spreadsheets/d/1FjMpNm6T9Whwb3FqcktdgGTEjk-kLhNTEDDU-T5-vSI/edit","gids":{"EN":"1933145143","JP":"866315183","CN":"1887038293","TW":"1654637617","TH":"40500813","HK":"467631606"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#ONE12/KO","date":"2026-11-06"},{"id":"IVS12","hub":"lifting","label":"수액","rows":129,"sheet":"https://docs.google.com/spreadsheets/d/1aLQoXorPo4v3evNyu0LZkDgmYwrB8yWE0_9SKB0RJeA/edit","gids":{"EN":"1906476805","JP":"232403211","CN":"759354393","TW":"262449887","TH":"253337284","HK":"1191676129"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#IVS12/KO","date":"2026-11-06"},{"id":"CMB12E","hub":"combo","label":"통합 · 바디 슬리밍&보톡스","rows":149,"sheet":"https://docs.google.com/spreadsheets/d/1XhmdssmUW5uNYyb4-i-P1gM0UyuVrLOJdqGkGdGEFow/edit","gids":{"EN":"1895213518","JP":"1868245329","CN":"154199737","TW":"1155124736","TH":"1846451615","HK":"871888679"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12E/KO","date":"2026-11-06"},{"id":"CMB12A","hub":"combo","label":"통합 · 리쥬란&스킨부스터","rows":157,"sheet":"https://docs.google.com/spreadsheets/d/1N3dYgS5WdyXElKKUWOfEZhAi0NhZmSDAFzrs6UstqFk/edit","gids":{"EN":"1843511070","JP":"1272277372","CN":"325454503","TW":"1576381030","TH":"1073277324","HK":"1565582395"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12A/KO","date":"2026-11-06"},{"id":"CMB12B","hub":"combo","label":"통합 · 콜라겐 볼륨&스킨부스터","rows":155,"sheet":"https://docs.google.com/spreadsheets/d/1wON2USYZkVsxesSQyE5JGDoIL49p0HizhIk-w0jouKY/edit","gids":{"EN":"1106331226","JP":"2125104778","CN":"1081807513","TW":"2038365350","TH":"879915075","HK":"711124740"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12B/KO","date":"2026-11-06"},{"id":"CMB12C","hub":"combo","label":"통합 · 포텐자 에디션","rows":123,"sheet":"https://docs.google.com/spreadsheets/d/1QtLcUOdiRebr3T6pT3sFuCtT8vWnnGT2ZpUATTR3V4s/edit","gids":{"EN":"1727531240","JP":"271912611","CN":"314809465","TW":"1598151899","TH":"248323711","HK":"1816576228"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12C/KO","date":"2026-11-06"},{"id":"CMB12D","hub":"combo","label":"통합 · 페이스 보톡스 솔루션","rows":164,"sheet":"https://docs.google.com/spreadsheets/d/10cFxcJJUmSJmXp3lxiI82Wndzrh2UA4SCIgv1lZWx_c/edit","gids":{"EN":"1616824308","JP":"1611677875","CN":"478316946","TW":"1720963017","TH":"1941154518","HK":"56639875"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12D/KO","date":"2026-11-06"},{"id":"CMB12F","hub":"combo","label":"통합 · 가성비 베스트셀러 시술","rows":137,"sheet":"https://docs.google.com/spreadsheets/d/11T26cXM-QLHZcXWgp55EsS3zbuTcLN6-KqjxDHOGNZU/edit","gids":{"EN":"619455358","JP":"1983572119","CN":"432238717","TW":"2059933934","TH":"2129756717","HK":"30120364"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12F/KO","date":"2026-11-06"},{"id":"CMB12G","hub":"combo","label":"통합 · 가성비 베스트셀러 리프팅","rows":181,"sheet":"https://docs.google.com/spreadsheets/d/1EBx_rcpaXqNs4oTnvUamYXXPZkiw3loTKWBLXDhs3cc/edit","gids":{"EN":"366611743","JP":"113799531","CN":"139648210","TW":"2056437232","TH":"1176600222","HK":"313466992"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12G/KO","date":"2026-11-06"},{"id":"CMB12H","hub":"combo","label":"통합 · 스킨케어","rows":171,"sheet":"https://docs.google.com/spreadsheets/d/1xnR2QqsHv9njpoV_rTzwMRaoGv48zZtmc5AnPoqULp8/edit","gids":{"EN":"1691143808","JP":"1797460315","CN":"1250958443","TW":"1373392621","TH":"819292431","HK":"319386881"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12H/KO","date":"2026-11-06"},{"id":"CMB12I","hub":"combo","label":"통합 · 색소 레이저","rows":208,"sheet":"https://docs.google.com/spreadsheets/d/1O1KLnUeAJ1yGI22QFMeiFWHzR72BkZN5Q_WUTIHHS7M/edit","gids":{"EN":"1203622899","JP":"1340561046","CN":"350781042","TW":"690538190","TH":"163418242","HK":"1490040183"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#CMB12I/KO","date":"2026-11-06"},{"id":"FIL12A","hub":"filler","label":"필러 · 시그니처 디자인 필러","rows":168,"sheet":"https://docs.google.com/spreadsheets/d/1_HH3hJoTtt1t5pKhtCpghMI6PL17K5j18_FmhZqleqo/edit","gids":{"EN":"205318056","JP":"1061203617","CN":"759551982","TW":"1559558174","TH":"1693038173","HK":"1550691107"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#FIL12A/KO","date":"2026-11-06"},{"id":"FIL12B","hub":"filler","label":"필러 · 필러맛집","rows":163,"sheet":"https://docs.google.com/spreadsheets/d/1BMUNulPLwGDHvwHM1z1ytlQDgfLN-QNA1CKYziv3zIM/edit","gids":{"EN":"1189579611","JP":"1431212293","CN":"352840402","TW":"129959129","TH":"1733566097","HK":"2052612770"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#FIL12B/KO","date":"2026-11-06"},{"id":"FIL12C","hub":"filler","label":"필러 · 환상의 짝꿍","rows":167,"sheet":"https://docs.google.com/spreadsheets/d/1YbFpRAHgnE401fsvqpZhs7RUy429OmNY4BQ-8sGSUlU/edit","gids":{"EN":"1143368561","JP":"602955150","CN":"664362496","TW":"892403073","TH":"110415659","HK":"842207224"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#FIL12C/KO","date":"2026-11-06"},{"id":"DIE12A","hub":"diet","label":"다이어트 · 지방분해주사","rows":150,"sheet":"https://docs.google.com/spreadsheets/d/1zzUV20QmgmeoO03YuSRDx8voWejnx3z9a9eE-4_XOTI/edit","gids":{"EN":"1671178355","JP":"1464493900","CN":"551941673","TW":"26381747","TH":"1147249727","HK":"1256382542"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#DIE12A/KO","date":"2026-11-06"},{"id":"DIE12B","hub":"diet","label":"다이어트 · 슬림 바디 패키지","rows":156,"sheet":"https://docs.google.com/spreadsheets/d/1pOCXwjN-kSt6t_PiGEh8yHq97hQ7QrdEnC5uIEGkU-U/edit","gids":{"EN":"1413925754","JP":"1786652205","CN":"171673321","TW":"1518007640","TH":"1356326109","HK":"1010119070"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#DIE12B/KO","date":"2026-11-06"},{"id":"OXM12","hub":"launch","label":"올리지오 XM","rows":132,"sheet":"https://docs.google.com/spreadsheets/d/1XLOrStStB7vbZexZFCXAvtp1QGOq053qNFpgTAfs4CY/edit","gids":{"EN":"624032230","JP":"1333265766","CN":"1889954688","TW":"267830056","TH":"531475958","HK":"547979535"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#OXM12/KO","date":"2026-11-06"},{"id":"APT12","hub":"launch","label":"압토스","rows":130,"sheet":"https://docs.google.com/spreadsheets/d/1rFQCI7i1Kv7YVv0XQ9xK0uepiLOSqvN-ZRW-bhsyJWs/edit","gids":{"EN":"336426663","JP":"2137429360","CN":"1038799271","TW":"932188735","TH":"1774803562","HK":"807918663"},"board":"https://byeonghoyoo.github.io/bb-gouri-cardnews-report/events-2026-12/#APT12/KO","date":"2026-11-06"}],"builtAt":"2026-11-06T08:20:01.691Z"};
+  var API = 'https://bb-event-review-sync.beautyblossom.workers.dev';
+  var HEAD = { 'X-BB-Review': 'event-review-2026' };
+  var LOCS = [['KO', '한국'], ['EN', '영어'], ['JP', '일본'], ['CN', '중국'], ['TW', '대만'], ['TH', '태국'], ['HK', '홍콩']];
+  var FOREIGN = LOCS.slice(1);
+  var cells = {}, online = false, busy = {};
+  var st = { hub: 'all', q: '', loc: '', chip: 'all' };
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, attrs, kids) { var e = document.createElement(tag); if (attrs) Object.keys(attrs).forEach(function (k) { var v = attrs[k]; if (v == null || v === false) return; if (k === 'text') e.textContent = v; else if (k === 'class') e.className = v; else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), v); else if (k === 'checked' || k === 'disabled') e[k] = v; else e.setAttribute(k, v === true ? '' : v); }); (kids || []).forEach(function (c) { if (c != null) e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); }); return e; }
+  function key(id, loc, f) { return id + '.' + loc + '.' + f; }
+  function on(id, loc, f) { var c = cells[key(id, loc, f)]; return !!(c && c.value === 'done'); }
+  function meta(id, loc, f) { var c = cells[key(id, loc, f)]; if (!c || c.value !== 'done' || !c.updatedAt) return ''; var d = new Date(c.updatedAt); return (c.by || '익명') + ' · ' + (d.getMonth() + 1) + '/' + d.getDate() + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+  function reviewed(e) { return FOREIGN.filter(function (l) { return on(e.id, l[0], 'lv_review'); }).length; }
+  function uploaded(e) { return LOCS.filter(function (l) { return on(e.id, l[0], 'lv_upload'); }).length; }
+  function status(e) { var r = reviewed(e), u = uploaded(e); if (u === LOCS.length) return 'up'; if (r === FOREIGN.length) return 'done'; if (r > 0) return 'doing'; return 'wait'; }
+  var STATUS = { wait: ['언어검토 대기', 'd-wait'], doing: ['언어검토 진행 중', 'd-doing'], done: ['언어검토 완료', 'd-done'], up: ['전 국가 업로드 완료', 'd-up'] };
+  function by() { return ($('who').value || '').trim() || '익명'; }
+  function setSync(t, bad) { var s = $('sync'); s.textContent = t; s.className = 'sync' + (bad ? ' bad' : ''); }
+  function load() {
+    return fetch(API + '/v1/state', { headers: HEAD, cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function (b) {
+      var next = {}; Object.keys(b.cells || {}).forEach(function (k) { if (/\.lv_(review|upload)$/.test(k)) next[k] = b.cells[k]; });
+      Object.keys(busy).forEach(function (k) { if (cells[k]) next[k] = cells[k]; });
+      cells = next; online = true; setSync('체크 팀 저장 정상 · 4초마다 갱신'); render();
+    }).catch(function (e) { online = false; setSync('팀 저장에 연결하지 못했습니다. 체크가 저장되지 않으니 잠시 뒤 새로고침해 주세요. (' + e.message + ')', true); render(); });
+  }
+  function save(id, loc, f, want) {
+    var k = key(id, loc, f), cur = cells[k] || { value: null, revision: 0 };
+    busy[k] = true; cells[k] = { value: want ? 'done' : '', revision: cur.revision, by: by(), updatedAt: new Date().toISOString() }; render();
+    var send = function (base, again) {
+      return fetch(API + '/v1/cell', { method: 'POST', headers: Object.assign({ 'Content-Type': 'application/json' }, HEAD), body: JSON.stringify({ key: k, value: want ? 'done' : '', baseRevision: base, by: by() }) }).then(function (r) {
+        return r.json().then(function (b) {
+          if (r.ok && b.cell) { cells[k] = b.cell; return; }
+          if (r.status === 409 && b.current && !again) return send(b.current.revision, true);
+          throw new Error(b.error || ('HTTP ' + r.status));
+        });
+      });
+    };
+    send(cur.revision, false).catch(function (e) { cells[k] = cur.revision ? cur : undefined; setSync('저장하지 못했습니다: ' + e.message, true); }).then(function () { delete busy[k]; render(); });
+  }
+  function hubCount(h) { return DATA.events.filter(function (e) { return h === 'all' || e.hub === h; }).length; }
+  function visible() {
+    var q = st.q.trim().toLowerCase();
+    return DATA.events.filter(function (e) {
+      if (st.hub !== 'all' && e.hub !== st.hub) return false;
+      if (q && (e.label + ' ' + e.id).toLowerCase().indexOf(q) < 0) return false;
+      if (st.loc && on(e.id, st.loc, 'lv_review')) return false;
+      if (st.chip !== 'all' && status(e) !== st.chip) return false;
+      return true;
+    });
+  }
+  function renderHubs() {
+    var list = [{ id: 'all', label: '전체 이벤트' }].concat(DATA.hubs);
+    $('hubs').replaceChildren.apply($('hubs'), list.map(function (h) { return el('button', { type: 'button', class: 'hub' + (st.hub === h.id ? ' current' : ''), 'aria-current': st.hub === h.id ? 'page' : null, onclick: function () { st.hub = h.id; location.hash = 'hub=' + h.id; render(); } }, [el('span', { text: h.label }), el('span', { class: 'n', text: String(hubCount(h.id)) })]); }));
+  }
+  function renderChips() {
+    var base = DATA.events.filter(function (e) { return st.hub === 'all' || e.hub === st.hub; });
+    var defs = [['all', '전체', null]].concat(Object.keys(STATUS).map(function (k) { return [k, STATUS[k][0], STATUS[k][1]]; }));
+    $('chips').replaceChildren.apply($('chips'), defs.map(function (d) { var n = d[0] === 'all' ? base.length : base.filter(function (e) { return status(e) === d[0]; }).length; return el('button', { type: 'button', class: 'chip' + (st.chip === d[0] ? ' current' : ''), 'aria-pressed': st.chip === d[0] ? 'true' : 'false', onclick: function () { st.chip = d[0]; render(); } }, [d[2] ? el('span', { class: 'dot ' + d[2] }) : null, d[1] + ' ' + n]); }));
+  }
+  function box(e, loc, f, label) {
+    var k = key(e.id, loc, f);
+    return el('span', null, [el('input', { type: 'checkbox', class: 'box', checked: on(e.id, loc, f), disabled: !online || !!busy[k], 'aria-label': e.label + ' ' + label, title: meta(e.id, loc, f) || null, onchange: function (ev) { save(e.id, loc, f, ev.target.checked); } }), el('span', { class: 'who-tag', text: meta(e.id, loc, f) })]);
+  }
+  function card(e) {
+    var s = status(e), r = reviewed(e);
+    var rows = LOCS.map(function (l) {
+      var gid = e.gids && e.gids[l[0]];
+      var name = l[0] === 'KO' ? el('span', null, [l[1], el('small', { text: 'KO' })]) : el('a', { href: e.sheet + (gid ? '#gid=' + gid : ''), target: '_blank', rel: 'noopener', title: l[1] + ' 탭 열기' }, [l[1], el('small', { text: l[0] })]);
+      return el('tr', null, [el('td', null, [name]), el('td', { class: 'c' }, [l[0] === 'KO' ? el('span', { class: 'dash', text: '—' }) : box(e, l[0], 'lv_review', l[1] + ' 언어검토')]), el('td', { class: 'c' }, [box(e, l[0], 'lv_upload', l[1] + ' 업로드')])]);
+    });
+    return el('article', { class: 'card st-' + s, 'data-event': e.id }, [
+      el('div', { class: 'card-id', text: e.id }),
+      el('h2', null, [e.label, el('span', { class: 'badge', text: '기준일 ' + e.date.slice(5).replace('-', '.') + ' · ' + e.rows + '문구' })]),
+      el('div', { class: 'state' }, [el('span', { class: 'dot ' + STATUS[s][1] }), STATUS[s][0] + ' · 언어검토 ' + r + '/' + FOREIGN.length]),
+      el('div', { class: 'bar' }, [el('i', { style: 'width:' + Math.round(r / FOREIGN.length * 100) + '%' })]),
+      el('div', { class: 'links' }, [el('a', { class: 'btn pink', href: e.sheet, target: '_blank', rel: 'noopener', text: '언어베리 시트 ↗' }), el('a', { class: 'btn', href: e.board, target: '_blank', rel: 'noopener', text: '시안 보기 ↗' })]),
+      el('table', null, [el('thead', null, [el('tr', null, [el('th', { text: '적용 국가 ' + LOCS.length + '개' }), el('th', { class: 'c', text: '언어검토' }), el('th', { class: 'c', text: '업로드' })])]), el('tbody', null, rows)]),
+    ]);
+  }
+  function render() {
+    var hub = st.hub === 'all' ? { label: '전체 이벤트' } : DATA.hubs.filter(function (h) { return h.id === st.hub; })[0] || { label: '전체 이벤트' };
+    $('title').textContent = hub.label;
+    renderHubs(); renderChips();
+    var list = visible(); $('count').textContent = list.length + '개 이벤트';
+    var out = [];
+    DATA.hubs.forEach(function (h) {
+      var items = list.filter(function (e) { return e.hub === h.id; });
+      if (!items.length) return;
+      if (st.hub === 'all') out.push(el('div', { class: 'group-title' }, [h.label, el('small', { text: items.length + '개' })]));
+      items.forEach(function (e) { out.push(card(e)); });
+    });
+    if (!out.length) out.push(el('p', { class: 'empty', text: '조건에 맞는 이벤트가 없습니다.' }));
+    $('grid').replaceChildren.apply($('grid'), out);
+  }
+  FOREIGN.forEach(function (l) { $('loc').appendChild(el('option', { value: l[0], text: l[1] + ' 미완료' })); });
+  $('q').addEventListener('input', function (e) { st.q = e.target.value; render(); });
+  $('loc').addEventListener('change', function (e) { st.loc = e.target.value; render(); });
+  $('who').value = localStorage.getItem('lv-name') || '';
+  $('who').addEventListener('change', function (e) { localStorage.setItem('lv-name', e.target.value.trim()); });
+  var m = location.hash.match(/hub=([a-z]+)/); if (m && (m[1] === 'all' || DATA.hubs.some(function (h) { return h.id === m[1]; }))) st.hub = m[1];
+  window.addEventListener('hashchange', function () { var m2 = location.hash.match(/hub=([a-z]+)/); if (m2) { st.hub = m2[1]; render(); } });
+  render(); load();
+  setInterval(function () { if (document.visibilityState === 'visible' && !Object.keys(busy).length) load(); }, 4000);
+})();
+</script>
+</body>
+</html>
