@@ -23,7 +23,7 @@
   var ID_RE = /^[A-Za-z0-9]+$/;
   var LOCALE_RE = /^[A-Z]{2}$/;
   /* v4 (2026-11-04, v4/events/BOARD_V4_PLAN.md): mode tabs, hero/2nd-section A/B, pinned comments, beauty-app tab */
-  var BOARD_V = '20261104-v4a';
+  var BOARD_V = '20261106-v4b'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
   var PAGE_V = '&v=20261104-v4a'; /* cache version of the own-page iframes (qa/v2-cache.test.cjs) */
   var VARIANT_SLOTS = [1, 2];
   var COMMENT_SAVE_MS = 800;
@@ -588,7 +588,37 @@
 
     function visibleItems() { return state.data.items.filter(function (it) { return !store.isDeleted(it.id); }); }
     function visibleGroups() { return groupsOf().map(function (g) { return { g: g, items: g.items.map(function (id) { return state.data.items.filter(function (it) { return it.id === id; })[0]; }).filter(Boolean).filter(function (it) { return !store.isDeleted(it.id); }) }; }).filter(function (x) { return x.items.length; }); }
+    /* 2026-11-06 user request: on wide screens the left list is a fixed-height scroll box (style.css), so keep its
+       scroll position across re-renders and bring the current item into view when the selected item changes. */
+    var sidebarShownItem = null, fitQueued = false;
+    /* the list box ends at the bottom of the window: it grows while the page scrolls until it sticks at the top */
+    function fitSidebar() {
+      var s = ui.list && ui.list.parentNode; if (!s || !s.style || !s.getBoundingClientRect || !win0 || !ui.list.querySelector) return;
+      if (win0.matchMedia && !win0.matchMedia('(min-width: 769px)').matches) { s.style.maxHeight = ''; return; }
+      var cur = ui.list.querySelector('.item-row.current'), was = false;
+      if (cur) { var l0 = ui.list.getBoundingClientRect(), c0 = cur.getBoundingClientRect(); was = l0.height > 0 && c0.top >= l0.top - 1 && c0.bottom <= l0.bottom + 1; }
+      var top = Math.max(12, s.getBoundingClientRect().top);
+      s.style.maxHeight = Math.max(260, (win0.innerHeight || 800) - top - 12) + 'px';
+      if (cur && was) { /* the current item stays in view when the box shrinks (page top, late font load) */
+        var l1 = ui.list.getBoundingClientRect(), c1 = cur.getBoundingClientRect();
+        if (c1.bottom > l1.bottom) ui.list.scrollTop += c1.bottom - l1.bottom; else if (c1.top < l1.top) ui.list.scrollTop -= l1.top - c1.top;
+      }
+    }
+    function queueFitSidebar() { if (fitQueued || !win0 || !win0.requestAnimationFrame) return; fitQueued = true; win0.requestAnimationFrame(function () { fitQueued = false; fitSidebar(); }); }
     function renderSidebar() {
+      var keep = ui.list.scrollTop;
+      renderSidebarInner();
+      fitSidebar();
+      ui.list.scrollTop = keep;
+      if (!state.itemId || state.itemId === sidebarShownItem || !ui.list.querySelector || !ui.list.getBoundingClientRect) return; /* unit-test DOM */
+      var cur = ui.list.querySelector('.item-row.current');
+      var lr = ui.list.getBoundingClientRect();
+      if (!cur || !lr.height) return;
+      var cr = cur.getBoundingClientRect();
+      if (ui.list.scrollHeight > ui.list.clientHeight + 1 && (cr.top < lr.top || cr.bottom > lr.bottom)) ui.list.scrollTop += (cr.top - lr.top) - Math.max(0, (lr.height - cr.height) / 2);
+      sidebarShownItem = state.itemId;
+    }
+    function renderSidebarInner() {
       var loc = state.locale;
       var items = visibleItems();
       ui.sideTitle.textContent = '검토 항목 ' + items.length + '개';
@@ -1797,6 +1827,8 @@
         e.preventDefault(); addImages(c.id, files);
       });
       if (win0) { win0.addEventListener('resize', function () { hideCtx(); syncAllViews(); }); win0.addEventListener('blur', hideCtx); win0.addEventListener('scroll', hideCtx, { passive: true }); }
+      if (win0) { win0.addEventListener('scroll', queueFitSidebar, { passive: true }); win0.addEventListener('resize', queueFitSidebar); if (win0.setTimeout) win0.setTimeout(queueFitSidebar, 600); }
+      if (doc.fonts && doc.fonts.ready && doc.fonts.ready.then) doc.fonts.ready.then(queueFitSidebar);
     }
 
     /* ---- comments: data ---- */

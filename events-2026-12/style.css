@@ -376,3 +376,14 @@ button:disabled { cursor: not-allowed; opacity: .55; }
 .group-btn .group-test { justify-self: start; }
 .group-btn .group-count { white-space: normal; }
 .app-spec-table tbody th { white-space: nowrap; }
+
+/* 2026-11-06 user request: "좌측 슬라이드 타이틀 있는 곳에 스크롤바". On wide screens the left review list fits the window
+   height and scrolls on its own (long lists used to hide the newest groups below the page); phones keep the stacked list. */
+@media (min-width: 769px) {
+  .sidebar { display: flex; flex-direction: column; max-height: calc(100vh - 24px); overflow: hidden; }
+  .sidebar .side-title { flex: none; }
+  .sidebar .item-list { flex: 1 1 auto; min-height: 0; align-content: start; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; margin-right: -8px; scrollbar-width: thin; scrollbar-color: #bdb6cf transparent; }
+  .sidebar .item-list::-webkit-scrollbar { width: 8px; }
+  .sidebar .item-list::-webkit-scrollbar-thumb { background: #bdb6cf; border-radius: 8px; }
+  .sidebar .item-list::-webkit-scrollbar-track { background: transparent; }
+}
