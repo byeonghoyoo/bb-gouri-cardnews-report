@@ -471,3 +471,242 @@ a[data-link="phone"]{white-space:nowrap}
   .bk-row{grid-template-columns:96px minmax(0,1fr);gap:14px}
   .notes{padding:18px 16px 22px}
 }
+
+/* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
+   ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
+   redrawn for the frame from the same copy keys, price rows and pictures (v4/ulthera5/sizes/line.html, kakao.html); nothing is cropped or
+   scaled down from the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size. ===== */
+html[data-size="line"] main.u5{max-width:none;width:1100px}
+html[data-size="kakao"] main.u5{max-width:none;width:800px}
+html[data-size="line"] .sheet,html[data-size="kakao"] .sheet{--px:1px}
+html[data-size="line"] section.card{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] section.card{width:800px;height:600px;aspect-ratio:auto}
+[data-size-only]{display:none!important}
+html[data-size="line"] [data-size-only~="line"],html[data-size="kakao"] [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] [data-size-hide~="line"],html[data-size="kakao"] [data-size-hide~="kakao"]{display:none!important}
+.h-model{position:absolute;z-index:1;display:block;width:auto;max-width:none;pointer-events:none}
+/* the group wrappers inside a card are <section> elements too: hide them with their card, so tools that look at the nearest section (price
+   coverage) see exactly the cards of the current size. No visual effect (their card is already display:none). */
+html[data-size="home"] [data-size-only] section,
+html[data-size="line"] [data-size-only]:not([data-size-only~="line"]) section,html[data-size="kakao"] [data-size-only]:not([data-size-only~="kakao"]) section,
+html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] [data-size-hide~="kakao"] section{display:none!important}
+
+/* ---------- LINE 1100x1000 ---------- */
+/* 1A poster: dark backdrop (temporary re-frame of bg/dark.jpg, BG_SLOTS.md line-dark-hero), the hero model as a person cutout */
+.L1a .bg{object-position:50% 100%}
+.L1a .h-model{right:-12px;top:52px;height:1160px}
+.L1a .c1-top{top:40px}
+.L1a .h1a-copy{top:128px}
+.L1a .ticket{top:448px}
+.L1a .h1a-dev{left:556px;bottom:28px;height:500px}
+.L1a .h1a-contact{bottom:46px}
+.L1a .h1a-sp1{top:100px}
+.L1a .h1a-sp2{left:500px;top:424px}
+/* 1B split: photo panel 540 wide, the arch stays whole */
+.L1b .h1b-photo{width:540px}
+.L1b .h1b-col{top:46px;width:476px}
+.L1b .h1b-meta{margin-top:60px}
+.L1b .h1b-title{margin-top:30px}
+.L1b .h1b-sub{margin-top:18px}
+.L1b .h1b-offer{margin-top:44px;padding-top:32px}
+.L1b .stack5{margin-top:18px}
+.L1b .h1b-dev{left:448px;bottom:80px;height:440px}
+.L1b .h1b-star{left:498px;top:40px}
+.L1b .h1b-contact{bottom:44px}
+/* 2A / 2B shared head: kicker and title left, lead and period right */
+.L2a .c2-in,.L2b .c2-in{padding:38px 48px 30px}
+.L2b .c2-in{padding-left:44px;padding-right:44px}
+.L2a .p-head,.L2b .p-head{margin-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;text-align:left}
+.L2a .ph-t,.L2b .ph-t{display:flex;flex-direction:column;align-items:flex-start}
+.L2a .p-title,.L2b .p-title{margin-top:4px}
+.L2a .p-lead,.L2b .p-lead{margin:0 0 12px;flex-wrap:nowrap;justify-content:flex-end}
+/* 2A two-column table, the device cutouts head each group */
+.L2a .ptable{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:36px;align-items:start}
+.L2a .pcol{display:flex;flex-direction:column;gap:14px}
+.L2a .tg{grid-template-columns:auto minmax(0,1fr);column-gap:16px;padding-top:12px}
+.L2a .tg-dev{grid-column:1;grid-row:1;justify-content:flex-start;height:92px}
+.L2a .tdev,.L2a .tg1 .tdev,.L2a .tg5 .tdev{height:92px}
+.L2a .tg2 .tdev{height:72px}
+.L2a .tg-head{grid-column:2;grid-row:1;align-self:center;flex-direction:column;align-items:flex-start;gap:2px;min-height:0}
+.L2a .trows{grid-column:1 / -1;grid-row:2;margin-top:4px}
+.L2a .trow{grid-template-columns:minmax(0,1fr) 74px 112px;column-gap:10px}
+/* 2B three columns of cream cards */
+.L2b .pcards{margin-top:20px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:16px;align-items:stretch}
+.L2b .pcol{display:flex;flex-direction:column;gap:16px}
+.L2b .pcol > .bc:last-child{flex:1 1 auto}
+.L2b .bc-head{padding:14px 14px;gap:12px}
+.L2b .bc-dev{height:66px}
+.L2b .bdev{height:64px}
+.L2b .brows{padding:4px 12px 8px}
+.L2b .brow{padding:14px 0}
+/* 3: figure beside the points, devices in one row */
+.L3 .cx-in{padding:36px 48px 22px}
+.L3 .q-head{margin-top:14px}
+.L3 .c3-mid{margin-top:20px;grid-template-columns:340px minmax(0,1fr);column-gap:48px}
+.L3 .fr-depth{width:340px}
+.L3 .fr-depth .g-band{padding:6px 16px}
+.L3 .points{gap:26px}
+.L3 .cmp{margin-top:22px}
+.L3 .cmp-row{margin-top:26px}
+.L3 .cmp-pic{height:186px}
+.L3 .cdev{height:166px}
+.L3 .src{padding-top:8px}
+/* 4: horizontal timeline */
+.L4 .cx-in{padding:36px 48px 26px}
+.L4 .q-head{margin-top:14px}
+.L4 .c4-star{right:64px;top:96px;width:120px}
+.L4 .steps{flex:none;margin-top:54px;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:none;column-gap:20px}
+.L4 .steps::before{left:9%;right:9%;top:40px;bottom:auto;border-left:0;border-top:2.5px dotted var(--gold-d)}
+.L4 .st{grid-template-columns:1fr;justify-items:center;align-content:start;row-gap:18px;min-height:0;text-align:center}
+.L4 .st-ico{width:80px;height:80px}
+.L4 .st-d{margin-top:6px}
+.L4 .infos{margin-top:60px}
+.L4 .inf{padding:34px 22px 20px}
+.L4 .c4-tip{margin-top:40px}
+/* 5: two parts */
+.L5 .cx-in{padding:36px 48px 30px}
+.L5 .bento{margin-top:22px}
+.L5p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+.L5p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:30px 36px}
+.L5p1 .ab-title{font-size:44px}
+.L5p1 .dr{grid-template-columns:250px 290px}
+.L5p1 .ab-photos{height:350px;margin-top:4px}
+.L5p1 .ab-strengths{margin-top:auto}
+.L5p2 .bento{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);grid-template-rows:minmax(0,.78fr) minmax(0,1fr)}
+.L5p2 .map{width:100%}
+.L5p2 .loc-body{padding-top:18px}
+.L5p2 .way{margin-top:18px}
+.L5p2 .hrs{gap:14px}
+.L5p2 .hrs li{font-size:25px}
+.L5p2 .hrs-note{margin-top:18px;font-size:17px}
+.L5p2 .bk-row{grid-template-columns:150px minmax(0,1fr);gap:22px}
+.L5p2 .bk-links{font-size:20px}
+.L5p2 .bk-phone{font-size:34px}
+.L5p2 .bt-loc{grid-column:1;grid-row:1 / 3}
+.L5p2 .bt-hours{grid-column:2;grid-row:1}
+.L5p2 .bt-book{grid-column:2;grid-row:2}
+
+/* ---------- KAKAO 800x600 ---------- */
+/* 1A: landscape poster, ticket stub (left: tk-k, condition, the two offer words; right of a dashed tear line: the big 5%) */
+.K1a .bg{object-position:50% 100%}
+.K1a .h-model{right:-14px;top:40px;height:860px}
+.K1a .c1-top{top:26px}
+.K1a .h1a-copy{left:44px;top:62px;width:480px}
+.K1a .h-title{margin-top:14px}
+.K1a .h-sub{margin-top:12px}
+.K1a .h1a-sp1{left:404px;top:86px;width:60px}
+.K1a .h1a-sp2{left:574px;top:296px;width:76px}
+.K1a .ticket{left:44px;top:338px;width:auto;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto auto auto;column-gap:22px;align-items:center;padding:22px 26px;text-align:left}
+.K1a .tk-k{grid-column:1;grid-row:1}
+.K1a .tk-cond{grid-column:1;grid-row:2;margin-top:8px}
+.K1a .tk-rule{display:none}
+.K1a .tk-big{display:contents}
+.K1a .tk-big .b1{grid-column:1;grid-row:3;margin-top:12px}
+.K1a .tk-big .b2{grid-column:1;grid-row:4}
+.K1a .tk-big .b5{grid-column:2;grid-row:1 / 5;align-self:center;padding-left:22px;border-left:1.6px dashed var(--gold-l)}
+.K1a .h1a-dev{left:auto;right:24px;bottom:16px;height:300px}
+.K1a .h1a-contact{left:44px;bottom:24px}
+/* 1B: split, the 5% beside its offer words, wordmark on the photo's cream top */
+.K1b .h1b-photo{width:280px}
+.K1b .h1b-top{position:absolute;z-index:4;right:40px;top:26px}
+.K1b .h1b-top .wordmark{width:200px}
+.K1b .bg{height:100%;object-position:50% 20%}
+.K1b .h1b-col{left:40px;top:34px;width:474px}
+.K1b .h1b-meta{margin-top:0}
+.K1b .h1b-title{margin-top:16px}
+.K1b .h1b-sub{margin-top:10px}
+.K1b .h1b-offer{margin-top:18px;padding-top:16px}
+.K1b .stack5{margin-top:8px;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:20px;align-items:center}
+.K1b .stack5 .b1{grid-column:1;grid-row:1;align-self:end}
+.K1b .stack5 .b2{grid-column:1;grid-row:2;align-self:start}
+.K1b .stack5 .b5{grid-column:2;grid-row:1 / 3;margin:0}
+.K1b .h1b-dev{left:510px;bottom:18px;height:300px}
+.K1b .h1b-star{left:468px;top:12px;width:86px}
+.K1b .h1b-sp1{right:18px;top:150px;width:52px}
+.K1b .h1b-contact{left:40px;bottom:22px}
+/* 2A: three parts of the black table */
+.K2a .c2-in,.K2b .c2-in{padding:30px 44px 26px}
+.K2b .c2-in{padding-left:40px;padding-right:40px}
+.K2a .p-head,.K2b .p-head{margin-top:12px}
+.K2a .p-title,.K2b .p-title{margin-top:2px}
+.K2a .p-lead,.K2b .p-lead{margin-top:8px}
+.K2a .ph-mini,.K2b .ph-mini{display:flex;align-items:baseline;justify-content:center;gap:22px}
+.K2a .ph-mini .p-title,.K2b .ph-mini .p-title{margin-top:0}
+.K2a .bg,.K3 .bg,.K5 .bg{height:100%;object-position:50% 20%}
+.K2a .ptable{margin-top:18px;gap:18px}
+.K2a .tg{grid-template-columns:150px minmax(0,1fr);column-gap:18px;padding-top:12px}
+.K2a .trow{grid-template-columns:minmax(0,1fr) 74px 112px;column-gap:10px;min-height:72px}
+.K2p3.K2a .ptable{gap:14px}
+.K2p3.K2a .tg{padding-top:10px}
+.K2p3.K2a .trow{min-height:58px}
+/* 2B: three parts of the cream cards */
+.K2b .pcards{margin-top:18px;gap:16px 18px}
+.K2b .bc-head{padding:10px 14px}
+.K2b .bc-dev{height:56px}
+.K2b .bdev{height:54px}
+.K2b .brow{padding:8px 0}
+.K2p1.K2b .pcards,.K2p2.K2b .pcards{flex:1 1 auto;align-items:stretch}
+.K2p1.K2b .bc-head,.K2p2.K2b .bc-head{padding:14px 16px}
+.K2p1.K2b .bc-dev,.K2p2.K2b .bc-dev{height:70px}
+.K2p1.K2b .bdev,.K2p2.K2b .bdev{height:68px}
+.K2p1.K2b .brow{padding:14px 0}
+.K2p2.K2b .brow{padding:22px 0}
+/* 3: question + points | figure beside the four devices */
+.K3 .cx-in{padding:30px 44px 24px}
+.K3p1 .q-head{margin-top:14px}
+.K3p1 .points{margin-top:32px;gap:30px}
+.K3p1 .pt{grid-template-columns:64px minmax(0,1fr)}
+.K3p1 .pt-ico{width:64px;height:64px}
+.K3p2 .c3-mid{margin-top:18px;grid-template-columns:360px minmax(0,1fr);column-gap:30px;align-items:start}
+.K3p2 .fr-depth{width:360px}
+.K3p2 .fr-depth .g-band{padding:6px 14px}
+.K3p2 .cmp{margin-top:0}
+.K3p2 .cmp-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 20px;margin-top:28px}
+.K3p2 .cmp-pic{height:96px}
+.K3p2 .cdev{height:84px}
+/* 4: timeline in two parts */
+.K4 .cx-in{padding:30px 44px 24px}
+.K4p1 .q-head{margin-top:14px}
+.K4 .c4-star{right:50px;top:70px;width:100px}
+.K4 .steps{flex:none;margin-top:24px;grid-template-rows:none;gap:10px}
+.K4 .st{min-height:76px}
+.K4p2 .k-mini{margin-top:12px}
+.K4p2 .steps{margin-top:14px}
+.K4p2 .infos{margin-top:28px;gap:16px}
+.K4p2 .inf{padding:26px 14px 12px}
+.K4p2 .c4-tip{margin-top:18px}
+/* 5: about | strengths + hours | directions + booking */
+.K5 .cx-in{padding:30px 44px 26px}
+.K5 .bento{margin-top:16px}
+.K5p1 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+.K5p1 .bt-about{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:18px 22px}
+.K5p1 .ab-top{grid-template-columns:minmax(0,1fr) 220px;grid-template-rows:auto auto auto auto;column-gap:16px;align-items:start}
+.K5p1 .ab-intro,.K5p1 .dr{display:contents}
+.K5p1 .ab-intro .bt-k{grid-column:1;grid-row:1}
+.K5p1 .ab-title{grid-column:1;grid-row:2;margin-top:6px}
+.K5p1 .ab-lead{grid-column:1;grid-row:3;margin-top:10px}
+.K5p1 .dr-tx{grid-column:1;grid-row:4;align-self:start;text-align:left;padding:14px 0 0}
+.K5p1 .dr-quote{margin-top:4px}
+.K5p1 .dr-img{grid-column:2;grid-row:1 / 5;align-self:end;width:220px}
+.K5p1 .ab-photos{height:190px;margin-top:8px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.3fr)}
+.K5p2 .bento{grid-template-columns:1fr;grid-template-rows:auto auto}
+.K5p2 .bt-str{grid-column:1;grid-row:1;padding:18px 24px}
+.K5p2 .bt-str .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 26px}
+.K5p2 .bt-str .dots-l{display:none}
+.K5p2 .bt-hours{grid-column:1;grid-row:2}
+.K5p3 .bento{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+.K5p3 .bt-loc{grid-column:1;grid-row:1}
+.K5p3 .bt-book{grid-column:2;grid-row:1}
+.K5p3 .map{width:100%}
+.K5p3 .bk-row{grid-template-columns:120px;grid-template-rows:auto auto;justify-items:start;align-content:center}
+/* kakao: measured centring (qa/text-center-check.cjs --size kakao, 1080-basis tolerance) */
+.K1b .h1b-period{padding:.3em .9em calc(.3em + .5px)}
+.K2p3.K2a .badge{padding:calc(.3em + .012em) .62em calc(.3em - .012em)}
+.K3p2 .fr-depth .g-band{padding:calc(6px + .041em) 14px calc(6px - .041em)}
+.K3p2 .cmp-t{padding:calc(7px + .02em) 8px calc(7px - .02em)}
+.K3p2 .cmp-it:nth-child(n+3) .cmp-t{padding:calc(7px + .054em) 8px calc(7px - .054em)}
+.K5p1 .ab-photos figcaption{padding:calc(.32em + .076em) .8em calc(.32em - .076em)}
+.K5p3 .way-line{position:relative;top:.4px}
+/* background slots (v4/ulthera5/BG_SLOTS.md): until the lead's per-size picture exists, the 4:5 bg/dark.jpg / bg/cream.jpg is re-framed with
+   object-fit (temporary). inject-sizes.cjs switches a slot to assets/bg/<slot>.jpg and marks it data-bg-ready: then it is shown whole. */
+.L .bg[data-bg-ready],.K .bg[data-bg-ready]{inset:0;height:100%;object-position:50% 50%}

@@ -11,6 +11,9 @@ let fields={...DATA.locales[locale]};
 let editable=false,editMode=false,lastHeight=0;
 const root=document.documentElement;
 if(qs.get('capture')==='1')root.classList.add('is-capture');
+/* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md): the <head> script sets data-size = home | line | kakao before the CSS.
+   In line / kakao no text is shrunk to fit (the size layouts give every line the room it needs); kakao breaks the hero title word in two lines. */
+const SIZE=root.getAttribute('data-size')||'home',SIZED=SIZE!=='home';
 function reply(message){if(parent!==window)parent.postMessage(message,location.origin);}
 const IE=window.BBInlineEdit?window.BBInlineEdit.create({doc:document,raw:k=>fields[k]??'',send:m=>reply(m),refit:()=>{fit();report();},rerender:()=>render()}):null;
 function report(){const main=document.querySelector('main');if(!main)return;const h=Math.max(300,Math.min(25000,Math.ceil(main.getBoundingClientRect().height)));if(h===lastHeight)return;lastHeight=h;reply({type:'aptos-size',height:h});}
@@ -19,8 +22,9 @@ const span=(cls,t)=>{const s=document.createElement('span');if(cls)s.className=c
 function setMoney(el,v){el.textContent='';const m=/^(\D*?)(\d[\d,.]*)(.*)$/.exec(v||'');if(!m){el.textContent=v||'';return;}
  if(m[1])el.append(span('u pre',m[1]));el.append(span('n',m[2]));if(m[3])el.append(span('u',m[3]));}
 /* hero title: first word = Korean line, the rest = the Latin line (the space stays in the text) */
-function setTitle(el,v){el.textContent='';v=v||'';const i=v.indexOf(' ');if(i<0){el.append(span('tl1',v));return;}
- el.append(span('tl1',v.slice(0,i)),document.createTextNode(' '),span('tl2',v.slice(i+1)));}
+function tl1Of(w){if(SIZE!=='kakao'||w.length<4)return span('tl1',w);const c=/^블랙/.test(w)?2:Math.ceil(w.length/2);const s=span('tl1','');s.append(span('tl1a',w.slice(0,c)),span('tl1b',w.slice(c)));return s;}
+function setTitle(el,v){el.textContent='';v=v||'';const i=v.indexOf(' ');if(i<0){el.append(tl1Of(v));return;}
+ el.append(tl1Of(v.slice(0,i)),document.createTextNode(' '),span('tl2',v.slice(i+1)));}
 /* 'EVENT 01｜리프팅 더블 할인' -> chip | title (the bar stays in the text) */
 function setLabel(el,v){el.textContent='';v=v||'';const i=v.indexOf('｜');if(i<0){el.append(span('evt',v));return;}
  el.append(span('evc',v.slice(0,i)),span('evb','｜'),span('evt',v.slice(i+1)));}
@@ -54,10 +58,10 @@ function fit(){
  const phone=isPhone();
  /* title lines: shrink until the text itself (not the block box) fits the title width */
  const natural=(el)=>{const r=document.createRange();r.selectNodeContents(el);return r.getBoundingClientRect().width;};
- for(const t of document.querySelectorAll('.h-title')){const w=t.clientWidth;for(const el of t.querySelectorAll('.tl1,.tl2')){el.style.removeProperty('--fit');for(let f=1,i=0;i<40&&natural(el)>w*(phone?.97:.985)&&f>.5;i++){f-=.02;el.style.setProperty('--fit',f.toFixed(3));}}}
- for(const el of document.querySelectorAll('.ev-label')){const box=el.parentElement;fitTo(el,box.clientWidth-(parseFloat(getComputedStyle(box).paddingLeft)||0)-(parseFloat(getComputedStyle(box).paddingRight)||0),.6);}
- for(const el of document.querySelectorAll('.pname')){if(phone){el.style.removeProperty('--fit');continue;}fitLines(el,1,.82);}
- for(const el of document.querySelectorAll('.ab-title,.ab-strengths .at')){if(phone){el.style.removeProperty('--fit');continue;}fitLines(el,2,.74);}
+ for(const t of document.querySelectorAll('.h-title')){const w=t.clientWidth;for(const el of t.querySelectorAll('.tl1,.tl2')){el.style.removeProperty('--fit');if(SIZED)continue;for(let f=1,i=0;i<40&&natural(el)>w*(phone?.97:.985)&&f>.5;i++){f-=.02;el.style.setProperty('--fit',f.toFixed(3));}}}
+ for(const el of document.querySelectorAll('.ev-label')){if(SIZED){el.style.removeProperty('--fit');continue;}const box=el.parentElement;fitTo(el,box.clientWidth-(parseFloat(getComputedStyle(box).paddingLeft)||0)-(parseFloat(getComputedStyle(box).paddingRight)||0),.6);}
+ for(const el of document.querySelectorAll('.pname')){if(phone||SIZED){el.style.removeProperty('--fit');continue;}fitLines(el,1,.82);}
+ for(const el of document.querySelectorAll('.ab-title,.ab-strengths .at')){if(phone||SIZED){el.style.removeProperty('--fit');continue;}fitLines(el,2,.74);}
 }
 function render(){
  root.lang='ko';root.dataset.locale=locale;
