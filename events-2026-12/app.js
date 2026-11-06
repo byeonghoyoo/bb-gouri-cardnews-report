@@ -23,7 +23,7 @@
   var ID_RE = /^[A-Za-z0-9]+$/;
   var LOCALE_RE = /^[A-Z]{2}$/;
   /* v4 (2026-11-04, v4/events/BOARD_V4_PLAN.md): mode tabs, hero/2nd-section A/B, pinned comments, beauty-app tab */
-  var BOARD_V = '20261106-v4b'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
+  var BOARD_V = '20261106-v4c'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
   var PAGE_V = '&v=20261104-v4a'; /* cache version of the own-page iframes (qa/v2-cache.test.cjs) */
   var VARIANT_SLOTS = [1, 2];
   var COMMENT_SAVE_MS = 800;
@@ -605,11 +605,21 @@
       }
     }
     function queueFitSidebar() { if (fitQueued || !win0 || !win0.requestAnimationFrame) return; fitQueued = true; win0.requestAnimationFrame(function () { fitQueued = false; fitSidebar(); }); }
+    function curRowShown() { /* is the current row fully inside the list box right now? */
+      if (!ui.list.querySelector || !ui.list.getBoundingClientRect) return false;
+      var cur = ui.list.querySelector('.item-row.current'); if (!cur) return false;
+      var l = ui.list.getBoundingClientRect(), c = cur.getBoundingClientRect();
+      return l.height > 0 && c.top >= l.top - 1 && c.bottom <= l.bottom + 1;
+    }
     function renderSidebar() {
-      var keep = ui.list.scrollTop;
+      var keep = ui.list.scrollTop, shown = curRowShown();
       renderSidebarInner();
       fitSidebar();
       ui.list.scrollTop = keep;
+      if (shown && !curRowShown()) { /* rows above grew (late comment badges): keep the current row in view */
+        var cur0 = ui.list.querySelector('.item-row.current'), l0 = ui.list.getBoundingClientRect(), c0 = cur0.getBoundingClientRect();
+        if (c0.bottom > l0.bottom) ui.list.scrollTop += c0.bottom - l0.bottom; else if (c0.top < l0.top) ui.list.scrollTop -= l0.top - c0.top;
+      }
       if (!state.itemId || state.itemId === sidebarShownItem || !ui.list.querySelector || !ui.list.getBoundingClientRect) return; /* unit-test DOM */
       var cur = ui.list.querySelector('.item-row.current');
       var lr = ui.list.getBoundingClientRect();
