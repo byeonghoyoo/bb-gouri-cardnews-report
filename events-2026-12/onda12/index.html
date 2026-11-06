@@ -7,10 +7,10 @@
   <title>온다 리프팅 · BEAUTY BLOSSOM</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=DM+Serif+Display&amp;display=swap">
-  <link rel="stylesheet" href="onda12.css?v=20261105-onda12d">
-  <script src="copy-data.js?v=20261105-onda12d" defer></script>
-  <script src="../inline-edit.js?v=20261105-onda12d" defer></script>
-  <script src="onda12.js?v=20261105-onda12d" defer></script>
+  <link rel="stylesheet" href="onda12.css?v=20261105-onda12e">
+  <script src="copy-data.js?v=20261105-onda12e" defer></script>
+  <script src="../inline-edit.js?v=20261105-onda12e" defer></script>
+  <script src="onda12.js?v=20261105-onda12e" defer></script>
 </head>
 <body>
 <!-- OND12 온다 · 겨울 시즌 (Korean first), 2026-11-04 rebuild on the completed reference sheet:
@@ -71,9 +71,10 @@
 
     <!-- 2 / 7 : prices FACE, sheet rows 25-31 of 11_lifting B24:K38 in sheet order (title -> card title; DCA, CA options stay together).
          2026-11-05 team comment #9 (re-read: "다시 두장으로 … 글씨가 너무 작아서"): FACE and BODY on two cards again, with larger type than the
-         merged board; #6 the device and the model photo (model-c2.jpg) in the head row; the '의료법상' line once at the bottom of this first price card. -->
+         merged board; #6 the device and the model in the head row (user rule 2026-11-05: a person cutout standing on the sky, its lower body behind the board, no photo box); the '의료법상' line once at the bottom of this first price card. -->
     <section class="card cp c2 cpf" data-card="2" aria-labelledby="od-t2">
       <img class="glint g2" src="assets/dec2/glints.webp" alt="" aria-hidden="true">
+      <img class="cut-model cm-c2" src="assets/model-c2-cut.webp" alt="온다 리프팅 모델" width="709" height="1120">
       <div class="cp-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-fff8e7.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="cp-head">
@@ -83,10 +84,9 @@
             <p class="p-sec"><span class="sec-en" data-copy="od_p_face_en"></span><span class="sec-ko" data-copy="od_p_face_ko"></span></p>
             <p class="period"><span data-copy="od_period"></span></p>
           </div>
-          <figure class="model-slot"><img src="assets/model-c2.jpg" alt="온다 리프팅 모델" width="600" height="800"></figure>
         </div>
-        <p class="p-kj"><span class="kj-k" data-copy="od_p_kj_k"></span><span class="kj-d" data-copy="od_p_kj_d"></span></p>
         <div class="pboard">
+          <p class="p-kj pkj-in"><span class="kj-k" data-copy="od_p_kj_k"></span><span class="kj-d" data-copy="od_p_kj_d"></span></p>
           <ul class="prows">
             <li class="prow" data-price-row="11_lifting:25"><span class="pname"><span class="kjn" data-copy="od_r25_name"></span></span><span class="plist money" data-price-list data-copy="od_r25_list"></span><span class="psale money" data-price-sale data-copy="od_r25_sale"></span></li>
             <li class="prow" data-price-row="11_lifting:26"><span class="pname"><span class="kjn" data-copy="od_r26_name"></span></span><span class="plist money" data-price-list data-copy="od_r26_list"></span><span class="psale money" data-price-sale data-copy="od_r26_sale"></span></li>
@@ -108,8 +108,8 @@
     </section>
 
     <!-- BVARIANT START 2 -->
-    <!-- 2 / 7 B : prices FACE B. Left photo column + right ticket list: a tall arched model frame (assets/model-c2b.jpg, B-only slot) with the
-         real device (B copy onda-t-b.webp) standing over its lower edge; on the right the ONDA heading and one cream ticket with a perforated stub
+    <!-- 2 / 7 B : prices FACE B. Left photo column + right ticket list: a large person cutout of the B-only model cut standing on the sky (no arch frame,
+         user rule 2026-11-05), its right side behind the ticket, the real device (B copy onda-t-b.webp) in front of its lower left; on the right the ONDA heading and one cream ticket with a perforated stub
          per row (energy figure big on the stub, prices on the right). Sheet rows 25-31 in the same order; BODY rows 32-38 stay on card 3 (A and B). -->
     <section class="card ob2" data-card="2" data-variant="b" aria-labelledby="od-t2b">
       <img class="ob-bg" src="assets/tex/sky-deep.jpg" alt="" aria-hidden="true">
@@ -118,7 +118,7 @@
         <header class="ob2-top"><img class="wordmark" src="assets/logo-wordmark-fff8e7.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="ob2-grid">
           <div class="ob2-vis">
-            <figure class="ob2-photo"><img src="assets/model-c2b.jpg?v=a" data-alt="od_alt_model_c2b" alt="" width="600" height="900"></figure>
+            <img class="cut-model cm-c2b" src="assets/model-c2b-cut.webp" data-alt="od_alt_model_c2b" alt="" width="1330" height="1975">
             <img class="ob2-dev" src="assets/onda-t-b.webp" data-alt="od_alt_dev_onda" alt="" width="429" height="912">
           </div>
           <div class="ob2-main ob2-face">
@@ -151,9 +151,10 @@
     <!-- BVARIANT END 2 -->
 
     <!-- 3 / 7 : prices BODY (continued), sheet rows 32-38; the (HIT!) mark of row 36 is the only badge. 2026-11-05 team comments #7 (the hero
-         model, model-c3.jpg = the lead's Higgsfield cut of the same model) and #8 (a large device picture); larger type than the merged board. -->
+         model, the lead's Higgsfield cut of the same model, now a person cutout on the sky behind the board) and #8 (a large device picture); larger type than the merged board. -->
     <section class="card cp c3 cpb" data-card="3" aria-labelledby="od-t3">
       <img class="glint g3" src="assets/dec2/glints.webp" alt="" aria-hidden="true">
+      <img class="cut-model cm-c3" src="assets/model-c3-cut.webp" alt="온다 바디 라인 모델" width="730" height="1120">
       <div class="cp-in">
         <header class="top"><img class="wordmark" src="assets/logo-wordmark-fff8e7.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
         <div class="cp-head">
@@ -163,10 +164,9 @@
             <p class="p-sec"><span class="sec-en" data-copy="od_p_body_en"></span><span class="sec-ko" data-copy="od_p_body_ko"></span></p>
             <p class="period"><span data-copy="od_period"></span></p>
           </div>
-          <figure class="model-slot"><img src="assets/model-c3.jpg" alt="온다 바디 라인 모델" width="600" height="800"></figure>
         </div>
-        <p class="p-area"><span class="area-k" data-copy="od_p_area_k"></span><span class="area-v" data-copy="od_p_area_v"></span></p>
         <div class="pboard">
+          <p class="p-area parea-in"><span class="area-k" data-copy="od_p_area_k"></span><span class="area-v" data-copy="od_p_area_v"></span></p>
           <ul class="prows">
             <li class="prow" data-price-row="11_lifting:32"><span class="pname"><span class="kjn" data-copy="od_r32_name"></span></span><span class="plist money" data-price-list data-copy="od_r32_list"></span><span class="psale money" data-price-sale data-copy="od_r32_sale"></span></li>
             <li class="prow" data-price-row="11_lifting:33"><span class="pname"><span class="kjn" data-copy="od_r33_name"></span></span><span class="plist money" data-price-list data-copy="od_r33_list"></span><span class="psale money" data-price-sale data-copy="od_r33_sale"></span></li>

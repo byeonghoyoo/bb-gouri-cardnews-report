@@ -503,16 +503,18 @@ a[data-link="phone"]{white-space:nowrap}
 @media(min-width:601px) and (max-width:999px){[data-card="3"] span.bb-ba__arrow[data-copy="sw_ba_arrow"]{padding-bottom:.12em!important;}}
 
 /* ---------- 2026-11-05 team comments SOF12 #5 / #4 / #2: card 2 now holds both price tables (rows 42-46, then the 18-21 group in its own tinted box).
-   Head = the device on the left, title in the middle, a model photo slot on the right (no wave-photo card); rows are tighter; '의료법상' once in the foot.
+   Head = the device on the left, title in the middle, the model on the right (no wave-photo card); rows are tighter; '의료법상' once in the foot.
    Source v4/sofwave12/a-card2.css, applied by v4/sofwave12/qa/bvariant/apply-a2.cjs. A rules only (the B card is .c2v and never matches .c2). ---------- */
-.c2-head{grid-template-columns:calc(176*var(--px)) minmax(0,1fr) calc(190*var(--px));align-items:center;margin-top:calc(4*var(--px))}
+.c2-head{grid-template-columns:calc(176*var(--px)) minmax(0,1fr) calc(300*var(--px));align-items:center;margin-top:calc(4*var(--px));min-height:calc(215*var(--px))}
 .c2-devbox{grid-column:1;justify-self:center;margin:0;width:calc(104*var(--px));height:calc(210*var(--px))}
 .c2-dev{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 calc(14*var(--px)) calc(18*var(--px)) rgba(15,56,56,.28))}
 .c2-head .cp-htx{grid-column:2}
-.c2-model{grid-column:3;justify-self:end;margin:0;width:calc(172*var(--px));aspect-ratio:4/5;overflow:hidden;border-radius:calc(24*var(--px));border:calc(4*var(--px)) solid var(--glass-line);
-  background:var(--cream);box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) rgba(90,11,47,.16)}
-/* model slot (temporary crop of the A hero; the lead replaces it with a new Higgsfield cut in the same path and ratio) */
-.c2-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+/* 2026-11-05 user rule (v4/events/BANNER_MODEL_CUTOUT_20261105.md): no photo box. The model is a cutout (assets/model-c2-cut.webp) standing on the
+   card background, large, anchored to the bottom of the head so the glass price board always cuts it at about 70 % of its height (the shoulders);
+   layers: card < model < title, device and board; only a soft berry shadow */
+.c2-cut{position:absolute;z-index:1;right:calc(14*var(--px));bottom:calc(-133*var(--px));display:block;width:auto;height:calc(410*var(--px));pointer-events:none;
+  filter:drop-shadow(0 calc(10*var(--px)) calc(22*var(--px)) rgba(90,11,47,.18))}
+.c2-head .cp-htx,.c2-devbox{position:relative;z-index:3}
 .c2 .kick-s{font-size:calc(54*var(--px)*var(--fit,1))}
 .c2 .pt-main{font-size:calc(98*var(--px)*var(--fit,1))}
 .c2 .p-lead{margin-top:calc(4*var(--px));font-size:max(13px,calc(22*var(--px)))}
@@ -546,9 +548,9 @@ a[data-link="phone"]{white-space:nowrap}
 .pgroup2 .prow{padding:calc(5*var(--px)) 0 calc(9*var(--px))}
 /* phones: the merged card 2 keeps the phone sizes of the old cards 2 and 3 (device, title and photo side by side, small) */
 @container (max-width:600px){
-  .c2-head{grid-template-columns:56px minmax(0,1fr) 80px;column-gap:8px;margin-top:8px}
+  .c2-head{grid-template-columns:56px minmax(0,1fr) 128px;column-gap:8px;margin-top:8px}
   .c2-devbox{width:44px;height:89px}
-  .c2-model{width:80px;border-width:2px;border-radius:12px}
+  .c2-cut{right:6px;bottom:-70px;height:190px}
   .c2 .kick-s{font-size:max(22px,calc(62*var(--px)*var(--fit,1)))}
   .c2 .pt-main{font-size:34px}
   .c2 .p-lead{font-size:13px}

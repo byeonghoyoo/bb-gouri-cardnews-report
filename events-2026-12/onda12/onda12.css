@@ -696,3 +696,48 @@ a[data-link="phone"]{white-space:nowrap}
 /* measured centring for the split price cards (qa/text-center-check.cjs, 1080 and 780) */
 .cpf .pg-sub{padding:calc(.16em + .035em) .7em calc(.18em - .035em)}
 .cpb .area-k{padding:calc(.24em + .024em) .72em calc(.26em - .024em)}
+
+/* ===== 2026-11-05 user rule (v4/events/BANNER_MODEL_CUTOUT_20261105.md): the price-card models are person cutouts standing on the sky, large,
+   their lower body behind the price board (A) or behind the ticket / the card edge (B). No photo box, frame, arch or photo-card shadow; only a
+   soft navy drop shadow. The KJ note (card 2) and the BODY area note (card 3) moved into the board top so no text runs over the model. ===== */
+.cut-model{position:absolute;display:block;width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 calc(16*var(--px)) calc(26*var(--px)) rgba(17,47,85,.22))}
+.cm-c2,.cm-c3{z-index:2}
+.cm-c2{right:calc(4*var(--px));top:calc(54*var(--px));height:calc(560*var(--px))}
+.cm-c3{right:calc(48*var(--px));top:calc(40*var(--px));height:calc(560*var(--px))}
+.cpf .cp-head{grid-template-columns:calc(220*var(--px)) minmax(0,1fr) calc(330*var(--px))}
+.cpb .cp-head{grid-template-columns:calc(230*var(--px)) minmax(0,1fr) calc(300*var(--px))}
+.cpf .pt-main{font-size:calc(118*var(--px))}
+.cpb .pt-main{font-size:calc(104*var(--px))}
+.cpf .g2{right:calc(420*var(--px));top:calc(34*var(--px))}
+.cpb .g3{right:calc(400*var(--px));top:calc(34*var(--px))}
+.pboard .pkj-in,.pboard .parea-in{justify-content:flex-start;margin:0 0 calc(4*var(--px));padding:calc(2*var(--px)) 0 calc(12*var(--px));border-bottom:calc(1.5*var(--px)) solid rgba(17,47,85,.14);text-align:left}
+.pboard .pkj-in .kj-k,.pboard .parea-in .area-k{background:var(--corn);color:var(--corn-ink)}
+.pboard .pkj-in .kj-d{color:var(--maroon);font-size:max(12px,calc(19*var(--px)))}
+.pboard .parea-in .area-v{color:var(--maroon);font-size:max(13px,calc(21*var(--px)))}
+.ob2 .ob2-head,.ob2 .ob2-ticket,.ob2 .ob2-legal{position:relative;z-index:2}
+.cm-c2b{z-index:1;left:calc(-88*var(--px));bottom:calc(-34*var(--px));height:calc(1050*var(--px))}
+.ob2 .ob2-dev{z-index:3;right:auto;left:calc(-40*var(--px));top:auto;bottom:calc(-24*var(--px));height:calc(420*var(--px))}
+.ob2-face .ob2-legal{justify-content:flex-end;gap:calc(30*var(--px))}
+@container (max-width:600px){
+  .cm-c2{right:0;top:16px;height:250px}
+  .cm-c3{right:12px;top:14px;height:260px}
+  .cpf .cp-head{grid-template-columns:80px minmax(0,1fr) 120px}
+  .cpb .cp-head{grid-template-columns:84px minmax(0,1fr) 100px}
+  .cpf .pt-main{font-size:40px}
+  .cpb .pt-main{font-size:34px}
+  .ob2-grid{display:flex;flex-direction:column;row-gap:14px}
+  .ob2-main{display:contents}
+  .ob2-head{order:0}
+  .ob2-vis{order:1;height:300px}
+  .ob2-ticket{order:2}
+  .ob2 .ob2-face .ob2-ticket,.ob2-face .ob2-ticket{margin-top:0}
+  .ob2-legal{order:3}
+  .ob2-face .ob2-legal{justify-content:space-between}
+  .cm-c2b{left:0;bottom:-96px;height:380px}
+  .ob2 .ob2-dev{left:auto;right:4%;bottom:-10px;height:250px}
+}
+@container (max-width:600px){
+  .cpb .p-title{flex-direction:column;gap:4px}
+  .pboard .pkj-in{flex-wrap:nowrap;align-items:flex-start;gap:8px}
+  .pboard .pkj-in .kj-d{flex:1 1 auto;min-width:0}
+}
