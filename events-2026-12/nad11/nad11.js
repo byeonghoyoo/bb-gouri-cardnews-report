@@ -50,21 +50,28 @@ function setHours(el,v){
  el.append(span('hd',m[1]),document.createTextNode(m[2]),span('ht',m[3]));
 }
 /* names that never break inside */
-const KEEP=/(02-336-7511|VAT 10%|49%|11\.06 – 02\.28|NAD 브이트리|셀 리부트|백옥 글로우|비타민 B3\(나이아신\)|비타민 B군|비타민 C|L-카르니틴|NAD\+ 단품|NAD\+|50mg|100mg|건강기능식품|임신·수유|'뷰티블라썸의원'|브이트리1A|삐콤1A|아스코르브산1A|제일팻리스1A)/g;
+/* 2026-11-09: 'NAD 브이트리' is no longer kept whole (it pushed the name out of the narrow kakao B tiles); the team's names of comment #1 are */
+const KEEP=/(02-336-7511|VAT 10%|49%|11\.06 – 02\.28|셀 리부트|백옥 글로우|비타민 B3\(나이아신\)|나이아신\(B3\)|비타민 C|Vitamin B-complex|L-카르니틴|NAD\+ 단품|NAD\+|50mg|100mg|건강기능식품|임신·수유|'뷰티블라썸의원')/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));el.append(span('nw',m[0]));last=m.index+m[0].length;}
  if(last<s.length)el.append(document.createTextNode(s.slice(last)));
 }
 /* widow guard: the last two words of a wrapping line stay together */
-const GUARD='.p-lead,.q-ans,.st-d,.nad-d,.single-d,.c3-note,.care-tx,.notes [data-copy],.ab-lead [data-copy],.dr-quote,.ad,.way-addr > [data-copy],.hrs-note,.pr-d,.pt-d,.pr-n,.pt-n,.h-l2,.ab-title';
-/* price lead: two halves at the first comma (the card A title block shows them as two lines) */
+const GUARD='.p-lead,.q-ans,.st-d,.nad-d,.cmp-d,.single-d,.c3-note,.care-tx,.notes [data-copy],.ab-lead [data-copy],.dr-quote,.ad,.way-addr > [data-copy],.hrs-note,.pr-d,.pt-d,.pr-n,.pt-n,.h-l2,.ab-title';
+/* price lead: two halves at the first comma (the card A title block shows them as two lines). The text is kept exactly: the team's server value
+   (2026-11-07) has no space after the comma, so no space is added; .l1.tight only adds a visual gap where the halves run on one line (B) */
 function setLead(el,v){
  el.textContent='';v=v||'';
- const i=v.indexOf(', ');
- if(i<0){appendKept(el,v);return;}
- const a=span('l1','');appendKept(a,v.slice(0,i+1));const b=span('l2','');appendKept(b,v.slice(i+2));
- el.append(a,document.createTextNode(' '),b);
+ const m=/^([^,]*,)(\s*)(\S[\s\S]*)$/.exec(v);
+ if(!m){appendKept(el,v);return;}
+ const a=span('l1'+(m[2]?'':' tight'),'');appendKept(a,m[1]);const b=span('l2','');appendKept(b,m[3]);
+ el.append(a);if(m[2])el.append(document.createTextNode(m[2]));el.append(b);
+}
+/* card 2 A rows: the composition on one line where it fits, breaking only between the items (each item kept whole) */
+function setCompLine(el,v){
+ el.textContent='';
+ String(v||'').split(' + ').forEach((p,i)=>{if(i)el.append(document.createTextNode(' + '));el.append(span('nw',p));});
 }
 /* card 2 B tiles: the composition as a list, one injection per line (the ' + ' stays in the text at the start of each next line) */
 function setComp(el,v){
@@ -89,6 +96,7 @@ function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
  if(el.classList.contains('p-lead')){setLead(el,v);return;}
  if(el.classList.contains('pt-d')){setComp(el,v);return;}
+ if(el.classList.contains('pr-d')){setCompLine(el,v);return;}
  if(el.matches('.c4 .q-title')){setQ4(el,v);return;}
  if(el.matches('.c3 .q-title')){setQ3(el,v);return;}
  if(el.classList.contains('h-title')||el.classList.contains('p-title')){setTitle(el,v);return;}

@@ -121,13 +121,20 @@ img{max-width:100%}
 .pa-head .p-title{margin-top:calc(10*var(--px))}
 .pa-head .p-lead{margin-top:calc(18*var(--px));max-width:calc(520*var(--px))}
 .pa-head .p-lead .l1,.pa-head .p-lead .l2{display:block}
+.p-lead .l1.tight{margin-right:.3em} /* the team's lead (server value 2026-11-07) has no space after the comma: a visual gap where both halves share a line */
 .pa-p{right:calc(36*var(--px));top:calc(40*var(--px));height:calc(640*var(--px))}
 .pa-board{position:absolute;left:calc(48*var(--px));right:calc(48*var(--px));top:calc(566*var(--px));bottom:calc(48*var(--px));display:flex;flex-direction:column;
   padding:calc(18*var(--px)) calc(44*var(--px)) calc(26*var(--px));border-radius:calc(44*var(--px));background:var(--white);box-shadow:0 calc(14*var(--px)) calc(40*var(--px)) rgba(150,50,85,.14)}
 .prows{list-style:none;padding:0;flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-around}
 .pr{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:calc(24*var(--px));align-items:center;padding:calc(22*var(--px)) 0;border-bottom:calc(2*var(--px)) dashed var(--line)}
 .pr:last-child{border-bottom:0}
+.pr-nl{display:flex;flex-wrap:wrap;align-items:center;column-gap:calc(14*var(--px));row-gap:calc(6*var(--px))}
 .pr-n{font-weight:800;font-size:max(15px,calc(36*var(--px)));line-height:1.3;color:var(--ink)}
+/* BEST / HIT badges (team comments #5 #6, 2026-11-08): next to the name in A, on the top-right corner of the tile in B; outside the price elements */
+.badge{flex:none;display:inline-flex;align-items:center;justify-content:center;padding:.36em .64em;border-radius:999px;background:var(--rose);color:var(--white);
+  font-family:var(--f-disp);font-weight:700;font-size:max(11px,calc(19*var(--px)));line-height:1;letter-spacing:.06em;white-space:nowrap}
+.badge.b-best{background:var(--ink)}
+.pt-badge{position:absolute;z-index:2;right:calc(24*var(--px));top:calc(41*var(--px))}
 .pr-d{margin-top:calc(8*var(--px));font-weight:600;font-size:max(12px,calc(20*var(--px)));line-height:1.45;color:var(--ink-3)}
 .pr-pz{display:flex;align-items:baseline;justify-content:flex-end;gap:calc(16*var(--px))}
 .pr .plist{font-size:max(12px,calc(26*var(--px)))}
@@ -146,7 +153,7 @@ img{max-width:100%}
 .pb .p-title .t2{margin-left:.24em}
 .pb .p-lead{margin-top:calc(16*var(--px))}
 .ptiles{list-style:none;padding:0;flex:1 1 auto;min-height:0;margin-top:calc(36*var(--px));display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,.8fr) minmax(0,1fr);gap:calc(22*var(--px))}
-.pt-orb{position:absolute;z-index:0;right:calc(22*var(--px));top:calc(26*var(--px));width:calc(112*var(--px));height:auto;opacity:.9;pointer-events:none}
+.pt-orb{position:absolute;z-index:0;right:calc(34*var(--px));top:calc(112*var(--px));width:calc(112*var(--px));height:auto;opacity:.9;pointer-events:none} /* 2026-11-09: below the badge corner */
 .pt > p{position:relative;z-index:1}
 .pt{position:relative;display:flex;flex-direction:column;min-width:0;padding:calc(34*var(--px)) calc(34*var(--px)) calc(28*var(--px));border-radius:calc(30*var(--px));background:var(--white);
   box-shadow:0 calc(10*var(--px)) 0 var(--line)}
@@ -168,33 +175,39 @@ img{max-width:100%}
 .q-title{font-weight:800;line-height:1.2;letter-spacing:-.025em;color:var(--ink)}
 .q-ans{font-weight:500;line-height:1.5;color:var(--ink-2)}
 .c3{background:var(--bl-0)}
-.c3 .q-head{margin-top:calc(34*var(--px))}
+.c3 .q-head{margin-top:calc(30*var(--px))}
 .c3 .q-title{margin-top:calc(12*var(--px));font-size:max(24px,calc(60*var(--px)))}
 .c3 .q-title .qa,.c3 .q-title .qb{display:inline}
 .c3 .q-ans{margin-top:calc(14*var(--px));max-width:calc(880*var(--px));font-size:max(12px,calc(24*var(--px)))}
 .c3-d1{right:calc(56*var(--px));top:calc(50*var(--px));width:calc(104*var(--px));transform:rotate(12deg)}
 .c3-d2{right:calc(176*var(--px));top:calc(40*var(--px));width:calc(96*var(--px))}
-.nad{margin-top:calc(32*var(--px));display:grid;grid-template-columns:calc(196*var(--px)) minmax(0,1fr);column-gap:calc(30*var(--px));align-items:center;padding:calc(24*var(--px)) calc(34*var(--px));
+.nad{margin-top:calc(26*var(--px));display:grid;grid-template-columns:calc(172*var(--px)) minmax(0,1fr);column-gap:calc(30*var(--px));align-items:center;padding:calc(24*var(--px)) calc(34*var(--px));
   border-radius:calc(32*var(--px));background:var(--white);box-shadow:0 calc(8*var(--px)) 0 var(--line)}
-.nad-orb{position:relative;width:calc(196*var(--px));height:calc(196*var(--px))}
+.nad-orb{position:relative;width:calc(172*var(--px));height:calc(172*var(--px))}
 .orb-img{position:absolute;inset:0;width:100%;height:100%}
-.orb-k{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-disp);font-weight:800;font-size:calc(44*var(--px));letter-spacing:-.02em;color:var(--rose)}
+.orb-k{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-disp);font-weight:800;font-size:calc(40*var(--px));letter-spacing:-.02em;color:var(--rose)}
 .nad-t{font-weight:800;font-size:max(15px,calc(34*var(--px)));line-height:1.3;color:var(--ink)}
 .nad-d{margin-top:calc(10*var(--px));font-weight:500;font-size:max(12px,calc(23*var(--px)));line-height:1.5;color:var(--ink-2)}
-.single{margin-top:calc(18*var(--px));display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:calc(22*var(--px));align-items:center;padding:calc(20*var(--px)) calc(34*var(--px));
+.single{margin-top:calc(16*var(--px));display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:calc(22*var(--px));align-items:center;padding:calc(20*var(--px)) calc(34*var(--px));
   border-radius:calc(28*var(--px));background:var(--bl-1)}
 .single-t{display:flex;align-items:center;gap:calc(10*var(--px));font-weight:800;font-size:max(14px,calc(30*var(--px)));line-height:1.3;color:var(--ink);white-space:nowrap}
 .single-plus{display:block;flex:none;width:calc(40*var(--px));height:auto}
 .single-d{font-weight:600;font-size:max(12px,calc(23*var(--px)));line-height:1.5;color:var(--ink-2)}
-.cmp{margin-top:calc(30*var(--px));display:flex;flex-direction:column}
+.cmp{margin-top:calc(26*var(--px));display:flex;flex-direction:column}
+/* the team sentence of each drip under its name (comments #2 #3) */
+.cmp-desc{margin-top:calc(14*var(--px));display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(20*var(--px))}
+.cmp-d{padding:0 calc(10*var(--px));font-weight:500;font-size:max(12px,calc(21*var(--px)));line-height:1.5;color:var(--ink-2)}
 .cmp-head{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(20*var(--px))}
 .cmp-col{display:flex;align-items:center;justify-content:center;height:calc(76*var(--px));border-radius:calc(20*var(--px));background:var(--rose);font-weight:800;font-size:max(15px,calc(34*var(--px)));line-height:1;color:var(--white)}
-.cmp-lab{margin-top:calc(24*var(--px));display:flex;justify-content:center;font-weight:700;font-size:max(12px,calc(21*var(--px)));line-height:calc(28*var(--px));color:var(--ink-3)}
+.cmp-lab{margin-top:calc(20*var(--px));display:flex;justify-content:center;font-weight:700;font-size:max(12px,calc(21*var(--px)));line-height:calc(28*var(--px));color:var(--ink-3)}
 .cmp-lab span{display:inline-flex;align-items:center;gap:.5em}
 .cmp-lab span::before,.cmp-lab span::after{content:'';width:calc(60*var(--px));height:calc(2*var(--px));background:var(--bl-3)}
-.cmp-same{list-style:none;padding:0;margin-top:calc(10*var(--px));display:grid;gap:calc(10*var(--px))}
-.cmp-same li,.cmp-diff li{display:flex;align-items:center;justify-content:center;height:calc(70*var(--px));border-radius:calc(18*var(--px));font-size:max(13px,calc(28*var(--px)));line-height:1;white-space:nowrap}
-.cmp-same li{background:var(--white);border:calc(2*var(--px)) solid var(--line);font-weight:700;color:var(--ink)}
+/* shared ingredients: one box across both columns (2026-11-09, was two stacked boxes), a small dot between the two */
+.cmp-same{list-style:none;padding:0 calc(24*var(--px));margin-top:calc(10*var(--px));display:flex;justify-content:center;align-items:center;column-gap:calc(64*var(--px));height:calc(70*var(--px));
+  border-radius:calc(18*var(--px));background:var(--white);border:calc(2*var(--px)) solid var(--line)}
+.cmp-same li{position:relative;display:flex;align-items:center;font-size:max(13px,calc(28*var(--px)));font-weight:700;line-height:1;color:var(--ink);white-space:nowrap}
+.cmp-same li + li::before{content:'';position:absolute;left:calc(-36*var(--px));top:50%;width:calc(8*var(--px));height:calc(8*var(--px));margin-top:calc(-4*var(--px));border-radius:50%;background:var(--pink)}
+.cmp-diff li{display:flex;align-items:center;justify-content:center;height:calc(70*var(--px));border-radius:calc(18*var(--px));font-size:max(13px,calc(28*var(--px)));line-height:1;white-space:nowrap}
 .cmp-diff{margin-top:calc(10*var(--px));display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(20*var(--px))}
 .cmp-diff ul{list-style:none;padding:0;display:grid;gap:calc(10*var(--px))}
 .cmp-diff li{background:var(--bl-1);font-weight:800;color:var(--rose-deep)}
@@ -307,7 +320,8 @@ a[data-link="phone"]{white-space:nowrap}
 .cta > span{position:relative;top:.006em}
 .single-d{position:relative;top:-.045em}
 .cmp-col > span{position:relative;top:.009em}
-.cmp-diff li{padding-bottom:calc(1*var(--px))}
+.cmp-diff li{height:calc(71*var(--px));padding-bottom:calc(1*var(--px))} /* 2026-11-09: odd height so the new names (Vitamin B-complex, L-카르니틴, 백옥주사) centre at 1080 and 780 */
+.cmp-same li{top:-.018em} /* 2026-11-09: the one shared-ingredients box */
 .fact{height:calc(55*var(--px))}
 .fact dt{font-size:max(12px,calc(21*var(--px)));line-height:1}
 /* the board view (780px wide) snaps the small pill text differently: its own offsets */
@@ -331,7 +345,13 @@ a[data-link="phone"]{white-space:nowrap}
   .orb-k{font-size:17px}
   .single{grid-template-columns:minmax(0,1fr);row-gap:4px;padding:10px 14px;border-radius:14px}
   .cmp-col{height:40px;border-radius:12px}
-  .cmp-same li,.cmp-diff li{height:36px;border-radius:10px}
+  .cmp-desc{gap:8px;margin-top:8px}
+  .cmp-d{padding:0 2px}
+  .cmp-same{height:auto;min-height:36px;padding:6px 10px;column-gap:26px;border-radius:10px;flex-wrap:wrap}
+  .cmp-same li + li::before{left:-15px}
+  .cmp-diff li{height:36px;border-radius:10px}
+  .pt-hb .pt-n{padding-right:52px} /* 2026-11-09: room for the BEST / HIT corner badge (the name and badge fonts floor at 15px / 11px here) */
+  .pt-badge{top:calc(34*var(--px) + (max(15px,calc(36*var(--px)))*1.3 - max(11px,calc(19*var(--px)))*1.72)/2)} /* centred on the name's first line with the floored fonts */
   .cmp-diff{gap:8px}
   .cmp-head{gap:8px}
   .c3-foot{margin-top:16px;padding-top:0}
@@ -426,21 +446,42 @@ html[data-size="line"] .pb-head{margin-top:26px}
 html[data-size="line"] .pb .p-lead{margin-top:12px}
 html[data-size="line"] .ptiles{margin-top:24px}
 html[data-size="line"] .pb .p-foot{margin-top:18px}
+html[data-size="line"] .pt-orb{display:none} /* 2026-11-09: the BEST badge takes the tile's top-right corner and the short line tiles have no other free space; as in kakao */
 html[data-size="line"] .pb-d1{right:12px;top:80px;width:200px}
 html[data-size="line"] .pb-d2{left:24px;top:236px;width:90px}
 html[data-size="line"] .pb-d3{right:250px;top:92px;width:66px}
-/* 3: header on top; NAD+ panel and the single doses on the left, the comparison on the right, the note under the left column */
-html[data-size="line"] .c3 .cx-in{padding:40px 56px 36px}
-html[data-size="line"] .c3 .q-head{margin-top:22px}
-html[data-size="line"] .c3 .q-title{margin-top:10px}
-html[data-size="line"] .c3 .q-ans{margin-top:12px;max-width:none}
-html[data-size="line"] .c3 .nad{position:absolute;left:56px;width:544px;top:300px;margin:0;grid-template-columns:150px minmax(0,1fr);column-gap:24px;padding:24px 28px}
-html[data-size="line"] .c3 .nad-orb{width:150px;height:150px}
-html[data-size="line"] .c3 .single{position:absolute;left:56px;width:544px;top:614px;margin:0;grid-template-columns:minmax(0,1fr);row-gap:8px;padding:20px 28px}
-html[data-size="line"] .c3 .cmp{position:absolute;left:630px;right:56px;top:300px;margin:0}
-html[data-size="line"] .c3 .c3-foot{position:absolute;left:56px;width:544px;bottom:40px;margin:0;padding:0}
+/* 3 part 1 (2026-11-09): header, the NAD+ panel (team sentence) and the single doses, larger; part 2 (.c3-l2): the two drips with the team
+   sentences, the shared and the different ingredients, the note */
+html[data-size="line"] .c3 .cx-in{padding:40px 56px 40px}
+html[data-size="line"] .c3 .q-head{margin-top:44px}
+html[data-size="line"] .c3 .q-title{margin-top:12px}
+html[data-size="line"] .c3 .q-ans{margin-top:14px;max-width:none}
+html[data-size="line"] .c3 .nad{margin-top:44px;grid-template-columns:230px minmax(0,1fr);column-gap:40px;padding:34px 44px}
+html[data-size="line"] .c3 .nad-orb{width:230px;height:230px}
+html[data-size="line"] .c3 .orb-k{font-size:54px}
+html[data-size="line"] .c3 .nad-t{font-size:40px}
+html[data-size="line"] .c3 .nad-d{margin-top:14px;font-size:26px}
+html[data-size="line"] .c3 .single{margin-top:24px;padding:28px 44px;column-gap:28px}
+html[data-size="line"] .c3 .single-t{font-size:34px}
+html[data-size="line"] .c3 .single-plus{width:46px}
+html[data-size="line"] .c3 .single-d{font-size:26px}
 html[data-size="line"] .c3-d1{right:52px;top:40px;width:96px}
 html[data-size="line"] .c3-d2{right:168px;top:34px;width:88px}
+html[data-size="line"] .c3:not(.c3-l2) .nad{margin-top:auto}
+html[data-size="line"] .c3:not(.c3-l2) .single{margin-bottom:auto}
+html[data-size="line"] .c3-l2 .cmp{margin-top:auto}
+html[data-size="line"] .c3-l2 .cmp{margin-bottom:auto}
+html[data-size="line"] .c3-l2 .c3-foot{margin-top:24px}
+html[data-size="line"] .c3-l2 .cmp-col{height:84px;font-size:38px}
+html[data-size="line"] .c3-l2 .cmp-desc{margin-top:20px;gap:24px}
+html[data-size="line"] .c3-l2 .cmp-d{font-size:24px}
+html[data-size="line"] .c3-l2 .cmp-lab{margin-top:34px}
+html[data-size="line"] .c3-l2 .cmp-same{margin-top:12px;height:78px}
+html[data-size="line"] .c3-l2 .cmp-diff{margin-top:12px;gap:24px}
+html[data-size="line"] .c3-l2 .cmp-diff ul{gap:12px}
+html[data-size="line"] .c3-l2 .cmp-diff li{height:78px}
+html[data-size="line"] .c3-l2 .c3-d1{right:60px;top:auto;bottom:40px;width:96px}
+html[data-size="line"] .c3-l2 .c3-d2{right:176px;top:auto;bottom:56px;width:84px}
 /* 4: header, the three facts as one row of pills, the model on the left (behind the band), the steps on the right, the care band */
 html[data-size="line"] .c4 .cx-in{padding:40px 56px 0}
 html[data-size="line"] .c4 .q-head{margin-top:18px}
@@ -530,42 +571,58 @@ html[data-size="kakao"] .pa-k1 .pa-head .p-kicker,html[data-size="kakao"] .pa-k2
 html[data-size="kakao"] .pa-k .pa-board{left:40px;right:40px;top:146px;bottom:36px;padding:10px 36px 18px}
 html[data-size="kakao"] .pa-k1 .pa-board{padding:18px 36px 18px}
 html[data-size="kakao"] .pa-k .pr{padding:16px 0}
+html[data-size="kakao"] .pa-k .pr-nl{flex-direction:column;align-items:flex-start} /* 2026-11-09: the BEST / HIT badge sits above the name (the narrow kakao rows have no room beside it) */
+html[data-size="kakao"] .pa-k .badge{order:-1;padding-top:.373em;padding-bottom:.347em} /* text centre (qa/text-center-check.cjs --size kakao) */
 html[data-size="kakao"] .pa-k1 .pa-d1{left:auto;right:10px;top:70px;width:120px;z-index:1}
 html[data-size="kakao"] .pa-k2 .pa-d2{left:auto;right:300px;top:84px;width:64px}
-/* 2 B: part 1 = kicker, two-line title, tiles 13-14; part 2 = tiles 15-16 + 의료법상 line */
+/* 2 B (2026-11-09, three parts as in kakao A): part 1 = kicker, two-line title and the lead line; part 2 = tiles 13-14; part 3 = tiles 15-16 +
+   의료법상 line */
 html[data-size="kakao"] .pb .cp-in{padding:28px 40px 30px}
 html[data-size="kakao"] .pb .top{padding:0}
 html[data-size="kakao"] .pb-head{margin-top:20px}
 html[data-size="kakao"] .pb .p-title .t1,html[data-size="kakao"] .pb .p-title .t2{display:block}
 html[data-size="kakao"] .pb .p-title .t2{margin-left:0}
-html[data-size="kakao"] .pb-k2 .pb-head{margin-top:18px}
+html[data-size="kakao"] .pb-k0 .pb-head{margin-top:62px}
+html[data-size="kakao"] .pb-k0 .p-title{margin-top:14px}
+html[data-size="kakao"] .pb-k0 .p-lead{margin-top:26px}
+html[data-size="kakao"] .pb-k0 .p-lead .l1,html[data-size="kakao"] .pb-k0 .p-lead .l2{display:block}
+html[data-size="kakao"] .pb-k1 .pb-head,html[data-size="kakao"] .pb-k2 .pb-head{margin-top:18px}
 html[data-size="kakao"] .pb .ptiles{margin-top:18px;grid-template-rows:minmax(0,1fr);gap:18px}
 html[data-size="kakao"] .pb .pt{padding:24px 26px 20px}
 html[data-size="kakao"] .pt-orb{display:none}
+html[data-size="kakao"] .pt-badge{right:18px;top:31px}
 html[data-size="kakao"] .pb .p-foot{margin-top:14px;padding:0}
-html[data-size="kakao"] .pb-k1 .pb-d1{right:10px;top:78px;width:140px}
-html[data-size="kakao"] .pb-k1 .pb-d2{left:20px;top:110px;width:76px}
-html[data-size="kakao"] .pb-k2 .pb-d3{right:40px;top:76px;width:60px}
-/* 3: part 1 = header + NAD+ panel; part 2 (.c3-k2) = single doses, comparison, note */
+html[data-size="kakao"] .pb-k0 .pb-d1{right:10px;top:150px;width:150px}
+html[data-size="kakao"] .pb-k0 .pb-d2{left:44px;top:170px;width:84px}
+html[data-size="kakao"] .pb-k0 .pb-d3{right:96px;top:452px;width:66px}
+html[data-size="kakao"] .pb-k0 .pb-d4{left:22px;top:430px;width:120px}
+html[data-size="kakao"] .pb-k1 .pb-d2{left:auto;right:180px;top:84px;width:60px}
+html[data-size="kakao"] .pb-k2 .pb-d3{right:180px;top:84px;width:56px}
+/* 3 (2026-11-09): part 1 = header + NAD+ panel (team sentence); part 2 (.c3-k2) = single doses + the two drips with the team sentences;
+   part 3 (.c3-k3) = the shared and the different ingredients + note */
 html[data-size="kakao"] .c3 .cx-in{padding:28px 40px 26px}
-html[data-size="kakao"] .c3 .q-head{margin-top:18px}
+html[data-size="kakao"] .c3 .q-head{margin-top:16px}
 html[data-size="kakao"] .c3 .q-title{margin-top:8px}
 html[data-size="kakao"] .c3 .q-title .qa,html[data-size="kakao"] .c3 .q-title .qb{display:block}
 html[data-size="kakao"] .c3 .q-ans{margin-top:10px}
-html[data-size="kakao"] .c3 .nad{margin-top:20px;grid-template-columns:150px minmax(0,1fr);column-gap:24px;padding:22px 28px}
+html[data-size="kakao"] .c3 .nad{margin-top:18px;grid-template-columns:150px minmax(0,1fr);column-gap:24px;padding:20px 28px}
 html[data-size="kakao"] .c3 .nad-orb{width:150px;height:150px}
-html[data-size="kakao"] .c3-k2 .single{margin-top:16px;padding:16px 28px}
-html[data-size="kakao"] .c3-k2 .cmp{margin-top:14px}
-html[data-size="kakao"] .c3-k2 .cmp-col{height:52px}
-html[data-size="kakao"] .c3-k2 .cmp-lab{margin-top:10px}
-html[data-size="kakao"] .c3-k2 .cmp-same{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:8px}
-html[data-size="kakao"] .c3-k2 .cmp-same li,html[data-size="kakao"] .c3-k2 .cmp-diff li{height:52px}
-html[data-size="kakao"] .c3-k2 .cmp-diff{gap:18px;margin-top:8px}
-html[data-size="kakao"] .c3-k2 .cmp-diff ul{gap:8px}
-html[data-size="kakao"] .c3-k2 .c3-foot{padding-top:10px}
-html[data-size="kakao"] .c3-k2 .c3-src{margin-top:2px}
+html[data-size="kakao"] .c3-k2 .single{margin-top:24px;padding:18px 28px}
+html[data-size="kakao"] .c3-k2 .cmp{margin-top:24px}
+html[data-size="kakao"] .c3-k2 .cmp-desc{margin-top:16px}
+html[data-size="kakao"] .c3-k2 .cmp-d{font-size:22px}
+html[data-size="kakao"] .c3-k3 .cmp{margin-top:22px}
+html[data-size="kakao"] .c3-k3 .cmp-col{height:64px}
+html[data-size="kakao"] .c3-k3 .cmp-lab{margin-top:16px}
+html[data-size="kakao"] .c3-k3 .cmp-same{margin-top:10px;height:64px}
+html[data-size="kakao"] .c3-k3 .cmp-diff{gap:20px;margin-top:10px}
+html[data-size="kakao"] .c3-k3 .cmp-diff li{height:64px}
+html[data-size="kakao"] .c3-k3 .c3-foot{padding-top:14px}
+html[data-size="kakao"] .c3-k3 .c3-src{margin-top:2px}
 html[data-size="kakao"] .c3-d1{right:40px;top:28px;width:80px}
 html[data-size="kakao"] .c3-d2{right:130px;top:24px;width:74px}
+html[data-size="kakao"] .c3-k2 .c3-d1{right:44px;top:auto;bottom:30px;width:76px}
+html[data-size="kakao"] .c3-k3 .c3-d2{right:40px;top:auto;bottom:28px;width:70px}
 /* 4: part 1 = model on the left, header and facts on the right; part 2 (.c4-k2) = the three steps + the care band */
 html[data-size="kakao"] .c4 .cx-in{padding:28px 30px 0 392px}
 html[data-size="kakao"] .c4 .q-head{margin-top:16px}
