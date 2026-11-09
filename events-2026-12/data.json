@@ -5437,7 +5437,12 @@
           "ox_uibeop": "最高優惠 49%"
         }
       },
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "APT12",
@@ -6518,7 +6523,12 @@
           "ap_uibeop": "最高優惠 49%"
         }
       },
-      "cards": 6
+      "cards": 6,
+      "sizes": [
+        "home",
+        "line",
+        "kakao"
+      ]
     },
     {
       "id": "FV12",

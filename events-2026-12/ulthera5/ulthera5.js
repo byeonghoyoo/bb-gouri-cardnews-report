@@ -55,7 +55,7 @@ function setBig(el,v){
 /* price names: a package line breaks before ' + ' (second device on its own line) */
 function setName(el,v){
  el.textContent='';v=v||'';
- const c=/^(.*\S)(\s+)(\+\s*\S.*)$/.exec(v);
+ const c=/^(.*\S)(\s*)(\+\s*\S.*)$/.exec(v); /* 2026-11-09: also splits when the space before + was deleted (team comment #24) */
  if(c){el.append(span('n1',c[1]),document.createTextNode(c[2]),span('n2',c[3]));return;}
  el.append(span('n1',v));
 }

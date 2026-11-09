@@ -1,0 +1,169 @@
+/* generated from v4/oligio12/sizes/sizes.css by v4/oligio12/sizes/inject-sizes.cjs, edit that file */
+/* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) for OXM12 (oligio12), Korean screen. Becomes site/oligio12/oligio12-sizes.css
+   (inject-sizes.cjs), linked after oligio12.css on this page only; oligio12.css stays as it is. Every rule is inside main.ox and only applies
+   with ?size=line / ?size=kakao, so the home cards (every locale) are unchanged. line 1100x1000 and kakao 800x600 are new compositions of the
+   same elements and copy keys in size-only sections (v4/oligio12/sizes/line.html, kakao.html from gen-sizes.cjs); nothing is cropped or scaled
+   down from the 1080x1350 card. --px is 1px in both sizes, so every type size is at least the 1080 design size. Fixed screens: plain px. */
+html[data-size="line"] main.ox{max-width:none;width:1100px}
+html[data-size="kakao"] main.ox{max-width:none;width:800px}
+html[data-size="line"] main.ox .sheet,html[data-size="kakao"] main.ox .sheet{--px:1px}
+html[data-size="line"] main.ox section[data-size-only]{width:1100px;height:1000px;aspect-ratio:auto}
+html[data-size="kakao"] main.ox section[data-size-only]{width:800px;height:600px;aspect-ratio:auto}
+main.ox [data-size-only]{display:none!important}
+html[data-size="line"] main.ox [data-size-only~="line"],html[data-size="kakao"] main.ox [data-size-only~="kakao"]{display:block!important}
+html[data-size="line"] main.ox [data-size-hide~="line"],html[data-size="kakao"] main.ox [data-size-hide~="kakao"]{display:none!important}
+html[data-size="line"] main.ox .notes,html[data-size="kakao"] main.ox .notes{display:none}
+/* the 1A model as a person cutout (v4/oligio12/a/cut/hero-a.png; its bottom and the lower part of its left side are cut flat, so it stands on the
+   bottom-left corner) on the poster's own navy background, under its lights, shade and words */
+main.ox .sz-model{position:absolute;z-index:0;left:0;bottom:0;display:block;width:auto;max-width:none;height:auto;pointer-events:none}
+
+/* ==================== LINE 1100 x 1000 ==================== */
+html[data-size="line"] main.ox .L1a .sz-model{height:960px}
+html[data-size="line"] main.ox .L1a .p1-device{right:80px;bottom:84px;height:640px}
+html[data-size="line"] main.ox .L1a .p1-glow{right:-40px;bottom:60px;height:700px}
+html[data-size="line"] main.ox .L1a .p1-copy{left:600px;right:44px;top:126px}
+html[data-size="line"] main.ox .L1a .p1-title{bottom:86px}
+html[data-size="line"] main.ox .L1a .p1-contact{bottom:34px}
+html[data-size="line"] main.ox .L1b{--split:550px}
+html[data-size="line"] main.ox .L1b .b1-device{left:420px;bottom:40px;height:560px}
+html[data-size="line"] main.ox .L1b .p1b .season.b1-season,html[data-size="line"] main.ox .L1b .season.b1-season{margin-top:70px}
+/* 2 A: two parts by group (the visual head on part 1, the title on part 2) */
+html[data-size="line"] main.ox .p2-mini{display:block;height:auto}
+html[data-size="line"] main.ox .p2-mini .p2-title{padding-bottom:0}
+/* 2 B: part 1 = groups 1-2 side by side, part 2 = group 3 */
+html[data-size="line"] main.ox .L2b1 .b2-groups{grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-size="line"] main.ox .L2b2 .b2-groups{grid-template-columns:minmax(0,560px);justify-content:center}
+/* 3: the two before / after pairs, a little smaller (pictures only) */
+html[data-size="line"] main.ox .L3 .bb-ba__eyebrow{margin-top:20px}
+html[data-size="line"] main.ox .L3 .bb-ba__rows{margin-top:26px;gap:26px;justify-items:center}
+html[data-size="line"] main.ox .L3 .bb-ba__pair{width:600px}
+/* 4, 5: two parts each */
+html[data-size="line"] main.ox .cardx .cx-head{margin-top:24px}
+
+/* ==================== KAKAO 800 x 600 ==================== */
+html[data-size="kakao"] main.ox .p2-in,html[data-size="kakao"] main.ox .b2-in,html[data-size="kakao"] main.ox .cx-in{padding:24px 40px 22px}
+html[data-size="kakao"] main.ox .pba .bb-ba__inner{padding:24px 40px 22px}
+/* 1 A: part 1 = the model, the device and the title; part 2 = the winter words, the device and the contact */
+html[data-size="kakao"] main.ox .K1a .top{top:24px}
+html[data-size="kakao"] main.ox .K1a1 .sz-model{height:580px}
+html[data-size="kakao"] main.ox .K1a .p1-device{right:60px;bottom:40px;height:470px}
+html[data-size="kakao"] main.ox .K1a1 .p1-title{left:40px;bottom:40px}
+html[data-size="kakao"] main.ox .K1a2 .p1-copy{left:40px;right:306px;top:110px}
+html[data-size="kakao"] main.ox .K1a2 .p1-contact{left:40px;right:auto;bottom:36px;text-align:left}
+/* 1 B: one card (the words on the left, the photo on the right, the device across the split) */
+html[data-size="kakao"] main.ox .K1b{--split:470px}
+html[data-size="kakao"] main.ox .K1b .b1-panel{padding:24px 24px 22px 40px}
+html[data-size="kakao"] main.ox .K1b .season.b1-season{margin-top:36px;min-height:0}
+html[data-size="kakao"] main.ox .K1b .hook.b1-hook{margin-top:22px}
+html[data-size="kakao"] main.ox .K1b .b1-contact{margin-top:20px}
+html[data-size="kakao"] main.ox .K1b .b1-device{left:500px;bottom:20px;height:300px}
+/* 2: one group per part; part 1 has the visual head, the others the title */
+html[data-size="kakao"] main.ox .p2-head{height:200px;grid-template-columns:240px minmax(0,1fr);margin-top:12px}
+html[data-size="kakao"] main.ox .p2-mini{display:block;height:auto;margin-top:12px}
+html[data-size="kakao"] main.ox .p2-mini .p2-title{padding-bottom:0}
+html[data-size="kakao"] main.ox .p2 .card{margin-top:18px}
+html[data-size="kakao"] main.ox .b2-head{margin-top:8px}
+html[data-size="kakao"] main.ox .K2b .b2-groups{grid-template-columns:minmax(0,520px);justify-content:center;margin-top:16px}
+/* 3: one pair per part */
+html[data-size="kakao"] main.ox .K3 .bb-ba__eyebrow{margin-top:14px}
+html[data-size="kakao"] main.ox .K3 .bb-ba__rows{margin-top:16px;justify-items:center}
+html[data-size="kakao"] main.ox .K3 .bb-ba__pair{width:520px}
+html[data-size="kakao"] main.ox .cardx .cx-head{margin-top:14px}
+
+/* ---- line: 6 the clinic (two parts) ---- */
+html[data-size="line"] main.ox .L6 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="line"] main.ox .L61 .bt-about{grid-column:1;grid-row:1}
+html[data-size="line"] main.ox .L61 .ab-photos{height:220px}
+html[data-size="line"] main.ox .L61 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k h" "t h" "n h";grid-template-rows:auto auto 1fr;column-gap:44px;align-content:center;padding:22px 32px}
+html[data-size="line"] main.ox .L61 .bt-hours .bt-k{grid-area:k}
+html[data-size="line"] main.ox .L61 .bt-hours .bt-t{grid-area:t}
+html[data-size="line"] main.ox .L61 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="line"] main.ox .L61 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="line"] main.ox .L62 .bento{grid-template-rows:minmax(0,1fr) auto}
+html[data-size="line"] main.ox .L62 .bt-loc{grid-column:1;grid-row:1;display:grid;grid-template-columns:470px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:36px;padding:24px 32px}
+html[data-size="line"] main.ox .L62 .loc-body{display:contents}
+html[data-size="line"] main.ox .L62 .map{grid-column:1;grid-row:1 / 3;width:470px}
+html[data-size="line"] main.ox .L62 .loc-head{grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;padding-top:8px}
+html[data-size="line"] main.ox .L62 .way{grid-column:2;grid-row:2;align-self:end;margin:0 0 8px}
+html[data-size="line"] main.ox .L62 .bt-book{grid-column:1;grid-row:2;display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-areas:"k row" "t row" "mk row";grid-template-rows:auto auto 1fr;column-gap:44px;padding:24px 32px}
+html[data-size="line"] main.ox .L62 .bt-book .bt-k{grid-area:k}
+html[data-size="line"] main.ox .L62 .bt-book .bt-t{grid-area:t}
+html[data-size="line"] main.ox .L62 .bk-row{grid-area:row;margin-top:0;grid-template-columns:170px minmax(0,1fr);gap:28px}
+html[data-size="line"] main.ox .L62 .bt-book > .wordmark{grid-area:mk;align-self:end;justify-self:start;margin:0}
+
+/* ---- kakao ---- */
+/* the logo titles: the transparent word over the logo keeps its 1080 size (its box may run past the column; the logo itself is unchanged) */
+html[data-size="kakao"] main.ox .K1a1 .p1-title .t-wrap{width:auto;margin-right:-120px}
+html[data-size="kakao"] main.ox .K2a1 .p2-title .t-wrap,html[data-size="kakao"] main.ox .K2b1 .b2-title .t-wrap{width:auto;margin-right:-220px}
+html[data-size="kakao"] main.ox .K2a1 .p2-photo{width:142px;height:170px}
+html[data-size="kakao"] main.ox .K2a1 .p2-device{left:118px;height:176px}
+html[data-size="kakao"] main.ox .K2a1 .p2-glow{left:90px;height:180px}
+/* 2 A: a shorter head and tighter rows; a narrower price column so the option names keep the 1080 size on one line */
+html[data-size="kakao"] main.ox .p2-head{height:170px}
+html[data-size="kakao"] main.ox .p2 .card{padding:18px 20px 10px 50px}
+html[data-size="kakao"] main.ox .p2 .row{min-height:46px;column-gap:14px}
+html[data-size="kakao"] main.ox .p2 .price{min-width:110px}
+html[data-size="kakao"] main.ox .p2 .grp-head{margin-bottom:2px}
+/* 2 B: one group per part across the card, each option on one line (name left, prices right) */
+html[data-size="kakao"] main.ox .K2b .b2-groups{grid-template-columns:minmax(0,1fr)}
+html[data-size="kakao"] main.ox .K2b1 .b2-device{height:120px}
+html[data-size="kakao"] main.ox .K2b .b2-grp{padding:14px 26px 4px}
+html[data-size="kakao"] main.ox .K2b .b2-gh{flex-direction:row;justify-content:center;min-height:0;padding-bottom:10px}
+html[data-size="kakao"] main.ox .K2b .b2-r{display:flex;align-items:baseline;justify-content:space-between;column-gap:20px;padding:12px 0 11px}
+html[data-size="kakao"] main.ox .K2b .b2-p{margin-top:0;flex:none}
+/* 4: part 1 = the question, the device and the two modes side by side; part 2 = the depth diagram */
+html[data-size="kakao"] main.ox .K41 .c3-mid{grid-template-columns:170px minmax(0,1fr);gap:24px;margin-top:18px;min-height:0}
+html[data-size="kakao"] main.ox .K41 .c3-device{max-height:260px}
+html[data-size="kakao"] main.ox .K41 .c3-energy{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+html[data-size="kakao"] main.ox .K41 .en{padding:20px 22px}
+html[data-size="kakao"] main.ox .K42 .c3-depth{margin-top:16px;padding:14px 24px 10px}
+html[data-size="kakao"] main.ox .K42 .depth-note{margin-top:8px}
+/* 5: part 1 = the question, the photo and steps 1-2; part 2 = steps 3-4 and the tips; part 3 = the title and the three notes */
+html[data-size="kakao"] main.ox .K51 .c4-mid{grid-template-columns:230px minmax(0,1fr);gap:28px;margin-top:18px}
+html[data-size="kakao"] main.ox .K52 .c4-mid{grid-template-columns:1fr;margin-top:30px;flex:none}
+html[data-size="kakao"] main.ox .K52 .c4-parts{margin-top:26px}
+html[data-size="kakao"] main.ox .K53 .c4-info{margin-top:26px}
+/* 6: three parts. part 1 = about intro, the director and the photos; part 2 = strengths + hours; part 3 = location | booking */
+html[data-size="kakao"] main.ox .K6 .cx-in{padding:22px 30px 20px}
+html[data-size="kakao"] main.ox .K6 .bento{margin-top:12px}
+html[data-size="kakao"] main.ox .K61 .bento{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] main.ox .K61 .bt-about{display:flex;flex-direction:column;padding:20px 26px}
+html[data-size="kakao"] main.ox .K61 .ab-top{grid-template-columns:minmax(0,1fr) 206px;grid-template-rows:auto auto;column-gap:16px}
+html[data-size="kakao"] main.ox .K61 .dr{display:contents}
+html[data-size="kakao"] main.ox .K61 .ab-intro{grid-column:1;grid-row:1;padding:0 0 10px}
+html[data-size="kakao"] main.ox .K61 .dr-tx{grid-column:1;grid-row:2;text-align:left;padding:0 0 6px}
+html[data-size="kakao"] main.ox .K61 .dr-img{grid-column:2;grid-row:1 / 3;align-self:end}
+html[data-size="kakao"] main.ox .K61 .ab-photos{flex:1 1 auto;height:auto;min-height:140px}
+html[data-size="kakao"] main.ox .K62 .bento{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+html[data-size="kakao"] main.ox .K62 .bt-str{grid-column:1;grid-row:1;padding:20px 26px 22px}
+html[data-size="kakao"] main.ox .K62 .ab-strengths{margin-top:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+html[data-size="kakao"] main.ox .K62 .dots{display:none}
+html[data-size="kakao"] main.ox .K62 .bt-hours{grid-column:1;grid-row:2;display:grid;grid-template-columns:210px minmax(0,1fr);grid-template-areas:"k h" "t h" ". n";column-gap:30px;align-content:center}
+html[data-size="kakao"] main.ox .K62 .bt-hours .bt-k{grid-area:k}
+html[data-size="kakao"] main.ox .K62 .bt-hours .bt-t{grid-area:t}
+html[data-size="kakao"] main.ox .K62 .hrs{grid-area:h;margin:0;padding:0;align-self:center}
+html[data-size="kakao"] main.ox .K62 .hrs-note{grid-area:n;margin:8px 0 0}
+html[data-size="kakao"] main.ox .K63 .bento{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+html[data-size="kakao"] main.ox .K63 .bt-loc{grid-column:1;grid-row:1}
+html[data-size="kakao"] main.ox .K63 .bt-book{grid-column:2;grid-row:1}
+html[data-size="kakao"] main.ox .K63 .map{width:100%}
+html[data-size="kakao"] main.ox .K63 .bk-row{flex:none;grid-template-columns:124px minmax(0,1fr);grid-template-areas:"qr links" "ph ph";row-gap:12px;align-items:center}
+html[data-size="kakao"] main.ox .K63 .bk-text{display:contents}
+html[data-size="kakao"] main.ox .K63 .qr{grid-area:qr}
+html[data-size="kakao"] main.ox .K63 .bk-links{grid-area:links}
+html[data-size="kakao"] main.ox .K63 .bk-phone{grid-area:ph;margin-top:0}
+html[data-size="kakao"] main.ox .K63 .bt-book > .wordmark{margin:auto 0 0 auto}
+/* text snaps to whole pixels: on the before / after part 2 card the tags and the arrow (whose home padding is !important) drew their text
+   about 0.7 px high, the second step number 0.5 px low */
+html[data-size="kakao"] main.ox .K32 figcaption.bb-ba__tag{padding-top:calc(0.49067em + 1px)!important;padding-bottom:calc(0.48933em - 1px)!important}
+html[data-size="kakao"] main.ox .K32 span.bb-ba__arrow{padding-top:1px!important;padding-bottom:calc(.23em - 1px)!important}
+html[data-size="kakao"] main.ox .K51 .steps li:nth-child(2) .sb{margin-bottom:1px}
+/* type pictures keep their 1080 size: the 2 A group-2 title picture (626 px at the 1080 height) gets a box of its own width on line (the home look:
+   left after the icon), and on kakao the card runs 26 px further right (the badges hang off its left side) so the picture fits; the 1 A part 2
+   copy column is wide enough for the hook picture at its 1080 size */
+html[data-size="line"] main.ox .L2a .grp-title[data-copy="ox_g2_title"]{flex:0 0 640px}
+html[data-size="kakao"] main.ox .K2a .card,html[data-size="kakao"] main.ox .K2a .p2-foot{margin-right:-26px}
+/* ==== tc-fix: text snaps to whole pixels, so a few chips need their text or box moved at their size-card position (generated from
+   v4/oligio12/sizes/tcfix.json by the text-centre fixer; same box size) ==== */
+html[data-size="line"] main.ox section[data-size-only][data-card="2"][data-variant="b"][data-part="1"] span.b2-badge[data-copy="ox_r8_badge"]{padding-top:2.29px;padding-bottom:1.19px}
+/* ==== /tc-fix ==== */

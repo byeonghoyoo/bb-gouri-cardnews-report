@@ -11,6 +11,7 @@
     + 'html.bb-inline [data-inline]:hover{outline:2px solid rgba(47,107,255,.45);outline-offset:3px}'
     + 'html.bb-inline [data-inline]:focus{outline:2px solid #2f6bff;outline-offset:3px}'
     + '[data-inline].bb-ml{white-space:pre-wrap!important}'
+    + '.bb-gap{display:none!important}'
     + '[data-inline].bb-saving{outline:2px dashed #2f6bff!important;outline-offset:3px}'
     + '[data-inline].bb-saved{outline:2px solid #16a34a!important;outline-offset:3px}'
     + '[data-inline].bb-error{outline:2px dashed #dc2626!important;outline-offset:3px}'
@@ -90,6 +91,24 @@
     }
     function hideTip() { win.clearTimeout(tipTimer); if (tip) tip.hidden = true; }
 
+    /* 2026-11-09: Chrome edits plaintext-only copy with white-space:pre-wrap, so the space or line break a page leaves
+       between two block spans (a two-line name, a split title) shows as an empty line in the board's editing view only
+       (team comment ULT5 #25 "행간이 너무 넓다"; the downloaded images never had it). That separator goes into a hidden
+       span: the empty line is gone, the saved text (textOf) is unchanged and a stray Backspace can no longer eat it. */
+    var BLOCKISH = /^(block|flex|grid|table|list-item|flow-root)/;
+    function hideGaps(root) {
+      (function walk(el) {
+        for (var c = el.firstChild; c; c = c.nextSibling) {
+          if (c.nodeType === 1) { if (c.className !== 'bb-gap' && c.firstChild) walk(c); continue; }
+          if (c.nodeType !== 3 || !c.nodeValue || /\S/.test(c.nodeValue)) continue;
+          var p = c.previousSibling;
+          if (!p || p.nodeType !== 1 || p.className === 'bb-gap' || !BLOCKISH.test(win.getComputedStyle(p).display || '')) continue;
+          var s = doc.createElement('span'); s.className = 'bb-gap'; s.setAttribute('aria-hidden', 'true');
+          el.insertBefore(s, c); s.appendChild(c); c = s;
+        }
+      })(root);
+    }
+
     /* called by the page after every render: every copy becomes editable while the shared server is connected */
     function sync(editable) {
       on = editable === true;
@@ -103,6 +122,7 @@
           if (el.getAttribute('spellcheck') !== 'false') el.setAttribute('spellcheck', 'false');
           var title = isMulti(key, str(raw(key))) ? TIP_MULTI : TIP_ONE;
           if (el.title !== title) el.title = title;
+          if (!(cur && cur.el === el)) hideGaps(el);
         } else if (el.hasAttribute('data-inline') && !(cur && cur.el === el)) {
           el.removeAttribute('contenteditable'); el.removeAttribute('data-inline'); el.removeAttribute('spellcheck');
           if (el.title === TIP_ONE || el.title === TIP_MULTI) el.removeAttribute('title');
@@ -172,6 +192,20 @@
       if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); cur.cancel = true; leave(cur); return; }
       if (e.key === 'Enter' && (!cur.ml || e.ctrlKey || e.metaKey)) { e.preventDefault(); leave(cur); }
     }
+    /* 2026-11-09 user: "잘못 수정했을 때 되돌리기 가능하게 컨트롤+Z". While the text being typed differs from the saved
+       text, Ctrl+Z is the browser's own typing undo. Otherwise Ctrl+Z (Cmd+Z) asks the board to undo the last saved
+       change, and Ctrl+Shift+Z / Ctrl+Y redoes it; the board writes it back to the shared server. */
+    function onUndoKey(e) {
+      if (!on || !(e.ctrlKey || e.metaKey) || e.altKey) return;
+      var k = e.key || '', z = e.code === 'KeyZ' || k === 'z' || k === 'Z', y = e.code === 'KeyY' || k === 'y' || k === 'Y';
+      if (!z && !y) return;
+      if (cur && (textOf(cur.el) !== cur.base || cur.el.classList.contains('bb-error'))) return;
+      var t = e.target && e.target.nodeType === 1 ? e.target : null;
+      if (!cur && t && t.closest && t.closest('input,textarea,select')) return;
+      e.preventDefault();
+      if (cur) { cur.cancel = true; leave(cur); }
+      send({ type: (y || e.shiftKey) ? 'aptos-redo' : 'aptos-undo' });
+    }
     function onInput(e) {
       if (!cur || !cur.el.contains(e.target)) return;
       cur.dirty = true;
@@ -210,7 +244,7 @@
       if (msg.ok) {
         el.classList.add('bb-saved');
         win.setTimeout(function () { el.classList.remove('bb-saved'); }, 1400);
-        if (!cur) showTip(el, '저장됨', 'ok', 1600);
+        if (!cur) showTip(el, '저장됨 · 잘못 고쳤으면 Ctrl+Z', 'ok', 2600);
       } else {
         drafts[msg.field] = { el: el, value: s.value };
         el.textContent = s.value; el.classList.add('bb-error');
@@ -230,6 +264,7 @@
 
     doc.addEventListener('focusin', onFocusIn, true);
     doc.addEventListener('focusout', onFocusOut, true);
+    doc.addEventListener('keydown', onUndoKey, true);
     doc.addEventListener('keydown', onKeyDown, true);
     doc.addEventListener('input', onInput, true);
     doc.addEventListener('paste', onPaste, true);

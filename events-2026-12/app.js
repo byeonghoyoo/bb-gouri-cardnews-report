@@ -23,7 +23,7 @@
   var ID_RE = /^[A-Za-z0-9]+$/;
   var LOCALE_RE = /^[A-Z]{2}$/;
   /* v4 (2026-11-04, v4/events/BOARD_V4_PLAN.md): mode tabs, hero/2nd-section A/B, pinned comments, beauty-app tab */
-  var BOARD_V = '20261106-v4h'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
+  var BOARD_V = '20261109-v4i'; /* 2026-11-06: left review list scrolls on its own and reveals the current item */
   var PAGE_V = '&v=20261104-v4a'; /* cache version of the own-page iframes (qa/v2-cache.test.cjs) */
   var VARIANT_SLOTS = [1, 2];
   var COMMENT_SAVE_MS = 800;
@@ -433,6 +433,13 @@
     };
     var ui = {};
     var capi = createCommentApi({ api: env.api || DEFAULT_API, fetch: env.fetch });
+    /* 2026-11-09 user: "잘못 수정했을 때 되돌리기 가능하게 컨트롤+Z" (a team member merged two lines of a price name by mistake and
+       could not get them back). Wording saved from this tab (in-place page edits and the edit dialog) is remembered here;
+       Ctrl+Z writes the previous text back to the shared server and Ctrl+Shift+Z / Ctrl+Y writes it again. A change somebody
+       else saved afterwards is never overwritten (the cell revision must still be ours). Kept per tab in sessionStorage. */
+    var UNDO_KEY = 'bb-review-undo-v1', UNDO_MAX = 50;
+    state.undo = { done: [], redo: [] }; state.undoBusy = false;
+    try { var undo0 = env.session && JSON.parse(env.session.getItem(UNDO_KEY) || 'null'); if (undo0 && Array.isArray(undo0.done) && Array.isArray(undo0.redo)) state.undo = { done: undo0.done.slice(-UNDO_MAX), redo: undo0.redo.slice(-UNDO_MAX) }; } catch (e) { /* start with an empty history */ }
     var win0 = doc.defaultView || null; /* null in the unit-test DOM */
 
     try { state.author = (env.storage && env.storage.getItem(AUTHOR_KEY)) || ''; } catch (e) { state.author = ''; }
@@ -441,6 +448,50 @@
     function item() { return state.data && state.data.items.filter(function (i) { return i.id === state.itemId && !store.isDeleted(i.id); })[0]; }
     function localeObj(id) { return state.data.locales.filter(function (l) { return l.id === id; })[0]; }
     function origin() { return (env.location && env.location.origin) || ''; }
+
+    function keepUndo() { try { if (env.session) env.session.setItem(UNDO_KEY, JSON.stringify(state.undo)); } catch (e) { /* storage blocked: the history still works in this page */ } }
+    function rememberEdit(e) {
+      if (!e || e.before === e.after) return;
+      state.undo.done.push(e); if (state.undo.done.length > UNDO_MAX) state.undo.done.shift();
+      state.undo.redo = []; keepUndo();
+    }
+    function shortText(v) { v = String(v == null ? '' : v).replace(/\s+/g, ' ').trim(); return v ? (v.length > 18 ? v.slice(0, 17) + '…' : v) : '(빈 칸)'; }
+    function itemName(id) { var it = state.data && state.data.items.filter(function (i) { return i.id === id; })[0]; return it && it.label ? it.label : id; }
+    function refreshAfterUndo(itemId) {
+      if (state.aptos && state.aptos.itemId === itemId) postAptosData();
+      else if (state.itemId === itemId && !state.aptos) renderPreview();
+      renderSidebar(); renderStatus();
+    }
+    /* one step back (redo=false) or forward (redo=true) through this tab's saved wording changes */
+    function stepUndo(redo) {
+      var from = redo ? state.undo.redo : state.undo.done, to = redo ? state.undo.done : state.undo.redo;
+      var e = from[from.length - 1];
+      if (!e) { toast(redo ? '다시 적용할 수정이 없습니다.' : '되돌릴 수정이 없습니다. (이 창에서 저장한 문구만 되돌릴 수 있습니다)', 'error'); return Promise.resolve(false); }
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 되돌릴 수 없습니다.', 'error'); return Promise.resolve(false); }
+      if (state.saving > 0 || state.undoBusy) { toast('저장 중입니다. 잠시 뒤 다시 눌러 주세요.', 'error'); return Promise.resolve(false); }
+      var cell = store.get(e.key), rev = redo ? e.undoRev : e.afterRev;
+      if (!cell || cell.revision !== rev) {
+        from.pop(); keepUndo(); renderStatus();
+        toast('그 뒤에 다른 사람이 같은 문구를 고쳐서 ' + (redo ? '다시 적용하지' : '되돌리지') + ' 않았습니다: ' + itemName(e.itemId), 'error');
+        return Promise.resolve(false);
+      }
+      var value = redo ? e.after : e.before;
+      state.undoBusy = true; state.saving++; renderStatus();
+      return store.save(e.key, value, by(), { baseRevision: cell.revision }).then(function (r) {
+        state.undoBusy = false; state.saving--;
+        if (r.ok) {
+          from.pop();
+          if (redo) e.afterRev = r.cell.revision; else e.undoRev = r.cell.revision;
+          to.push(e); keepUndo();
+          toast((redo ? '다시 적용했습니다: ' : '되돌렸습니다: ') + itemName(e.itemId) + ' · "' + shortText(value) + '"' + (redo ? '' : ' (다시 적용 Ctrl+Shift+Z)'), 'ok');
+        } else if (r.reason === 'conflict') { store.adopt(e.key, r.current); from.pop(); keepUndo(); toast('그 뒤에 다른 사람이 같은 문구를 고쳐서 바꾸지 않았습니다.', 'error'); }
+        else toast('서버에 저장되지 않았습니다. (' + reasonMessage(r) + ')', 'error');
+        refreshAfterUndo(e.itemId);
+        return r.ok;
+      });
+    }
+    function undoLast() { return stepUndo(false); }
+    function redoLast() { return stepUndo(true); }
 
     function toast(msg, kind) {
       if (!ui.toast) return;
@@ -564,6 +615,9 @@
       var kids = [H('span', { class: 'dot' }), H('span', { text: STATUS_TEXT[s] })];
       if (s === 'ready' && store.lastSync) kids.push(H('span', { class: 'sync-time', text: ' · 확인 ' + store.lastSync.toLocaleTimeString('ko-KR') }));
       if (s === 'locked') kids.push(H('button', { type: 'button', class: 'btn small', 'data-action': 'retry-connect', text: '다시 연결', onclick: retryConnect }));
+      var lastDone = state.undo.done[state.undo.done.length - 1], lastUndone = state.undo.redo[state.undo.redo.length - 1];
+      if ((s === 'ready' || s === 'saving' || s === 'offline') && lastDone) kids.push(H('button', { type: 'button', class: 'btn small undo-btn', 'data-action': 'undo', title: '마지막 문구 수정 되돌리기 (Ctrl+Z) · ' + itemName(lastDone.itemId) + ' "' + shortText(lastDone.after) + '" → "' + shortText(lastDone.before) + '"', text: '↶ 되돌리기', onclick: function () { undoLast(); } }));
+      if ((s === 'ready' || s === 'saving' || s === 'offline') && lastUndone) kids.push(H('button', { type: 'button', class: 'btn small undo-btn', 'data-action': 'redo', title: '되돌린 수정 다시 적용 (Ctrl+Shift+Z)', text: '↷ 다시 적용', onclick: function () { redoLast(); } }));
       if (env.apiOverride) kids.push(H('span', { class: 'api-override', text: '시험 서버: ' + env.apiOverride }));
       ui.status.setAttribute('data-state', s);
       ui.status.replaceChildren.apply(ui.status, kids);
@@ -804,7 +858,7 @@
       renderPreview(); renderStatus();
       return store.save(ed.key, ed.draft, by(), { baseRevision: ed.baseRevision }).then(function (r) {
         state.saving--;
-        if (r.ok) { state.editor = null; toast('서버에 저장되었습니다.', 'ok'); }
+        if (r.ok) { state.editor = null; rememberEdit({ key: ed.key, itemId: ed.itemId, locale: ed.locale, field: ed.field, before: ed.original, after: ed.draft, afterRev: r.cell.revision, at: Date.now() }); toast('서버에 저장되었습니다. 잘못 고쳤으면 Ctrl+Z로 되돌릴 수 있습니다.', 'ok'); }
         else if (r.reason === 'conflict') { ed.status = 'conflict'; ed.conflict = r.current || {}; ed.message = ''; }
         else { ed.status = 'error'; ed.message = '미저장: ' + reasonMessage(r) + ' 입력한 내용은 그대로 남아 있습니다.'; }
         renderPreview(); renderSidebar(); renderStatus();
@@ -1138,6 +1192,8 @@
       else if(d.type==='aptos-editing' && typeof d.field==='string'){var k=cellKey(a.itemId,a.locale,d.field);var c=store.get(k);a.editing={field:d.field,key:k,baseRevision:c?c.revision:0};}
       else if(d.type==='aptos-edit-cancel'){a.editing=null;}
       else if (d.type === 'aptos-edit') handleAptosEdit(a, d);
+      else if (d.type === 'aptos-undo') undoLast();
+      else if (d.type === 'aptos-redo') redoLast();
     }
     function handleAptosEdit(a, d) {
       var it = state.data.items.filter(function (i) { return i.id === a.itemId; })[0];
@@ -1151,10 +1207,11 @@
       if (!defs || typeof d.field !== 'string' || !Object.prototype.hasOwnProperty.call(defs, d.field) || typeof d.value !== 'string') { if (live) postAptosData(); ack(false, '알 수 없는 필드이거나 값 형식이 올바르지 않습니다.'); return Promise.resolve(); }
       if (d.value.length > MAX_LEN) { if (live) postAptosData(); ack(false, '2000자를 넘어 저장할 수 없습니다.'); return Promise.resolve(); }
       var key = cellKey(it.id, a.locale, d.field);
+      var before = store.value(key, defs[d.field] == null ? '' : String(defs[d.field]));
       state.saving++; renderStatus();
       return store.save(key, d.value, by(), a.editing && a.editing.field===d.field ? {baseRevision: a.editing.baseRevision} : {}).then(function (r) {
         state.saving--;
-        if (r.ok) {if(!a.inline||(a.editing&&a.editing.field===d.field))a.editing=null;toast('서버에 저장되었습니다.', 'ok');}
+        if (r.ok) {if(!a.inline||(a.editing&&a.editing.field===d.field))a.editing=null;rememberEdit({ key: key, itemId: it.id, locale: a.locale, field: d.field, before: before, after: d.value, afterRev: r.cell.revision, at: Date.now() });toast('서버에 저장되었습니다. 잘못 고쳤으면 Ctrl+Z로 되돌릴 수 있습니다.', 'ok');}
         else if (r.reason === 'conflict') { store.adopt(key, r.current); if(a.editing)a.editing.baseRevision=r.current.revision; toast('다른 사람이 먼저 수정했습니다. 최신 문구를 불러왔습니다.', 'error'); }
         else toast('서버에 저장되지 않았습니다.', 'error');
         if (a === state.aptos) postAptosData(); else if (r.ok) renderSidebar();
@@ -2075,6 +2132,16 @@
       if (!doc.addEventListener) return;
       doc.addEventListener('mousedown', function (e) { if (ui.ctx && !ui.ctx.hidden && !(ui.ctx.contains && ui.ctx.contains(e.target))) hideCtx(); }, true);
       doc.addEventListener('keydown', function (e) { if (e.key === 'Escape') { hideCtx(); if (ui.lightbox && !ui.lightbox.hidden) closeLightbox(); else closeFinal(); } });
+      /* Ctrl+Z / Cmd+Z: undo this tab's last saved wording change; Ctrl+Shift+Z / Ctrl+Y: redo. Text boxes keep their own undo. */
+      doc.addEventListener('keydown', function (e) {
+        if (!(e.ctrlKey || e.metaKey) || e.altKey) return;
+        var k = e.key || '', z = e.code === 'KeyZ' || k === 'z' || k === 'Z', y = e.code === 'KeyY' || k === 'y' || k === 'Y';
+        if (!z && !y) return;
+        var t = e.target && e.target.nodeType === 1 ? e.target : null;
+        if (state.editor || (t && t.closest && t.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"])'))) return;
+        e.preventDefault();
+        if (y || e.shiftKey) redoLast(); else undoLast();
+      });
       /* a link dropped outside a comment card must not navigate the board away (unsaved drafts would be lost) */
       doc.addEventListener('dragover', function (e) { var ty = dtTypes(e.dataTransfer); if (ty.indexOf('text/uri-list') >= 0 || ty.indexOf('Files') >= 0) e.preventDefault(); });
       doc.addEventListener('drop', function (e) {
@@ -2795,10 +2862,12 @@
     try { win.localStorage.getItem(AUTHOR_KEY); storage = win.localStorage; } catch (e) {
       storage = { getItem: function (k) { return k in memory ? memory[k] : null; }, setItem: function (k, v) { memory[k] = String(v); } };
     }
+    var session = null;
+    try { win.sessionStorage.getItem('bb-review-undo-v1'); session = win.sessionStorage; } catch (e) { session = null; }
     var apiOverride = apiFromSearch(win.location && win.location.search);
     var app = createApp({
       document: doc, root: doc.getElementById('app'),
-      fetch: win.fetch.bind(win), api: apiOverride || win.REVIEW_API || DEFAULT_API, apiOverride: apiOverride, storage: storage, location: win.location,
+      fetch: win.fetch.bind(win), api: apiOverride || win.REVIEW_API || DEFAULT_API, apiOverride: apiOverride, storage: storage, session: session, location: win.location,
       replaceHash: function (hash) { try { win.history.replaceState(null, '', hash); } catch (e) { /* ignore */ } },
       addMessageListener: function (fn) { win.addEventListener('message', fn); },
       setInterval: function (fn, ms) { return win.setInterval(fn, ms); },
