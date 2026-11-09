@@ -17,6 +17,24 @@ html[data-size="line"] main.p-c [data-size-hide~="line"],html[data-size="kakao"]
    yellow texture of the other cards (the home hero photo has its backdrop baked in, so it is not used here) */
 main.p-c .sz-model{position:absolute;z-index:1;display:block;width:auto;max-width:none;height:auto;pointer-events:none}
 
+/* ==== 2026-11-09 team comments (qa/feedback-20261109/CMB12C.json), home and every size; this page only (combo12c.css is the bundle file) ==== */
+/* 1 A (board #7): the Potenza device photo the team attached, lower left of the photo, its base just behind the cream band */
+main.p-c .c1 .h-dev{position:absolute;z-index:3;left:calc(34*var(--px));bottom:calc(150*var(--px));display:block;width:calc(330*var(--px));max-width:none;height:auto;pointer-events:none;filter:drop-shadow(0 calc(16*var(--px)) calc(22*var(--px)) rgba(47,59,12,.3))}
+/* 2 A (board #8): the hero model (the same cutout as the size heroes, whole and uncropped) at the top right, standing behind the price board:
+   the board follows 22 px below this zero-height holder and hides her from the chest down, so only her head and shoulders show (the board is
+   opaque here, the colour it already had over the texture, so nothing shows through) */
+main.p-c .c2:not(.b-tickets) .c2-mod{position:relative;z-index:2;height:0}
+main.p-c .c2:not(.b-tickets) .c2-model{position:absolute;right:calc(40*var(--px));bottom:calc(-160*var(--px));display:block;width:calc(300*var(--px));height:auto;max-width:none;pointer-events:none}
+main.p-c .c2:not(.b-tickets) .pboard{background:#FFFAEE}
+main.p-c .c2:not(.b-tickets) .dkb1{right:auto;left:calc(396*var(--px));top:calc(150*var(--px))}
+/* 2 A (board #9): the period moved from the top right to the lower right, after the VAT line */
+main.p-c .c2:not(.b-tickets) .cp-foot{column-gap:calc(18*var(--px))}
+main.p-c .c2:not(.b-tickets) .cp-foot .period{margin-top:calc(12*var(--px))}
+/* 2 A / 2 B (board #10, #12-#14): BEST / HIT right before the option name, in the same line (the option keeps wrapping only at its + signs) */
+main.p-c .c2 .pn:has(> .badge) > .popt{display:inline}
+main.p-c .c2 .pn > .badge{display:inline-flex;align-items:center;justify-content:center;vertical-align:.14em;margin-right:calc(10*var(--px));padding:.345em .72em .275em;border-radius:999px;background:var(--ink);color:var(--butter);font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.1;letter-spacing:.08em;white-space:nowrap}
+main.p-c .c2 .pn > .badge:empty{display:none}
+
 /* ==================== LINE 1100 x 1000 ==================== */
 /* 1 A: the model on the left standing on the band, the speech bubble by her face, the title on the right, the band at the bottom */
 html[data-size="line"] main.p-c .L1a .sz-model{left:30px;bottom:0;height:900px}
@@ -160,3 +178,33 @@ html[data-size="line"] main.p-c .L52 .way-line{margin-top:-1px}
 html[data-size="kakao"] main.p-c .K2a2 .prod-chip{margin-top:-1px}
 html[data-size="kakao"] main.p-c .K31 .way-k{margin-top:-.5px}
 html[data-size="kakao"] main.p-c .K33 .dev-n .dev-e{vertical-align:calc(.12em + .5px)}
+/* 2026-11-09 team comments in the sizes: line 1 A = the device a little smaller than on the home card (the model is smaller here), below her chin;
+   kakao 1 A part 2 = the device standing at the right end of the price band, in front of it; kakao 3 = the tip chips (longer now: N-25 / CP-25)
+   sit at the right end of the way title row, the icon stays alone on the left; kakao 2 A part 1 = the model a little smaller (shorter head) */
+html[data-size="line"] main.p-c .L1a .h-dev{left:18px;bottom:150px;width:226px}
+html[data-size="kakao"] main.p-c .K1a2 .h-dev{left:auto;right:18px;bottom:40px;width:200px;z-index:7}
+html[data-size="kakao"] main.p-c .K3 .way{grid-template-columns:128px minmax(0,1fr) auto}
+html[data-size="kakao"] main.p-c .K3 .way-head{display:contents}
+html[data-size="kakao"] main.p-c .K3 .way-ico{grid-column:1;grid-row:1 / 7}
+html[data-size="kakao"] main.p-c .K3 .way-t{grid-column:2;grid-row:1;align-self:center}
+html[data-size="kakao"] main.p-c .K3 .way-k{grid-column:3;grid-row:1;align-self:center;margin:0 0 0 12px}
+html[data-size="kakao"] main.p-c .K3 :is(.way-d,.way-for,.way-pick){grid-column:2 / 4}
+html[data-size="kakao"] main.p-c .K2a1 .c2-model{width:274px;bottom:-152px}
+/* kakao 2 A: the option names are longer now (team #11/#15) and the period sits in the foot (team #9), so the board parts are a little tighter */
+html[data-size="kakao"] main.p-c .K2a .cp-in{padding-bottom:16px}
+html[data-size="kakao"] main.p-c .K2a .cp-mini{margin-top:6px}
+html[data-size="kakao"] main.p-c .K2a .pboard{margin-top:12px}
+html[data-size="kakao"] main.p-c .K2a .prow{padding-top:8px;padding-bottom:7px}
+html[data-size="kakao"] main.p-c .K2a .prod-h{padding:8px 0 4px}
+html[data-size="kakao"] main.p-c .K2a .cp-foot{align-items:center;padding-top:6px}
+html[data-size="kakao"] main.p-c .K2a .cp-foot .period{margin-top:0}
+html[data-size="kakao"] main.p-c .K2a .cp-foot .vat{padding-top:0}
+/* kakao 3 part 2: the way 2 title is longer, so its chip goes above the title (this part has the room) */
+html[data-size="kakao"] main.p-c .K32 .way{grid-template-columns:128px minmax(0,1fr)}
+html[data-size="kakao"] main.p-c .K32 .way-k{grid-column:2;grid-row:1;justify-self:start;margin:0 0 10px}
+html[data-size="kakao"] main.p-c .K32 .way-t{grid-column:2;grid-row:2}
+html[data-size="kakao"] main.p-c .K32 :is(.way-d,.way-for,.way-pick){grid-column:2}
+/* ==== tc-fix: text snaps to whole pixels, so a few chips need their text or box moved at their size-card position (generated from
+   v4/combo12c/sizes/tcfix.json by the text-centre fixer; same box size) ==== */
+html[data-size="kakao"] main.p-c section[data-size-only][data-card="2"]:not([data-variant])[data-part="1"] span.badge[data-copy="c3_r46_badge"]{padding-top:5.17px;padding-bottom:3.13px}
+/* ==== /tc-fix ==== */
