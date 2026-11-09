@@ -393,6 +393,22 @@ a[data-link="phone"]{white-space:nowrap}
 /* CMB12F team comments 2026-11-09 (v4/combo12f/fixes/fb-20261109.cjs). Home rules; the size cards add their own in sizes.css.
    #5 ~ #10: BEST / HIT badge at the end of the row line (A price card), the page's filled ruby label in the wide face of its English labels. */
 .pline .pbadge{display:inline-flex;align-items:center;justify-content:center;flex:none;align-self:center;font-family:var(--f-wide);font-weight:400;font-size:max(11px,calc(13*var(--px)));line-height:1.2;letter-spacing:.08em;color:var(--linen);background:var(--ruby);padding:.3em .62em .34em;white-space:nowrap} /* Michroma sits low in its line box: .04em more below than above centres the caps (qa/text-center-check.cjs 1080 / 780 / line / kakao) */
+
+/* #4: the A price card's board moves down and a new cut of the hero model stands at the right of the head on the board's top edge
+   (img.c2-model, first in .pboard: bottom:100%, the cutout cut straight across at the board top by object-fit / object-position).
+   The head sits in the middle of the band between the top row and the board; the rows close up (--rp 15 -> 7) so the board still ends above VAT,
+   and the snowflake moves down a little to stay clear of the board. Home 1080 numbers; the size cards set their own in sizes.css. */
+.c2-model{position:absolute;right:0;bottom:100%;width:calc(279*var(--px));height:calc(360*var(--px));object-fit:cover;object-position:50% 0;user-select:none}
+.cp.c2m:not([data-size-only]){--rp:7}
+.cp.c2m:not([data-size-only]) .cp-head{margin-top:calc(122*var(--px))}
+.cp.c2m:not([data-size-only]) .pboard{margin-top:calc(122*var(--px))}
+.cp.c2m:not([data-size-only]) .p-snow{bottom:calc(50*var(--px))}
+@container (max-width:600px){
+  /* phone: the model in the column the head leaves free at its right (.cp-head margin-right 92px), head and shoulders */
+  .cp.c2m:not([data-size-only]) .cp-head{margin-top:12px;min-height:100px}
+  .cp.c2m:not([data-size-only]) .pboard{margin-top:14px}
+  .c2-model{width:86px;height:110px}
+}
 /* ===== FIXES 20261109 END ===== */
 /* ===== SIZES START (generated from v4/combo12f/sizes/sizes.css, do not edit here) ===== */
 /* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
@@ -443,6 +459,14 @@ html[data-size]:not(#sz) .L2a .prod-h{padding-top:6px;padding-bottom:2px}
 html[data-size]:not(#sz) .L2a .p-snow{left:760px;right:auto;top:96px;bottom:auto;width:60px}
 html[data-size]:not(#sz) .L2a .vat{margin-top:auto;padding-top:6px}
 html[data-size]:not(#sz) .L2a .uibeop{bottom:30px}
+/* 2026-11-09 #4: the model at the right of the head on the board's top edge; the head sits in the middle of the band above the board,
+   the rows close up so the board still ends above VAT */
+html[data-size]:not(#sz) .L2a .cp-head{margin-top:43px}
+html[data-size]:not(#sz) .L2a .pboard{margin-top:43px;gap:6px}
+html[data-size]:not(#sz) .L2a .pg{padding-top:3px;padding-bottom:3px}
+html[data-size]:not(#sz) .L2a .prow{padding-top:3px;padding-bottom:3px}
+html[data-size]:not(#sz) .L2a .prod-h{padding-top:4px;padding-bottom:1px}
+html[data-size]:not(#sz) .L2a .c2-model{right:0;width:165px;height:208px}
 html[data-size]:not(#sz) .L2b .b-price-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 /* 3: the four kinds as rows (icon beside the text), pick box, source */
 html[data-size]:not(#sz) .L3 .cx-in{padding:34px 56px 26px}
@@ -515,8 +539,17 @@ html[data-size]:not(#sz) .K3 .q-head{margin-top:0}
 html[data-size]:not(#sz) .K3 .kinds{flex:none;margin-top:10px}
 html[data-size]:not(#sz) .K3 .src{margin-top:6px}
 /* decorations stay off the text: the snowflake beside the title (part 1) / under the period chip (part 2), the dot disc in the top row */
-html[data-size]:not(#sz) .K2ap1 .p-snow{left:600px;right:auto;top:96px;bottom:auto;width:56px}
-html[data-size]:not(#sz) .K2ap2 .p-snow,html[data-size]:not(#sz) .K2ap3 .p-snow{left:auto;right:40px;top:74px;bottom:auto;width:44px}
+/* (K2ap1 snowflake: see the 2026-11-09 #4 rules below) */
+html[data-size]:not(#sz) .K2ap2 .p-snow{left:auto;right:40px;top:74px;bottom:auto;width:44px}
+/* part 3 starts its board right under the top row, so its snowflake sits low at the right beside VAT (as home) */
+html[data-size]:not(#sz) .K2ap3 .p-snow{left:auto;right:44px;top:auto;bottom:62px;width:44px}
+/* 2026-11-09 #4: part 1 = kicker, the title on two lines (a line break only), the model at the right on the board's top edge, 74-75;
+   the head sits in the middle of the band above the board. The snowflake gives its place to the model in this part */
+html[data-size]:not(#sz) .K2ap1 .cp-head{margin-top:81px}
+html[data-size]:not(#sz) .K2ap1 .pt-main{white-space:normal;width:340px}
+html[data-size]:not(#sz) .K2ap1 .pboard{margin-top:81px}
+html[data-size]:not(#sz) .K2ap1 .c2-model{right:0;width:237px;height:310px}
+html[data-size]:not(#sz) .K2ap1 .p-snow{display:none}
 html[data-size]:not(#sz) .K3 .x-disc{right:44px;top:10px;width:72px}
 html[data-size]:not(#sz) .K3p2 .kinds{margin-top:8px}
 html[data-size]:not(#sz) .K3 .pick{padding:16px 22px}
@@ -547,9 +580,12 @@ html[data-size]:not(#sz) .K5p3 .map{width:100%}
 html[data-size]:not(#sz) .K5p3 .bk-row{grid-template-columns:120px;grid-template-rows:auto auto;justify-items:start;align-content:center}
 /* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by half a pixel (growing one side) from its computed padding */
 html[data-size]:not(#sz) .K2ap1 span.prod-n[data-copy="c6_p74_name"]{padding-top:5.06px!important;padding-bottom:5.18px!important}
-html[data-size]:not(#sz) .K2ap1 span.pchip[data-copy="c6_r75_chip"]{padding-top:3.1px!important;padding-bottom:0.3px!important}
 /* 2026-11-09: this badge's line centre falls on half a pixel, so the text snapped 0.5px off its box centre; the box moves down half a pixel */
 html[data-size]:not(#sz) .K2ap3 span.pbadge[data-copy="c6_r84_badge"]{position:relative;top:.5px}
+/* 2026-11-09 #4: kakao 2A rows moved between parts (part 1 = 74-75 under the model, part 2 = 76-80); these labels snapped off their box centre at the new positions */
+html[data-size]:not(#sz) .K2ap1 span.pbadge[data-copy="c6_r75_badge"]{position:relative;top:.5px}
+html[data-size]:not(#sz) .K2ap2 span.otag[data-copy="c6_r76_tag"]{padding-top:2.03px!important;padding-bottom:2.33px!important}
+html[data-size]:not(#sz) .K2ap2 span.otag[data-copy="c6_r79_tag"]{padding-top:2.03px!important;padding-bottom:2.33px!important}
 /* ---------- /KAKAO ---------- */
 /* ===================== /channel sizes ===================== */
 /* ===== SIZES END ===== */

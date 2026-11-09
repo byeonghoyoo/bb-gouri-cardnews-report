@@ -9765,7 +9765,8 @@
           "c6_r77_badge": "HIT",
           "c6_r78_badge": "BEST",
           "c6_r82_badge": "HIT",
-          "c6_r84_badge": "BEST"
+          "c6_r84_badge": "BEST",
+          "c6_alt_c2": "루비색 니트를 입고 미소 짓는 모델"
         }
       },
       "locales": [
@@ -12330,8 +12331,8 @@
         "CMB12I",
         "CMB12G",
         "CMB12C",
-        "CMB12F",
-        "CMB12E"
+        "CMB12E",
+        "CMB12F"
       ]
     },
     {
