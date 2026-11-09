@@ -745,6 +745,17 @@ a[data-link="phone"]{white-space:nowrap}
 /* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
    '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
 [data-copy="od_c5_q"]{text-wrap:balance}
+/* ===== 2026-11-09 team comments (v4/events/FEEDBACK_20261109.md, qa/feedback-20261109/OND12.json) =====
+   #12 / #17: the device faces right: the team's photo of the ONDA (a/team/onda-right-team-20261106.jpg) cut out with the person-cutout tool
+   (a/cut/onda-r.png) and its wheels cut off at the body (assets/onda-r.webp). Its cut edge sits on the top edge of the price board: the figure
+   ends at the board top (align-self:end, the bottom margin takes back the board's top margin, so the head row keeps its height).
+   #15: the team's modifier at the right end of the DCA, CA head (card 2). #16: '계속' left the card-3 title. */
+.cpf .dev-fig{align-self:end;height:calc(330*var(--px));margin-bottom:calc(-20*var(--px))}
+.cpb .dev-fig{align-self:end;height:calc(400*var(--px));margin-bottom:calc(-20*var(--px))}
+.pg-mod{margin-left:auto;font-size:max(13px,calc(22*var(--px)));font-weight:800;line-height:1.3;letter-spacing:-.01em;color:var(--sangria);white-space:nowrap}
+@container (max-width:600px){
+  .cpf .dev-fig,.cpb .dev-fig{height:calc(120px + 20*var(--px))}
+}
 /* ===== SIZES START (generated from v4/onda12/sizes/sizes.css, do not edit here) ===== */
 /* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
    ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
@@ -798,7 +809,8 @@ html[data-size] .L1b .ob1-contact{left:560px;width:500px;bottom:40px}
 html[data-size] .L2a .cp-in,html[data-size] .L3 .cp-in{padding:34px 56px 24px}
 html[data-size] .L2a .cp-head{grid-template-columns:200px minmax(0,1fr) 260px;margin-top:0}
 html[data-size] .L3 .cp-head{grid-template-columns:200px minmax(0,1fr) 260px;margin-top:0}
-html[data-size] .L2a .dev-fig,html[data-size] .L3 .dev-fig{height:196px}
+/* 2026-11-09 #12/#17: the device's cut edge on the top edge of the price board (the bottom margin takes back the 10px gap) */
+html[data-size] .L2a .dev-fig,html[data-size] .L3 .dev-fig{align-self:end;height:206px;margin-bottom:-10px}
 html[data-size] .L2a .cm-c2{right:28px;top:36px;height:500px}
 html[data-size] .L3 .cm-c3{right:34px;top:30px;height:500px}
 html[data-size] .L2a .g2{right:330px;top:40px}
@@ -901,7 +913,10 @@ html[data-size] .K1b .ob1-offer{margin-top:6px}
 /* 2A FACE / 3 BODY: part 1 = head + note + the first rows, part 2 = a small head (section line and period) + the rest */
 html[data-size] .K2a .cp-in,html[data-size] .K3 .cp-in{padding:22px 36px 14px}
 html[data-size] .K2a .cp-head,html[data-size] .K3 .cp-head{grid-template-columns:120px minmax(0,1fr) 170px;margin-top:0}
-html[data-size] .K2a .dev-fig,html[data-size] .K3 .dev-fig{height:150px}
+/* 2026-11-09 #12/#17: the device's cut edge on the top edge of the price board (part 1; part 2 has no device). Here the title block sets the head
+   height (a fractional one), so the device takes no part in it: the negative top margin keeps its margin box low, the bottom one reaches the board */
+html[data-size] .K2a .dev-fig,html[data-size] .K3 .dev-fig{align-self:end;height:174px;margin-top:-60px;margin-bottom:-8px}
+html[data-size] .K3 .dev-fig{height:160px}
 html[data-size] .K2a .cm-c2{right:14px;top:24px;height:330px}
 html[data-size] .K3 .cm-c3{right:20px;top:20px;height:330px}
 html[data-size] .K2a .g2,html[data-size] .K3 .g3{right:250px;top:24px;width:70px;height:70px}
