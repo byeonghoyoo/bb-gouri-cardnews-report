@@ -17,7 +17,7 @@
   var POLL_MS = 15000;
   var AUTHOR_KEY = 'bb-review-author';
   var FOLD_KEY = 'bb-review-folded';
-  var EXPECTED_ITEMS = ['aptos', 'D1', 'D2', 'D3', 'D4', 'D5', 'EXAM'];
+  var EXPECTED_ITEMS = []; /* 2026-11-09: the original 7 test items were deleted and purged from data.json; no item is required any more */
   var PLAN_REQUIRED = ['heroEyebrow', 'title', 'subtitle', 'body'];
   var FIELD_RE = /^[A-Za-z0-9_]+$/;
   var ID_RE = /^[A-Za-z0-9]+$/;
