@@ -431,6 +431,30 @@ a[data-link="phone"]{white-space:nowrap}
 .card[data-variant="b"]{margin-bottom:calc(round(down,calc(28*var(--px)),1px) - 28*var(--px))}
 @media(max-width:600px){.c1[data-variant="b"] .hero-tx{top:calc(160*var(--px))}.c1[data-variant="b"] .h-en{font-size:calc(115*var(--px))}.c1[data-variant="b"] .h-ko{font-size:calc(43*var(--px))}.c1[data-variant="b"] .hook{font-size:11px;line-height:1.4}.c1[data-variant="b"] .c1-photo{top:calc(480*var(--px));height:calc(550*var(--px))}.c1[data-variant="b"] .band-hero{height:calc(270*var(--px));padding:7px 10px}.c1[data-variant="b"] .band-offer{gap:0 4px}.c1[data-variant="b"] .tz-label,.c1[data-variant="b"] .tz-opt,.c1[data-variant="b"] .tz-tag,.c1[data-variant="b"] .tz-vat{font-size:10px}.c1[data-variant="b"] .tz-price{font-size:25px}.c1[data-variant="b"] .band-sm{font-size:10px}.c1[data-variant="b"] .band-sm span:first-child{font-size:10px}.c2[data-variant="b"] .head{grid-template-columns:65px 1fr;gap:5px 12px}.c2[data-variant="b"] .h-it{font-size:34px}.c2[data-variant="b"] .pt-main{font-size:18px}.c2[data-variant="b"] .pt-en{font-size:18px}.c2[data-variant="b"] .p-lead{font-size:11px}.c2[data-variant="b"] .prows{grid-template-columns:1fr;gap:9px}.c2[data-variant="b"] .prow{min-height:90px;padding:12px 16px}.c2[data-variant="b"] .popt{font-size:15px}.c2[data-variant="b"] .plist{font-size:13px}.c2[data-variant="b"] .psale{font-size:26px}.c2[data-variant="b"] .pg-name{font-size:17px}.c2[data-variant="b"] .band{height:auto;min-height:100px}.c2[data-variant="b"] .uibeop{bottom:6px;right:14px}}
 
+/* ==== 2026-11-09 team comments (qa/feedback-20261109/LIG12.json), home and every size ==== */
+/* 1 A (#14): thin white lifting arrows on her cheek, like the team's reference (assets/dec/lift-arrows.webp, v4/ligament12/a/lift-arrows.cjs) */
+.c1 .lift-h{position:absolute;z-index:2;left:calc(660*var(--px));top:calc(390*var(--px));width:calc(210*var(--px));height:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 0 calc(3*var(--px)) rgba(138,15,32,.4))}
+/* 2 A / 3 (#2, #5): the hero model (the same cutout as the size heroes, whole) at the top right, standing behind the price board, with the same
+   arrows on her cheek. The picture box runs from just under the top row down to the board's top edge (the board follows the title block 22 px
+   lower), so she always stands on the board and only her head and shoulders show */
+.head > .lift-mod{position:absolute;z-index:2;left:calc(720*var(--px));top:calc(-12*var(--px));bottom:calc(-22*var(--px));width:calc(300*var(--px));overflow:hidden;pointer-events:none}
+.lift-model{display:block;width:100%;height:auto;max-width:none}
+.lift-mod .lift-arrows{position:absolute;left:47%;top:0;margin-top:35.4%;width:30%;height:auto;max-width:none;filter:drop-shadow(0 0 calc(2*var(--px)) rgba(138,15,32,.4))}
+.c2:not([data-variant="b"]) .dk2{right:auto;left:calc(640*var(--px));top:calc(110*var(--px))}
+/* 2 A / 2 B / 3 (#7-#10, #12, #13): BEST / HIT right after the option name */
+.pn:has(> .badge) > .popt{display:inline}
+.pn > .badge,.pname > .badge{display:inline-flex;align-items:center;justify-content:center;vertical-align:.18em;margin-left:calc(12*var(--px));padding:.32em .72em .28em;border-radius:999px;background:var(--rose-d);color:var(--cream-l);font-family:var(--f-text);font-weight:800;font-size:max(11px,calc(15*var(--px)));line-height:1.1;letter-spacing:.08em;white-space:nowrap}
+.pname > .badge{margin-left:0}
+.pkg .pn > .badge{display:flex;width:max-content;margin:calc(6*var(--px)) 0 calc(2*var(--px))}
+.pn > .badge:empty,.pname > .badge:empty{display:none}
+/* 2 B: the team's price mark 'Ligament Lift' is longer than the column it had, so it stands on its own line above the title */
+.c2[data-variant="b"] .head{grid-template-columns:minmax(0,1fr)}
+.c2[data-variant="b"] .h-it{grid-column:1;grid-row:auto}
+.c2[data-variant="b"] .p-title{grid-column:1}
+/* text snaps to whole pixels: the chips whose place moved with these changes (1080 and 780 card widths) */
+@media (min-width:901px){.c2[data-variant="b"] .pg-tag[data-copy="lg_g6_tag"],.c3 .pg-tag[data-copy="lg_g12_tag"]{padding-top:calc(.13em + 1px)}.c3 .pparts .chip:nth-child(5){padding-top:calc(.27em - 1px);padding-bottom:calc(.13em + 1px)}}
+@media (min-width:600px) and (max-width:900px){.c2:not([data-variant="b"]) .badge[data-copy="lg_r9_badge"]{padding-top:calc(.32em + 1px);padding-bottom:calc(.28em - 1px)}}
+
 /* ===== SZ:css (generated from v4/ligament12/sizes/sizes.css by inject-sizes.cjs, edit that file) ===== */
 /* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md). home 1080x1350 = every rule above, unchanged. line 1100x1000 and kakao 800x600
    are new compositions of the same elements and copy keys in size-only sections (v4/ligament12/sizes/line.html, kakao.html); nothing is cropped or
@@ -620,6 +644,32 @@ html[data-size="kakao"] .K5b .mk4 [data-copy]{top:0}
 html[data-size="kakao"] .K3a .pg-tag[data-copy="lg_g12_tag"]{padding-top:calc(.13em + 1px)}
 html[data-size="kakao"] .K3c .pg-tag{position:relative;top:.5px}
 html[data-size="kakao"] .K3b .period{padding-top:.273em;padding-bottom:.167em}
-html[data-size="kakao"] .K3c .pparts .chip:nth-child(5){padding-top:.235em;padding-bottom:.165em}
+html[data-size="kakao"] .K3c .pparts .chip:nth-child(5){padding-top:calc(.235em + 1px);padding-bottom:calc(.165em - 1px)}
 html[data-size="kakao"] .K3c .pparts .chip:nth-child(7){position:relative;top:.5px}
+html[data-size="kakao"] .K3c .pparts .chip:nth-child(1){position:relative;top:.5px}
+
+/* 2026-11-09 team comments in the sizes (qa/feedback-20261109/LIG12.json): the lifting arrows on the size heroes sit on the cutout's cheek
+   (the same place as on the price-card model: 47% across, 35.4% of its width down, 30% wide); the price-card model box ends at the card's right
+   edge (line: head 60 px in, kakao: 40 px in) and is smaller on kakao */
+html[data-size="line"] .L1a .lift-h{left:814px;top:281px;width:162px}
+html[data-size="kakao"] .K1a1 .lift-h{left:614px;top:134px;width:105px}
+html[data-size="line"] .head > .lift-mod{left:740px}
+html[data-size="kakao"] .head > .lift-mod{left:560px;top:-6px;width:200px}
+html[data-size="kakao"] .K2a1 .dk2{left:470px;top:120px}
+/* kakao: the package option wraps to two lines anyway, so its badge follows the option text instead of taking a line of its own; part 1 a little tighter */
+html[data-size="kakao"] .pkg .pn > .badge{display:inline-flex;width:auto;margin:0 0 0 12px}
+html[data-size="kakao"] .K3a .pboard{margin-top:8px}
+html[data-size="kakao"] .K3a .pgroup{padding:6px 0 4px}
+/* ==== tc-fix: text snaps to whole pixels, so a few chips need their text or box moved at their size-card position (generated from
+   v4/ligament12/sizes/tcfix.json by the text-centre fixer; same box size) ==== */
+html[data-size="line"] main.lg section[data-size-only][data-card="2"][data-variant="b"]:not([data-part]) span.pg-tag[data-copy="lg_g6_tag"]{padding-top:3.86px}
+html[data-size="line"] main.lg section[data-size-only][data-card="2"][data-variant="b"]:not([data-part]) span.badge[data-copy="lg_r8_badge"]{padding-top:5.80px;padding-bottom:4.20px}
+html[data-size="line"] main.lg section[data-size-only][data-card="2"][data-variant="b"]:not([data-part]) span.badge[data-copy="lg_r9_badge"]{padding-top:5.80px;padding-bottom:3.20px}
+html[data-size="line"] main.lg section[data-size-only][data-card="3"]:not([data-variant])[data-part="1"] span.pg-tag[data-copy="lg_g12_tag"]{padding-top:2.86px;padding-bottom:1.22px;line-height:24.30px;margin-top:1px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="2"]:not([data-variant])[data-part="2"] span.badge[data-copy="lg_r9_badge"]{padding-top:5.80px;padding-bottom:4.20px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="2"][data-variant="b"][data-part="1"] span.pg-tag[data-copy="lg_g6_tag"]{padding-top:3.86px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="3"]:not([data-variant])[data-part="1"] span.pg-tag[data-copy="lg_g12_tag"]{padding-top:2.86px;padding-bottom:0.22px;line-height:26.30px;margin-bottom:1px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pg-tag[data-copy="lg_g16_tag"]{padding-top:3.86px;padding-bottom:0.22px;line-height:24.30px;margin-top:1px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.badge[data-copy="lg_r17_badge"]{padding-top:5.80px;padding-bottom:4.20px;line-height:15.50px;margin-top:1px}
+/* ==== /tc-fix ==== */
 /* ===== /SZ:css ===== */

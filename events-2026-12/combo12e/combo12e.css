@@ -394,6 +394,22 @@ a[data-link="phone"]{white-space:nowrap}
 @container(max-width:600px){.bv.c2 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps"}}
 
 .bv.c2 .otag.ot2{padding-top:.18em;padding-bottom:.06em}
+/* ===== 2026-11-09 team comments (v4/events/FEEDBACK_20261109.md, qa/feedback-20261109/CMB12E.json), A hero (1A) only =====
+   #11: the model larger, mostly the upper body: assets/hero.jpg is cut again from the same Higgsfield original (a/hf/hero-a1-003808_518db8b1.png,
+   x 202 y 0 w 1312 h 1640 -> 1080x1350; the 11/06 file is in a/pre-fb/hero-20261106.jpg), following the team's mock-up.
+   #2: 'Winter Line' sits under the title so it no longer covers the Korean (a little smaller, so it stays left of the hair); the hook and the
+   left price box move down under it. #12: the right price box lower, beside the shoulder. The arm leader lines follow the larger model.
+   #4 ~ #9: BEST / HIT badges at the end of the A price rows. */
+@container (min-width:601px){
+  .c1:not(.bv):not([data-size-only]) .h-script{left:calc(2*var(--px));top:calc(172*var(--px));font-size:max(30px,calc(90*var(--px)))}
+  .c1:not(.bv):not([data-size-only]) .hook{top:calc(372*var(--px))}
+  .c1:not(.bv):not([data-size-only]) .hb2{top:calc(462*var(--px))}
+  .c1:not(.bv):not([data-size-only]) .hb1{top:calc(742*var(--px))}
+  /* the right leader line now starts under the lower box and ends on the upper arm */
+  .c1:not(.bv):not([data-size-only]) .ld1{left:calc(853*var(--px));top:calc(900*var(--px));height:calc(96*var(--px))}
+  .c1:not(.bv):not([data-size-only]) .dt1{left:calc(822*var(--px));top:calc(966*var(--px))}
+}
+.pbadge{display:inline-flex;align-items:center;justify-content:center;flex:none;align-self:center;font-family:var(--f-serif);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.15;letter-spacing:.08em;color:var(--white);background:var(--red);padding:.285em .7em .215em;border-radius:999px;white-space:nowrap} /* Cormorant caps sit high in the line box: .07em more above than below centres them (qa/text-center-check.cjs) */
 /* ===== SIZES START (generated from v4/combo12e/sizes/sizes.css, do not edit here) ===== */
 /* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
    ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
@@ -415,15 +431,18 @@ html[data-size]:not(#sz) .h-model{position:absolute;z-index:2;display:block;widt
 
 /* ---------- LINE 1100x1000 ---------- */
 /* 1A: the cutout in the middle down to mid-thigh (as the home photo), title and script across the top, the offers either side with their lead lines to the upper arms */
+/* 2026-11-09 team comments, as home: #11 the model cutout larger (upper body, cut by the card edge), #2 'Winter Line' under the title (home size),
+   #12 the right box lower beside the shoulder; the leader lines follow */
 html[data-size]:not(#sz) .L1a .c1-title{top:70px}
-html[data-size]:not(#sz) .L1a .hook{top:262px}
-html[data-size]:not(#sz) .L1a .h-model{left:330px;top:232px;height:768px}
-html[data-size]:not(#sz) .L1a .hb1{right:auto;left:690px;top:300px}
-html[data-size]:not(#sz) .L1a .hb2{left:70px;top:384px}
-html[data-size]:not(#sz) .L1a .ld1{left:731px;top:476px;height:155px}
-html[data-size]:not(#sz) .L1a .dt1{left:700px;top:599px}
-html[data-size]:not(#sz) .L1a .ld2{left:363px;top:560px;height:148px}
-html[data-size]:not(#sz) .L1a .dt2{left:332px;top:676px}
+html[data-size]:not(#sz) .L1a .h-script{left:0;top:178px;font-size:90px}
+html[data-size]:not(#sz) .L1a .hook{top:358px}
+html[data-size]:not(#sz) .L1a .h-model{left:262px;top:300px;height:1400px}
+html[data-size]:not(#sz) .L1a .hb1{right:auto;left:712px;top:690px}
+html[data-size]:not(#sz) .L1a .hb2{left:70px;top:422px}
+html[data-size]:not(#sz) .L1a .ld1{left:905px;top:858px;height:70px}
+html[data-size]:not(#sz) .L1a .dt1{left:874px;top:898px}
+html[data-size]:not(#sz) .L1a .ld2{left:331px;top:620px;height:130px}
+html[data-size]:not(#sz) .L1a .dt2{left:300px;top:720px}
 html[data-size]:not(#sz) .L1a .st-h1{left:1030px;top:250px}
 /* 1B: framed photo left, title / script / hook / the two offers right, period, VAT and contact in one row at the bottom */
 html[data-size]:not(#sz) .L1b .c1-photo{left:50px;top:110px;width:420px;height:820px}
@@ -492,13 +511,16 @@ html[data-size]:not(#sz) .L5p2 span.way-line{padding-top:4px!important;padding-b
    period / VAT / contact at the right. The lead lines stay out (no room for them between the offers and the arms). */
 html[data-size]:not(#sz) .K1a .c1-top{left:24px;top:14px}
 html[data-size]:not(#sz) .K1a .c1-title{left:24px;right:24px;top:40px}
-html[data-size]:not(#sz) .K1a .h-script{left:286px;top:86px}
-html[data-size]:not(#sz) .K1a .hook{left:24px;top:214px;width:240px}
-html[data-size]:not(#sz) .K1a .h-model{left:270px;top:214px;height:447px}
+/* 2026-11-09 team comments: 'Winter Line' under the title at the left (#2), the model cutout larger with its head under the script (#11),
+   the right box lower with the date / VAT / contact block above it (#12) */
+/* the script turns less here (-4deg, home -7deg) so its right end stays under the title in the narrower frame */
+html[data-size]:not(#sz) .K1a .h-script{left:0;top:160px;font-size:90px;transform:rotate(-4deg)}
+html[data-size]:not(#sz) .K1a .hook{left:24px;top:320px;width:300px}
+html[data-size]:not(#sz) .K1a .h-model{left:240px;top:290px;height:800px}
 html[data-size]:not(#sz) .K1a .hb{width:240px}
-html[data-size]:not(#sz) .K1a .hb2{left:24px;top:330px;width:318px}
-html[data-size]:not(#sz) .K1a .hb1{right:24px;top:250px}
-html[data-size]:not(#sz) .K1a .band{left:auto;right:24px;bottom:14px}
+html[data-size]:not(#sz) .K1a .hb2{left:24px;top:368px;width:318px}
+html[data-size]:not(#sz) .K1a .hb1{right:24px;top:368px}
+html[data-size]:not(#sz) .K1a .band{left:auto;right:24px;top:222px;bottom:auto}
 html[data-size]:not(#sz) .K1a .lead,html[data-size]:not(#sz) .K1a .ldot{display:none}
 html[data-size]:not(#sz) .K1a .st-h1{left:760px;top:220px}
 /* 1B: title and script across the top, the framed photo under them at the left; hook and the two offers stacked at the right (each offer as one
@@ -520,11 +542,11 @@ html[data-size]:not(#sz) .K2a .cp-in,html[data-size]:not(#sz) .K2b .cp-in{paddin
 html[data-size]:not(#sz) .K2a .cp-head,html[data-size]:not(#sz) .K2b .cp-head{margin-top:6px}
 html[data-size]:not(#sz) .K2a .pboard,html[data-size]:not(#sz) .K2b .pboard{margin-top:12px;gap:10px}
 html[data-size]:not(#sz) .K2a .singles .prow{padding:8px 0 7px}
-html[data-size]:not(#sz) .K2a .prow{padding:6px 0 5px}
+html[data-size]:not(#sz) .K2a .prow{padding:5px 0 4px} /* 2026-11-09: the BEST badge of row 66 takes a second line in part 2 */
 html[data-size]:not(#sz) .K2a .psale{line-height:1}
 html[data-size]:not(#sz) .K2ap2 .cp-head{margin-top:4px;max-width:none}
-html[data-size]:not(#sz) .K2a .prod-h{padding:8px 0 2px}
-html[data-size]:not(#sz) .K2ap2 .pboard{margin-top:16px}
+html[data-size]:not(#sz) .K2a .prod-h{padding:6px 0 2px}
+html[data-size]:not(#sz) .K2ap2 .pboard{margin-top:8px}
 html[data-size]:not(#sz) .K2b .prow{padding:7px 0}
 html[data-size]:not(#sz) .K2bp1 .pboard{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
 html[data-size]:not(#sz) .K2b .pg{padding:14px 20px}
@@ -596,6 +618,8 @@ html[data-size]:not(#sz) .K2bp1 span.otag[data-copy="c5_r61_tag"]{padding-top:3.
 html[data-size]:not(#sz) .K2bp2 span.otag[data-copy="c5_r65_tag"]{padding-top:3.4px!important;padding-bottom:1.2px!important}
 html[data-size]:not(#sz) .K3p1 span.ly.ly3{padding-top:3.96px!important;padding-bottom:3.52px!important}
 html[data-size]:not(#sz) .K2ap1 span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:3.2px!important;padding-bottom:1.64px!important}
+/* 2026-11-09: this badge's line centre falls on half a pixel, so its text snapped 0.5px low; the box moves up half a pixel */
+html[data-size]:not(#sz) .K2ap1 span.pbadge[data-copy="c5_r63_badge"]{position:relative;top:-.5px}
 /* the 1B star stays inside the 800 frame */
 html[data-size]:not(#sz) .K1b .st-h1{left:744px;top:180px}
 /* ---------- /KAKAO ---------- */
