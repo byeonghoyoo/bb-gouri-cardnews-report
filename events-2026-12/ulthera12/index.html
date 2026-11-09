@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400..800;1,400..600&amp;display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap">
-  <link rel="stylesheet" href="ulthera12.css?v=20261106-ulthera12f">
-  <script src="copy-data.js?v=20261106-ulthera12f" defer></script>
-  <script src="../inline-edit.js?v=20261106-ulthera12f" defer></script>
-  <script src="ulthera12.js?v=20261106-ulthera12f" defer></script>
+  <link rel="stylesheet" href="ulthera12.css?v=20261109-ulthera12a">
+  <script src="copy-data.js?v=20261109-ulthera12a" defer></script>
+  <script src="../inline-edit.js?v=20261109-ulthera12a" defer></script>
+  <script src="ulthera12.js?v=20261109-ulthera12a" defer></script>
 </head>
 <body>
 <!-- ULT12 울쎄라 · 겨울 시즌 (Korean first). 2026-11-04 reference sheet: design language from F (a cosmetics ad poster: airy white-to-butter backdrop,
@@ -28,111 +28,95 @@
   <div class="sheet">
 
     <!-- 1 / 6 : hero. Model photo: v4/ulthera12/gen/hero-1104-v1.json (G master face + F layout). Right column: two F frames with pills. -->
+    <!-- 2026-11-09 team comments #8-#12 (reference qa/feedback-20261109/img/ULT12_12_1.png): the model cutout (v4/ulthera12/a/cut/hero.png) moves to the middle on
+       the hero's own empty backdrop; the front-view Ultherapy Prime (assets/dev/ultherapy-prime-front.webp) stands left of her, in front of the arm the original
+       frame cuts off; right: the DeepSEE box (team photo -> assets/dev/deepsee-screen.webp, team text) and the price box with '이벤트가 300샷' in one pill. -->
     <section class="card c1" data-card="1" aria-labelledby="ut-t1" data-size-hide="line kakao">
-      <img class="c1-photo" src="assets/hero.jpg?v=c" data-alt="ut_alt_hero" alt="" width="1080" height="1350">
+      <img class="c1-photo" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true" width="1080" height="1350">
+      <img class="person c1-model" src="assets/hero-cut.webp" data-alt="ut_alt_hero" alt="" width="1167" height="1600">
+      <img class="c1-dev" src="assets/dev/ultherapy-prime-front.webp" data-alt="ut_alt_dev_ulthera" alt="" width="552" height="1000">
       <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
       <div class="c1-copy">
         <p class="kicker-f" data-copy="ut_kicker"></p>
         <h1 class="title hero-title" id="ut-t1" data-copy="ut_title"></h1>
         <p class="hero-sub" data-copy="ut_hook"></p><p class="label-box"><span data-copy="ut_period"></span></p>
       </div>
-      <div class="c1-col">
-        <figure class="fr fr-hero">
-          <div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
-          
-          <img class="dots dots-hero" src="assets/dec/dots-b.webp" alt="" aria-hidden="true">
-          <span class="pill pill-l p-hero" data-copy="ut_hero_pill"></span>
-        </figure>
-        <div class="fr fr-tz">
-          <p class="tz-main"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-price money" data-copy="ut_hero_price"></span></p>
-          <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
-          <span class="pill pill-r p-tz" data-copy="ut_hero_label"></span>
-        </div>
+      <figure class="fr fr-deep">
+        <figcaption class="deep-cap"><span class="deep-t"><span class="deep-tx" data-copy="ut_deep_t"></span><img class="deep-spark" src="assets/dec/spark-maize.webp" alt="" aria-hidden="true" width="160" height="160"></span><span class="deep-d" data-copy="ut_deep_d"></span></figcaption>
+        <div class="deep-pic"><img class="deep-img" src="assets/dev/deepsee-screen.webp" data-alt="ut_alt_deepsee" alt="" width="839" height="487"></div>
+      </figure>
+      <div class="fr fr-tz">
+        <p class="tz-pill"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-shot" data-copy="ut_hero_label"></span></p>
+        <p class="tz-main"><span class="tz-price money" data-copy="ut_hero_price"></span></p>
+        <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
       </div>
-      
       <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="ut_contact"></span></p>
     </section>
     <!-- SZ:line:1a -->
-    <!-- 1A: the hero photo has the model in it, so the size card uses the photo's own empty backdrop (assets/bg/backdrop.jpg) and the model cutout
-         (a/cut/hero.png from a/hf/hero-a1, person-cutout); copy and the price box left, the model right, the device frame in front of her lower body -->
+    <!-- 1A (2026-11-09): the home card already holds the backdrop, the model cutout and the front-view device, so the size cards are plain clones -->
     <section class="card c1 L L1a" data-card="1" data-size-only="line" aria-labelledby="ut-t1-l">
-    <img class="bg sz-bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true"><img class="person sz-hero" src="assets/hero-cut.webp" data-alt="ut_alt_hero" alt="" width="1167" height="1600">
-    
-          <img class="c1-photo" src="assets/hero.jpg?v=c" data-alt="ut_alt_hero" alt="" width="1080" height="1350">
+          <img class="c1-photo" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true" width="1080" height="1350">
+          <img class="person c1-model" src="assets/hero-cut.webp" data-alt="ut_alt_hero" alt="" width="1167" height="1600">
+          <img class="c1-dev" src="assets/dev/ultherapy-prime-front.webp" data-alt="ut_alt_dev_ulthera" alt="" width="552" height="1000">
           <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
           <div class="c1-copy">
             <p class="kicker-f" data-copy="ut_kicker"></p>
             <h1 class="title hero-title" id="ut-t1-l" data-copy="ut_title"></h1>
             <p class="hero-sub" data-copy="ut_hook"></p><p class="label-box"><span data-copy="ut_period"></span></p>
           </div>
-          <div class="c1-col">
-            <figure class="fr fr-hero">
-              <div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
-              
-              <img class="dots dots-hero" src="assets/dec/dots-b.webp" alt="" aria-hidden="true">
-              <span class="pill pill-l p-hero" data-copy="ut_hero_pill"></span>
-            </figure>
-            <div class="fr fr-tz">
-              <p class="tz-main"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-price money" data-copy="ut_hero_price"></span></p>
-              <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
-              <span class="pill pill-r p-tz" data-copy="ut_hero_label"></span>
-            </div>
+          <figure class="fr fr-deep">
+            <figcaption class="deep-cap"><span class="deep-t"><span class="deep-tx" data-copy="ut_deep_t"></span><img class="deep-spark" src="assets/dec/spark-maize.webp" alt="" aria-hidden="true" width="160" height="160"></span><span class="deep-d" data-copy="ut_deep_d"></span></figcaption>
+            <div class="deep-pic"><img class="deep-img" src="assets/dev/deepsee-screen.webp" data-alt="ut_alt_deepsee" alt="" width="839" height="487"></div>
+          </figure>
+          <div class="fr fr-tz">
+            <p class="tz-pill"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-shot" data-copy="ut_hero_label"></span></p>
+            <p class="tz-main"><span class="tz-price money" data-copy="ut_hero_price"></span></p>
+            <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
           </div>
-          
           <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="ut_contact"></span></p>
         </section>
     <!-- /SZ:line:1a -->
     <!-- SZ:kakao:1a -->
     <section class="card c1 K K1a K1-1" data-card="1" data-part="1" data-size-only="kakao" aria-labelledby="ut-t1-k1">
-    <img class="bg sz-bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true"><img class="person sz-hero" src="assets/hero-cut.webp" data-alt="ut_alt_hero" alt="" width="1167" height="1600">
-    
-          <img class="c1-photo" src="assets/hero.jpg?v=c" data-alt="ut_alt_hero" alt="" width="1080" height="1350">
+          <img class="c1-photo" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true" width="1080" height="1350">
+          <img class="person c1-model" src="assets/hero-cut.webp" data-alt="ut_alt_hero" alt="" width="1167" height="1600">
+          <img class="c1-dev" src="assets/dev/ultherapy-prime-front.webp" data-alt="ut_alt_dev_ulthera" alt="" width="552" height="1000">
           <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
           <div class="c1-copy">
             <p class="kicker-f" data-copy="ut_kicker"></p>
             <h1 class="title hero-title" id="ut-t1-k1" data-copy="ut_title"></h1>
             <p class="hero-sub" data-copy="ut_hook"></p><p class="label-box"><span data-copy="ut_period"></span></p>
           </div>
-          <div class="c1-col">
-            <figure class="fr fr-hero">
-              <div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
-              
-              <img class="dots dots-hero" src="assets/dec/dots-b.webp" alt="" aria-hidden="true">
-              <span class="pill pill-l p-hero" data-copy="ut_hero_pill"></span>
-            </figure>
-            <div class="fr fr-tz">
-              <p class="tz-main"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-price money" data-copy="ut_hero_price"></span></p>
-              <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
-              <span class="pill pill-r p-tz" data-copy="ut_hero_label"></span>
-            </div>
+          <figure class="fr fr-deep">
+            <figcaption class="deep-cap"><span class="deep-t"><span class="deep-tx" data-copy="ut_deep_t"></span><img class="deep-spark" src="assets/dec/spark-maize.webp" alt="" aria-hidden="true" width="160" height="160"></span><span class="deep-d" data-copy="ut_deep_d"></span></figcaption>
+            <div class="deep-pic"><img class="deep-img" src="assets/dev/deepsee-screen.webp" data-alt="ut_alt_deepsee" alt="" width="839" height="487"></div>
+          </figure>
+          <div class="fr fr-tz">
+            <p class="tz-pill"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-shot" data-copy="ut_hero_label"></span></p>
+            <p class="tz-main"><span class="tz-price money" data-copy="ut_hero_price"></span></p>
+            <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
           </div>
-          
           <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="ut_contact"></span></p>
         </section>
     <section class="card c1 K K1a K1-2" data-card="1" data-part="2" data-size-only="kakao" aria-labelledby="ut-t1-k2">
-    <img class="bg sz-bg" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true">
-    
-          <img class="c1-photo" src="assets/hero.jpg?v=c" data-alt="ut_alt_hero" alt="" width="1080" height="1350">
+          <img class="c1-photo" src="assets/bg/backdrop.jpg" alt="" aria-hidden="true" width="1080" height="1350">
+          <img class="person c1-model" src="assets/hero-cut.webp" data-alt="ut_alt_hero" alt="" width="1167" height="1600">
+          <img class="c1-dev" src="assets/dev/ultherapy-prime-front.webp" data-alt="ut_alt_dev_ulthera" alt="" width="552" height="1000">
           <header class="c1-top"><img class="wordmark" src="assets/logo-wordmark-331a04.png" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
           <div class="c1-copy">
             <p class="kicker-f" data-copy="ut_kicker"></p>
             <h1 class="title hero-title" id="ut-t1-k2" data-copy="ut_title"></h1>
             <p class="hero-sub" data-copy="ut_hook"></p><p class="label-box"><span data-copy="ut_period"></span></p>
           </div>
-          <div class="c1-col">
-            <figure class="fr fr-hero">
-              <div class="fr-pic"><img class="fr-dev" src="assets/dev/ultherapy-prime.webp" data-alt="ut_alt_dev_ulthera" alt="" width="443" height="900"></div>
-              
-              <img class="dots dots-hero" src="assets/dec/dots-b.webp" alt="" aria-hidden="true">
-              <span class="pill pill-l p-hero" data-copy="ut_hero_pill"></span>
-            </figure>
-            <div class="fr fr-tz">
-              <p class="tz-main"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-price money" data-copy="ut_hero_price"></span></p>
-              <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
-              <span class="pill pill-r p-tz" data-copy="ut_hero_label"></span>
-            </div>
+          <figure class="fr fr-deep">
+            <figcaption class="deep-cap"><span class="deep-t"><span class="deep-tx" data-copy="ut_deep_t"></span><img class="deep-spark" src="assets/dec/spark-maize.webp" alt="" aria-hidden="true" width="160" height="160"></span><span class="deep-d" data-copy="ut_deep_d"></span></figcaption>
+            <div class="deep-pic"><img class="deep-img" src="assets/dev/deepsee-screen.webp" data-alt="ut_alt_deepsee" alt="" width="839" height="487"></div>
+          </figure>
+          <div class="fr fr-tz">
+            <p class="tz-pill"><span class="tz-tag" data-copy="ut_hero_tag"></span><span class="tz-shot" data-copy="ut_hero_label"></span></p>
+            <p class="tz-main"><span class="tz-price money" data-copy="ut_hero_price"></span></p>
+            <p class="fr-band tz-vat"><span data-copy="ut_vat"></span></p>
           </div>
-          
           <p class="c1-contact"><img class="ph-ico" src="assets/icons/ic-phone.webp" alt="" aria-hidden="true"><span class="contact" data-copy="ut_contact"></span></p>
         </section>
     <!-- /SZ:kakao:1a -->

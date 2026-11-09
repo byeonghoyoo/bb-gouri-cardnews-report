@@ -578,7 +578,41 @@ a[data-link="phone"]{white-space:nowrap}
    '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
 [data-copy="ut_c4_q"]{text-wrap:balance}
 
-/* ===== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md): ?size=line 1100x1000, ?size=kakao 800x600, home 1080x1350 unchanged.
+/* ===== 2026-11-09 team comments #8-#12 on hero A (v4/events/FEEDBACK_20261109.md, reference qa/feedback-20261109/img/ULT12_12_1.png).
+   The model cutout (person-cutout of the hero A source, see v4/ulthera12/MODEL_SLOTS.md) stands in the middle on the hero's empty backdrop, bottom on the card edge;
+   the original frame cuts her right arm off, so the front-view device stands left of her, in front of that arm; the device file is cut at the
+   lower pole (base and wheels off) and sits on the card bottom, so its pole covers the arm edge down to the card edge.
+   Right: the DeepSEE box (team photo, team text) and the price box with '이벤트가 300샷' in one pill; the contact pill moves bottom left. ===== */
+.c1-model{position:absolute;z-index:1;left:calc(160*var(--px));bottom:0;display:block;width:auto;height:calc(992*var(--px));max-width:none;pointer-events:none}
+.c1-dev{position:absolute;z-index:2;left:0;bottom:0;display:block;width:auto;height:calc(538*var(--px));max-width:none;filter:drop-shadow(0 calc(10*var(--px)) calc(16*var(--px)) rgba(110,85,30,.18))}
+.fr-deep,.c1 .fr-tz{position:absolute;z-index:4;margin:0;border-radius:calc(22*var(--px));box-shadow:0 calc(12*var(--px)) calc(28*var(--px)) rgba(110,85,30,.12)}
+.fr-deep{left:calc(651*var(--px));top:calc(443*var(--px));width:calc(394*var(--px));padding:calc(26*var(--px)) calc(24*var(--px)) calc(24*var(--px));display:flex;flex-direction:column}
+.deep-cap{display:flex;flex-direction:column;align-items:flex-start;gap:calc(12*var(--px))}
+.deep-t{position:relative;display:inline-flex;align-items:flex-start}
+.deep-tx{position:relative;z-index:0;font-family:var(--f-en);font-style:italic;font-weight:800;font-size:max(18px,calc(50*var(--px)));line-height:1.05;letter-spacing:-.01em;color:var(--bistre);white-space:nowrap}
+.deep-tx::before{content:'';position:absolute;z-index:-1;left:-.06em;right:-.02em;bottom:.04em;height:.4em;background:var(--maize)}
+.deep-spark{position:relative;flex:none;width:calc(34*var(--px));height:auto;margin:calc(-16*var(--px)) 0 0 calc(4*var(--px))}
+.deep-d{font-size:max(12px,calc(23*var(--px)));font-weight:700;line-height:1.42;letter-spacing:-.02em;color:var(--bistre);text-wrap:balance}
+.deep-pic{margin-top:calc(18*var(--px));border:calc(3*var(--px)) solid var(--gamboge);border-radius:calc(16*var(--px));overflow:hidden;background:#3b3b3b;aspect-ratio:839/487}
+.deep-img{display:block;width:100%;height:100%;object-fit:cover}
+.c1 .fr-tz{left:calc(710*var(--px));top:calc(1013*var(--px));width:calc(336*var(--px));height:calc(263*var(--px));overflow:hidden;display:flex;flex-direction:column}
+.tz-pill{align-self:center;margin-top:calc(26*var(--px));display:inline-flex;align-items:center;gap:.36em;padding:.284em 1em .236em;border-radius:999px;background:var(--bistre);font-size:max(12px,calc(27*var(--px)));font-weight:800;line-height:1.2;letter-spacing:-.01em;white-space:nowrap}
+.tz-pill .tz-tag{position:relative;top:-.018em;font-size:inherit;font-weight:700;letter-spacing:0;color:var(--cream)}
+.tz-pill .tz-shot{color:var(--maize)}
+.c1 .tz-main{flex:1 1 auto;padding:0;gap:0}
+.c1 .c1-contact{left:calc(37*var(--px));right:auto;bottom:calc(55*var(--px));font-size:max(12px,calc(26*var(--px)))}
+/* the board (601-999px) nudge for the contact text was tuned for the old 21px pill: the 26px pill needs a smaller one */
+@media (min-width:601px) and (max-width:999px){[data-card="1"].c1 p.c1-contact > span{top:.022em}}
+@container (max-width:600px){
+ .c1-dev{left:0}
+ .fr-deep{padding:8px 8px 8px}
+ .deep-tx{font-size:16px}
+ .deep-d{font-size:11px;line-height:1.3}
+ .deep-pic{margin-top:6px;border-width:2px;border-radius:8px}
+ .tz-pill{margin-top:8px;font-size:11px}
+ .c1 .tz-price{font-size:28px}
+ .c1 .c1-contact{left:10px;right:auto;bottom:10px;font-size:11px}
+}/* ===== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md): ?size=line 1100x1000, ?size=kakao 800x600, home 1080x1350 unchanged.
    Size mode is a fixed screen (the board draws it at 1440px and wider): no vw or screen-width media queries below. --px is 1px, so every
    calc(N*var(--px)) keeps its 1080-design pixel size (text never smaller than the home design). The home cards are hidden in the sizes
    (data-size-hide); every card is redrawn as size sections (v4/ulthera12/sizes/line.html, kakao.html -> v4/events/tools/channel-sizes/inject.cjs)
@@ -595,17 +629,14 @@ html[data-size="line"] .notes,html[data-size="kakao"] .notes{display:none}
 /* ---------- LINE 1100x1000 ---------- */
 /* ULT12 LINE 1100x1000 (2026-11-06, v4/events/CHANNEL_SIZES_20261106.md). Size sections are clones of the home cards (.L + .L<key>, parts .L<n>-<part>);
    --px is 1px, so every home size stays; only position, width, wrapping, columns and parts change here. */
-/* 1A: backdrop + model cutout right (bottom on the card edge), copy and price box left, the device frame in front of her lower body */
-html[data-size="line"] .L1a .c1-photo{display:none}
-html[data-size="line"] .L1a .sz-hero{position:absolute;z-index:2;right:0;bottom:0;display:block;width:auto;height:910px;max-width:none;pointer-events:none}
-html[data-size="line"] .L1a .c1-top{top:44px;justify-content:flex-start;padding-left:56px}
-html[data-size="line"] .L1a .c1-copy{left:56px;top:122px;width:560px}
-html[data-size="line"] .L1a .hero-sub{max-width:420px}
-html[data-size="line"] .L1a .c1-col{left:56px;top:600px;width:380px;gap:0}
-html[data-size="line"] .L1a .fr-hero{position:absolute;left:770px;top:-40px;width:250px;height:400px}
-html[data-size="line"] .L1a .fr-hero .fr-dev{height:300px}
-html[data-size="line"] .L1a .p-hero{right:auto;left:-120px;top:26px}
-html[data-size="line"] .L1a .c1-contact{left:56px;right:auto;bottom:44px}
+/* 1A (2026-11-09 team comments #8-#12): the home layout in 1100x1000: copy top left, the model cutout right of the middle (bottom on the card edge),
+   the front-view device in front of her cut-off arm (its pole covers the arm edge down to the card edge), DeepSEE box top right, price box below it */
+html[data-size="line"] .L1a .c1-copy{left:56px;top:100px}
+html[data-size="line"] .L1a .c1-model{left:307px;height:704px}
+html[data-size="line"] .L1a .c1-dev{left:155px;height:426px}
+html[data-size="line"] .L1a .fr-deep{left:716px;top:112px;width:344px;padding:22px 22px 22px}
+html[data-size="line"] .L1a .fr-tz{left:724px;top:684px}
+html[data-size="line"] .L1a .c1-contact{left:44px;bottom:44px}
 /* 1B: title left, the arch photo right, offer box and gift band left, the device right */
 html[data-size="line"] .L1b .rb-top{top:40px;left:56px;right:56px}
 html[data-size="line"] .L1b .rb-title{left:56px;top:118px;width:680px}
@@ -648,25 +679,25 @@ html[data-size="line"] .L4-2 .cmp-it:nth-child(n+2) .cmp-t{padding-top:8.94px!im
 /* ---------- /LINE ---------- */
 /* ---------- KAKAO 800x600 ---------- */
 /* ULT12 KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). */
+/* 1A (2026-11-09 team comments #8-#12): part 1 the copy left, the model cutout right (bottom on the card edge) with the front-view device in front of her
+   cut-off arm, the contact bottom left; part 2 the title, the DeepSEE box (left) and the price box with '이벤트가 300샷' in one pill (right) */
+html[data-size="kakao"] .K1a .c1-top{top:24px}
+html[data-size="kakao"] .K1-1.K1a .fr-deep,html[data-size="kakao"] .K1-1.K1a .fr-tz{display:none}
+html[data-size="kakao"] .K1-1.K1a .c1-copy{left:24px;top:70px;width:300px}
+html[data-size="kakao"] .K1-1.K1a .hero-title,html[data-size="kakao"] .K1-1.K1a .hero-title .t1{white-space:normal;word-break:normal}
+html[data-size="kakao"] .K1-1.K1a .hero-title{max-width:300px}
+html[data-size="kakao"] .K1-1.K1a .hero-sub{max-width:290px;margin:14px 0}
+html[data-size="kakao"] .K1-1.K1a .c1-model{left:400px;height:544px}
+html[data-size="kakao"] .K1-1.K1a .c1-dev{left:300px;height:304px}
+html[data-size="kakao"] .K1-1.K1a .c1-contact{left:24px;bottom:24px}
+html[data-size="kakao"] .K1-2.K1a .c1-model,html[data-size="kakao"] .K1-2.K1a .c1-dev,html[data-size="kakao"] .K1-2.K1a .hero-sub,html[data-size="kakao"] .K1-2.K1a .label-box,html[data-size="kakao"] .K1-2.K1a .c1-contact{display:none}
+html[data-size="kakao"] .K1-2.K1a .c1-copy{left:24px;top:66px;width:752px}
+html[data-size="kakao"] .K1-2.K1a .fr-deep{left:24px;top:214px;width:394px;padding:20px 22px 20px}
+html[data-size="kakao"] .K1-2.K1a .deep-cap{gap:8px}
+html[data-size="kakao"] .K1-2.K1a .deep-pic{margin-top:12px}
+html[data-size="kakao"] .K1-2.K1a .fr-tz{left:440px;top:262px}
 html[data-size="kakao"] .K .c2-in,html[data-size="kakao"] .K .ba-in,html[data-size="kakao"] .K .c3-in,html[data-size="kakao"] .K .c4-in,html[data-size="kakao"] .K .cx-in{padding:22px 24px 18px}
 html[data-size="kakao"] .K .top{justify-content:flex-start}
-/* 1A: part 1 the model (cutout, right) with kicker, title (two lines), hook, period and the contact left; part 2 title + device frame + price box */
-html[data-size="kakao"] .K1a .c1-photo{display:none}
-html[data-size="kakao"] .K1a .c1-top{top:24px;justify-content:flex-start;padding-left:24px}
-html[data-size="kakao"] .K1a .sz-hero{position:absolute;z-index:2;right:0;bottom:0;display:block;width:auto;height:570px;max-width:none;pointer-events:none}
-html[data-size="kakao"] .K1-1.K1a .c1-col{display:none}
-html[data-size="kakao"] .K1-1.K1a .c1-copy{left:24px;top:76px;width:360px}
-html[data-size="kakao"] .K1-1.K1a .hero-title,html[data-size="kakao"] .K1-1.K1a .hero-title .t1{white-space:normal;word-break:normal}
-html[data-size="kakao"] .K1-1.K1a .hero-title{max-width:320px}
-html[data-size="kakao"] .K1-1.K1a .hero-sub{max-width:360px;margin:14px 0}
-html[data-size="kakao"] .K1-1.K1a .c1-contact{left:24px;right:auto;bottom:28px}
-html[data-size="kakao"] .K1-2.K1a .hero-sub,html[data-size="kakao"] .K1-2.K1a .label-box,html[data-size="kakao"] .K1-2.K1a .c1-contact{display:none}
-html[data-size="kakao"] .K1-2.K1a .c1-copy{left:24px;top:66px;width:752px}
-html[data-size="kakao"] .K1-2.K1a .c1-col{left:24px;top:214px;width:752px;flex-direction:row;align-items:flex-start;gap:36px}
-html[data-size="kakao"] .K1-2.K1a .fr-hero{flex:none;width:300px;height:360px}
-html[data-size="kakao"] .K1-2.K1a .fr-hero .fr-dev{height:270px}
-html[data-size="kakao"] .K1-2.K1a .p-hero{right:auto;left:16px;top:-18px}
-html[data-size="kakao"] .K1-2.K1a .fr-tz{flex:none;width:400px;height:250px;margin-top:56px}
 /* 1B: part 1 title + the arch photo; part 2 offer box, device, gift band, contact */
 html[data-size="kakao"] .K1b .rb-top{top:24px;left:24px;right:24px}
 html[data-size="kakao"] .K1-1.K1b .rb-title{left:24px;top:70px;width:700px}
