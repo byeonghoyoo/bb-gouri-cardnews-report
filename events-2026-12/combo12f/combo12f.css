@@ -84,7 +84,7 @@ img{max-width:100%}
 .cb .tri{width:calc(18*var(--px));min-width:9px;margin-top:calc(7*var(--px))}
 .hook{font-weight:700;font-size:max(12px,calc(23*var(--px)));line-height:1.5;color:var(--ink)}
 .s-hero{--sz:max(84px,calc(200*var(--px)));left:calc(104*var(--px));top:calc(452*var(--px));width:var(--sz);transform:rotate(-8deg)}
-.h-title{position:absolute;z-index:5;left:calc(56*var(--px));right:calc(56*var(--px));top:calc(1036*var(--px))}
+.h-title{position:absolute;z-index:5;left:calc(56*var(--px));right:calc(56*var(--px));top:calc(1106*var(--px))}
 .h-en{font-family:var(--f-wide);font-size:max(11px,calc(16*var(--px)));letter-spacing:.32em;line-height:1.3;color:#f3c979}
 .ht-a{display:flex;align-items:center;gap:calc(14*var(--px));margin-top:calc(10*var(--px));font-weight:900;font-size:max(34px,calc(98*var(--px)*var(--fit,1)));line-height:1.04;letter-spacing:-.05em;color:var(--linen);white-space:nowrap}
 .ht-a .tri-l{width:.5em}
@@ -389,6 +389,11 @@ a[data-link="phone"]{white-space:nowrap}
 .b-ruby .b-editorial{background:var(--c1-bg)}.b-ruby .b-editorial .ht-a,.b-ruby .b-editorial .h-en,.b-ruby .b-editorial .ht-b,.b-ruby .b-editorial .brk{color:var(--linen);border-color:var(--linen)}
 
 .b-ruby .b-pricegrid{margin-bottom:calc(1*var(--px))}
+/* ===== FIXES 20261109 START (generated from v4/combo12f/fixes/fb-20261109.css, do not edit here) ===== */
+/* CMB12F team comments 2026-11-09 (v4/combo12f/fixes/fb-20261109.cjs). Home rules; the size cards add their own in sizes.css.
+   #5 ~ #10: BEST / HIT badge at the end of the row line (A price card), the page's filled ruby label in the wide face of its English labels. */
+.pline .pbadge{display:inline-flex;align-items:center;justify-content:center;flex:none;align-self:center;font-family:var(--f-wide);font-weight:400;font-size:max(11px,calc(13*var(--px)));line-height:1.2;letter-spacing:.08em;color:var(--linen);background:var(--ruby);padding:.3em .62em .34em;white-space:nowrap} /* Michroma sits low in its line box: .04em more below than above centres the caps (qa/text-center-check.cjs 1080 / 780 / line / kakao) */
+/* ===== FIXES 20261109 END ===== */
 /* ===== SIZES START (generated from v4/combo12f/sizes/sizes.css, do not edit here) ===== */
 /* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
    ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
@@ -419,7 +424,8 @@ html[data-size]:not(#sz) .L1a .h-glint{left:330px;top:70px}
 html[data-size]:not(#sz) .L1a .ca{left:84px;top:150px}
 html[data-size]:not(#sz) .L1a .cb{left:84px;top:420px}
 html[data-size]:not(#sz) .L1a .h-disc{left:470px;top:600px}
-html[data-size]:not(#sz) .L1a .h-title{left:50px;right:50px;top:700px}
+/* 2026-11-09 #11: the '시술' line left 1A; the title sits lower, about 30px above the band (as home) */
+html[data-size]:not(#sz) .L1a .h-title{left:50px;right:50px;top:766px}
 html[data-size]:not(#sz) .L1a .band{left:50px;right:50px;top:930px}
 /* 1B: title across the top, the framed photo (home aspect 0.625) below it at the right, caption and hook at the left, the band along the bottom */
 html[data-size]:not(#sz) .L1b .h-title{top:110px}
@@ -482,16 +488,19 @@ html[data-size]:not(#sz) .K1a .h-glint{left:300px;top:40px;width:70px}
 html[data-size]:not(#sz) .K1a .ca{left:44px;top:58px}
 html[data-size]:not(#sz) .K1a .cb{left:44px;top:236px;width:440px}
 html[data-size]:not(#sz) .K1a .h-disc{left:322px;top:178px;width:60px}
-html[data-size]:not(#sz) .K1a .h-title{left:30px;right:30px;top:352px}
+html[data-size]:not(#sz) .K1a .h-title{left:30px;right:30px;top:414px}
 html[data-size]:not(#sz) .K1a .band{left:30px;right:30px;top:562px}
 /* 1B: title across the top, the framed photo at the right under it, caption and hook at the left, the band along the bottom */
 html[data-size]:not(#sz) .K1b .c1-top{left:30px;top:18px}
-html[data-size]:not(#sz) .K1b .h-title{left:30px;right:30px;top:56px}
-html[data-size]:not(#sz) .K1b .c1-photo{inset:238px 30px auto auto;width:190px;height:304px}
-html[data-size]:not(#sz) .K1b .ca{left:30px;top:262px;width:440px}
-html[data-size]:not(#sz) .K1b .cb{left:30px;top:426px;width:520px}
-html[data-size]:not(#sz) .K1b .h-glint{left:700px;top:40px;width:70px}
-html[data-size]:not(#sz) .K1b .h-disc{left:500px;top:250px;width:50px}
+/* 2026-11-09: the board's title ('뷰티블라썸 베스트셀러') is wider than the 800 frame at the home type size, so the title takes two lines at the left,
+   the photo moves up beside it, the caption and the hook sit side by side under them */
+html[data-size]:not(#sz) .K1b .h-title{left:30px;right:auto;top:56px;width:520px}
+html[data-size]:not(#sz) .K1b .ht-a{white-space:normal}
+html[data-size]:not(#sz) .K1b .c1-photo{inset:66px 30px auto auto;width:190px;height:304px}
+html[data-size]:not(#sz) .K1b .ca{left:30px;top:368px;width:420px}
+html[data-size]:not(#sz) .K1b .cb{left:470px;top:388px;width:300px}
+html[data-size]:not(#sz) .K1b .h-glint{left:504px;top:72px;width:56px}
+html[data-size]:not(#sz) .K1b .h-disc{left:430px;top:300px;width:50px}
 html[data-size]:not(#sz) .K1b .band{left:30px;right:30px;top:auto;bottom:10px}
 /* 2A / 2B / 3 / 4 */
 html[data-size]:not(#sz) .K2a .cp-in,html[data-size]:not(#sz) .K2b .cp-in{padding:22px 40px 16px}
@@ -507,7 +516,7 @@ html[data-size]:not(#sz) .K3 .kinds{flex:none;margin-top:10px}
 html[data-size]:not(#sz) .K3 .src{margin-top:6px}
 /* decorations stay off the text: the snowflake beside the title (part 1) / under the period chip (part 2), the dot disc in the top row */
 html[data-size]:not(#sz) .K2ap1 .p-snow{left:600px;right:auto;top:96px;bottom:auto;width:56px}
-html[data-size]:not(#sz) .K2ap2 .p-snow{left:auto;right:40px;top:74px;bottom:auto;width:44px}
+html[data-size]:not(#sz) .K2ap2 .p-snow,html[data-size]:not(#sz) .K2ap3 .p-snow{left:auto;right:40px;top:74px;bottom:auto;width:44px}
 html[data-size]:not(#sz) .K3 .x-disc{right:44px;top:10px;width:72px}
 html[data-size]:not(#sz) .K3p2 .kinds{margin-top:8px}
 html[data-size]:not(#sz) .K3 .pick{padding:16px 22px}
@@ -539,6 +548,8 @@ html[data-size]:not(#sz) .K5p3 .bk-row{grid-template-columns:120px;grid-template
 /* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by half a pixel (growing one side) from its computed padding */
 html[data-size]:not(#sz) .K2ap1 span.prod-n[data-copy="c6_p74_name"]{padding-top:5.06px!important;padding-bottom:5.18px!important}
 html[data-size]:not(#sz) .K2ap1 span.pchip[data-copy="c6_r75_chip"]{padding-top:3.1px!important;padding-bottom:0.3px!important}
+/* 2026-11-09: this badge's line centre falls on half a pixel, so the text snapped 0.5px off its box centre; the box moves down half a pixel */
+html[data-size]:not(#sz) .K2ap3 span.pbadge[data-copy="c6_r84_badge"]{position:relative;top:.5px}
 /* ---------- /KAKAO ---------- */
 /* ===================== /channel sizes ===================== */
 /* ===== SIZES END ===== */
