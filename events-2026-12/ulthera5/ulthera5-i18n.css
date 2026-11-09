@@ -1,0 +1,232 @@
+/* ULT5: localized copy only. KO layout and all source imagery remain unchanged. */
+html[data-locale=JP]{--f-text:'Noto Sans JP','Pretendard Variable',sans-serif;--f-cap:'Cinzel','Noto Sans JP',serif;--f-num:'Playfair Display','Noto Sans JP',serif}
+html[data-locale=CN]{--f-text:'Noto Sans SC','Pretendard Variable',sans-serif;--f-cap:'Cinzel','Noto Sans SC',serif;--f-num:'Playfair Display','Noto Sans SC',serif}
+html[data-locale=TW],html[data-locale=HK]{--f-text:'Noto Sans TC','Pretendard Variable',sans-serif;--f-cap:'Cinzel','Noto Sans TC',serif;--f-num:'Playfair Display','Noto Sans TC',serif}
+html[data-locale=TH]{--f-text:'Noto Sans Thai','Pretendard Variable',sans-serif;--f-cap:'Cinzel','Noto Sans Thai',serif;--f-num:'Playfair Display','Noto Sans Thai',serif}
+html:not([data-locale=KO]) .sheet{word-break:normal;overflow-wrap:break-word}
+html:not([data-locale=KO]) .h-title,html:not([data-locale=KO]) .h-sub{white-space:normal}
+html:not([data-locale=KO]) .pname .n1,html:not([data-locale=KO]) .pname .n2{white-space:normal}
+html:not([data-locale=KO]) .p-title,html:not([data-locale=KO]) .q-title{white-space:normal}
+html[data-locale=TH] .sheet{letter-spacing:0}
+html:not([data-locale=KO]) [data-copy=u5_contact]{white-space:pre-line}
+
+/* Long localized package names must use their own line, not compete with gift badges. */
+html:not([data-locale=KO]) .trow .pn{flex-wrap:wrap;row-gap:calc(4*var(--px));padding:calc(5*var(--px)) 0}
+html:not([data-locale=KO]) .trow .pname{flex:0 0 100%}
+html:not([data-locale=KO]) .bc-t,html:not([data-locale=KO]) .tg-head{white-space:normal}
+html:not([data-locale=KO]) .tg-head{flex-wrap:wrap;row-gap:2px}
+html:not([data-locale=KO]) .brow{grid-template-columns:minmax(0,1fr);row-gap:calc(6*var(--px))}
+html:not([data-locale=KO]) .brow .bp{flex-direction:row;align-items:baseline;justify-content:flex-end;gap:calc(12*var(--px))}
+html:not([data-locale=KO]) .gift{max-width:100%;white-space:normal}
+html:not([data-locale=KO]) .gift-t{min-width:0}
+html:not([data-locale=KO]) .h1b-cond{white-space:normal}
+html:not([data-locale=KO]) .tk-big{grid-template-columns:minmax(0,1fr) auto;white-space:normal}
+html:not([data-locale=KO]) .tk-big .b1,html:not([data-locale=KO]) .tk-big .b2{font-size:calc(28*var(--px));white-space:normal}
+html:not([data-locale=KO]) .stack5 .b1,html:not([data-locale=KO]) .stack5 .b2{white-space:normal}
+@container (min-width:601px){
+ html:not([data-locale=KO])[data-size=home] .c1a .h1a-copy{top:calc(135*var(--px));width:calc(570*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c1a .h-title{font-size:calc(56*var(--px));line-height:1.1}
+ html:not([data-locale=KO])[data-size=home] .c1a .h-sub{font-size:calc(24*var(--px));line-height:1.3}
+ html:not([data-locale=KO])[data-size=home] .c1a .ticket{top:calc(530*var(--px));width:calc(510*var(--px));padding:calc(18*var(--px)) calc(26*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c1a .tk-big .b5{font-size:calc(128*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c1a .h1a-dev:not(.h1a-dev-back){height:calc(520*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c1b .h1b-title{font-size:calc(52*var(--px));line-height:1.1}
+ html:not([data-locale=KO])[data-size=home] .c1b .h1b-sub{font-size:calc(24*var(--px))}
+ html[data-locale=TH][data-size=home] .c2a .trow{grid-template-columns:minmax(0,1fr) calc(160*var(--px)) calc(252*var(--px))}
+ html[data-locale=EN][data-size=home] .bt-loc .map{height:calc(350*var(--px));aspect-ratio:auto}
+ html[data-locale=EN][data-size=home] .bt-loc .map-img{object-fit:contain}
+}
+
+@container (min-width:601px){
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .ptable{grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(28*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .i18n-pcol{display:flex;flex-direction:column;gap:calc(18*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .tg{grid-template-columns:auto minmax(0,1fr);column-gap:calc(16*var(--px));padding-top:calc(12*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .tg-dev{grid-column:1;grid-row:1;height:calc(86*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .tdev{height:calc(80*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .tg-head{grid-column:2;grid-row:1;flex-direction:column;justify-content:center;align-items:flex-start;gap:calc(3*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .tg.nodev{grid-template-columns:minmax(0,1fr)}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .tg.nodev .tg-head{grid-column:1;min-height:calc(50*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .trows{grid-column:1/-1;grid-row:2}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .trow{grid-template-columns:minmax(0,1fr) calc(160*var(--px));min-height:calc(88*var(--px));row-gap:calc(2*var(--px));padding:calc(7*var(--px)) 0}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .trow .pn{grid-column:1;grid-row:1/3;padding:0}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .trow .plist{grid-column:2;grid-row:1;align-self:end}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .trow .psale{grid-column:2;grid-row:2;align-self:start}
+ html[data-locale=TH][data-size=home] [data-i18n-grid=a] .trow{grid-template-columns:minmax(0,1fr) calc(232*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .pcards{grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(16*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .i18n-pcol{gap:calc(16*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .bc5{grid-column:auto}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .brows.quad{display:flex;flex-direction:column}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .brow{width:100%;padding:calc(12*var(--px)) 0}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .bc-head{padding:calc(12*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .brows{padding-left:calc(12*var(--px));padding-right:calc(12*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .bp{flex-wrap:wrap;gap:calc(5*var(--px)) calc(12*var(--px))}
+}
+@container (max-width:600px){html:not([data-locale=KO]) .i18n-pcol{display:contents}}
+
+/* Channel redesign: retain copy and sizes, distribute long content into parts. */
+html:not([data-locale=KO]) .L1a .h-title,html:not([data-locale=KO]) .K1a .h-title{font-size:56px;line-height:1.1}
+html:not([data-locale=KO]) .L1b .h1b-title,html:not([data-locale=KO]) .K1b .h1b-title{font-size:52px;line-height:1.1}
+html:not([data-locale=KO]) .L .h-sub,html:not([data-locale=KO]) .K .h-sub{font-size:24px;line-height:1.3}
+html:not([data-locale=KO]) .L1a .ticket{top:410px}
+html:not([data-locale=KO]) .K1a .ticket{top:370px}
+html:not([data-locale=KO]) .K1a .h1a-copy{width:480px}
+html:not([data-locale=KO]) .K1b .h1b-cond{font-size:22px;line-height:1.25}
+html:not([data-locale=KO]) .K1b .stack5{margin-top:4px}
+html:not([data-locale=KO]) .K2a .ph-mini,html:not([data-locale=KO]) .K2b .ph-mini{display:block;text-align:left}
+html:not([data-locale=KO]) .K2a .ph-mini .p-title,html:not([data-locale=KO]) .K2b .ph-mini .p-title{margin-top:8px}
+html:not([data-locale=KO]) .L[data-i18n-split] .pcards{grid-template-columns:repeat(2,minmax(0,1fr))}
+html:not([data-locale=KO]) .L[data-i18n-split] .tg-head{flex-wrap:wrap}
+html:not([data-locale=KO]) .L[data-i18n-split] .trow{grid-template-columns:minmax(0,1fr) 170px;min-height:82px;row-gap:2px;padding:6px 0}
+html:not([data-locale=KO]) .L[data-i18n-split] .trow .pn{grid-column:1;grid-row:1/3;padding:0}
+html:not([data-locale=KO]) .L[data-i18n-split] .trow .plist{grid-column:2;grid-row:1;align-self:end}
+html:not([data-locale=KO]) .L[data-i18n-split] .trow .psale{grid-column:2;grid-row:2;align-self:start}
+html[data-locale=TH] .L[data-i18n-split] .trow{grid-template-columns:minmax(0,1fr) 230px}
+html:not([data-locale=KO]) .K2p2.K2a .ptable{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+html:not([data-locale=KO]) .K2p2.K2a .tg,html:not([data-locale=KO]) .K2p3.K2a .tg{grid-template-columns:auto minmax(0,1fr);column-gap:12px}
+html:not([data-locale=KO]) .K2p2.K2a .tg-dev,html:not([data-locale=KO]) .K2p3.K2a .tg-dev{grid-column:1;grid-row:1;height:70px}
+html:not([data-locale=KO]) .K2p2.K2a .tdev,html:not([data-locale=KO]) .K2p3.K2a .tdev{height:68px}
+html:not([data-locale=KO]) .K2p2.K2a .tg-head,html:not([data-locale=KO]) .K2p3.K2a .tg-head{grid-column:2;grid-row:1;display:block;align-self:center}
+html:not([data-locale=KO]) .K2p2.K2a .tg-sub,html:not([data-locale=KO]) .K2p3.K2a .tg-sub{display:block;margin-top:4px}
+html:not([data-locale=KO]) .K2p2.K2a .trows,html:not([data-locale=KO]) .K2p3.K2a .trows{grid-column:1/-1;grid-row:2}
+html:not([data-locale=KO]) .K2p2.K2a .trow,html:not([data-locale=KO]) .K2p3.K2a .trow{grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:6px 0;min-height:0}
+html:not([data-locale=KO]) .K2p2.K2a .trow .pn,html:not([data-locale=KO]) .K2p3.K2a .trow .pn{grid-column:1/-1;grid-row:1;padding:0}
+html:not([data-locale=KO]) .K2p2.K2a .trow .plist,html:not([data-locale=KO]) .K2p3.K2a .trow .plist{grid-column:1;grid-row:2}
+html:not([data-locale=KO]) .K2p2.K2a .trow .psale,html:not([data-locale=KO]) .K2p3.K2a .trow .psale{grid-column:2;grid-row:2}
+html:not([data-locale=KO]) .K2p3.K2a .trows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px}
+html:not([data-locale=KO]) .K2p2.K2b .brow{padding:8px 0}
+html:not([data-locale=KO]) .gift-big{white-space:normal}
+html:not([data-locale=KO]) .g-band{white-space:normal}
+html:not([data-locale=KO]) .dl{left:4px;right:auto;width:17%;text-align:left;white-space:normal}
+html:not([data-locale=KO]) .inf-v .nw{white-space:normal}
+html:not([data-locale=KO]) .K3p1 .points{margin-top:18px;gap:12px}
+html:not([data-locale=KO]) .K4p1 .steps{margin-top:14px;gap:5px}
+html:not([data-locale=KO]) .K4p1 .st{min-height:70px}
+html:not([data-locale=KO]) .K4p3 .infos{margin-top:32px;flex:1;align-content:center;gap:16px}
+html:not([data-locale=KO]) .K4p3 .inf{padding:28px 16px 20px}
+html:not([data-locale=KO]) .K4p3 .c4-tip{margin-top:22px}
+html:not([data-locale=KO]) .K5p2 .bt-str,html:not([data-locale=KO]) .K5p2 .bt-hours{padding:14px 20px}
+html:not([data-locale=KO]) .K5p2 .bt-str .ab-strengths{gap:12px 24px;margin-top:8px}
+html:not([data-locale=KO]) .K5p3 .map{height:300px;aspect-ratio:auto}
+html:not([data-locale=KO]) .K5p3 .map-img{object-fit:contain}
+html:not([data-locale=KO]) .L3 .cmp{margin-top:12px}
+html:not([data-locale=KO]) .L3 .cmp-pic{height:166px}
+html:not([data-locale=KO]) .L3 .cdev{height:150px}
+html:not([data-locale=KO]) .L4 .steps{margin-top:34px}
+html:not([data-locale=KO]) .L4 .infos{margin-top:30px}
+html:not([data-locale=KO]) .L4 .c4-tip{margin-top:20px}
+html:not([data-locale=KO]) .L5p2 .bk-row{grid-template-columns:124px;grid-template-rows:auto auto;align-content:center;justify-items:start}
+@container (min-width:601px){
+ html:not([data-locale=KO])[data-size=home] .i18n-pcol{gap:calc(12*var(--px))}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=a] .trow{min-height:calc(82*var(--px));padding:calc(4*var(--px)) 0}
+ html:not([data-locale=KO])[data-size=home] [data-i18n-grid=b] .brow{padding:calc(8*var(--px)) 0}
+ html[data-locale=TH][data-size=home] [data-i18n-grid=b] .brows{padding-left:calc(8*var(--px));padding-right:calc(8*var(--px))}
+ html[data-locale=TH][data-size=home] [data-i18n-grid=b] .bp{column-gap:calc(4*var(--px))}
+}
+
+/* Final localized spacing: no copy removed or currency changed. */
+html[data-locale=JP] .h-title .t1,html[data-locale=JP] .h-title .t2{white-space:nowrap}
+html[data-locale=JP] .c1b .h1b-title{font-size:calc(52*var(--px)*var(--fit,1))}
+html:not([data-locale=KO]) .L2b[data-i18n-split] .brow{padding:4px 0;row-gap:3px}
+html:not([data-locale=KO]) .K2p3.K2a .tg-dev{height:50px}
+html:not([data-locale=KO]) .K2p3.K2a .tdev{height:48px}
+html:not([data-locale=KO]) .K2p3.K2a .ptable{margin-top:10px}
+html:not([data-locale=KO]) .K2p3.K2a .trows{row-gap:4px}
+html:not([data-locale=KO]) .K2p3.K2a .trow{padding:3px 0}
+html:not([data-locale=KO]) .K3p2 .cmp-row{gap:18px 20px;margin-top:18px}
+html:not([data-locale=KO]) .K3p2 .cmp-pic{height:88px}
+html:not([data-locale=KO]) .K3p2 .cdev{height:78px}
+html:not([data-locale=KO]) .K3p1 .q-head{margin-top:8px}
+html:not([data-locale=KO]) .K3p1 .points{margin-top:8px;gap:8px}
+html:not([data-locale=KO]) .K3p1 .cx-in{padding-top:24px}
+html:not([data-locale=KO]) .K5p3 .map{height:220px}
+@container (min-width:601px){
+ html[data-locale=TH][data-size=home] [data-i18n-grid=b] .brow{padding:calc(4*var(--px)) 0;row-gap:calc(2*var(--px))}
+ html[data-locale=TH][data-size=home] [data-i18n-grid=b] .brow .pn{row-gap:calc(2*var(--px))}
+ html[data-locale=TH][data-size=home] [data-i18n-grid=b] .i18n-pcol{gap:calc(10*var(--px))}
+}
+
+html[data-locale=JP][data-size=home] .c1b .h1b-title{font-size:calc(52*var(--px)*var(--fit,1))}
+html[data-locale=JP] .K1a .h-title{font-size:calc(56px*var(--fit,1))}
+html[data-locale=HK] .L2b .p-head{display:block}
+html[data-locale=HK] .L2b .p-meta{margin-top:8px;justify-content:flex-start}
+
+html[data-locale=HK] .L2b .p-title{width:100%;max-width:none;white-space:nowrap}
+@container (max-width:600px){html[data-locale=JP] .c1a .h-title .t1,html[data-locale=JP] .c1a .h-title .t2{white-space:normal}}
+
+html[data-locale=HK] .L2b .c2-in{padding-top:24px}
+html[data-locale=HK] .L2b .p-head{margin-top:8px}
+html[data-locale=HK] .L2b .pcards{margin-top:12px}
+html[data-locale=HK] .L2b .p-foot{padding-top:8px}
+
+@container (max-width:600px){
+ html[data-locale=JP] .c1a .h1a-copy{width:calc(620*var(--px))}
+ html[data-locale=JP] .c1a .h-title .t1,html[data-locale=JP] .c1a .h-title .t2{white-space:nowrap}
+ html[data-locale=JP][data-size=home] .c1b .h1b-title{font-size:max(20px,calc(52*var(--px)*var(--fit,1)))}
+}
+
+/* Keep longer translated offer conditions inside the home ticket border. */
+html:not([data-locale=KO])[data-size=home] .ticket .tk-ct{flex:1 1 auto;min-width:0;white-space:normal}
+
+/* 2026-11-09 full component-boundary audit: wrap text, never mask overflow. */
+html:not([data-locale=KO]) .ticket .tk-ct{flex:1 1 auto;min-width:0;white-space:normal}
+.K1b .h1b-offer{margin-top:10px;padding-top:10px}
+.K1b .h1b-contact{bottom:12px}
+html:not([data-locale=KO]) .K .contact [data-copy=u5_contact]{white-space:normal}
+html:not([data-locale=KO]) .K1a .h1a-contact{left:40px;right:24px;bottom:12px;justify-content:flex-end}
+html:not([data-locale=KO]) .K1b .h1b-contact{left:40px;right:24px;bottom:12px}
+
+/* Narrow channel price rows use a real second price line. */
+html:not([data-locale=KO]) .K2p1.K2a .trow{grid-template-columns:minmax(0,1fr) 220px;row-gap:2px;padding:6px 0;min-height:72px}
+html:not([data-locale=KO]) .K2p1.K2a .trow .pn{grid-column:1;grid-row:1/3;padding:0}
+html:not([data-locale=KO]) .K2p1.K2a .trow .plist{grid-column:2;grid-row:1;align-self:end}
+html:not([data-locale=KO]) .K2p1.K2a .trow .psale{grid-column:2;grid-row:2;align-self:start}
+html[data-locale=TH] .K2p1.K2a .trow{grid-template-columns:minmax(0,1fr) 300px}
+html[data-locale=TH] .K2p2.K2a .top,html[data-locale=TH] .K2p3.K2a .top{justify-content:flex-end}
+html[data-locale=TH] .K2p2.K2a .ph-mini .kicker,html[data-locale=TH] .K2p3.K2a .ph-mini .kicker{position:absolute;top:30px;left:44px}
+html[data-locale=TH] .K2p2.K2a .ptable{margin-top:12px}
+html[data-locale=TH] .K2p3.K2a .ptable{margin-top:4px}
+html[data-locale=TH] .K2p2.K2a .trow,html[data-locale=TH] .K2p3.K2a .trow{padding:2px 0;row-gap:2px}
+html[data-locale=TH] .K2p2.K2a .trow .plist,html[data-locale=TH] .K2p3.K2a .trow .plist{grid-column:1/-1;grid-row:2;justify-self:start}
+html[data-locale=TH] .K2p2.K2a .trow .psale,html[data-locale=TH] .K2p3.K2a .trow .psale{grid-column:1/-1;grid-row:3;justify-self:start}
+
+/* Names belong inside the small device panels, rather than hanging past their sides. */
+html:not([data-locale=KO]) .K3p2 .cmp-it{padding-top:0}
+html:not([data-locale=KO]) .K3p2 .cmp-n{position:static;transform:none;margin:6px auto 0;max-width:calc(100% - 16px);white-space:normal;text-wrap:balance;text-align:center;padding:4px 8px;line-height:1.25}
+html:not([data-locale=KO]) .K4p3 .inf-k{max-width:calc(100% - 32px);white-space:normal;text-wrap:balance}
+html:not([data-locale=KO]) .K4p3 .inf{padding-top:40px}
+
+/* Responsive board preview: preserve text sizes and regain space through the header/map layout. */
+@container (min-width:601px) and (max-width:900px){
+ html[data-locale=TH][data-size=home] .c2-in{padding-top:calc(20*var(--px))}
+ html[data-locale=TH][data-size=home] .p-head{margin-top:calc(8*var(--px))}
+ html[data-locale=TH][data-size=home] .p-lead{margin-top:calc(8*var(--px))}
+ html[data-locale=TH][data-size=home] .ptable,html[data-locale=TH][data-size=home] .pcards{margin-top:calc(18*var(--px))}
+ html[data-locale=EN][data-size=home] .bt-loc .map,html[data-locale=TH][data-size=home] .bt-loc .map{height:calc(300*var(--px));aspect-ratio:auto}
+ html[data-locale=EN][data-size=home] .bt-loc .map-img,html[data-locale=TH][data-size=home] .bt-loc .map-img{object-fit:contain}
+}
+
+/* Final containment pass: protect the footer and keep secondary device pictures complete. */
+.K1b .h1b-offer{margin-top:4px;padding-top:8px}
+html[data-locale=TH] .K2p1.K2a .trow{min-height:0;padding:2px 0}
+html[data-locale=TH] .K2p1.K2a .ptable{margin-top:12px}
+html:not([data-locale=KO]) .K3p2 .cmp-pic{height:60px}
+html:not([data-locale=KO]) .K3p2 .cdev{height:56px}
+
+/* Visual read-through: full words, breathing room around the logo, aligned panel feet. */
+html[data-locale=TH] .K2p2.K2a .tg-sub{text-wrap:balance}
+html:not([data-locale=KO]) .K3p2 .cmp-t{margin-top:auto}
+html[data-locale=EN] .K3p2 .cmp-row{grid-template-columns:1.12fr .88fr}
+html[data-locale=EN] .K3p2 .cmp-t{overflow-wrap:normal;word-break:normal;text-wrap:balance;hyphens:auto}
+html[data-locale=EN] .K3p2 .dl{width:20%;hyphens:auto;overflow-wrap:normal;word-break:normal;text-wrap:balance}
+
+/* Final English diagram label gutter: preserve font size and the full illustration. */
+html[data-locale=EN] .K3p2 .depth-art{left:14%;top:7%;width:86%;height:86%}
+html[data-locale=EN] .K3p2 .dl{width:30%;hyphens:none}
+html[data-locale=EN] .K3p2 .l-epi{top:20.244%}
+html[data-locale=EN] .K3p2 .l-dermis{top:31.94%}
+html[data-locale=EN] .K3p2 .l-fat{top:51.72%}
+html[data-locale=EN] .K3p2 .l-smas{top:67.716%}
+html[data-locale=EN] .K3p2 .l-muscle{top:80.53%}
+html[data-locale=EN] .K3p2 .dm1{top:34.262%;right:50.396%}
+html[data-locale=EN] .K3p2 .dm2{top:40.626%;right:34.056%}
+html[data-locale=EN] .K3p2 .dm3{top:66.598%;right:17.114%}
