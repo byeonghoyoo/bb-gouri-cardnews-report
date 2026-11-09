@@ -583,8 +583,9 @@ a[data-link="phone"]{white-space:nowrap}
    the original frame cuts her right arm off, so the front-view device stands left of her, in front of that arm; the device file is cut at the
    lower pole (base and wheels off) and sits on the card bottom, so its pole covers the arm edge down to the card edge.
    Right: the DeepSEE box (team photo, team text) and the price box with '이벤트가 300샷' in one pill; the contact pill moves bottom left. ===== */
-.c1-model{position:absolute;z-index:1;left:calc(160*var(--px));bottom:0;display:block;width:auto;height:calc(992*var(--px));max-width:none;pointer-events:none}
-.c1-dev{position:absolute;z-index:2;left:0;bottom:0;display:block;width:auto;height:calc(538*var(--px));max-width:none;filter:drop-shadow(0 calc(10*var(--px)) calc(16*var(--px)) rgba(110,85,30,.18))}
+/* 2026-11-10 team comment #13: the model a little further left, her face clear of the DeepSEE box (the device file is trimmed to its pixels) */
+.c1-model{position:absolute;z-index:1;left:calc(125*var(--px));bottom:0;display:block;width:auto;height:calc(992*var(--px));max-width:none;pointer-events:none}
+.c1-dev{position:absolute;z-index:2;left:0;bottom:0;display:block;width:auto;height:calc(499*var(--px));max-width:none;filter:drop-shadow(0 calc(10*var(--px)) calc(16*var(--px)) rgba(110,85,30,.18))}
 .fr-deep,.c1 .fr-tz{position:absolute;z-index:4;margin:0;border-radius:calc(22*var(--px));box-shadow:0 calc(12*var(--px)) calc(28*var(--px)) rgba(110,85,30,.12)}
 .fr-deep{left:calc(651*var(--px));top:calc(443*var(--px));width:calc(394*var(--px));padding:calc(26*var(--px)) calc(24*var(--px)) calc(24*var(--px));display:flex;flex-direction:column}
 .deep-cap{display:flex;flex-direction:column;align-items:flex-start;gap:calc(12*var(--px))}
@@ -632,8 +633,8 @@ html[data-size="line"] .notes,html[data-size="kakao"] .notes{display:none}
 /* 1A (2026-11-09 team comments #8-#12): the home layout in 1100x1000: copy top left, the model cutout right of the middle (bottom on the card edge),
    the front-view device in front of her cut-off arm (its pole covers the arm edge down to the card edge), DeepSEE box top right, price box below it */
 html[data-size="line"] .L1a .c1-copy{left:56px;top:100px}
-html[data-size="line"] .L1a .c1-model{left:307px;height:704px}
-html[data-size="line"] .L1a .c1-dev{left:155px;height:426px}
+html[data-size="line"] .L1a .c1-model{left:282px;height:704px}
+html[data-size="line"] .L1a .c1-dev{left:160px;height:426px}
 html[data-size="line"] .L1a .fr-deep{left:716px;top:112px;width:344px;padding:22px 22px 22px}
 html[data-size="line"] .L1a .fr-tz{left:724px;top:684px}
 html[data-size="line"] .L1a .c1-contact{left:44px;bottom:44px}
@@ -687,8 +688,8 @@ html[data-size="kakao"] .K1-1.K1a .c1-copy{left:24px;top:70px;width:300px}
 html[data-size="kakao"] .K1-1.K1a .hero-title,html[data-size="kakao"] .K1-1.K1a .hero-title .t1{white-space:normal;word-break:normal}
 html[data-size="kakao"] .K1-1.K1a .hero-title{max-width:300px}
 html[data-size="kakao"] .K1-1.K1a .hero-sub{max-width:290px;margin:14px 0}
-html[data-size="kakao"] .K1-1.K1a .c1-model{left:400px;height:544px}
-html[data-size="kakao"] .K1-1.K1a .c1-dev{left:300px;height:304px}
+html[data-size="kakao"] .K1-1.K1a .c1-model{left:380px;height:544px}
+html[data-size="kakao"] .K1-1.K1a .c1-dev{left:294px;height:304px}
 html[data-size="kakao"] .K1-1.K1a .c1-contact{left:24px;bottom:24px}
 html[data-size="kakao"] .K1-2.K1a .c1-model,html[data-size="kakao"] .K1-2.K1a .c1-dev,html[data-size="kakao"] .K1-2.K1a .hero-sub,html[data-size="kakao"] .K1-2.K1a .label-box,html[data-size="kakao"] .K1-2.K1a .c1-contact{display:none}
 html[data-size="kakao"] .K1-2.K1a .c1-copy{left:24px;top:66px;width:752px}
