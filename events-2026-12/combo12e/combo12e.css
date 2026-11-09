@@ -410,6 +410,26 @@ a[data-link="phone"]{white-space:nowrap}
   .c1:not(.bv):not([data-size-only]) .dt1{left:calc(822*var(--px));top:calc(966*var(--px))}
 }
 .pbadge{display:inline-flex;align-items:center;justify-content:center;flex:none;align-self:center;font-family:var(--f-serif);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.15;letter-spacing:.08em;color:var(--white);background:var(--red);padding:.285em .7em .215em;border-radius:999px;white-space:nowrap} /* Cormorant caps sit high in the line box: .07em more above than below centres them (qa/text-center-check.cjs) */
+/* ===== 2026-11-10 (team comments #3 and #10 of 2026-11-09, pictures made by the lead) =====
+   #3: the A price board moves down and a new cut of the hero model (assets/model-c2-cut.webp: person cutout of a/hf/model-c2-a1-012408_19665a75.png,
+   hair edge cleaned of the blue backdrop) stands at the right of the head on the board's top edge: img.c2-model is the board's first child
+   (bottom:100%), cut straight across at the board top by object-fit / object-position. The head and its two stars sit in the middle of the band
+   above the board, and the rows close up so the board still ends above VAT. Phone: the model in the column the head leaves free at its right.
+   #10: assets/hero.jpg is the same model cutout (a/cut/hero.png, same place as before) on the winter background a/gen/bg-1a-winter-a1-012617_b9a13ec4.png. */
+.c2-model{position:absolute;right:0;bottom:100%;width:calc(287*var(--px));height:calc(320*var(--px));object-fit:cover;object-position:50% 0;user-select:none}
+@container (min-width:601px){
+  .cp.c2m:not(.bv):not([data-size-only]) .cp-head{margin-top:calc(84*var(--px))}
+  .cp.c2m:not(.bv):not([data-size-only]) .pboard{margin-top:calc(84*var(--px));gap:calc(9*var(--px))}
+  .cp.c2m:not(.bv):not([data-size-only]) .prow{padding-top:calc(5*var(--px));padding-bottom:calc(4*var(--px))}
+  .cp.c2m:not(.bv):not([data-size-only]) .singles .prow{padding-top:calc(7*var(--px));padding-bottom:calc(6*var(--px))}
+  .cp.c2m:not(.bv):not([data-size-only]) .prod-h{padding-top:calc(8*var(--px));padding-bottom:calc(3*var(--px))}
+  .cp.c2m:not(.bv):not([data-size-only]) .st-p1{top:calc(190*var(--px))}
+  .cp.c2m:not(.bv):not([data-size-only]) .st-p2{top:calc(256*var(--px))}
+}
+@container (max-width:600px){
+  .cp.c2m:not(.bv):not([data-size-only]) .cp-head{min-height:110px}
+  .c2-model{width:96px;height:124px}
+}
 /* ===== SIZES START (generated from v4/combo12e/sizes/sizes.css, do not edit here) ===== */
 /* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
    ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
@@ -458,6 +478,16 @@ html[data-size]:not(#sz) .L2a .cp-in,html[data-size]:not(#sz) .L2b .cp-in{paddin
 html[data-size]:not(#sz) .L2a .pboard,html[data-size]:not(#sz) .L2b .pboard{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto;grid-auto-flow:column;gap:14px 22px;align-items:start}
 html[data-size]:not(#sz) .L2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
 html[data-size]:not(#sz) .L2a .uibeop,html[data-size]:not(#sz) .L2b .uibeop{left:50px;bottom:36px}
+/* 2026-11-10 #3: the new model at the right of the head on the board's top edge (img.c2-model, cut at the board top); the head and its stars sit
+   in the middle of the band above the board and the rows close up so the two columns still end above VAT */
+html[data-size]:not(#sz) .L2a .cp-head{margin-top:54px}
+html[data-size]:not(#sz) .L2a .pboard{margin-top:54px}
+html[data-size]:not(#sz) .L2a .prow{padding-top:4px;padding-bottom:3px}
+html[data-size]:not(#sz) .L2a .singles .prow{padding-top:6px;padding-bottom:5px}
+html[data-size]:not(#sz) .L2a .prod-h{padding-top:7px;padding-bottom:2px}
+html[data-size]:not(#sz) .L2a .c2-model{right:0;width:233px;height:260px}
+html[data-size]:not(#sz) .L2a .st-p1{top:160px}
+html[data-size]:not(#sz) .L2a .st-p2{top:226px}
 html[data-size]:not(#sz) .L2b .prow{padding:9px 0}
 html[data-size]:not(#sz) .L2b .pg{padding:14px 22px}
 /* 3: question, the layer picture beside the four kinds, the pick box, source */
@@ -554,6 +584,16 @@ html[data-size]:not(#sz) .K2b .prod-h{padding:0 0 10px}
 html[data-size]:not(#sz) .K2bp2 .cp-head{max-width:none}
 /* the second parts start with the unit line: the two head stars would sit on the first box, so they stay out */
 html[data-size]:not(#sz) .K2ap2 .st-p1,html[data-size]:not(#sz) .K2ap2 .st-p2,html[data-size]:not(#sz) .K2bp2 .st-p1,html[data-size]:not(#sz) .K2bp2 .st-p2{display:none}
+/* 2026-11-10 #3: part 1 = script, the title on two lines (a line break only), the model at the right on the board's top edge, 59-60; part 2 = the unit
+   line and 61-64; part 3 = 65-70, the 49% line and VAT. The head sits in the middle of the band above the board, its two stars between title and model */
+html[data-size]:not(#sz) .K2ap1 .cp-head{margin-top:100px}
+html[data-size]:not(#sz) .K2ap1 .pt-main{white-space:normal;width:260px}
+html[data-size]:not(#sz) .K2ap1 .pboard{margin-top:100px}
+html[data-size]:not(#sz) .K2ap1 .c2-model{right:22px;width:310px;height:385px} /* clear of the board's rounded top-right corner; the whole picture (before the cut) stays inside the card */
+html[data-size]:not(#sz) .K2ap1 .st-p1{left:330px;top:206px}
+html[data-size]:not(#sz) .K2ap1 .st-p2{left:378px;top:270px}
+html[data-size]:not(#sz) .K2ap3 .st-p1,html[data-size]:not(#sz) .K2ap3 .st-p2{display:none}
+html[data-size]:not(#sz) .K2ap3 .pboard{margin-top:8px}
 /* 2B part 1: the narrow 59-60 box puts both prices under the name */
 html[data-size]:not(#sz) .K2bp1 .pg1 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:4px}
 html[data-size]:not(#sz) .K2bp1 .pg1 .pn{grid-area:pn}
@@ -611,15 +651,16 @@ html[data-size]:not(#sz) .K5p3 .bk-row{grid-template-columns:120px;grid-template
 /* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by one pixel (or half, by growing one side) from its computed padding */
 html[data-size]:not(#sz) .K2ap1 span.pdet[data-copy="c5_r59_sub"]{padding-top:2.75px!important;padding-bottom:2.65px!important}
 html[data-size]:not(#sz) .K2ap1 span.pdet[data-copy="c5_r60_sub"]{padding-top:3.75px!important;padding-bottom:2.65px!important}
-html[data-size]:not(#sz) .K2ap1 span.otag[data-copy="c5_r61_tag"]{padding-top:3.2px!important;padding-bottom:1.64px!important}
+/* 2026-11-10: rows 61-64 moved to part 2 and 65-70 to part 3 (the model in part 1); these labels snapped off their box centre at the new positions */
+html[data-size]:not(#sz) .K2ap2 span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:3.2px!important;padding-bottom:1.64px!important}
+html[data-size]:not(#sz) .K2ap3 span.otag[data-copy="c5_r65_tag"]{padding-top:2.2px!important;padding-bottom:1.64px!important}
+html[data-size]:not(#sz) .K2ap3 span.pbadge[data-copy="c5_r66_badge"]{position:relative;top:.5px}
 html[data-size]:not(#sz) .K2bp1 span.pdet[data-copy="c5_r59_sub"]{padding-top:2.75px!important;padding-bottom:2.65px!important}
 html[data-size]:not(#sz) .K2bp1 span.pdet[data-copy="c5_r60_sub"]{padding-top:2.75px!important;padding-bottom:2.65px!important}
 html[data-size]:not(#sz) .K2bp1 span.otag[data-copy="c5_r61_tag"]{padding-top:3.4px!important;padding-bottom:1.2px!important}
 html[data-size]:not(#sz) .K2bp2 span.otag[data-copy="c5_r65_tag"]{padding-top:3.4px!important;padding-bottom:1.2px!important}
 html[data-size]:not(#sz) .K3p1 span.ly.ly3{padding-top:3.96px!important;padding-bottom:3.52px!important}
-html[data-size]:not(#sz) .K2ap1 span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:3.2px!important;padding-bottom:1.64px!important}
 /* 2026-11-09: this badge's line centre falls on half a pixel, so its text snapped 0.5px low; the box moves up half a pixel */
-html[data-size]:not(#sz) .K2ap1 span.pbadge[data-copy="c5_r63_badge"]{position:relative;top:-.5px}
 /* the 1B star stays inside the 800 frame */
 html[data-size]:not(#sz) .K1b .st-h1{left:744px;top:180px}
 /* ---------- /KAKAO ---------- */
