@@ -6,6 +6,7 @@
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
+const LANG={KO:'ko',EN:'en'}; /* 2026-11-10: EN at 1080×1350 (copy-data.js locales KO, EN) */
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -28,16 +29,17 @@ function setMoney(el,v){
  el.textContent='';
  for(const m of String(v||'').matchAll(/(\d[\d,.]*)|(\D+)/g))el.append(span(m[1]?'n':'u',m[0]));
 }
-/* two-line title: 'NAD+ 수액' / 'NEW OPEN!' (the text stays one sentence) */
+/* two-line title: 'NAD+ 수액' / 'NEW OPEN!' (the text stays one sentence); EN: the first word / the rest ('Introducing' / 'NAD+ IV Drips!') */
 function setTitle(el,v){
  el.textContent='';v=v||'';
- const m=/^(.*?)\s+(NEW OPEN!?)$/.exec(v);
+ const m=locale==='EN'?/^(\S+)\s+(\S[\s\S]*)$/.exec(v):/^(.*?)\s+(NEW OPEN!?)$/.exec(v);
  if(!m){el.append(span('t1',v));return;}
  el.append(span('t1',m[1]),document.createTextNode(' '),span('t2',m[2]));
 }
-/* team line 3: the part after '맞춘' in pink */
+/* team line 3: the part after '맞춘' in pink; EN: the care phrase at the start ('Nutrient IV care') in pink */
 function setL3(el,v){
  el.textContent='';v=v||'';
+ if(locale==='EN'){const e=/^(.+?\bcare)\s+(\S[\s\S]*)$/i.exec(v);if(!e){appendKept(el,v);return;}el.append(span('hl',e[1]),document.createTextNode(' '),span('l3a',e[2]));return;}
  const m=/^(.*맞춘)\s+(.+)$/.exec(v);
  if(!m){appendKept(el,v);return;}
  el.append(span('l3a',m[1]),document.createTextNode(' '),span('hl',m[2]));
@@ -51,7 +53,10 @@ function setHours(el,v){
 }
 /* names that never break inside */
 /* 2026-11-09: 'NAD 브이트리' is no longer kept whole (it pushed the name out of the narrow kakao B tiles); the team's names of comment #1 are */
-const KEEP=/(02-336-7511|VAT 10%|49%|11\.06 – 02\.28|셀 리부트|백옥 글로우|비타민 B3\(나이아신\)|나이아신\(B3\)|비타민 C|Vitamin B-complex|L-카르니틴|NAD\+ 단품|NAD\+|50mg|100mg|건강기능식품|임신·수유|'뷰티블라썸의원')/g;
+const KEEP_KO=/(02-336-7511|VAT 10%|49%|11\.06 – 02\.28|셀 리부트|백옥 글로우|비타민 B3\(나이아신\)|나이아신\(B3\)|비타민 C|Vitamin B-complex|L-카르니틴|NAD\+ 단품|NAD\+|50mg|100mg|건강기능식품|임신·수유|'뷰티블라썸의원')/g;
+/* EN (2026-11-10): phone, units, ingredient and place names */
+const KEEP_EN=/(\+82-2-336-7511|VAT 10%|up to 49%|11\.06 – 02\.28|[Vv]itamin B3 \(niacin\)|Vitamin C|B vitamins|L-carnitine|Alpha-lipoic acid|Cell Reboot|White Jade Glow|Beauty Blossom Clinic|Beauty Blossom|Dr\. Geonho Lee|Hapjeong Station|Exit 3|Lines 2 & 6|Mediwon Medical Center|66 Yanghwa-ro|10:00–20:00|10:00–16:30|NAD\+|\d+ ?mg)/g;
+let KEEP=KEEP_KO;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));el.append(span('nw',m[0]));last=m.index+m[0].length;}
@@ -67,6 +72,13 @@ function setLead(el,v){
  if(!m){appendKept(el,v);return;}
  const a=span('l1'+(m[2]?'':' tight'),'');appendKept(a,m[1]);const b=span('l2','');appendKept(b,m[3]);
  el.append(a);if(m[2])el.append(document.createTextNode(m[2]));el.append(b);
+}
+/* EN price lead (2026-11-10): two sentences, one line each (A and B); a single sentence wraps as a paragraph */
+function setLeadEN(el,v){
+ el.textContent='';v=v||'';
+ const m=/^(.+?[.!?])\s+(\S[\s\S]*)$/.exec(v);
+ if(!m){appendKept(el,v);return;}
+ const a=span('l1',''),b=span('l2','');appendKept(a,m[1]);appendKept(b,m[2]);el.append(a,document.createTextNode(' '),b);
 }
 /* card 2 A rows: the composition on one line where it fits, breaking only between the items (each item kept whole) */
 function setCompLine(el,v){
@@ -94,7 +106,7 @@ function setQ3(el,v){
 }
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
- if(el.classList.contains('p-lead')){setLead(el,v);return;}
+ if(el.classList.contains('p-lead')){if(locale==='EN')setLeadEN(el,v);else setLead(el,v);return;}
  if(el.classList.contains('pt-d')){setComp(el,v);return;}
  if(el.classList.contains('pr-d')){setCompLine(el,v);return;}
  if(el.matches('.c4 .q-title')){setQ4(el,v);return;}
@@ -121,7 +133,7 @@ function fit(){
  for(const el of document.querySelectorAll('.ha-l2,.ha-l3,.hb-l2,.hb-l3')){fitTo(el,el.parentElement.clientWidth,.7);}
 }
 function render(){
- root.lang='ko';root.dataset.locale=locale;
+ root.lang=LANG[locale]||'ko';root.dataset.locale=locale;KEEP=locale==='EN'?KEEP_EN:KEEP_KO;
  root.classList.toggle('is-editable',editable);
  root.classList.toggle('is-editmode',editable&&editMode);
  for(const el of document.querySelectorAll('[data-copy]')){

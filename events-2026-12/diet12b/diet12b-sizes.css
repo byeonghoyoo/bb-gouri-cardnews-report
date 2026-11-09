@@ -207,3 +207,13 @@ html[data-size]:not(#sz) main.p-b .K6p1 figcaption[data-copy="db_ab_ph2"]{paddin
 html[data-size]:not(#sz) main.p-b .K6p1 figcaption[data-copy="db_ab_ph3"]{padding-top:3.9px!important;padding-bottom:4.9px!important}
 /* ---------- /KAKAO ---------- */
 /* ===================== /channel sizes ===================== */
+
+/* ===== 2026-11-09 team comments, home and sizes (v4/diet12b/fixes/fb-20261109.cjs, qa/feedback-20261109/DIE12B.json) =====
+   #3 #4 #7 #9 #10: BEST / HIT badge at the end of the option line on the A price cards, in the page's pill colour and English face.
+   #5 #11: the drug-price note of 2A and the DCA footnote of 3 in the page's text orange (the colour of the English kicker). */
+.p-b .popt.pb-row{display:block}
+.p-b .popt .pbadge{display:inline-flex;align-items:center;justify-content:center;margin-left:calc(10*var(--px));vertical-align:.14em;font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.2;letter-spacing:.08em;color:#fff;background:var(--pill);padding:.32em .7em .3em;border-radius:999px;white-space:nowrap}
+.p-b .c2:not(.b-price) .p-note[data-copy="db_x23_note"]{color:var(--or-t)}
+.p-b .c3 .fn[data-copy="db_fn37"]{color:var(--or-t)}
+/* the badge line centre of these two rows falls on half a pixel in kakao, so the text snapped 0.7px high; the box moves down half a pixel (qa/text-center-check.cjs) */
+.p-b .K2ap1 .pbadge[data-copy="db_r24_badge"],.p-b .K3p1 .pbadge[data-copy="db_r32_badge"]{position:relative;top:.5px}

@@ -1,0 +1,55 @@
+/* NAD11 language copy (2026-11-10): EN at the home size 1080×1350 only (LINE is for JP·TW·TH, kakao for KO). Every rule starts with
+   html[data-locale="EN"], so the Korean pages stay pixel-identical. Same fonts as KO (Pretendard, Poppins); the English copy is the
+   language-check sheet's text as is, only its line breaks are set here (smaller type or wider boxes where the English runs longer). */
+html[data-locale="EN"] .sheet{word-break:normal;overflow-wrap:break-word}
+html[data-locale="EN"] .q-title,html[data-locale="EN"] .ab-title,html[data-locale="EN"] .dr-name,html[data-locale="EN"] .st-t{text-wrap:balance}
+html[data-locale="EN"] .at{overflow-wrap:normal}
+html[data-locale="EN"] .p-lead .l1,html[data-locale="EN"] .p-lead .l2{display:block} /* the two lead sentences, one line each */
+
+@container (min-width:601px){
+ /* 3 (2026-11-10, the two drip sentences are in): the English runs longer, so the spacing is a little tighter, the single-dose and drip
+    sentences a little smaller; the boxes keep their sizes */
+ html[data-locale="EN"][data-size="home"] .c3 .q-head{margin-top:calc(22*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c3 .nad{margin-top:calc(20*var(--px));padding-top:calc(20*var(--px));padding-bottom:calc(20*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c3 .nad-d{font-size:calc(21*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c3 .single{margin-top:calc(12*var(--px));padding-top:calc(16*var(--px));padding-bottom:calc(16*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c3 .single-d{font-size:calc(20*var(--px));line-height:1.45}
+ html[data-locale="EN"][data-size="home"] .c3 .cmp{margin-top:calc(20*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c3 .cmp-desc{margin-top:calc(10*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c3 .cmp-d{padding:0 calc(6*var(--px));font-size:calc(19*var(--px));line-height:1.45}
+ html[data-locale="EN"][data-size="home"] .c3 .cmp-lab{margin-top:calc(14*var(--px))}
+ /* 4: the title on one line, the answer in the left column above the photo, the three steps a little wider and tighter, the facts as
+    label-over-value pills above the care band */
+ html[data-locale="EN"][data-size="home"] .c4 .q-title{font-size:calc(52*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c4 .q-ans{max-width:calc(420*var(--px));font-size:calc(23*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c4-d1{top:calc(452*var(--px));width:calc(120*var(--px))}
+ html[data-locale="EN"][data-size="home"] .steps{left:calc(492*var(--px));top:calc(304*var(--px));gap:calc(12*var(--px))}
+ html[data-locale="EN"][data-size="home"] .st{grid-template-columns:calc(72*var(--px)) minmax(0,1fr);column-gap:calc(16*var(--px));padding:calc(20*var(--px)) calc(22*var(--px)) calc(22*var(--px))}
+ html[data-locale="EN"][data-size="home"] .st-ico{width:calc(72*var(--px))}
+ html[data-locale="EN"][data-size="home"] .st-t{font-size:calc(27*var(--px))}
+ html[data-locale="EN"][data-size="home"] .st-d{margin-top:calc(6*var(--px));font-size:calc(19*var(--px));line-height:1.45}
+ html[data-locale="EN"][data-size="home"] .facts{left:calc(492*var(--px));top:auto;bottom:calc(164*var(--px));gap:calc(8*var(--px))}
+ html[data-locale="EN"][data-size="home"] .fact{height:auto;flex-direction:column;align-items:flex-start;justify-content:center;gap:calc(4*var(--px));padding:calc(9*var(--px)) calc(22*var(--px)) calc(10*var(--px))}
+ html[data-locale="EN"][data-size="home"] .fact dt{font-size:calc(17*var(--px));line-height:1.2}
+ html[data-locale="EN"][data-size="home"] .fact dd{font-size:calc(21*var(--px));line-height:1.2}
+ html[data-locale="EN"][data-size="home"] .care-tx{font-size:calc(26*var(--px))}
+ /* 5: strengths a little smaller (no word split), the map a little smaller so the two-line address fits, the phone number smaller */
+ html[data-locale="EN"][data-size="home"] .at{font-size:calc(18*var(--px))}
+ html[data-locale="EN"][data-size="home"] .ad{font-size:calc(15*var(--px))}
+ html[data-locale="EN"][data-size="home"] .dr-quote{font-size:calc(18*var(--px))}
+ html[data-locale="EN"][data-size="home"] .bt-loc .map{width:calc(400*var(--px));align-self:center}
+ html[data-locale="EN"][data-size="home"] .way-st{font-size:calc(23*var(--px))}
+ html[data-locale="EN"][data-size="home"] .way-addr{font-size:calc(15*var(--px))}
+ html[data-locale="EN"][data-size="home"] .bk-links{font-size:calc(17*var(--px))}
+ html[data-locale="EN"][data-size="home"] .bk-phone{font-size:calc(25*var(--px))}
+ html[data-locale="EN"][data-size="home"] .hrs li{font-size:calc(20*var(--px))}
+}
+
+@container (max-width:600px){
+ /* phones (the home size on a narrow screen): the 1 B band contact wraps beside the period, the 2 B tile compositions run as one
+    wrapping line so the longer English names keep the prices inside the tiles */
+ html[data-locale="EN"] .hb-band{height:auto;min-height:calc(116*var(--px));padding-top:8px;padding-bottom:8px}
+ html[data-locale="EN"] .band-tx{white-space:normal;min-width:0}
+ html[data-locale="EN"] .band-ct{min-width:0;line-height:1.25}
+ html[data-locale="EN"] .pb .pt-d .ci{display:inline}
+}
