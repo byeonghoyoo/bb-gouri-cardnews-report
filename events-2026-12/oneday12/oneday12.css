@@ -400,6 +400,30 @@ a[data-link="phone"]{white-space:nowrap}
 .v-b.c2 .pboard{outline:0}
 @container(max-width:600px){.v-b.c1{display:block;height:650px;aspect-ratio:auto}.v-b.c1 .c1-photo{position:absolute;left:50%;right:0;top:180px;bottom:0;aspect-ratio:auto;height:auto}.v-b.c1 .c1-head{position:absolute;left:14px;right:14px;top:20px;padding:0;text-align:left}.v-b.c1 .d-en{font-size:38px;margin-top:20px;width:fit-content;margin-left:0}.v-b.c1 .d-sub{font-size:11px;margin:8px 0 0;width:fit-content;white-space:nowrap}.v-b.c1 .h-ko{font-size:25px;margin-top:18px}.v-b.c1 .hook{font-size:12px;margin-top:10px;width:45%;margin-left:0;line-height:1.6}.v-b.c1 .tz{position:absolute;top:330px;left:14px;width:43%;margin:0}.v-b.c1 .tz-label{font-size:13px}.v-b.c1 .tz-top{flex-wrap:wrap}.v-b.c1 .tz-price{font-size:34px}.v-b.c1 .tz-opt{font-size:11px}.v-b.c1 .c1-foot{position:absolute;left:14px;bottom:18px;width:43%;margin:0}.v-b.c1 .c1-period,.v-b.c1 .c1-contact{font-size:11px;white-space:normal}.v-b.c1 .sp1a{left:auto;right:20px}.v-b.c1 .sp1b{display:none}.v-b.c2{padding-bottom:36px}.v-b.c2 .uibeop{position:absolute;bottom:12px;left:14px;transform:none;margin:0;font-size:11px}}
 
+/* ==================== 2026-11-10 team comments ONE12 of 2026-11-09 (qa/feedback-20261109/ONE12.json) ==================== */
+/* card 1 A #27: the price teaser higher, right under the hook (reference picture); #26: the four devices (the product cutouts of card 4) gathered at
+   the bottom left as a backdrop, the two back ones taller, front ones down to just above the period line */
+@container (min-width:601px){.c1:not([data-variant="b"]):not([data-size-only]) .tz{top:calc(455*var(--px))}}
+.c1 .dev{z-index:2;filter:drop-shadow(0 calc(18*var(--px)) calc(26*var(--px)) rgba(20,4,6,.45))}
+.c1:not([data-size-only]) .dv1{left:calc(1*var(--px));top:calc(683*var(--px));width:calc(435*var(--px))}
+.c1:not([data-size-only]) .dv2{left:calc(216*var(--px));top:calc(650*var(--px));width:calc(467*var(--px))}
+.c1:not([data-size-only]) .dv3{left:calc(-23*var(--px));top:calc(863*var(--px));width:calc(335*var(--px))}
+.c1:not([data-size-only]) .dv4{left:calc(125*var(--px));top:calc(823*var(--px));width:calc(376*var(--px))}
+/* cards 2 / 3 (#4-#6 #10-#13): a small modifier line over the name (.pmod), the 24 gifts as small notes (.pgift), HIT / BEST pills (.badge, as row 16);
+   the rows sit closer so the boards keep their height */
+.pmod{margin:0 0 calc(3*var(--px));font-weight:600;font-size:max(11px,calc(15*var(--px)));line-height:1.3;letter-spacing:-.01em;color:var(--cherry)}
+.pgift{margin-top:calc(3*var(--px));font-weight:500;font-size:max(11px,calc(14*var(--px)));line-height:1.35;color:var(--ink-2)}
+.c2:not([data-size-only]):not([data-variant="b"]) .prow{padding:calc(8*var(--px)) 0 calc(7*var(--px))}
+.c2:not([data-size-only]):not([data-variant="b"]) .gh{padding:calc(10*var(--px)) 0 calc(8*var(--px))}
+.c2:not([data-size-only]):not([data-variant="b"]) .prod-h{padding:calc(9*var(--px)) 0 calc(2*var(--px))}
+.c3:not([data-size-only]) .prow{padding:calc(8*var(--px)) 0 calc(7*var(--px))}
+.c3:not([data-size-only]) .gh{padding:calc(10*var(--px)) 0 calc(7*var(--px))}
+.c3:not([data-size-only]) .gh + .prows{margin-bottom:calc(2*var(--px))}/* rows with a modifier line: the line runs across the row on top, so the prices keep standing on the name's baseline (desktop) */
+@container (min-width:601px){.card .prow > .pn:has(> .pmod){display:contents}
+.card .prow > .pn > .pmod{grid-column:1 / -1;grid-row:1}
+.card .prow > .pn:has(> .pmod) > :not(.pmod){grid-column:1}
+.card .prow > .pn:has(> .pmod) > .pname,.card .prow:has(> .pn > .pmod) > .plist,.card .prow:has(> .pn > .pmod) > .psale{grid-row:2}}/* ==================== /2026-11-10 ==================== */
+
 /* ===== SZ:css (generated from v4/oneday12/sizes/sizes.css by inject-sizes.cjs, edit that file) ===== */
 /* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md). home 1080x1350 = every rule above, unchanged. line 1100x1000 and kakao 800x600
    are new compositions of the same elements and copy keys in size-only sections (v4/oneday12/sizes/line.html, kakao.html); nothing is cropped or
@@ -426,7 +450,7 @@ html[data-size="line"] [data-size-hide~="line"] section,html[data-size="kakao"] 
 /* 1 A: the centred title stack on the night sky, the model cutout below it on the right, the offer and the period / contact on the left */
 html[data-size="line"] .L1a .sz-model{right:0;bottom:0;height:604px}
 html[data-size="line"] .L1a .c1-head{top:40px}
-html[data-size="line"] .L1a .tz{top:560px}
+html[data-size="line"] .L1a .tz{top:400px} /* #27: right under the hook */
 html[data-size="line"] .L1a .tr1{left:30px;top:452px;width:430px}
 /* 1 B: the split as home: words on the left, the portrait on the right half (head and shoulders inside the frame) */
 html[data-size="line"] .L1b .model-photo{object-position:50% 0%}
@@ -476,7 +500,7 @@ html[data-size="kakao"] .K1a1 .sp1a{right:70px;top:62px}
 html[data-size="kakao"] .K1a1 .sp1b{left:96px;top:150px}
 html[data-size="kakao"] .K1a2 .sz-model{right:0;bottom:0;height:590px}
 html[data-size="kakao"] .K1a2 .c1-mark{left:40px;right:auto;top:30px}
-html[data-size="kakao"] .K1a2 .tz{left:40px;top:196px;width:350px}
+html[data-size="kakao"] .K1a2 .tz{left:40px;top:92px;width:350px} /* #27 */
 html[data-size="kakao"] .K1a2 .c1-foot{left:40px;bottom:40px}
 html[data-size="kakao"] .K1a2 .sp1a{right:auto;left:330px;top:96px}
 html[data-size="kakao"] .K1a2 .sp1b{left:250px;top:470px}
@@ -577,4 +601,23 @@ html[data-size="kakao"] .K42 .ly3 [data-copy]{position:relative;top:.6px}
 html[data-size="kakao"] .K63 .way-line{top:.1em}
 html[data-size="line"] .L42 .ly2 [data-copy],html[data-size="line"] .L42 .ly3 [data-copy]{position:relative;top:.6px}
 html[data-size="line"] .L62 .way-line{padding-top:.268em;padding-bottom:.132em}
+/* 2026-11-10 ONE12 #26: the four devices gathered at the bottom left (same cluster as home, scaled to the free space between the price and the period) */
+html[data-size="line"] .L1a .dv1{left:22px;top:580px;width:245px}
+html[data-size="line"] .L1a .dv2{left:143px;top:561px;width:263px}
+html[data-size="line"] .L1a .dv3{left:8px;top:681px;width:189px}
+html[data-size="line"] .L1a .dv4{left:92px;top:659px;width:212px}
+html[data-size="kakao"] .K1a2 .dv1{left:16px;top:270px;width:178px}
+html[data-size="kakao"] .K1a2 .dv2{left:104px;top:256px;width:191px}
+html[data-size="kakao"] .K1a2 .dv3{left:7px;top:343px;width:137px}
+html[data-size="kakao"] .K1a2 .dv4{left:67px;top:327px;width:153px}
+/* 2026-11-10 ONE12 modifier lines and gifts: kakao 2A part 2 and 3 part 2 sit closer (part 2 of card 3 drops the repeated 02 heading, its row continues part 1) */
+html[data-size="kakao"] .K2a2 .pboard,html[data-size="kakao"] .K32 .pboard{margin-top:8px}
+html[data-size="kakao"] .K2a2 .prow,html[data-size="kakao"] .K32 .prow{padding:5px 0 4px}
+html[data-size="kakao"] .K2a2 .pparts{margin-top:5px;row-gap:4px}
+html[data-size="kakao"] .K2a2 .pnote{margin-top:3px}
+html[data-size="kakao"] .K2a2 .pmod,html[data-size="kakao"] .K32 .pmod{margin-bottom:1px}
+
+/* 2026-11-10: pills that moved with the team-comment layout (qa/text-center-check.cjs), padding from tmp szpad */
+html[data-size]:not(#sz) .K2a3 span.badge[data-copy="on_r16_badge"]{position:relative;top:.5px}
+html[data-size]:not(#sz) .K32 span.gh-k[data-copy="on_g23_k"]{position:relative;top:.5px}
 /* ===== /SZ:css ===== */
