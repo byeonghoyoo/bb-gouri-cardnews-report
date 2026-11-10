@@ -171,3 +171,49 @@ html[data-size]:not(#sz) .p-d .K6p1 figcaption[data-copy="c4_ab_ph3"]{padding-to
 html[data-size]:not(#sz) .p-d .K6p3 .way-top{align-items:baseline}
 /* ---------- /KAKAO ---------- */
 /* ===================== /channel sizes ===================== */
+/* ===== 2026-11-09 team comments, home and sizes (qa/feedback-20261109/CMB12D.json) =====
+   #7 #8 #9 #10 #11 #12 #14 #15 #16: BEST / HIT badges in the top right corner of the A option tiles (c4_r<row>_badge), dark pill like the date chip. */
+.cp .tile{position:relative}
+.cp .tile .pbadge{position:absolute;top:calc(12*var(--px));right:calc(14*var(--px));display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(14*var(--px)));line-height:1.2;letter-spacing:.08em;color:var(--cream);background:var(--ink);padding:.3em .72em .3em;border-radius:999px;white-space:nowrap}
+/* the letters of 'BEST' snap about 0.7-1px high in some pills (qa/text-center-check.cjs, per tile and size): those pills take a little more padding on top or sit half a pixel lower */
+.cp .tile .pbadge[data-copy="c4_r125_badge"],.cp .tile .pbadge[data-copy="c4_r130_badge"],html:not([data-size="line"]) .cp .tile .pbadge[data-copy="c4_r120_badge"]{padding-top:.355em;padding-bottom:.245em}
+html[data-size="kakao"] .cp .tile .pbadge[data-copy="c4_r113_badge"]{top:calc(12px + .5px)}
+
+/* ===== 2026-11-10 team comments #6 #13 (CMB12D): new cuts of the model at the right of the head of A cards 2 and 3 =====
+   img.c2-model is the board's first child: it stands on the board's top edge (bottom:100%) and is cut straight across there. */
+.cp .pboard{position:relative}
+.cp .pboard .c2-model{position:absolute;right:0;bottom:100%;display:block;width:calc(380*var(--px));height:calc(384*var(--px));max-width:none;object-fit:cover;object-position:50% 0%;pointer-events:none}
+/* home A cards 2 and 3: board top 430 at 1080, the head in the middle of the band and left of the model, the tiles closer */
+.cp.c2:not([data-variant="b"]):not([data-size-only]) .cp-head,.cp.c3:not([data-size-only]) .cp-head{margin-top:calc(98*var(--px));max-width:calc(590*var(--px))}
+.cp.c2:not([data-variant="b"]):not([data-size-only]) .pboard,.cp.c3:not([data-size-only]) .pboard{margin-top:calc(99*var(--px))}
+.cp.c2:not([data-variant="b"]):not([data-size-only]) .pboard .c2-model{width:calc(360*var(--px));height:calc(334*var(--px))}
+.cp.c3:not([data-size-only]) .pboard .c2-model{width:calc(400*var(--px));height:calc(334*var(--px))}
+.cp.c2:not([data-variant="b"]):not([data-size-only]) .tile{padding-top:calc(7*var(--px));padding-bottom:calc(6*var(--px))}
+.cp.c2:not([data-variant="b"]):not([data-size-only]) .tiles{padding-bottom:calc(6*var(--px));row-gap:calc(9*var(--px))}
+/* the heart moves from the model's place to the end of the title (desktop; the phone keeps its own spot) */
+@container (min-width:601px){.cp.c2:not([data-variant="b"]):not([data-size-only]) .dkb1,.cp.c3:not([data-size-only]) .dkb1{right:auto;left:calc(520*var(--px));top:calc(150*var(--px))}}
+.cp.c3:not([data-size-only]) .tile{padding-top:calc(13*var(--px));padding-bottom:calc(12*var(--px))}
+/* line 2A / 3: board top 345, the head in the middle of the band, the model at the right, the heart left of it */
+html[data-size]:not(#sz) .L2a .cp-head,html[data-size]:not(#sz) .L3 .cp-head{margin-top:59px}
+html[data-size]:not(#sz) .L2a .pboard,html[data-size]:not(#sz) .L3 .pboard{margin-top:59px}
+html[data-size]:not(#sz) .L2a .pboard .c2-model,html[data-size]:not(#sz) .L3 .pboard .c2-model{width:300px;height:255px}
+html[data-size]:not(#sz) .L2a .dkb1,html[data-size]:not(#sz) .L3 .dkb1{right:auto;left:600px;top:96px}
+/* kakao 2A / 3 part 1: the head kept left of the model (its lead line wraps), the model at the right under the date chip, the tiles closer */
+/* only the lead line is kept left of the model: a narrower head would make the title fit smaller (--fit) */
+html[data-size]:not(#sz) .K2ap1 .p-lead,html[data-size]:not(#sz) .p-d .K3p1 .p-lead{max-width:470px}
+html[data-size]:not(#sz) .K2ap1 .p-lead{text-wrap:balance}
+/* the head in the middle of the band between the top row and the board (.p-d .K3 rules are stronger, so K3p1 carries .p-d) */
+html[data-size]:not(#sz) .K2ap1 .cp-head{margin-top:15px}
+html[data-size]:not(#sz) .p-d .K3p1 .cp-head{margin-top:32px}
+html[data-size]:not(#sz) .K2ap1 .pboard{margin-top:16px}
+html[data-size]:not(#sz) .p-d .K3p1 .pboard{margin-top:32px}
+html[data-size]:not(#sz) .K2ap1 .pboard .c2-model,html[data-size]:not(#sz) .K3p1 .pboard .c2-model{width:240px;height:200px}
+html[data-size]:not(#sz) .K2ap1 .dkb1,html[data-size]:not(#sz) .K3p1 .dkb1{display:none}
+html[data-size]:not(#sz) .K2ap1 .tile,html[data-size]:not(#sz) .p-d .K3p1 .tile{padding-top:8px;padding-bottom:7px}
+/* home at full width: with the model (#6) the card 2 tiles moved and these pills measure 0.7-0.8px high (r120 now low) in qa/text-center-check.cjs at 1080 */
+@container (min-width:900px){.cp.c2:not([data-variant="b"]):not([data-size-only]) .tile .pbadge[data-copy="c4_r113_badge"],.cp.c2:not([data-variant="b"]):not([data-size-only]) .tile .pbadge[data-copy="c4_r117_badge"],.cp.c2:not([data-variant="b"]):not([data-size-only]) .tile .pbadge[data-copy="c4_r121_badge"]{padding-top:.355em;padding-bottom:.245em}
+.cp.c2:not([data-variant="b"]):not([data-size-only]) .tile .pbadge[data-copy="c4_r120_badge"]{padding-top:.3em;padding-bottom:.3em}}
+/* home at 780: the chip of card 3's second product measures about 1px high after the board moved (#13) */
+@container (min-width:601px) and (max-width:899px){.cp.c3:not([data-size-only]) .prod-chip[data-copy="c4_p127_chip"]{padding-top:.28em;padding-bottom:0}}
+/* kakao 3 part 1: with the board lower (#13) its HIT pill measures 0.8px high; a little more padding on top */
+html[data-size="kakao"] .K3p1 .tile .pbadge[data-copy="c4_r124_badge"]{padding-top:.355em;padding-bottom:.245em}
