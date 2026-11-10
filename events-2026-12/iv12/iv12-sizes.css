@@ -84,7 +84,7 @@ html[data-size]:not(#sz) main.iv .L5p2 .way{margin-top:18px}
 html[data-size]:not(#sz) main.iv .L5p2 .hrs{gap:14px}
 html[data-size]:not(#sz) main.iv .L5p2 .hrs li{font-size:25px}
 html[data-size]:not(#sz) main.iv .L5p2 .hrs-note{margin-top:18px;font-size:17px}
-html[data-size]:not(#sz) main.iv .L5p2 .bk-row{grid-template-columns:150px minmax(0,1fr);gap:22px}
+html[data-size]:not(#sz) main.iv .L5p2 .bk-row{grid-template-columns:116px minmax(0,1fr);gap:16px} /* 2026-11-10: room for the phone number on one line inside the box (was 150px / 22px) */
 html[data-size]:not(#sz) main.iv .L5p2 .bk-links{font-size:20px}
 html[data-size]:not(#sz) main.iv .L5p2 .bk-phone{font-size:34px}
 html[data-size]:not(#sz) main.iv .L5p2 .bt-loc{grid-column:1;grid-row:1 / 3}
