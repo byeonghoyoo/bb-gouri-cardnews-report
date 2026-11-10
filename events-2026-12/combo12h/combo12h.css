@@ -434,4 +434,21 @@ a[data-link="phone"]{white-space:nowrap}
 .bp-lhala-set{--bph:176}
 /* #16: tile 1 (수분·진정): LDM with 아쿠아필, both larger */
 .pr-ldm .tpi{height:calc(236*var(--px))}
+/* #5 / #6: a new cut of the hero model at the right of the head of the A price cards 2 and 3 (img.c2-model, first in .pboard: bottom on the
+   board's top edge, which is the first panel's top edge once the panels start at the top; cut straight across there, kept clear of the panel's
+   rounded corner); the head sits in the middle of the band above the board, the board moves down and its option rows close up a little
+   (12/11 -> 8/7px) so it still ends above VAT. Same layout as CMB12G #6; home 1080 numbers, the size cards set their own in sizes/sizes.css. */
+.c2-model{position:absolute;z-index:1;right:calc(30*var(--px));bottom:100%;width:calc(270*var(--px));height:calc(330*var(--px));object-fit:cover;object-position:50% 0;user-select:none;pointer-events:none}
+.cp.pcm .pboard{align-content:start}
+.cp.pcm:not([data-size-only]) .cp-head{margin-top:calc(92*var(--px))}
+.cp.pcm:not([data-size-only]) .pboard{margin-top:calc(93*var(--px))}
+.cp.pcm:not([data-size-only]) .prow{padding-top:calc(8*var(--px));padding-bottom:calc(7*var(--px))}
+/* text centring of the 트러블 panel's '3주차' chip at its new place (qa/text-center-check.cjs): its bottom edge goes down 1.26px, the margin keeps the layout */
+.cp.pcm:not([data-size-only]) .wk[data-copy="c8_g8_w3_k"]{padding-bottom:calc(.09em + 1.26px);margin-bottom:-1.26px}
+@container (max-width:600px){
+  /* phone: the model in a column at the right of the head, head and shoulders */
+  .cp.pcm:not([data-size-only]) .cp-head{margin-top:12px;margin-right:96px;min-height:104px}
+  .cp.pcm:not([data-size-only]) .pboard{margin-top:14px}
+  .c2-model{right:10px;width:86px;height:105px}
+}
 /* ===== /FIXES 20261109 ===== */

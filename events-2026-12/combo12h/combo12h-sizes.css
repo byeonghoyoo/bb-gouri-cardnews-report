@@ -147,14 +147,24 @@ html[data-size="kakao"] main.b5 .K1a2 .bp-lhala-set{--bph:136}
 /* 2026-11-09 #2 moved the 골드 PTT panel's lines; its name pill's text centring at that place in kakao part 3: the pill's bottom edge goes down
    1.04px and the margin keeps the layout (qa/text-center-check.cjs) */
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pill-n[data-copy="c8_g7_head"]{padding-bottom:calc(.28em + 1.04px);margin-bottom:-1.04px}
+/* 2026-11-09 team comments #5 / #6 (the hero model's new cuts at the right of the A price cards' head, v4/combo12h/fixes/fb-20261109.cjs): part 1
+   only (gen-sizes.cjs puts the model there); the model on the first panel's top edge, the head in the middle of the band above the board */
+html[data-size="line"] main.b5 .L2a1 .c2-model,html[data-size="line"] main.b5 .L31 .c2-model{width:240px;height:293px}
+html[data-size="line"] main.b5 .L2a1 .cp-head,html[data-size="line"] main.b5 .L31 .cp-head{margin-top:74px}
+html[data-size="line"] main.b5 .L2a1 .pboard,html[data-size="line"] main.b5 .L31 .pboard{margin-top:74px}
+html[data-size="kakao"] main.b5 .K2a1 .c2-model,html[data-size="kakao"] main.b5 .K31 .c2-model{width:180px;height:220px}
+html[data-size="kakao"] main.b5 .K2a1 .cp-head,html[data-size="kakao"] main.b5 .K31 .cp-head{margin-top:37px}
+html[data-size="kakao"] main.b5 .K2a1 .pboard,html[data-size="kakao"] main.b5 .K31 .pboard{margin-top:38px}
 /* ==== tc-fix: text snaps to whole pixels, so a few chips need their text or box moved at their size-card position (generated from
    v4/combo12h/sizes/tcfix.json by the text-centre fixer; same box size) ==== */
 html[data-size="line"] main.b5 section[data-size-only][data-card="1"]:not([data-variant]):not([data-part]) span.hp-tag[data-copy="c8_hp_tag"]{padding-top:3.72px;padding-bottom:3.32px;line-height:23.72px;margin-bottom:1px}
-html[data-size="line"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] span.wk[data-copy="c8_g8_w3_k"]{padding-top:1.55px;padding-bottom:1.53px}
+html[data-size="line"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] span.wk[data-copy="c8_g8_w3_k"]{padding-top:1.55px;padding-bottom:0.09px;margin-bottom:1.44px}
 html[data-size="line"] main.b5 section[data-size-only][data-card="6"]:not([data-variant])[data-part="2"] span.way-line[data-copy="c8_ab_way_line"]{padding-top:3.06px;padding-bottom:2.54px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="1"][data-variant="b"][data-part="2"] span.band-vat[data-copy="c8_vat"]{padding-top:4.56px;padding-bottom:4.12px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="2"][data-variant="b"][data-part="3"] span.pill-n[data-copy="c8_g3_head"]{padding-top:6.68px;padding-bottom:6.72px;line-height:31.00px;margin-bottom:1px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="2"][data-variant="b"][data-part="3"] span.pill-n[data-copy="c8_g4_head"]{padding-top:8.68px;padding-bottom:6.72px}
-html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="4"] span.wk[data-copy="c8_g8_w2_k"]{padding-top:2.55px;padding-bottom:2.53px}
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="4"] span.wk[data-copy="c8_g8_w2_k"]{padding-top:2.55px;padding-bottom:1.01px;margin-bottom:1.52px}
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="4"] span.wk[data-copy="c8_g8_w3_k"]{padding-top:2.55px;padding-bottom:2.79px;margin-bottom:-1.26px}
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="4"] span.pbadge[data-copy="c8_r152_badge"]{padding-bottom:calc(.3em - 1.82px);margin-bottom:1.82px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="6"]:not([data-variant])[data-part="3"] span.way-line[data-copy="c8_ab_way_line"]{padding-top:3.06px;padding-bottom:2.54px}
 /* ==== /tc-fix ==== */
