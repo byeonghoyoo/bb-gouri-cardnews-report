@@ -673,6 +673,12 @@ html[data-size="line"] .L1a .callouts{top:556px;width:560px;grid-template-column
 html[data-size="line"] .L1a .co-dev-img{height:270px}
 html[data-size="line"] .L1a .c1-tags{left:838px;top:352px;gap:20px}
 html[data-size="line"] .L1a .c1-contact{left:60px;right:auto}
+/* 2026-11-09 team comments #12 / #13 (card 2 A, site/density12/density12.css): the model stands on the 300샷 panel in part 1 only; the panel moves
+   down 30px so that the model is 300px tall, and the Density photo goes lower in its corner; part 2 has no model */
+html[data-size="line"] .L2a.L2-1 .pgroups{margin-top:70px}
+html[data-size="line"] .L2a.L2-1 .c2-mdl{right:30px;bottom:-70px;height:300px}
+html[data-size="line"] .L2a.L2-1 .cp-head .dev-c{bottom:40px}
+html[data-size="line"] .L2a.L2-2 .c2-mdl{display:none}
 /* ---------- /LINE ---------- */
 /* ---------- KAKAO 800x600 ---------- */
 /* DEN12 KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). */
@@ -792,6 +798,15 @@ html[data-size="kakao"] .K1-2.K1a .c1-tags::before,html[data-size="kakao"] .K1-2
 html[data-size="kakao"] .K1-2.K1a .c1-contact{left:auto;right:24px}
 /* 2026-11-09 team comment #7 (card 2): the tip cells are narrow here, so the tip photo beside the name is smaller */
 html[data-size="kakao"] .K2a .pgroup:first-child .tl-img{width:60px;height:43px}
+/* 2026-11-09 team comments #11 / #12 / #13 (card 2 A, site/density12/density12.css): part 1 (the head) shows the model at the bottom right, standing
+   on the card's bottom edge, so the Density photo moves to the bottom left under the lead line; parts 2 and 3 have no model. The tip cells are
+   narrow here, so in the 300샷 panel the small tip photo sits above the tip name (still at the cell's top left) and the name keeps one line */
+html[data-size="kakao"] .K2a.K2-1 .c2-mdl-w{position:static}
+html[data-size="kakao"] .K2a.K2-1 .c2-mdl{right:12px;bottom:0;height:290px}
+html[data-size="kakao"] .K2a.K2-1 .cp-head .dev-c{right:auto;left:24px;bottom:24px}
+html[data-size="kakao"] .K2a.K2-2 .c2-mdl,html[data-size="kakao"] .K2a.K2-3 .c2-mdl{display:none}
+html[data-size="kakao"] .K2a .pgroup:first-child .tile{grid-template-columns:minmax(0,1fr);grid-template-areas:"img" "top" "e" "pr"}
+html[data-size="kakao"] .K2a .pgroup:first-child .tl-img{justify-self:start;margin-bottom:6px}
 /* ---------- /KAKAO ---------- */
 
 /* ===== 2026-11-09 team comments (qa/feedback-20261109/DEN12.json), card 1 A; home rules (the size cards: v4/density12/sizes/line.css, kakao.css) ===== */
@@ -825,7 +840,28 @@ html[data-size="kakao"] .K2a .pgroup:first-child .tl-img{width:60px;height:43px}
 .c2:not([data-variant]) .tile{min-height:0}
 .c2:not([data-variant]) .tl-e{margin-top:calc(6*var(--px))}
 /* #8: the Density photo moves to the bottom right of the card (its place at the top right is for the model, #13) */
-.c2:not([data-variant]) .cp-head .dev-c{position:absolute;right:calc(52*var(--px));bottom:calc(84*var(--px));z-index:3}
+.c2:not([data-variant]) .cp-head .dev-c{position:absolute;right:calc(52*var(--px));bottom:calc(78*var(--px));z-index:3}
+/* #13: a new cut of the hero model (the lead's Higgsfield cut, person cutout, head to chest; photos/model-c2-cut.webp) at the top right of the head where
+   the Density photo was, standing on the 300샷 panel's top edge inside its straight part (img.c2-mdl in a zero-height wrapper between the head and
+   the panels; its bottom offset = the panels' top margin). The panels move down 80px so that the model is 322px tall; the Density photo sits
+   between the panels and the foot (6px lower than before) */
+.c2:not([data-variant]) .c2-mdl-w{position:relative;height:0}
+.c2:not([data-variant]) .c2-mdl{position:absolute;z-index:1;right:calc(30*var(--px));bottom:calc(-108*var(--px));width:auto;height:calc(322*var(--px));pointer-events:none;user-select:none}
+.c2:not([data-variant]) .pgroups{margin-top:calc(108*var(--px))}
+/* #12: the sheet mask + LED panel picture (generated, background removed; assets/dev/care-mask-led.webp) at the right end of each panel's head line,
+   inside the band between the panel's top edge and the head line's rule */
+.c2:not([data-variant]) .pg-head{position:relative}
+.c2:not([data-variant]) .pg-care-img{position:absolute;right:calc(4*var(--px));top:calc(-14*var(--px));width:auto;height:calc(64*var(--px));pointer-events:none;user-select:none;filter:drop-shadow(0 calc(2*var(--px)) calc(4*var(--px)) rgba(99,39,19,.24))}
+/* #11: the high tip's longer name '하이팁(페이스·아이)' (beside its photo in the 300샷 panel): the middle tip column is a little wider in both panels */
+.c2:not([data-variant]) .tiles{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr)}
+@container (max-width:600px){
+  /* phone: the cells are narrow, so the 300샷 tip photos sit above the tip names (still at the cell's top left), and the Density photo stands
+     beside the foot lines (the panels sit lower here for the model) */
+  .c2:not([data-variant]) .pgroup:first-child .tile{grid-template-columns:minmax(0,1fr);grid-template-areas:"img" "top" "e" "pr"}
+  .c2:not([data-variant]) .pgroup:first-child .tl-img{justify-self:start}
+  .c2:not([data-variant]) .cp-head .dev-c{right:14px;bottom:18px}
+  .c2:not([data-variant]) .c2-foot{min-height:96px;padding-right:108px}
+}
 /* the card 4 '+' between the pair photos sits a little low at its new place (qa/text-center-check.cjs) */
 .c4 .plus{padding-top:.02em;padding-bottom:.07em}
 /* #10 (1): each combination on one line */
