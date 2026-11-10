@@ -210,10 +210,44 @@ html[data-size]:not(#sz) main.p-b .K6p1 figcaption[data-copy="db_ab_ph3"]{paddin
 
 /* ===== 2026-11-09 team comments, home and sizes (v4/diet12b/fixes/fb-20261109.cjs, qa/feedback-20261109/DIE12B.json) =====
    #3 #4 #7 #9 #10: BEST / HIT badge at the end of the option line on the A price cards, in the page's pill colour and English face.
-   #5 #11: the drug-price note of 2A and the DCA footnote of 3 in the page's text orange (the colour of the English kicker). */
+   #11: the DCA footnote of 3 in the page's text orange (the colour of the English kicker). #5 (the drug-price note) went with rows 24/25 to DIE12A. */
 .p-b .popt.pb-row{display:block}
 .p-b .popt .pbadge{display:inline-flex;align-items:center;justify-content:center;margin-left:calc(10*var(--px));vertical-align:.14em;font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.2;letter-spacing:.08em;color:#fff;background:var(--pill);padding:.32em .7em .3em;border-radius:999px;white-space:nowrap}
-.p-b .c2:not(.b-price) .p-note[data-copy="db_x23_note"]{color:var(--or-t)}
 .p-b .c3 .fn[data-copy="db_fn37"]{color:var(--or-t)}
 /* the badge line centre of these two rows falls on half a pixel in kakao, so the text snapped 0.7px high; the box moves down half a pixel (qa/text-center-check.cjs) */
-.p-b .K2ap1 .pbadge[data-copy="db_r24_badge"],.p-b .K3p1 .pbadge[data-copy="db_r32_badge"]{position:relative;top:.5px}
+.p-b .K3p1 .pbadge[data-copy="db_r32_badge"]{position:relative;top:.5px}
+
+/* ===== 2026-11-10 team comments #2 #6 (DIE12B): new cuts of the model at the right of the head of A cards 2 and 3 =====
+   img.c2-model is the board's first child (v4/diet12b/fixes/fb-20261109.cjs): it stands on the board's top edge (bottom:100%) and is cut
+   straight across there (object-fit / object-position); the board moves down so the head and the model share the band above it. */
+.p-b .pboard .c2-model{position:absolute;right:0;bottom:100%;display:block;width:calc(380*var(--px));height:calc(384*var(--px));max-width:none;object-fit:cover;object-position:50% 0%;pointer-events:none} /* 0% (not 0px): the align check reads the position as a percentage */
+/* home A cards 2 and 3: the head in the middle of the band between the top row and the board (board top 480 at 1080), the snowflake left of the model;
+   card 3 closes its rows up (the two products, the footnote and VAT still fit) */
+.p-b .c2:not(.b-price):not([data-size-only]) .cp-head,.p-b .c3:not([data-size-only]) .cp-head{margin-top:calc(116*var(--px))}
+.p-b .c2:not(.b-price):not([data-size-only]) .pboard,.p-b .c3:not([data-size-only]) .pboard{margin-top:calc(117*var(--px))}
+.p-b .c2:not(.b-price):not([data-size-only]) .cx-sn{left:calc(600*var(--px));top:calc(98*var(--px))}
+.p-b .c3:not([data-size-only]) .prow{padding-top:calc(9*var(--px));padding-bottom:calc(9*var(--px))}
+.p-b .c3:not([data-size-only]) .prod-h{padding-top:calc(12*var(--px));padding-bottom:calc(4*var(--px))}
+.p-b .c2:not(.b-price) .pboard,.p-b .c3 .pboard{position:relative}
+/* line 2A / 3: the same composition (board top 350): head in the middle of the band, the model at the right; card 3 closes its rows up */
+html[data-size]:not(#sz) main.p-b .L2a .cp-head{margin-top:58px}
+html[data-size]:not(#sz) main.p-b .L3 .cp-head{margin-top:40px}
+html[data-size]:not(#sz) main.p-b .L2a .pboard{margin-top:59px}
+html[data-size]:not(#sz) main.p-b .L3 .pboard{margin-top:42px}
+html[data-size]:not(#sz) main.p-b .L2a .c2-model{width:300px;height:272px}
+html[data-size]:not(#sz) main.p-b .L3 .c2-model{width:280px;height:240px}
+html[data-size]:not(#sz) main.p-b .L2a .cx-sn{left:640px;top:84px}
+html[data-size]:not(#sz) main.p-b .L3 .roomy .prow{padding:4px 0 3px}
+html[data-size]:not(#sz) main.p-b .L3 .roomy .prod-h{padding:8px 0 2px}
+/* kakao 2A part 1 / 3 part 1: the title on two lines (a line break only), the model at the right of the head, the board under both */
+html[data-size]:not(#sz) main.p-b .K2ap1 .pt-main,html[data-size]:not(#sz) main.p-b .K3p1 .pt-main{white-space:normal;width:330px}
+html[data-size]:not(#sz) main.p-b .K2ap1 .pboard,html[data-size]:not(#sz) main.p-b .K3p1 .pboard{margin-top:10px}
+html[data-size]:not(#sz) main.p-b .K2ap1 .c2-model,html[data-size]:not(#sz) main.p-b .K3p1 .c2-model{width:300px;height:240px}
+html[data-size]:not(#sz) main.p-b .K2ap1 .cx-sn{display:none}
+
+html[data-size]:not(#sz) main.p-b .K3p1 .roomy .prow{padding:4px 0 3px}
+html[data-size]:not(#sz) main.p-b .K3p1 .roomy .prod-h{padding:8px 0 2px}
+/* kakao 2A part 1: the pill sits at a new height with the model band, its text snapped 0.8px high; half a pixel more padding on top (qa/text-center-check.cjs) */
+html[data-size]:not(#sz) main.p-b .K2ap1 p.p-lead[data-copy="db_p_lead2"]{padding-top:9.4px!important;padding-bottom:9.2px!important}
+/* home A cards 2 and 3 at every width: the head stays left of the model (590 of 1080; on a phone the title and the pill wrap instead of running under it) */
+.p-b .c2:not(.b-price):not([data-size-only]) .cp-head,.p-b .c3:not([data-size-only]) .cp-head{max-width:calc(590*var(--px))}

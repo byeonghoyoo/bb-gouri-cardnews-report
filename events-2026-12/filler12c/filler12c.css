@@ -172,7 +172,7 @@ img{max-width:100%}
 .c5 .q-title{text-wrap:balance}
 .c5-photo{margin-top:calc(18*var(--px));border:calc(10*var(--px)) solid var(--white);border-radius:calc(40*var(--px));overflow:hidden;aspect-ratio:4/5;box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) rgba(34,43,110,.2);background:var(--peri-3)}
 .c5-img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.steps{display:grid;grid-template-columns:1fr 1fr;gap:calc(16*var(--px));margin-top:calc(-36*var(--px))}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:calc(16*var(--px));margin-top:calc(-12*var(--px))}
 .c5-headrow+.steps{position:relative;z-index:1}
 .st{display:flex;gap:calc(16*var(--px));align-items:flex-start;background:var(--board);border:calc(6*var(--px)) solid var(--white);border-radius:calc(30*var(--px));padding:calc(18*var(--px)) calc(20*var(--px))}
 .st-ico{flex:none;width:calc(74*var(--px));height:calc(74*var(--px))}
@@ -330,7 +330,8 @@ html[data-size="line"] .L1a .h-head{left:40px;right:auto;width:520px;top:40px}
 html[data-size="line"] .L1a .h-pills{flex-wrap:wrap}
 html[data-size="line"] .L1a .h-script{white-space:normal}
 html[data-size="line"] .L1a .h-title{white-space:normal;max-width:none}
-html[data-size="line"] .L1a .tz{right:40px;bottom:120px}
+/* 2026-11-09 team comment #13: the offer box at the left under the title, clear of the model */
+html[data-size="line"] .L1a .tz{right:auto;left:40px;top:600px;bottom:auto;width:360px}
 html[data-size="line"] .L1a .cta{left:40px;right:auto;width:520px}
 html[data-size="line"] .L1a .h-sn1{left:470px;top:640px}
 html[data-size="line"] .L1a .h-sn3{left:440px;top:500px}
@@ -472,4 +473,31 @@ html[data-size="kakao"] .K6-3 .bt-book{grid-row:2}
    padding moves the box edge and the margin keeps the layout */
 html[data-size="kakao"] .K1-2.K1a .tz-opt{padding-bottom:2.88px;margin-bottom:1.12px}
 html[data-size="kakao"] .K4-1 .pill-k,html[data-size="kakao"] .K4-3 .pill-k,html[data-size="kakao"] .K5-1 .pill-k{padding-bottom:8.06px;margin-bottom:-1.06px}
+
+/* 2026-11-09 team comments #7 / #8: text centring of the 71 / 72 badges at their place in part 4 (qa/text-center-check.cjs): the pill's bottom edge
+   goes down 0.94px from the shared nudge and the margin keeps the layout; the text itself does not move */
+html[data-size="kakao"] .K3.K3-4 .pbadge[data-copy="fc_r71_badge"],html[data-size="kakao"] .K3.K3-4 .pbadge[data-copy="fc_r72_badge"]{padding-bottom:calc(.3em + .2px);margin-bottom:-.2px}
 /* ---------- /KAKAO ---------- */
+/* ===== FIXES 20261109 (v4/filler12c/fixes/fb-20261109.css) ===== */
+/* FIL12C team comments 2026-11-09 (v4/filler12c/fixes/fb-20261109.cjs). Home rules; the size cards add their own in v4/filler12c/sizes/line.css, kakao.css.
+   #2 ~ #8: BEST / HIT badge right after the option text (A price rows; many options run over two lines here, so the badge follows the last
+   word instead of taking a line of its own), a pill in the page accent; the option and its badge share the row's first column; on the
+   one-line product 55 it follows the product name. */
+.popt-w{display:block;min-width:0}
+.popt-w > .popt{display:inline}
+.popt-w .pbadge{margin-left:calc(10*var(--px));vertical-align:calc(1*var(--px))}
+.prod-tx:has(> .pbadge){display:block}
+.prod-tx:has(> .pbadge) > .prod-n{display:inline}
+.prod-tx > .pbadge{margin-left:calc(10*var(--px));vertical-align:calc(2*var(--px))}
+.popt-w .pbadge,.prod-tx .pbadge{align-self:center;display:inline-flex;align-items:center;justify-content:center;flex:none;font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.2;letter-spacing:.06em;color:var(--white);background:var(--acc);border-radius:999px;padding:.28em .72em .3em;white-space:nowrap}
+/* text centring (qa/text-center-check.cjs): the BEST / HIT face sits a little high in its pill, so the pill's bottom edge comes up 0.74px and the
+   margin keeps the layout; the text itself does not move */
+.popt-w .pbadge,.prod-tx .pbadge{padding-bottom:calc(.3em - .74px);margin-bottom:.74px}
+@container (max-width:600px){.prow .popt-w{grid-row:1 / 3;align-self:center}}
+/* #13: the hero offer box at the left under the title, clear of the model (narrower there, so its side padding is a little smaller) */
+.c1:not([data-size-only]) .tz{right:auto;left:calc(36*var(--px));top:calc(474*var(--px));bottom:auto;width:calc(300*var(--px));padding-left:calc(22*var(--px));padding-right:calc(22*var(--px))}
+/* #9: card 2 A: the board moves down and its product gaps close up (the board is flex 1 and spaces its products evenly); the head sits in the
+   middle of the band above it */
+.cp.c2:not([data-variant]):not([data-size-only]) .cp-head{margin-top:calc(96*var(--px))}
+.cp.c2:not([data-variant]):not([data-size-only]) .pboard{margin-top:calc(97*var(--px))}
+/* ===== /FIXES 20261109 ===== */

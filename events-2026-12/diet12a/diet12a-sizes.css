@@ -189,3 +189,27 @@ html[data-size]:not(#sz) main.p-a .K6p1 figcaption[data-copy="da_ab_ph2"]{paddin
 html[data-size]:not(#sz) main.p-a .K6p1 figcaption[data-copy="da_ab_ph3"]{padding-top:3.9px!important;padding-bottom:4.9px!important}
 /* ---------- /KAKAO ---------- */
 /* ===================== /channel sizes ===================== */
+
+/* ===== 2026-11-09 team comments, home and sizes (v4/diet12a/fixes/fb-20261109.cjs, qa/feedback-20261109/DIE12A.json) =====
+   #10 #11 #14 #15 (+ row 24 from DIE12B #3): BEST / HIT badge at the end of the option line on the A price cards, the page's pill colour, English face.
+   #1: the IV drip's modifier line '건강한 체중관리를 위한 수액' above its name. #8 #12: the period chip of A cards 2 and 3 moves to the bottom left. */
+.p-a .popt.pb-row{display:block}
+.p-a .popt .pbadge{display:inline-flex;align-items:center;justify-content:center;margin-left:calc(10*var(--px));vertical-align:.14em;font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.2;letter-spacing:.08em;color:#fff;background:var(--pill);padding:.32em .7em .3em;border-radius:999px;white-space:nowrap;margin-top:-.35em;margin-bottom:-.35em} /* the negative block margins keep the badge from growing the line box, so the option text stays in the middle of its row */
+.p-a .pmod{font-weight:600;font-size:max(11px,calc(16*var(--px)));line-height:1.35;color:var(--ink-3);margin-bottom:calc(2*var(--px))}
+.p-a .c2:not(.b-price):not(.K) .top,.p-a .c3:not(.K) .top{position:static}
+.p-a .c2:not(.b-price):not(.K) .top .period,.p-a .c3:not(.K) .top .period{position:absolute;left:calc(52*var(--px));bottom:calc(34*var(--px));z-index:4} /* home and line; kakao keeps it in the top row (its boards reach the bottom corner) */
+.p-a .c2:not(.b-price) .cx-or{display:none} /* its corner is the date's now */
+/* card 3 holds rows 17-25 since 11/10 (바디라인 TOP PICK 23-25): its rows close up so the group note and VAT stay on the card */
+.p-a .c3 .prow,.p-a .c3 .cc .prow{padding-top:calc(8*var(--px));padding-bottom:calc(7*var(--px))}
+.p-a .c3 .prod-h{padding-top:calc(12*var(--px));padding-bottom:calc(4*var(--px))}
+
+/* kakao card 3 part 3 (바디라인 TOP PICK, two-line names) and 2A part 1: rows closed up so the note / VAT and the board stay on the 600 card */
+html[data-size]:not(#sz) main.p-a .K3p3 .prow{padding:3px 0 3px}
+html[data-size]:not(#sz) main.p-a .K3p3 .prod-h{padding-top:6px;padding-bottom:2px}
+html[data-size]:not(#sz) main.p-a .K2ap1 .mid .prow{padding-top:8px;padding-bottom:7px}/* DIE12B comment #5 came with rows 23-25: the drug-price note under 바디라인 TOP PICK in the page's text orange */
+.p-a .c3 .p-note[data-copy="da_r23_note"]{color:var(--or-t)}
+/* text centring (qa/text-center-check.cjs): the CA 8cc row with its HIT badge measured 1.5px low at every width; its option line moves up 1.4 units.
+   In kakao 2A part 2 the row-14 badge snapped 0.8px high; the box moves down half a pixel */
+.p-a .c3 li[data-price-row="9_diet:21"] .popt{position:relative;top:calc(-1.4*var(--px))}
+html[data-size]:not(#sz) main.p-a .K2ap2 .pbadge[data-copy="da_r14_badge"]{position:relative;top:.5px}
+html[data-size]:not(#sz) main.p-a .K3p2 .pbadge[data-copy="da_r21_badge"]{position:relative;top:.5px}
