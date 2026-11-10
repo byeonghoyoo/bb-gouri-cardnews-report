@@ -20,7 +20,7 @@ html[data-size]:not(#sz) .p-d .h-model{position:absolute;z-index:2;display:block
 /* 1A: the cutout flush left (its left edge is the original's frame), bubble and title at the right, the offer band along the bottom */
 html[data-size]:not(#sz) .p-d .L1a .h-model{left:0;bottom:0;height:940px}
 html[data-size]:not(#sz) .p-d .L1a .bubble{right:40px;top:150px;width:380px}
-html[data-size]:not(#sz) .p-d .L1a .h-title{right:56px;top:440px;width:380px}
+html[data-size]:not(#sz) .p-d .L1a .h-title{right:56px;top:440px;width:400px}
 html[data-size]:not(#sz) .p-d .L1a .hz2{top:520px}
 html[data-size]:not(#sz) .p-d .L1a .hz3{top:120px}
 /* 1B */
@@ -89,12 +89,12 @@ html[data-size]:not(#sz) .p-d .K1a .hz3{right:auto;left:372px;top:236px;width:62
 html[data-size]:not(#sz) .p-d .K1a .sn1{right:auto;left:330px;top:24px;width:44px}
 html[data-size]:not(#sz) .p-d .K1a .c1-top{left:30px;right:30px;top:20px}
 html[data-size]:not(#sz) .p-d .K1a .bubble{right:20px;top:64px;width:320px}
-html[data-size]:not(#sz) .p-d .K1a .h-title{right:36px;top:226px;width:340px}
+html[data-size]:not(#sz) .p-d .K1a .h-title{right:36px;top:226px;width:400px}
 html[data-size]:not(#sz) .p-d .K1a .h-band{padding:12px 30px 12px}
 /* 1B: title and hook at the left, the arch photo at the right, the offer band along the bottom */
 html[data-size]:not(#sz) .p-d .K1b .h-photo{inset:60px 30px 146px auto;width:300px}
 html[data-size]:not(#sz) .p-d .K1b .c1-top{left:30px;right:30px;top:20px}
-html[data-size]:not(#sz) .p-d .K1b .h-title{left:30px;top:84px;width:420px}
+html[data-size]:not(#sz) .p-d .K1b .h-title{left:30px;top:84px;width:436px}
 html[data-size]:not(#sz) .p-d .K1b .b-hook{left:34px;top:366px;width:420px}
 html[data-size]:not(#sz) .p-d .K1b .hz1{left:400px;top:70px;width:90px}
 html[data-size]:not(#sz) .p-d .K1b .hz2{left:400px;top:300px;width:60px}

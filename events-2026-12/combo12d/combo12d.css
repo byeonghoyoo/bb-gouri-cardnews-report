@@ -437,3 +437,4 @@ a[data-link="phone"]{white-space:nowrap}
 @container(max-width:600px){.p-d .b-tickets .b-ticket{min-height:122px;padding:14px}.p-d .b-tickets .b-ticket-grid{gap:10px}}
 
 .p-d .prod-chip{line-height:1.32;padding-top:calc(.14em + .073em);padding-bottom:calc(.14em - .073em)}.p-d .fl1{padding-top:calc(.18em - .01em);padding-bottom:calc(.18em + .01em)}
+@container (min-width:601px){.p-d .c1:not(.b-split) .h-title{width:calc(400*var(--px))}.p-d .c1:not(.b-split) .h-ko{filter:drop-shadow(0 0 calc(8*var(--px)) rgba(255,247,226,.9))}.p-d .b-split .h-ko{font-size:calc(108*var(--px)*var(--fit,1))}}
