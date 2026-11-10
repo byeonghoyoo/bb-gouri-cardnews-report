@@ -38,8 +38,8 @@ html[data-size]:not(#sz) main.p-a .L2a .cp-in,html[data-size]:not(#sz) main.p-a 
 html[data-size]:not(#sz) main.p-a .L2a .cp-head,html[data-size]:not(#sz) main.p-a .L2b .cp-head,html[data-size]:not(#sz) main.p-a .L3 .cp-head{margin-top:14px;max-width:none}
 html[data-size]:not(#sz) main.p-a .L2a .pboard,html[data-size]:not(#sz) main.p-a .L3 .pboard{margin-top:16px}
 html[data-size]:not(#sz) main.p-a .L2a .pboard{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);column-gap:0;margin-top:22px;padding-bottom:16px}
-html[data-size]:not(#sz) main.p-a .L2a .prod:nth-child(1),html[data-size]:not(#sz) main.p-a .L2a .prod:nth-child(2){grid-column:1;padding-right:28px}
-html[data-size]:not(#sz) main.p-a .L2a .prod:nth-child(3){grid-column:2;grid-row:1 / 3;border-top:0;border-left:2px solid var(--navy);padding-left:28px}
+html[data-size]:not(#sz) main.p-a .L2a .prod:nth-of-type(1),html[data-size]:not(#sz) main.p-a .L2a .prod:nth-of-type(2){grid-column:1;padding-right:28px} /* of-type: the model picture is the board's first child since 11/10 */
+html[data-size]:not(#sz) main.p-a .L2a .prod:nth-of-type(3){grid-column:2;grid-row:1 / 3;border-top:0;border-left:2px solid var(--navy);padding-left:28px}
 html[data-size]:not(#sz) main.p-a .L2a .prow{grid-template-columns:minmax(0,1fr) 96px 150px;column-gap:12px}
 html[data-size]:not(#sz) main.p-a .L2a .mid .prow{padding:24px 0 23px}
 html[data-size]:not(#sz) main.p-a .L2a .mid .cc .prow{padding:20px 0 19px}
@@ -213,3 +213,34 @@ html[data-size]:not(#sz) main.p-a .K2ap1 .mid .prow{padding-top:8px;padding-bott
 .p-a .c3 li[data-price-row="9_diet:21"] .popt{position:relative;top:calc(-1.4*var(--px))}
 html[data-size]:not(#sz) main.p-a .K2ap2 .pbadge[data-copy="da_r14_badge"]{position:relative;top:.5px}
 html[data-size]:not(#sz) main.p-a .K3p2 .pbadge[data-copy="da_r21_badge"]{position:relative;top:.5px}
+
+/* ===== 2026-11-10 team comments #8 #13 (DIE12A): new cuts of the model at the right of the head of A cards 2 and 3 =====
+   img.c2-model is the board's first child (v4/diet12a/fixes/fb-20261109.cjs): it stands on the board's top edge (bottom:100%) and is cut
+   straight across there; the board moves down so the head and the model share the band above it (the date chip went to the bottom left). */
+.p-a .pboard .c2-model{position:absolute;right:0;bottom:100%;display:block;width:calc(380*var(--px));height:calc(384*var(--px));max-width:none;object-fit:cover;object-position:50% 0%;pointer-events:none} /* 0% (not 0px): the align check reads the position as a percentage */
+.p-a .c3 .pboard .c2-model{width:calc(400*var(--px))}
+/* home A cards 2 and 3: board top 480 at 1080, the head in the middle of the band and left of the model, the rows closed up */
+.p-a .c2:not(.b-price):not([data-size-only]) .cp-head,.p-a .c3:not([data-size-only]) .cp-head{margin-top:calc(116*var(--px));max-width:calc(590*var(--px))}
+.p-a .c2:not(.b-price):not([data-size-only]) .pboard,.p-a .c3:not([data-size-only]) .pboard{margin-top:calc(117*var(--px))}
+.p-a .c2:not(.b-price):not([data-size-only]) .prow{padding-top:calc(7*var(--px));padding-bottom:calc(6*var(--px))}
+.p-a .c2:not(.b-price):not([data-size-only]) .prod-h{padding-top:calc(10*var(--px));padding-bottom:calc(3*var(--px))}
+.p-a .c3:not([data-size-only]) .prow{padding-top:calc(6*var(--px));padding-bottom:calc(5*var(--px))}
+.p-a .c2:not(.b-price):not([data-size-only]) .cx-sn{left:calc(600*var(--px));top:calc(98*var(--px))}
+/* line 2A / 3 part 1: the model at the right of the head, the board lower */
+html[data-size]:not(#sz) main.p-a .L2a .cp-head,html[data-size]:not(#sz) main.p-a .L3p1 .cp-head{margin-top:40px}
+html[data-size]:not(#sz) main.p-a .L2a .pboard,html[data-size]:not(#sz) main.p-a .L3p1 .pboard{margin-top:42px}
+html[data-size]:not(#sz) main.p-a .L2a .c2-model,html[data-size]:not(#sz) main.p-a .L3p1 .c2-model{width:280px;height:240px}
+html[data-size]:not(#sz) main.p-a .L2a .mid .prow{padding:6px 0 5px}
+html[data-size]:not(#sz) main.p-a .L2a .mid .cc .prow{padding:10px 0 9px}
+html[data-size]:not(#sz) main.p-a .L2a .cx-sn{left:640px;top:84px}
+/* kakao 2A / 3 part 1: the title on two lines (a line break only), the model at the right of the head, the board under both */
+html[data-size]:not(#sz) main.p-a .K2ap1 .pt-main,html[data-size]:not(#sz) main.p-a .K3p1 .pt-main{white-space:normal;width:330px}
+html[data-size]:not(#sz) main.p-a .K2ap1 .pboard,html[data-size]:not(#sz) main.p-a .K3p1 .pboard{margin-top:10px}
+html[data-size]:not(#sz) main.p-a .K2ap1 .c2-model,html[data-size]:not(#sz) main.p-a .K3p1 .c2-model{width:300px;height:240px}
+html[data-size]:not(#sz) main.p-a .K2ap1 .cx-sn,html[data-size]:not(#sz) main.p-a .K3p1 .cx-tw{display:none}
+html[data-size]:not(#sz) main.p-a .K2ap1 .mid .prow{padding-top:6px;padding-bottom:5px}
+html[data-size]:not(#sz) main.p-a .K2ap1 .mid .prod-h{padding-top:8px;padding-bottom:2px}
+/* kakao 2A / 3 part 1: the pills sit at a new height with the model band and their text snapped high; half a pixel more padding on top, the row-20 badge half a pixel lower (qa/text-center-check.cjs) */
+html[data-size]:not(#sz) main.p-a .K2ap1 p.p-lead[data-copy="da_p_lead2"]{padding-top:9.4px!important;padding-bottom:9.2px!important}
+html[data-size]:not(#sz) main.p-a .K3p1 p.p-lead[data-copy="da_p_lead3"]{padding-top:9.4px!important;padding-bottom:9.2px!important}
+html[data-size]:not(#sz) main.p-a .K3p1 .pbadge[data-copy="da_r20_badge"]{position:relative;top:.5px}

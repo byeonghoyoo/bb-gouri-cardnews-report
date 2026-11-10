@@ -417,3 +417,21 @@ a[data-link="phone"]{white-space:nowrap}
 .b-gallery .pill{padding-top:calc(.4em + .025em);padding-bottom:calc(.44em - .025em)}
 
 @container(max-width:600px){.b-gallery{display:block;background:var(--oat-l)}.b-gallery .c1-left{display:block}.b-gallery .c1-title{position:static;width:100%}.b-gallery .hook{margin:10px 0 0;color:var(--ink)}.b-gallery .band{background:var(--dom)}.b-gallery .band-prod{order:0}.b-gallery .band-main{order:1}.b-gallery .hb-l{width:auto;white-space:normal}.b-gallery .c1-top{left:18px;top:18px}}
+/* ===== FIXES 20261109 (v4/combo12h/fixes/fb-20261109.css) ===== */
+/* CMB12H team comments 2026-11-09 (v4/combo12h/fixes/fb-20261109.cjs). Home rules; the size cards add their own in v4/combo12h/sizes/sizes.css.
+   #1, #7 ~ #12: BEST / HIT badge right after the option (A price rows) or the product name (146, a one-row product), a small filled label in
+   the page's espresso so it stands apart from the matcha name pills. */
+.popt-w{display:inline-flex;align-items:center;gap:calc(10*var(--px));min-width:0;white-space:nowrap}
+.pbadge{display:inline-flex;align-items:center;justify-content:center;flex:none;font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(14*var(--px)));line-height:1.2;letter-spacing:.06em;color:var(--white);background:var(--esp);border-radius:999px;padding:.28em .7em .3em;white-space:nowrap}
+/* text centring (qa/text-center-check.cjs): the BEST / HIT face sits a little high in its pill, so the pill's bottom edge comes up 0.7px and the
+   margin keeps the layout; the text itself does not move */
+.pbadge{padding-bottom:calc(.3em - .7px);margin-bottom:.7px}
+/* #14: the hero A band a little lighter and softer: the brand matcha (#76845B) instead of the dark matcha */
+.c1:not([data-variant]) .band{background:var(--matcha)}
+/* #13: the 라라필 set (the team's photo) beside the 블랙필 bottles; the box is wide, so both come down a little to stay inside the band's
+   product column, clear of the price */
+.bp-black-peel{--bph:222}
+.bp-lhala-set{--bph:176}
+/* #16: tile 1 (수분·진정): LDM with 아쿠아필, both larger */
+.pr-ldm .tpi{height:calc(236*var(--px))}
+/* ===== /FIXES 20261109 ===== */

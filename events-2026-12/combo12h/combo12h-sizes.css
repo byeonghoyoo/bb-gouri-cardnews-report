@@ -140,18 +140,21 @@ html[data-size="kakao"] main.b5 .K63 .qr{grid-area:qr}
 html[data-size="kakao"] main.b5 .K63 .bk-links{grid-area:links}
 html[data-size="kakao"] main.b5 .K63 .bk-phone{grid-area:ph;margin-top:0}
 html[data-size="kakao"] main.b5 .K63 .bt-book > .wordmark{margin:auto 0 0 auto}
+/* 2026-11-09 team comment #13 (the 라라필 set in the hero band, v4/combo12h/fixes/fb-20261109.cjs): kakao 1A part 2's product column is 360px
+   wide, so the two cut-outs come down to fit beside the price */
+html[data-size="kakao"] main.b5 .K1a2 .bp-black-peel{--bph:172}
+html[data-size="kakao"] main.b5 .K1a2 .bp-lhala-set{--bph:136}
+/* 2026-11-09 #2 moved the 골드 PTT panel's lines; its name pill's text centring at that place in kakao part 3: the pill's bottom edge goes down
+   1.04px and the margin keeps the layout (qa/text-center-check.cjs) */
+html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pill-n[data-copy="c8_g7_head"]{padding-bottom:calc(.28em + 1.04px);margin-bottom:-1.04px}
 /* ==== tc-fix: text snaps to whole pixels, so a few chips need their text or box moved at their size-card position (generated from
    v4/combo12h/sizes/tcfix.json by the text-centre fixer; same box size) ==== */
 html[data-size="line"] main.b5 section[data-size-only][data-card="1"]:not([data-variant]):not([data-part]) span.hp-tag[data-copy="c8_hp_tag"]{padding-top:3.72px;padding-bottom:3.32px;line-height:23.72px;margin-bottom:1px}
 html[data-size="line"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] span.wk[data-copy="c8_g8_w3_k"]{padding-top:1.55px;padding-bottom:1.53px}
-html[data-size="line"] main.b5 section[data-size-only][data-card="4"]:not([data-variant])[data-part="2"] p.tl-x[data-copy="c8_a_k4_x"]{padding-top:13.00px;padding-bottom:14.00px}
 html[data-size="line"] main.b5 section[data-size-only][data-card="6"]:not([data-variant])[data-part="2"] span.way-line[data-copy="c8_ab_way_line"]{padding-top:3.06px;padding-bottom:2.54px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="1"][data-variant="b"][data-part="2"] span.band-vat[data-copy="c8_vat"]{padding-top:4.56px;padding-bottom:4.12px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="2"][data-variant="b"][data-part="3"] span.pill-n[data-copy="c8_g3_head"]{padding-top:6.68px;padding-bottom:6.72px;line-height:31.00px;margin-bottom:1px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="2"][data-variant="b"][data-part="3"] span.pill-n[data-copy="c8_g4_head"]{padding-top:8.68px;padding-bottom:6.72px}
-html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="2"] span.pt-cont[data-copy="c8_p_cont"]{padding-top:7.30px;padding-bottom:6.72px}
-html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pt-cont[data-copy="c8_p_cont"]{padding-top:7.30px;padding-bottom:6.72px}
-html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="4"] span.pt-cont[data-copy="c8_p_cont"]{padding-top:7.30px;padding-bottom:6.72px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="4"] span.wk[data-copy="c8_g8_w2_k"]{padding-top:2.55px;padding-bottom:2.53px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="6"]:not([data-variant])[data-part="3"] span.way-line[data-copy="c8_ab_way_line"]{padding-top:3.06px;padding-bottom:2.54px}
 /* ==== /tc-fix ==== */
