@@ -389,3 +389,34 @@ a[data-link="phone"]{white-space:nowrap}
 .b-ruby .b-editorial{background:var(--c1-bg)}.b-ruby .b-editorial .ht-a,.b-ruby .b-editorial .h-en,.b-ruby .b-editorial .ht-b,.b-ruby .b-editorial .brk{color:var(--linen);border-color:var(--linen)}
 
 .b-ruby .b-pricegrid{margin-bottom:calc(1*var(--px))}
+/* ===== FIXES 20261109 (v4/combo12g/fixes/fb-20261109.css) ===== */
+/* CMB12G team comments 2026-11-09/10 (v4/combo12g/fixes/fb-20261109.cjs). Home rules; the size cards add their own in v4/combo12g/sizes/sizes.css.
+   #7 ~ #13: BEST / HIT badge at the end of the row line (A price cards), the same face and fill as CMB12F's badges (bundle ④). */
+.pline .pbadge{display:inline-flex;align-items:center;justify-content:center;flex:none;align-self:center;font-family:var(--f-wide);font-weight:400;font-size:max(11px,calc(13*var(--px)));line-height:1.2;letter-spacing:.08em;color:var(--linen);background:var(--ruby);padding:.3em .62em .34em;white-space:nowrap}
+/* #16, #18 ~ #21: the team's device photos in front of (left of) their product groups; every group box on that board moves right by the device
+   column so the rows stay aligned; the photo is centred on its group's height */
+.pboard:has(.pg-dev){padding-left:calc(150*var(--px))}
+.pg{position:relative}
+.pg-dev{position:absolute;right:calc(100% + 14*var(--px));top:calc(-4*var(--px));bottom:calc(-4*var(--px));width:calc(136*var(--px));margin:0;pointer-events:none}
+.pg-dev-img{position:absolute;inset:0;margin:auto;display:block;width:auto;height:auto;max-width:100%;max-height:100%;filter:drop-shadow(0 calc(8*var(--px)) calc(12*var(--px)) rgba(59,10,22,.25))}
+@container (max-width:600px){
+  .pboard:has(.pg-dev){padding-left:62px}
+  .pg-dev{right:calc(100% + 6px);width:56px}
+}
+/* #6: the A price card's board moves down and a new cut of the hero model stands at the right of the head on the board's top edge
+   (img.c2-model, first in .pboard: bottom:100%, the cutout cut straight across at the board top by object-fit / object-position; same layout as
+   CMB12F #4). The head sits in the middle of the band between the top row and the board; the rows close up (--rp 15 -> 7), the group gaps and
+   heads a little, so the board still ends above VAT, and the snowflake moves down a little. Home 1080 numbers; the size cards set their own. */
+.c2-model{position:absolute;right:0;bottom:100%;width:calc(279*var(--px));height:calc(360*var(--px));object-fit:cover;object-position:50% 0;user-select:none;pointer-events:none}
+.cp.c2m:not([data-size-only]){--rp:7}
+.cp.c2m:not([data-size-only]) .cp-head{margin-top:calc(119*var(--px))}
+.cp.c2m:not([data-size-only]) .pboard{margin-top:calc(119*var(--px));gap:calc(8*var(--px))}
+.cp.c2m:not([data-size-only]) .prod-h{padding-top:calc(10*var(--px))}
+.cp.c2m:not([data-size-only]) .p-snow{bottom:calc(40*var(--px))}
+@container (max-width:600px){
+  /* phone: the model in the column the head leaves free at its right, head and shoulders (as CMB12F) */
+  .cp.c2m:not([data-size-only]) .cp-head{margin-top:12px;min-height:100px;margin-right:92px}
+  .cp.c2m:not([data-size-only]) .pboard{margin-top:14px}
+  .c2-model{width:86px;height:110px}
+}
+/* ===== /FIXES 20261109 ===== */

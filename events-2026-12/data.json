@@ -5487,7 +5487,6 @@
           "c7_alt_hero": "루비색 배경 앞에서 아이보리 니트를 입고 카메라를 보며 미소 짓는 모델",
           "c7_p_kicker": "PRICE LIST",
           "c7_p_lead": "샷은 조사 횟수, kJ는 전달하는 에너지 양이에요.",
-          "c7_p_cont": "계속",
           "c7_gift_tag": "증정",
           "c7_xa_kicker": "HOW TO CHOOSE",
           "c7_xa_q": "에너지 방식으로 골라요",
@@ -5672,7 +5671,20 @@
           "c7_ca_sub": "300샷",
           "c7_ca_list": "25만원",
           "c7_ca_sale": "14만원",
-          "c7_gift": "포트라65kJ 이상 + 이온토 미백앰플 서비스"
+          "c7_gift": "포트라65kJ 이상 + 이온토 미백앰플 서비스",
+          "c7_r89_badge": "BEST",
+          "c7_r92_badge": "BEST",
+          "c7_r94_badge": "HIT",
+          "c7_r96_badge": "BEST",
+          "c7_r103_badge": "BEST",
+          "c7_r105_badge": "HIT",
+          "c7_r107_badge": "BEST",
+          "c7_alt_dev_volnewmer": "볼뉴머 장비",
+          "c7_alt_dev_shurink": "슈링크 유니버스 장비",
+          "c7_alt_dev_linearzy": "리니어지 장비",
+          "c7_alt_dev_alltite": "올타이트 장비",
+          "c7_alt_dev_portra": "포트라 장비",
+          "c7_alt_c2": "리넨 니트를 입고 미소 짓는 모델"
         }
       },
       "locales": [
