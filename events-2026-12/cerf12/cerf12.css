@@ -619,6 +619,26 @@ a[data-link="phone"]{white-space:nowrap}
 /* 2026-11-06 team request: the treatment-day title is '시술 당일은 이렇게 진행돼요'. Where it has to take two lines it breaks as
    '시술 당일은 / 이렇게 진행돼요' (balanced lines); the type size stays the design size. */
 [data-copy="cf_c5_q"]{text-wrap:balance}
+/* ===== 2026-11-09 team comments (v4/events/FEEDBACK_20261109.md, qa/feedback-20261109/CRF12.json), home A cards =====
+   1A #12: 'Deep Winter' and the two hook lines right under the wordmark (the team's mock-up, one line each);
+   #10: the model further right (the 1A photo is the same picture moved 150 px right, its plain backdrop mirrored at the left edge);
+   #11: the device left of the model, its foot behind the red disc (z-index under the disc), the glint on its screen corner. */
+.c1:not([data-variant="b"]):not([data-size-only]) .hero-lead{top:calc(150*var(--px));width:calc(600*var(--px))}
+.c1:not([data-variant="b"]):not([data-size-only]) .c1-dev{z-index:2;left:calc(96*var(--px));right:auto;top:calc(372*var(--px));bottom:auto;width:calc(197*var(--px));height:calc(511*var(--px))}
+.c1:not([data-variant="b"]):not([data-size-only]) .g1{left:calc(236*var(--px));right:auto;top:calc(330*var(--px))}
+/* 2A #14: the lead takes the team's line break (the text holds '\n') */
+.c2:not([data-variant="b"]) .p-lead{white-space:pre-line}
+/* 3A #21: the rows closer together; #22: the cream (the team's picture, cut out) at the end of the gift band */
+.c3 .prow{padding:calc(7*var(--px)) 0 calc(7*var(--px))}
+.c3 .pk{margin-top:calc(4*var(--px))}
+.c3 .gift-band{min-height:calc(86*var(--px))}
+.c3 .gift-band .gift-cream{position:absolute;right:calc(26*var(--px));top:50%;transform:translateY(-50%);width:auto;height:calc(116*var(--px));display:block;pointer-events:none;filter:drop-shadow(0 calc(6*var(--px)) calc(10*var(--px)) rgba(20,0,4,.35))}
+/* text centring (qa/text-center-check.cjs): the card-3 badges take the card-2 badge correction at 601-900 px; the rows moved, so the third group
+   chip goes back to its plain padding at 901 px and up, and the row-99 badge moves half a pixel down at 1080 */
+@media(min-width:601px) and (max-width:900px){.c3 .badge{padding-top:calc(.26em + .144em);padding-bottom:calc(.26em - .144em)}}
+@media (min-width:901px){.c3:not([data-size-only]) [data-copy="cf_k3"]{padding-top:.18em;padding-bottom:.22em}.c3:not([data-size-only]) .badge[data-copy="cf_r99_badge"]{position:relative;top:.5px}}
+/* 5 #23: the tip pictures (the team's attachment, cut out) in the box beside each tip */
+.tip-box .tip-img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(96*var(--px));object-fit:contain}
 /* ===== SIZES START (generated from v4/cerf12/sizes/sizes.css, do not edit here) ===== */
 /* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
    ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
@@ -643,13 +663,13 @@ html[data-size]:not(#sz) .h-model{position:absolute;z-index:2;display:block;widt
 /* ---------- LINE 1100x1000 ---------- */
 /* 1A: light studio colour (the hero photo's backdrop), the hero model cutout on the right, the disc with title and offer lower left */
 html[data-size]:not(#sz) .L1a{background:#efedec}
-html[data-size]:not(#sz) .L1a .h-model{left:430px;top:66px;height:1150px}
+html[data-size]:not(#sz) .L1a .h-model{left:540px;top:66px;height:1150px} /* 2026-11-09 #10: further right */
 html[data-size]:not(#sz) .L1a .c1-mesh{left:30px;top:520px}
 html[data-size]:not(#sz) .L1a .c1-disc{left:-200px;top:520px}
-html[data-size]:not(#sz) .L1a .c1-dev{right:44px;bottom:34px}
-html[data-size]:not(#sz) .L1a .g1{right:20px;top:600px}
+html[data-size]:not(#sz) .L1a .c1-dev{z-index:2;left:360px;right:auto;top:262px;bottom:auto;width:142px;height:368px} /* #11: left of the model, its foot behind the disc */
+html[data-size]:not(#sz) .L1a .g1{left:452px;right:auto;top:232px;width:90px;height:100px}
 html[data-size]:not(#sz) .L1a .g2{left:560px;top:600px}
-html[data-size]:not(#sz) .L1a .hero-lead{left:60px;top:200px;width:380px}
+html[data-size]:not(#sz) .L1a .hero-lead{left:60px;top:96px;width:600px} /* #12: right under the wordmark */
 html[data-size]:not(#sz) .L1a .hero-disc{left:66px;top:596px}
 html[data-size]:not(#sz) .L1a .tz{margin-top:22px}
 html[data-size]:not(#sz) .L1a .c1-contact{right:190px;bottom:40px}
@@ -739,11 +759,11 @@ html[data-size]:not(#sz) .L7p2 .bt-book{grid-column:2;grid-row:2}
 /* ---------- KAKAO 800x600 ---------- */
 /* 1A: the hero model cutout on the right, the lead, the disc with the title and the offer on the left */
 html[data-size]:not(#sz) .K1a{background:#efedec}
-html[data-size]:not(#sz) .K1a .h-model{left:448px;top:40px;height:700px}
+html[data-size]:not(#sz) .K1a .h-model{left:522px;top:62px;height:690px} /* 2026-11-09 #10: further right (under the period chip) */
 html[data-size]:not(#sz) .K1a .c1-mesh{left:0;top:236px;width:360px}
 html[data-size]:not(#sz) .K1a .c1-disc{left:-200px;top:190px;width:840px;height:853px}
-html[data-size]:not(#sz) .K1a .c1-dev{right:16px;bottom:14px;width:96px;height:250px}
-html[data-size]:not(#sz) .K1a .g1{right:4px;top:300px}
+html[data-size]:not(#sz) .K1a .c1-dev{z-index:2;left:436px;right:auto;top:96px;bottom:auto;width:84px;height:218px} /* #11: left of the model, its foot behind the disc */
+html[data-size]:not(#sz) .K1a .g1{left:494px;right:auto;top:76px;width:64px;height:72px}
 html[data-size]:not(#sz) .K1a .g2{left:470px;top:220px}
 html[data-size]:not(#sz) .K1a .c1-top{left:36px;right:36px;top:22px}
 html[data-size]:not(#sz) .K1a .hero-lead{left:40px;top:62px;width:420px}
@@ -864,4 +884,10 @@ html[data-size]:not(#sz) .K3p1 [data-copy="cf_k1"]{padding-top:4.06px;padding-bo
 html[data-size]:not(#sz) .K3p2 [data-copy="cf_k2"]{padding-bottom:2.785px}
 html[data-size]:not(#sz) .K3p3 [data-copy="cf_k3"]{padding-top:2.842px;padding-bottom:3.958px}
 html[data-size]:not(#sz) .K7p1 .ab-photos figcaption{padding-top:5.745px}/* ===================== /channel sizes ===================== */
+/* 2026-11-09 #22: in kakao part 1 the gift band keeps its own height and the cream picture is smaller, so the three rows of the first group fit */
+html[data-size]:not(#sz) .K3p1 .gift-band{min-height:0}
+html[data-size]:not(#sz) .K3p1 .gift-band .gift-cream{right:18px;height:74px}
+html[data-size]:not(#sz) .K3p1 .cp-in{padding-top:18px}
+html[data-size]:not(#sz) .K3p1 .pboard{margin-top:6px}
+html[data-size]:not(#sz) .K3p1 .prow{padding:3px 0 2px}
 /* ===== SIZES END ===== */
