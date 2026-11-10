@@ -183,3 +183,18 @@ html[data-size="kakao"] main.b5 .pbadge[data-copy="c9_g1_badge"]{padding-bottom:
 /* #21 / #22: the team's PicoSure photo reaches its bottom edge, so in 2B part 2 (two-line name, three-line composition) the photo row ends at
    the ticket's bottom instead of running 34px under it */
 html[data-size="kakao"] main.b5 .K2b2 .b2-ph,html[data-size="kakao"] main.b5 .K2b2 .b2-g2 .b2-ph{height:76px}
+/* 2026-11-09 team comments #6 / #13 / #18 (the hero model's new cuts at the right of the A price cards' head, v4/combo12i/fixes/fb-20261109.cjs):
+   the model on the first panel's top edge of its part (gen-sizes.cjs puts it there). Line: part 1, 290px tall, the head in the middle of the
+   band above the board; card 3's option rows close up a little (both parts) so its two panels still end above VAT. Kakao: part 1's head keeps
+   the lead line in its right column, so the model (170px) stands beside the title-only head of part 2 */
+html[data-size="line"] main.b5 .L2a1 .c2-model,html[data-size="line"] main.b5 .L31 .c2-model,html[data-size="line"] main.b5 .L41 .c2-model{height:290px}
+html[data-size="line"] main.b5 .L2a1 .cp-head,html[data-size="line"] main.b5 .L31 .cp-head,html[data-size="line"] main.b5 .L41 .cp-head{margin-top:36px}
+html[data-size="line"] main.b5 .L2a1 .pboard,html[data-size="line"] main.b5 .L31 .pboard,html[data-size="line"] main.b5 .L41 .pboard{margin-top:36px}
+html[data-size="line"] main.b5 .L3 .prow{padding-top:8px;padding-bottom:7px}
+html[data-size="line"] main.b5 .L2a1 .pboard,html[data-size="line"] main.b5 .L31 .pboard,html[data-size="line"] main.b5 .L41 .pboard,html[data-size="kakao"] main.b5 .K2a2 .pboard,html[data-size="kakao"] main.b5 .K32 .pboard,html[data-size="kakao"] main.b5 .K42 .pboard{align-content:start}
+html[data-size="kakao"] main.b5 .K2a2 .c2-model,html[data-size="kakao"] main.b5 .K32 .c2-model,html[data-size="kakao"] main.b5 .K42 .c2-model{height:170px}
+/* 2026-11-09 #13: text centring at the new places in line 3-1 (qa/text-center-check.cjs): bottom edges down a little, margins keep the layout;
+   the text itself does not move */
+html[data-size="line"] main.b5 .L31 .pill-n[data-copy="c9_g3_head"]{padding-bottom:8.1px;margin-bottom:-1.3px}
+html[data-size="line"] main.b5 .L31 .pg-note[data-copy="c9_g4_note"]{padding-bottom:4.26px;margin-bottom:-1.22px}
+html[data-size="line"] main.b5 .L31 .psv[data-copy="c9_r166_sv"]{padding-bottom:5.18px;margin-bottom:-1.46px}

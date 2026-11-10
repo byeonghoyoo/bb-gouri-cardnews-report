@@ -529,4 +529,23 @@ a[data-link="phone"]{white-space:nowrap}
 .cp:not([data-variant]) .p-title{font-family:var(--f-text);font-weight:700}
 /* #23: the hero A band shows the one PicoSure photo (no V laser), a little larger */
 .bp-picosure-2{--bph:330}
+/* #6 / #13 / #18: new cuts of the hero model (the lead's Higgsfield cuts, person cutouts -> photos/model-c2-cut.webp 508x700, model-c3-cut.webp
+   515x700, model-c4-cut.webp 517x700) at the right of the head of the A price cards 2, 3 and 4 (img.c2-model, first in .pboard: bottom on the
+   board's top edge, which is the first panel's top edge once the panels start at the top; their own proportions, no crop); the head sits in the
+   middle of the band above the board and the board moves down, its panels still ending above the foot lines. Same layout as CMB12H #5 / #6;
+   home 1080 numbers, the size cards set their own in sizes/sizes.css. */
+.c2-model{position:absolute;z-index:1;right:calc(30*var(--px));bottom:100%;width:auto;height:calc(330*var(--px));user-select:none;pointer-events:none}
+.cp.pcm:not([data-size-only]) .pboard{align-content:start}
+.cp.pcm:not([data-size-only]) .cp-head{margin-top:calc(56*var(--px))}
+.cp.pcm:not([data-size-only]) .pboard{margin-top:calc(56*var(--px))}
+/* text centring at the new place of card 3's board (qa/text-center-check.cjs): the bottom edge of the 색소3종 note chip and of the row 166
+   service strip goes down a little and the margin keeps the layout; the text itself does not move */
+.cp.pcm:not([data-size-only]) .pg-note[data-copy="c9_g4_note"]{padding-bottom:4.32px;margin-bottom:-1.28px}
+.cp.pcm:not([data-size-only]) .psv[data-copy="c9_r166_sv"]{padding-bottom:5.24px;margin-bottom:-1.52px}
+@container (max-width:600px){
+  /* phone: the model in a column at the right of the head, head and shoulders */
+  .cp.pcm:not([data-size-only]) .cp-head{margin-top:12px;margin-right:96px;min-height:104px}
+  .cp.pcm:not([data-size-only]) .pboard{margin-top:14px}
+  .c2-model{right:10px;height:105px}
+}
 /* ===== /FIXES 20261109 ===== */
