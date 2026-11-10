@@ -70,7 +70,7 @@ img{max-width:100%}
 .bb2{left:calc(38*var(--px));top:calc(430*var(--px));width:calc(86*var(--px))}
 .bb3{left:calc(958*var(--px));top:calc(860*var(--px));width:calc(66*var(--px))}
 .sp1{left:calc(150*var(--px));top:calc(340*var(--px));width:calc(44*var(--px))}
-.ribbon{position:absolute;z-index:5;left:calc(800*var(--px));top:calc(610*var(--px));width:calc(330*var(--px));transform:rotate(-16deg);transform-origin:50% 50%}
+.ribbon{position:absolute;z-index:5;left:calc(730*var(--px));top:calc(410*var(--px));width:calc(390*var(--px));transform:rotate(-16deg);transform-origin:50% 50%}
 .ribbon-img{display:block;width:100%;height:auto}
 .ribbon-tx{position:absolute;left:12%;right:12%;top:50%;transform:translateY(-52%);text-align:center}
 .ribbon-tx span{font-family:var(--f-en);font-size:max(12px,calc(30*var(--px)));letter-spacing:.06em;line-height:1;color:#fff;white-space:nowrap}
@@ -92,9 +92,7 @@ img{max-width:100%}
 .stage.flip .tz{grid-column:1;padding-left:calc(6*var(--px));padding-right:calc(22*var(--px));border-left:0;border-right:calc(2*var(--px)) solid var(--soft-2)}
 .lu{flex:none;display:flex;align-items:flex-end}
 .lu-img{display:block;object-fit:contain;filter:drop-shadow(0 calc(10*var(--px)) calc(10*var(--px)) rgba(61,10,20,.18))}
-.lu-juvelook .lu-img{width:calc(102.4*var(--px));height:calc(219.7*var(--px))}
-.lu-rejuran .lu-img{width:calc(93.1*var(--px));height:calc(241.7*var(--px))}
-.lu-skinvive .lu-img{width:calc(132.9*var(--px));height:calc(169.3*var(--px))}
+.lu-rejuran-box .lu-img{width:calc(113.6*var(--px));height:calc(198.0*var(--px))}
 .tz{align-self:center;padding-left:calc(22*var(--px));border-left:calc(2*var(--px)) solid var(--soft-2)}
 .tz-top{display:flex;align-items:center;flex-wrap:nowrap;gap:calc(10*var(--px));white-space:nowrap;font-size:calc(var(--fit,1)*1em)}
 .tz-label{font-weight:800;font-size:max(13px,calc(28*var(--px)*var(--fit,1)));line-height:1.3;color:var(--ink)}
@@ -362,7 +360,8 @@ a[data-link="phone"]{white-space:nowrap}
 .tz-main{align-items:center}.h-box>.h-sub{position:relative;top:-.04em}.pill>span{position:relative;top:0}.tz-opt{padding-top:.18em;padding-bottom:.06em}.pt-cont{padding-top:.21em;padding-bottom:.11em}.blk-k span{padding-top:.21em;padding-bottom:.07em}.ab-photos figcaption{padding-top:.38em;padding-bottom:.22em}.way-line{padding-top:.23em;padding-bottom:.17em}.prod-s{padding-top:.14em;padding-bottom:.02em}
 @container (max-width:800px) and (min-width:601px){.pill>span{position:relative;top:.045em}.ab-photos figcaption{padding-top:.41em;padding-bottom:.19em}.way-line{padding-top:.34em;padding-bottom:.06em}}
 @container (min-width:601px){.uibeop{position:absolute;left:calc(56*var(--px));bottom:calc(34*var(--px));margin:0}}
-@container (min-width:601px){.c3 .pboard{margin-top:calc(34*var(--px))}.c3 .prod-h{padding:calc(20*var(--px)) 0 calc(8*var(--px))}.c3 .prow{padding:calc(18*var(--px)) 0 calc(17*var(--px)) calc(58*var(--px))}}
+.bbx1{left:calc(840*var(--px));top:calc(250*var(--px));width:calc(120*var(--px))}.bbx2{left:calc(60*var(--px));top:calc(600*var(--px));width:calc(150*var(--px))}.bbx3{left:calc(250*var(--px));top:calc(760*var(--px));width:calc(46*var(--px))}.bbx4{left:calc(960*var(--px));top:calc(560*var(--px));width:calc(60*var(--px))}.bbx5{left:calc(30*var(--px));top:calc(880*var(--px));width:calc(92*var(--px))}.bbx6{left:calc(870*var(--px));top:calc(980*var(--px));width:calc(38*var(--px))}.bbx7{left:calc(760*var(--px));top:calc(180*var(--px));width:calc(40*var(--px))}.bbx8{left:calc(300*var(--px));top:calc(520*var(--px));width:calc(34*var(--px))}.bv.c1 .bbx{display:none}
+.badge{display:inline-block;flex:none;padding:.45em .72em;border-radius:999px;background:var(--rasp-d);color:#fff;font-weight:800;font-size:max(10px,calc(14*var(--px)));letter-spacing:.06em;line-height:1;text-box:trim-both cap alphabetic}.pn:has(> .badge){display:flex;align-items:center;flex-wrap:wrap;column-gap:calc(10*var(--px));row-gap:calc(4*var(--px))}.pc-mod{display:none;position:absolute;z-index:1;right:calc(56*var(--px));top:calc(92*var(--px));width:calc(330*var(--px));pointer-events:none}.bv.c2 .pc-mod{display:block}.pc-model{display:block;width:100%;height:auto}.cp .cp-head,.cp .pboard{position:relative;z-index:2}.prod-ph{display:none}.bv.c2 .prod-ph{display:block;grid-column:1;grid-row:3;margin:calc(12*var(--px)) 0 0;width:calc(96*var(--px));border-radius:calc(12*var(--px));overflow:hidden;background:#ececec}.bv.c2 .prod:has([data-copy="c1_p11_name"]) .prod-ico{display:none}.bv.c2 .dk2{right:calc(410*var(--px))}.bv.c2 .prod-ph.cut{width:calc(86*var(--px));border-radius:0;background:none;overflow:visible}.bv.c2 .prod:has(> .prod-ph){grid-template-rows:auto auto 1fr}.bv.c2 .prod-ph{align-self:start}.bv.c2 .prod:has(> .prod-ph) .prows{grid-row:1 / span 3}.prod-ph-img{display:block;width:100%;height:auto}.c1:not(.bv) .ribbon-tx span{font-size:max(13px,calc(36*var(--px)))}.bv.c1 .ribbon{z-index:8}.ph-skinvive .ph-img{width:calc(168*var(--px));height:calc(214*var(--px));transform:translateX(calc(-18*var(--px)))}@container (min-width:601px){.c3 .pboard{margin-top:calc(34*var(--px))}.c3 .prod-h{padding:calc(20*var(--px)) 0 calc(8*var(--px))}.c3 .prow{padding:calc(18*var(--px)) 0 calc(17*var(--px)) calc(58*var(--px))}}
 
 /* B variants only: split editorial hero and three product tickets */
 .bv.c1 .hero-ph{left:auto;right:calc(42*var(--px));top:calc(240*var(--px));bottom:auto;width:calc(492*var(--px));height:calc(780*var(--px));border-radius:calc(32*var(--px));overflow:hidden;border:calc(8*var(--px)) solid #fff}
@@ -571,4 +570,44 @@ html[data-size="kakao"] .K63 .qr{grid-area:qr}
 html[data-size="kakao"] .K63 .bk-links{grid-area:links}
 html[data-size="kakao"] .K63 .bk-phone{grid-area:ph;margin-top:0}
 html[data-size="kakao"] .K63 .bt-book > .wordmark{margin:auto 0 0 auto}
+
+/* 2026-11-09 team comments (CMB12A) */
+html[data-size="line"] .L1a .bbs1{left:300px;top:470px;width:120px}
+html[data-size="line"] .L1a .bbs2{left:180px;top:560px;width:44px}
+html[data-size="line"] .L1a .bbs3{left:460px;top:610px;width:70px}
+html[data-size="line"] .L1a .bbs4{left:975px;top:400px;width:76px}
+html[data-size="line"] .L1a .bbs5{left:1030px;top:620px;width:38px}
+html[data-size="line"] .L1a .bbs6{left:590px;top:120px;width:46px}
+html[data-size="kakao"] .K1a1 .bbs1{left:64px;top:170px;width:96px}
+html[data-size="kakao"] .K1a1 .bbs2{left:650px;top:210px;width:64px}
+html[data-size="kakao"] .K1a1 .bbs3{left:250px;top:440px;width:40px}
+html[data-size="kakao"] .K1a1 .bbs4{left:110px;top:470px;width:70px}
+html[data-size="kakao"] .K1a1 .bbs5{left:560px;top:430px;width:80px}
+html[data-size="kakao"] .K1a1 .bbs6{left:40px;top:404px;width:30px}
+html[data-size="kakao"] .K1a2 .bbs1{left:330px;top:252px;width:56px}
+html[data-size="kakao"] .K1a2 .bbs2{left:70px;top:262px;width:30px}
+html[data-size="kakao"] .K1a2 .bbs3{left:722px;top:104px;width:44px}
+html[data-size="line"] main .L1a .h-head{left:56px;right:auto;top:196px;width:980px;align-items:flex-start;text-align:left}
+html[data-size="line"] .L1a .h-box{width:490px}
+html[data-size="line"] .L1a .sz-model{bottom:0;height:630px}
+html[data-size="line"] .L1a .ribbon{left:740px;top:148px;width:360px}
+html[data-size="line"] .L1a .bb1{left:60px;top:112px;width:64px}
+html[data-size="line"] .L1a .bb3{left:380px;top:150px;width:58px}
+html[data-size="kakao"] .K1a1 .h-title .tl{white-space:normal;word-break:keep-all;max-width:90%;margin:0 auto}
+html[data-size="kakao"] .K1a2 .ribbon{left:36px;top:126px;width:336px}
+html[data-size="kakao"] .K1a2 .bb1{left:392px;top:98px;width:64px}
+html[data-size="kakao"] .K2b1 .pc-mod{right:40px;top:80px;width:140px}
+html[data-size="kakao"] .K2b1 .dk2{right:330px;top:150px;width:40px}
+/* 2 B photos in the LINE three-across tiles: beside the product name (the tile would run past the VAT line with the photo under the name) */
+html[data-size="line"] .L2b.pn3 .prod:has(> .prod-ph){display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-content:start}
+html[data-size="line"] .L2b.pn3 .prod:has(> .prod-ph) .prod-h{grid-column:1;grid-row:1}
+html[data-size="line"] .L2b.pn3 .prod:has(> .prod-ph) .prows{grid-column:1 / -1;grid-row:2}
+html[data-size="line"] .L2b.pn3 .prod-ph{grid-column:2;grid-row:1;margin:0;width:72px}
+html[data-size="line"] .L2b.pn3 .prod-ph.cut{width:64px}
+/* kakao 2 A-3: the long 리쥬베룩 options wrap, so the BEST / HIT tags sit in the row's left indent (as 3-3 of the other bundle page) */
+html[data-size="kakao"] .K2a3 .pn{position:relative}
+html[data-size="kakao"] .K2a3 .pn>.badge{position:absolute;left:-66px;top:4.9px}
+/* kakao 2 B-3: a little less row padding so the 리쥬베룩 tile stays clear of the 의료법 line */
+html[data-size="kakao"] .K2b3 .prow{padding-top:9px;padding-bottom:9px}
+html[data-size="kakao"] .K2b3 .prow:first-child{padding-top:0}
 /* ===== /SZ:css ===== */

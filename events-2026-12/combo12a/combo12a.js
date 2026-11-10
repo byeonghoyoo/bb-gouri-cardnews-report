@@ -22,12 +22,12 @@ function setMoney(el,v){el.textContent='';const m=/^(\D*?)(\d[\d,.]*)(.*)$/.exec
 function topSplit(v){const parts=[];let depth=0,start=0;for(let i=0;i<v.length;i++){const c=v[i];if(c==='('||c==='[')depth++;else if((c===')'||c===']')&&depth)depth--;else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));start=i+3;i+=2;}}parts.push(v.slice(start));return parts;}
 function setParts(el,v){el.textContent='';v=v||'';topSplit(v).forEach((p,i)=>{if(i){const s=document.createElement('span');s.className='plus';s.textContent=' + ';el.append(s);}const c=document.createElement('span');c.className='seg';c.textContent=p;el.append(c);});}
 /* hero title: break after ' & ' (the text stays the same) */
-function setTitle(el,v){el.textContent='';const i=(v||'').indexOf(' & ');if(i<0){el.textContent=v||'';return;}
+function setTitle(el,v){el.textContent='';if(true&&!el.closest('.bv')){const t=document.createElement('span');t.className='tl';t.textContent=v||'';el.append(t);return;}const i=(v||'').indexOf(' & ');if(i<0){el.textContent=v||'';return;}
  const a=document.createElement('span');a.className='tl';a.textContent=v.slice(0,i+2);const b=document.createElement('span');b.className='tl';b.textContent=v.slice(i+2);el.append(a,b);}
 function setHours(el,v){el.textContent='';const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];const t=document.createElement('span');t.className='ht';t.textContent=m[3];el.append(d,document.createTextNode(m[2]),t);}
 const GUARD='.p-lead,.q-ans,.blk-d,.blk-n,.ch-q,.ch-a,.st-d,.inf-n,.ask-d,.care [data-copy],.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.prod-note [data-copy]';
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|리쥬란 힐러|리쥬란 HB|릴리이드 M|울트라콜 100|콜라움 120|쥬베룩 스킨|스킨\/100\/120|리쥬란 아이\(I\)|리쥬란 에스\(S\)|PN\(폴리뉴클레오타이드\)|히알루론산\(HA\)|1회 또는 3회 세션|3회 세션|마취 연고|국소마취 성분|고분자·저분자 HA|피부결·잔주름·모공)/g;
+const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|리쥬란 힐러|리쥬란 HB|릴리이드 M|울트라콜 100|콜라움 120|쥬베룩 스킨|스킨\/100\/120|스킨\/100|리쥬란 아이\(I\)|리쥬란 에스\(S\)|PN\(폴리뉴클레오타이드\)|히알루론산\(HA\)|1회 또는 3회 세션|3회 세션|마취 연고|국소마취 성분|고분자·저분자 HA|피부결·잔주름·모공)/g;
 function appendKept(el,s){let last=0;KEEP.lastIndex=0;for(const m of s.matchAll(KEEP)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;}if(last<s.length)el.append(document.createTextNode(s.slice(last)));}
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
