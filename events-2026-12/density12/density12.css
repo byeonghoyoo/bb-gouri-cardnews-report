@@ -665,6 +665,14 @@ html[data-size="line"] .L8-2 .bento{grid-template-rows:minmax(0,1fr) minmax(0,1f
 html[data-size="line"] .L8-2 .bt-loc{grid-row:1 / 3}
 html[data-size="line"] .L8-2 .bt-hours{grid-row:1}
 html[data-size="line"] .L8-2 .bt-book{grid-row:2}
+/* 2026-11-09 team comments #1 ~ #5 (card 1 A, site/density12/density12.css): the period at the right end of the left column's top row (the model
+   fills the right), the price beside the Density photo under the head, the hashtags on her cheek, the contact pill stays bottom left (the model
+   fills the bottom right) */
+html[data-size="line"] .L1a .c1-top{right:auto;width:560px}
+html[data-size="line"] .L1a .callouts{top:556px;width:560px;grid-template-columns:auto auto;justify-content:start;align-items:end;column-gap:40px}
+html[data-size="line"] .L1a .co-dev-img{height:270px}
+html[data-size="line"] .L1a .c1-tags{left:838px;top:352px;gap:20px}
+html[data-size="line"] .L1a .c1-contact{left:60px;right:auto}
 /* ---------- /LINE ---------- */
 /* ---------- KAKAO 800x600 ---------- */
 /* DEN12 KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). */
@@ -769,4 +777,57 @@ html[data-size="kakao"] .K8-3 .bt-book{grid-row:2}/* Text centring (qa/text-cent
    the tag's bottom padding moves its box edge (the margin keeps the layout); the B/A arrow circle grows 1px at the bottom with the same content box. */
 html[data-size="kakao"] .K1-2.K1b span.tz-tag[data-copy="dn_hero_tag"]{padding-bottom:1.9px!important;margin-bottom:.98px}
 html[data-size="kakao"] .K5 span.bb-ba__arrow[data-copy="dn_ba_arrow"]{width:59.06px;height:59.06px;padding-bottom:5.26px!important}
+
+/* 2026-11-09 team comments #1 ~ #5 (card 1 A, site/density12/density12.css): part 1 (the model) keeps the head and the contact pill bottom left,
+   the period and the hashtags are in part 2 (her face is small here, the hashtag pills would cover it); part 2: the period top right, 'Density'
+   beside the title as before (no room under it above the price), the price beside the Density photo, the two hashtags beside the photo, the
+   contact pill bottom right */
+html[data-size="kakao"] .K1-1.K1a .c1-period,html[data-size="kakao"] .K1-1.K1a .c1-tags{display:none}
+html[data-size="kakao"] .K1-1.K1a .c1-contact{right:auto}
+html[data-size="kakao"] .K1-2.K1a .c1-top{right:24px}
+html[data-size="kakao"] .K1-2.K1a .c1-head .wm1{position:absolute;left:auto;right:0;top:86px}
+html[data-size="kakao"] .K1-2.K1a .co-dev-img{height:220px}
+html[data-size="kakao"] .K1-2.K1a .c1-tags{left:560px;top:330px;gap:16px}
+html[data-size="kakao"] .K1-2.K1a .c1-tags::before,html[data-size="kakao"] .K1-2.K1a .tg .mk{display:none}
+html[data-size="kakao"] .K1-2.K1a .c1-contact{left:auto;right:24px}
+/* 2026-11-09 team comment #7 (card 2): the tip cells are narrow here, so the tip photo beside the name is smaller */
+html[data-size="kakao"] .K2a .pgroup:first-child .tl-img{width:60px;height:43px}
 /* ---------- /KAKAO ---------- */
+
+/* ===== 2026-11-09 team comments (qa/feedback-20261109/DEN12.json), card 1 A; home rules (the size cards: v4/density12/sizes/line.css, kakao.css) ===== */
+/* #2: the event period small at the top right, level with the BEAUTY::BLOSSOM wordmark: a dark pill and its label (the team's mockup) */
+.c1:not([data-variant]) .c1-top{right:calc(60*var(--px));display:flex;align-items:center;justify-content:space-between;gap:calc(20*var(--px))}
+.c1-period{display:flex;align-items:center;gap:calc(14*var(--px));margin:0}
+.c1-pd{display:inline-block;padding:.3em .9em .26em;border-radius:999px;background:var(--chestnut);color:var(--cream);font-family:var(--f-label);font-weight:700;font-size:max(11px,calc(24*var(--px)));line-height:1.2;letter-spacing:-.01em;white-space:nowrap}
+.c1-pl{font-weight:700;font-size:max(11px,calc(21*var(--px)));line-height:1.2;color:var(--chestnut);white-space:nowrap}
+/* #1: 'Density' right under the title, left-aligned with it, solid (the team's mockup) */
+.c1-head .wm1{position:static;display:block;margin-top:calc(10*var(--px));font-size:calc(112*var(--px));line-height:.9;color:#84462a}
+/* #3: the two points move onto her cheek with two short hashtags (the team's mockup); the price callout loses its dotted line */
+.c1:not([data-variant]) .callouts::before{display:none}
+.c1-tags{position:absolute;z-index:4;left:calc(740*var(--px));top:calc(648*var(--px));list-style:none;margin:0;padding:0;display:grid;gap:calc(36*var(--px))}
+.c1-tags::before{content:'';position:absolute;left:calc(7*var(--px));top:calc(24*var(--px));bottom:calc(24*var(--px));border-left:calc(2.5*var(--px)) dotted rgba(99,39,19,.55)}
+.tg{position:relative;display:flex;align-items:center;gap:calc(18*var(--px))}
+.tg .mk{position:relative;flex:none}
+.tg-t{display:inline-block;padding:.3em .9em .34em;border-radius:999px;background:rgba(253,227,207,.94);color:var(--chestnut);font-weight:800;font-size:max(12px,calc(25*var(--px)));line-height:1.2;white-space:nowrap}
+/* #4: a Density photo under the price */
+.co-dev{margin-top:calc(-4*var(--px))}
+.co-dev-img{display:block;width:auto;max-width:none;height:calc(330*var(--px))}
+/* #5: the contact pill bottom right */
+.c1:not([data-variant]) .c1-contact{left:auto;right:calc(60*var(--px))}
+/* ===== /2026-11-09 card 1 A ===== */
+/* ===== 2026-11-09 team comments, cards 2 and 4 (home; the size cards follow, their own numbers in v4/density12/sizes/*.css) ===== */
+/* #7: the tip photos only once: smaller, at the top left of each tip cell of the 300샷 panel (the 600샷 panel lists the same tips without photos) */
+.c2:not([data-variant]) .pgroup:first-child .tile{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"img top" "img e" "pr pr";column-gap:calc(12*var(--px));align-content:start}
+.c2:not([data-variant]) .pgroup:first-child .tl-img{grid-area:img;align-self:start;width:calc(92*var(--px));height:calc(66*var(--px));margin:0}
+.c2:not([data-variant]) .pgroup:first-child .tl-top{grid-area:top;align-self:end}
+.c2:not([data-variant]) .pgroup:first-child .tl-e{grid-area:e;align-self:start;margin-top:calc(4*var(--px))}
+.c2:not([data-variant]) .pgroup:first-child .tl-price{grid-area:pr}
+.c2:not([data-variant]) .tile{min-height:0}
+.c2:not([data-variant]) .tl-e{margin-top:calc(6*var(--px))}
+/* #8: the Density photo moves to the bottom right of the card (its place at the top right is for the model, #13) */
+.c2:not([data-variant]) .cp-head .dev-c{position:absolute;right:calc(52*var(--px));bottom:calc(84*var(--px));z-index:3}
+/* the card 4 '+' between the pair photos sits a little low at its new place (qa/text-center-check.cjs) */
+.c4 .plus{padding-top:.02em;padding-bottom:.07em}
+/* #10 (1): each combination on one line */
+.c4 .pnm.cmb .ln{display:inline}
+/* ===== /2026-11-09 cards 2 and 4 ===== */
