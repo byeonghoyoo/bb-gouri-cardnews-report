@@ -413,16 +413,28 @@ a[data-link="phone"]{white-space:nowrap}
    the rows sit closer so the boards keep their height */
 .pmod{margin:0 0 calc(3*var(--px));font-weight:600;font-size:max(11px,calc(15*var(--px)));line-height:1.3;letter-spacing:-.01em;color:var(--cherry)}
 .pgift{margin-top:calc(3*var(--px));font-weight:500;font-size:max(11px,calc(14*var(--px)));line-height:1.35;color:var(--ink-2)}
-.c2:not([data-size-only]):not([data-variant="b"]) .prow{padding:calc(8*var(--px)) 0 calc(7*var(--px))}
-.c2:not([data-size-only]):not([data-variant="b"]) .gh{padding:calc(10*var(--px)) 0 calc(8*var(--px))}
-.c2:not([data-size-only]):not([data-variant="b"]) .prod-h{padding:calc(9*var(--px)) 0 calc(2*var(--px))}
+.c2:not([data-size-only]):not([data-variant="b"]) .prow{padding:calc(5*var(--px)) 0 calc(4*var(--px))}
+.c2:not([data-size-only]):not([data-variant="b"]) .gh{padding:calc(8*var(--px)) 0 calc(6*var(--px))}
+.c2:not([data-size-only]):not([data-variant="b"]) .prod-h{padding:calc(7*var(--px)) 0 calc(2*var(--px))}
 .c3:not([data-size-only]) .prow{padding:calc(8*var(--px)) 0 calc(7*var(--px))}
 .c3:not([data-size-only]) .gh{padding:calc(10*var(--px)) 0 calc(7*var(--px))}
 .c3:not([data-size-only]) .gh + .prows{margin-bottom:calc(2*var(--px))}/* rows with a modifier line: the line runs across the row on top, so the prices keep standing on the name's baseline (desktop) */
 @container (min-width:601px){.card .prow > .pn:has(> .pmod){display:contents}
 .card .prow > .pn > .pmod{grid-column:1 / -1;grid-row:1}
 .card .prow > .pn:has(> .pmod) > :not(.pmod){grid-column:1}
-.card .prow > .pn:has(> .pmod) > .pname,.card .prow:has(> .pn > .pmod) > .plist,.card .prow:has(> .pn > .pmod) > .psale{grid-row:2}}/* ==================== /2026-11-10 ==================== */
+.card .prow > .pn:has(> .pmod) > .pname,.card .prow:has(> .pn > .pmod) > .plist,.card .prow:has(> .pn > .pmod) > .psale{grid-row:2}}/* cards 2 / 3 #15 #16: the lead's model cutouts stand at the right of the head and run on behind the price board (it cuts them, the 2026-11-05
+   rule; the picture box is 340 / 400px tall), the head group centred in the space left of them; card 3's board comes down about 70px, rows closer */
+.cp-in > .model-photo{position:absolute;z-index:1;right:calc(56*var(--px));top:calc(24*var(--px));display:block;max-width:none;width:calc(238*var(--px));height:calc(340*var(--px));object-fit:cover;object-position:50% 0%;pointer-events:none}
+.cp-in > .model-photo ~ .pboard{z-index:2}
+.c3 .cp-in > .model-photo{width:calc(395*var(--px));height:calc(400*var(--px))}
+@container (min-width:601px){.c2:not([data-variant="b"]):not([data-size-only]) .x-head,.c3:not([data-size-only]) .x-head{padding-right:calc(380*var(--px))}
+.c2:not([data-variant="b"]):not([data-size-only]) .pboard{margin-top:calc(47*var(--px))}
+.c3:not([data-size-only]) .pboard{margin-top:calc(87*var(--px))}
+.c3:not([data-size-only]) .prow{padding:calc(5*var(--px)) 0 calc(4*var(--px))}
+.c3:not([data-size-only]) .gh{padding:calc(7*var(--px)) 0 calc(5*var(--px))}
+.c3:not([data-size-only]) .gh + .prows{margin-bottom:0}
+.c3:not([data-size-only]) .pparts{margin-top:calc(5*var(--px));row-gap:calc(3*var(--px))}}
+@container (max-width:600px){.cp-in > .model-photo{display:none}}/* ==================== /2026-11-10 ==================== */
 
 /* ===== SZ:css (generated from v4/oneday12/sizes/sizes.css by inject-sizes.cjs, edit that file) ===== */
 /* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md). home 1080x1350 = every rule above, unchanged. line 1100x1000 and kakao 800x600
@@ -620,4 +632,32 @@ html[data-size="kakao"] .K2a2 .pmod,html[data-size="kakao"] .K32 .pmod{margin-bo
 /* 2026-11-10: pills that moved with the team-comment layout (qa/text-center-check.cjs), padding from tmp szpad */
 html[data-size]:not(#sz) .K2a3 span.badge[data-copy="on_r16_badge"]{position:relative;top:.5px}
 html[data-size]:not(#sz) .K32 span.gh-k[data-copy="on_g23_k"]{position:relative;top:.5px}
+
+
+/* 2026-11-10 ONE12 #15 #16 (the lead's model cutouts) and #7 #8 #9 (three more modifier lines) in the sizes:
+   line 2A part 1 and 3 part 1 get the model at the right of the head (head group centred left of it, boards lower, card 3 rows closer);
+   kakao 2A part 1 gets it at the right of the head; kakao card 3 has no room in part 1, so its model stands in part 3 (04 head) over the lowered board;
+   kakao 2A parts 2 / 3 sit closer for the new modifier lines */
+html[data-size="line"] .L2a1 .x-head,html[data-size="line"] .L31 .x-head{padding-right:330px}
+html[data-size="line"] .L2a1 .pboard{margin-top:63px}
+html[data-size="line"] .L2a1 .cp-in > .model-photo{right:56px;top:21px;width:238px;height:340px}
+html[data-size="line"] .L31 .pboard{margin-top:118px}
+html[data-size="line"] .L31 .prow{padding:5px 0 4px}
+html[data-size="line"] .L31 .gh{padding:7px 0 5px}
+html[data-size="line"] .L31 .gh + .prows{margin-bottom:0}
+html[data-size="line"] .L31 .cp-in > .model-photo{right:56px;top:30px;width:395px;height:400px}
+html[data-size="kakao"] .K2a1 .x-head{padding-right:220px}
+html[data-size="kakao"] .K2a1 .cp-in > .model-photo{right:40px;top:25px;width:182px;height:260px}
+html[data-size="kakao"] .K33 .x-head{padding-right:260px}
+html[data-size="kakao"] .K33 .pboard{margin-top:150px}
+html[data-size="kakao"] .K33 .cp-in > .model-photo{right:40px;top:20px;width:325px;height:330px}
+html[data-size="kakao"] .K2a2 .prow,html[data-size="kakao"] .K2a3 .prow{padding:3px 0 2px}
+html[data-size="kakao"] .K2a3 .pboard{margin-top:6px}
+html[data-size="kakao"] .K2a3 .prod-h{padding:4px 0 1px}
+html[data-size="kakao"] .K2a2 .cp-foot,html[data-size="kakao"] .K2a3 .cp-foot{padding-top:0}
+html[data-size="kakao"] .K2a2 .pmod,html[data-size="kakao"] .K2a3 .pmod{margin-bottom:0;line-height:1.2}
+
+/* 2026-11-10: the row 12 parts chip after the modifier line (qa/text-center-check.cjs) */
+html[data-size]:not(#sz) .L2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3){padding-top:4.05px!important;padding-bottom:2.95px!important}
+html[data-size]:not(#sz) .K2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3){padding-top:4.05px!important;padding-bottom:2.95px!important}
 /* ===== /SZ:css ===== */
