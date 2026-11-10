@@ -195,12 +195,29 @@ html[data-size]:not(#sz) main.iv .K5p1 figcaption[data-copy="da_ab_ph3"]{padding
 /* text centring in the components (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each box below moves its text by a pixel or half a pixel (growing one side) from its computed padding */
 html[data-size]:not(#sz) main.iv .L3p1 p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:2.1px!important;padding-bottom:6.46px!important}
 html[data-size]:not(#sz) main.iv .K2ap2 span[data-copy="iv_g2"]{padding-top:5.51px!important;padding-bottom:3.85px!important}
-html[data-size]:not(#sz) main.iv .K2ap2 span.pplus[data-copy="iv_r9_plus"]{padding-top:2.06px!important;padding-bottom:3.04px!important}
 html[data-size]:not(#sz) main.iv .K2ap3 span[data-copy="iv_g2"]{padding-top:5.51px!important;padding-bottom:3.85px!important}
 html[data-size]:not(#sz) main.iv .K2bp2 span[data-copy="iv_g2"]{padding-top:5.51px!important;padding-bottom:3.85px!important}
 html[data-size]:not(#sz) main.iv .K3p1 p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:1.1px!important;padding-bottom:6.46px!important}
 html[data-size]:not(#sz) main.iv .K3p1 p.kd-t[data-copy="iv_c3_k3_t"]{padding-top:4.41px!important;padding-bottom:4.15px!important}
 html[data-size]:not(#sz) main.iv .K2bp2 span.pplus[data-copy="iv_r10_plus"]{padding-top:1.52px!important;padding-bottom:2.68px!important}
-html[data-size]:not(#sz) main.iv .K2bp2 span.pplus[data-copy="iv_r11_plus"]{padding-top:1.31px!important;padding-bottom:2.89px!important}
 /* ---------- /KAKAO ---------- */
 /* ===================== /channel sizes ===================== */
+/* 2026-11-10 team comments IVS12 (2026-11-09): the row 6 line '데일리 수액' over the name; B: the period chip at the bottom left next to the 49% line,
+   the name of a tile with a BEST badge keeps clear of it */
+html[data-size]:not(#sz) main.iv .L2a [data-price-row="14_iv:6"] .pmod{flex-basis:100%;margin-bottom:0}
+html[data-size]:not(#sz) main.iv .L2b .period{bottom:20px}
+html[data-size]:not(#sz) main.iv .L2b .uibeop{left:272px}
+html[data-size]:not(#sz) main.iv .K2b .period{left:40px;bottom:24px}
+html[data-size]:not(#sz) main.iv .K2bp2 .period{display:none} /* shown once, bottom left of part 1 */
+
+html[data-size]:not(#sz) main.iv .K2bp2 .prow{padding:5px 18px}
+html[data-size]:not(#sz) main.iv .K2b .prow > .pbadge ~ .pn .pname{padding-right:80px}
+/* 2026-11-10: pills that moved with the team-comment layout (qa/text-center-check.cjs), padding from tmp szpad */
+html[data-size]:not(#sz) main.iv .L2b span.pplus[data-copy="iv_r10_plus"]{padding-top:2.52px!important;padding-bottom:2.68px!important}
+html[data-size]:not(#sz) main.iv .K2ap1 span.period[data-copy="iv_period"]{align-self:flex-start;padding-top:8.4px!important;padding-bottom:8.44px!important}
+html[data-size]:not(#sz) main.iv .K2ap2 span.pplus[data-copy="iv_r9_plus"]{padding-top:3.06px!important;padding-bottom:3.04px!important}
+html[data-size]:not(#sz) main.iv .K2ap2 span.pplus[data-copy="iv_r10_plus"]{padding-top:3.06px!important;padding-bottom:3.04px!important}
+html[data-size]:not(#sz) main.iv .K2ap3 span.pplus[data-copy="iv_r12_plus"]{padding-top:2.89px!important;padding-bottom:3.21px!important}
+html[data-size]:not(#sz) main.iv .K2bp1 span.period[data-copy="iv_period"]{padding-top:8.4px!important;padding-bottom:8.44px!important}
+html[data-size]:not(#sz) main.iv .K2bp2 span.pbadge[data-copy="iv_r8_badge"]{padding-top:5.5px!important;padding-bottom:4.5px!important}
+html[data-size]:not(#sz) main.iv .K2bp2 span.pplus[data-copy="iv_r11_plus"]{padding-top:2.31px!important;padding-bottom:1.89px!important}
