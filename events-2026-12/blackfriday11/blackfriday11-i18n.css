@@ -1,0 +1,97 @@
+/* BLF11 language versions (2026-11-10, lead order). Copy = v4/langverify/out/BLF11.final.json as it is; this file only adds the language fonts and the
+   line breaks / column widths the longer copy needs. Every selector names a language (:lang(en|ja|zh|th) or html:not([data-locale=KO])), so the Korean
+   pages stay pixel-identical (the builder checks the selectors; v4/blackfriday11/qa/sizes/sizes.cjs compare checks the pixels). */
+
+/* fonts: Japanese / Chinese text in Noto Sans JP / SC / TC, first in the stack so Pretendard's Hanja never mixes in; Thai in Noto Sans Thai after Pretendard
+   (Latin letters and figures keep the Korean design's Pretendard). The display faces (Bagel Fat One, Anton, Black Han Sans) have no CJK or Thai letters:
+   those letters fall back to the language's Noto at a heavy weight, and font-synthesis:none keeps the Latin display letters exactly as designed. */
+html:lang(ja){--f-cjk:'Noto Sans JP'}
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(ja),html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,sans-serif;--f-pop:'Bagel Fat One',var(--f-cjk),sans-serif;--f-cond:'Anton',var(--f-cjk),sans-serif}
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',sans-serif;--f-pop:'Bagel Fat One','Noto Sans Thai',sans-serif;--f-cond:'Anton','Noto Sans Thai',sans-serif}
+html:lang(ja) .c1a .tl1,html:lang(zh) .c1a .tl1{font-family:'Black Han Sans',var(--f-cjk),sans-serif;font-weight:900;letter-spacing:-.04em}
+html:lang(ja) .h-title .tl2,html:lang(zh) .h-title .tl2,html:lang(ja) .cpb-head .p-title .evt,html:lang(zh) .cpb-head .p-title .evt{font-weight:900;font-synthesis:none}
+html:lang(ja) .evc,html:lang(zh) .evc,html:lang(ja) .bt-k,html:lang(zh) .bt-k,html:lang(th) .bt-k{font-weight:700;font-synthesis:none}
+
+/* line breaks: Chinese and Japanese break between characters (Korean keeps whole words); long names and EVENT titles may take a second line */
+html:not([data-locale=KO]) .sheet{word-break:normal}
+html:not([data-locale=KO]) .ev-label{white-space:normal}
+html:not([data-locale=KO]) .ev-label .evt{min-width:0;white-space:normal}
+html:not([data-locale=KO]) .seg.segw{white-space:normal}
+
+/* ---------- home 1080 (and the board's 780 view): containers wider than 600 px ---------- */
+@container (min-width:601px){
+ /* 2 A, Thai: the won amounts are written out ('170,000 วอน'), so the list price sits over the event price in one right-hand column
+    (214 px holds the widest, '890,000 วอน'); the row keeps its height, the name column gets wider */
+ html:lang(th)[data-size=home] .c2a .pr{grid-template-columns:calc(96*var(--px)) minmax(0,1fr) calc(214*var(--px));grid-template-rows:auto auto;row-gap:0}
+ html:lang(th)[data-size=home] .c2a .pr > .pslot{grid-column:1;grid-row:1 / 3}
+ html:lang(th)[data-size=home] .c2a .pr > .pn{grid-column:2;grid-row:1 / 3}
+ html:lang(th)[data-size=home] .c2a .pr > .plist{grid-column:3;grid-row:1;align-self:end;line-height:1.1}
+ html:lang(th)[data-size=home] .c2a .pr > .psale{grid-column:3;grid-row:2;align-self:start}
+ /* 2 B: two-line names and descriptions make some tile tops taller; the stub (same price size) gives up 10 px of picture height and the top 6 px of padding */
+ html:not([data-locale=KO])[data-size=home] .c2b .tl-top{padding:calc(14*var(--px)) calc(16*var(--px)) calc(6*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c2b .tl-slot{height:calc(64*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c2b .tile{--ips:calc(.88*var(--px))}
+ /* 3, location: a longer address takes more lines, so the map gives up height (same width, cropped evenly) instead of pushing the address out */
+ html:not([data-locale=KO])[data-size=home] .c3 .bt-loc .loc-body{flex:1 1 auto;min-height:0;margin:0}
+ html:not([data-locale=KO])[data-size=home] .c3 .bt-loc .map{flex:1 1 auto;min-height:0;aspect-ratio:auto}
+ html:not([data-locale=KO])[data-size=home] .c3 .bt-loc .map-img{object-fit:cover}
+}
+/* 3, booking: the international number ('+82-2-336-7511') is longer than '02-336-7511'; it may come down by at most 15 % to stay inside the card (page.js) */
+html:not([data-locale=KO]) .bk-phone{font-size:max(15px,calc(30*var(--px)*var(--fit,1)))}
+/* Japanese: phrase-aware line breaks (Chrome auto-phrase, lang=ja), so 'リフティング / ダブル割引' breaks between phrases, not inside a word */
+html:lang(ja) .sheet{word-break:auto-phrase}
+/* 1 A: the title stays inside the Korean title's footprint (161-919 px), so the burst on its left and the star on its right stay clear of the
+   longer 'BLACK FRIDAY' / 'ブラックフライデー' (page.js already fits the line to its box) */
+html:not([data-locale=KO]) .c1a .h-title{left:calc(160*var(--px));right:calc(160*var(--px))}
+/* 1 A EVENT 01: the burst sticker sits on the box's top-right corner (the longer lines reach the right edge where it sits in Korean) */
+html:not([data-locale=KO]) .c1a .ev1 .d-em{right:calc(-16*var(--px));top:calc(-22*var(--px));bottom:auto}
+/* 1 A EVENT 01, Thai: the title is a long phrase; at 36 px it keeps two lines like the other languages (44 px took three) */
+html:lang(th) .c1a .ev1 .evt{font-size:max(14px,calc(36*var(--px)*var(--fit,1)))}
+/* 3 strengths, English and Japanese: the titles are long words / phrases ('Consultations', 'Appointments'); the dotted leader gives its width to the title and words are not
+   cut in the middle (page.js lets these titles take three lines and shrink by at most 14 %) */
+html:lang(en) .ab-strengths .dots,html:lang(ja) .ab-strengths .dots{display:none}
+html:lang(en) .ab-strengths .at,html:lang(ja) .ab-strengths .at{flex:1 1 auto;overflow-wrap:normal}
+html:lang(en) .ab-strengths .at .nw{white-space:normal}
+
+/* ---------- LINE 1100x1000 (delivered for JP TW TH; the rules hold for every language version). Sizes are the home sizes of the same language. ---------- */
+/* 1 A: the title inside the Korean title's footprint (page.js fits it). Japanese, Thai and English EVENT copy takes more lines, so there the photo is
+   84 % and 80 px higher: her face stays clear above the EVENT boxes (Chinese copy is as short as Korean and keeps the Korean photo) */
+html:not([data-locale=KO])[data-size=line] .c1a .h-title{left:160px;right:160px}
+html:lang(ja)[data-size=line] .c1a .hero-ph,html:lang(th)[data-size=line] .c1a .hero-ph,html:lang(en)[data-size=line] .c1a .hero-ph{left:275px;top:20px;width:551px;height:689px}
+/* 1 B: the title box ends before the burst by the megaphone; devices and the framed photo a little smaller so the EVENT lines keep their size */
+html:not([data-locale=KO])[data-size=line] .c1b .h-title{right:350px}
+html:not([data-locale=KO])[data-size=line] .c1b .dv-ultherapy-prime .dv-img{width:96px;height:182px}
+html:not([data-locale=KO])[data-size=line] .c1b .dv-xerf .dv-img{width:84px;height:197px}
+html:not([data-locale=KO])[data-size=line] .c1b .frame{width:180px}
+/* 2 A in two images (page.js): one column as on home, rows a little taller to use the height */
+html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .plist-a{display:block;padding:4px 26px}
+html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .plist-a::before{display:none}
+html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .pr{grid-template-columns:96px minmax(0,1fr) 150px 170px;grid-template-areas:"ps pn pl sl";column-gap:16px;row-gap:0;padding:16px 0}
+html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .pr .plist,html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .pr .psale{align-self:center}
+html:lang(th)[data-size=line] .c2a[data-i18n-split] .pr{grid-template-columns:96px minmax(0,1fr) 230px;grid-template-areas:"ps pn pl" "ps pn sl"}
+html:lang(th)[data-size=line] .c2a[data-i18n-split] .pr .plist{align-self:end;line-height:1.1}
+html:lang(th)[data-size=line] .c2a[data-i18n-split] .pr .psale{align-self:start}
+/* 2 B: two-line names and descriptions make the tile tops taller; the stub keeps the price size and gives up picture height (pictures 1.25x home) */
+html:not([data-locale=KO])[data-size=line] .l2b .tile{--ips:1.25px}
+html:not([data-locale=KO])[data-size=line] .l2b .tl-top{padding:18px 20px 10px}
+html:not([data-locale=KO])[data-size=line] .l2b .tl-slot{height:84px}
+html:lang(en)[data-size=line] .l2b .tl-name{font-size:24px}
+/* 2 B, Thai: the written-out won amount needs the stub's width: the product picture at its home size, the price at its home size (38 px) */
+html:lang(th)[data-size=line] .l2b .tile{--ips:1px}
+html:lang(th)[data-size=line] .l2b .tl-stub{grid-template-columns:80px minmax(0,1fr)}
+html:lang(th)[data-size=line] .l2b .tl-pr .psale{font-size:38px}
+/* 1 B EVENT 02, Thai: 'ราคาพิเศษเฉพาะช่วงนี้' stays one line (page.js fits it to the pane, a few per cent) instead of leaving 'นี้' alone on a second line */
+html:lang(th) .pane2 .ev-label .evt{white-space:nowrap}
+/* phones (390): the contact line keeps the copy's own line break (EN 'Appointments & inquiries' / 'WhatsApp: …', HK), so it stays inside the screen */
+@container (max-width:600px){
+ html:not([data-locale=KO]) .band{height:auto;min-height:46px;padding:7px 0}
+ html:not([data-locale=KO]) .band-contact{white-space:pre-line;text-align:center;line-height:1.25}
+}
+/* 3, English: the longer strength descriptions make the about box taller; its photo row is 34 px lower so the booking box keeps room for its
+   two-line QR caption and the wordmark (the QR 110 px, still well scannable) */
+@container (min-width:601px){
+ html:lang(en)[data-size=home] .c3 .ab-photos{height:calc(138*var(--px))}
+ html:lang(en)[data-size=home] .c3 .bk-row{grid-template-columns:calc(110*var(--px)) minmax(0,1fr)}
+}
