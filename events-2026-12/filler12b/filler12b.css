@@ -368,6 +368,15 @@ html[data-size="line"] .L6-2 .bento{grid-template-rows:minmax(0,1fr) minmax(0,1f
 html[data-size="line"] .L6-2 .bt-loc{grid-row:1 / 3}
 html[data-size="line"] .L6-2 .bt-hours{grid-row:1}
 html[data-size="line"] .L6-2 .bt-book{grid-row:2}
+
+/* 2026-11-09 team comments #3 / #4 (the hero model's new cuts at the right of the A price cards' head, v4/filler12b/fixes/fb-20261109.cjs):
+   part 1 only; the model 240x300 on the board's top edge, the head centred left of it in the band above the board, the bow to the top left */
+html[data-size="line"] .fbm .fb-mdl{width:240px;height:300px;right:40px}
+html[data-size="line"] .L2a.L2-2 .fb-mdl,html[data-size="line"] .L3.L3-2 .fb-mdl{display:none}
+html[data-size="line"] .L2a.L2-1 .cp-head,html[data-size="line"] .L3.L3-1 .cp-head{margin-right:306px;margin-top:71px}
+html[data-size="line"] .L2a.L2-1 .pboard{margin-top:72px}
+html[data-size="line"] .L3.L3-1 .pboard{margin-top:76px}
+html[data-size="line"] .L2a.L2-1 .bow-board,html[data-size="line"] .L3.L3-1 .bow-board{right:auto;left:-36px;transform:rotate(-10deg) scaleX(-1)}
 /* ---------- /LINE ---------- */
 /* ---------- KAKAO 800x600 ---------- */
 /* FIL12B KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). Made with the FIL12A/B/C template. */
@@ -465,6 +474,16 @@ html[data-size="kakao"] .K6-3 .bt-book{grid-row:2}
    padding moves the box edge and the margin keeps the layout */
 html[data-size="kakao"] .K1-2.K1a .tz-opt{padding-bottom:2.88px;margin-bottom:1.12px}
 html[data-size="kakao"] .K4-1 .pill-k,html[data-size="kakao"] .K4-3 .pill-k,html[data-size="kakao"] .K5-1 .pill-k{padding-bottom:8.06px;margin-bottom:-1.06px}
+
+/* 2026-11-09 team comments #3 / #4 (the hero model's new cuts at the right of the A price cards' head, v4/filler12b/fixes/fb-20261109.cjs):
+   part 1 only; the model 160x200 on the board's top edge (the board uses the free space under it), the head centred left of it, no bow there */
+html[data-size="kakao"] .fbm .fb-mdl{width:160px;height:200px;right:38px}
+html[data-size="kakao"] .K2a.K2-2 .fb-mdl,html[data-size="kakao"] .K2a.K2-3 .fb-mdl,html[data-size="kakao"] .K3.K3-2 .fb-mdl,html[data-size="kakao"] .K3.K3-3 .fb-mdl{display:none}
+html[data-size="kakao"] .K2a.K2-1 .cp-head{margin-right:220px;margin-top:31px}
+html[data-size="kakao"] .K3.K3-1 .cp-head{margin-right:220px;margin-top:33px}
+html[data-size="kakao"] .K2a.K2-1 .pboard{margin-top:32px}
+html[data-size="kakao"] .K3.K3-1 .pboard{margin-top:34px}
+html[data-size="kakao"] .K3.K3-1 .bow-board{display:none}
 /* ---------- /KAKAO ---------- */
 /* ===== FIXES 20261109 (v4/filler12b/fixes/fb-20261109.css) ===== */
 /* FIL12B team comments 2026-11-09 (v4/filler12b/fixes/fb-20261109.cjs). Home rules; the size cards add their own in v4/filler12b/sizes/line.css, kakao.css.
@@ -478,4 +497,19 @@ html[data-size="kakao"] .K4-1 .pill-k,html[data-size="kakao"] .K4-3 .pill-k,html
 @container (max-width:600px){.prow .popt-w{grid-row:1 / 3;align-self:center}}
 /* #12: the hero offer box right under the title, clear of the model; it is narrower there, so its side padding is a little smaller */
 .c1 .tz{padding-left:calc(22*var(--px));padding-right:calc(22*var(--px))}
+/* #3 / #4: a new cut of the hero model at the right of the head of the A price cards 2 and 3, standing on the board's top edge (img.fb-mdl,
+   first in .pboard: bottom on the board's outer top edge, cut straight across there, kept inside the straight part of the board's top edge);
+   the head is centred in the space left of it and in the band above the board, and the board moves down (it is flex 1, so its products keep
+   their even spacing); the bow moves to the board's top-left corner. Home 1080 numbers; the size cards set their own in sizes/line.css, kakao.css. */
+.fb-mdl{position:absolute;z-index:1;right:calc(40*var(--px));bottom:calc(100% + 10*var(--px));width:calc(280*var(--px));height:calc(348*var(--px));object-fit:cover;object-position:50% 0;user-select:none;pointer-events:none}
+.cp.fbm:not([data-size-only]) .cp-head{margin-top:calc(95*var(--px));margin-right:calc(346*var(--px))}
+.cp.c2.fbm:not([data-size-only]) .pboard{margin-top:calc(96*var(--px))}
+.cp.c3.fbm:not([data-size-only]) .pboard{margin-top:calc(100*var(--px))}
+.cp.fbm:not([data-size-only]) .bow-board{right:auto;left:calc(-36*var(--px));transform:rotate(-10deg) scaleX(-1)}
+@container (max-width:600px){
+  /* phone: the model in a column at the right of the head, head and shoulders */
+  .cp.fbm:not([data-size-only]) .cp-head{margin-top:12px;margin-right:96px;min-height:96px}
+  .cp.c2.fbm:not([data-size-only]) .pboard,.cp.c3.fbm:not([data-size-only]) .pboard{margin-top:14px}
+  .fb-mdl{right:14px;width:86px;height:107px}
+}
 /* ===== /FIXES 20261109 ===== */
