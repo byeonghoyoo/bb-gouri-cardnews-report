@@ -62,12 +62,14 @@ function setHours(el,v){
 /* widow guard: the last two words stay together */
 const GUARD='.hook,.p-lead,.unit-d,.pcare,.pdet,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.src,.bkl-msg,.cmp-d,.cmp-h,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.ba-note,.bb-ba__note';
 /* names that never break inside */
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
+const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
-  if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));
-  const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;
+  let pre=s.slice(last,m.index),lead='';
+  if(/\+ $/.test(pre)){lead='+ ';pre=pre.slice(0,-2);} /* '+ ' stays with the name after it, so a line never ends with '+' (team comment SOF12 #16, 2026-11-09) */
+  if(pre)el.append(document.createTextNode(pre));
+  const k=document.createElement('span');k.className='nw';k.textContent=lead+m[0];el.append(k);last=m.index+m[0].length;
  }
  if(last<s.length)el.append(document.createTextNode(s.slice(last)));
 }
@@ -82,8 +84,9 @@ function setText(el,v){
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
- const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
- el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);
+ let head=v.slice(0,v.length-m[1].length),tt=m[1];if(/\+ $/.test(head)){head=head.slice(0,-2);tt='+ '+tt;}
+ const tail=document.createElement('span');tail.className='nw';tail.textContent=tt;
+ el.textContent='';appendKept(el,head);el.append(tail);
 }
 
 function isPhone(){const m=document.querySelector('main');return !!m&&m.clientWidth<=600;}

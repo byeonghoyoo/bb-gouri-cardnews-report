@@ -22,7 +22,7 @@ function setMoney(el,v){el.textContent='';const m=/^(\D*?)(\d[\d,.]*)(.*)$/.exec
 function topSplit(v){const parts=[];let depth=0,start=0;for(let i=0;i<v.length;i++){const c=v[i];if(c==='('||c==='[')depth++;else if((c===')'||c===']')&&depth)depth--;else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));start=i+3;i+=2;}}parts.push(v.slice(start));return parts;}
 function setParts(el,v){el.textContent='';v=v||'';topSplit(v).forEach((p,i)=>{if(i){const s=document.createElement('span');s.className='plus';s.textContent=' + ';el.append(s);}const c=document.createElement('span');c.className='seg';c.textContent=p;el.append(c);});}
 /* hero title: break after ' & ' (the text stays the same) */
-function setTitle(el,v){el.textContent='';const i=(v||'').indexOf(' & ');if(i<0){el.textContent=v||'';return;}
+function setTitle(el,v){el.textContent='';if(true&&!el.closest('.bv')){const t=document.createElement('span');t.className='tl';t.textContent=v||'';el.append(t);return;}const i=(v||'').indexOf(' & ');if(i<0){el.textContent=v||'';return;}
  const a=document.createElement('span');a.className='tl';a.textContent=v.slice(0,i+2);const b=document.createElement('span');b.className='tl';b.textContent=v.slice(i+2);el.append(a,b);}
 function setHours(el,v){el.textContent='';const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];const t=document.createElement('span');t.className='ht';t.textContent=m[3];el.append(d,document.createTextNode(m[2]),t);}

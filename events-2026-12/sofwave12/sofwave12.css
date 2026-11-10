@@ -709,6 +709,45 @@ main:has([data-card="1"]:not([data-variant="b"])):has([data-card="1"][data-varia
 @container (max-width:600px){
   .c5-headrow{grid-template-columns:minmax(0,1fr) 100px;column-gap:6px} /* keeps the 24px title on one line at 390 (was 120px / 10px) */
 }
+/* ==================== 2026-11-10 team comments SOF12 of 2026-11-09 (qa/feedback-20261109/SOF12.json) ==================== */
+/* (the card 2 rules below are for the home card; the line / kakao parts have their own in sizes/sizes.css)
+   card 2 A #13: the device turned to face right, a little larger, its legs cut off and the cut edge standing on the top of the price board */
+.c2-devbox{align-self:end;width:calc(136*var(--px));height:calc(208*var(--px));margin-bottom:calc(-10*var(--px))}
+.c2-dev{object-fit:cover;object-position:50% 0%;transform:scaleX(-1);filter:none}
+@container (max-width:600px){.c2-devbox{width:46px;height:70px;margin-bottom:-14px}}
+@container (min-width:601px){
+/* #17: the list price a little further right (the sale column 196 -> 150) */
+.c2:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) calc(126*var(--px)) calc(150*var(--px))}
+/* #16: the add-on treatment line beside the name (its own column, wrapping only before a '+'); the care line stays under the name */
+.c2:not([data-size-only]) .prows:not(.combo) .pn{display:grid;grid-template-columns:calc(300*var(--px)) minmax(0,1fr);column-gap:calc(16*var(--px));align-items:baseline}
+.c2:not([data-size-only]) .prows:not(.combo) .pname{grid-column:1;grid-row:1}
+.c2:not([data-size-only]) .prows:not(.combo) .pcare{grid-column:1;grid-row:2}
+.c2:not([data-size-only]) .prows:not(.combo) .pdet{grid-column:2;grid-row:1 / span 2;margin-top:0;word-break:keep-all}
+/* #6: every treatment name on one line (the combo names no longer break before ' + ') */
+.c2:not([data-size-only]) .pgroup2 .pnm.cmb .ln{display:inline}
+/* the rows got shorter: the same board height again with more air per row */
+.c2:not([data-size-only]) .prow{padding:calc(16*var(--px)) 0 calc(21*var(--px))}
+.c2:not([data-size-only]) .pgroup2 .prow{padding:calc(16*var(--px)) 0 calc(20*var(--px))}
+}
+/* card 3 #14: the two wave cards in the top corners are gone (markup removed) */
+/* card 1 A #7: no wave cards; the water is the whole background, fading in from the cream at about a third of the height (assets/bg/wave-fade.jpg,
+   built by v4/sofwave12/gen/wave-fade-1110.cjs). #9: the model is a cutout of the same hero cut, same size, about 180px further left */
+.c1-bg{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0%;pointer-events:none}
+.c1 .c1-photo{inset:auto;z-index:1;left:calc(-116*var(--px));top:calc(383*var(--px));width:calc(974*var(--px));height:calc(1114*var(--px));object-fit:cover;object-position:50% 0%}
+/* #8: the device much larger on the right, its legs below the card edge (cut at the bottom of the picture) */
+.c1 .c1-dev{right:calc(8*var(--px));bottom:auto;top:calc(589*var(--px));width:calc(497*var(--px));height:calc(1001*var(--px))}
+/* #12: the event period at the top left (out of the bottom pills) */
+.c1-period{position:absolute;z-index:5;left:calc(52*var(--px));top:calc(92*var(--px));display:flex;flex-direction:column;gap:calc(4*var(--px));margin:0;padding-left:calc(16*var(--px));border-left:calc(3*var(--px)) solid var(--berry)}
+.c1-pk{font-size:max(11px,calc(19*var(--px)));font-weight:700;line-height:1.3;color:var(--aqua-d);white-space:nowrap}
+.c1-pv{font-family:var(--f-lat);font-size:max(12px,calc(30*var(--px)));font-weight:800;letter-spacing:-.01em;line-height:1.15;color:var(--berry-d);white-space:nowrap}
+/* #11: two pills now; the event price card wider and its price much larger; the booking card keeps its own height at the bottom right */
+.c1 .hpills{grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);align-items:end}
+.c1 .hp-num{font-size:calc(124*var(--px))}
+.c1 .hp-main{margin-top:calc(2*var(--px));align-items:center}
+.c1 .hp-vat{margin-left:calc(8*var(--px));padding-left:calc(16*var(--px));border-left:calc(2*var(--px)) solid rgba(181,23,94,.28);line-height:1.7}/* home at full width: the combo badges measure 0.7px off after the rows changed (qa/text-center-check.cjs at 1080) */
+@container (min-width:900px){.c2:not([data-size-only]) span.badge[data-copy="sw_r19_badge"]{padding-top:3.044px!important;padding-bottom:2.076px!important}
+.c2:not([data-size-only]) span.badge[data-copy="sw_r20_badge"]{padding-top:3.96px!important;padding-bottom:1.16px!important}}/* phone: the period sits above the accent line (the 1080 spot would touch the title) */
+@container (max-width:600px){.c1-period{top:8px;left:14px}}/* ==================== /2026-11-10 ==================== */
 /* ===== SIZES START (generated from v4/sofwave12/sizes/sizes.css, do not edit here) ===== */
 /* ===================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) =====================
    ?size=line -> LINE 1100x1000, ?size=kakao -> KakaoTalk 800x600 (fixed frames; the board draws them at 1440px and wider). Every card is
@@ -732,8 +771,10 @@ html[data-size]:not(#sz) .h-model{position:absolute;z-index:2;display:block;widt
 
 /* ---------- LINE 1100x1000 ---------- */
 /* 1A: the whole hero photo (model with the water cards, flat cream) lower right on the same cream; title across the top, device left, info cards at the bottom */
-html[data-size]:not(#sz) .L1a .c1-photo{inset:auto;left:380px;top:100px;width:720px;height:900px}
-html[data-size]:not(#sz) .L1a .c1-dev{left:110px;right:auto;top:392px;bottom:auto;width:234px;height:470px}
+/* 1A after the team comments of 2026-11-09 (SOF12 #7 #8 #9 #11 #12): the water background from about a third of the height (.c1-bg, as home), the model
+   cutout on the left (its chin above the price card), the device large on the right with its legs below the card edge, the period top left, two cards */
+html[data-size]:not(#sz) .L1a .c1-photo{left:16px;top:372px;width:652px;height:746px}
+html[data-size]:not(#sz) .L1a .c1-dev{right:8px;top:430px;width:372px;height:749px}
 /* 1B: title block top left as home; the device stands left with the price card over its base, the framed model photo lower right */
 html[data-size]:not(#sz) .L1b .vb-dev{left:140px;top:410px;width:228px;height:459px}
 html[data-size]:not(#sz) .L1b .vb-frame{left:626px;top:322px;width:420px}
@@ -741,20 +782,23 @@ html[data-size]:not(#sz) .L1b .vb-price{left:44px;top:800px}
 /* 2A: head row (device | Price + title on one line, lead under | the model cutout behind the board), the board in two columns:
    rows 42-46 | the combo box 18-21, each row with its two prices stacked on the right */
 html[data-size]:not(#sz) .L2a .cp-in{padding:30px 44px 20px}
-html[data-size]:not(#sz) .L2a .c2-head{grid-template-columns:90px minmax(0,1fr) 280px;column-gap:12px;margin-top:12px;min-height:0}
-html[data-size]:not(#sz) .L2a .c2-devbox{width:74px;height:150px}
+html[data-size]:not(#sz) .L2a .c2-head{grid-template-columns:110px minmax(0,1fr) 280px;column-gap:12px;margin-top:12px;min-height:150px}
+html[data-size]:not(#sz) .L2a .c2-devbox{position:absolute;left:13px;bottom:-16px;width:84px;height:129px;margin:0} /* #13: turned, legs cut, standing on the board (home rule .c2-dev) */
 html[data-size]:not(#sz) .L2a .c2-head .cp-htx{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:16px}
 html[data-size]:not(#sz) .L2a .p-lead{flex-basis:100%;margin-top:4px}
 html[data-size]:not(#sz) .L2a .c2-cut{right:6px;bottom:-120px;height:330px}
-html[data-size]:not(#sz) .L2a .pboard{margin-top:16px;padding:6px 10px;display:grid;grid-template-columns:552px minmax(0,1fr);column-gap:22px;align-items:start}
-html[data-size]:not(#sz) .L2a .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:16px 0 16px}
-html[data-size]:not(#sz) .L2a .prow .pn{grid-column:1;grid-row:1 / 3}
-html[data-size]:not(#sz) .L2a .prow .plist{grid-column:2;grid-row:1;align-self:end;margin-bottom:4px}
-html[data-size]:not(#sz) .L2a .prow .psale{grid-column:2;grid-row:2;align-self:start}
-html[data-size]:not(#sz) .L2a .pgroup2{margin:0;padding:6px 14px 0}
-html[data-size]:not(#sz) .L2a .pgroup2 .pn{flex-wrap:wrap;row-gap:4px}
-html[data-size]:not(#sz) .L2a .pgroup2 .prow{padding:15px 0 15px}
-html[data-size]:not(#sz) .L2a .pname{white-space:normal}
+/* 2026-11-10 (team comments SOF12 #6 #16 #17): one table across the board like home, so the add-on line fits beside the name and every combo name
+   stays on one line; the list price sits next to the sale price (sale column 150px) */
+html[data-size]:not(#sz) .L2a .pboard{margin-top:16px;padding:0 30px 4px}
+html[data-size]:not(#sz) .L2a .prow{grid-template-columns:minmax(0,1fr) 126px 150px;column-gap:16px;align-items:baseline;padding:6px 0 7px}
+html[data-size]:not(#sz) .L2a .pgroup2{margin:4px -14px 0;padding:2px 16px 0}
+html[data-size]:not(#sz) .L2a .pgroup2 .pn{flex-wrap:nowrap}
+html[data-size]:not(#sz) .L2a .pgroup2 .pnm.cmb .ln{display:inline}
+html[data-size]:not(#sz) .L2a .prows:not(.combo) .pn{display:grid;grid-template-columns:300px minmax(0,1fr);column-gap:16px;align-items:baseline}
+html[data-size]:not(#sz) .L2a .prows:not(.combo) .pname{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .L2a .prows:not(.combo) .pcare{grid-column:1;grid-row:2}
+html[data-size]:not(#sz) .L2a .prows:not(.combo) .pdet{grid-column:2;grid-row:1 / span 2;margin-top:0;word-break:keep-all}
+html[data-size]:not(#sz) .L2a .pgroup2 .prow{padding:6px 0 7px}
 html[data-size]:not(#sz) .L2a .pchip{white-space:nowrap}
 html[data-size]:not(#sz) .L2a .c2-foot{padding-top:10px}
 /* 2B: the two menus side by side; the device pair moves up beside the combo name, tickets keep their own height */
@@ -825,7 +869,6 @@ html[data-size]:not(#sz) .L6p2 .bt-book{grid-column:2;grid-row:2}
 /* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by one pixel (or half, by growing one side) from its computed padding */
 html[data-size]:not(#sz) .L2a span.pchip[data-copy="sw_r19_detail"]{padding-top:3.194px!important;padding-bottom:1.926px!important}
 html[data-size]:not(#sz) .L2a span.badge[data-copy="sw_r20_badge"]{padding-top:4.2px!important;padding-bottom:0.92px!important}
-html[data-size]:not(#sz) .L2b span.ptag[data-copy="sw_r46_tag"]{padding-top:1.684px!important;padding-bottom:2.796px!important}
 html[data-size]:not(#sz) .L2b span.badge[data-copy="sw_r20_badge"]{padding-top:4.2px!important;padding-bottom:0.92px!important}
 html[data-size]:not(#sz) .L2b span.pchip[data-copy="sw_r20_detail"]{padding-top:4.304px!important;padding-bottom:0.816px!important}
 /* ---------- /LINE ---------- */
@@ -833,19 +876,19 @@ html[data-size]:not(#sz) .L2b span.pchip[data-copy="sw_r20_detail"]{padding-top:
 /* ---------- KAKAO 800x600 ---------- */
 /* 1A: title across the top, the whole hero photo at the right on the same cream; price card left under the hook, the two info cards in one row
    along the bottom (over the knit, as home), the device on the right water cards */
-html[data-size]:not(#sz) .K1a .c1-photo{inset:auto;left:432px;top:140px;width:368px;height:460px}
+/* 1A after the team comments of 2026-11-09: the period top left, the booking card top right (the bottom keeps only the larger price card),
+   the head under them on the left, the model cutout lower right on the water, the device at the right edge with its legs below the card */
+html[data-size]:not(#sz) .K1a .c1-period{left:40px;top:14px}
+html[data-size]:not(#sz) .K1a .c1-head{left:40px;right:40px;top:76px;align-items:flex-start;text-align:left}
+html[data-size]:not(#sz) .K1a .c1-photo{left:300px;top:318px;width:455px;height:520px}
+html[data-size]:not(#sz) .K1a .c1-dev{right:10px;top:355px;width:160px;height:322px}
+html[data-size]:not(#sz) .K1a .hpills{inset:0;display:block;pointer-events:none}
+html[data-size]:not(#sz) .K1a .hp{position:absolute;pointer-events:auto}
+html[data-size]:not(#sz) .K1a .hp-price{left:40px;bottom:14px;width:418px}
+html[data-size]:not(#sz) .K1a .hp-info{right:40px;top:14px;padding:12px 18px}
 html[data-size]:not(#sz) .K1a .c1-top{top:24px}
-html[data-size]:not(#sz) .K1a .c1-head{left:40px;right:40px;top:52px;align-items:flex-start;text-align:left}
 html[data-size]:not(#sz) .K1a .hook{max-width:380px}
-html[data-size]:not(#sz) .K1a .c1-dev{left:706px;right:auto;top:344px;bottom:auto;width:82px;height:165px}
-html[data-size]:not(#sz) .K1a .hpills{left:40px;right:auto;bottom:14px;grid-template-columns:max-content max-content;grid-template-areas:"p ." "a b";gap:8px}
-html[data-size]:not(#sz) .K1a .hp:nth-child(1){grid-area:p}
-html[data-size]:not(#sz) .K1a .hp:nth-child(2){grid-area:a}
-html[data-size]:not(#sz) .K1a .hp:nth-child(3){grid-area:b}
-html[data-size]:not(#sz) .K1a .hp-info{padding:10px 16px 11px}
 /* the pill is one pixel taller at the bottom so its text sits centred; the icon follows by half a pixel */
-html[data-size]:not(#sz) .K1a .hp-info .hp-ico{position:relative;top:.5px}
-html[data-size]:not(#sz) .K1a .hp-info .hp-tx{flex-direction:row;align-items:baseline;gap:10px}
 /* 1B: title block top left; period and contact in two rows under the hook, the price card under them, the device beside, the framed model at the right */
 html[data-size]:not(#sz) .K1b .vb-top{left:40px;top:20px}
 html[data-size]:not(#sz) .K1b .vb-head{left:40px;right:auto;width:620px;top:44px}
@@ -855,19 +898,30 @@ html[data-size]:not(#sz) .K1b .vb-frame{left:568px;top:276px;width:204px}
 html[data-size]:not(#sz) .K1b .vb-price{left:40px;top:404px;width:340px}
 /* 2A in three parts: head + 42-44 | title + 45-46 | the combo box 18-21 with the note and the legal line */
 html[data-size]:not(#sz) .K2a .cp-in,html[data-size]:not(#sz) .K2b .cp-in{padding:22px 36px 14px}
-html[data-size]:not(#sz) .K2a .c2-head{grid-template-columns:80px minmax(0,1fr) 200px;column-gap:10px;margin-top:4px;min-height:0}
-html[data-size]:not(#sz) .K2a .c2-devbox{width:78px;height:158px}
+html[data-size]:not(#sz) .K2a .c2-head{grid-template-columns:110px minmax(0,1fr) 200px;column-gap:10px;margin-top:4px;min-height:0}
+html[data-size]:not(#sz) .K2a .c2-devbox{width:104px;height:159px;margin-bottom:-12px} /* #13 */
 html[data-size]:not(#sz) .K2a .c2-cut{right:0;bottom:-96px;height:300px}
 html[data-size]:not(#sz) .K2ap2 .c2-head{display:block}
 html[data-size]:not(#sz) .K2a .pboard{margin-top:12px;padding:4px 28px}
-html[data-size]:not(#sz) .K2a .prow{padding:14px 0 12px}
+/* 2026-11-10: list price above the sale price at the right (#17), so the name column is wide enough for the add-on beside the name (#16, part 1)
+   and for one-line combo names (#6); 300 / 400 pulses (part 2) keep the add-on under the name, there is no room beside it */
+html[data-size]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:12px 0 11px}
+html[data-size]:not(#sz) .K2a .prow .pn{grid-column:1;grid-row:1 / 3}
+html[data-size]:not(#sz) .K2a .prow .plist{grid-column:2;grid-row:1;align-self:end;margin-bottom:4px}
+html[data-size]:not(#sz) .K2a .prow .psale{grid-column:2;grid-row:2;align-self:start}
+html[data-size]:not(#sz) .K2ap1 .prows:not(.combo) .pn{display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:14px;align-items:baseline}
+html[data-size]:not(#sz) .K2ap1 .prows:not(.combo) .pname{grid-column:1;grid-row:1}
+html[data-size]:not(#sz) .K2ap1 .prows:not(.combo) .pdet{grid-column:2;grid-row:1;margin-top:0;word-break:keep-all}
+html[data-size]:not(#sz) .K2ap1 .prows:not(.combo) .pcare{grid-column:1 / -1;grid-row:2}
 html[data-size]:not(#sz) .K2ap3 .pboard{margin-top:10px}
 html[data-size]:not(#sz) .K2a .pgroup2 .pn{flex-wrap:wrap;row-gap:4px}
 html[data-size]:not(#sz) .K2a .pgroup2 .prow{padding:8px 0 10px}
 html[data-size]:not(#sz) .K2ap3 .pgroup2 .prow{align-items:center;padding:6px 0 8px}
 /* centred rows: the 17px top margin puts the struck list price back on the sale price's baseline */
-html[data-size]:not(#sz) .K2ap3 .pgroup2 .plist{margin-top:17px}
+html[data-size]:not(#sz) .K2ap3 .pgroup2 .plist{margin-top:0}
 html[data-size]:not(#sz) .K2a .pname{white-space:normal}
+html[data-size]:not(#sz) .K2a .pgroup2 .pname{white-space:nowrap}
+html[data-size]:not(#sz) .K2a .pgroup2 .pnm.cmb .ln{display:inline}
 html[data-size]:not(#sz) .K2a .pchip{white-space:nowrap}
 /* 2B in four parts: one menu column; the device pair sits beside the combo name in part 3 */
 html[data-size]:not(#sz) .K2b .vt-head{margin-top:8px}
@@ -934,11 +988,8 @@ html[data-size]:not(#sz) .K6p3 .bt-book{grid-column:2;grid-row:1}
 html[data-size]:not(#sz) .K6p3 .map{width:100%}
 html[data-size]:not(#sz) .K6p3 .bk-row{grid-template-columns:120px;grid-template-rows:auto auto;justify-items:start;align-content:center}
 /* text centring in the chips (qa/text-center-check.cjs --size): glyphs snap to whole pixels, so each chip below moves its text by one pixel (or half, by growing one side) from its computed padding */
-html[data-size]:not(#sz) .K1a .hp-info .hp-tx{padding-top:1px!important;padding-bottom:0px!important}
-html[data-size]:not(#sz) .K2ap2 span.ptag[data-copy="sw_r46_tag"]{padding-top:3.791px!important;padding-bottom:1.868px!important}
 html[data-size]:not(#sz) .K2ap3 span[data-copy="sw_g17_sub"]{padding-top:5.161px!important;padding-bottom:5.199px!important}
 html[data-size]:not(#sz) .K2ap3 span.pchip[data-copy="sw_r19_detail"]{padding-top:3.194px!important;padding-bottom:1.926px!important}
-html[data-size]:not(#sz) .K2ap3 span.badge[data-copy="sw_r20_badge"]{padding-top:4.2px!important;padding-bottom:0.92px!important}
 html[data-size]:not(#sz) .K2ap3 span.unit-k[data-copy="sw_p_unit_k"]{padding-top:4.74px!important;padding-bottom:3.42px!important}
 html[data-size]:not(#sz) .K2bp1 span.vb-period{padding-top:7.038px!important;padding-bottom:5.122px!important}
 html[data-size]:not(#sz) .K2bp2 span.ptag[data-copy="sw_r46_tag"]{padding-top:2.684px!important;padding-bottom:2.796px!important}
@@ -950,4 +1001,12 @@ html[data-size]:not(#sz) .K4p2 span.ll.l-surface{padding-top:2.6px!important;pad
 html[data-size]:not(#sz) .K4p2 span.ll.l-fat{padding-top:3.184px!important;padding-bottom:2.136px!important}
 /* ---------- /KAKAO ---------- */
 /* ===================== /channel sizes ===================== */
+/* 2026-11-10: pills that moved with the team-comment layout (qa/text-center-check.cjs), padding from tmp szpad */
+html[data-size]:not(#sz) .L2a span.badge[data-copy="sw_r19_badge"]{padding-top:3.744px!important;padding-bottom:2.376px!important}
+html[data-size]:not(#sz) .L2a span.unit-k[data-copy="sw_p_unit_k"]{padding-top:4.74px!important;padding-bottom:4.42px!important}
+html[data-size]:not(#sz) .L2b span.ptag[data-copy="sw_r45_tag"]{padding-top:2.788px!important;padding-bottom:2.692px!important}
+html[data-size]:not(#sz) .L2b span.ptag[data-copy="sw_r46_tag"]{padding-top:2.684px!important;padding-bottom:2.796px!important}
+html[data-size]:not(#sz) .K1a span.hp-tag[data-copy="sw_hero_tag"]{padding-top:4.704px!important;padding-bottom:1.736px!important;position:relative;top:.4px}
+html[data-size]:not(#sz) .K2ap2 span.ptag[data-copy="sw_r46_tag"]{padding-top:3.791px!important;padding-bottom:2.868px!important}
+html[data-size]:not(#sz) .K2ap3 span.badge[data-copy="sw_r20_badge"]{padding-top:3.2px!important;padding-bottom:1.92px!important}
 /* ===== SIZES END ===== */
