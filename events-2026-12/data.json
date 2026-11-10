@@ -7174,7 +7174,9 @@
           "fc_r64_badge": "BEST",
           "fc_r67_badge": "HIT",
           "fc_r71_badge": "BEST",
-          "fc_r72_badge": "HIT"
+          "fc_r72_badge": "HIT",
+          "fc_alt_c2": "아이보리 니트 카디건을 입고 미소 짓는 모델",
+          "fc_alt_c3": "고개를 살짝 숙이고 미소 짓는 니트 카디건 차림의 모델"
         }
       },
       "locales": [
@@ -9332,7 +9334,7 @@
           "bf_e2_label": "EVENT 02｜期間限定特價",
           "bf_e2_l1": "BLACK FRIDAY 限定！",
           "bf_e2_l2": "指定療程享特別優惠價！",
-          "bf_contact": "預約及查詢\nWhatsapp : 82-10-7215-7511",
+          "bf_contact": "預約及查詢\nWhatsApp：+82 10-7215-7511",
           "bf_p_lead": "此特別優惠價僅適用於黑色星期五活動期間。",
           "bf_note1": "※ 折扣適用條件將於付款時說明。",
           "bf_note2": "※ 本活動可能因應診所情況而調整或提前結束",
