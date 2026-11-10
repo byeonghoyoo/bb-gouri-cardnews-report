@@ -367,6 +367,22 @@ html[data-size="line"] .L6-2 .bt-book{grid-row:2}
    50px, centred in the band above the board) in both parts */
 html[data-size="line"] .L2a .cp-head{margin-top:74px}
 html[data-size="line"] .L2a .pboard{margin-top:72px}
+/* 2026-11-09 team comments #10 / #11 (the hero model's new cuts at the right of the A price cards' head, v4/filler12a/fixes/fb-20261109.cjs):
+   part 1 only; the model 300px (card 2) / 290px (card 3) tall on the board's top edge, the title on two balanced lines left of it, the head in
+   the middle of the band above the board; the card 3 rows close up a little (as on the home card) so its fuller board still fits; the bow goes
+   to the board's top left on card 2 and away on card 3 */
+html[data-size="line"] .fbm .fb-mdl{height:300px;right:40px}
+html[data-size="line"] .L2a.L2-2 .fb-mdl,html[data-size="line"] .L3.L3-2 .fb-mdl{display:none}
+html[data-size="line"] .L2a.L2-1 .pt-main,html[data-size="line"] .L3.L3-1 .pt-main{white-space:normal;text-wrap:balance}
+html[data-size="line"] .L2a.L2-1 .cp-head{margin-top:43px;margin-right:440px}
+html[data-size="line"] .L2a.L2-1 .pboard{margin-top:44px}
+html[data-size="line"] .L2a.L2-1 .bow-board{right:auto;left:-36px;transform:rotate(-10deg) scaleX(-1)}
+html[data-size="line"] .L3.L3-1 .fb-mdl{height:290px}
+html[data-size="line"] .L3.L3-1 .cp-head{margin-top:40px;margin-right:342px}
+html[data-size="line"] .L3.L3-1 .pboard{margin-top:40px}
+html[data-size="line"] .L3 .prow{padding-top:4px;padding-bottom:4px}
+html[data-size="line"] .L3 .prod{padding-top:6px;padding-bottom:6px}
+html[data-size="line"] .L3.L3-1 .bow-board{display:none}
 /* ---------- /LINE ---------- */
 /* ---------- KAKAO 800x600 ---------- */
 /* FIL12A KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). Made with the FIL12A/B/C template. */
@@ -464,9 +480,22 @@ html[data-size="kakao"] .K6-3 .bt-book{grid-row:2}
    padding moves the box edge and the margin keeps the layout */
 html[data-size="kakao"] .K1-2.K1a .tz-opt{padding-bottom:2.88px;margin-bottom:1.12px}
 html[data-size="kakao"] .K4-1 .pill-k,html[data-size="kakao"] .K4-3 .pill-k,html[data-size="kakao"] .K5-1 .pill-k{padding-bottom:8.06px;margin-bottom:-1.06px}
-/* 2026-11-09 team comment #13: text centring of the row 10 BEST badge at its place in part 1 (qa/text-center-check.cjs): the pill's bottom edge
-   goes down 1.3px from the shared nudge and the margin keeps the layout; the text itself does not move */
-html[data-size="kakao"] .K2a.K2-1 .pbadge[data-copy="fa_r10_badge"]{padding-bottom:calc(.3em + .56px);margin-bottom:-.56px}
+/* 2026-11-09 team comments #10 / #11 (the hero model's new cuts, v4/filler12a/fixes/fb-20261109.cjs): one part per card, card 2 in part 1 and
+   card 3 in part 2 (part 1 of card 3 holds the four-row product and has no room); the model 230px tall on the board's top edge, the title on two
+   balanced lines left of it, the head in the middle of the band above the board; the sub line stays in the card's other parts (here it would
+   make the head too tall); the rows of both cards close up a little so the boards fit; no bow on these parts */
+html[data-size="kakao"] .fbm .fb-mdl{height:230px;right:38px}
+html[data-size="kakao"] .K2a.K2-2 .fb-mdl,html[data-size="kakao"] .K2a.K2-3 .fb-mdl,html[data-size="kakao"] .K3.K3-1 .fb-mdl,html[data-size="kakao"] .K3.K3-3 .fb-mdl{display:none}
+html[data-size="kakao"] .K2a.K2-1 .pt-main,html[data-size="kakao"] .K3.K3-2 .pt-main{white-space:normal;text-wrap:balance}
+html[data-size="kakao"] .K2a.K2-1 .p-lead,html[data-size="kakao"] .K3.K3-2 .p-lead{display:none}
+html[data-size="kakao"] .K2a.K2-1 .cp-head,html[data-size="kakao"] .K3.K3-2 .cp-head{margin-top:30px;margin-right:281px}
+html[data-size="kakao"] .K2a.K2-1 .pboard,html[data-size="kakao"] .K3.K3-2 .pboard{margin-top:31px}
+html[data-size="kakao"] .K2a .prow,html[data-size="kakao"] .K3 .prow{padding-top:4px;padding-bottom:4px}
+html[data-size="kakao"] .K2a .prod,html[data-size="kakao"] .K3 .prod{padding-top:6px;padding-bottom:6px}
+html[data-size="kakao"] .K3.K3-2 .bow-board{display:none}
+/* text centring of the '계속' pill beside the two-line title of part 3-2 (qa/text-center-check.cjs): its bottom edge goes down 1.52px and the
+   margin keeps the layout; the text itself does not move */
+html[data-size="kakao"] .K3.K3-2 .pt-cont{padding-bottom:6.52px;margin-bottom:-1.52px}
 /* ---------- /KAKAO ---------- */
 /* ===== FIXES 20261109 (v4/filler12a/fixes/fb-20261109.css) ===== */
 /* FIL12A team comments 2026-11-09 (v4/filler12a/fixes/fb-20261109.cjs). Home rules; the size cards add their own in v4/filler12a/sizes/line.css, kakao.css.
@@ -484,10 +513,34 @@ html[data-size="kakao"] .K2a.K2-1 .pbadge[data-copy="fa_r10_badge"]{padding-bott
    keeps its size and its letters their natural spacing). Hero A only (.c1); the B hero is not changed */
 .c1 .h-title,.c1 .h-sub .sub2{font-family:'Black Han Sans','Pretendard Variable',sans-serif;font-weight:400}
 .c1 .h-title{letter-spacing:0}
-/* #9: card 2 A: the price board moves down 100px (the head 50px, centred in the band above the board) and the gaps between its products close up
-   (the board keeps its bottom; its products stay evenly spaced). The model cut of #10 will stand on the board's top edge at the right */
+/* #9 / #10 / #11: cards 2 A and 3: a new cut of the hero model (the lead's Higgsfield cuts a/hf/model-c2-a1-041724_a7998d73.png and
+   model-c3-a1-041913_f4b5ec41.png, person cutouts a/cut/model-c2.png, model-c3.png -> photos/model-c2-cut.webp 634x700, model-c3-cut.webp
+   607x700) at the right of the head on the board's top edge (img.fb-mdl, first in .pboard: bottom on the board's outer top edge, inside the
+   straight part of that edge; its own proportions, no crop). The board moves down (#9: card 2), the title breaks onto two balanced lines in
+   the space left of the model (line break only, same size) and the head sits in the middle of the band above the board; the option rows and
+   products close up a little so the board still ends where it did; the bow moves to the board's top-left corner on card 2 and goes on card 3
+   (its first product starts right under the board edge). Same layout as FIL12C; home 1080 numbers, the size cards set their own in sizes/*.css */
+.fb-mdl{position:absolute;z-index:1;right:calc(40*var(--px));bottom:calc(100% + 10*var(--px));width:auto;height:calc(326*var(--px));user-select:none;pointer-events:none}
+.cp.fbm:not([data-size-only]) .pt-main{white-space:normal;text-wrap:balance}
+/* the page script fits .pt-main into the title width minus the '계속' pill and 16px; a 16px gap keeps the wrapped title at its full size */
+.cp.fbm .p-title{gap:16px}
+.cp.fbm:not([data-size-only]) .bow-board{right:auto;left:calc(-36*var(--px));transform:rotate(-10deg) scaleX(-1)}
+.cp.c3.fbm:not([data-size-only]) .bow-board{display:none}
 @container (min-width:601px){
-  .cp.c2:not([data-variant]):not([data-size-only]) .cp-head{margin-top:calc(74*var(--px))}
-  .cp.c2:not([data-variant]):not([data-size-only]) .pboard{margin-top:calc(72*var(--px))}
+  .cp.fbm:not([data-size-only]) .prow{padding-top:calc(4*var(--px));padding-bottom:calc(4*var(--px))}
+  .cp.c2.fbm:not([data-variant]):not([data-size-only]) .cp-head{margin-top:calc(56*var(--px));margin-right:calc(420*var(--px))}
+  .cp.c2.fbm:not([data-variant]):not([data-size-only]) .pboard{margin-top:calc(57*var(--px))}
+  .cp.c3.fbm:not([data-size-only]) .fb-mdl{height:calc(322*var(--px))}
+  .cp.c3.fbm:not([data-size-only]) .prod{padding-top:calc(6*var(--px));padding-bottom:calc(6*var(--px))}
+  .cp.c3.fbm:not([data-size-only]) .cp-head{margin-top:calc(52*var(--px));margin-right:calc(342*var(--px))}
+  .cp.c3.fbm:not([data-size-only]) .pboard{margin-top:calc(53*var(--px))}
+}
+@container (max-width:600px){
+  /* phone: the model in a column at the right of the head, head and shoulders */
+  .cp.fbm:not([data-size-only]) .cp-head{margin-top:12px;margin-right:96px;min-height:96px}
+  .cp.c2.fbm:not([data-size-only]) .pboard,.cp.c3.fbm:not([data-size-only]) .pboard{margin-top:14px}
+  .fb-mdl{right:14px;height:100px}
+  /* the bow would cover the first product's icon at the board's top-left corner here */
+  .cp.fbm:not([data-size-only]) .bow-board{display:none}
 }
 /* ===== /FIXES 20261109 ===== */
