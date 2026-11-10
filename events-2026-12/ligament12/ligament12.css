@@ -174,10 +174,22 @@ img{max-width:100%}
 .mk{position:absolute;z-index:2;display:inline-flex;align-items:center;gap:.35em;transform:translateY(-50%);padding:.16em .62em .16em .2em;border-radius:999px;background:rgba(251,247,233,.94);
   border:1px solid rgba(138,15,32,.35);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.2;color:var(--rose-d);white-space:nowrap}
 .mk::before{counter-increment:mk;content:counter(mk);display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;background:var(--rose-d);color:var(--cream-l);font-size:.86em}
-.mk1{left:68.6%;top:45.07%}
-.mk2{left:71.6%;top:50.68%}
-.mk3{left:64.9%;top:59.77%}
-.mk4{left:64.1%;top:67.53%}
+/* 2026-11-10 team comment #1: the lead's face drawing has no dots; each of the seven points is a screen dot (.mk::after) at the spot on the face
+   (left / top = the point, % of the 900 px drawing) with its name tag beside it: on the right of the face the tag reads rightwards, on the left
+   (.mk-l) leftwards, '눈썹 가장자리' (.mk-t) sits above its dot so the long tag stays inside the frame in every size */
+.face .mk{transform:translate(calc(12*var(--px) + 4px),-50%)}
+.face .mk.mk-l{transform:translate(calc(-100% - 12*var(--px) - 4px),-50%)}
+.face .mk.mk-t{transform:translate(-50%,calc(-100% - 10*var(--px) - 4px))}
+.face .mk::after{content:'';position:absolute;top:50%;left:calc(-12*var(--px) - 4px);width:max(8px,calc(12*var(--px)));height:max(8px,calc(12*var(--px)));transform:translate(-50%,-50%);border-radius:50%;background:var(--pink);box-shadow:0 0 0 max(2px,calc(3*var(--px))) rgba(251,247,233,.95),0 1px 3px rgba(138,15,32,.35)}
+.face .mk.mk-l::after{left:auto;right:calc(-12*var(--px) - 4px);transform:translate(50%,-50%)}
+.face .mk.mk-t::after{top:auto;bottom:calc(-10*var(--px) - 4px);left:50%;transform:translate(-50%,50%)}
+.mk1{left:41.3%;top:41.5%}
+.mk2{left:64.6%;top:44.4%}
+.mk3{left:65.2%;top:34.2%}
+.mk4{left:33.6%;top:31.3%}
+.mk5{left:43.5%;top:47.6%}
+.mk6{left:46%;top:54%}
+.mk7{left:64.2%;top:53.6%}
 .lig{min-width:0}
 .lig-lbl{font-family:var(--f-serif);font-style:italic;font-weight:600;font-size:max(14px,calc(26*var(--px)));color:var(--rose-d)}
 .lig-list{list-style:none;padding:0;margin-top:calc(6*var(--px));counter-reset:lg}
@@ -186,6 +198,17 @@ img{max-width:100%}
 .lg-n::before{counter-increment:lg;content:counter(lg);display:grid;place-items:center;width:calc(34*var(--px));height:calc(34*var(--px));min-width:20px;min-height:20px;border-radius:50%;border:1px solid var(--rose-d);
   font-family:var(--f-serif);font-variant-numeric:lining-nums;font-weight:600;font-size:max(12px,calc(20*var(--px)));color:var(--rose-d)}
 .lg-t{font-weight:700;font-size:max(14px,calc(24*var(--px)));line-height:1.3;color:var(--ink)}
+/* seven items now (#1): the same type sizes, less air between them */
+.c4 .lg-it{padding-top:calc(7*var(--px));padding-bottom:calc(7*var(--px))}
+/* 2026-11-10 team comment #6: the lead's retaining-ligament drawing stands on the left of the 2 A price board (240 px x the board's height at 1080),
+   the price rows move right with narrower price columns (the amounts keep their size, option names stay on one line); the picture keeps its own
+   ratio inside the frame (the drawing's cream ground = the frame's cream, so the frame reads as one panel) */
+.pboard:has(> .lig-fig){padding-left:calc(300*var(--px))}
+.pboard:has(> .lig-fig) .prow{grid-template-columns:minmax(0,1fr) calc(96*var(--px)) calc(140*var(--px))}
+.lig-fig{position:absolute;left:calc(32*var(--px));top:calc(16*var(--px));bottom:calc(14*var(--px));width:calc(240*var(--px));margin:0;display:flex;flex-direction:column;border-radius:calc(12*var(--px));overflow:hidden;background:#fdf9ea;border:1px solid rgba(138,15,32,.22)}
+.lig-fig-t{flex:none;padding:.42em .5em .38em;text-align:center;font-weight:800;font-size:max(12px,calc(19*var(--px)));line-height:1.25;letter-spacing:-.01em;color:var(--cream-l);background:var(--rose-d)}
+.lig-fig-img{display:block;flex:1 1 auto;min-height:0;width:100%;height:auto;object-fit:contain;object-position:50% 50%}
+@container (max-width:600px){.pboard:has(> .lig-fig){padding-left:12px}.lig-fig{position:static;width:150px;margin:4px auto 10px}}
 .lg-d{margin-top:calc(4*var(--px));font-size:max(12px,calc(19*var(--px)));font-weight:500;line-height:1.45;color:var(--ink-2)}
 .mat{margin-top:calc(16*var(--px))}
 .mat-title{font-family:var(--f-serif);font-style:italic;font-weight:600;font-size:max(14px,calc(26*var(--px)));color:var(--rose-d)}
@@ -660,16 +683,36 @@ html[data-size="kakao"] .K2a1 .dk2{left:470px;top:120px}
 html[data-size="kakao"] .pkg .pn > .badge{display:inline-flex;width:auto;margin:0 0 0 12px}
 html[data-size="kakao"] .K3a .pboard{margin-top:8px}
 html[data-size="kakao"] .K3a .pgroup{padding:6px 0 4px}
+
+/* 2026-11-10 team comment #1: seven points and seven list items. line 5-1: the list in two columns (1-4 | 5-7) next to the face;
+   kakao: 5-2 is the face with its seven points, the list moves to its own part 5-3 (two columns), same type sizes as home */
+html[data-size="line"] .L5a .lig-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,auto);grid-auto-flow:column;column-gap:28px;margin-top:4px}
+html[data-size="line"] .L5a .lg-it:nth-child(4){border-bottom:0}
+html[data-size="kakao"] .K5b .c4-mid{grid-template-columns:1fr;justify-items:center}
+html[data-size="kakao"] .K5c .lig{margin-top:14px}
+html[data-size="kakao"] .K5c .lig-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,auto);grid-auto-flow:column;column-gap:40px}
+html[data-size="kakao"] .K5c .lg-it:nth-child(4){border-bottom:0}
+/* 2026-11-10 team comment #6: the anatomy drawing left of the price rows - line 2 A part 1 (190 px), kakao 2 A part 2 (the part with the most height:
+   the drawing runs from below the small title to the band, the two rows move right) */
+html[data-size="line"] .L2a1 .pboard{padding-left:250px}
+html[data-size="line"] .L2a1 .pboard .prow{grid-template-columns:minmax(0,1fr) 150px 190px}
+html[data-size="line"] .L2a1 .lig-fig{left:32px;top:16px;bottom:12px;width:190px}
+html[data-size="kakao"] .K2a2 .lig-fig{left:40px;top:172px;bottom:12px;width:180px}
+html[data-size="kakao"] .K2a2 .pboard{margin-left:200px}
+html[data-size="kakao"] .K2a2 .pboard .prow{grid-template-columns:minmax(0,1fr) 80px 135px}
 /* ==== tc-fix: text snaps to whole pixels, so a few chips need their text or box moved at their size-card position (generated from
    v4/ligament12/sizes/tcfix.json by the text-centre fixer; same box size) ==== */
-html[data-size="line"] main.lg section[data-size-only][data-card="2"][data-variant="b"]:not([data-part]) span.pg-tag[data-copy="lg_g6_tag"]{padding-top:3.86px}
+html[data-size="line"] main.lg section[data-size-only][data-card="2"][data-variant="b"]:not([data-part]) span.pg-tag[data-copy="lg_g6_tag"]{padding-top:3.86px;padding-bottom:-0.78px}
 html[data-size="line"] main.lg section[data-size-only][data-card="2"][data-variant="b"]:not([data-part]) span.badge[data-copy="lg_r8_badge"]{padding-top:5.80px;padding-bottom:4.20px}
 html[data-size="line"] main.lg section[data-size-only][data-card="2"][data-variant="b"]:not([data-part]) span.badge[data-copy="lg_r9_badge"]{padding-top:5.80px;padding-bottom:3.20px}
 html[data-size="line"] main.lg section[data-size-only][data-card="3"]:not([data-variant])[data-part="1"] span.pg-tag[data-copy="lg_g12_tag"]{padding-top:2.86px;padding-bottom:1.22px;line-height:24.30px;margin-top:1px}
 html[data-size="kakao"] main.lg section[data-size-only][data-card="2"]:not([data-variant])[data-part="2"] span.badge[data-copy="lg_r9_badge"]{padding-top:5.80px;padding-bottom:4.20px}
-html[data-size="kakao"] main.lg section[data-size-only][data-card="2"][data-variant="b"][data-part="1"] span.pg-tag[data-copy="lg_g6_tag"]{padding-top:3.86px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="2"][data-variant="b"][data-part="1"] span.pg-tag[data-copy="lg_g6_tag"]{padding-top:3.86px;padding-bottom:-0.78px}
 html[data-size="kakao"] main.lg section[data-size-only][data-card="3"]:not([data-variant])[data-part="1"] span.pg-tag[data-copy="lg_g12_tag"]{padding-top:2.86px;padding-bottom:0.22px;line-height:26.30px;margin-bottom:1px}
 html[data-size="kakao"] main.lg section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pg-tag[data-copy="lg_g16_tag"]{padding-top:3.86px;padding-bottom:0.22px;line-height:24.30px;margin-top:1px}
 html[data-size="kakao"] main.lg section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.badge[data-copy="lg_r17_badge"]{padding-top:5.80px;padding-bottom:4.20px;line-height:15.50px;margin-top:1px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="5"]:not([data-variant])[data-part="2"] span.mk.mk1{padding-top:2.40px;padding-bottom:1.40px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="5"]:not([data-variant])[data-part="2"] span.mk.mk2{padding-top:3.40px;padding-bottom:2.40px}
+html[data-size="kakao"] main.lg section[data-size-only][data-card="5"]:not([data-variant])[data-part="2"] span.mk.mk6{padding-top:3.40px;padding-bottom:2.40px}
 /* ==== /tc-fix ==== */
 /* ===== /SZ:css ===== */
