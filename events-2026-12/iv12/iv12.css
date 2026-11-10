@@ -384,7 +384,21 @@ a[data-link="phone"]{white-space:nowrap}
 .v-b.c2 .period{position:absolute;z-index:3;left:calc(60*var(--px));top:auto;right:auto;bottom:calc(78*var(--px))}
 /* phone: the B period chip gets its own row at the very bottom left (the 49% line and VAT stay in the flow above it) */
 @container (max-width:600px){.v-b.c2 .cx-in{padding-bottom:64px}.v-b.c2 .period{left:16px;bottom:16px}}
-/* card 4 #19: the model looks to the left (the photo mirrored) */
+/* B #12 #17: the board lower, the model cutout (the lead's new cut) standing on its top edge at the right of the head; the head stays left of it */
+.v-b.c2 .pboard{position:relative;margin-top:calc(145*var(--px))}
+.v-b.c2 .pboard > .c2-model{position:absolute;right:calc(-10*var(--px));bottom:100%;z-index:0;display:block;width:calc(400*var(--px));height:calc(380*var(--px));max-width:none;object-fit:cover;object-position:50% 0%;pointer-events:none}
+.v-b.c2 .cp-head{max-width:calc(560*var(--px))}/* 780: the set-title HIT pill measures 1px high after the board moved down (#17) */
+@container (min-width:601px) and (max-width:899px){.v-b.c2:not([data-size-only]) .pset > .pbadge{padding-top:4.3px;padding-bottom:2.3px}}/* card 1 A #18: the red liquid mass and the red sphere are gone; the whole card is the lead's bubble picture (assets/bg/bubble.jpg, aqua calmed to the
+   old hero, v4/iv12/gen/bubble-bg-1110.cjs) with the model cutout of the same hero in front of it, and the title block in dark ink and red */
+.c1:not(.v-b) .c1-bg{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 100%;pointer-events:none}
+.c1:not(.v-b) .c1-photo{inset:auto;left:calc(141*var(--px));top:calc(182*var(--px));z-index:1;width:calc(912*var(--px));height:calc(1178*var(--px));object-fit:cover;object-position:50% 0%}
+.c1:not(.v-b) .c1-foot{color:var(--ink)}
+.c1:not(.v-b) .h-ko{color:var(--ink);text-shadow:0 0 calc(18*var(--px)) rgba(255,253,225,.95),0 0 calc(4*var(--px)) rgba(255,253,225,.9)}
+.c1:not(.v-b) .h-word{color:var(--red);text-shadow:0 0 calc(18*var(--px)) rgba(255,253,225,.95)}
+.c1:not(.v-b) .hook{color:var(--ink);text-shadow:0 0 calc(10*var(--px)) rgba(255,253,225,.95),0 0 calc(3*var(--px)) rgba(255,253,225,.95)}
+.c1:not(.v-b) .band{color:var(--ink);text-shadow:0 0 calc(8*var(--px)) rgba(255,253,225,.95)}
+.c1:not(.v-b) .band-i{border-left-color:rgba(81,16,0,.4)}
+.c1:not(.v-b) .band-i:last-child{border-right-color:rgba(81,16,0,.4)}/* card 4 #19: the model looks to the left (the photo mirrored) */
 .c4-photo img{transform:scaleX(-1)}
 /* home at full width: pills that moved with the new rows measure 0.6-0.8px off (qa/text-center-check.cjs at 1080) */
 @container (min-width:900px){.c2:not(.v-b):not([data-size-only]) .pg2 .pg-h span[data-copy="iv_g2"]{padding-top:4.85px;padding-bottom:3.51px}

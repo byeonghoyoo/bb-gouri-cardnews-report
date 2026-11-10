@@ -18,14 +18,12 @@ html[data-size]:not(#sz) main.iv .h-model{position:absolute;z-index:1;display:bl
 
 /* ---------- LINE 1100x1000 ---------- */
 /* 1A: the cutout centred above the liquid mass (as home), the price badge at the top right, the title block on the liquid */
-html[data-size]:not(#sz) main.iv .L1a .h-model{left:50%;top:30px;height:740px;transform:translateX(-50%)}
-html[data-size]:not(#sz) main.iv .L1a .blob{bottom:-64px}
+html[data-size]:not(#sz) main.iv .L1a .h-model{left:50%;top:30px;height:985px;transform:translateX(-50%)} /* down to the card edge: no liquid hides the cut any more (#18) */
 html[data-size]:not(#sz) main.iv .L1a .c1-foot{left:56px;right:56px;bottom:30px}
 html[data-size]:not(#sz) main.iv .L1a .hb{right:48px;top:118px}
 html[data-size]:not(#sz) main.iv .L1a .sp-h1{left:120px;top:400px}
 html[data-size]:not(#sz) main.iv .L1a .sp-h2{right:16px;top:60px;width:140px}
 html[data-size]:not(#sz) main.iv .L1a .sp-h3{right:150px;top:380px}
-html[data-size]:not(#sz) main.iv .L1a .sp-h4{left:60px;top:520px}
 /* 1B: the headline across the top, the arch photo (home frame ratio 560:760) at the left, the price badge at the right, the info line at the bottom */
 html[data-size]:not(#sz) main.iv .L1b .c1-top{left:60px;top:40px}
 html[data-size]:not(#sz) main.iv .L1b .c1-foot{left:60px;right:60px;top:96px}
@@ -97,8 +95,7 @@ html[data-size]:not(#sz) main.iv .L5p2 .bt-book{grid-column:2;grid-row:2}
 /* ---------- KAKAO 800x600 ---------- */
 /* 1A: the cutout above the liquid mass, the price badge at the top right, the title block on the liquid (one line each) */
 html[data-size]:not(#sz) main.iv .K1a .c1-top{left:26px;top:20px}
-html[data-size]:not(#sz) main.iv .K1a .h-model{left:50%;top:2px;height:500px;transform:translateX(-50%)}
-html[data-size]:not(#sz) main.iv .K1a .blob{bottom:-55px}
+html[data-size]:not(#sz) main.iv .K1a .h-model{left:50%;top:2px;height:610px;transform:translateX(-50%)}
 html[data-size]:not(#sz) main.iv .K1a .c1-foot{left:20px;right:20px;bottom:10px}
 html[data-size]:not(#sz) main.iv .K1a .hook{margin-top:12px}
 html[data-size]:not(#sz) main.iv .K1a .band{margin-top:12px}
@@ -106,7 +103,6 @@ html[data-size]:not(#sz) main.iv .K1a .hb{right:18px;top:18px}
 html[data-size]:not(#sz) main.iv .K1a .sp-h1{left:60px;top:120px;width:80px}
 html[data-size]:not(#sz) main.iv .K1a .sp-h2{right:auto;left:640px;top:200px;width:96px}
 html[data-size]:not(#sz) main.iv .K1a .sp-h3{right:auto;left:160px;top:40px;width:50px}
-html[data-size]:not(#sz) main.iv .K1a .sp-h4{left:24px;top:230px;width:90px}
 /* 1B: the headline across the top; below it the arch photo, the price badge and the hook; the info line at the bottom */
 html[data-size]:not(#sz) main.iv .K1b .c1-top{left:30px;top:18px}
 html[data-size]:not(#sz) main.iv .K1b .c1-foot{left:30px;right:30px;top:50px}
@@ -221,3 +217,14 @@ html[data-size]:not(#sz) main.iv .K2ap3 span.pplus[data-copy="iv_r12_plus"]{padd
 html[data-size]:not(#sz) main.iv .K2bp1 span.period[data-copy="iv_period"]{padding-top:8.4px!important;padding-bottom:8.44px!important}
 html[data-size]:not(#sz) main.iv .K2bp2 span.pbadge[data-copy="iv_r8_badge"]{padding-top:5.5px!important;padding-bottom:4.5px!important}
 html[data-size]:not(#sz) main.iv .K2bp2 span.pplus[data-copy="iv_r11_plus"]{padding-top:2.31px!important;padding-bottom:1.89px!important}
+
+/* 2026-11-10 IVS12 #12 #17 in the sizes: the B board lower and the same model cutout at the right of the head (its head inside the card) */
+html[data-size]:not(#sz) main.iv .L2b .pboard{margin-top:50px}
+html[data-size]:not(#sz) main.iv .L2b .prow{min-height:0;padding:10px 20px}
+html[data-size]:not(#sz) main.iv .L2b .pboard > .c2-model{width:310px;height:270px;right:0}
+html[data-size]:not(#sz) main.iv .K2bp1 .cp-head{max-width:460px}
+html[data-size]:not(#sz) main.iv .K2bp1 .pboard{margin-top:20px}
+html[data-size]:not(#sz) main.iv .K2bp1 .pboard > .c2-model{width:250px;height:240px;right:0}
+
+/* 2026-11-10 IVS12 #18 in the sizes: the bubble picture fills the card from the bottom (the title block sits on its cream part), no liquid mass */
+html[data-size]:not(#sz) main.iv .L1a .c1-bg,html[data-size]:not(#sz) main.iv .K1a .c1-bg{object-position:50% 100%}
