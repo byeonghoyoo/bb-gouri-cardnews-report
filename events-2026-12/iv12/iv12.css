@@ -404,3 +404,9 @@ a[data-link="phone"]{white-space:nowrap}
 @container (min-width:900px){.c2:not(.v-b):not([data-size-only]) .pg2 .pg-h span[data-copy="iv_g2"]{padding-top:4.85px;padding-bottom:3.51px}
 .v-b.c2:not([data-size-only]) .period{padding-top:8.4px;padding-bottom:8.44px}
 .v-b.c2:not([data-size-only]) .prow > .pbadge{padding-top:5.31px;padding-bottom:3.69px}}/* ==================== /2026-11-10 ==================== */
+/* 2026-11-10 team #4 #7-#10 (user decision): the 수식어 line over five more names; the A list rows a little tighter so the table still ends above the VAT line */
+@container (min-width:601px){.cp.c2:not(.v-b):not([data-size-only]) .prow{padding:calc(10*var(--px)) 0}}
+/* 2026-11-10: the tighter A rows moved these chips; at 1080 the chip box moves the measured amount (text-centre check) while its words stay put */
+@container (min-width:900px){.c2:not(.v-b):not([data-size-only]) .pg2 .pg-h span[data-copy="iv_g2"]{position:relative;top:-.73px;padding-top:5.58px;padding-bottom:2.78px}
+.c2:not(.v-b):not([data-size-only]) span.pplus[data-copy="iv_r9_plus"]{position:relative;top:.7px;padding-top:2.36px;padding-bottom:2.74px}
+.c2:not(.v-b):not([data-size-only]) span.pplus[data-copy="iv_r12_plus"]{position:relative;top:.63px;padding-top:2.26px;padding-bottom:2.84px}}
