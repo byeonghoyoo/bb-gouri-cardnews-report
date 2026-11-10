@@ -78,8 +78,8 @@ img{max-width:100%}
 .s2{--sz:calc(42*var(--px));font-weight:900;letter-spacing:-.02em;margin:calc(4*var(--px)) 0}
 .s3{--sz:calc(26*var(--px));font-weight:800}
 .s-hero{left:calc(796*var(--px));top:calc(600*var(--px));width:calc(204*var(--px))}
-.tz{position:absolute;z-index:6;right:calc(42*var(--px));bottom:calc(130*var(--px));width:calc(392*var(--px));background:var(--white);border:calc(8*var(--px)) solid rgba(255,255,255,.65);background-clip:padding-box;border-radius:calc(40*var(--px));padding:calc(24*var(--px)) calc(28*var(--px)) calc(20*var(--px));box-shadow:0 calc(14*var(--px)) calc(34*var(--px)) rgba(34,43,110,.22)}
-.bow-tz{left:calc(-58*var(--px));top:calc(-80*var(--px));width:calc(124*var(--px));transform:rotate(-12deg)}
+.tz{position:absolute;z-index:6;right:calc(24*var(--px));bottom:calc(678*var(--px));width:calc(304*var(--px));background:var(--white);border:calc(8*var(--px)) solid rgba(255,255,255,.65);background-clip:padding-box;border-radius:calc(40*var(--px));padding:calc(24*var(--px)) calc(28*var(--px)) calc(20*var(--px));box-shadow:0 calc(14*var(--px)) calc(34*var(--px)) rgba(34,43,110,.22)}
+.bow-tz{right:calc(22*var(--px));top:calc(-80*var(--px));width:calc(124*var(--px));transform:rotate(10deg)}
 .tz-top{display:flex;flex-wrap:wrap;align-items:center;gap:calc(6*var(--px)) calc(10*var(--px))}
 .tz-label{font-weight:800;font-size:max(11px,calc(26*var(--px)));line-height:1.25;color:var(--ink)}
 .tz-opt{font-weight:700;font-size:max(11px,calc(20*var(--px)));line-height:1.2;padding:calc(4*var(--px)) calc(12*var(--px));border-radius:999px;background:var(--acc-bg);color:var(--acc-tx);white-space:nowrap}
@@ -322,16 +322,16 @@ html[data-size="line"] .notes,html[data-size="kakao"] .notes{display:none}
 /* FIL12B LINE 1100x1000 (2026-11-06, v4/events/CHANNEL_SIZES_20261106.md). Size sections are clones of the home cards (.L + .L<key>, parts .L<n>-<part>);
    --px is 1px, so every home size stays; only position, width, wrapping, columns and parts change here. Made with the FIL12A/B/C template. */
 /* 1A: the page texture, the model cutout right (bottom on the card edge, 770px tall), the masthead left (the script word on two lines), the offer box
-   bottom right over her as at home, the contact pill under the masthead */
+   under the title and clear of her (2026-11-09 team comment #12), the contact pill under the masthead */
 html[data-size="line"] .L1a .hero-ph{display:none}
 html[data-size="line"] .L1a .sz-hero{position:absolute;z-index:2;right:0;bottom:0;display:block;width:auto;height:770px;max-width:none;pointer-events:none}
 html[data-size="line"] .L1a .h-head{left:40px;right:auto;width:600px;top:40px}
 html[data-size="line"] .L1a .h-pills{flex-wrap:wrap}
 html[data-size="line"] .L1a .h-script{white-space:normal}
 html[data-size="line"] .L1a .h-title{white-space:normal;max-width:none}
-html[data-size="line"] .L1a .tz{right:40px;bottom:120px}
+html[data-size="line"] .L1a .tz{right:auto;left:136px;bottom:140px;width:392px;padding-left:28px;padding-right:28px}
 html[data-size="line"] .L1a .cta{left:40px;right:auto;width:600px}
-html[data-size="line"] .L1a .h-sn1{left:470px;top:640px}
+html[data-size="line"] .L1a .h-sn1{left:24px;top:650px;width:96px}
 html[data-size="line"] .L1a .h-sn3{left:420px;top:500px}
 html[data-size="line"] .L1a .h-gl2{left:560px;top:300px}
 /* 1B: the masthead top, the framed photo left (cover in its frame, as at home), the notes, offer box and contact pill right */
@@ -391,7 +391,7 @@ html[data-size="kakao"] .K1-2.K1a .h-script{white-space:normal}
 html[data-size="kakao"] .K1-2.K1a .h-head{width:500px;align-items:flex-start;text-align:left}
 html[data-size="kakao"] .K1-2.K1a .h-pills{justify-content:flex-start}
 html[data-size="kakao"] .K1-2.K1a .h-script{margin-top:30px}
-html[data-size="kakao"] .K1-2.K1a .tz{right:24px;bottom:24px}
+html[data-size="kakao"] .K1-2.K1a .tz{right:24px;bottom:24px;width:392px;padding-left:28px;padding-right:28px}
 html[data-size="kakao"] .K1-2.K1a .h-sn1{left:auto;right:60px;top:60px;width:120px}
 html[data-size="kakao"] .K1-2.K1a .h-sn3{left:500px;top:120px}
 html[data-size="kakao"] .K1-2.K1a .h-gl1{left:560px;top:330px}
@@ -466,3 +466,16 @@ html[data-size="kakao"] .K6-3 .bt-book{grid-row:2}
 html[data-size="kakao"] .K1-2.K1a .tz-opt{padding-bottom:2.88px;margin-bottom:1.12px}
 html[data-size="kakao"] .K4-1 .pill-k,html[data-size="kakao"] .K4-3 .pill-k,html[data-size="kakao"] .K5-1 .pill-k{padding-bottom:8.06px;margin-bottom:-1.06px}
 /* ---------- /KAKAO ---------- */
+/* ===== FIXES 20261109 (v4/filler12b/fixes/fb-20261109.css) ===== */
+/* FIL12B team comments 2026-11-09 (v4/filler12b/fixes/fb-20261109.cjs). Home rules; the size cards add their own in v4/filler12b/sizes/line.css, kakao.css.
+   #5 ~ #10: BEST badge after the option name (A price rows 34, 36, 39, 41, 44, 47), a pill in the page accent; the option and its badge share the
+   row's first column. */
+.popt-w{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:calc(10*var(--px));row-gap:calc(4*var(--px));min-width:0}
+.popt-w .pbadge{align-self:center;display:inline-flex;align-items:center;justify-content:center;flex:none;font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(15*var(--px)));line-height:1.2;letter-spacing:.06em;color:var(--white);background:var(--acc);border-radius:999px;padding:.28em .72em .3em;white-space:nowrap}
+/* text centring (qa/text-center-check.cjs): the BEST face sits a little high in its pill, so the pill's bottom edge comes up 0.74px and the margin keeps
+   the layout; the text itself does not move */
+.popt-w .pbadge{padding-bottom:calc(.3em - .74px);margin-bottom:.74px}
+@container (max-width:600px){.prow .popt-w{grid-row:1 / 3;align-self:center}}
+/* #12: the hero offer box right under the title, clear of the model; it is narrower there, so its side padding is a little smaller */
+.c1 .tz{padding-left:calc(22*var(--px));padding-right:calc(22*var(--px))}
+/* ===== /FIXES 20261109 ===== */
