@@ -508,3 +508,25 @@ a[data-link="phone"]{white-space:nowrap}
   .c2b .psale{font-size:23px}
   .c2b .psv{white-space:normal;border-radius:10px}
 }
+/* ===== FIXES 20261109 (v4/combo12i/fixes/fb-20261109.css) ===== */
+/* CMB12I team comments 2026-11-09 (v4/combo12i/fixes/fb-20261109.cjs). Home rules; the size cards add their own in v4/combo12i/sizes/sizes.css.
+   #1 ~ #3, #7 ~ #12, #14 ~ #17: BEST / HIT badge right after the option (A price rows) or the product name (피코슈어, 색소3종, 원데이 레이저
+   올인원), a small filled label in the page's espresso so it stands apart from the name pills (same as CMB12H). */
+.popt-w{display:inline-flex;align-items:center;gap:calc(10*var(--px));min-width:0;white-space:nowrap}
+.pbadge{display:inline-flex;align-items:center;justify-content:center;flex:none;font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(14*var(--px)));line-height:1.2;letter-spacing:.06em;color:var(--white);background:var(--esp);border-radius:999px;padding:.28em .7em .3em;white-space:nowrap}
+/* text centring (qa/text-center-check.cjs): the BEST / HIT face sits a little high in its pill, so the pill's bottom edge comes up 0.7px and the
+   margin keeps the layout; the text itself does not move */
+.pbadge{padding-bottom:calc(.3em - .7px);margin-bottom:.7px}
+/* #5: the hero A band in blue instead of brown (a soft steel blue that sits with the photo's cool grey; the white words keep their contrast);
+   the 이벤트가 tag's word follows the band; on phones the band has no fill of its own and the card colour behind it turns blue instead */
+@container (min-width:601px){.c1:not([data-variant]) .band{background:#3f5f8a}}
+@container (max-width:600px){.c1:not([data-variant]){background:#3f5f8a}}
+.c1:not([data-variant]) .hp-tag{color:#3f5f8a}
+/* #19: the hero A lines above the big title ('먼저 진단하고 / 골라 받는', c9_t1 / c9_t2, one phrase) in the face of the hook line '내 피부 색소
+   고민에 맞는 레이저 PICK!' (Pretendard 600); size and colour stay */
+.c1 .h-pre{font-family:var(--f-text);font-weight:600}
+/* #20: the price card title (c9_p_title, the same title on the A price cards 2 ~ 4) in the same face as #19, bold as a title */
+.cp:not([data-variant]) .p-title{font-family:var(--f-text);font-weight:700}
+/* #23: the hero A band shows the one PicoSure photo (no V laser), a little larger */
+.bp-picosure-2{--bph:330}
+/* ===== /FIXES 20261109 ===== */

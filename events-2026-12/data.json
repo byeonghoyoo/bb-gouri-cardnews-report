@@ -6132,7 +6132,7 @@
           "c9_r162_list": "45만원",
           "c9_r162_sale": "25만원",
           "c9_r163_opt": "5회",
-          "c9_r163_sv": "5회당 백옥주사 1회, 미백주사 1회 서비스",
+          "c9_r163_sv": "5회당 백옥주사 1회, 미백주사(트라블랑) 1회 서비스",
           "c9_r163_list": "200만원",
           "c9_r163_sale": "110만원",
           "c9_r164_opt": "10회",
@@ -6171,7 +6171,7 @@
           "c9_r171_list": "82만원",
           "c9_r171_sale": "45만원",
           "c9_g7_head": "피코 문신제거",
-          "c9_g7_sub": "명함크기",
+          "c9_g7_sub": "블랙/명함크기",
           "c9_r172_opt": "1회",
           "c9_r172_list": "35만원",
           "c9_r172_sale": "19만원",
@@ -6197,7 +6197,19 @@
           "c9_hp_opt": "1회",
           "c9_hp_list": "27만원",
           "c9_hp_sale": "15만원",
-          "c9_pill": "3D 피부진단 + 맞춤형 색소치료"
+          "c9_pill": "3D 피부진단 + 맞춤형 색소치료",
+          "c9_r158_badge": "BEST",
+          "c9_r160_badge": "HIT",
+          "c9_r161_badge": "BEST",
+          "c9_r163_badge": "HIT",
+          "c9_r166_badge": "HIT",
+          "c9_r170_badge": "HIT",
+          "c9_r171_badge": "BEST",
+          "c9_r174_badge": "BEST",
+          "c9_r177_badge": "BEST",
+          "c9_g1_badge": "HIT",
+          "c9_g4_badge": "BEST",
+          "c9_g5_badge": "BEST"
         }
       },
       "locales": [

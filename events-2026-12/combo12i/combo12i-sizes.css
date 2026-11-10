@@ -176,3 +176,10 @@ html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pill-n[data-copy="c9_g5_head"]{padding-top:7.20px;padding-bottom:7.80px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="4"]:not([data-variant])[data-part="1"] span.pill-n[data-copy="c9_g6_head"]{padding-top:8.20px;padding-bottom:7.80px;line-height:30.25px;margin-top:1px}
 /* ==== /tc-fix ==== */
+/* 2026-11-09 team comments (v4/combo12i/fixes/fb-20261109.cjs): text centring of two badges at their place here (qa/text-center-check.cjs): the
+   pill's bottom edge comes up a little more than the shared nudge and the margin keeps the layout; the text itself does not move */
+html[data-size="line"] main.b5 .pbadge[data-copy="c9_r166_badge"]{padding-bottom:calc(.3em - 2px);margin-bottom:2px}
+html[data-size="kakao"] main.b5 .pbadge[data-copy="c9_g1_badge"]{padding-bottom:calc(.3em - 2.12px);margin-bottom:2.12px}
+/* #21 / #22: the team's PicoSure photo reaches its bottom edge, so in 2B part 2 (two-line name, three-line composition) the photo row ends at
+   the ticket's bottom instead of running 34px under it */
+html[data-size="kakao"] main.b5 .K2b2 .b2-ph,html[data-size="kakao"] main.b5 .K2b2 .b2-g2 .b2-ph{height:76px}
