@@ -1,55 +1,137 @@
-/* NAD11 language copy (2026-11-10): EN at the home size 1080×1350 only (LINE is for JP·TW·TH, kakao for KO). Every rule starts with
-   html[data-locale="EN"], so the Korean pages stay pixel-identical. Same fonts as KO (Pretendard, Poppins); the English copy is the
-   language-check sheet's text as is, only its line breaks are set here (smaller type or wider boxes where the English runs longer). */
-html[data-locale="EN"] .sheet{word-break:normal;overflow-wrap:break-word}
-html[data-locale="EN"] .q-title,html[data-locale="EN"] .ab-title,html[data-locale="EN"] .dr-name,html[data-locale="EN"] .st-t{text-wrap:balance}
-html[data-locale="EN"] .at{overflow-wrap:normal}
-html[data-locale="EN"] .p-lead .l1,html[data-locale="EN"] .p-lead .l2{display:block} /* the two lead sentences, one line each */
+/* NAD11 language versions (2026-11-10 EN, 2026-11-11 JP CN TW TH HK): 1080×1350 for all six, LINE 1100×1000 for JP·TW·TH, kakao Korean only.
+   The copy is the language-check sheet's text as is (v4/langverify/out/NAD11.final.json); this file only adds the language fonts and the line breaks /
+   sizes the longer copy needs. Every selector names a language (html:lang(..), html[data-locale=".."] or html:not([data-locale="KO"])), so the Korean
+   pages stay pixel-identical (v4/nad11/qa/i18n-shoot.cjs --diff compares them). */
+
+/* fonts (as on BLF11): Japanese / Chinese text in Noto Sans JP / SC / TC, first in the stack so Pretendard's Hanja never mixes in; Thai in Noto Sans
+   Thai after Pretendard (Latin letters and figures keep the Korean design's Pretendard / Poppins); the display face Poppins has no CJK or Thai letters,
+   they fall back to the language's Noto */
+html:lang(ja){--f-cjk:'Noto Sans JP'}
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(ja),html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,sans-serif;--f-disp:'Poppins',var(--f-cjk),'Pretendard Variable',sans-serif}
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',sans-serif;--f-disp:'Poppins','Pretendard Variable','Noto Sans Thai',sans-serif}
+
+/* line breaks: Chinese, Japanese and Thai break inside words (Korean keeps whole words); titles and names balance their lines */
+html:not([data-locale="KO"]) .sheet{word-break:normal;overflow-wrap:break-word}
+html:not([data-locale="KO"]) .q-title,html:not([data-locale="KO"]) .ab-title,html:not([data-locale="KO"]) .dr-name,html:not([data-locale="KO"]) .st-t{text-wrap:balance}
+html:not([data-locale="KO"]) .at{overflow-wrap:normal}
+html:lang(ja) .sheet{word-break:auto-phrase} /* Japanese breaks between phrases (Chrome's BudouX segmentation), never inside 'セルリブート' */
+html:not([data-locale="KO"]) .pa-head .p-lead{max-width:none} /* the lead may use the title block's full width */
+html:not([data-locale="KO"]) .p-lead .l1,html:not([data-locale="KO"]) .p-lead .l2{display:block} /* the two lead halves, one block each */
+/* a '｜' between the two title halves (HK event name) is the line break: the halves stack (2 B too) and the bar itself is not drawn */
+html:not([data-locale="KO"]) .h-title .tsep,html:not([data-locale="KO"]) .p-title .tsep{display:none}
+html:not([data-locale="KO"]) .pb .p-title:has(.tsep) .t1,html:not([data-locale="KO"]) .pb .p-title:has(.tsep) .t2{display:block}
+html:not([data-locale="KO"]) .p-lead .l1,html:not([data-locale="KO"]) .p-lead .l2{text-wrap:balance}
+
+/* ---------- 1080×1350 (and the board's 780 view) and LINE 1100×1000: containers wider than 600 px ---------- */
+@container (min-width:601px){
+ /* 1 B band: a long contact line (LINE / WeChat ID) wraps beside the period instead of running out of the band */
+ html:not([data-locale="KO"]) .hb-band .band-tx{white-space:normal;min-width:0}
+ html:not([data-locale="KO"]) .hb-band .band-ct{min-width:0;line-height:1.2}
+ /* 2 B: the BEST / HIT corner badge keeps its corner; the longer names wrap before it */
+ html:not([data-locale="KO"]) .pt-hb .pt-n{padding-right:calc(92*var(--px))}
+ /* 5: the international phone number '+82-2-336-7511' a little smaller than the Korean '02-336-7511' (it is longer); a messenger ID written in
+    the phone line (TW '@beautyblossom_tw', chat icon) smaller again */
+ html:not([data-locale="KO"]) .bk-phone{font-size:max(17px,calc(26*var(--px)))}
+ html:not([data-locale="KO"]) .bk-phone.is-id{font-size:max(15px,calc(22*var(--px)));letter-spacing:0}
+ /* TH: the won amounts are written out ('250,000 วอน'): the list price sits over the event price in one right-hand column, a little smaller, so the
+    names keep one or two lines (2 A rows and 2 B tiles) */
+ html[data-locale="TH"] .pr-pz,html[data-locale="TH"] .pt-pz{flex-direction:column;align-items:flex-end;justify-content:flex-end;gap:calc(2*var(--px))}
+ html[data-locale="TH"] .pr .plist,html[data-locale="TH"] .pt .plist{font-size:max(12px,calc(22*var(--px)))}
+ html[data-locale="TH"] .pr .psale,html[data-locale="TH"] .pt .psale{font-size:max(22px,calc(50*var(--px)))}
+ html[data-locale="TH"] .pr-n{font-size:max(15px,calc(31*var(--px)))}
+ /* TH titles: the long programme name ('โปรแกรมดริปวิตามิน NAD+') is the pink second line, smaller than 'เปิดตัวใหม่!' above it */
+ html[data-locale="TH"] .ha-title,html[data-locale="TH"] .hb-title{--t2:calc(62*var(--px))}
+ html[data-locale="TH"] .pa-head .p-title .t1{font-size:calc(60*var(--px)*var(--fit,1))}
+ html[data-locale="TH"] .pa-head .p-title .t2{font-size:calc(50*var(--px));white-space:normal;text-wrap:balance}
+ html[data-locale="TH"] .pa-head .p-lead{max-width:calc(540*var(--px));font-size:max(12px,calc(22*var(--px)))}
+ html[data-locale="TH"] .ha-l3{font-size:max(14px,calc(36*var(--px)*var(--fit,1)))}
+ html[data-locale="TH"] .hb-l3{font-size:max(14px,calc(34*var(--px)*var(--fit,1)))}
+ /* JP 5: the address takes two lines under the station line: the map a little smaller (as EN / TH); the strength titles a little smaller so
+    'カウンセリング' stays whole */
+ html[data-locale="JP"][data-size="home"] .bt-loc .map{width:calc(410*var(--px));align-self:center}
+ html[data-locale="JP"][data-size="home"] .at{font-size:max(13px,calc(18*var(--px)))}
+}
+/* JP on LINE 5 (part 1): 'ビューティーブロッサム' and 'カウンセリング' stay whole: the photo column a little narrower, the title 42 px, strength titles 18 px
+   (the 1080 sizes) */
+html[data-locale="JP"][data-size="line"] .c5:not(.c5-p2) .dr{grid-template-columns:200px 230px}
+html[data-locale="JP"][data-size="line"] .c5:not(.c5-p2) .ab-title{font-size:42px}
+html[data-locale="JP"][data-size="line"] .c5:not(.c5-p2) .at{font-size:18px}
+/* TH on LINE: the shorter card keeps the four 2 A rows and the 2 B tiles with a smaller price stack */
+html[data-locale="TH"][data-size="line"] .pr{padding:8px 0}
+html[data-locale="TH"][data-size="line"] .pr-n{font-size:28px}
+html[data-locale="TH"][data-size="line"] .pr .plist,html[data-locale="TH"][data-size="line"] .pt .plist{font-size:18px}
+html[data-locale="TH"][data-size="line"] .pr .psale,html[data-locale="TH"][data-size="line"] .pt .psale{font-size:40px}
+html[data-locale="TH"][data-size="line"] .pt{padding:22px 24px 18px}
+html[data-locale="TH"][data-size="line"] .pt-n{font-size:30px}
 
 @container (min-width:601px){
  /* 3 (2026-11-10, the two drip sentences are in): the English runs longer, so the spacing is a little tighter, the single-dose and drip
     sentences a little smaller; the boxes keep their sizes */
  html[data-locale="EN"][data-size="home"] .c3 .q-head{margin-top:calc(22*var(--px))}
  html[data-locale="EN"][data-size="home"] .c3 .nad{margin-top:calc(20*var(--px));padding-top:calc(20*var(--px));padding-bottom:calc(20*var(--px))}
- html[data-locale="EN"][data-size="home"] .c3 .nad-d{font-size:calc(21*var(--px))}
+ html[data-locale="EN"][data-size="home"] .c3 .nad-d{font-size:max(12px,calc(21*var(--px)))}
  html[data-locale="EN"][data-size="home"] .c3 .single{margin-top:calc(12*var(--px));padding-top:calc(16*var(--px));padding-bottom:calc(16*var(--px))}
- html[data-locale="EN"][data-size="home"] .c3 .single-d{font-size:calc(20*var(--px));line-height:1.45}
+ html[data-locale="EN"][data-size="home"] .c3 .single-d{font-size:max(12px,calc(20*var(--px)));line-height:1.45}
  html[data-locale="EN"][data-size="home"] .c3 .cmp{margin-top:calc(20*var(--px))}
  html[data-locale="EN"][data-size="home"] .c3 .cmp-desc{margin-top:calc(10*var(--px))}
- html[data-locale="EN"][data-size="home"] .c3 .cmp-d{padding:0 calc(6*var(--px));font-size:calc(19*var(--px));line-height:1.45}
+ html[data-locale="EN"][data-size="home"] .c3 .cmp-d{padding:0 calc(6*var(--px));font-size:max(12px,calc(19*var(--px)));line-height:1.45}
  html[data-locale="EN"][data-size="home"] .c3 .cmp-lab{margin-top:calc(14*var(--px))}
- /* 4: the title on one line, the answer in the left column above the photo, the three steps a little wider and tighter, the facts as
+ /* 4 (EN, and TH 2026-11-11): the title on one line, the answer in the left column above the photo, the three steps a little wider and tighter, the facts as
     label-over-value pills above the care band */
- html[data-locale="EN"][data-size="home"] .c4 .q-title{font-size:calc(52*var(--px))}
- html[data-locale="EN"][data-size="home"] .c4 .q-ans{max-width:calc(420*var(--px));font-size:calc(23*var(--px))}
- html[data-locale="EN"][data-size="home"] .c4-d1{top:calc(452*var(--px));width:calc(120*var(--px))}
- html[data-locale="EN"][data-size="home"] .steps{left:calc(492*var(--px));top:calc(304*var(--px));gap:calc(12*var(--px))}
- html[data-locale="EN"][data-size="home"] .st{grid-template-columns:calc(72*var(--px)) minmax(0,1fr);column-gap:calc(16*var(--px));padding:calc(20*var(--px)) calc(22*var(--px)) calc(22*var(--px))}
- html[data-locale="EN"][data-size="home"] .st-ico{width:calc(72*var(--px))}
- html[data-locale="EN"][data-size="home"] .st-t{font-size:calc(27*var(--px))}
- html[data-locale="EN"][data-size="home"] .st-d{margin-top:calc(6*var(--px));font-size:calc(19*var(--px));line-height:1.45}
- html[data-locale="EN"][data-size="home"] .facts{left:calc(492*var(--px));top:auto;bottom:calc(164*var(--px));gap:calc(8*var(--px))}
- html[data-locale="EN"][data-size="home"] .fact{height:auto;flex-direction:column;align-items:flex-start;justify-content:center;gap:calc(4*var(--px));padding:calc(9*var(--px)) calc(22*var(--px)) calc(10*var(--px))}
- html[data-locale="EN"][data-size="home"] .fact dt{font-size:calc(17*var(--px));line-height:1.2}
- html[data-locale="EN"][data-size="home"] .fact dd{font-size:calc(21*var(--px));line-height:1.2}
- html[data-locale="EN"][data-size="home"] .care-tx{font-size:calc(26*var(--px))}
- /* 5: strengths a little smaller (no word split), the map a little smaller so the two-line address fits, the phone number smaller */
- html[data-locale="EN"][data-size="home"] .at{font-size:calc(18*var(--px))}
- html[data-locale="EN"][data-size="home"] .ad{font-size:calc(15*var(--px))}
- html[data-locale="EN"][data-size="home"] .dr-quote{font-size:calc(18*var(--px))}
- html[data-locale="EN"][data-size="home"] .bt-loc .map{width:calc(400*var(--px));align-self:center}
- html[data-locale="EN"][data-size="home"] .way-st{font-size:calc(23*var(--px))}
- html[data-locale="EN"][data-size="home"] .way-addr{font-size:calc(15*var(--px))}
- html[data-locale="EN"][data-size="home"] .bk-links{font-size:calc(17*var(--px))}
- html[data-locale="EN"][data-size="home"] .bk-phone{font-size:calc(25*var(--px))}
- html[data-locale="EN"][data-size="home"] .hrs li{font-size:calc(20*var(--px))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .c4 .q-title{font-size:calc(52*var(--px))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .c4 .q-ans{max-width:calc(420*var(--px));font-size:max(12px,calc(23*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .c4-d1{top:calc(452*var(--px));width:calc(120*var(--px))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .steps{left:calc(492*var(--px));top:calc(304*var(--px));gap:calc(12*var(--px))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .st{grid-template-columns:calc(72*var(--px)) minmax(0,1fr);column-gap:calc(16*var(--px));padding:calc(20*var(--px)) calc(22*var(--px)) calc(22*var(--px))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .st-ico{width:calc(72*var(--px))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .st-t{font-size:max(15px,calc(27*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .st-d{margin-top:calc(6*var(--px));font-size:max(12px,calc(19*var(--px)));line-height:1.45}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .facts{left:calc(492*var(--px));top:auto;bottom:calc(164*var(--px));gap:calc(8*var(--px))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .fact{height:auto;flex-direction:column;align-items:flex-start;justify-content:center;gap:calc(4*var(--px));padding:calc(9*var(--px)) calc(22*var(--px)) calc(10*var(--px))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .fact dt{font-size:max(12px,calc(17*var(--px)));line-height:1.2}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .fact dd{font-size:max(13px,calc(21*var(--px)));line-height:1.2}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .care-tx{font-size:max(13px,calc(26*var(--px)))}
+ /* 5 (EN, and TH 2026-11-11): strengths a little smaller (no word split), the map a little smaller so the two-line address fits, the phone number smaller */
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .at{font-size:max(13px,calc(18*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .ad{font-size:max(11px,calc(15*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .dr-quote{font-size:max(13px,calc(18*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .bt-loc .map{width:calc(400*var(--px));align-self:center}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .way-st{font-size:max(15px,calc(23*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .way-addr{font-size:max(12px,calc(15*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .bk-links{font-size:max(13px,calc(17*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .bk-phone{font-size:max(17px,calc(25*var(--px)))}
+ html:is([data-locale="EN"],[data-locale="TH"])[data-size="home"] .hrs li{font-size:max(13px,calc(20*var(--px)))}
+ html[data-locale="TH"][data-size="home"] .bt-book .bt-t{font-size:max(15px,calc(24*var(--px)))} /* TH 'QR สำหรับปรึกษา/จองผ่าน LINE' */
 }
+
+/* ---------- LINE 1100×1000 (JP TW TH; EN CN HK use 1080×1350 only) ---------- */
+/* 2 B: the tile compositions run as one wrapping line (the shorter LINE tiles), 4: the three facts as label-over-value pills in three equal columns */
+html:not([data-locale="KO"])[data-size="line"] .pb .pt-d .ci{display:inline}
+html:not([data-locale="KO"])[data-size="line"] .facts{right:56px;grid-template-columns:repeat(3,minmax(0,1fr))}
+html:not([data-locale="KO"])[data-size="line"] .fact{height:auto;min-height:54px;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;padding:8px 18px 9px}
+html:not([data-locale="KO"])[data-size="line"] .fact dt{font-size:17px;line-height:1.2}
+html:not([data-locale="KO"])[data-size="line"] .fact dd{font-size:20px;line-height:1.25}
 
 @container (max-width:600px){
  /* phones (the home size on a narrow screen): the 1 B band contact wraps beside the period, the 2 B tile compositions run as one
-    wrapping line so the longer English names keep the prices inside the tiles */
- html[data-locale="EN"] .hb-band{height:auto;min-height:calc(116*var(--px));padding-top:8px;padding-bottom:8px}
- html[data-locale="EN"] .band-tx{white-space:normal;min-width:0}
- html[data-locale="EN"] .band-ct{min-width:0;line-height:1.25}
- html[data-locale="EN"] .pb .pt-d .ci{display:inline}
+    wrapping line so the longer names keep the prices inside the tiles */
+ html:not([data-locale="KO"]) .hb-band{height:auto;min-height:calc(116*var(--px));padding-top:8px;padding-bottom:8px}
+ html:not([data-locale="KO"]) .band-tx{white-space:normal;min-width:0}
+ html:not([data-locale="KO"]) .band-ct{min-width:0;line-height:1.25}
+ html:not([data-locale="KO"]) .pb .pt-d .ci{display:inline}
+ /* 2 A and 2 B: the price cards grow with the longer copy (at least 4:5 as in Korean): 2 A's title block and board run in the flow, the board
+    starting where the Korean board starts or below a longer title block; 2 B's tiles get the height they need */
+ html:not([data-locale="KO"]) .pa,html:not([data-locale="KO"]) .pb{aspect-ratio:auto}
+ html:not([data-locale="KO"]) .pa .cp-in,html:not([data-locale="KO"]) .pb .cp-in{position:relative;inset:auto;min-height:calc(1350*var(--px))}
+ html:not([data-locale="KO"]) .pa .pa-head{position:relative;left:auto;top:auto;margin:calc(46*var(--px)) 0 0 calc(56*var(--px));min-height:calc(500*var(--px))}
+ html:not([data-locale="KO"]) .pa .pa-board{position:relative;flex:1 1 auto;left:auto;right:auto;top:auto;bottom:auto;margin:calc(20*var(--px)) calc(48*var(--px)) calc(48*var(--px))}
+ /* TH: the long programme name in the hero titles is smaller (as on the larger sizes) */
+ html[data-locale="TH"] .ha-title,html[data-locale="TH"] .hb-title{--t2:calc(62*var(--px))}
+ /* 3: a long ingredient name wraps inside its box */
+ html:not([data-locale="KO"]) .cmp-diff li{height:auto;min-height:36px;padding:6px 8px;white-space:normal;text-align:center;line-height:1.3}
+ /* TH: the list price over the event price (written-out won amounts) */
+ html[data-locale="TH"] .pr-pz,html[data-locale="TH"] .pt-pz{flex-direction:column;align-items:flex-end;justify-content:flex-end;gap:2px}
+ html[data-locale="TH"] .pr .psale,html[data-locale="TH"] .pt .psale{font-size:20px}
 }
