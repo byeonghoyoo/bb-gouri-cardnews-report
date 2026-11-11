@@ -1,0 +1,56 @@
+/* OND12 language versions (2026-11-11, lead order): JP and TW. Copy = v4/langverify/out/OND12.final.json as it is; this file only adds the language
+   fonts and the line breaks / widths the longer copy needs. Every selector names a language (:lang(ja|zh) or html:not([data-locale=KO])), so the Korean
+   page stays pixel-identical (v4/onda12/build-onda12.cjs checks the selectors). */
+
+/* fonts: Japanese / Chinese text in Noto Sans JP / TC first in the stack (Pretendard's Hanja never mixes in). The Latin display faces
+   (Cormorant Garamond, DM Serif Display) keep their Latin letters; CJK letters in them fall back to the language's Noto. */
+html:lang(ja){--f-cjk:'Noto Sans JP'}
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(ja),html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-thin:'Cormorant Garamond',var(--f-cjk),serif;--f-num:'DM Serif Display',var(--f-cjk),serif}
+
+/* line breaks: Chinese and Japanese break between characters (Korean keeps whole words) */
+html:not([data-locale=KO]) .sheet{word-break:normal}
+/* Japanese: Chrome breaks at phrase boundaries ('部位・KJにより / 異なります'); other browsers keep the normal character breaks */
+html:lang(ja) .sheet{word-break:auto-phrase}
+
+/* TW phone line with the LINE ID: may come down (onda12.js fit, at most to 66 %) to stay inside the booking box at 1080 */
+html:not([data-locale=KO])[data-size=home] .bk-phone.is-id{font-size:max(15px,calc(32*var(--px)*var(--fit,1)))}
+
+/* card 5 (device): the diagram keeps its square at its column width (the longer point list no longer stretches it over the list);
+   Japanese points are longer, so the diagram column is narrower and every point title stays on one line */
+@container (min-width:601px){
+ html:not([data-locale=KO]) .c4-mid .layers{align-self:center;width:100%}
+ html:lang(ja) .c4-mid{grid-template-columns:calc(460*var(--px)) minmax(0,1fr)}
+}
+
+/* line 1100x1000 card 7-2 (booking): the phone line / LINE ID takes the full box width under the QR and the links (the country's numbers and IDs are longer) */
+html:not([data-locale=KO])[data-size=line] .L7p2 .bk-row{grid-template-columns:124px minmax(0,1fr);grid-template-rows:auto auto;row-gap:18px;align-content:center}
+html:not([data-locale=KO])[data-size=line] .L7p2 .bk-text{display:contents}
+html:not([data-locale=KO])[data-size=line] .L7p2 .bk-row .qr{grid-column:1;grid-row:1}
+html:not([data-locale=KO])[data-size=line] .L7p2 .bk-links{grid-column:2;grid-row:1;align-self:center}
+html:not([data-locale=KO])[data-size=line] .L7p2 .bk-phone{grid-column:1 / -1;grid-row:2;margin-top:0}
+
+/* Noto Sans JP / TC have a taller default line box than Pretendard: the one-line legal / VAT notes keep the Korean line height (card 2 bottom) */
+html:not([data-locale=KO]) .uibeop,html:not([data-locale=KO]) .vat{line-height:1.2}
+
+/* line card 1 B: the longer price label ('イベント価格', '活動優惠價') puts the VAT note on its own line under the price; the longer contact line starts right of\n   the device picture and may take two lines (the LINE ID stays whole) */
+html:not([data-locale=KO])[data-size=line] .L1b .ob1-pr{flex-wrap:wrap;row-gap:2px}
+html:not([data-locale=KO])[data-size=line] .L1b .ob1-vat{flex-basis:100%;text-align:center}
+html:not([data-locale=KO])[data-size=line] .L1b .ob1-contact{left:630px;width:440px;display:block;white-space:normal;text-align:center}
+html:not([data-locale=KO])[data-size=line] .L1b .ob1-contact .ph-ico{display:inline-block;vertical-align:-.22em;margin-right:.45em}
+
+/* line card 5: the Japanese points are longer (title + two lines each), so the point list takes its own height with tighter gaps */
+html:lang(ja)[data-size=line] .L5 .points{height:auto;gap:6px}
+html:lang(ja)[data-size=line] .L5 .pt{padding:8px 20px}
+
+/* phones: the hero B contact pill may wrap (the country's LINE ID stays whole) */
+@container (max-width:600px){
+ html:not([data-locale=KO]) .ob1-contact{white-space:normal;text-align:center}
+}
+/* line card 6: the Japanese lead takes two lines, so the blocks under it sit a little closer */
+html:lang(ja)[data-size=line] .L6 .who,html:lang(ja)[data-size=line] .L6 .c5-tip{margin-top:8px}
+/* line card 7-1: the language titles ('ビューティーブロッサム', 'Beauty Blossom') need a wider column: the doctor block is narrower and the title is set at its
+   1080 size (40px), so it takes two lines like the Korean one */
+html:not([data-locale=KO])[data-size=line] .L7p1 .ab-title{font-size:40px}
+html:not([data-locale=KO])[data-size=line] .L7p1 .dr{grid-template-columns:200px 240px}
