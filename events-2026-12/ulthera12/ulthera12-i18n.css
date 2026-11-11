@@ -1,0 +1,50 @@
+/* ULT12 language versions (2026-11-11, lead order): JP and TW. Copy = v4/langverify/out/ULT12.final.json as it is; this file only adds the language
+   fonts and the line breaks / widths the longer copy needs. Every selector names a language (:lang(ja|zh) or html:not([data-locale=KO])), so the Korean
+   page stays pixel-identical (v4/ulthera12/build-ulthera12.cjs checks the selectors). */
+
+/* fonts: Japanese / Chinese text in Noto Sans JP / TC first in the stack (Pretendard's Hanja never mixes in). Jost keeps the Latin letters and figures;
+   CJK letters in it fall back to the language's Noto. */
+html:lang(ja){--f-cjk:'Noto Sans JP'}
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(ja),html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-en:'Jost',var(--f-cjk),'Pretendard Variable',system-ui,sans-serif}
+
+/* line breaks: Chinese and Japanese break between characters (Korean keeps whole words); Japanese breaks at phrase boundaries in Chrome */
+html:not([data-locale=KO]) .sheet{word-break:normal}
+html:lang(ja) .sheet{word-break:auto-phrase}
+
+/* Noto Sans JP / TC have a taller default line box than Pretendard: the one-line legal / VAT notes keep the Korean line height */
+html:not([data-locale=KO]) .uibeop,html:not([data-locale=KO]) .vat{line-height:1.2}
+
+/* TW phone line with the LINE ID: may come down (ulthera12.js fit, at most to 66 %) to stay inside the booking box at 1080 */
+html:not([data-locale=KO])[data-size=home] .bk-phone.is-id{font-size:max(15px,calc(30*var(--px)*var(--fit,1)))}
+
+/* hero A title, hero B title, hero price and the B price names: the language versions shrink to fit (Korean keeps its fixed sizes) */
+@container (min-width:601px){
+ html:not([data-locale=KO]) .hero-title{font-size:calc(78*var(--px)*var(--fit,1))}
+ html:not([data-locale=KO]) .rb-title h1{font-size:calc(100*var(--px)*var(--fit,1));white-space:nowrap;max-width:calc(600*var(--px))}
+ html:not([data-locale=KO]) .tz-price{font-size:max(28px,calc(100*var(--px)*var(--fit,1)))}
+ html:not([data-locale=KO]) .rb2 .pname{font-size:calc(23*var(--px)*var(--fit,1))}
+}
+/* phones: the product parts of a package name may wrap again */
+@container (max-width:600px){
+ html:not([data-locale=KO]) .pname .np{white-space:normal}
+ /* hero A price frame: the longer label ('イベント価格 300ショット') takes two short lines inside the narrow phone frame */
+ html:not([data-locale=KO]) .c1 .tz-pill{flex-wrap:wrap;justify-content:center;row-gap:0;max-width:calc(100% - 8px);margin-top:4px;padding:.2em .7em;border-radius:10px;text-align:center}
+}
+
+/* card 4 depth labels: the longer labels ('SMAS筋膜層') stay inside the picture */
+html:not([data-locale=KO]) .dl{letter-spacing:-.03em}
+
+/* line 1100x1000 card 6-2 (booking): the phone line / LINE ID takes the full box width under the QR and the links */
+html:not([data-locale=KO])[data-size=line] .L6-2 .bk-row{grid-template-columns:124px minmax(0,1fr);grid-template-rows:auto auto;row-gap:18px;align-content:center}
+html:not([data-locale=KO])[data-size=line] .L6-2 .bk-text{display:contents}
+html:not([data-locale=KO])[data-size=line] .L6-2 .bk-row .qr{grid-column:1;grid-row:1}
+html:not([data-locale=KO])[data-size=line] .L6-2 .bk-links{grid-column:2;grid-row:1;align-self:center}
+html:not([data-locale=KO])[data-size=line] .L6-2 .bk-phone{grid-column:1 / -1;grid-row:2;margin-top:0}
+
+/* line card 1 B: the title keeps clear of the model arch */
+html:not([data-locale=KO])[data-size=line] .L1b .rb-title h1{max-width:620px}
+
+/* Korean copy that the sheet does not translate (the DeepSEE box) keeps whole words */
+html:not([data-locale=KO]) .ko-text{word-break:keep-all}
