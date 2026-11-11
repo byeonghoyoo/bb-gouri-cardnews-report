@@ -1,0 +1,61 @@
+/* SUN11 language versions (2026-11-11, lead order: TW first). Copy = v4/langverify/out/SUN11.final.json as it is (staff correction first); this file only
+   adds the language font and the line breaks / sizes the longer copy needs. Every selector names a language (:lang(zh)), so the Korean page stays
+   pixel-identical (v4/suneung11/build-suneung11.cjs checks the selectors; v4/suneung11/qa/i18n-check.cjs compare checks the pixels).
+   Sizes: 1080x1350 (and the board's 780 / phone views of it) and LINE 1100x1000; KakaoTalk stays Korean only. */
+
+/* fonts: Chinese text in Noto Sans TC, first in the stack so Pretendard's Hanja never mixes in (same as BLF11 / ULT5). The display face
+   Bagel Fat One has no Chinese letters, and its full-width punctuation ('，' '！') would mix two faces in one title, so the Chinese titles are
+   all Noto Sans TC at its heaviest weight (the Korean titles are the heavy puffy face); the big '49%' keeps Bagel Fat One */
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-disp:var(--f-cjk),'Bagel Fat One',sans-serif}
+html:lang(zh) .h-title,html:lang(zh) .p-title,html:lang(zh) .q-title{font-weight:900;font-synthesis:none}
+html:lang(zh) .ha-l3 .num{font-family:'Bagel Fat One',var(--f-cjk),sans-serif}
+
+/* line breaks: Chinese breaks between characters (Korean keeps whole words with keep-all); headings break between phrases (page.js) */
+html:lang(zh) .sheet{word-break:normal}
+html:lang(zh) .ph{display:inline-block}
+
+/* 1 A ticket: '最高享' and '優惠！' are wider than '최대' / '할인!': the tag and the end are a little smaller and 49% slightly smaller, so the line
+   keeps about the Korean margins inside the ticket, clear of its round notches */
+html:lang(zh) .ha-l3 .tag{font-size:.7em}
+html:lang(zh) .ha-l3 .num{font-size:4em}
+html:lang(zh) .ha-l3 .rest{font-size:1.4em}
+
+/* 1 B: the title box ends before the pencil (both lines one size, page.js), so '美麗正式開始！' never runs under it; the small sparkle moves to
+   the left of the first line (the second line starts where it sat) */
+html:lang(zh)[data-size=home] .hb .tk-title{margin-right:calc(226*var(--px))}
+html:lang(zh)[data-size=home] .hb-d3{left:calc(96*var(--px));top:calc(214*var(--px))}
+
+/* 3: the one-line title ends before the clover in the top-right corner */
+html:lang(zh) .c3 .q-title{font-size:max(22px,calc(58*var(--px)))}
+
+/* 5: the strength titles take the dotted leader's width (two-line titles break after '・', page.js) */
+html:lang(zh) .ab-strengths .dots{display:none}
+html:lang(zh) .ab-strengths .at{flex:1 1 auto}
+@container (min-width:601px){
+ /* 5: a narrower quote column keeps '陪伴您一起展現' / '自然之美。' whole and gives the title its width ('讓您的每一天綻放光彩，' / 'Beauty Blossom') */
+ html:lang(zh)[data-size=home] .c5 .dr{grid-template-columns:calc(150*var(--px)) calc(222*var(--px))}
+}
+/* phones: the ticket labels ('預約・諮詢') keep one line */
+@container (max-width:600px){
+ html:lang(zh) .tk-f{grid-template-columns:64px minmax(0,1fr)}
+}
+
+/* ---------- LINE 1100x1000 ---------- */
+/* 1 A: the contact line is longer (the LINE ID): the bar starts further left over the decorations, one line */
+html:lang(zh)[data-size=line] .ha .cta{left:120px}
+/* 1 B: the pencil a little higher and smaller, clear of the two title lines; the small sparkle right of the first line's end */
+html:lang(zh)[data-size=line] .hb-pencil{top:92px;right:28px;width:160px}
+html:lang(zh)[data-size=line] .hb-d3{right:212px}
+/* 2 A / 2 B: the lead beside the title ends before the clover */
+html:lang(zh)[data-size=line] .pa .p-lead{margin-right:100px}
+html:lang(zh)[data-size=line] .pb .p-lead{margin-right:100px}
+/* 2 B: the names take more lines; the tiles give up padding and gaps (not text size), so the 3 x 3 coupons and the foot fit the image */
+html:lang(zh)[data-size=line] .pb .ptiles{margin-top:14px;gap:8px}
+html:lang(zh)[data-size=line] .pb .pt{padding:12px 14px 10px}
+html:lang(zh)[data-size=line] .pb .pt-d{margin-top:3px}
+/* 4: the title on one line, so the care line stays inside the image */
+html:lang(zh)[data-size=line] .c4 .q-title{font-size:52px}
+/* 5: the quote box narrower and the title 44 px (home 40 px): '讓您的每一天綻放光彩，' / 'Beauty Blossom', each intro sentence one line */
+html:lang(zh)[data-size=line] .c5:not(.c5-p2) .dr{grid-template-columns:168px 250px}
+html:lang(zh)[data-size=line] .c5:not(.c5-p2) .ab-title{font-size:44px}
