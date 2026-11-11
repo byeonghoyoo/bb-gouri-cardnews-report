@@ -243,6 +243,7 @@ img{max-width:100%}
 .bk-alt a{display:inline-block}
 .bk-phone{display:flex;align-items:center;gap:.3em;margin-top:calc(10*var(--px));font-weight:900;font-size:max(17px,calc(30*var(--px)));letter-spacing:.01em;color:var(--ink);white-space:nowrap}
 .bk-phone .ico-phone{width:1.25em}
+.bk-phone.is-id .ico-phone{width:1.45em}
 .bk-mark{display:block;align-self:flex-end;margin-top:calc(8*var(--px));width:calc(150*var(--px));min-width:90px;height:auto}
 a[data-link="phone"]{white-space:nowrap}
 

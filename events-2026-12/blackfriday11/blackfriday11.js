@@ -37,21 +37,35 @@ function setTitle(el,v){el.textContent='';v=v||'';
 function setLabel(el,v){el.textContent='';v=v||'';const i=v.indexOf('｜');if(i<0){el.append(span('evt',v));return;}
  el.append(span('evc',v.slice(0,i)),span('evb','｜'),span('evt',v.slice(i+1)));}
 /* names: each part stays on one line, breaks only at ' + ' */
-function topSplit(v){const parts=[];let depth=0,start=0;for(let i=0;i<v.length;i++){const c=v[i];if(c==='('||c==='[')depth++;else if((c===')'||c===']')&&depth)depth--;else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));start=i+3;i+=2;}}parts.push(v.slice(start));return parts;}
+/* 2026-11-11 language versions: the full-width '＋' of the CJK names (the TW / JP / HK sheets write it without spaces) separates parts too, so a line breaks only
+   next to it ('皮秒淨膚＋ / 維他命護理 5次', no more '護 / 理'); it keeps its own colour (no pink ' + '). A number stays with its CJK unit ('250發', '300ショット') and a katakana word stays whole ('リップフィラー'). Korean is unchanged. */
+function topSplit(v){const parts=[],seps=[];let depth=0,start=0;for(let i=0;i<v.length;i++){const c=v[i];if(c==='('||c==='[')depth++;else if((c===')'||c===']')&&depth)depth--;else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));seps.push(' + ');start=i+3;i+=2;}else if(!depth&&c==='\uff0b'&&locale!=='KO'){parts.push(v.slice(start,i));seps.push('\uff0b');start=i+1;}}parts.push(v.slice(start));return {parts,seps};}
+const NUM_UNIT=/\d[\d.,]*(?:[\u30a0-\u30ff]+|[\u3400-\u9fff])|[\u30a1-\u30fa\u30fc]{2,}/g;
+function appendNum(el,s){if(locale==='KO'){el.append(document.createTextNode(s));return;}let last=0;for(const m of s.matchAll(NUM_UNIT)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));el.append(span('nw',m[0]));last=m.index+m[0].length;}if(last<s.length)el.append(document.createTextNode(s.slice(last)));}
 /* language versions: a long part (more than 8 CJK / 14 other characters) may wrap inside itself; short parts stay whole ('面膜' never splits) */
-function setParts(el,v){el.textContent='';topSplit(v||'').forEach((p,i)=>{if(i)el.append(span('plus',' + '));const s=span('seg',p);if(locale!=='KO'&&p.length>(/[\u3040-\u30ff\u3400-\u9fff]/.test(p)?8:14))s.classList.add('segw');el.append(s);});}
+function setParts(el,v){el.textContent='';const t=topSplit(v||'');t.parts.forEach((p,i)=>{if(i)el.append(t.seps[i-1]===' + '?span('plus',' + '):document.createTextNode(t.seps[i-1]));const s=span('seg','');if(locale!=='KO'&&p.length>(/[\u3040-\u30ff\u3400-\u9fff]/.test(p)?8:14))s.classList.add('segw');appendNum(s,p);el.append(s);});}
 function setHours(el,v){el.textContent='';const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');if(!m){el.textContent=v||'';return;}
  el.append(span('hd',m[1]),document.createTextNode(m[2]),span('ht',m[3]));}
 /* 2026-11-10 language versions: international numbers ('+82 10-7215-7511', '+82-2-336-7511') never break (Korean copy has none, so Korean is unchanged) */
-const KEEP=/(BEAUTY BLOSSOM|\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|최대 49%|7% 추가 할인!|할인가 제공!|조기 종료될|안내드립니다\.|적용이 불가합니다\.|6CC 까지 가능|\d+V|\d+cc|\d+샷|\d+kJ|\d+회)/g;
+/* 2026-11-11: floor / house numbers of the language addresses ('6樓', '8階', '66號') stay whole too (no Korean copy has them) */
+const KEEP=/(BEAUTY BLOSSOM|\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|02-336-7511|\d+[樓楼階號号]|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|최대 49%|7% 추가 할인!|할인가 제공!|조기 종료될|안내드립니다\.|적용이 불가합니다\.|6CC 까지 가능|\d+V|\d+cc|\d+샷|\d+kJ|\d+회)/g;
 function appendKept(el,s){let last=0;KEEP.lastIndex=0;for(const m of s.matchAll(KEEP)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));el.append(span('nw',m[0]));last=m.index+m[0].length;}if(last<s.length)el.append(document.createTextNode(s.slice(last)));}
 /* emphasis on the percentage inside the EVENT 01 line ('7%') */
 function setEm(el,v){el.textContent='';v=v||'';const m=/(\d+%)/.exec(v);if(!m){appendTail(el,v);return;}
  const pre=v.slice(0,m.index),post=v.slice(m.index+m[0].length);if(pre)el.append(document.createTextNode(pre));el.append(span('em',m[0]));if(post)appendTail(el,post,true);}
 /* widow guard: Korean and English keep the last two words together, Chinese and Japanese the last three characters, Thai none (dictionary breaks) */
+/* 2026-11-11 Chinese / Japanese: the kept tail grows back to the start of its word, so a short heading or quote never splits a word at its last break
+   ('原廠正品・足量施作' breaks after '・', '個人化專屬諮詢' before '專屬', '陪伴您一起展現自然之美。' before '自然'); at most 5 characters (punctuation aside), else the 3-character tail stays */
+const CJK={JP:1,CN:1,TW:1,HK:1},SEGS={};
+function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;
+ const sep=Math.max(v.lastIndexOf('・'),v.lastIndexOf('·'));if(sep>0&&sep+1<cut&&core(sep+1)<=5)return sep+1;
+ let seg=SEGS[locale];if(seg===undefined){try{seg=SEGS[locale]=new Intl.Segmenter(LANG[locale],{granularity:'word'});}catch(e){seg=SEGS[locale]=null;}}if(!seg)return cut;
+ let start=0;for(const g of seg.segment(v)){if(g.index>cut)break;start=g.index;}
+ return start>0&&start<cut&&core(start)<=5?start:cut;}
 function appendTail(el,v,noReset){if(!noReset)el.textContent='';const m=locale==='KO'||locale==='EN'?v.match(/(\S+[ \t]+\S+)$/):locale==='TH'?null:v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(!m||m[1].length>=v.length){appendKept(el,v);return;}
  let cut=v.length-m[1].length;
  /* language versions: the kept tail never starts inside a kept phrase (a phone number stays whole: 'WhatsApp：+82 10-7215-7511') */
+ if(CJK[locale])cut=cjkCut(v,cut);
  if(locale!=='KO'){for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;if(cut<=0){appendKept(el,v);return;}}
  appendKept(el,v.slice(0,cut));el.append(span('nw',v.slice(cut)));}
 const GUARD='.p-lead,.ev-l1,.pmod,.tl-mod,.fine [data-copy],.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy]';
@@ -77,7 +91,7 @@ function fit(){
  for(const el of document.querySelectorAll('.pname')){if(phone||SIZED){el.style.removeProperty('--fit');continue;}fitLines(el,1,.82);}
  for(const el of document.querySelectorAll('.ab-title,.ab-strengths .at')){if(phone||(SIZED&&locale==='KO')){el.style.removeProperty('--fit');continue;}if(locale!=='KO'){if(el.matches('.at'))fitLines(el,3,.86);else fitLines(el,2,.74);continue;}fitLines(el,2,.74);}
  /* language versions: the international phone number may come down by at most 15 % to fit the booking box (Korean never shrinks) */
- for(const el of document.querySelectorAll('.bk-phone')){if(locale==='KO'||phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.85);}
+ for(const el of document.querySelectorAll('.bk-phone')){if(locale==='KO'||phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,el.classList.contains('is-id')?.66:.85);}
 }
 const LINE_SPLIT=SIZE==='line'?new Map([...document.querySelectorAll('section.c2a:not([data-size-only])')].map(el=>[el,el.innerHTML])):new Map();
 function prepareLineParts(){
@@ -111,6 +125,10 @@ function render(){
  for(const el of document.querySelectorAll('[data-alt]'))el.alt=fields[el.dataset.alt]??'';
  const CH=(DATA.channels&&DATA.channels[locale])||null;
  for(const a of document.querySelectorAll('a[data-link]')){const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}}
+ /* 2026-11-11 TW team edit: the phone line may hold a LINE / WeChat ID instead of a number; then a chat icon and the booking link replace the phone icon and tel: */
+ for(const p of document.querySelectorAll('.bk-phone')){const s=p.querySelector('[data-copy]'),v=String((s&&fields[s.dataset.copy])??'').trim(),id=!!v&&!/^\+?\d[\d\s\-().]*$/.test(v);p.classList.toggle('is-id',id);
+  const img=p.querySelector('img.ico-phone'),pic=id?['assets/icons/consult.webp','360','307']:['assets/icons/phone.webp','278','292'];if(img&&img.getAttribute('src')!==pic[0]){img.setAttribute('src',pic[0]);img.setAttribute('width',pic[1]);img.setAttribute('height',pic[2]);}
+  const a=p.querySelector('a[data-link]');if(!a)continue;if(id){const b=(CH&&CH.booking)||(DATA.links&&DATA.links.booking);if(b)a.href=b;a.target='_blank';a.rel='noopener noreferrer';}else{a.removeAttribute('target');a.removeAttribute('rel');}}
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;
  for(const el of document.querySelectorAll('[data-gmap]')){const u=GM&&GM[el.dataset.gmap];if(!u)continue;const a=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(a)!==u)el.setAttribute(a,u);}
