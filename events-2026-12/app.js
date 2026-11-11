@@ -173,16 +173,32 @@
     }).filter(Boolean).sort(function (a, b) { return a.n - b.n; });
   }
 
-  function a4Layout(n) {
+  /* 2026-11-11 print sheets (team: "A4 출력 시 이미지가 잘립니다, PNG·PDF 모두 여유 공간 없이 출력" + "A6도 낱장으로"): 300dpi paper,
+     a white outer margin (default 10mm, office printers never reach it), a rounded panel inside it and the 4:5 cards in the grid that makes them largest. */
+  var PAPERS = {
+    a4: { id: 'a4', label: 'A4', mm: [210, 297], w: 2480, h: 3508, pt: [595.28, 841.89] },
+    a6: { id: 'a6', label: 'A6', mm: [105, 148], w: 1240, h: 1748, pt: [297.64, 419.53] },
+  };
+  function mmPx(mm) { return Math.round(mm * 300 / 25.4); }
+  function sheetLayout(n, paperId, marginMm, aspect) {
+    var P = PAPERS[paperId] || PAPERS.a4, m = mmPx(Math.max(0, Number(marginMm) || 0)), ar = aspect || 1350 / 1080;
     n = Math.max(0, Number(n) || 0);
-    if (n <= 0) return [];
-    if (n === 1) return [{ x: 80, y: 304, w: 2320, h: 2900 }]; /* 2026-11-04: print margin about 7mm */
-    var gap = 60, w = n === 2 ? 1331 : 1150, h = n === 2 ? 1664 : 1437, cols = n === 2 ? 1 : 2, rows = Math.ceil(n / cols);
-    if (rows * h + (rows - 1) * gap > 3508) h = Math.floor((3508 - (rows - 1) * gap) / rows);
-    var totalH = rows * h + (rows - 1) * gap, y0 = Math.floor((3508 - totalH) / 2), out = [];
-    for (var i = 0; i < n; i++) { var row = Math.floor(i / cols), count = row === rows - 1 && n % cols ? n % cols : cols, rowW = count * w + (count - 1) * gap, col = i % cols; out.push({ x: Math.floor((2480 - rowW) / 2) + col * (w + gap), y: y0 + row * (h + gap), w: w, h: h }); }
+    var panel = { x: m, y: m, w: P.w - 2 * m, h: P.h - 2 * m }, pad = Math.round(Math.min(panel.w, panel.h) * 0.035), gap = Math.round(P.w * 0.024);
+    var inner = { x: panel.x + pad, y: panel.y + pad, w: panel.w - 2 * pad, h: panel.h - 2 * pad }, out = { paper: P, margin: m, panel: panel, boxes: [] };
+    if (!n) return out;
+    var best = null;
+    for (var cols = 1; cols <= Math.min(n, 4); cols++) {
+      var rows = Math.ceil(n / cols), cw = Math.min((inner.w - (cols - 1) * gap) / cols, (inner.h - (rows - 1) * gap) / rows / ar);
+      if (!best || cw > best.w + 0.5) best = { cols: cols, rows: rows, w: cw };
+    }
+    var w = Math.floor(best.w), h = Math.floor(best.w * ar), totalH = best.rows * h + (best.rows - 1) * gap, y0 = inner.y + Math.floor((inner.h - totalH) / 2);
+    for (var i = 0; i < n; i++) {
+      var row = Math.floor(i / best.cols), count = row === best.rows - 1 && n % best.cols ? n % best.cols : best.cols, rowW = count * w + (count - 1) * gap, col = i % best.cols;
+      out.boxes.push({ x: inner.x + Math.floor((inner.w - rowW) / 2) + col * (w + gap), y: y0 + row * (h + gap), w: w, h: h });
+    }
     return out;
   }
+  function a4Layout(n, marginMm) { return sheetLayout(n, 'a4', marginMm == null ? 10 : marginMm).boxes; }
 
   function collectOffers(fields) {
     var byN = {};
@@ -1348,41 +1364,118 @@
       }
       setTimer(check,60);
     }
+    /* 2026-11-11 download form modelled on MiriCanvas's download panel (team: "A6도 낱장으로 선택해서 뽑게, 미리캔버스처럼", user: "버튼이 헷갈려, 초보자도 이해하기 쉽게").
+       ① 어디에 쓰나요 (온라인 크기 또는 원내 인쇄 A4·A6) → ② 파일 형식 → ③ 받을 장 고르기 (+ 합치기 / 담는 방식 / 여백) → 다운로드 정보와 다운로드 버튼 하나.
+       Test hooks: .img-dl-sizes [data-size], [data-dl-fmt], [data-dl-pages="all"], [data-dl-page="N"], [data-dl-merge], [data-dl-layout], [data-dl-margin], [data-action="dl-go"]. */
+    var DL_MARGINS = [[0, '없음', '인쇄소 재단용'], [5, '좁게', '5mm'], [10, '보통', '10mm · 권장'], [15, '넓게', '15mm']];
     function downloadBar(it) {
       var spec = capSpec(it); if (!spec || !env.downloadBlob) return null;
-      state.dlSize = state.dlSize || {};
-      var sizes = sizesOf(it), cur = sizeById(state.dlSize[it.id] || 'home'); if (sizes.indexOf(cur) < 0) cur = SIZES[0];
-      var nums1 = []; for (var q = 1; q <= spec.n; q++) nums1.push(q);
-      var status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' });
-      var buttons = [];
-      var btn = function (text, action, nums, mode, cls) { var b = H('button', { type: 'button', class: 'btn small' + (cls ? ' ' + cls : ''), 'data-action': action, text: text, onclick: function () { run(nums, mode); } }); buttons.push(b); return b; };
-      function run(nums, mode) { if(state.sizeSwitchBusy){status.textContent='편집 규격을 바꾸는 중입니다. 잠시 뒤 받아 주세요.';return;} if (state.capture) { status.textContent = '이미 이미지를 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } buttons.forEach(function (b) { b.disabled = true; }); captureCards(it, state.locale, nums, mode, function (m) { status.textContent = m; }, cur.id).then(function (m) { status.textContent = m; }, function (e) { status.textContent = '받지 못했습니다: ' + (e && e.message || e); }).then(function () { buttons.forEach(function (b) { b.disabled = false; }); }); }
-      var longBtn = btn(spec.n + '장 이어서 길게 1장', 'img-long', nums1, 'long', 'primary');
-      var homeNote = '서버에 저장된 지금 문구 그대로 받습니다. 장별은 1080×1350, 길게는 1080×' + (1350 * spec.n) + ' PNG입니다.' + (spec.sel === '[data-card]' ? ' 히어로·2번 섹션은 디자인 선택에서 고른 안만 씁니다. 말풍선 핀은 들어가지 않습니다.' : '');
-      var note = H('p', { class: 'img-dl-note', text: homeNote });
-      var sizeBtns = [];
-      var sizeRow = sizes.length > 1 ? H('div', { class: 'img-dl-row img-dl-sizes', role: 'group', 'aria-label': '사이즈' }, [H('strong', { class: 'img-dl-label', text: '사이즈' })].concat(sizes.map(function (s) {
-        var b = H('button', { type: 'button', class: 'btn small size-btn', 'data-size': s.id, text: s.label + ' ' + s.w + '×' + s.h, onclick: function () { if (state.capture) return; if (cur !== s) status.textContent = ''; /* the last result named the old size */ var previous=cur; cur = s; state.dlSize[it.id] = s.id; refreshSize(); switchPreviewSize(it,s.id,function(ok){if(!ok){cur=previous;state.dlSize[it.id]=previous.id;refreshSize();}}); } });
-        sizeBtns.push(b); return b;
-      }))) : null;
-      var host = H('div', { class: 'img-download', 'data-img-download': it.id }, [
-        sizeRow,
-        H('div', { class: 'img-dl-row' }, [H('strong', { class: 'img-dl-label', text: '이미지 받기' }), H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '장별로 받기' }, nums1.map(function (n) { return btn(n + '장', 'img-card-' + n, [n], 'single'); }).concat([btn(spec.n + '장 모두 따로', 'img-cards-all', nums1, 'single')])), longBtn]),
-        note, status,
+      state.dlSize = state.dlSize || {}; state.dlForm = state.dlForm || {};
+      var sizes = sizesOf(it), all = []; for (var q = 1; q <= spec.n; q++) all.push(q);
+      var f = state.dlForm[it.id] || (state.dlForm[it.id] = { use: state.dlSize[it.id] || 'home', fmt: 'png', pages: all.slice(), merge: false, pfmt: 'pdf', ppages: null, layout: 'together', margin: 10, price: [] });
+      if (!PAPERS[f.use] && !sizes.some(function (s) { return s.id === f.use; })) f.use = 'home';
+      var isPrint = function () { return !!PAPERS[f.use]; };
+      var pagesNow = function () { return isPrint() ? (f.ppages || (f.price.length ? f.price : all)) : f.pages; };
+      var controls = [], status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' });
+      var chip = function (props, title, desc) { var b = H('button', Object.assign({ type: 'button', class: 'btn small img-dl-chip', 'aria-pressed': 'false' }, props), [H('span', { class: 'img-dl-chip-t', text: title }), H('span', { class: 'img-dl-chip-d', text: desc || '' })]); controls.push(b); return b; };
+      var setDesc = function (b, text) { var d = b.querySelector('.img-dl-chip-d'); if (d && d.textContent !== text) d.textContent = text; };
+      var press = function (b, on) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); };
+      var step = function (no, text, hint) { return H('div', { class: 'img-dl-step-head' }, [H('span', { class: 'img-dl-no', 'aria-hidden': 'true', text: no }), H('strong', { class: 'img-dl-label', text: text }), hint ? H('span', { class: 'img-dl-hint', text: hint }) : null]); };
+      var row = function (label, aria, kids, cls) { return H('div', { class: 'img-dl-row' + (cls ? ' ' + cls : ''), role: 'group', 'aria-label': aria }, [label ? H('span', { class: 'img-dl-sub', text: label }) : null].concat(kids)); };
+      var useBtns = [], useBtn = function (id, title, desc) { var b = chip({ 'data-size': id, onclick: function () { pickUse(id); } }, title, desc); b.classList.add('size-btn'); useBtns.push(b); return b; };
+      var step1 = H('div', { class: 'img-dl-step' }, [step('1', '어디에 쓰나요?', '온라인 크기를 고르면 위 시안도 그 크기로 바뀝니다.'),
+        row('온라인', '사이즈', sizes.map(function (s) { return useBtn(s.id, s.label, s.w + '×' + s.h + ' px'); }), 'img-dl-sizes'),
+        row('원내 인쇄', '인쇄 용지', [useBtn('a4', 'A4 용지', '210×297mm'), useBtn('a6', 'A6 용지', '105×148mm')], 'img-dl-sizes')]);
+      var fmtBtns = { png: chip({ 'data-dl-fmt': 'png', onclick: function () { setFmt('png'); } }, '이미지 PNG', ''), pdf: chip({ 'data-dl-fmt': 'pdf', onclick: function () { setFmt('pdf'); } }, 'PDF', '') };
+      var step2 = H('div', { class: 'img-dl-step' }, [step('2', '파일 형식'), row('', '파일 형식', [fmtBtns.png, fmtBtns.pdf])]);
+      var allBtn = chip({ 'data-dl-pages': 'all', onclick: function () { setPages(pagesNow().length === all.length ? [] : all.slice()); } }, '모두', '');
+      var pageBtns = all.map(function (n) { return chip({ 'data-dl-page': String(n), onclick: function () { var cur = pagesNow().slice(), k = cur.indexOf(n); if (k >= 0) cur.splice(k, 1); else cur.push(n); cur.sort(function (a, b) { return a - b; }); setPages(cur); } }, n + '장', ''); });
+      var mergeBox = H('input', { type: 'checkbox', 'data-dl-merge': '1', onchange: function () { f.merge = mergeBox.checked; sync(); } }), mergeText = H('span'), mergeRow = H('label', { class: 'img-dl-opt' }, [mergeBox, mergeText]); controls.push(mergeBox);
+      var layoutBtns = { together: chip({ 'data-dl-layout': 'together', onclick: function () { f.layout = 'together'; sync(); } }, '한 장에 모두 모아서', ''), each: chip({ 'data-dl-layout': 'each', onclick: function () { f.layout = 'each'; sync(); } }, '카드마다 한 장씩', '') };
+      var layoutRow = row('담는 방식', '담는 방식', [layoutBtns.together, layoutBtns.each]);
+      var marginBtns = DL_MARGINS.map(function (m) { return chip({ 'data-dl-margin': String(m[0]), onclick: function () { f.margin = m[0]; sync(); } }, m[1], m[2]); });
+      var marginRow = row('여백', '여백', marginBtns);
+      var step3 = H('div', { class: 'img-dl-step' }, [step('3', '받을 장 고르기', '누른 장만 받습니다.'), row('', '받을 장', [allBtn].concat(pageBtns)), mergeRow, layoutRow, marginRow]);
+      var infoList = H('ul', { class: 'img-dl-info-list' }), sheet = H('div', { class: 'img-dl-sheet', 'aria-hidden': 'true' });
+      var info = H('div', { class: 'img-dl-info' }, [H('div', { class: 'img-dl-info-main' }, [H('strong', { text: '다운로드 정보' }), infoList]), sheet]);
+      var tip = H('p', { class: 'img-dl-note', text: '인쇄 창에서 배율을 "실제 크기"(100%)로 두면 고른 여백 그대로 나오고, "용지에 맞춤"으로 인쇄해도 잘리지 않습니다.' });
+      var goBtn = H('button', { type: 'button', class: 'btn primary img-dl-go', 'data-action': 'dl-go', onclick: function () { go(); } }); controls.push(goBtn);
+      var note = spec.sel === '[data-card]' ? H('p', { class: 'img-dl-note', text: '히어로·2번 섹션은 디자인 선택에서 고른 안만 들어가고, 말풍선 핀은 들어가지 않습니다.' }) : null;
+      var host = H('div', { class: 'img-download img-dl-panel', 'data-img-download': it.id }, [
+        H('div', { class: 'img-dl-head' }, [H('strong', { text: '파일 받기' }), H('span', { class: 'img-dl-hint', text: '지금 서버에 저장된 문구 그대로 만듭니다.' })]),
+        step1, step2, step3, info, tip, H('div', { class: 'img-dl-go-row' }, [goBtn, status]), note,
       ].filter(Boolean));
-      function refreshSize() {
-        sizeBtns.forEach(function (b) { var on = b.getAttribute('data-size') === cur.id; b.className = 'btn small size-btn' + (on ? ' primary' : ''); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
-        longBtn.hidden = cur.id !== 'home';
-        note.textContent = cur.id === 'home' ? homeNote : '서버에 저장된 지금 문구 그대로 받습니다. ' + cur.label + ' ' + cur.w + '×' + cur.h + ' PNG입니다. 한 장에 다 들어가지 않는 장은 나눠서 받습니다(예: 2장-1, 2장-2). 히어로·2번 섹션은 디자인 선택에서 고른 안만 씁니다.';
-        if (a4) a4.hidden = cur.id !== 'home' || !a4.childNodes.length;
+      function pickUse(id) {
+        if (state.capture || id === f.use) return;
+        var prev = f.use, prevSize = state.dlSize[it.id] || 'home', sizeId = PAPERS[id] ? 'home' : id;
+        f.use = id; state.dlSize[it.id] = sizeId; status.textContent = ''; sync();
+        if (sizeId !== prevSize) switchPreviewSize(it, sizeId, function (ok) { if (!ok) { f.use = prev; state.dlSize[it.id] = prevSize; sync(); } });
       }
-      var a4 = H('div', { class: 'a4-dl-group', hidden: true }); host.appendChild(a4);
-      a4CardsFor(it).then(function (cards) { if (!cards.length) return; var a4Status = H('p', { class: 'img-dl-status', role: 'status', 'aria-live': 'polite' }); var group = H('span', { class: 'img-dl-group', role: 'group', 'aria-label': '원내 배치용 A4 다운로드' }); var runA4 = function (mode) { if (state.capture) { a4Status.textContent = '이미 파일을 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; } a4CardsFor(it).then(function (latest) { return captureA4(it, state.locale, latest, mode, function (m) { a4Status.textContent = m; }); }).then(function (m) { a4Status.textContent = m; }, function (e) { a4Status.textContent = '받지 못했습니다: ' + (e && e.message || e); }); };
-        group.appendChild(H('button', { type: 'button', class: 'btn small primary', text: 'A4 한 장 PNG', onclick: function () { runA4('one-png'); } })); group.appendChild(H('button', { type: 'button', class: 'btn small', text: 'A4 한 장 PDF', onclick: function () { runA4('one-pdf'); } })); if (cards.length >= 2) group.appendChild(H('button', { type: 'button', class: 'btn small', text: '카드별 A4 PDF (' + cards.length + '쪽)', onclick: function () { runA4('per-card-pdf'); } }));
-        a4.appendChild(H('strong', { class: 'img-dl-label', text: '원내 배치용 A4 (210×297mm)' })); a4.appendChild(group); a4.appendChild(H('p', { class: 'img-dl-note', text: '금액 카드 ' + cards.length + '장을 A4 한 장(210×297mm, 300dpi)에 담습니다.' })); a4.appendChild(a4Status); a4.hidden = cur.id !== 'home';
-      }, function () { /* no A4 group when the page has no price cards */ });
-      if (sizeRow) refreshSize();
+      function setFmt(v) { if (isPrint()) f.pfmt = v; else f.fmt = v; sync(); }
+      function setPages(list) { if (isPrint()) f.ppages = list; else f.pages = list; sync(); }
+      function plan() {
+        var pr = isPrint(), sel = pagesNow().slice(), k = sel.length, fmt = pr ? f.pfmt : f.fmt, size = pr ? SIZES[0] : sizeById(f.use), paper = pr ? PAPERS[f.use] : null;
+        var together = pr && f.use === 'a4' && f.layout === 'together', canMerge = !pr && k >= 2 && (fmt === 'pdf' || size.id === 'home'), merged = canMerge && !!f.merge;
+        var sheets = pr ? (together ? 1 : k) : 0, files = pr ? (fmt === 'pdf' ? 1 : sheets) : (merged ? 1 : k);
+        return { pr: pr, sel: sel, k: k, fmt: fmt, size: size, paper: paper, together: together, canMerge: canMerge, merged: merged, sheets: sheets, files: files };
+      }
+      function sync() {
+        var p = plan();
+        useBtns.forEach(function (b) { press(b, b.getAttribute('data-size') === f.use); });
+        press(fmtBtns.png, p.fmt === 'png'); press(fmtBtns.pdf, p.fmt === 'pdf');
+        setDesc(fmtBtns.png, p.pr ? '이미지로 보관·공유할 때' : '홈페이지·SNS에 올릴 때');
+        setDesc(fmtBtns.pdf, p.pr ? '인쇄 권장 · 크기 그대로 인쇄' : '문서로 보내거나 인쇄할 때');
+        press(allBtn, p.k === all.length);
+        pageBtns.forEach(function (b, i) { press(b, p.sel.indexOf(i + 1) >= 0); setDesc(b, p.pr && f.price.indexOf(i + 1) >= 0 ? '금액' : ''); });
+        mergeRow.hidden = !p.canMerge; mergeBox.checked = !!f.merge;
+        mergeText.textContent = p.fmt === 'pdf' ? 'PDF 한 개로 합치기 (장마다 한 쪽씩)' : '긴 이미지 한 장으로 합치기 (위아래로 이어 붙임)';
+        layoutRow.hidden = !(p.pr && f.use === 'a4');
+        press(layoutBtns.together, f.layout === 'together'); press(layoutBtns.each, f.layout !== 'together');
+        marginRow.hidden = !p.pr;
+        marginBtns.forEach(function (b) { press(b, Number(b.getAttribute('data-dl-margin')) === f.margin); });
+        var lines = [];
+        if (!p.k) lines.push('받을 장을 1개 이상 골라 주세요.');
+        else if (p.pr) {
+          lines.push(p.paper.label + ' ' + p.paper.mm[0] + '×' + p.paper.mm[1] + 'mm ' + p.sheets + '쪽' + (p.together ? (p.k > 1 ? ' (카드 ' + p.k + '장을 한 쪽에 모아서)' : ' (카드 1장)') : ' (카드마다 한 쪽)'));
+          lines.push(p.fmt === 'pdf' ? 'PDF 파일 1개' + (p.sheets > 1 ? ' (' + p.sheets + '쪽)' : '') : 'PNG 파일 ' + p.sheets + '개');
+          lines.push((f.margin ? '바깥 흰 여백 ' + f.margin + 'mm' : '여백 없음 (인쇄소에서 재단할 때)') + ' · 300dpi');
+        } else {
+          if (p.fmt === 'pdf') lines.push(p.merged ? 'PDF 파일 1개 (고른 ' + p.k + '장)' : 'PDF 파일 ' + p.k + '개 (장마다 1개)');
+          else lines.push(p.merged ? 'PNG 파일 1개 (' + p.k + '장을 이어 붙인 긴 이미지)' : 'PNG 파일 ' + p.k + '개');
+          lines.push(p.merged && p.fmt === 'png' ? p.size.w + '×' + (p.size.h * p.k) + ' px' : p.size.label + ' ' + p.size.w + '×' + p.size.h + ' px' + (p.fmt === 'pdf' ? ' · 인쇄해도 선명한 2배 해상도' : ''));
+          if (p.size.id !== 'home') lines.push('한 장에 다 들어가지 않는 장은 나눠서 받습니다 (예: 2장-1, 2장-2).');
+        }
+        infoList.textContent = ''; lines.forEach(function (l) { infoList.appendChild(H('li', { text: l })); });
+        sheet.hidden = !(p.pr && p.k); if (p.pr && p.k) drawSheet(sheet, p.paper, p.together ? p.sel : [p.sel[0]], f.margin, p.sheets);
+        tip.hidden = !p.pr;
+        goBtn.disabled = !p.k || !!state.capture;
+        goBtn.textContent = p.k ? '다운로드 (' + (p.fmt === 'pdf' ? 'PDF ' : 'PNG ') + p.files + '개)' : '받을 장을 골라 주세요';
+      }
+      function go() {
+        if (state.sizeSwitchBusy) { status.textContent = '편집 규격을 바꾸는 중입니다. 잠시 뒤 받아 주세요.'; return; }
+        if (state.capture) { status.textContent = '이미 파일을 만드는 중입니다. 끝난 뒤 다시 눌러 주세요.'; return; }
+        var p = plan(); if (!p.k) { status.textContent = '받을 장을 1개 이상 골라 주세요.'; return; }
+        var say = function (m) { status.textContent = m; };
+        controls.forEach(function (b) { b.disabled = true; });
+        var job = p.pr ? capturePrint(it, state.locale, p.sel, { paper: p.paper.id, together: p.together, margin: f.margin, fmt: p.fmt }, say)
+          : p.fmt === 'pdf' ? capturePdf(it, state.locale, p.sel, p.merged ? 'merged' : 'single', say, p.size.id)
+          : captureCards(it, state.locale, p.sel, p.merged ? 'long' : 'single', say, p.size.id);
+        job.then(say, function (e) { say('받지 못했습니다: ' + (e && e.message || e)); }).then(function () { controls.forEach(function (b) { b.disabled = false; }); sync(); });
+      }
+      a4CardsFor(it).then(function (cards) { f.price = cards || []; sync(); }, function () { /* no price cards: print defaults to every card */ });
+      sync();
       return host;
+    }
+    /* a small sketch of the paper: white margin (dashed edge), the panel and where each card goes */
+    function drawSheet(el, paper, nums, marginMm, pages) {
+      var L = sheetLayout(nums.length, paper.id, marginMm), P = L.paper, pct = function (v, total) { return (v / total * 100).toFixed(2) + '%'; };
+      var box = function (cls, r, text) { var d = H('div', { class: cls, text: text || null }); d.style.left = pct(r.x, P.w); d.style.top = pct(r.y, P.h); d.style.width = pct(r.w, P.w); d.style.height = pct(r.h, P.h); return d; };
+      var sheetEl = H('div', { class: 'img-dl-paper' + (paper.id === 'a6' ? ' a6' : '') }); sheetEl.style.aspectRatio = P.w + ' / ' + P.h;
+      sheetEl.appendChild(box('img-dl-paper-panel' + (L.margin ? '' : ' bleed'), L.panel));
+      L.boxes.forEach(function (r, i) { sheetEl.appendChild(box('img-dl-paper-card', r, String(nums[i]))); });
+      el.textContent = '';
+      el.appendChild(sheetEl);
+      el.appendChild(H('span', { class: 'img-dl-paper-cap', text: paper.label + (pages > 1 ? ' × ' + pages + '쪽' : ' 1쪽') + (L.margin ? ' · 여백 ' + marginMm + 'mm' : ' · 여백 없음') }));
     }
     function refreshForCapture(){
       var a=state.aptos,started=Date.now();
@@ -1392,6 +1485,39 @@
         if((a&&a.editing)||state.saving){if(Date.now()-started>=10000){reject(new Error('저장하지 못한 수정이 있습니다. 먼저 저장하거나 취소해 주세요.'));return;}setTimer(check,60);return;}
         store.refresh().then(resolve,reject);
       }setTimer(check,60);});
+    }
+    /* 2026-11-11 (team: "A4 출력 시 이미지가 잘립니다"): boxes laid out with CSS columns (combo12a 2장 가격표, blackfriday11 라인 가격표 …) re-flow
+       differently inside the screenshot copy, so a price group could slip into a third column outside the card and be cut off. Right before drawing,
+       every child of such a box is pinned where the page really shows it and the column rule is redrawn as a thin background bar. Capture frame only. */
+    function freezeColumns(iwin, root) {
+      var px = function (v) { return parseFloat(v) || 0; };
+      [root].concat(Array.prototype.slice.call(root.querySelectorAll('*'))).forEach(function (mc) {
+        var cs = iwin.getComputedStyle(mc), n = parseInt(cs.columnCount, 10);
+        if (cs.display === 'none' || (!(n > 1) && cs.columnWidth === 'auto')) return;
+        if (Array.prototype.some.call(mc.childNodes, function (x) { return x.nodeType === 3 && x.textContent.trim(); })) return; /* loose text cannot be pinned */
+        var kids = Array.prototype.filter.call(mc.children, function (k) { var s = iwin.getComputedStyle(k); return s.display !== 'none' && s.position !== 'absolute' && s.position !== 'fixed'; });
+        if (!kids.length) return;
+        var r = mc.getBoundingClientRect(), bl = px(cs.borderLeftWidth), br = px(cs.borderRightWidth), bt = px(cs.borderTopWidth), bb = px(cs.borderBottomWidth);
+        var pl = px(cs.paddingLeft), pr = px(cs.paddingRight), pt = px(cs.paddingTop), pb = px(cs.paddingBottom);
+        var contentW = r.width - bl - br - pl - pr, gap = cs.columnGap === 'normal' ? px(cs.fontSize) || 16 : px(cs.columnGap);
+        var cols = n > 1 ? n : Math.max(1, Math.floor((contentW + gap) / ((px(cs.columnWidth) || contentW) + gap))), colW = (contentW - (cols - 1) * gap) / cols;
+        var pins = kids.map(function (k) { var q = k.getBoundingClientRect(), s = iwin.getComputedStyle(k); return { k: k, x: q.left - r.left - bl - px(s.marginLeft), y: q.top - r.top - bt - px(s.marginTop), w: q.width }; });
+        if (pins.some(function (p) { return p.w > colW + 2; })) return; /* a child split over two columns: leave the box alone */
+        var rw = px(cs.columnRuleWidth), bars = [];
+        if (cs.columnRuleStyle !== 'none' && rw > 0) for (var i = 0; i < cols - 1; i++) bars.push({ x: pl + (i + 1) * colW + i * gap + gap / 2 - rw / 2 });
+        mc.style.boxSizing = 'border-box'; mc.style.height = r.height + 'px'; mc.style.columnCount = 'auto'; mc.style.columnWidth = 'auto'; mc.style.columnRuleStyle = 'none';
+        if (cs.position === 'static') mc.style.position = 'relative';
+        if (bars.length) {
+          var hasImg = cs.backgroundImage && cs.backgroundImage !== 'none', join = function (mine, theirs) { return mine.join(', ') + (hasImg ? ', ' + theirs : ''); }, h = Math.max(0, r.height - bt - bb - pt - pb);
+          mc.style.backgroundImage = join(bars.map(function () { return 'linear-gradient(' + cs.columnRuleColor + ', ' + cs.columnRuleColor + ')'; }), cs.backgroundImage);
+          mc.style.backgroundSize = join(bars.map(function () { return rw + 'px ' + h + 'px'; }), cs.backgroundSize);
+          mc.style.backgroundPosition = join(bars.map(function (b) { return b.x + 'px ' + pt + 'px'; }), cs.backgroundPosition);
+          mc.style.backgroundRepeat = join(bars.map(function () { return 'no-repeat'; }), cs.backgroundRepeat);
+          mc.style.backgroundOrigin = join(bars.map(function () { return 'padding-box'; }), cs.backgroundOrigin);
+          mc.style.backgroundClip = join(bars.map(function () { return 'padding-box'; }), cs.backgroundClip);
+        }
+        pins.forEach(function (p) { p.k.style.boxSizing = 'border-box'; p.k.style.position = 'absolute'; p.k.style.left = p.x + 'px'; p.k.style.top = p.y + 'px'; p.k.style.width = p.w + 'px'; });
+      });
     }
     function capWait(win, ms) { return new Promise(function (r) { win.setTimeout(r, ms); }); }
     function capPost(cap) { var it=state.data.items.filter(function(i){return i.id===cap.itemId;})[0]; postTo(cap, { type:'aptos-data',locale:cap.locale,fields:cap.fields,formats:effectiveFormats(it,cap.locale,store),editable:false,editMode:false }); }
@@ -1403,8 +1529,10 @@
     function withPhys(blob) {
       return blob.arrayBuffer().then(function (ab) { var src = new Uint8Array(ab), pos = 8, type, len; while (pos + 12 <= src.length) { len = (src[pos] << 24) | (src[pos + 1] << 16) | (src[pos + 2] << 8) | src[pos + 3]; type = String.fromCharCode(src[pos + 4], src[pos + 5], src[pos + 6], src[pos + 7]); if (type === 'IDAT') break; pos += 12 + len; } var data = new Uint8Array(9), dv = new DataView(data.buffer); dv.setUint32(0, 11811); dv.setUint32(4, 11811); data[8] = 1; var chunk = new Uint8Array(21), cd = new DataView(chunk.buffer); cd.setUint32(0, 9); chunk.set([112, 72, 89, 115], 4); chunk.set(data, 8); cd.setUint32(17, crc32(chunk.slice(4, 17))); var out = new Uint8Array(src.length + 21); out.set(src.slice(0, pos)); out.set(chunk, pos); out.set(src.slice(pos), pos + 21); return new Blob([out], { type: 'image/png' }); });
     }
-    function pdfFromCanvases(canvases) {
-      return Promise.all(canvases.map(function (c) { return c.toDataURL('image/jpeg', .92); })).then(function (urls) { var objs = [], kids = [], add = function (s) { objs.push(s); return objs.length; }, bin = function (s) { var a = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) a[i] = s.charCodeAt(i) & 255; return a; }; var catalog = add('<< /Type /Catalog /Pages 2 0 R >>'); add(''); urls.forEach(function (u) { var raw = atob(u.split(',')[1]), img = new Uint8Array(raw.length); for (var i = 0; i < raw.length; i++) img[i] = raw.charCodeAt(i); var io = add('<< /Type /XObject /Subtype /Image /Width 2480 /Height 3508 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + img.length + ' >>\nstream\n' + raw + '\nendstream'); var content = 'q 595.28 0 0 841.89 0 0 cm /Im' + io + ' Do Q\n'; var co = add('<< /Length ' + content.length + ' >>\nstream\n' + content + 'endstream'); var po = add('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im' + io + ' ' + io + ' 0 R >> >> /Contents ' + co + ' 0 R >>'); kids.push(po + ' 0 R'); }); objs[1] = '<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + kids.length + ' >>'; var out = '%PDF-1.4\n%\xff\xff\xff\xff\n', offsets = [0]; objs.forEach(function (o, i) { offsets[i + 1] = out.length; out += (i + 1) + ' 0 obj\n' + o + '\nendobj\n'; }); var x = out.length; out += 'xref\n0 ' + (objs.length + 1) + '\n0000000000 65535 f \n'; offsets.slice(1).forEach(function (n) { out += String(n).padStart(10, '0') + ' 00000 n \n'; }); out += 'trailer\n<< /Size ' + (objs.length + 1) + ' /Root ' + catalog + ' 0 R >>\nstartxref\n' + x + '\n%%EOF'; return new Blob([bin(out)], { type: 'application/pdf' }); });
+    /* pages: [{ canvas, w, h }] with w/h in points; each page holds one JPEG of its canvas (2026-11-11: any page size; A4 output unchanged) */
+    function pdfFromPages(pages) {
+      var num = function (v) { return String(Math.round(v * 100) / 100); };
+      return Promise.all(pages.map(function (p) { return p.canvas.toDataURL('image/jpeg', .92); })).then(function (urls) { var objs = [], kids = [], add = function (s) { objs.push(s); return objs.length; }, bin = function (s) { var a = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) a[i] = s.charCodeAt(i) & 255; return a; }; var catalog = add('<< /Type /Catalog /Pages 2 0 R >>'); add(''); urls.forEach(function (u, k) { var pg = pages[k], raw = atob(u.split(',')[1]); var io = add('<< /Type /XObject /Subtype /Image /Width ' + pg.canvas.width + ' /Height ' + pg.canvas.height + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + raw.length + ' >>\nstream\n' + raw + '\nendstream'); var content = 'q ' + num(pg.w) + ' 0 0 ' + num(pg.h) + ' 0 0 cm /Im' + io + ' Do Q\n'; var co = add('<< /Length ' + content.length + ' >>\nstream\n' + content + 'endstream'); var po = add('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + num(pg.w) + ' ' + num(pg.h) + '] /Resources << /XObject << /Im' + io + ' ' + io + ' 0 R >> >> /Contents ' + co + ' 0 R >>'); kids.push(po + ' 0 R'); }); objs[1] = '<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + kids.length + ' >>'; var out = '%PDF-1.4\n%\xff\xff\xff\xff\n', offsets = [0]; objs.forEach(function (o, i) { offsets[i + 1] = out.length; out += (i + 1) + ' 0 obj\n' + o + '\nendobj\n'; }); var x = out.length; out += 'xref\n0 ' + (objs.length + 1) + '\n0000000000 65535 f \n'; offsets.slice(1).forEach(function (n) { out += String(n).padStart(10, '0') + ' 00000 n \n'; }); out += 'trailer\n<< /Size ' + (objs.length + 1) + ' /Root ' + catalog + ' 0 R >>\nstartxref\n' + x + '\n%%EOF'; return new Blob([bin(out)], { type: 'application/pdf' }); });
     }
     function roundClip(g, x, y, w, h, r) { g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else { g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); } g.closePath(); }
     /* 2026-11-04: the page background is a plain vertical blend of the first card's top edge colour and the last card's bottom edge colour (no blurred copy of the card, no stretched rows) */
@@ -1414,25 +1542,43 @@
       var r = 0, gr = 0, b = 0, k = 0; for (var i = 0; i < d.length; i += 4) { if (d[i + 3] < 200) continue; r += d[i]; gr += d[i + 1]; b += d[i + 2]; k++; }
       return k ? 'rgb(' + Math.round(r / k) + ',' + Math.round(gr / k) + ',' + Math.round(b / k) + ')' : null;
     }
-    function composeA4(cards) {
-      var n = cards.length, positions = a4Layout(n), page = doc.createElement('canvas'); page.width = 2480; page.height = 3508; var g = page.getContext('2d');
-      var top = a4EdgeColor(cards[0], true) || '#ffffff', bottom = a4EdgeColor(cards[n - 1], false) || top, grad = g.createLinearGradient(0, 0, 0, 3508);
-      grad.addColorStop(0, top); grad.addColorStop(1, bottom); g.fillStyle = grad; g.fillRect(0, 0, 2480, 3508);
-      positions.forEach(function (p, i) {
+    /* 2026-11-11: one printed sheet. White paper, the margin stays white, a rounded panel with the cards' edge colours behind the cards (full bleed when margin is 0). */
+    function composeSheet(cards, L) {
+      var P = L.paper, n = cards.length, page = doc.createElement('canvas'); page.width = P.w; page.height = P.h; var g = page.getContext('2d');
+      g.fillStyle = '#ffffff'; g.fillRect(0, 0, P.w, P.h);
+      var top = a4EdgeColor(cards[0], true) || '#ffffff', bottom = a4EdgeColor(cards[n - 1], false) || top, pn = L.panel, grad = g.createLinearGradient(0, pn.y, 0, pn.y + pn.h);
+      grad.addColorStop(0, top); grad.addColorStop(1, bottom); g.fillStyle = grad;
+      if (L.margin > 0) { g.save(); roundClip(g, pn.x, pn.y, pn.w, pn.h, Math.round(P.w * 0.012)); g.fill(); g.restore(); } else g.fillRect(0, 0, P.w, P.h);
+      var r = Math.max(8, Math.round(P.w * 0.0113)), blur = Math.round(P.w * 0.0097), off = Math.round(P.w * 0.0032);
+      L.boxes.forEach(function (p, i) {
         var c = cards[i], s = Math.min(p.w / c.width, p.h / c.height), dw = Math.round(c.width * s), dh = Math.round(c.height * s), dx = p.x + Math.round((p.w - dw) / 2), dy = p.y + Math.round((p.h - dh) / 2);
-        g.save(); roundClip(g, dx, dy, dw, dh, 28); g.shadowColor = 'rgba(0,0,0,.14)'; g.shadowBlur = 24; g.shadowOffsetY = 8; g.fillStyle = top; g.fill(); g.restore();
-        g.save(); roundClip(g, dx, dy, dw, dh, 28); g.clip(); g.drawImage(c, 0, 0, c.width, c.height, dx, dy, dw, dh); g.restore();
+        g.save(); roundClip(g, dx, dy, dw, dh, r); g.shadowColor = 'rgba(0,0,0,.14)'; g.shadowBlur = blur; g.shadowOffsetY = off; g.fillStyle = top; g.fill(); g.restore();
+        g.save(); roundClip(g, dx, dy, dw, dh, r); g.clip(); g.drawImage(c, 0, 0, c.width, c.height, dx, dy, dw, dh); g.restore();
       });
       return page;
     }
-    function captureA4(it, locale, nums, mode, progress) {
-      var win = doc.defaultView, cap = state.capture = { itemId: it.id, locale: locale, el: null, fields: null }, finish = function () { if (cap.el && cap.el.parentNode) cap.el.parentNode.removeChild(cap.el); if (state.capture === cap) state.capture = null; };
-      progress('최신 문구를 확인하는 중…');
-      return refreshForCapture().then(function () { if (!store.online || store.status !== 'ready') throw new Error('서버에 연결되지 않아 최신 문구를 확인할 수 없습니다.'); cap.fields = effectiveFields(it, locale, store); return new Promise(function (resolve, reject) { var f = doc.createElement('iframe'); f.setAttribute('aria-hidden', 'true'); f.style.cssText = 'position:fixed;left:0;top:0;width:1440px;height:1600px;border:0;opacity:0;pointer-events:none;z-index:-1;'; var t = win.setTimeout(function () { reject(new Error('페이지를 불러오지 못했습니다.')); }, 30000); f.addEventListener('load', function () { win.clearTimeout(t); resolve(); }); f.src = it.page + '?lang=' + encodeURIComponent(locale) + PAGE_V + '&capture=1'; cap.el = f; doc.body.appendChild(f); }); }).then(function () { capPost(cap); return capApplied(cap, it, locale); }).then(function () { applyVariantsToDoc(cap.el.contentDocument, it, true); return capPrepare(cap); }).then(function (fontCss) { var iw = cap.el.contentWindow, cards = Array.prototype.filter.call(iw.document.querySelectorAll('[data-card]'), function (c) { var r = c.getBoundingClientRect(); /* 2026-11-06: channel-size sections (data-size-only) stay in the page but are hidden at home size; only shown cards are captured */ return c.querySelectorAll('[data-price-row]').length >= 1 && iw.getComputedStyle(c).display !== 'none' && r.width > 0 && r.height > 0 && !(c.closest && c.closest('[data-app-asset]')); }); if (!cards.length) throw new Error('금액 카드를 찾지 못했습니다.'); var out = [], chain = Promise.resolve(); cards.forEach(function (card, idx) { chain = chain.then(function () { progress('금액 카드 캡처 중 ' + (idx + 1) + '/' + cards.length + '…'); var scale = Math.min(2.4, Math.max(1, (a4Layout(cards.length)[idx] || a4Layout(1)[0]).w / card.getBoundingClientRect().width)); return iw.modernScreenshot.domToCanvas(card, { scale: scale, font: { cssText: fontCss } }).then(function (c) { out.push(c); }); }); }); return chain.then(function () { var one = composeA4(out); if (mode === 'one-png' || mode === 'one-pdf') return capBlob(one).then(withPhys).then(function (b) { if (mode === 'one-png') env.downloadBlob(b, safeBase(it) + '_' + locale + '_A4_원내배치용.png'); return mode === 'one-pdf' ? pdfFromCanvases([one]).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_원내배치용.pdf'); }) : null; }).then(function () { return 'A4 한 장을 받았습니다(금액 카드 ' + cards.length + '장).'; }); var pages = out.map(function (c) { return composeA4([c]); }); return pdfFromCanvases(pages).then(function (p) { env.downloadBlob(p, safeBase(it) + '_' + locale + '_A4_카드별.pdf'); return '카드별 A4 PDF를 받았습니다: ' + cards.length + '쪽'; }); }); }).then(function (m) { finish(); return m; }, function (e) { finish(); throw e; });
+    /* 2026-11-11 print files: the chosen cards (home size, chosen A/B design, saved wording) on A4/A6 paper at 300dpi inside a white margin.
+       o.together = every chosen card on one A4 sheet, otherwise one sheet per card. PDF = one file with one page per sheet, PNG = one file per sheet. */
+    function capturePrint(it, locale, nums, o, progress) {
+      var paper = PAPERS[o.paper] || PAPERS.a4, together = !!o.together, L = sheetLayout(together ? nums.length : 1, paper.id, o.margin), maxW = 1;
+      L.boxes.forEach(function (b) { maxW = Math.max(maxW, b.w); });
+      var scale = Math.min(together || nums.length < 3 ? 2.4 : 1.6, Math.max(1, maxW / CAP.w));
+      return captureParts(it, locale, nums, 'home', progress, { scale: scale }).then(function (res) {
+        var cards = res.out.map(function (x) { return x.canvas; }), win = doc.defaultView;
+        progress('인쇄용 파일로 만드는 중…');
+        var pages = together ? [composeSheet(cards, L)] : cards.map(function (c) { return composeSheet([c], L); });
+        var base = safeBase(it) + '_' + locale + '_' + paper.label + '_', marg = o.margin ? '여백 ' + o.margin + 'mm' : '여백 없음';
+        var tag = together ? '원내배치용' : nums.length === 1 ? nums[0] + '장' : '카드별';
+        if (o.fmt === 'pdf') return pdfFromPages(pages.map(function (c) { return { canvas: c, w: paper.pt[0], h: paper.pt[1] }; })).then(function (pdf) { env.downloadBlob(pdf, base + tag + '.pdf'); return '받았습니다: ' + paper.label + ' PDF 1개 (' + pages.length + '쪽, ' + marg + ')'; });
+        var chain = Promise.resolve();
+        pages.forEach(function (c, i) { chain = chain.then(function () { return capBlob(c).then(withPhys).then(function (b) { env.downloadBlob(b, base + (together ? tag : nums[i] + '장') + '.png'); return i < pages.length - 1 ? capWait(win, 400) : null; }); }); });
+        return chain.then(function () { return '받았습니다: ' + paper.label + ' PNG ' + pages.length + '개 (' + marg + ', 300dpi)'; });
+      });
     }
     /* capture the chosen design's cards at one channel size (2026-11-06); resolves { size, out: [{ n, part, parts, canvas }] }.
        Size modes: the page gets &size=line|kakao, only displayed sections count, and a card may be split into parts (data-part). */
-    function captureParts(it, locale, nums, sizeId, progress) {
+    function captureParts(it, locale, nums, sizeId, progress, opts) {
+      var sc = (opts && opts.scale) || 1; /* 2026-11-11: PDF asks for 2x so print stays sharp */
       var spec = capSpec(it) || { sel: CAP_P5, n: 5 }; CAP.sel = spec.sel; CAP.n = spec.n;
       var size = sizeById(sizeId), win = doc.defaultView;
       var cap = state.capture = { itemId: it.id, locale: locale, el: null, fields: null };
@@ -1481,8 +1627,8 @@
             /* the card is drawn on its own, so give it the page language: CJK fallback fonts and line breaking follow lang */
             var lang = idoc.documentElement.getAttribute('lang');
             if (lang && !j.card.getAttribute('lang')) j.card.setAttribute('lang', lang);
-            return iwin.modernScreenshot.domToCanvas(j.card, { scale: 1, font: { cssText: fontCss } }).then(function (c) {
-              var k = doc.createElement('canvas'); k.width = size.w; k.height = size.h; k.getContext('2d').drawImage(c, 0, 0, size.w, size.h);
+            freezeColumns(iwin, j.card); return iwin.modernScreenshot.domToCanvas(j.card, { scale: sc, font: { cssText: fontCss } }).then(function (c) {
+              var k = doc.createElement('canvas'); k.width = size.w * sc; k.height = size.h * sc; k.getContext('2d').drawImage(c, 0, 0, size.w * sc, size.h * sc);
               out.push({ n: j.n, part: j.part, parts: j.parts, canvas: k });
             });
           });
@@ -1500,7 +1646,7 @@
           var g = big.getContext('2d');
           out.forEach(function (o, i) { g.drawImage(o.canvas, 0, i * size.h, size.w, size.h); });
           return capBlob(big).then(function (b) {
-            env.downloadBlob(b, capName(it, locale, '전체'));
+            env.downloadBlob(b, capName(it, locale, nums.length === ((capSpec(it) || {}).n) ? '전체' : nums.join('-') + '장_이어붙임'));
             return '받았습니다: ' + out.length + '장을 이어 붙인 1장 (' + size.w + '×' + big.height + ')';
           });
         }
@@ -1511,6 +1657,28 @@
           });
         });
         return chain.then(function () { return '받았습니다: ' + out.map(partLabel).join(', ') + ' (각 ' + (size.id !== 'home' ? size.label + ' ' : '') + size.w + '×' + size.h + ')'; });
+      });
+    }
+    function pdfName(it, locale, suffix) { return safeBase(it) + '_' + locale + '_' + suffix + '.pdf'; }
+    /* 2026-11-11: PDF downloads. mode 'single' = one PDF per card (a card split into parts gets one page per part), 'merged' = one PDF, one page per image.
+       Pages are the card size in points (1px = 0.75pt) and hold a 2x capture. */
+    function capturePdf(it, locale, nums, mode, progress, sizeId) {
+      var win = doc.defaultView;
+      return captureParts(it, locale, nums, sizeId || 'home', progress, { scale: 2 }).then(function (res) {
+        var out = res.out, size = res.size, sz = sizeSuffix(size), spec = capSpec(it) || { n: nums.length };
+        var page = function (o) { return { canvas: o.canvas, w: size.w * 0.75, h: size.h * 0.75 }; };
+        progress('PDF로 만드는 중…');
+        if (mode === 'merged') {
+          var tag = nums.length === spec.n ? '전체' : nums.join('-') + '장';
+          return pdfFromPages(out.map(page)).then(function (p) { env.downloadBlob(p, pdfName(it, locale, tag + sz)); return '받았습니다: PDF 1개 (' + out.length + '쪽' + (size.id !== 'home' ? ', ' + size.label + ' ' + size.w + '×' + size.h : '') + ')'; });
+        }
+        var groups = [];
+        out.forEach(function (o) { var g = groups.filter(function (x) { return x.n === o.n; })[0]; if (!g) { g = { n: o.n, pages: [] }; groups.push(g); } g.pages.push(o); });
+        var chain = Promise.resolve();
+        groups.forEach(function (g, i) {
+          chain = chain.then(function () { return pdfFromPages(g.pages.map(page)).then(function (p) { env.downloadBlob(p, pdfName(it, locale, g.n + '장' + sz)); return i < groups.length - 1 ? capWait(win, 400) : null; }); });
+        });
+        return chain.then(function () { return '받았습니다: PDF ' + groups.length + '개 (' + groups.map(function (g) { return g.n + '장' + (g.pages.length > 1 ? ' ' + g.pages.length + '쪽' : ''); }).join(', ') + ')'; });
       });
     }
 
@@ -2867,7 +3035,7 @@
           chain = chain.then(function () {
             progress('이미지를 만드는 중 ' + (i + 1) + '/' + jobs.length + '…');
             if (lang && !j.el.getAttribute('lang')) j.el.setAttribute('lang', lang);
-            return iwin.modernScreenshot.domToCanvas(j.el, { scale: 1, font: { cssText: fontCss } }).then(function (c) { out.push({ key: j.key, canvas: c }); });
+            freezeColumns(iwin, j.el); return iwin.modernScreenshot.domToCanvas(j.el, { scale: 1, font: { cssText: fontCss } }).then(function (c) { out.push({ key: j.key, canvas: c }); });
           });
         });
         return chain.then(function () { return out; });
@@ -2974,7 +3142,7 @@
     cellKey: cellKey, selectedKey: selectedKey, fieldKind: fieldKind, isMultiline: isMultiline,
     collectNumbered: collectNumbered, collectOffers: collectOffers, validateData: validateData,
     createStore: createStore, effectiveFields: effectiveFields, effectiveFormats: effectiveFormats, buildExport: buildExport,
-    createApp: createApp, a4Layout: a4Layout, boot: boot,
+    createApp: createApp, a4Layout: a4Layout, sheetLayout: sheetLayout, PAPERS: PAPERS, boot: boot,
     BOARD_V: BOARD_V, variantKey: variantKey, parseHash: parseHash, apiFromSearch: apiFromSearch, zipStore: zipStore, crc32: crc32,
     planPieces: planPieces, splitPiece: splitPiece, fitLong: fitLong, imagePlan: imagePlan, commentCounts: commentCounts, cardLabel: cardLabel, clampTarget: clampTarget,
     createCommentApi: createCommentApi, APP_PLATFORMS: APP_PLATFORMS, STATUS_COLOR: STATUS_COLOR,
