@@ -29,10 +29,16 @@ html:not([data-locale=KO]) .seg.segw{white-space:normal}
  html:lang(th)[data-size=home] .c2a .pr > .pn{grid-column:2;grid-row:1 / 3}
  html:lang(th)[data-size=home] .c2a .pr > .plist{grid-column:3;grid-row:1;align-self:end;line-height:1.1}
  html:lang(th)[data-size=home] .c2a .pr > .psale{grid-column:3;grid-row:2;align-self:start}
- /* 2 B: two-line names and descriptions make some tile tops taller; the stub (same price size) gives up 10 px of picture height and the top 6 px of padding */
- html:not([data-locale=KO])[data-size=home] .c2b .tl-top{padding:calc(14*var(--px)) calc(16*var(--px)) calc(6*var(--px))}
- html:not([data-locale=KO])[data-size=home] .c2b .tl-slot{height:calc(64*var(--px))}
- html:not([data-locale=KO])[data-size=home] .c2b .tile{--ips:calc(.88*var(--px))}
+ /* 2 A, Thai (2026-11-11, 13 rows): the stacked prices make each row 6 px taller than Korean, so the rows keep 2 px top and bottom (Korean 5 px) */
+ html:lang(th)[data-size=home] .c2a .pr{padding:calc(2*var(--px)) 0}
+ /* 2 B: two- and three-line names and descriptions make the tile tops taller. 2026-11-11 (13 rows in five rows of coupons): the coupons give up
+    padding, not text size: tops 9 / 3 px, the description 3 px under the name, stubs 4 / 5 px (never squeezed) with a 56 px picture slot, rows 6 px apart */
+ html:not([data-locale=KO])[data-size=home] .c2b .tiles{row-gap:calc(6*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c2b .tl-top{padding:calc(9*var(--px)) calc(16*var(--px)) calc(3*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c2b .tl-mod{margin-top:calc(3*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c2b .tl-stub{flex:none;padding-top:calc(4*var(--px));padding-bottom:calc(5*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c2b .tl-slot{height:calc(56*var(--px))}
+ html:not([data-locale=KO])[data-size=home] .c2b .tile{--ips:calc(.8*var(--px))}
  /* 3, location: a longer address takes more lines, so the map gives up height (same width, cropped evenly) instead of pushing the address out */
  html:not([data-locale=KO])[data-size=home] .c3 .bt-loc .loc-body{flex:1 1 auto;min-height:0;margin:0}
  html:not([data-locale=KO])[data-size=home] .c3 .bt-loc .map{flex:1 1 auto;min-height:0;aspect-ratio:auto}
@@ -66,7 +72,7 @@ html:not([data-locale=KO])[data-size=line] .c1b .dv-ultherapy-prime .dv-img{widt
 html:not([data-locale=KO])[data-size=line] .c1b .dv-xerf .dv-img{width:84px;height:197px}
 html:not([data-locale=KO])[data-size=line] .c1b .frame{width:180px}
 /* 2 A in two images (page.js): one column as on home, rows a little taller to use the height */
-html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .plist-a{display:block;padding:4px 26px}
+html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .plist-a{display:block;column-count:auto;padding:4px 26px}
 html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .plist-a::before{display:none}
 html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .pr{grid-template-columns:96px minmax(0,1fr) 150px 170px;grid-template-areas:"ps pn pl sl";column-gap:16px;row-gap:0;padding:16px 0}
 html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .pr .plist,html:not([data-locale=KO])[data-size=line] .c2a[data-i18n-split] .pr .psale{align-self:center}
@@ -95,3 +101,8 @@ html:lang(th) .pane2 .ev-label .evt{white-space:nowrap}
  html:lang(en)[data-size=home] .c3 .ab-photos{height:calc(138*var(--px))}
  html:lang(en)[data-size=home] .c3 .bk-row{grid-template-columns:calc(110*var(--px)) minmax(0,1fr)}
 }
+/* LINE 2 B part 3 (2026-11-11): the Oligio XM pair keeps the Korean layout of that image (large device picture, the stub's full width for the price);
+   the language rules for the other coupon images (smaller pictures, Thai's narrow picture column) stop here */
+html:not([data-locale=KO])[data-size=line] .l2b3 .tile{--ips:4.4px}
+html:not([data-locale=KO])[data-size=line] .l2b3 .tl-slot{height:auto}
+html:not([data-locale=KO])[data-size=line] .l2b3 .tl-stub{grid-template-columns:220px minmax(0,1fr)}

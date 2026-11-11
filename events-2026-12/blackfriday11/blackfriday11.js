@@ -91,8 +91,9 @@ function prepareLineParts(){
   for(const el of clone.querySelectorAll('[id]'))el.id+='-i18n';
   if(clone.hasAttribute('aria-labelledby'))clone.setAttribute('aria-labelledby',clone.getAttribute('aria-labelledby')+'-i18n');
   card.dataset.i18nSplit='true';card.dataset.i18nClone=id;card.dataset.part='1';clone.dataset.i18nSplit='true';clone.dataset.part='2';
-  [...card.querySelectorAll('.plist-a > .pr')].forEach((r,i)=>{if(i>=6)r.remove();});
-  [...clone.querySelectorAll('.plist-a > .pr')].forEach((r,i)=>{if(i<6)r.remove();});
+  /* 2026-11-11: 13 rows (sheet rows 25-26 added): 7 rows with the lead line in image 1, 6 rows with the footnotes in image 2 */
+  [...card.querySelectorAll('.plist-a > .pr')].forEach((r,i)=>{if(i>=7)r.remove();});
+  [...clone.querySelectorAll('.plist-a > .pr')].forEach((r,i)=>{if(i<7)r.remove();});
   card.querySelector('.cp-foot')?.remove();clone.querySelector('.p-lead')?.remove();
   card.after(clone);
  }

@@ -284,6 +284,8 @@ a[data-link="phone"]{white-space:nowrap}
 .c2b .pi-22{width:calc(29.4*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
 .c2b .pi-23{width:calc(44.9*var(--ips,var(--px)));height:calc(64.9*var(--ips,var(--px)))}
 .c2b .pi-24{width:calc(39*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
+.c2b .pi-25{width:calc(31.6*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
+.c2b .pi-26{width:calc(31.6*var(--ips,var(--px)));height:calc(72*var(--ips,var(--px)))}
 .c2a .pi-13{width:calc(73.7*var(--ips,var(--px)));height:calc(45.6*var(--ips,var(--px)))}
 .c2a .pi-14{width:calc(62*var(--ips,var(--px)));height:calc(54.3*var(--ips,var(--px)))}
 .c2a .pi-16{width:calc(36.7*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
@@ -295,6 +297,8 @@ a[data-link="phone"]{white-space:nowrap}
 .c2a .pi-22{width:calc(28.5*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
 .c2a .pi-23{width:calc(48.3*var(--ips,var(--px)));height:calc(69.7*var(--ips,var(--px)))}
 .c2a .pi-24{width:calc(38*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
+.c2a .pi-25{width:calc(30.7*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
+.c2a .pi-26{width:calc(30.7*var(--ips,var(--px)));height:calc(70*var(--ips,var(--px)))}
 
 /* ---------- text centring inside chips (2026-11-05 rule; measured with qa/text-center-check.cjs at 1080 and at the 780 board width).
    Heights stay the same: the vertical padding moves by the same em amount from bottom to top (text sits high in these fonts). ---------- */
@@ -419,6 +423,22 @@ a[data-link="phone"]{white-space:nowrap}
   .notes{padding:22px 16px 22px;border-top-width:4px}
 }
 
+/* ---------- 2026-11-11 team comment #13 (HK board): request-sheet rows 25-26 (Oligio XM) make 13 price rows; the home card (1080 x 1350, and the
+   board's 780 view) still holds them all. Text sizes unchanged; only row spacing and coupon sizes change. ---------- */
+@container (min-width:601px){
+ /* 2 A: rows 8 -> 5 px top and bottom, picture slot 70 -> 60 px, pictures 86 % */
+ html[data-size="home"] .c2a .pr{padding:calc(5*var(--px)) 0;--ips:calc(.86*var(--px))}
+ html[data-size="home"] .c2a .pslot{height:calc(60*var(--px))}
+ /* 2 B: a six-column grid in five rows: a coupon takes two columns, rows 1-4 three coupons each (the megaphone in the fourth row's last cell), row 5 the
+    Oligio XM pair (rows 25-26) three columns each; rows as tall as their coupons, gaps 18 -> 12 px, the stub's picture slot 74 -> 60 px */
+ html[data-size="home"] .c2b .tiles{grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(5,auto);gap:calc(12*var(--px)) calc(20*var(--px))}
+ html[data-size="home"] .c2b .tile{grid-column:span 2}
+ html[data-size="home"] .c2b .tile[data-price-row$=":25"],html[data-size="home"] .c2b .tile[data-price-row$=":26"]{grid-column:span 3}
+ html[data-size="home"] .c2b .tl-top{padding:calc(14*var(--px)) calc(18*var(--px)) calc(8*var(--px))}
+ html[data-size="home"] .c2b .tl-slot{height:calc(60*var(--px))}
+ html[data-size="home"] .c2b .tl-stub{padding-top:calc(8*var(--px));padding-bottom:calc(10*var(--px))}
+ html[data-size="home"] .c2b .tile-art .dec{width:calc(170*var(--px))}
+}
 /* ==================== 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md) · appended to the page CSS by the builder ====================
    home 1080x1350 = every rule above, unchanged. line 1100x1000 (LINE all-message) and kakao 800x600 (KakaoTalk all-message) are new compositions of
    the same elements and copy keys. Both are fixed screens (the board renders them at 1440 px and wider), so these rules use plain px on the 1080
@@ -469,14 +489,16 @@ html[data-size="line"] .c2a .cp-in{padding:40px 48px 30px}
 html[data-size="line"] .c2a .cp-head{margin-top:20px}
 html[data-size="line"] .c2a .dk-star{right:54px;top:104px;width:104px}
 html[data-size="line"] .c2a .dk-tw{right:172px;top:176px}
-html[data-size="line"] .c2a .plist-a{position:relative;margin-top:20px;padding:8px 24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(6,auto);grid-auto-flow:column;column-gap:44px}
+/* 2026-11-11 (rows 25-26 added, 13 rows): two newspaper columns (7 + 6 rows, each column as tall as its own rows), rows 11 -> 5 px top and bottom, the
+   picture slot 70 -> 58 px (pictures 83 %); text sizes unchanged */
+html[data-size="line"] .c2a .plist-a{position:relative;margin-top:20px;padding:8px 24px;column-count:2;column-gap:44px}
 html[data-size="line"] .c2a .plist-a::before{content:'';position:absolute;left:50%;top:18px;bottom:18px;border-left:1.5px dashed rgba(20,17,18,.24)}
-html[data-size="line"] .c2a .pr{grid-template-columns:72px minmax(0,1fr) auto;grid-template-areas:"ps pn pl" "ps pn sl";column-gap:14px;row-gap:2px;padding:11px 0}
-html[data-size="line"] .c2a .pr .pslot{grid-area:ps}
+html[data-size="line"] .c2a .pr{grid-template-columns:72px minmax(0,1fr) auto;grid-template-areas:"ps pn pl" "ps pn sl";column-gap:14px;row-gap:2px;padding:5px 0;break-inside:avoid;--ips:.83px}
+html[data-size="line"] .c2a .pr .pslot{grid-area:ps;height:58px}
 html[data-size="line"] .c2a .pr .pn{grid-area:pn}
 html[data-size="line"] .c2a .pr .plist{grid-area:pl;align-self:end}
 html[data-size="line"] .c2a .pr .psale{grid-area:sl;align-self:start}
-html[data-size="line"] .c2a .pr:nth-child(7){border-top:0}
+html[data-size="line"] .c2a .pr:nth-child(8){border-top:0;break-before:column}
 
 /* 2 B : coupon tiles 3 x 2 in two parts, larger product pictures in the stubs */
 html[data-size="line"] .l2b .cp-in{padding:40px 48px 30px}
@@ -635,3 +657,17 @@ html[data-size="kakao"] .k2b .p-title .evc{padding-top:calc(7px - .01em);padding
 html[data-size="kakao"] .c3:not([data-part]) .ab-photos figcaption{padding-top:.376em;padding-bottom:.224em}
 /* 2026-11-06 #3: the EVENT 02 chip in kakao 1A part 2 is 23px now (text-center-check --size kakao) */
 html[data-size="kakao"] .k1a2 .ev2 .evc{padding-top:calc(7px + .005em);padding-bottom:calc(7px - .005em)}
+
+/* ---------- 2026-11-11 team comment #13 (HK board): request-sheet rows 25-26 (Oligio XM) added ---------- */
+/* line 2 B part 3: the Oligio XM pair as two wide coupons that fill the image; the stub takes the height and shows the device large, the price at its foot */
+html[data-size="line"] .l2b3 .tiles{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr)}
+html[data-size="line"] .l2b3 .tile{--ips:4.4px}
+html[data-size="line"] .l2b3 .tl-top{flex:none}
+html[data-size="line"] .l2b3 .tl-stub{flex:1 1 auto;grid-template-columns:220px minmax(0,1fr);align-items:stretch}
+html[data-size="line"] .l2b3 .tl-slot{height:auto}
+html[data-size="line"] .l2b3 .tl-pr{align-self:end}
+/* kakao 2 B part 4: the Oligio XM pair (coupons at their own height) over the footnotes, which take the whole second row (notes left, '의료법상' and VAT right) */
+html[data-size="kakao"] .k2b4 .tiles{grid-template-rows:auto minmax(0,1fr)}
+html[data-size="kakao"] .k2b4 .tile-foot{grid-column:1 / -1}
+html[data-size="kakao"] .k2b4 .tile-foot .cp-foot{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:24px}
+html[data-size="kakao"] .k2b4 .tile-foot .legal{text-align:right}
