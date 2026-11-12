@@ -399,7 +399,7 @@
 
   /* 2026-11-12 picture layers moved/resized in 편집 모드: <ID>.<LOC>.lay_<scope>_<picture key>__<slot> = "x,y,s" (design px, scale). Sent to every frame. */
   var LAYOUT_RE = /^lay_(home|line|kakao|app)_([A-Za-z][A-Za-z0-9_-]*)__((?:c\d{1,2}[ab]p\d{1,2}n\d{1,3}|app(?:thumb|card|detail)n\d{1,3}|rootn\d{1,3}))$/;
-  var LAYOUT_VALUE_RE = /^-?\d{1,4}(?:\.\d{1,2})?,-?\d{1,4}(?:\.\d{1,2})?,\d(?:\.\d{1,3})?$/;
+  var LAYOUT_VALUE_RE = /^-?\d{1,4}(?:\.\d{1,2})?,-?\d{1,4}(?:\.\d{1,2})?,\d(?:\.\d{1,3})?(?:,0)?$/; /* ",0" = hidden layer */
   function layoutValueOk(v) { if (v === '') return true; if (!LAYOUT_VALUE_RE.test(v)) return false; var s = Number(v.split(',')[2]); return s >= 0.2 && s <= 4; }
   function effectiveLayouts(item, locale, store) {
     var out = { home: {}, line: {}, kakao: {}, app: {} };
@@ -576,10 +576,17 @@
       ui.cmHead = H('div', { class: 'cm-head' });
       ui.cmStatus = H('p', { class: 'cm-status', role: 'status' });
       ui.cmList = H('ul', { class: 'cm-list' });
+      ui.ebar = H('div', { class: 'editor-bar', role: 'toolbar', 'aria-label': '디자인 편집기' });
+      ui.lpanel = H('section', { class: 'layer-panel', 'aria-label': '레이어' });
+      ui.rpTabs = H('div', { class: 'rp-tabs', role: 'tablist', 'aria-label': '오른쪽 패널' }, [
+        H('button', { type: 'button', role: 'tab', 'data-rp-tab': 'layers', text: '레이어', onclick: function () { ui.cpanel.setAttribute('data-tab', 'layers'); } }),
+        H('button', { type: 'button', role: 'tab', 'data-rp-tab': 'comments', text: '코멘트', onclick: function () { ui.cpanel.setAttribute('data-tab', 'comments'); } }),
+      ]);
       ui.cpanel = H('aside', { class: 'comment-panel', id: 'comment-panel', 'aria-label': '코멘트' }, [
+        ui.rpTabs,
         ui.cmHead,
         H('p', { class: 'cm-hint', text: '미리보기에서 고칠 곳을 우클릭하고 ‘여기에 코멘트 달기’를 누르세요. 글은 자동 저장되고, 캡처는 Ctrl+V로 붙입니다. Shift+우클릭은 브라우저 기본 메뉴입니다.' }),
-        ui.cmStatus, ui.cmList,
+        ui.cmStatus, ui.cmList, ui.lpanel,
       ]);
       ui.drawerBtn = H('button', { type: 'button', class: 'cm-drawer-btn', 'data-action': 'toggle-comments', 'aria-controls': 'comment-panel', 'aria-expanded': 'false', text: '코멘트', onclick: function () { setDrawer(!hasAppClass('drawer-open')); } });
       ui.drawerBack = H('div', { class: 'cm-backdrop', 'aria-hidden': 'true', onclick: function () { setDrawer(false); } });
@@ -601,14 +608,17 @@
           H('div', { class: 'topbar-tools' }, [
             H('label', { class: 'author' }, [H('span', { text: '작성자' }), authorInput]),
             H('p', { class: 'author-note', text: '이름은 저장 기록에 표시만 되며 인증이 아닙니다.' }),
-            H('button', { type: 'button', class: 'btn', 'data-action': 'toggle-edit-mode', 'aria-pressed': 'false', text: '편집 모드', onclick: function (e) {
+            H('button', { type: 'button', class: 'btn', 'data-action': 'toggle-edit-mode', 'aria-pressed': 'false', text: '디자인 편집기', title: '포토샵처럼 그림·글자 레이어를 옮기고 크기를 바꿉니다', onclick: function (e) {
               var on = !hasAppClass('edit-mode');
               setAppClass('edit-mode', on);
               e.target.setAttribute('aria-pressed', on ? 'true' : 'false');
+              state.tool = 'move'; state.layers = null;
+              if (ui.cpanel) ui.cpanel.setAttribute('data-tab', on ? 'layers' : 'comments');
+              renderEditorBar(); renderLayerPanel();
               postAptosData();
             } }),
             H('button', { type: 'button', class: 'btn', 'data-action': 'download-json', text: '현재 문구 JSON 받기', onclick: downloadJson }),
-            H('p', { class: 'edit-mode-note', text: '편집 모드: 미리보기의 그림을 끌면 옮겨지고, 모서리를 끌면 크기가 바뀝니다. 방향키는 1px씩, Esc는 선택 끝내기, Ctrl+Z는 되돌리기입니다.' }),
+            H('p', { class: 'edit-mode-note', text: '디자인 편집기: 이동 도구(V)로 그림·글자를 끌어 옮기고 모서리로 크기를 바꿉니다. 오른쪽 레이어 목록에서 골라도 됩니다. 글자 도구(T)는 글자 고치기, Ctrl+Z는 되돌리기입니다.' }),
           ]),
         ]),
         H('section', { class: 'statusbar' }, [ui.status, ui.summary]),
@@ -1256,7 +1266,7 @@
       } else body = (it.kind === 'aptos' || it.kind === 'landing') ? aptosShell(it) : planCard(it, f);
       var bar = state.aptos && state.aptos.itemId === it.id ? downloadBar(it) : null;
       var design = state.aptos && state.aptos.itemId === it.id ? designBox(it) : null;
-      ui.preview.replaceChildren.apply(ui.preview, [previewHead(it), design, bar, body].filter(Boolean));
+      ui.preview.replaceChildren.apply(ui.preview, [previewHead(it), state.aptos && state.aptos.itemId === it.id ? (renderEditorBar(), ui.ebar) : null, design, bar, body].filter(Boolean));
       var ed = state.editor;
       if (ed && ed.ta && (ed.justOpened || ed.hadFocus)) {
         ed.ta.focus();
@@ -1283,7 +1293,7 @@
     function aptosItem() { return state.aptos && state.data.items.filter(function (i) { return i.id === state.aptos.itemId; })[0]; }
     function postAptosData() {
       var a = state.aptos; var it = aptosItem(); if (!a || !it) return;
-      postToFrame({ type: 'aptos-data', locale: a.locale, fields: effectiveFields(it, a.locale, store), formats: effectiveFormats(it,a.locale,store), layouts: effectiveLayouts(it,a.locale,store), editable: store.canEdit(), editMode: ui.app.className.split(/\s+/).indexOf('edit-mode') >= 0 });
+      postToFrame({ type: 'aptos-data', locale: a.locale, fields: effectiveFields(it, a.locale, store), formats: effectiveFormats(it,a.locale,store), layouts: effectiveLayouts(it,a.locale,store), tool: state.tool || 'move', editable: store.canEdit(), editMode: ui.app.className.split(/\s+/).indexOf('edit-mode') >= 0 });
     }
     function onMessage(e) {
       var cap = state.capture;
@@ -1315,6 +1325,8 @@
       else if(d.type==='aptos-edit-cancel'){a.editing=null;}
       else if (d.type === 'aptos-edit') handleAptosEdit(a, d);
       else if (d.type === 'aptos-layout') handleLayoutEdit(a, d);
+      else if (d.type === 'aptos-layers' && Array.isArray(d.list)) { state.layers = { itemId: a.itemId, list: d.list.filter(isObj).slice(0, 400), selected: typeof d.selected === 'string' ? d.selected : '', scrollTo: state.layers && state.layers.itemId === a.itemId ? state.layers.scrollTo : null }; renderLayerPanel(); renderEditorBar(); }
+      else if (d.type === 'aptos-tool-request') setTool(d.tool);
       else if (d.type === 'aptos-undo') undoLast();
       else if (d.type === 'aptos-redo') redoLast();
     }
@@ -1345,6 +1357,62 @@
         ack(!failure,failure?((textSaved&&d.value!==before?'문구는 저장됐습니다. 서식: ':'')+reasonMessage(failure)):null,{textSaved:textSaved,formatSaved:formatSaved,savedValue:textSaved?d.value:before});
         renderStatus();
       });
+    }
+    /* ---- 2026-11-12 디자인 편집기 (Photoshop style, user: "포토샵처럼 편집기 스타일"): a tools bar over the preview (이동 도구 V / 글자 도구 T,
+       되돌리기, the selected layer's X · Y · 크기 · 숨기기 · 원래대로) and a 레이어 panel in the right column (per card: thumbnail, name, moved mark, eye).
+       The page reports its layers (aptos-layers); clicks here go back as aptos-layer-select / aptos-layer-set. ---- */
+    function setTool(t) { state.tool = t === 'text' ? 'text' : 'move'; postAptosData(); renderEditorBar(); }
+    function layerSelected() { var L = state.layers; if (!L || !L.selected) return null; return L.list.filter(function (l) { return l.name === L.selected; })[0] || null; }
+    function layerGroupName(l) { var c = String(l.card || ''); if (/^\d+$/.test(c)) return c + '장' + (l.variant === 'b' ? ' B안' : '') + (l.part && String(l.part) !== '1' ? '-' + l.part : ''); return { thumb: '대표 이미지', card: '카드 이미지', detail: '상세 이미지' }[c] || c; }
+    function layerSet(name, o) { postToFrame(Object.assign({ type: 'aptos-layer-set', name: name }, o)); }
+    function layerNum(v, d) { v = Number(v); return isFinite(v) ? Math.round(v * Math.pow(10, d)) / Math.pow(10, d) : 0; }
+    function renderEditorBar() {
+      if (!ui.ebar) return;
+      var l = layerSelected(), tool = state.tool || 'move';
+      var tb = function (id, label, key, title) { return H('button', { type: 'button', class: 'btn small eb-tool', 'data-tool': id, 'aria-pressed': tool === id ? 'true' : 'false', title: title, onclick: function () { setTool(id); } }, [H('span', { class: 'eb-key', text: key }), label]); };
+      var num = function (label, attr, value, apply) { return H('label', { class: 'eb-num' }, [H('span', { text: label }), H('input', { type: 'number', step: '1', value: String(value), 'data-eb': attr, onchange: function (e) { var v = Number(e.target.value); if (isFinite(v)) apply(v); } })]); };
+      ui.ebar.replaceChildren(
+        H('div', { class: 'eb-group', role: 'group', 'aria-label': '도구' }, [tb('move', '이동 도구', 'V', '그림·글자를 눌러 옮기고, 모서리를 끌어 크기를 바꿉니다'), tb('text', '글자 도구', 'T', '글자를 눌러 바로 고칩니다')]),
+        H('div', { class: 'eb-group' }, [
+          H('button', { type: 'button', class: 'btn small', 'data-action': 'eb-undo', title: '되돌리기 (Ctrl+Z)', text: '↶ 되돌리기', onclick: function () { undoLast(); } }),
+          H('button', { type: 'button', class: 'btn small', 'data-action': 'eb-redo', title: '다시 실행 (Ctrl+Shift+Z)', text: '↷ 다시 실행', onclick: function () { redoLast(); } }),
+        ]),
+        l && tool === 'move' ? H('div', { class: 'eb-group eb-sel' }, [
+          H('span', { class: 'eb-name', title: String(l.label || ''), text: (l.kind === 'text' ? '글자 · ' : '그림 · ') + String(l.label || '') }),
+          num('X', 'x', layerNum(l.x, 1), function (v) { layerSet(l.name, { x: v }); }),
+          num('Y', 'y', layerNum(l.y, 1), function (v) { layerSet(l.name, { y: v }); }),
+          num('크기 %', 's', Math.round(layerNum(l.s, 3) * 100), function (v) { if (v >= 20 && v <= 400) layerSet(l.name, { s: v / 100 }); }),
+          H('button', { type: 'button', class: 'btn small', 'data-action': 'eb-hide', text: l.hidden ? '보이기' : '숨기기', onclick: function () { layerSet(l.name, { hidden: !l.hidden }); } }),
+          H('button', { type: 'button', class: 'btn small', 'data-action': 'eb-reset', text: '원래대로', onclick: function () { layerSet(l.name, { reset: true }); } }),
+        ]) : H('p', { class: 'eb-hint', text: tool === 'move' ? '그림이나 글자를 누른 채 끌면 옮겨지고, 모서리를 끌면 크기가 바뀝니다. 방향키 1px · Shift 10px · 글자를 두 번 누르면 바로 고칩니다 · Ctrl+Z 되돌리기' : '글자를 눌러 바로 고칩니다. 그림을 옮기려면 이동 도구(V)를 고르세요.' })
+      );
+    }
+    function renderLayerPanel() {
+      if (!ui.lpanel) return;
+      var L = state.layers, it = aptosItem(), own = origin();
+      if (!L || !it || L.itemId !== it.id || !L.list.length) { ui.lpanel.replaceChildren(H('h3', { class: 'lp-title', text: '레이어' }), H('p', { class: 'lp-empty', text: hasAppClass('edit-mode') ? '미리보기를 불러오는 중이거나 화면이 좁아 편집할 수 없습니다 (미리보기 폭 560px 이상).' : '디자인 편집기를 켜면 이 페이지의 레이어가 여기에 나옵니다.' })); return; }
+      var groups = [], byKey = {};
+      L.list.forEach(function (l) { var g = layerGroupName(l); if (!byKey[g]) { byKey[g] = { name: g, items: [] }; groups.push(byKey[g]); } byKey[g].items.push(l); });
+      ui.lpanel.replaceChildren(
+        H('h3', { class: 'lp-title' }, ['레이어 ', H('span', { class: 'lp-count', text: L.list.length + '개' })]),
+        H('p', { class: 'lp-hint', text: '누르면 미리보기에서 그 레이어가 선택됩니다. 옮기거나 크기를 바꾼 레이어에는 ● 표시가 붙습니다.' }),
+        H('div', { class: 'lp-groups' }, groups.map(function (g) {
+          return H('section', { class: 'lp-group' }, [H('h4', { text: g.name }), H('ul', { class: 'lp-list' }, g.items.map(function (l) {
+            var on = l.name === L.selected, label = String(l.label || ''), thumb = typeof l.thumb === 'string' && own && l.thumb.indexOf(own + '/') === 0 ? l.thumb : '';
+            return H('li', { class: 'lp-row' + (on ? ' sel' : '') + (l.hidden ? ' off' : ''), 'data-layer': l.name }, [
+              H('button', { type: 'button', class: 'lp-pick', 'aria-pressed': on ? 'true' : 'false', title: label, onclick: function () { if (state.tool !== 'move') setTool('move'); postToFrame({ type: 'aptos-layer-select', name: l.name }); } }, [
+                l.kind === 'img' && thumb ? H('img', { class: 'lp-thumb', src: thumb, alt: '', loading: 'lazy' }) : H('span', { class: 'lp-thumb lp-t', text: 'T' }),
+                H('span', { class: 'lp-label', text: label }),
+                l.locked ? H('span', { class: 'lp-lock', title: '배경 레이어: 목록에서 골랐을 때만 옮겨집니다', text: '잠김' }) : null,
+                l.moved ? H('span', { class: 'lp-moved', title: '옮기거나 크기를 바꾼 레이어', text: '●' }) : null,
+              ]),
+              H('button', { type: 'button', class: 'lp-eye', 'data-layer-eye': l.name, 'aria-pressed': l.hidden ? 'true' : 'false', title: l.hidden ? '보이게 하기' : '숨기기 (파일에서도 빠집니다)', text: l.hidden ? '숨김' : '보임', onclick: function () { layerSet(l.name, { hidden: !l.hidden }); } }),
+            ]);
+          }))]);
+        }))
+      );
+      var cur = ui.lpanel.querySelector ? ui.lpanel.querySelector('.lp-row.sel') : null;
+      if (cur && cur.scrollIntoView && L.scrollTo !== L.selected) { L.scrollTo = L.selected; cur.scrollIntoView({ block: 'nearest' }); }
     }
     /* a picture moved or resized in the open page (편집 모드): one revision-checked cell, remembered for Ctrl+Z */
     function handleLayoutEdit(a, d) {
@@ -2491,6 +2559,13 @@
         if (state.editor || (t && t.closest && t.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"])'))) return;
         e.preventDefault();
         if (y || e.shiftKey) redoLast(); else undoLast();
+      });
+      doc.addEventListener('keydown', function (e) {
+        if (!hasAppClass('edit-mode') || e.ctrlKey || e.metaKey || e.altKey) return;
+        var t = e.target && e.target.nodeType === 1 ? e.target : null;
+        if (state.editor || (t && t.closest && t.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"])'))) return;
+        if (e.key === 'v' || e.key === 'V') { e.preventDefault(); setTool('move'); } else if (e.key === 't' || e.key === 'T') { e.preventDefault(); setTool('text'); }
+        else if (state.tool !== 'text' && state.layers && state.layers.selected && /^(ArrowLeft|ArrowRight|ArrowUp|ArrowDown|\+|=|-|_|Escape)$/.test(e.key)) { e.preventDefault(); postToFrame({ type: 'aptos-layer-key', key: e.key, shift: e.shiftKey }); }
       });
       /* a link dropped outside a comment card must not navigate the board away (unsaved drafts would be lost) */
       doc.addEventListener('dragover', function (e) { var ty = dtTypes(e.dataTransfer); if (ty.indexOf('text/uri-list') >= 0 || ty.indexOf('Files') >= 0) e.preventDefault(); });
