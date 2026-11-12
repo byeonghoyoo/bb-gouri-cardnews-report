@@ -598,6 +598,12 @@
         try { env.storage.setItem(AUTHOR_KEY, state.author); } catch (e) { /* convenience only */ }
       };
       authorInput.addEventListener('input', saveAuthor); authorInput.addEventListener('change', saveAuthor);
+      /* 2026-11-12 user: "다크모드 라이트모드도 기능 추가해줘". Board screens only (the designs keep their own colours, downloads are unchanged).
+         Kept per browser (THEME_KEY); index.html applies a saved dark theme before the first paint. Dark colours: ops/gen-dark-css.cjs. */
+      ui.themeBtns = [['light', '라이트'], ['dark', '다크']].map(function (t) {
+        return H('button', { type: 'button', class: 'theme-btn', 'data-theme-set': t[0], 'aria-pressed': 'false', text: t[1], title: t[1] + ' 화면으로 봅니다 (이 브라우저에만 저장)', onclick: function () { setTheme(t[0]); } });
+      });
+      applyTheme(storedTheme());
       var app = H('div', { class: 'app' }, [
         ui.modeTabs,
         H('header', { class: 'topbar' }, [
@@ -606,6 +612,7 @@
             H('p', { class: 'brand-sub', text: '공유 검토 모드: 이 링크를 가진 사람은 누구나 선택과 문구를 수정할 수 있습니다. 병원 사이트와 연동되지 않습니다.' }),
           ]),
           H('div', { class: 'topbar-tools' }, [
+            H('div', { class: 'theme-switch', role: 'group', 'aria-label': '화면 밝기' }, [H('span', { class: 'theme-switch-label', text: '화면' })].concat(ui.themeBtns)),
             H('label', { class: 'author' }, [H('span', { text: '작성자' }), authorInput]),
             H('p', { class: 'author-note', text: '이름은 저장 기록에 표시만 되며 인증이 아닙니다.' }),
             H('button', { type: 'button', class: 'btn', 'data-action': 'toggle-edit-mode', 'aria-pressed': 'false', text: '디자인 편집기', title: '포토샵처럼 그림·글자 레이어를 옮기고 크기를 바꿉니다', onclick: function (e) {
@@ -811,12 +818,47 @@
     }
 
     /* 2026-11-12 user: "이벤트별로 나열된 목록을 컴포넌트로 묶어서 업로드 매체 체크박스, 업로드 예약 희망일 선택(캘린더)",
-       then "페이스북을 메타로", "홈페이지는 클릭하면 드롭다운으로 안에 체크박스, 이벤트·프로모션 두 개 선택".
+       then "페이스북을 메타로", "홈페이지는 클릭하면 드롭다운으로 안에 체크박스, 이벤트·프로모션 두 개 선택",
+       then "홈페이지 하위로 공지사항 체크박스 추가 부탁해. 그리고 복수선택도 가능하게 해주고".
        Every event row is a small card: 디자인 최종완료 check · name · 삭제, then the channels it will be uploaded to and the wished upload date.
-       Saved per item and language like the 최종완료 check: <ID>.<LOC>.up_media = chosen ids joined by ',' (UP_IDS order), <ID>.<LOC>.up_date = 'YYYY-MM-DD' or ''. */
-    var UPLOAD_MEDIA = [['home', '홈페이지', [['home_event', '이벤트'], ['home_promo', '프로모션']]], ['insta', '인스타그램'], ['meta', '메타'], ['kakao', '카카오톡'], ['line', '라인'], ['gangnam', '강남언니'], ['babi', '바비톡'], ['yeoshin', '여신티켓']];
+       Saved per item and language like the 최종완료 check: <ID>.<LOC>.up_media = chosen ids joined by ',' (UP_IDS order), <ID>.<LOC>.up_date = 'YYYY-MM-DD' or ''.
+       Any number of channels (and of 홈페이지's 이벤트·프로모션·공지사항) can be ticked. A tick shows at once; saves for one item+language go out one after
+       another with the newest set (state.upQueue), so a quick second tick never overwrites the first one. */
+    var UPLOAD_MEDIA = [['home', '홈페이지', [['home_event', '이벤트'], ['home_promo', '프로모션'], ['home_notice', '공지사항']]], ['insta', '인스타그램'], ['meta', '메타'], ['kakao', '카카오톡'], ['line', '라인'], ['gangnam', '강남언니'], ['babi', '바비톡'], ['yeoshin', '여신티켓']];
     var UP_IDS = []; UPLOAD_MEDIA.forEach(function (m) { if (m[2]) m[2].forEach(function (s) { UP_IDS.push(s[0]); }); else UP_IDS.push(m[0]); });
-    function uploadMedia(itemId, loc) { var v = store.value(cellKey(itemId, loc, 'up_media'), ''); return v ? v.split(',').filter(function (id) { return UP_IDS.indexOf(id) >= 0; }) : []; }
+    function upQueue() { return state.upQueue || (state.upQueue = {}); }
+    function uploadMedia(itemId, loc) { var key = cellKey(itemId, loc, 'up_media'), q = upQueue()[key], v = q ? q.want : store.value(key, ''); return v ? v.split(',').filter(function (id) { return UP_IDS.indexOf(id) >= 0; }) : []; }
+    function toggleUpload(itemId, loc, id, on) {
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 저장할 수 없습니다 (편집 잠금).', 'error'); renderSidebar(); return; }
+      var key = cellKey(itemId, loc, 'up_media'), cur = uploadMedia(itemId, loc), q = upQueue()[key] || (upQueue()[key] = { busy: false });
+      q.want = UP_IDS.filter(function (x) { return x === id ? on : cur.indexOf(x) >= 0; }).join(',');
+      renderSidebar(); flushUpload(itemId, loc);
+    }
+    function flushUpload(itemId, loc) {
+      var key = cellKey(itemId, loc, 'up_media'), q = upQueue()[key];
+      if (!q || q.busy) return;
+      var sending = q.want;
+      if (sending === store.value(key, '')) { delete upQueue()[key]; renderSidebar(); return; }
+      q.busy = true; state.saving++; renderStatus();
+      store.save(key, sending, by()).then(function (r) {
+        state.saving--; q.busy = false;
+        if (r.ok && q.want !== sending) { renderStatus(); flushUpload(itemId, loc); return; }
+        delete upQueue()[key];
+        if (r.ok) toast('업로드 매체를 저장했습니다: ' + itemName(itemId) + ' (' + loc + ')', 'ok');
+        else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 바꿨습니다. 최신 값을 불러왔습니다.', 'error'); }
+        else toast('서버에 저장되지 않았습니다. 원래대로 돌아갑니다. (' + reasonMessage(r) + ')', 'error');
+        renderSidebar(); renderStatus();
+      });
+    }
+    var THEME_KEY = 'bb-review-theme';
+    function storedTheme() { try { return env.storage && env.storage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light'; } catch (e) { return 'light'; } }
+    function applyTheme(t) {
+      var html = doc && doc.documentElement;
+      if (html && typeof html.setAttribute === 'function') { if (t === 'dark') html.setAttribute('data-theme', 'dark'); else if (typeof html.removeAttribute === 'function') html.removeAttribute('data-theme'); }
+      state.theme = t;
+      (ui.themeBtns || []).forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === t ? 'true' : 'false'); });
+    }
+    function setTheme(t) { t = t === 'dark' ? 'dark' : 'light'; try { if (env.storage) env.storage.setItem(THEME_KEY, t); } catch (e) { /* convenience only */ } applyTheme(t); }
     function uploadDate(itemId, loc) { var v = store.value(cellKey(itemId, loc, 'up_date'), ''); return /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : ''; }
     function upDateNote(v) {
       var p = v.split('-').map(Number), d = new Date(p[0], p[1] - 1, p[2]), t0 = new Date(); t0.setHours(0, 0, 0, 0);
@@ -839,21 +881,21 @@
       if (isTestItem(it.id)) return null;
       state.upOpen = state.upOpen || {};
       var chosen = uploadMedia(it.id, loc), date = uploadDate(it.id, loc), canEdit = store.canEdit(), count = 0;
-      var save = function (id, on) { var next = UP_IDS.filter(function (x) { return x === id ? on : chosen.indexOf(x) >= 0; }); saveUpload(it.id, loc, 'up_media', next.join(','), '업로드 매체를'); };
+      var save = function (id, on) { toggleUpload(it.id, loc, id, on); };
       var box = function (id, label, aria) { var on = chosen.indexOf(id) >= 0; return H('label', { class: 'up-chip' + (on ? ' on' : '') }, [H('input', { type: 'checkbox', 'data-up-media': id, 'aria-label': aria, checked: on, disabled: !canEdit, onchange: function (e) { save(id, !!e.target.checked); } }), H('span', { text: label })]); };
       var chips = [];
       UPLOAD_MEDIA.forEach(function (m) {
         if (!m[2]) { if (chosen.indexOf(m[0]) >= 0) count++; chips.push(box(m[0], m[1], it.label + ' 업로드 매체 ' + m[1] + ' (' + loc + ')')); return; }
-        /* 홈페이지: click opens the two places inside it (이벤트 탭 · 프로모션 탭), each its own checkbox */
+        /* 홈페이지: click opens the places inside it (이벤트 · 프로모션 · 공지사항), each its own checkbox, any number of them */
         var picked = m[2].filter(function (s) { return chosen.indexOf(s[0]) >= 0; }), openKey = it.id + '.' + loc + '.' + m[0], open = !!state.upOpen[openKey];
         if (picked.length) count++;
-        chips.push(H('button', { type: 'button', class: 'up-chip up-drop' + (picked.length ? ' on' : '') + (open ? ' open' : ''), 'data-up-drop': m[0], 'aria-expanded': open ? 'true' : 'false', title: m[1] + ' 안에서 이벤트·프로모션을 고릅니다',
+        chips.push(H('button', { type: 'button', class: 'up-chip up-drop' + (picked.length ? ' on' : '') + (open ? ' open' : ''), 'data-up-drop': m[0], 'aria-expanded': open ? 'true' : 'false', title: m[1] + ' 안에서 ' + m[2].map(function (s) { return s[1]; }).join('·') + '을 고릅니다 (여러 개 선택 가능)',
           onclick: function () { state.upOpen[openKey] = !open; renderSidebar(); } }, [
           H('span', { class: 'up-mark', 'aria-hidden': 'true', text: picked.length ? '✓' : '' }),
-          H('span', { text: m[1] }), picked.length ? H('span', { class: 'up-picked', text: picked.map(function (s) { return s[1]; }).join('·') }) : null,
+          H('span', { text: m[1] }), picked.length ? H('span', { class: 'up-picked', text: picked.length === m[2].length && m[2].length > 2 ? '전체' : picked.map(function (s) { return s[1]; }).join('·') }) : null,
           H('span', { class: 'up-caret', 'aria-hidden': 'true', text: open ? '▴' : '▾' }),
         ]));
-        if (open) chips.push(H('div', { class: 'up-sub', role: 'group', 'aria-label': m[1] + ' 업로드 위치' }, m[2].map(function (s) { return box(s[0], s[1], it.label + ' ' + m[1] + ' ' + s[1] + ' (' + loc + ')'); })));
+        if (open) chips.push(H('div', { class: 'up-sub', role: 'group', 'aria-label': m[1] + ' 업로드 위치 (여러 개 선택 가능)' }, [H('span', { class: 'up-sub-note', text: '여러 개 선택 가능' })].concat(m[2].map(function (s) { return box(s[0], s[1], it.label + ' ' + m[1] + ' ' + s[1] + ' (' + loc + ')'); }))));
       });
       var dateIn = H('input', { type: 'date', class: 'up-date-input', 'data-up-date': it.id, 'aria-label': it.label + ' 업로드 예약 희망일 (' + loc + ')', value: date, disabled: !canEdit,
         onchange: function (e) { var v = String(e.target.value || ''); if (v && !/^\d{4}-\d{2}-\d{2}$/.test(v)) return; if (v !== date) saveUpload(it.id, loc, 'up_date', v, '업로드 희망일을'); },
