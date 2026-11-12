@@ -397,6 +397,23 @@
     return out;
   }
 
+  /* 2026-11-12 picture layers moved/resized in 편집 모드: <ID>.<LOC>.lay_<scope>_<picture key>__<slot> = "x,y,s" (design px, scale). Sent to every frame. */
+  var LAYOUT_RE = /^lay_(home|line|kakao|app)_([A-Za-z][A-Za-z0-9_-]*)__((?:c\d{1,2}[ab]p\d{1,2}n\d{1,3}|app(?:thumb|card|detail)n\d{1,3}|rootn\d{1,3}))$/;
+  var LAYOUT_VALUE_RE = /^-?\d{1,4}(?:\.\d{1,2})?,-?\d{1,4}(?:\.\d{1,2})?,\d(?:\.\d{1,3})?$/;
+  function layoutValueOk(v) { if (v === '') return true; if (!LAYOUT_VALUE_RE.test(v)) return false; var s = Number(v.split(',')[2]); return s >= 0.2 && s <= 4; }
+  function effectiveLayouts(item, locale, store) {
+    var out = { home: {}, line: {}, kakao: {}, app: {} };
+    if (!item || !store || !store.cells) return out;
+    var prefix = item.id + '.' + locale + '.';
+    Object.keys(store.cells).forEach(function (k) {
+      if (k.indexOf(prefix + 'lay_') !== 0) return;
+      var name = k.slice(prefix.length), m = LAYOUT_RE.exec(name), v = store.value(k, '');
+      if (!m || !v || !layoutValueOk(v)) return;
+      out[m[1]][name] = v;
+    });
+    return out;
+  }
+
   function hasLocale(item, locale) { return !Array.isArray(item.locales) || item.locales.indexOf(locale) >= 0; }
 
   function buildExport(data, store) {
@@ -510,7 +527,7 @@
           if (redo) e.afterRev = r.cell.revision; else e.undoRev = r.cell.revision;
           rebaseUndo(from,e.key,value,r.cell.revision,redo);
           to.push(e); keepUndo();
-          toast((redo ? '다시 적용했습니다: ' : '되돌렸습니다: ') + itemName(e.itemId) + (e.kind==='format' ? ' · 글자 크기/줄 배치' : ' · "'+shortText(value)+'"') + (redo ? '' : ' (다시 적용 Ctrl+Shift+Z)'), 'ok');
+          toast((redo ? '다시 적용했습니다: ' : '되돌렸습니다: ') + itemName(e.itemId) + (e.kind==='format' ? ' · 글자 크기/줄 배치' : e.kind==='layout' ? ' · 그림 위치·크기' : ' · "'+shortText(value)+'"') + (redo ? '' : ' (다시 적용 Ctrl+Shift+Z)'), 'ok');
         } else if (r.reason === 'conflict') { store.adopt(e.key, r.current); from.pop(); keepUndo(); toast('그 뒤에 다른 사람이 같은 문구를 고쳐서 바꾸지 않았습니다.', 'error'); }
         else toast('서버에 저장되지 않았습니다. (' + reasonMessage(r) + ')', 'error');
         refreshAfterUndo(e.itemId);
@@ -591,6 +608,7 @@
               postAptosData();
             } }),
             H('button', { type: 'button', class: 'btn', 'data-action': 'download-json', text: '현재 문구 JSON 받기', onclick: downloadJson }),
+            H('p', { class: 'edit-mode-note', text: '편집 모드: 미리보기의 그림을 끌면 옮겨지고, 모서리를 끌면 크기가 바뀝니다. 방향키는 1px씩, Esc는 선택 끝내기, Ctrl+Z는 되돌리기입니다.' }),
           ]),
         ]),
         H('section', { class: 'statusbar' }, [ui.status, ui.summary]),
@@ -732,6 +750,8 @@
       return l.height > 0 && c.top >= l.top - 1 && c.bottom <= l.bottom + 1;
     }
     function renderSidebar() {
+      var focused = doc.activeElement;
+      if (focused && focused.classList && focused.classList.contains('up-date-input') && ui.list.contains && ui.list.contains(focused)) { state.sidebarDeferred = true; return; }
       var keep = ui.list.scrollTop, shown = curRowShown();
       renderSidebarInner();
       fitSidebar();
@@ -769,7 +789,7 @@
               H('span', { class: 'group-chev', 'aria-hidden': 'true', text: folded ? '▶' : '▼' }),
               g.test === true ? H('span', { class: 'group-test', text: '테스트 구간' }) : null,
               H('span', { class: 'group-label', text: g.label || g.id }),
-              H('span', { class: 'group-count', text: members.length + '개' + (selCount ? ' · 선택 ' + selCount : '') + (folded ? ' · 접힘' : '') }),
+              H('span', { class: 'group-count', text: members.length + '개' + (selCount ? ' · 최종완료 ' + selCount : '') + (folded ? ' · 접힘' : '') }),
             ]),
             H('button', { type: 'button', class: 'btn small danger delete-btn', text: '삭제', onclick: function (e) { e.stopPropagation(); openDeleteDialog(members.map(function (it) { return it.id; }), g.label || g.id, members.length); } }),
           ]),
@@ -780,13 +800,72 @@
       ui.list.replaceChildren.apply(ui.list, out);
     }
 
+    /* 2026-11-12 user: "이벤트별로 나열된 목록을 컴포넌트로 묶어서 업로드 매체 체크박스, 업로드 예약 희망일 선택(캘린더)",
+       then "페이스북을 메타로", "홈페이지는 클릭하면 드롭다운으로 안에 체크박스, 이벤트·프로모션 두 개 선택".
+       Every event row is a small card: 디자인 최종완료 check · name · 삭제, then the channels it will be uploaded to and the wished upload date.
+       Saved per item and language like the 최종완료 check: <ID>.<LOC>.up_media = chosen ids joined by ',' (UP_IDS order), <ID>.<LOC>.up_date = 'YYYY-MM-DD' or ''. */
+    var UPLOAD_MEDIA = [['home', '홈페이지', [['home_event', '이벤트'], ['home_promo', '프로모션']]], ['insta', '인스타그램'], ['meta', '메타'], ['kakao', '카카오톡'], ['line', '라인'], ['gangnam', '강남언니'], ['babi', '바비톡'], ['yeoshin', '여신티켓']];
+    var UP_IDS = []; UPLOAD_MEDIA.forEach(function (m) { if (m[2]) m[2].forEach(function (s) { UP_IDS.push(s[0]); }); else UP_IDS.push(m[0]); });
+    function uploadMedia(itemId, loc) { var v = store.value(cellKey(itemId, loc, 'up_media'), ''); return v ? v.split(',').filter(function (id) { return UP_IDS.indexOf(id) >= 0; }) : []; }
+    function uploadDate(itemId, loc) { var v = store.value(cellKey(itemId, loc, 'up_date'), ''); return /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : ''; }
+    function upDateNote(v) {
+      var p = v.split('-').map(Number), d = new Date(p[0], p[1] - 1, p[2]), t0 = new Date(); t0.setHours(0, 0, 0, 0);
+      var diff = Math.round((d.getTime() - t0.getTime()) / 86400000);
+      return '(' + '일월화수목금토'.charAt(d.getDay()) + ') ' + (diff === 0 ? '오늘' : diff > 0 ? 'D-' + diff : -diff + '일 지남');
+    }
+    function saveUpload(itemId, loc, field, value, what) {
+      var key = cellKey(itemId, loc, field);
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 저장할 수 없습니다 (편집 잠금).', 'error'); renderSidebar(); return Promise.resolve(); }
+      state.saving++; renderStatus();
+      return store.save(key, value, by()).then(function (r) {
+        state.saving--;
+        if (r.ok) toast(what + ' 저장했습니다: ' + itemName(itemId) + ' (' + loc + ')', 'ok');
+        else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 바꿨습니다. 최신 값을 불러왔습니다.', 'error'); }
+        else toast('서버에 저장되지 않았습니다. 원래대로 돌아갑니다. (' + reasonMessage(r) + ')', 'error');
+        renderSidebar(); renderStatus();
+      });
+    }
+    function uploadBox(it, loc) {
+      if (isTestItem(it.id)) return null;
+      state.upOpen = state.upOpen || {};
+      var chosen = uploadMedia(it.id, loc), date = uploadDate(it.id, loc), canEdit = store.canEdit(), count = 0;
+      var save = function (id, on) { var next = UP_IDS.filter(function (x) { return x === id ? on : chosen.indexOf(x) >= 0; }); saveUpload(it.id, loc, 'up_media', next.join(','), '업로드 매체를'); };
+      var box = function (id, label, aria) { var on = chosen.indexOf(id) >= 0; return H('label', { class: 'up-chip' + (on ? ' on' : '') }, [H('input', { type: 'checkbox', 'data-up-media': id, 'aria-label': aria, checked: on, disabled: !canEdit, onchange: function (e) { save(id, !!e.target.checked); } }), H('span', { text: label })]); };
+      var chips = [];
+      UPLOAD_MEDIA.forEach(function (m) {
+        if (!m[2]) { if (chosen.indexOf(m[0]) >= 0) count++; chips.push(box(m[0], m[1], it.label + ' 업로드 매체 ' + m[1] + ' (' + loc + ')')); return; }
+        /* 홈페이지: click opens the two places inside it (이벤트 탭 · 프로모션 탭), each its own checkbox */
+        var picked = m[2].filter(function (s) { return chosen.indexOf(s[0]) >= 0; }), openKey = it.id + '.' + loc + '.' + m[0], open = !!state.upOpen[openKey];
+        if (picked.length) count++;
+        chips.push(H('button', { type: 'button', class: 'up-chip up-drop' + (picked.length ? ' on' : '') + (open ? ' open' : ''), 'data-up-drop': m[0], 'aria-expanded': open ? 'true' : 'false', title: m[1] + ' 안에서 이벤트·프로모션을 고릅니다',
+          onclick: function () { state.upOpen[openKey] = !open; renderSidebar(); } }, [
+          H('span', { class: 'up-mark', 'aria-hidden': 'true', text: picked.length ? '✓' : '' }),
+          H('span', { text: m[1] }), picked.length ? H('span', { class: 'up-picked', text: picked.map(function (s) { return s[1]; }).join('·') }) : null,
+          H('span', { class: 'up-caret', 'aria-hidden': 'true', text: open ? '▴' : '▾' }),
+        ]));
+        if (open) chips.push(H('div', { class: 'up-sub', role: 'group', 'aria-label': m[1] + ' 업로드 위치' }, m[2].map(function (s) { return box(s[0], s[1], it.label + ' ' + m[1] + ' ' + s[1] + ' (' + loc + ')'); })));
+      });
+      var dateIn = H('input', { type: 'date', class: 'up-date-input', 'data-up-date': it.id, 'aria-label': it.label + ' 업로드 예약 희망일 (' + loc + ')', value: date, disabled: !canEdit,
+        onchange: function (e) { var v = String(e.target.value || ''); if (v && !/^\d{4}-\d{2}-\d{2}$/.test(v)) return; if (v !== date) saveUpload(it.id, loc, 'up_date', v, '업로드 희망일을'); },
+        onblur: function () { if (state.sidebarDeferred) { state.sidebarDeferred = false; renderSidebar(); } } });
+      return H('div', { class: 'up-box', 'data-upload-for': it.id }, [
+        H('div', { class: 'up-head' }, [H('span', { class: 'up-title', text: '업로드 매체' }), H('span', { class: 'up-count', text: count ? count + '곳' : '미정' })]),
+        H('div', { class: 'up-media', role: 'group', 'aria-label': it.label + ' 업로드 매체' }, chips),
+        H('div', { class: 'up-date' }, [
+          H('span', { class: 'up-title', text: '예약 희망일' }), dateIn,
+          date ? H('span', { class: 'up-dday', text: upDateNote(date) }) : H('span', { class: 'up-dday muted', text: '미정' }),
+          date ? H('button', { type: 'button', class: 'up-date-clear', 'data-up-clear': it.id, 'aria-label': '희망일 지우기', title: '희망일 지우기', text: '×', disabled: !canEdit, onclick: function () { saveUpload(it.id, loc, 'up_date', '', '업로드 희망일을'); } }) : null,
+        ]),
+      ]);
+    }
+
     function itemRow(it) {
         var loc = state.locale;
         var sel = store.isSelected(it.id, loc);
         var errs = itemErrorCount(it.id);
         var fb = feedbackDone(it.id);
         return H('li', { class: 'item-row' + (it.id === state.itemId ? ' current' : '') + (sel ? ' selected' : '') + (fb ? ' fb-done' : '') }, [
-          H('input', { type: 'checkbox', class: 'select-box', 'data-select-for': it.id, 'aria-label': it.label + ' 선택 (' + loc + ')', checked: sel, disabled: !store.canEdit(), onchange: function (e) { onSelectChange(it.id, loc, !!e.target.checked); } }),
+          H('label', { class: 'final-box', title: '디자인이 최종 완료되면 체크합니다 (' + loc + ' 언어판)' }, [H('span', { class: 'final-cap', text: '디자인\n최종완료' }), H('input', { type: 'checkbox', class: 'select-box', 'data-select-for': it.id, 'aria-label': it.label + ' 디자인 최종완료 (' + loc + ')', checked: sel, disabled: !store.canEdit(), onchange: function (e) { onSelectChange(it.id, loc, !!e.target.checked); } })]),
           H('button', { type: 'button', class: 'item-btn', 'data-item-id': it.id, 'aria-current': it.id === state.itemId ? 'true' : null, onclick: function () { selectItem(it.id); } }, [
             H('span', { class: 'item-label', text: it.label }),
             fb ? H('span', { class: 'fb-tag', 'data-feedback-done': it.id, text: '피드백 완료' }) : null,
@@ -795,6 +874,7 @@
             requestBadge(it.id),
           ]),
           H('button', { type: 'button', class: 'btn small danger delete-btn', text: '삭제', onclick: function (e) { e.stopPropagation(); openDeleteDialog([it.id], it.label, 1); } }),
+          uploadBox(it, loc),
         ]);
     }
 
@@ -868,7 +948,7 @@
       state.saving++; renderStatus();
       return store.save(key, checked, by()).then(function (r) {
         state.saving--;
-        if (r.ok) toast('선택이 서버에 저장되었습니다.', 'ok');
+        if (r.ok) toast('디자인 최종완료 표시를 저장했습니다. (' + locale + ')', 'ok');
         else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 바꿨습니다. 최신 선택 상태를 불러왔습니다.', 'error'); }
         else toast('서버에 저장되지 않았습니다. 선택이 원래대로 돌아갑니다. (' + reasonMessage(r) + ')', 'error');
         renderSidebar(); renderPreview(); renderStatus();
@@ -994,7 +1074,7 @@
         H('div', { class: 'preview-actions' }, [
           hasPage(it) && (it.cards | 0) > 0 ? H('button', { type: 'button', class: 'btn final-btn', 'data-action': 'final-open', text: '최종본 전체보기', onclick: function () { openFinal(it); } }) : null,
           (state.previewFb = H('button', { type: 'button', class: 'btn fb-btn', 'data-action': 'feedback-done', 'data-feedback-for': it.id, title: '팀 피드백을 다 달았으면 눌러 주세요. 왼쪽 목록 제목이 분홍색으로 바뀝니다.', onclick: function () { toggleFeedback(it.id); } }), syncFbBtn(), state.previewFb),
-          H('label', { class: 'preview-select' }, [cb, H('span', { text: state.locale + ' 언어판 선택' })]),
+          H('label', { class: 'preview-select' }, [cb, H('span', { text: state.locale + ' 디자인 최종완료' })]),
         ]),
       ]);
     }
@@ -1054,7 +1134,7 @@
       fr.addEventListener('load', function () {
         if (state.final !== f || f.frame !== fr) return;
         var cap = { el: fr, fields: effectiveFields(it, 'KO', store) };
-        postTo(cap, { type: 'aptos-data', locale: 'KO', fields: cap.fields, formats: effectiveFormats(it,'KO',store), editable: false, editMode: false });
+        postTo(cap, { type: 'aptos-data', locale: 'KO', fields: cap.fields, formats: effectiveFormats(it,'KO',store), layouts: effectiveLayouts(it,'KO',store), editable: false, editMode: false });
         capApplied(cap, it, 'KO').catch(function () { return null; }).then(function () {
           if (state.final !== f || f.frame !== fr || !fr.contentDocument) return;
           var idoc = fr.contentDocument;
@@ -1203,7 +1283,7 @@
     function aptosItem() { return state.aptos && state.data.items.filter(function (i) { return i.id === state.aptos.itemId; })[0]; }
     function postAptosData() {
       var a = state.aptos; var it = aptosItem(); if (!a || !it) return;
-      postToFrame({ type: 'aptos-data', locale: a.locale, fields: effectiveFields(it, a.locale, store), formats: effectiveFormats(it,a.locale,store), editable: store.canEdit(), editMode: ui.app.className.split(/\s+/).indexOf('edit-mode') >= 0 });
+      postToFrame({ type: 'aptos-data', locale: a.locale, fields: effectiveFields(it, a.locale, store), formats: effectiveFormats(it,a.locale,store), layouts: effectiveLayouts(it,a.locale,store), editable: store.canEdit(), editMode: ui.app.className.split(/\s+/).indexOf('edit-mode') >= 0 });
     }
     function onMessage(e) {
       var cap = state.capture;
@@ -1234,6 +1314,7 @@
       else if(d.type==='aptos-editing' && typeof d.field==='string' && FIELD_RE.test(d.field)){var k=cellKey(a.itemId,a.locale,d.field),c=store.get(k),scope=frameScope(a);a.editing={field:d.field,key:k,baseRevision:c?c.revision:0,scope:scope,slot:d.slot||''};if(Format){try{var fk=cellKey(a.itemId,a.locale,Format.key(d.field,scope,d.slot||'')),fc=store.get(fk);a.editing.formatKey=fk;a.editing.formatBaseRevision=fc?fc.revision:0;}catch(err){a.editing=null;}}}
       else if(d.type==='aptos-edit-cancel'){a.editing=null;}
       else if (d.type === 'aptos-edit') handleAptosEdit(a, d);
+      else if (d.type === 'aptos-layout') handleLayoutEdit(a, d);
       else if (d.type === 'aptos-undo') undoLast();
       else if (d.type === 'aptos-redo') redoLast();
     }
@@ -1262,6 +1343,26 @@
         else toast((textSaved&&d.value!==before?'문구는 저장됐지만 서식은 저장되지 않았습니다. ':'저장되지 않았습니다. ')+reasonMessage(failure),'error');
         if(a===state.aptos)postAptosData();else if(applied.length)renderSidebar();
         ack(!failure,failure?((textSaved&&d.value!==before?'문구는 저장됐습니다. 서식: ':'')+reasonMessage(failure)):null,{textSaved:textSaved,formatSaved:formatSaved,savedValue:textSaved?d.value:before});
+        renderStatus();
+      });
+    }
+    /* a picture moved or resized in the open page (편집 모드): one revision-checked cell, remembered for Ctrl+Z */
+    function handleLayoutEdit(a, d) {
+      var it = aptosItem(), name = typeof d.name === 'string' ? d.name : '';
+      var ack = function (ok, error) { postTo(a, { type: 'aptos-layout-result', name: name, ok: ok, error: error || null }); };
+      var m = name.length <= 64 ? LAYOUT_RE.exec(name) : null;
+      if (!it || !m || m[1] !== frameScope(a) || typeof d.value !== 'string' || !layoutValueOk(d.value)) { ack(false, '그림 위치 값이 올바르지 않습니다.'); return Promise.resolve(); }
+      if (!store.canEdit()) { ack(false, '공유 서버에 연결되지 않아 저장할 수 없습니다.'); return Promise.resolve(); }
+      var key = cellKey(it.id, a.locale, name), before = store.value(key, '');
+      if (before === d.value) { ack(true); return Promise.resolve(); }
+      state.saving++; renderStatus();
+      return store.save(key, d.value, by()).then(function (r) {
+        state.saving--;
+        if (r.ok) { rememberEdit({ key: key, itemId: it.id, locale: a.locale, field: name, before: before, after: d.value, afterRev: r.cell.revision, at: Date.now(), kind: 'layout' }); toast('그림 위치·크기를 저장했습니다. 잘못 옮겼으면 Ctrl+Z로 되돌릴 수 있습니다.', 'ok'); }
+        else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 이 그림을 옮겼습니다. 최신 위치를 불러왔습니다.', 'error'); }
+        else toast('서버에 저장되지 않았습니다. (' + reasonMessage(r) + ')', 'error');
+        if (a === state.aptos) postAptosData();
+        ack(r.ok, r.ok ? null : reasonMessage(r));
         renderStatus();
       });
     }
@@ -1520,7 +1621,7 @@
       });
     }
     function capWait(win, ms) { return new Promise(function (r) { win.setTimeout(r, ms); }); }
-    function capPost(cap) { var it=state.data.items.filter(function(i){return i.id===cap.itemId;})[0]; postTo(cap, { type:'aptos-data',locale:cap.locale,fields:cap.fields,formats:effectiveFormats(it,cap.locale,store),editable:false,editMode:false }); }
+    function capPost(cap) { var it=state.data.items.filter(function(i){return i.id===cap.itemId;})[0]; postTo(cap, { type:'aptos-data',locale:cap.locale,fields:cap.fields,formats:effectiveFormats(it,cap.locale,store),layouts:effectiveLayouts(it,cap.locale,store),editable:false,editMode:false }); }
     function capBlob(canvas, type, quality) {
       return new Promise(function (resolve, reject) {
         canvas.toBlob(function (b) { if (b) resolve(b); else reject(new Error('이미지를 만들지 못했습니다.')); }, type || 'image/png', quality);
@@ -2825,7 +2926,7 @@
     }
     function postAppData(cf) {
       var it = itemById(cf.itemId); if (!it) return;
-      postTo({ el: cf.el }, { type: 'aptos-data', locale: 'KO', fields: effectiveFields(it, 'KO', store), formats: effectiveFormats(it,'KO',store), editable: false, editMode: false });
+      postTo({ el: cf.el }, { type: 'aptos-data', locale: 'KO', fields: effectiveFields(it, 'KO', store), formats: effectiveFormats(it,'KO',store), layouts: effectiveLayouts(it,'KO',store), editable: false, editMode: false });
     }
     function updateAppView() {
       var av = state.appView; if (!av) return;

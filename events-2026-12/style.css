@@ -477,3 +477,41 @@ button:disabled { cursor: not-allowed; opacity: .55; }
 .btn.img-dl-go { height: 44px; padding: 0 22px; font-size: 15px; }
 .img-dl-go-row .img-dl-status { margin: 0; }
 @media (max-width: 640px) { .img-dl-sub { min-width: 0; width: 100%; } .img-dl-opt { padding-left: 0; } .img-dl-info { flex-direction: column; align-items: flex-start; } }
+
+/* 2026-11-12 event card in the sidebar: upload channels + wished upload date */
+.item-row { flex-wrap: wrap; row-gap: 0; }
+.up-box { flex: 0 0 calc(100% - 52px); min-width: 0; display: grid; gap: 6px; margin: -2px 0 6px 52px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.item-row.current .up-box { border-color: var(--pink-m); }
+.up-head, .up-date { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.up-title { font-size: 12px; font-weight: 800; color: var(--ink-2); }
+.up-count { font-size: 11px; font-weight: 700; color: var(--muted); }
+.up-media { display: flex; flex-wrap: wrap; gap: 4px; }
+.up-chip { position: relative; display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px 3px 6px; border: 1.5px solid #d7d9df; border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--ink-2); background: #fff; cursor: pointer; user-select: none; }
+.up-chip input { width: 14px; height: 14px; margin: 0; accent-color: var(--pink); cursor: pointer; }
+.up-chip.on { border-color: var(--pink); background: var(--pink-l); color: var(--pink-d); }
+.up-chip:has(input:disabled) { cursor: not-allowed; opacity: .6; }
+.up-chip:has(input:focus-visible) { outline: 3px solid var(--pink); outline-offset: 1px; }
+.up-date-input { height: 30px; padding: 0 6px; border: 1.5px solid #d7d9df; border-radius: 8px; font: inherit; font-size: 13px; font-weight: 700; color: var(--ink); background: #fff; }
+.up-date-input:focus-visible { outline: 3px solid var(--pink); outline-offset: 1px; }
+.up-dday { font-size: 12px; font-weight: 800; color: var(--pink-d); }
+.up-dday.muted { color: var(--muted); font-weight: 600; }
+.up-date-clear { width: 24px; height: 24px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--ink-2); font-size: 14px; line-height: 1; padding: 0; }
+
+/* 2026-11-12 편집 모드 note: pictures can be dragged and resized in the preview */
+.edit-mode-note { display: none; flex-basis: 100%; margin: 0; padding: 6px 10px; border-radius: 8px; background: var(--pink-l); color: var(--pink-d); font-size: 13px; font-weight: 700; }
+.edit-mode .edit-mode-note { display: block; }
+
+/* 2026-11-12 the left checkbox says what it is; 홈페이지 opens 이벤트·프로모션 */
+.final-box { flex: none; width: 44px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+.final-cap { font-size: 10px; line-height: 1.15; font-weight: 800; color: var(--ink-2); text-align: center; white-space: pre-line; letter-spacing: -.02em; }
+.item-row.selected .final-cap { color: var(--pink-d); }
+.up-drop { gap: 5px; padding-right: 7px; }
+.up-mark { width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid #8f95a1; border-radius: 3px; background: #fff; font-size: 11px; line-height: 1; color: #fff; }
+.up-chip.on .up-mark { background: var(--pink); border-color: var(--pink); }
+.up-caret { font-size: 10px; color: var(--muted); }
+.up-drop.open { border-color: var(--pink); }
+.up-sub { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 2px 10px; padding: 6px 8px; border-left: 2px solid var(--pink-m); background: var(--soft); border-radius: 0 8px 8px 0; }
+.up-picked { font-size: 11px; font-weight: 700; color: var(--pink-d); white-space: nowrap; }
+.up-chip > span { white-space: nowrap; }
+.up-drop { max-width: 100%; min-width: 0; }
+.up-drop .up-picked { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
