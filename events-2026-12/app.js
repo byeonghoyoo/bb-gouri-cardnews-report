@@ -605,6 +605,7 @@
       });
       applyTheme(storedTheme());
       var app = H('div', { class: 'app' }, [
+        ui.headSlot = H('div', { class: 'board-head-slot' }, [ui.head = H('div', { class: 'board-head' }, [
         ui.modeTabs,
         H('header', { class: 'topbar' }, [
           H('div', { class: 'brand' }, [
@@ -631,6 +632,7 @@
         H('section', { class: 'statusbar' }, [ui.status, ui.summary]),
         ui.errors,
         ui.tabs,
+        ])]),
         ui.layout = H('div', { class: 'layout' }, [H('aside', { class: 'sidebar' }, [ui.sideTitle, ui.list]), ui.preview, ui.cpanel]),
         ui.hub = H('main', { class: 'dl-hub', id: 'dl-hub', hidden: true }),
         ui.drawerBtn, ui.drawerBack, ui.ctx, ui.lightbox,
@@ -640,6 +642,32 @@
       env.root.replaceChildren(app);
       renderModeTabs();
       bindBoardEvents();
+      bindStickyHead();
+    }
+    /* 2026-11-12 user: "상단 이구간은 스크롤을 내려도 따라서 내려오게 하면 좋을거 같아" (보기 탭부터 언어 탭까지).
+       Screens 769px and wider: once the page is scrolled past this block, the same block stays on top in a slim form
+       (descriptions hidden, smaller tabs and buttons; class 'slim', position:fixed). Its place in the page keeps the full height,
+       so nothing below jumps. --head-h (slim bar height or 0) moves the sticky side list, comment panel and editor bar below it;
+       --head-pad keeps scrollIntoView targets out from under it. Phones keep the old layout. */
+    function bindStickyHead() {
+      var w = win0; if (!w || !ui.head || !ui.headSlot || typeof w.addEventListener !== 'function') return;
+      var queued = false, run = function () { queued = false; updateHead(); };
+      var later = function () { if (queued) return; queued = true; if (w.requestAnimationFrame) w.requestAnimationFrame(run); else w.setTimeout(run, 16); };
+      w.addEventListener('scroll', later, { passive: true });
+      w.addEventListener('resize', function () { state.headSlimH = 0; later(); });
+      updateHead();
+    }
+    function updateHead() {
+      var w = win0, slot = ui.headSlot, head = ui.head; if (!w || !slot || !head || !head.classList) return;
+      var slim = head.classList.contains('slim'), wide = w.innerWidth >= 769, y = w.pageYOffset || 0;
+      if (!slim) state.headFullH = slot.offsetHeight;
+      var slimH = state.headSlimH || 140, top = slot.getBoundingClientRect().top + y;
+      var want = wide && y > top + state.headFullH - slimH;
+      if (want && !slim) { slot.style.height = state.headFullH + 'px'; head.classList.add('slim'); }
+      if (!want && slim) { head.classList.remove('slim'); slot.style.height = ''; head.style.left = ''; head.style.width = ''; }
+      if (want) { var r = slot.getBoundingClientRect(); head.style.left = r.left + 'px'; head.style.width = r.width + 'px'; state.headSlimH = head.offsetHeight; }
+      var root = doc.documentElement;
+      if (root && root.style) { root.style.setProperty('--head-h', want ? state.headSlimH + 'px' : '0px'); root.style.setProperty('--head-pad', wide ? (state.headSlimH || 140) + 'px' : '0px'); }
     }
     function hasAppClass(cls) { return !!ui.app && ui.app.className.split(/\s+/).indexOf(cls) >= 0; }
     function setAppClass(cls, on) {
