@@ -1,4 +1,4 @@
-/* ULT12 language versions (2026-11-11, lead order): JP and TW. Copy = v4/langverify/out/ULT12.final.json as it is; this file only adds the language
+/* ULT12 language versions (lead order): JP and TW (2026-11-11), CN, TH and HK (2026-11-14). Copy = v4/langverify/out/ULT12.final.json as it is; this file only adds the language
    fonts and the line breaks / widths the longer copy needs. Every selector names a language (:lang(ja|zh) or html:not([data-locale=KO])), so the Korean
    page stays pixel-identical (v4/ulthera12/build-ulthera12.cjs checks the selectors). */
 
@@ -8,6 +8,8 @@ html:lang(ja){--f-cjk:'Noto Sans JP'}
 html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
 html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
 html:lang(ja),html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-en:'Jost',var(--f-cjk),'Pretendard Variable',system-ui,sans-serif}
+/* Thai (2026-11-14): Thai letters in Noto Sans Thai after Pretendard / Jost, so Latin letters and figures keep the Korean design's faces (as BLF11) */
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-en:'Jost','Pretendard Variable','Noto Sans Thai',system-ui,sans-serif}
 
 /* line breaks: Chinese and Japanese break between characters (Korean keeps whole words); Japanese breaks at phrase boundaries in Chrome */
 html:not([data-locale=KO]) .sheet{word-break:normal}
@@ -48,3 +50,39 @@ html:not([data-locale=KO])[data-size=line] .L1b .rb-title h1{max-width:620px}
 
 /* Korean copy that the sheet does not translate (the DeepSEE box) keeps whole words */
 html:not([data-locale=KO]) .ko-text{word-break:keep-all}
+
+/* ===== 2026-11-14 CN, TH, HK (lead order): layout fixes found in the QA renders; each rule names its language ===== */
+@container (min-width:601px){
+ /* TH hero A: the two-word title 'Ultherapy PRIME' stays on one line like the one-word Korean title (two lines pushed the long Thai hook line
+    onto the model's hair); ulthera12.js fits it to the title box */
+ html:lang(th) .c1 .hero-title .t1,html:lang(th) .c1 .hero-title .t2{display:inline}
+ /* TH hero A price: the written-out amount ('1,090,000 วอน') stays inside its frame (at the fit minimum the 100 px design size was still 18 px too wide) */
+ html:lang(th) .c1 .tz-price{font-size:max(28px,calc(84*var(--px)*var(--fit,1)))}
+ /* TH price rows (2 A, 2 B, line 2): the list price sits over the event price in one right-hand column, as on BLF11 TH (the written-out amounts
+    overlapped side by side); the row keeps its height */
+ html:lang(th) .prow{grid-template-columns:minmax(0,1fr) calc(240*var(--px));grid-template-rows:auto auto;row-gap:0}
+ html:lang(th) .prow > .pname{grid-column:1;grid-row:1 / 3}
+ html:lang(th) .prow > .plist{grid-column:2;grid-row:1;align-self:end;font-size:max(11px,calc(19*var(--px)));line-height:1.1}
+ html:lang(th) .prow > .psale{grid-column:2;grid-row:2;align-self:start;font-size:max(18px,calc(38*var(--px)))}
+ html:lang(th) .rb2 .prow{grid-template-columns:minmax(0,1fr) calc(220*var(--px))}
+ html:lang(th) .rb2 .prow > .plist{font-size:calc(18*var(--px))}
+ html:lang(th) .rb2 .prow > .psale{font-size:calc(34*var(--px))}
+ /* TH card 4 depth labels: 'ไขมันใต้ผิวหนัง' stays inside the picture */
+ html:lang(th) .dl{font-size:max(10px,calc(14*var(--px)))}
+ /* HK hero B: 'Ultherapy PRIME 超聲刀' keeps one line clear of the model arch (at the fit minimum the 100 px size was still 38 px too wide) */
+ html:lang(zh-HK) .rb-title h1{font-size:calc(90*var(--px)*var(--fit,1))}
+ /* HK price B title: 'Ultherapy PRIME｜單項療程' ends before the model's face (at the fit minimum it ran onto her face) */
+ html:lang(zh-HK) .rb2 .p-title{font-size:calc(47*var(--px))}
+}
+@container (max-width:600px){
+ /* TH phones: the hero price inside the narrow frame, the depth label inside the picture */
+ html:lang(th) .c1 .tz-price{font-size:19px}
+ html:lang(th) .dl{font-size:10px}
+ /* HK phones: the first device label pill ('Ultherapy PRIME 超聲刀') inside its frame */
+ html:lang(zh-HK) .cmp-n{font-size:10px;letter-spacing:-.02em}
+ /* CN phones: a package name keeps clear of the BEST / HIT badge in the row's top right corner */
+ html:lang(zh-CN) .prow:has(> .event-badge) > .pname{padding-right:40px}
+}
+/* TH line 1100x1000 hero B: the written-out price shares the row with 'ราคาโปรโมชัน' as in Korean (on two rows the offer box grew 65 px and covered the
+   first line of the gift band below it) */
+html:lang(th)[data-size=line] .L1b .rb-offer .money{font-size:66px}

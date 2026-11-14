@@ -54,3 +54,88 @@ html:lang(ja)[data-size=line] .L6 .who,html:lang(ja)[data-size=line] .L6 .c5-tip
    1080 size (40px), so it takes two lines like the Korean one */
 html:not([data-locale=KO])[data-size=line] .L7p1 .ab-title{font-size:40px}
 html:not([data-locale=KO])[data-size=line] .L7p1 .dr{grid-template-columns:200px 240px}
+
+/* ===== 2026-11-14 EN · CN · TH · HK (lead order). Copy = v4/langverify/out/OND12.final.json as it is; these rules only fit the longer copy. ===== */
+/* Thai: Noto Sans Thai after Pretendard (Latin letters and figures keep the Korean design's Pretendard); the Latin display faces keep their letters */
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-thin:'Cormorant Garamond','Noto Sans Thai',serif;--f-num:'DM Serif Display','Noto Sans Thai',serif}
+
+/* EN and TH write the won amounts out ('KRW 1,390,000', '1,390,000 วอน', 2.5x the width of '139만원'): price cards 2-3 get wider list / sale
+   columns (the widest list and sale amounts fit; the product names fit in the rest). Thai product names are long ('ONDA ยกกระชับใบหน้า 60 kJ'),
+   so the Thai amounts are set a little smaller (sale 54, list 26 at 1080) and the rows come out lower; English rows keep the Korean sizes and sit
+   a little closer (the English KJ note under the title takes two lines). */
+@container (min-width:601px){
+ html:lang(en) .cp.cpf .prow,html:lang(en) .cp.cpb .prow{grid-template-columns:minmax(0,1fr) calc(184*var(--px)) calc(338*var(--px))}
+ html:lang(th) .cp.cpf .prow,html:lang(th) .cp.cpb .prow{grid-template-columns:minmax(0,1fr) calc(150*var(--px)) calc(282*var(--px))}
+ html:lang(th) .cpf .plist,html:lang(th) .cpb .plist{font-size:max(13px,calc(26*var(--px)))}
+ html:lang(th) .cpf .psale,html:lang(th) .cpb .psale{font-size:max(19px,calc(54*var(--px)))}
+ /* B ticket (card 2 B): the list amount over the sale amount, both at the right of the stub */
+ html:lang(en) .ob2-face .ob2-pr,html:lang(th) .ob2-face .ob2-pr{flex-direction:column;align-items:flex-end;justify-content:center;gap:calc(2*var(--px))}
+ html:lang(th) .ob2-face .ob2-nm .kjb{font-size:.46em}
+ /* card 5 (device): Thai points get the width they need (as Japanese); the English labels on the diagram ('For deeper layers') need the Korean
+    diagram width, so the English points keep it and each point takes its own height (equal heights pushed the source line off the card) */
+ html:lang(th) .c4-mid{grid-template-columns:calc(460*var(--px)) minmax(0,1fr)}
+ html:lang(en) .c4 .points{grid-auto-rows:auto}
+}
+html:lang(en)[data-size=home] .cp.cpf .prow{padding:calc(18*var(--px)) 0 calc(16*var(--px))}
+html:lang(en)[data-size=home] .cp.cpf .opt .prow{padding:calc(13*var(--px)) 0 calc(12*var(--px))}
+html:lang(en)[data-size=line] .L2a .prows .prow{padding:5px 0 4px}
+html:lang(en)[data-size=line] .L2a .opt .prow{padding:4px 0 3px}
+/* line B ticket: the stacked amounts stay inside the row height */
+html:lang(en)[data-size=line] .L2b .ob2-face .ob2-row .plist,html:lang(th)[data-size=line] .L2b .ob2-face .ob2-row .plist{font-size:20px}
+html:lang(en)[data-size=line] .L2b .ob2-face .ob2-row .psale,html:lang(th)[data-size=line] .L2b .ob2-face .ob2-row .psale{font-size:48px}
+
+/* card 1 B: the longer price label puts the VAT note on its own line under the price; the English contact line breaks where the copy breaks
+   ('Appointments & inquiries' / 'WhatsApp: +82 10-7215-7511') */
+html:lang(en)[data-size=home] .ob1-pr,html:lang(th)[data-size=home] .ob1-pr{flex-wrap:wrap;row-gap:calc(4*var(--px))}
+html:lang(en)[data-size=home] .ob1-vat,html:lang(th)[data-size=home] .ob1-vat{flex-basis:100%;text-align:center}
+html:lang(en) .ob1-contact{white-space:normal;text-align:center;line-height:1.3}
+html:lang(en) .ob1-contact [data-copy]{white-space:pre-line}
+
+/* line card 6: the English title stays on one line (it may come down to 70 %, onda12.js fit), so the head keeps its height */
+html:lang(en)[data-size=line] .L6 .q-title{white-space:nowrap}
+
+/* phones: written-out amounts take the second line of a price row (name on the first line); the hero price pill may wrap */
+@container (max-width:600px){
+ html:lang(en) .prow,html:lang(th) .prow{grid-template-columns:minmax(0,1fr) auto auto;row-gap:4px}
+ html:lang(en) .prow .pname,html:lang(th) .prow .pname{grid-column:1 / -1;grid-row:1}
+ html:lang(en) .prow .plist,html:lang(th) .prow .plist{grid-column:2;grid-row:2}
+ html:lang(en) .prow .psale,html:lang(th) .prow .psale{grid-column:3;grid-row:2}
+ html:lang(en) .c1 .tz,html:lang(th) .c1 .tz{flex-wrap:wrap;justify-content:center;row-gap:2px;border-radius:18px}
+}
+/* Thai: the smaller amounts make the rows lower, so the rows get back the Korean card height (the VAT line ends where the Korean one does) */
+html:lang(th)[data-size=home] .cp.cpf .prow{padding:calc(22*var(--px)) 0 calc(19*var(--px))}
+html:lang(th)[data-size=home] .cp.cpf .opt .prow{padding:calc(15*var(--px)) 0 calc(13*var(--px))}
+html:lang(th)[data-size=home] .cp.cpb .prow{padding:calc(20*var(--px)) 0 calc(18*var(--px))}
+html:lang(th)[data-size=home] .cp.cpb .opt .prow{padding:calc(13*var(--px)) 0 calc(12*var(--px))}
+html:lang(th)[data-size=line] .L2a .prows .prow{padding:8px 0 7px}
+html:lang(th)[data-size=line] .L2a .opt .prow{padding:6px 0 5px}
+html:lang(th)[data-size=line] .L3 .prows .prow{padding:9px 0 8px}
+html:lang(th)[data-size=line] .L3 .opt .prow{padding:6px 0 5px}
+/* line card 6: the title is one line (onda12.js fit can only shrink it when the title box spans the head; the line head sets its items to their
+   own width), and the blocks under the lead sit a little closer, as in Japanese */
+html:lang(en)[data-size=line] .L6 .q-title,html:lang(th)[data-size=line] .L6 .q-title{align-self:stretch}
+html:lang(en)[data-size=line] .L6 .who,html:lang(en)[data-size=line] .L6 .c5-tip,html:lang(th)[data-size=line] .L6 .who,html:lang(th)[data-size=line] .L6 .c5-tip{margin-top:8px}
+/* line card 6: the English and Thai steps take four or five lines, so the card is laid out tighter (smaller round photo and head, smaller step
+   icons, closer lines and gaps); every text keeps its size */
+html:lang(en)[data-size=line] .L6 .c5-in,html:lang(th)[data-size=line] .L6 .c5-in{padding:28px 56px 18px}
+html:lang(en)[data-size=line] .L6 .c5-photo,html:lang(th)[data-size=line] .L6 .c5-photo{left:104px;top:76px;width:168px;height:168px}
+html:lang(en)[data-size=line] .L6 .q-head,html:lang(th)[data-size=line] .L6 .q-head{min-height:172px}
+html:lang(en)[data-size=line] .L6 .who-it,html:lang(th)[data-size=line] .L6 .who-it{padding:10px 22px}
+html:lang(en)[data-size=line] .L6 .steps,html:lang(th)[data-size=line] .L6 .steps,html:lang(en)[data-size=line] .L6 .infos,html:lang(th)[data-size=line] .L6 .infos{margin-top:10px}
+html:lang(en)[data-size=line] .L6 .st,html:lang(th)[data-size=line] .L6 .st{row-gap:4px}
+html:lang(en)[data-size=line] .L6 .st-ico,html:lang(th)[data-size=line] .L6 .st-ico{width:38px;height:38px}
+html:lang(en)[data-size=line] .L6 .st-d,html:lang(th)[data-size=line] .L6 .st-d{line-height:1.4}
+/* line card 2 B: the English / Hong Kong KJ note takes two lines, so the left column ends 20 px lower; the device keeps its Korean place at the card foot */
+html:lang(en)[data-size=line] .L2b .ob2-dev,html:lang(zh-HK)[data-size=line] .L2b .ob2-dev{bottom:-4px}
+/* card 2 B: the English, Thai and Hong Kong legal and VAT notes are longer than the Korean ones; one under the other at the right, so they stay
+   on the sky and off the model's dress (Thai legal note in two lines at 1080; Hong Kong at 1080 only, its line card has the room) */
+@container (min-width:601px){
+ html:lang(en) .ob2-face .ob2-legal,html:lang(th) .ob2-face .ob2-legal,html:lang(zh-HK)[data-size=home] .ob2-face .ob2-legal{flex-direction:column;align-items:flex-end;row-gap:calc(2*var(--px))}
+ html:lang(th)[data-size=home] .ob2-face .ob2-legal [data-copy=od_uibeop]{max-width:calc(400*var(--px));text-align:right}
+}
+html:lang(en)[data-size=line] .L2b .ob2-face .ob2-row,html:lang(th)[data-size=line] .L2b .ob2-face .ob2-row{min-height:80px}
+html:lang(en)[data-size=line] .L2b .ob2-face .ob2-rows.opt .ob2-row,html:lang(th)[data-size=line] .L2b .ob2-face .ob2-rows.opt .ob2-row{min-height:70px}
+/* line card 5: the English and Thai points are longer (title + two or three lines each), so the point list takes its own height with tighter
+   gaps (as Japanese) and the last point no longer runs into the device comparison */
+html:lang(en)[data-size=line] .L5 .points,html:lang(th)[data-size=line] .L5 .points{height:auto;gap:6px}
+html:lang(en)[data-size=line] .L5 .pt,html:lang(th)[data-size=line] .L5 .pt{padding:8px 20px}
