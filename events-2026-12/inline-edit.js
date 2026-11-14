@@ -350,7 +350,7 @@
   var scope = 'home';
   try { var q = new URLSearchParams(win.location.search); scope = q.get('mode') === 'app' ? 'app' : (['line', 'kakao'].indexOf(q.get('size')) >= 0 ? q.get('size') : 'home'); } catch (e) { /* home */ }
   var SLOT_RE = /^(?:c\d{1,2}[ab]p\d{1,2}n\d{1,3}|app(?:thumb|card|detail)n\d{1,3}|rootn\d{1,3})$/;
-  var saved = {}, local = {}, inflight = {}, queued = {}, editable = false, editMode = false, tool = 'move', sel = null, ui = null, drag = null, pend = null, soon = 0, justDragged = 0, reportTimer = 0;
+  var saved = {}, local = {}, inflight = {}, queued = {}, sentV = {}, editable = false, editMode = false, tool = 'move', sel = null, ui = null, drag = null, pend = null, soon = 0, justDragged = 0, reportTimer = 0;
   var has = function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); };
   var ORIGIN = win.location.origin;
   function tell(m) { try { win.parent.postMessage(m, ORIGIN); } catch (e) { /* board gone */ } }
@@ -515,14 +515,15 @@
   }
   function send(n, v) {
     if (v === String(saved[n] || '')) { delete local[n]; applyAll(); status('저장됨'); return; }
-    inflight[n] = true; status('저장 중…');
+    inflight[n] = true; sentV[n] = v; status('저장 중…');
     tell({ type: 'aptos-layout', name: n, value: v });
   }
   function onResult(m) {
     var n = typeof m.name === 'string' ? m.name : ''; if (!inflight[n]) return;
     inflight[n] = false;
     if (has(queued, n)) { var v = queued[n]; delete queued[n]; send(n, v); return; }
-    delete local[n];
+    /* 2026-11-14: arrow-key nudges pressed while this save was on its way are only in local (their own save comes 450 ms later): keep them */
+    if (!(has(local, n) && encode(local[n]) !== sentV[n])) delete local[n];
     if (m.ok) status('저장됨 · 되돌리기 Ctrl+Z'); else status(m.error || '저장하지 못했습니다', true);
     applyAll();
   }

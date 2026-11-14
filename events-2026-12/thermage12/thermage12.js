@@ -42,6 +42,8 @@ function setMoney(el,v){
 function setTitle(el,v){
  el.textContent='';
  const m=/^(.*\S)(\s+)(\S+)$/.exec(v||'');
+ const c=!m&&CJK[locale]?/^(.*[^\x00-\x7F])([A-Za-z][A-Za-z0-9]*)$/.exec(v||''):null; /* 2026-11-14 TW '鳳凰電波FLX' */
+ if(c){el.append(span('t1',c[1]),span('t2',c[2]));return;}
  if(!m){el.append(span('t1',v||''));return;}
  el.append(span('t1',m[1]),document.createTextNode(m[2]),span('t2',m[3]));
 }
@@ -49,7 +51,7 @@ function setTitle(el,v){
    (2026-11-14 language versions: the split also works when the copy has no space before '+', and the count in the language's unit: 发 發 ช็อต) */
 function setName(el,v){
  el.textContent='';v=v||'';
- const c=/^(.*\S)(\s*)(\+\s*\S.*)$/.exec(v);
+ const c=/^(.*\S)(\s*)([+＋]\s*\S.*)$/.exec(v);
  if(c){el.append(span('n1',c[1]),document.createTextNode(c[2]),span('n2',c[3]));return;}
  const s=/^(.*\S)(\s+)(\d[\d,]*(?:샷|\s?(?:发|發|ช็อต|shots?)))$/i.exec(v);
  if(s){el.append(span('np',s[1]),document.createTextNode(s[2]),span('ns',s[3]));return;}
@@ -89,6 +91,9 @@ function setText(el,v){
  if(el.classList.contains('title')){setTitle(el,v);return;}
  if(el.classList.contains('pn')){setName(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
+ /* 2026-11-14 TW: a Chinese group name ('美國音波＋鳳凰電波組合', '鳳凰電波FLX') breaks only after '＋' or before its Latin word (each piece an inline-block,
+    thermage12-i18n.css .bdn); names without those (CN, HK, Korean) are set as before */
+ if(CJK[locale]&&v&&el.classList.contains('bd-name')&&/[+＋]|[^\x00-\x7F][A-Za-z]/.test(v)){el.textContent='';for(const p of v.split(/(?<=[+＋])|(?<=[^\x00-\x7F])(?=[A-Za-z])/))if(p)el.append(span('bdn',p));return;}
  /* 2026-11-14 Chinese: every text keeps its last word together (the Korean list GUARD stays as it was) */
  const guard=!!v&&(el.matches(GUARD)||(!!CJK[locale]&&guardable(el)));
  KEEP.lastIndex=0;
@@ -125,6 +130,8 @@ function fit(){
  }
  for(const el of document.querySelectorAll('.ab-title,.ab-strengths .at')){if(phone){el.style.removeProperty('--fit');continue;}fitLines(el,2,.74);}
  for(const el of document.querySelectorAll('.seal .sl'))fitTo(el,el.parentElement.clientWidth,.55);
+ /* 2026-11-14 language versions: a LINE ID in the phone line (TW) may come down to 66 % to fit the booking box (Korean never shrinks) */
+ for(const el of document.querySelectorAll('.bk-phone')){if(locale==='KO'||phone||!el.classList.contains('is-id')||root.dataset.size!=='home'){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.66);}
 }
 
 function render(){
@@ -144,6 +151,11 @@ function render(){
   const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
+ /* 2026-11-14 TW staff edit (same as onda12.js): the booking box phone line may hold a LINE ID instead of a number; then the chat icon and the booking
+    link replace the phone icon and tel: (Korean and the other languages keep their phone numbers) */
+ for(const p of document.querySelectorAll('.bk-phone')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??'').trim(),id=!!v&&!/^\+?\d[\d\s\-().]*$/.test(v);p.classList.toggle('is-id',id);
+  const img=p.querySelector('img.ph-ico'),pic=id?'assets/icons/ic-consult.webp':'assets/icons/ic-phone.webp';if(img&&img.getAttribute('src')!==pic)img.setAttribute('src',pic);
+  const a=p.querySelector('a[data-link]');if(!a)continue;if(id){const b=(CH&&CH.booking)||(DATA.links&&DATA.links.booking);if(b)a.href=b;a.target='_blank';a.rel='noopener noreferrer';}else{a.removeAttribute('target');a.removeAttribute('rel');}}
  /* 2026-11-14 language versions: a hero contact line that names a chat channel (WeChat ID, WhatsApp, LINE) shows the consult icon instead of the phone
     (CN 官方微信, HK WhatsApp); Korean and phone-number lines keep the phone icon */
  for(const p of document.querySelectorAll('.c1-contact')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??''),chat=locale!=='KO'&&/微信|WeChat|WhatsApp|LINE/i.test(v);

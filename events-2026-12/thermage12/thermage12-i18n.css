@@ -1,4 +1,4 @@
-/* THM12 language versions (2026-11-14, lead order): CN, TH and HK. Copy = v4/langverify/out/THM12.final.json as it is (contact lines that contradicted
+/* THM12 language versions (2026-11-14, lead order): CN, TW, TH and HK. Copy = v4/langverify/out/THM12.final.json as it is (contact lines that contradicted
    the country's channel: v4/thermage12/work/contact-overrides.json); this file only adds the language fonts and the line breaks / widths the longer
    copy needs. Every selector names a language (:lang(zh|th) or html:not([data-locale=KO])), so the Korean page stays pixel-identical
    (v4/thermage12/build-thermage12.cjs checks the selectors). */
@@ -25,9 +25,9 @@ html:lang(th) .c1-price,html:lang(th) .tz-main{flex-wrap:wrap;justify-content:ce
 html:lang(th) .xl{font-size:max(11px,calc(16*var(--px)))}
 html:lang(th) .xl-cool,html:lang(th) .xl-heat,html:lang(zh-HK) .xl-cool,html:lang(zh-HK) .xl-heat{left:auto;right:3%}
 
-/* card 5 genuine-tip steps: the Thai step texts take two lines inside their chip instead of running out of the card on one line */
-html:lang(th) .gsteps .gs{flex:1 1 0;min-width:0}
-html:lang(th) .gs-t{white-space:normal}
+/* card 5 genuine-tip steps: the Thai and Taiwanese step texts take two lines inside their chip instead of running out of the card on one line */
+html:lang(th) .gsteps .gs,html:lang(zh-TW) .gsteps .gs{flex:1 1 0;min-width:0}
+html:lang(th) .gs-t,html:lang(zh-TW) .gs-t{white-space:normal}
 
 /* card 2 B group heads: the Thai names take two lines in the plum column */
 html:lang(th) .c2b .bd-name{white-space:normal;text-wrap:balance}
@@ -131,3 +131,21 @@ html:lang(th)[data-size=kakao] .K2b .bpl{font-size:19px}
 html:lang(th)[data-size=kakao] .K2b .plist{font-size:14px}
 html:lang(th)[data-size=kakao] .K2b .psale{font-size:28px}
 html:lang(th)[data-size=kakao] .K2b .brow{column-gap:8px}
+
+/* ---------- TW (2026-11-14, lv_review done 11:02 KST) ---------- */
+/* booking box: the phone line holds the LINE ID (@beautyblossom_tw, OND12 phone rule); at home it may come down to 66 % to stay inside the box (thermage12.js fit) */
+html:lang(zh-TW)[data-size=home] .bk-phone.is-id{font-size:max(15px,calc(30*var(--px)*var(--fit,1)))}
+/* card 2 B group heads: '美國音波＋鳳凰電波組合' takes two lines in the plum column */
+html:lang(zh-TW) .c2b .bd-name{white-space:normal;text-wrap:balance}
+/* card 2 B group names in pieces (thermage12.js): a piece moves to the next line whole, and only a piece wider than the column breaks inside */
+html:lang(zh-TW) .bd-name .bdn{display:inline-block;max-width:100%}
+/* line 6-2: the LINE ID in the phone line takes the full booking box width under the QR and the links (as OND12 line 7-2) */
+html:lang(zh-TW)[data-size=line] .L6-2 .bk-row{grid-template-columns:124px minmax(0,1fr);grid-template-rows:auto auto;row-gap:18px;align-content:center}
+html:lang(zh-TW)[data-size=line] .L6-2 .bk-text{display:contents}
+html:lang(zh-TW)[data-size=line] .L6-2 .bk-row .qr{grid-column:1;grid-row:1}
+html:lang(zh-TW)[data-size=line] .L6-2 .bk-links{grid-column:2;grid-row:1;align-self:center}
+html:lang(zh-TW)[data-size=line] .L6-2 .bk-phone{grid-column:1 / -1;grid-row:2;margin-top:0}
+/* kakao 2 A parts: '198萬韓元' is wider than the Korean 88 px list column and touched the event price; both price columns take their own width */
+html:lang(zh-TW)[data-size=kakao] .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+/* kakao 2 B parts: the group names at the Hong Kong kakao size, so '鳳凰電波組合' fits the plum column whole */
+html:lang(zh-TW)[data-size=kakao] .K2b .bd-name{font-size:24px}
