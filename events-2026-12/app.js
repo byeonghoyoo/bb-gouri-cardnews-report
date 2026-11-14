@@ -796,7 +796,7 @@
     }
     function renderSidebar() {
       var focused = doc.activeElement;
-      if (focused && focused.classList && focused.classList.contains('up-date-input') && ui.list.contains && ui.list.contains(focused)) { state.sidebarDeferred = true; return; }
+      if (focused && focused.classList && (focused.classList.contains('up-date-input') || focused.classList.contains('up-time-input')) && ui.list.contains && ui.list.contains(focused)) { state.sidebarDeferred = true; return; }
       var keep = ui.list.scrollTop, shown = curRowShown();
       renderSidebarInner();
       fitSidebar();
@@ -849,30 +849,39 @@
        then "페이스북을 메타로", "홈페이지는 클릭하면 드롭다운으로 안에 체크박스, 이벤트·프로모션 두 개 선택",
        then "홈페이지 하위로 공지사항 체크박스 추가 부탁해. 그리고 복수선택도 가능하게 해주고".
        Every event row is a small card: 디자인 최종완료 check · name · 삭제, then the channels it will be uploaded to and the wished upload date.
-       Saved per item and language like the 최종완료 check: <ID>.<LOC>.up_media = chosen ids joined by ',' (UP_IDS order), <ID>.<LOC>.up_date = 'YYYY-MM-DD' or ''.
-       Any number of channels (and of 홈페이지's 이벤트·프로모션·공지사항) can be ticked. A tick shows at once; saves for one item+language go out one after
-       another with the newest set (state.upQueue), so a quick second tick never overwrites the first one. */
+       2026-11-14 user: "이부분은 담당자가 앞으로 너에게 업로드 요청을 기록하는 구간이라서 희망시간도 기록해줄수 있게" -> 희망 시간 under the date.
+       This card is the staff's upload request to the lead (ops/upload-requests.cjs lists them).
+       Saved per item and language like the 최종완료 check: <ID>.<LOC>.up_media = chosen ids joined by ',' (UP_IDS order), <ID>.<LOC>.up_date = 'YYYY-MM-DD' or '',
+       <ID>.<LOC>.up_time = 'HH:MM' (24 h) or ''.
+       Any number of channels (and of 홈페이지's 이벤트·프로모션·공지사항) can be ticked. A change shows at once; saves for one item+language+field go out one
+       after another with the newest value (state.upQueue), so a quick second tick or a time typed digit by digit never runs into its own earlier save. */
     var UPLOAD_MEDIA = [['home', '홈페이지', [['home_event', '이벤트'], ['home_promo', '프로모션'], ['home_notice', '공지사항']]], ['insta', '인스타그램'], ['meta', '메타'], ['kakao', '카카오톡'], ['line', '라인'], ['gangnam', '강남언니'], ['babi', '바비톡'], ['yeoshin', '여신티켓']];
     var UP_IDS = []; UPLOAD_MEDIA.forEach(function (m) { if (m[2]) m[2].forEach(function (s) { UP_IDS.push(s[0]); }); else UP_IDS.push(m[0]); });
     function upQueue() { return state.upQueue || (state.upQueue = {}); }
-    function uploadMedia(itemId, loc) { var key = cellKey(itemId, loc, 'up_media'), q = upQueue()[key], v = q ? q.want : store.value(key, ''); return v ? v.split(',').filter(function (id) { return UP_IDS.indexOf(id) >= 0; }) : []; }
+    /* the value shown for an upload-request field: the newest one waiting to be saved, else the server's */
+    function upValue(itemId, loc, field) { var key = cellKey(itemId, loc, field), q = upQueue()[key]; return q ? q.want : store.value(key, ''); }
+    function uploadMedia(itemId, loc) { var v = upValue(itemId, loc, 'up_media'); return v ? v.split(',').filter(function (id) { return UP_IDS.indexOf(id) >= 0; }) : []; }
     function toggleUpload(itemId, loc, id, on) {
-      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 저장할 수 없습니다 (편집 잠금).', 'error'); renderSidebar(); return; }
-      var key = cellKey(itemId, loc, 'up_media'), cur = uploadMedia(itemId, loc), q = upQueue()[key] || (upQueue()[key] = { busy: false });
-      q.want = UP_IDS.filter(function (x) { return x === id ? on : cur.indexOf(x) >= 0; }).join(',');
-      renderSidebar(); flushUpload(itemId, loc);
+      var cur = uploadMedia(itemId, loc);
+      queueUpload(itemId, loc, 'up_media', UP_IDS.filter(function (x) { return x === id ? on : cur.indexOf(x) >= 0; }).join(','), '업로드 매체를');
     }
-    function flushUpload(itemId, loc) {
-      var key = cellKey(itemId, loc, 'up_media'), q = upQueue()[key];
+    function queueUpload(itemId, loc, field, value, what) {
+      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 저장할 수 없습니다 (편집 잠금).', 'error'); renderSidebar(); return; }
+      var key = cellKey(itemId, loc, field), q = upQueue()[key] || (upQueue()[key] = { busy: false });
+      q.want = value; q.what = what; q.itemId = itemId; q.loc = loc;
+      renderSidebar(); flushUpload(key);
+    }
+    function flushUpload(key) {
+      var q = upQueue()[key];
       if (!q || q.busy) return;
       var sending = q.want;
       if (sending === store.value(key, '')) { delete upQueue()[key]; renderSidebar(); return; }
       q.busy = true; state.saving++; renderStatus();
       store.save(key, sending, by()).then(function (r) {
         state.saving--; q.busy = false;
-        if (r.ok && q.want !== sending) { renderStatus(); flushUpload(itemId, loc); return; }
+        if (r.ok && q.want !== sending) { renderStatus(); flushUpload(key); return; }
         delete upQueue()[key];
-        if (r.ok) toast('업로드 매체를 저장했습니다: ' + itemName(itemId) + ' (' + loc + ')', 'ok');
+        if (r.ok) toast(q.what + ' 저장했습니다: ' + itemName(q.itemId) + ' (' + q.loc + ')', 'ok');
         else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 바꿨습니다. 최신 값을 불러왔습니다.', 'error'); }
         else toast('서버에 저장되지 않았습니다. 원래대로 돌아갑니다. (' + reasonMessage(r) + ')', 'error');
         renderSidebar(); renderStatus();
@@ -887,28 +896,19 @@
       (ui.themeBtns || []).forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === t ? 'true' : 'false'); });
     }
     function setTheme(t) { t = t === 'dark' ? 'dark' : 'light'; try { if (env.storage) env.storage.setItem(THEME_KEY, t); } catch (e) { /* convenience only */ } applyTheme(t); }
-    function uploadDate(itemId, loc) { var v = store.value(cellKey(itemId, loc, 'up_date'), ''); return /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : ''; }
+    function uploadDate(itemId, loc) { var v = upValue(itemId, loc, 'up_date'); return /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : ''; }
+    function uploadTime(itemId, loc) { var v = upValue(itemId, loc, 'up_time'); return /^\d{2}:\d{2}$/.test(v) ? v : ''; }
+    function upTimeNote(v) { var h = +v.slice(0, 2); return (h < 12 ? '오전 ' : '오후 ') + ((h % 12) || 12) + ':' + v.slice(3, 5); }
     function upDateNote(v) {
       var p = v.split('-').map(Number), d = new Date(p[0], p[1] - 1, p[2]), t0 = new Date(); t0.setHours(0, 0, 0, 0);
       var diff = Math.round((d.getTime() - t0.getTime()) / 86400000);
       return '(' + '일월화수목금토'.charAt(d.getDay()) + ') ' + (diff === 0 ? '오늘' : diff > 0 ? 'D-' + diff : -diff + '일 지남');
     }
-    function saveUpload(itemId, loc, field, value, what) {
-      var key = cellKey(itemId, loc, field);
-      if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 저장할 수 없습니다 (편집 잠금).', 'error'); renderSidebar(); return Promise.resolve(); }
-      state.saving++; renderStatus();
-      return store.save(key, value, by()).then(function (r) {
-        state.saving--;
-        if (r.ok) toast(what + ' 저장했습니다: ' + itemName(itemId) + ' (' + loc + ')', 'ok');
-        else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 바꿨습니다. 최신 값을 불러왔습니다.', 'error'); }
-        else toast('서버에 저장되지 않았습니다. 원래대로 돌아갑니다. (' + reasonMessage(r) + ')', 'error');
-        renderSidebar(); renderStatus();
-      });
-    }
     function uploadBox(it, loc) {
       if (isTestItem(it.id)) return null;
       state.upOpen = state.upOpen || {};
-      var chosen = uploadMedia(it.id, loc), date = uploadDate(it.id, loc), canEdit = store.canEdit(), count = 0;
+      var chosen = uploadMedia(it.id, loc), date = uploadDate(it.id, loc), time = uploadTime(it.id, loc), canEdit = store.canEdit(), count = 0;
+      var afterBlur = function () { if (state.sidebarDeferred) { state.sidebarDeferred = false; renderSidebar(); } };
       var save = function (id, on) { toggleUpload(it.id, loc, id, on); };
       var box = function (id, label, aria) { var on = chosen.indexOf(id) >= 0; return H('label', { class: 'up-chip' + (on ? ' on' : '') }, [H('input', { type: 'checkbox', 'data-up-media': id, 'aria-label': aria, checked: on, disabled: !canEdit, onchange: function (e) { save(id, !!e.target.checked); } }), H('span', { text: label })]); };
       var chips = [];
@@ -926,15 +926,23 @@
         if (open) chips.push(H('div', { class: 'up-sub', role: 'group', 'aria-label': m[1] + ' 업로드 위치 (여러 개 선택 가능)' }, [H('span', { class: 'up-sub-note', text: '여러 개 선택 가능' })].concat(m[2].map(function (s) { return box(s[0], s[1], it.label + ' ' + m[1] + ' ' + s[1] + ' (' + loc + ')'); }))));
       });
       var dateIn = H('input', { type: 'date', class: 'up-date-input', 'data-up-date': it.id, 'aria-label': it.label + ' 업로드 예약 희망일 (' + loc + ')', value: date, disabled: !canEdit,
-        onchange: function (e) { var v = String(e.target.value || ''); if (v && !/^\d{4}-\d{2}-\d{2}$/.test(v)) return; if (v !== date) saveUpload(it.id, loc, 'up_date', v, '업로드 희망일을'); },
-        onblur: function () { if (state.sidebarDeferred) { state.sidebarDeferred = false; renderSidebar(); } } });
+        onchange: function (e) { var v = String(e.target.value || ''); if (v && !/^\d{4}-\d{2}-\d{2}$/.test(v)) return; queueUpload(it.id, loc, 'up_date', v, '업로드 희망일을'); },
+        onblur: afterBlur });
+      var timeIn = H('input', { type: 'time', class: 'up-time-input', 'data-up-time': it.id, 'aria-label': it.label + ' 업로드 희망 시간 (' + loc + ')', value: time, disabled: !canEdit,
+        onchange: function (e) { var v = String(e.target.value || '').slice(0, 5); if (v && !/^\d{2}:\d{2}$/.test(v)) return; queueUpload(it.id, loc, 'up_time', v, '업로드 희망 시간을'); },
+        onblur: afterBlur });
       return H('div', { class: 'up-box', 'data-upload-for': it.id }, [
         H('div', { class: 'up-head' }, [H('span', { class: 'up-title', text: '업로드 매체' }), H('span', { class: 'up-count', text: count ? count + '곳' : '미정' })]),
         H('div', { class: 'up-media', role: 'group', 'aria-label': it.label + ' 업로드 매체' }, chips),
         H('div', { class: 'up-date' }, [
           H('span', { class: 'up-title', text: '예약 희망일' }), dateIn,
           date ? H('span', { class: 'up-dday', text: upDateNote(date) }) : H('span', { class: 'up-dday muted', text: '미정' }),
-          date ? H('button', { type: 'button', class: 'up-date-clear', 'data-up-clear': it.id, 'aria-label': '희망일 지우기', title: '희망일 지우기', text: '×', disabled: !canEdit, onclick: function () { saveUpload(it.id, loc, 'up_date', '', '업로드 희망일을'); } }) : null,
+          date ? H('button', { type: 'button', class: 'up-date-clear', 'data-up-clear': it.id, 'aria-label': '희망일 지우기', title: '희망일 지우기', text: '×', disabled: !canEdit, onclick: function () { queueUpload(it.id, loc, 'up_date', '', '업로드 희망일을'); } }) : null,
+        ]),
+        H('div', { class: 'up-date up-time' }, [
+          H('span', { class: 'up-title', text: '희망 시간' }), timeIn,
+          time ? H('span', { class: 'up-tnote', text: upTimeNote(time) }) : H('span', { class: 'up-tnote muted', text: '미정' }),
+          time ? H('button', { type: 'button', class: 'up-date-clear', 'data-up-time-clear': it.id, 'aria-label': '희망 시간 지우기', title: '희망 시간 지우기', text: '×', disabled: !canEdit, onclick: function () { queueUpload(it.id, loc, 'up_time', '', '업로드 희망 시간을'); } }) : null,
         ]),
       ]);
     }
