@@ -47,11 +47,12 @@ function unitSpan(parent,s){
 }
 function setPulse(el,v){
  el.textContent='';v=v||'';
- const i=v.indexOf(' + ');
+ let i=v.indexOf(' + '),j=i+1,sep=' ';
+ if(i<0&&locale!=='KO'){i=v.indexOf('＋');j=i;sep='';if(i>0&&v[i-1]===' '){i--;j=i+1;sep=' ';}} /* 2026-11-14 TW: '索夫波50發＋美國音波二代200發' (full-width plus, no spaces) breaks before '＋' too */
  if(el.classList.contains('cmb')&&i>0){
   const l1=document.createElement('span');l1.className='ln l1';unitSpan(l1,v.slice(0,i));
-  const l2=document.createElement('span');l2.className='ln l2';unitSpan(l2,v.slice(i+1));
-  el.append(l1,document.createTextNode(' '),l2);return;
+  const l2=document.createElement('span');l2.className='ln l2';unitSpan(l2,v.slice(j));
+  el.append(l1,document.createTextNode(sep),l2);return;
  }
  unitSpan(el,v);
 }
@@ -68,7 +69,7 @@ function setHours(el,v){
 const GUARD='.hook,.p-lead,.unit-d,.pcare,.pdet,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.src,.bkl-msg,.cmp-d,.cmp-h,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.ba-note,.bb-ba__note';
 /* names that never break inside */
 /* 2026-11-14 language versions also keep the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
@@ -91,6 +92,8 @@ function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]
 const guardable=(el)=>!/flex|grid/.test(getComputedStyle(el).display);
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
+ /* 2026-11-14 TW: the 2 B group title ('索夫波＋美國音波二代組合') breaks only after '＋' (the pieces are inline-blocks in sofwave12-i18n.css); the text stays the same */
+ if(CJK[locale]&&v&&el.classList.contains('vm-name')&&v.indexOf('＋')>0){el.textContent='';for(const p of v.split(/(?<=＋)/)){if(!p)continue;const s=document.createElement('span');s.className='vmn';s.textContent=p;el.append(s);}return;}
  if(el.classList.contains('pnm')){setPulse(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
  KEEP.lastIndex=0;
@@ -136,6 +139,9 @@ function fit(){
  }
  for(const el of document.querySelectorAll('.ab-title,.ab-strengths .at')){if(phone){el.style.removeProperty('--fit');continue;}fitLines(el,2,.74);}
  for(const el of document.querySelectorAll('.seal .sl'))fitTo(el,el.parentElement.clientWidth,.55);
+ /* 2026-11-14 language versions: a chat ID in the booking-box phone line (TW LINE ID '@beautyblossom_tw') may come down to 66 % to stay inside its box
+    (sofwave12-i18n.css uses --fit for TW only); Korean never shrinks */
+ for(const el of document.querySelectorAll('.bk-phone')){if(locale==='KO'||!el.classList.contains('is-id')||el.hidden||!el.getClientRects().length){el.style.removeProperty('--fit');continue;}const box=el.closest('.bt')||el.parentElement,bs=getComputedStyle(box);fitTo(el,box.getBoundingClientRect().right-parseFloat(bs.paddingRight)-el.getBoundingClientRect().left,.66);}
 }
 
 function render(){

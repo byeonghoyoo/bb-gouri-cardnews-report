@@ -1,4 +1,4 @@
-/* SOF12 language versions (2026-11-14, lead order): CN. Copy = v4/langverify/out/SOF12.final.json as it is; this file only adds the language
+/* SOF12 language versions (2026-11-14, lead order): CN, then TW the same day. Copy = v4/langverify/out/SOF12.final.json as it is; this file only adds the language
    fonts and the line breaks / widths the Chinese copy needs. Every selector names a language (:lang(ja|zh) or html:not([data-locale=KO])), so the
    Korean page stays pixel-identical (v4/sofwave12/build-sofwave12.cjs checks the selectors). */
 
@@ -78,3 +78,55 @@ html:lang(zh)[data-size]:not(#sz) .K4p2 .cmp-dev{width:64px;height:129px}
  html:lang(zh) .c2v .tk{padding-top:6px;padding-bottom:6px}
  html:lang(zh) .c2v .tk .pcare,html:lang(zh) .c2v .tk .pdet{line-height:1.22}
 }
+
+/* ---------- TW (2026-11-14, lv_review done 11:21 KST). The :lang(zh) rules above apply to TW as well; the rules below are TW only ---------- */
+/* card 2 A: the TW care lines are longer ('（Sono超音波導入或LDM 10分鐘＋LED＋面膜）') and took two lines under the name, so the notes under the board
+   ran out of the card; the care line now runs under the name and the add-on line together (one line, as on kakao), the add-on line keeps its column */
+@container (min-width:601px){
+ html:lang(zh-TW) .c2:not([data-size-only]) .prows:not(.combo) .pdet{grid-row:1}
+ html:lang(zh-TW) .c2:not([data-size-only]) .prows:not(.combo) .pcare{grid-column:1 / -1}
+ html:lang(zh-TW) .c2:not([data-size-only]) .prow{padding:calc(15*var(--px)) 0 calc(19*var(--px))}
+ html:lang(zh-TW) .c2:not([data-size-only]) .pgroup2 .prow{padding:calc(15*var(--px)) 0 calc(19*var(--px))}
+}
+html:lang(zh-TW)[data-size]:not(#sz) .L2a .prows:not(.combo) .pdet{grid-row:1}
+html:lang(zh-TW)[data-size]:not(#sz) .L2a .prows:not(.combo) .pcare{grid-column:1 / -1}
+/* the two three-line rows (300 / 400 pulses) need 38 px more on the line card: every row there is 4 px tighter (the CN rule above already took 2 px) */
+html:lang(zh-TW)[data-size]:not(#sz) .L2a .prow,html:lang(zh-TW)[data-size]:not(#sz) .L2a .pgroup2 .prow{padding:2px 0 3px}
+
+/* card 2 B: the group title '索夫波＋美國音波二代組合' is longer than its column; it takes two lines, breaking only after '＋' (sofwave12.js pieces).
+   On the line card the device pictures stand right of the title, so it is a little smaller there; on kakao 2-3 it stays on one line before the pictures */
+html:lang(zh-TW) .vm-name .vmn{display:inline-block}
+html:lang(zh-TW) .cp:not([data-size-only]) .vm-name{white-space:normal}
+html:lang(zh-TW)[data-size]:not(#sz) .L2b .vm-name{white-space:normal;font-size:46px;max-width:356px}
+html:lang(zh-TW)[data-size]:not(#sz) .K2bp3 .vm-name{font-size:52px}
+
+/* kakao card 2 part 3: the combo head and its chip take two lines in TW, so the four combo rows sit a little closer (the notes stay inside) */
+html:lang(zh-TW)[data-size]:not(#sz) .K2ap3 .pgroup2 .prow{padding:3px 0 5px}
+
+/* kakao card 1 A: the short TW title '索夫波' stayed at the full 160 px (the CN title shrinks to fit its width) and pushed the second hook line under the
+   price box (taller here: the VAT note under the price, CN rule above). The head goes back to the Korean place (the TW kick is the Latin script line as in
+   Korean; the CN rule moved it 12 px down for the Chinese kick) and the title is 120 px, so both hook lines stay above the box as in Korean */
+html:lang(zh-TW)[data-size]:not(#sz) .K1a .c1-head{top:76px}
+html:lang(zh-TW)[data-size]:not(#sz) .K1a .hero-title{font-size:120px}
+/* kakao card 1 B: the same for the B hero: at 150 px the title pushed the contact line (value under its label, CN rule above) under the price box; the head
+   goes back to the Korean place and the title is 104 px, so the period and contact lines end above the box */
+html:lang(zh-TW)[data-size]:not(#sz) .K1b .vb-head{top:44px}
+html:lang(zh-TW)[data-size]:not(#sz) .K1b .hero-title{font-size:104px}
+/* kakao card 1 A: the contact pill holds the LINE ID ('@beautyblossom_tw') whole on its own line (the CN rule above lets the WeChat line wrap); 17 px keeps the pill clear of the BEAUTY::BLOSSOM wordmark (at 19 px it reached 7 px over it) */
+html:lang(zh-TW)[data-size]:not(#sz) .K1a .hp-info .hp-v{white-space:nowrap;font-size:17px;max-width:none}
+
+/* kakao card 5 part 2: the TW step and info texts are longer; the boxes are set tighter again so the source line stays inside (same type sizes) */
+html:lang(zh-TW)[data-size]:not(#sz) .K5p2 .steps{margin-top:8px}
+html:lang(zh-TW)[data-size]:not(#sz) .K5p2 .st{padding:7px 16px 7px}
+html:lang(zh-TW)[data-size]:not(#sz) .K5p2 .infos{margin-top:6px}
+html:lang(zh-TW)[data-size]:not(#sz) .K5p2 .inf{padding:7px 16px 7px}
+
+/* booking box: the phone line holds the LINE ID (@beautyblossom_tw, OND12 / THM12 phone rule) and may come down to 66 % to stay inside the box
+   (sofwave12.js fit); on the line card it takes the full box width under the QR code and the links (as THM12 TW) */
+html:lang(zh-TW) .bk-phone.is-id{font-size:calc(max(17px,calc(29*var(--px)))*var(--fit,1))}
+html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-phone.is-id{font-size:calc(34px*var(--fit,1))}
+html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-row{grid-template-columns:150px minmax(0,1fr);grid-template-rows:auto auto;row-gap:18px;align-content:center}
+html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-text{display:contents}
+html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-row .qr{grid-column:1;grid-row:1}
+html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-links{grid-column:2;grid-row:1;align-self:center}
+html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-phone{grid-column:1 / -1;grid-row:2;margin-top:0}
