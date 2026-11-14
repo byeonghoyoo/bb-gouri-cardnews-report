@@ -817,6 +817,8 @@ html[data-size="kakao"] .K2a .pgroup:first-child .tl-img{justify-self:start;marg
 .c1-pl{font-weight:700;font-size:max(11px,calc(21*var(--px)));line-height:1.2;color:var(--chestnut);white-space:nowrap}
 /* #1: 'Density' right under the title, left-aligned with it, solid (the team's mockup) */
 .c1-head .wm1{position:static;display:block;margin-top:calc(10*var(--px));font-size:calc(112*var(--px));line-height:.9;color:#84462a}
+/* 2026-11-14 bug check: on phones (<= 600 px) this big 'Density' word covered the 65만원 price and pushed the hook onto the price label; phones hide it again, as the phone layout did before #1 */
+@container (max-width:600px){.c1-head .wm1{display:none}}
 /* #3: the two points move onto her cheek with two short hashtags (the team's mockup); the price callout loses its dotted line */
 .c1:not([data-variant]) .callouts::before{display:none}
 .c1-tags{position:absolute;z-index:4;left:calc(740*var(--px));top:calc(648*var(--px));list-style:none;margin:0;padding:0;display:grid;gap:calc(36*var(--px))}
