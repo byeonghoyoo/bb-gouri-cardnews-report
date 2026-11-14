@@ -861,14 +861,21 @@
     /* the value shown for an upload-request field: the newest one waiting to be saved, else the server's */
     function upValue(itemId, loc, field) { var key = cellKey(itemId, loc, field), q = upQueue()[key]; return q ? q.want : store.value(key, ''); }
     function uploadMedia(itemId, loc) { var v = upValue(itemId, loc, 'up_media'); return v ? v.split(',').filter(function (id) { return UP_IDS.indexOf(id) >= 0; }) : []; }
-    function toggleUpload(itemId, loc, id, on) {
-      var cur = uploadMedia(itemId, loc);
-      queueUpload(itemId, loc, 'up_media', UP_IDS.filter(function (x) { return x === id ? on : cur.indexOf(x) >= 0; }).join(','), '업로드 매체를');
+    /* channel ticks are kept as operations (id on/off) so they can be put on top of a newer server value (someone else's ticks) */
+    function applyMediaOps(v, ops) {
+      var set = v ? String(v).split(',') : [];
+      ops.forEach(function (o) { set = set.filter(function (x) { return x !== o.id; }); if (o.on) set.push(o.id); });
+      return UP_IDS.filter(function (x) { return set.indexOf(x) >= 0; }).join(',');
     }
-    function queueUpload(itemId, loc, field, value, what) {
+    function toggleUpload(itemId, loc, id, on) {
+      var key = cellKey(itemId, loc, 'up_media'), q0 = upQueue()[key];
+      var ops = ((q0 && q0.ops) || []).filter(function (o) { return o.id !== id; }).concat([{ id: id, on: on }]);
+      queueUpload(itemId, loc, 'up_media', applyMediaOps(uploadMedia(itemId, loc).join(','), [{ id: id, on: on }]), '업로드 매체를', ops);
+    }
+    function queueUpload(itemId, loc, field, value, what, ops) {
       if (!store.canEdit()) { toast('공유 서버에 연결되지 않아 저장할 수 없습니다 (편집 잠금).', 'error'); renderSidebar(); return; }
       var key = cellKey(itemId, loc, field), q = upQueue()[key] || (upQueue()[key] = { busy: false });
-      q.want = value; q.what = what; q.itemId = itemId; q.loc = loc;
+      q.want = value; q.what = what; q.itemId = itemId; q.loc = loc; if (ops) q.ops = ops;
       renderSidebar(); flushUpload(key);
     }
     function flushUpload(key) {
@@ -880,8 +887,19 @@
       store.save(key, sending, by()).then(function (r) {
         state.saving--; q.busy = false;
         if (r.ok && q.want !== sending) { renderStatus(); flushUpload(key); return; }
+        /* 2026-11-14: someone else saved the channels first: keep their ticks and put this person's ticks on top, then save again (at most 3 tries) */
+        if (!r.ok && r.reason === 'conflict' && r.current && q.ops && q.ops.length && (q.tries || 0) < 3) {
+          store.adopt(key, r.current); q.tries = (q.tries || 0) + 1; q.merged = true;
+          q.want = applyMediaOps(store.value(key, ''), q.ops);
+          renderStatus(); flushUpload(key); return;
+        }
         delete upQueue()[key];
-        if (r.ok) toast(q.what + ' 저장했습니다: ' + itemName(q.itemId) + ' (' + q.loc + ')', 'ok');
+        if (r.ok) {
+          var msg = q.merged ? '다른 사람이 함께 고른 매체와 합쳐 저장했습니다: ' + itemName(q.itemId) + ' (' + q.loc + ')' : q.what + ' 저장했습니다: ' + itemName(q.itemId) + ' (' + q.loc + ')';
+          /* 2026-11-14: the card is the staff's upload request to the lead; without a name it is saved as '익명' */
+          if (!state.author && !state.authorHinted) { state.authorHinted = true; msg += ' · 위쪽 작성자 칸에 이름을 적으면 요청한 사람이 남습니다.'; }
+          toast(msg, 'ok');
+        }
         else if (r.reason === 'conflict') { store.adopt(key, r.current); toast('다른 사람이 먼저 바꿨습니다. 최신 값을 불러왔습니다.', 'error'); }
         else toast('서버에 저장되지 않았습니다. 원래대로 돌아갑니다. (' + reasonMessage(r) + ')', 'error');
         renderSidebar(); renderStatus();

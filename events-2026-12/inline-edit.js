@@ -440,7 +440,7 @@
     var a = String(el.getAttribute('alt') || '').trim();
     return a || String(el.getAttribute('src') || '').split(/[?#]/)[0].split('/').pop();
   }
-  var CSS = 'html.bb-dragging,html.bb-dragging *{user-select:none!important}html.bb-layers[data-bb-tool=move] [data-bb-layer]{cursor:move;touch-action:none;animation-play-state:paused!important}' +
+  var CSS = 'html.bb-dragging,html.bb-dragging *{user-select:none!important}html.bb-layers[data-bb-tool=move] [data-bb-layer]{cursor:move;touch-action:none;animation:none!important}' +
     'html.bb-layers[data-bb-tool=move] [data-bb-layer]:hover{outline:2px dashed rgba(229,72,127,.85);outline-offset:3px}' +
     '.bb-layer-box{position:absolute;z-index:2147483600;border:2px solid #e5487f;outline:1px solid rgba(255,255,255,.95);box-sizing:border-box;pointer-events:none}.bb-layer-box[hidden],.bb-layer-bar[hidden]{display:none!important}' +
     '.bb-layer-h{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;background:#fff;border:2px solid #e5487f;border-radius:4px;box-sizing:border-box;pointer-events:auto;touch-action:none}' +
