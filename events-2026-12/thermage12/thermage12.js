@@ -5,13 +5,19 @@
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
-const LANG={KO:'ko'};
+/* 2026-11-14 language versions (CN TH HK, copy from v4/langverify/out/THM12.final.json): <html lang> drives the language fonts and layout rules in
+   thermage12-i18n.css (:lang()); the Google font of the language is added here. Korean renders exactly as before. */
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',HK:'Noto Sans TC',TH:'Noto Sans Thai'};
+const CJK={JP:1,CN:1,TW:1,HK:1},SEGS={};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
 let editable=false,editMode=false,lastHeight=0;
 const root=document.documentElement;
 if(qs.get('capture')==='1')root.classList.add('is-capture'); /* board image download: no motion, fixed layout */
+
+function setFonts(){let l=document.getElementById('locale-fonts');const family=FONT_FAMILY[locale];if(!family){if(l)l.remove();return;}if(!l){l=document.createElement('link');l.id='locale-fonts';l.rel='stylesheet';document.head.append(l);l.addEventListener('load',()=>document.fonts.ready.then(()=>{fit();report();}));}const href='https://fonts.googleapis.com/css2?family='+family.replace(/ /g,'+')+':wght@400;500;600;700;800;900&display=swap';if(l.getAttribute('href')!==href)l.setAttribute('href',href);}
 
 function reply(message){if(parent!==window)parent.postMessage(message,location.origin);}
 const IE=window.BBInlineEdit?window.BBInlineEdit.create({doc:document,raw:k=>fields[k]??'',send:m=>reply(m),refit:()=>{fit();report();},rerender:()=>render()}):null;
@@ -39,12 +45,13 @@ function setTitle(el,v){
  if(!m){el.append(span('t1',v||''));return;}
  el.append(span('t1',m[1]),document.createTextNode(m[2]),span('t2',m[3]));
 }
-/* price names: a package keeps ' + ' between two halves (phones break before it); a single item marks its shot count */
+/* price names: a package keeps ' + ' between two halves (phones break before it); a single item marks its shot count
+   (2026-11-14 language versions: the split also works when the copy has no space before '+', and the count in the language's unit: 发 發 ช็อต) */
 function setName(el,v){
  el.textContent='';v=v||'';
- const c=/^(.*\S)(\s+)(\+\s*\S.*)$/.exec(v);
+ const c=/^(.*\S)(\s*)(\+\s*\S.*)$/.exec(v);
  if(c){el.append(span('n1',c[1]),document.createTextNode(c[2]),span('n2',c[3]));return;}
- const s=/^(.*\S)(\s+)(\d[\d,]*샷)$/.exec(v);
+ const s=/^(.*\S)(\s+)(\d[\d,]*(?:샷|\s?(?:发|發|ช็อต|shots?)))$/i.exec(v);
  if(s){el.append(span('np',s[1]),document.createTextNode(s[2]),span('ns',s[3]));return;}
  el.textContent=v;
 }
@@ -57,7 +64,9 @@ function setHours(el,v){
 }
 /* widow guard: the last two words stay together; kept names never break */
 const GUARD='.hook,.p-lead,.tip-d,.q-ans,.pt-d,.st-d,.gs-t,.inf-n,.inf-v,.c4-tip [data-copy],.src,.cmp-title,.bb-ba__note,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|써마지 FLX|AccuREP™|고주파\(RF\)|고주파 열)/g;
+/* 2026-11-14 language versions also keep the international numbers ('+82-2-336-7511', 'WhatsApp：+82 10-7215-7511'), the floor / house numbers of the
+   address ('6楼', '66號'), and a LINE ID ('@beautyblossom_th') whole; no Korean copy has them */
+const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|써마지 FLX|AccuREP™|고주파\(RF\)|고주파 열|\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|[@＠][A-Za-z][\w.]*|Beauty Blossom)/g;
 function appendKept(el,s){
  let last=0;
  for(const m of s.matchAll(KEEP)){
@@ -66,16 +75,29 @@ function appendKept(el,s){
  }
  if(last<s.length)el.append(document.createTextNode(s.slice(last)));
 }
+/* 2026-11-14 Chinese widow guard (same as onda12.js): the last three characters stay together, grown back to the start of their word (a '·' / '・'
+   break or Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside). Thai has no guard (dictionary breaks). */
+function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;
+ const sep=Math.max(v.lastIndexOf('・'),v.lastIndexOf('·'));if(sep>0&&sep+1<cut&&core(sep+1)<=5)return sep+1;
+ let seg=SEGS[locale];if(seg===undefined){try{seg=SEGS[locale]=new Intl.Segmenter(LANG[locale],{granularity:'word'});}catch(e){seg=SEGS[locale]=null;}}if(!seg)return cut;
+ let start=0,end=v.length;for(const g of seg.segment(v)){if(g.index>cut){end=g.index;break;}start=g.index;}
+ if(start===cut)return cut;if(start>0&&core(start)<=5)return start;return end<v.length?end:-1;}
+/* flex / grid boxes turn every text piece into its own item (gaps, trimmed spaces), so they keep their text whole */
+const guardable=(el)=>!/flex|grid/.test(getComputedStyle(el).display);
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
  if(el.classList.contains('title')){setTitle(el,v);return;}
  if(el.classList.contains('pn')){setName(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
+ /* 2026-11-14 Chinese: every text keeps its last word together (the Korean list GUARD stays as it was) */
+ const guard=!!v&&(el.matches(GUARD)||(!!CJK[locale]&&guardable(el)));
  KEEP.lastIndex=0;
- if(v&&!el.matches(GUARD)&&KEEP.test(v)){KEEP.lastIndex=0;el.textContent='';appendKept(el,v);return;}
+ if(v&&!guard&&KEEP.test(v)){KEEP.lastIndex=0;el.textContent='';appendKept(el,v);return;}
  KEEP.lastIndex=0;
- if(!v||!el.matches(GUARD)){el.textContent=v;return;}
- let m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ if(!v||!guard){el.textContent=v;return;}
+ let m=null;
+ if(locale==='KO'||locale==='EN')m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ else if(CJK[locale]){m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
@@ -106,7 +128,7 @@ function fit(){
 }
 
 function render(){
- root.lang=LANG[locale]||'ko';root.dataset.locale=locale;
+ root.lang=LANG[locale]||'ko';root.dataset.locale=locale;setFonts();
  root.classList.toggle('is-editable',editable);
  root.classList.toggle('is-editmode',editable&&editMode);
  for(const el of document.querySelectorAll('[data-copy]')){
@@ -122,6 +144,10 @@ function render(){
   const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
+ /* 2026-11-14 language versions: a hero contact line that names a chat channel (WeChat ID, WhatsApp, LINE) shows the consult icon instead of the phone
+    (CN 官方微信, HK WhatsApp); Korean and phone-number lines keep the phone icon */
+ for(const p of document.querySelectorAll('.c1-contact')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??''),chat=locale!=='KO'&&/微信|WeChat|WhatsApp|LINE/i.test(v);
+  const img=p.querySelector('img.ph-ico'),pic=chat?'assets/icons/ic-consult.webp':'assets/icons/ic-phone.webp';if(img&&img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;
  for(const el of document.querySelectorAll('[data-gmap]')){const u=GM&&GM[el.dataset.gmap];if(!u)continue;const a=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(a)!==u)el.setAttribute(a,u);}

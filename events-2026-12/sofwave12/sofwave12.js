@@ -5,7 +5,11 @@
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
-const LANG={KO:'ko'};
+/* 2026-11-14 language versions (CN, copy from v4/langverify/out/SOF12.final.json): <html lang> drives the language fonts and layout rules in
+   sofwave12-i18n.css (:lang()); the Google font of the language is added here (same as onda12.js / ulthera12.js). Korean renders exactly as before. */
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',HK:'Noto Sans TC',TH:'Noto Sans Thai'};
+const CJK={JP:1,CN:1,TW:1,HK:1},SEGS={};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -14,6 +18,7 @@ const root=document.documentElement;
 /* ?capture=1 (board image download): no animation, fixed layout */
 if(qs.get('capture')==='1')root.classList.add('is-capture');
 
+function setFonts(){let l=document.getElementById('locale-fonts');const family=FONT_FAMILY[locale];if(!family){if(l)l.remove();return;}if(!l){l=document.createElement('link');l.id='locale-fonts';l.rel='stylesheet';document.head.append(l);l.addEventListener('load',()=>document.fonts.ready.then(()=>{fit();report();}));}const href='https://fonts.googleapis.com/css2?family='+family.replace(/ /g,'+')+':wght@400;500;600;700;800;900&display=swap';if(l.getAttribute('href')!==href)l.setAttribute('href',href);}
 function reply(message){if(parent!==window)parent.postMessage(message,location.origin);}
 const IE=window.BBInlineEdit?window.BBInlineEdit.create({doc:document,raw:k=>fields[k]??'',send:m=>reply(m),refit:()=>{fit();report();},rerender:()=>render()}):null;
 
@@ -32,9 +37,9 @@ function setMoney(el,v){
  const n=document.createElement('span');n.className='n';n.textContent=m[2];el.append(n);
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
-/* price names: the pulse / shot figure ('50펄스', '200샷') stands out; combo names break before ' + ' (the text stays the same) */
+/* price names: the pulse / shot figure ('50펄스', '200샷'; Chinese '50发') stands out; combo names break before ' + ' (the text stays the same) */
 function unitSpan(parent,s){
- const m=/^(.*?)(\s*)(\d[\d,]*\s*(?:펄스|샷))$/.exec(s);
+ const m=/^(.*?)(\s*)(\d[\d,]*\s*(?:펄스|샷|发|發))$/.exec(s);
  if(!m){parent.append(document.createTextNode(s));return;}
  if(m[1]){const a=document.createElement('span');a.className='pb';a.textContent=m[1];parent.append(a);}
  if(m[2])parent.append(document.createTextNode(m[2]));
@@ -62,25 +67,39 @@ function setHours(el,v){
 /* widow guard: the last two words stay together */
 const GUARD='.hook,.p-lead,.unit-d,.pcare,.pdet,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.src,.bkl-msg,.cmp-d,.cmp-h,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.ba-note,.bb-ba__note';
 /* names that never break inside */
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
+/* 2026-11-14 language versions also keep the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
   let pre=s.slice(last,m.index),lead='';
   if(/\+ $/.test(pre)){lead='+ ';pre=pre.slice(0,-2);} /* '+ ' stays with the name after it, so a line never ends with '+' (team comment SOF12 #16, 2026-11-09) */
   if(pre)el.append(document.createTextNode(pre));
-  const k=document.createElement('span');k.className='nw';k.textContent=lead+m[0];el.append(k);last=m.index+m[0].length;
+  let e=m.index+m[0].length;while(e<s.length&&/[，。、：；！？）」』]/.test(s[e]))e++; /* 2026-11-14: Chinese punctuation right after a kept name stays with it (it may not start a line); Korean copy has none */
+  const k=document.createElement('span');k.className='nw';k.textContent=lead+s.slice(m.index,e);el.append(k);last=e;
  }
  if(last<s.length)el.append(document.createTextNode(s.slice(last)));
 }
+/* 2026-11-14 Chinese (same as onda12.js): the last three characters stay together, grown back to the start of their word (a '・' break or
+   Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside) */
+function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;
+ const sep=Math.max(v.lastIndexOf('・'),v.lastIndexOf('·'));if(sep>0&&sep+1<cut&&core(sep+1)<=5)return sep+1;
+ let seg=SEGS[locale];if(seg===undefined){try{seg=SEGS[locale]=new Intl.Segmenter(LANG[locale],{granularity:'word'});}catch(e){seg=SEGS[locale]=null;}}if(!seg)return cut;
+ let start=0,end=v.length;for(const g of seg.segment(v)){if(g.index>cut){end=g.index;break;}start=g.index;}
+ if(start===cut)return cut;if(start>0&&core(start)<=5)return start;return end<v.length?end:-1;}
+/* flex / grid boxes turn every text piece into its own item (gaps, trimmed spaces), so they keep their text whole */
+const guardable=(el)=>!/flex|grid/.test(getComputedStyle(el).display);
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
  if(el.classList.contains('pnm')){setPulse(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
  KEEP.lastIndex=0;
  const kept=!!v&&KEEP.test(v);KEEP.lastIndex=0;
- if(!v||!el.matches(GUARD)){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
- let m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ /* Chinese: every text keeps its last word together (the Korean list GUARD stays as it was) */
+ if(!v||(!el.matches(GUARD)&&!(CJK[locale]&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
+ let m=null;
+ if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ else{m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
@@ -120,7 +139,7 @@ function fit(){
 }
 
 function render(){
- root.lang=LANG[locale]||'ko';root.dataset.locale=locale;
+ root.lang=LANG[locale]||'ko';root.dataset.locale=locale;setFonts();
  root.classList.toggle('is-editable',editable);
  root.classList.toggle('is-editmode',editable&&editMode);
  for(const el of document.querySelectorAll('[data-copy]')){
@@ -136,6 +155,16 @@ function render(){
   const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
+ /* 2026-11-14 CN staff edit: the phone line (sw_ab_phone, also the hero contact line) may hold the country's chat ID ('官方微信：Beautyblossom00') instead
+    of a number; then a chat icon and the booking link replace the phone icon and tel: (BLF11 / OND12 rule). In the booking box a line that repeats the
+    second link line word for word is hidden outside the edit mode (the same words twice). Korean always holds the number: nothing changes there. */
+ const isId=(v)=>!!v&&!/^\+?\d[\d\s\-().]*$/.test(v);
+ for(const p of document.querySelectorAll('.bk-phone')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??'').trim(),id=isId(v);p.classList.toggle('is-id',id);
+  const img=p.querySelector('img.ph-ico'),pic=id?'assets/icons/ic-consult.webp':'assets/icons/ic-phone.webp';if(img&&img.getAttribute('src')!==pic)img.setAttribute('src',pic);
+  const a=p.querySelector('a[data-link]');if(a){if(id){const b=(CH&&CH.booking)||(DATA.links&&DATA.links.booking);if(b)a.href=b;a.target='_blank';a.rel='noopener noreferrer';}else{a.removeAttribute('target');a.removeAttribute('rel');}}
+  const box=p.closest('.bk-text'),alt=box&&box.querySelector('.bk-alt [data-copy]'),av=String((alt&&fields[alt.dataset.copy])??'').trim();
+  p.hidden=locale!=='KO'&&id&&!!av&&av===v&&!(editable&&editMode);}
+ for(const h of document.querySelectorAll('.hp-info,.vb-mi')){const sp=h.querySelector('[data-copy="sw_ab_phone"]');if(!sp)continue;const img=h.querySelector('img.hp-ico,img.vb-ico'),pic=isId(String(fields.sw_ab_phone??'').trim())?'assets/icons/ic-consult.webp':'assets/icons/ic-phone.webp';if(img&&img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;
  for(const el of document.querySelectorAll('[data-gmap]')){const u=GM&&GM[el.dataset.gmap];if(!u)continue;const a=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(a)!==u)el.setAttribute(a,u);}

@@ -1,0 +1,80 @@
+/* SOF12 language versions (2026-11-14, lead order): CN. Copy = v4/langverify/out/SOF12.final.json as it is; this file only adds the language
+   fonts and the line breaks / widths the Chinese copy needs. Every selector names a language (:lang(ja|zh) or html:not([data-locale=KO])), so the
+   Korean page stays pixel-identical (v4/sofwave12/build-sofwave12.cjs checks the selectors). */
+
+/* fonts: Chinese / Japanese text in Noto Sans SC / TC / JP first in the stack (Pretendard's Hanja never mixes in). The Latin display faces
+   (Montserrat, Pinyon Script) keep their Latin letters; CJK letters in them fall back to the language's Noto (same as OND12 / ULT12). */
+html:lang(ja){--f-cjk:'Noto Sans JP'}
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(ja),html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-lat:'Montserrat',var(--f-cjk),'Pretendard Variable',Pretendard,sans-serif;--f-script:'Pinyon Script',var(--f-cjk),serif}
+
+/* line breaks: Chinese and Japanese break between characters (the Korean page keeps whole words with keep-all) */
+html:lang(zh) .sheet,html:lang(ja) .sheet{word-break:normal}
+html:lang(zh) .c2:not([data-size-only]) .prows:not(.combo) .pdet,html:lang(ja) .c2:not([data-size-only]) .prows:not(.combo) .pdet{word-break:normal}
+html:lang(zh)[data-size]:not(#sz) .L2a .prows:not(.combo) .pdet,html:lang(zh)[data-size]:not(#sz) .K2ap1 .prows:not(.combo) .pdet{word-break:normal}
+
+/* prices: the figure and its unit stay on one line ('53万韩元'); where the box is too narrow for the price and the VAT note side by side
+   (card 1 B everywhere, card 1 A on kakao), the VAT note takes its own line under the price */
+html:lang(zh) .money,html:lang(ja) .money{white-space:nowrap}
+html:lang(zh) .vb-price .hp-main{flex-wrap:wrap;row-gap:calc(2*var(--px))}
+html:lang(zh) .vb-price .hp-vat{flex-basis:100%}
+html:lang(zh)[data-size]:not(#sz) .K1a .hp-main{flex-wrap:wrap;row-gap:2px}
+html:lang(zh)[data-size]:not(#sz) .K1a .hp-vat{flex-basis:100%;margin-left:0;padding-left:0;border-left:0}
+
+/* Noto Sans SC has a taller line box than Pretendard (each price row grows by about 4 px): on the line card 2 the nine rows keep the
+   Korean height with 2 px less padding above and below, so the notes under the board stay inside the card */
+html:lang(zh)[data-size]:not(#sz) .L2a .prow,html:lang(zh)[data-size]:not(#sz) .L2a .pgroup2 .prow{padding:4px 0 5px}
+
+/* kakao card 1 A: the Chinese kick ('冬季', set in the Latin script face's size) reaches above its line box; the head starts 12 px lower */
+html:lang(zh)[data-size]:not(#sz) .K1a .c1-head{top:88px}
+
+/* kakao card 1 A: the contact pill at the top right holds the WeChat line ('官方微信：Beautyblossom00') in two lines next to the label; without the
+   chat icon it stays as wide as the Korean pill, so it does not run over the BEAUTY::BLOSSOM wordmark */
+html:lang(zh)[data-size]:not(#sz) .K1a .hp-info .hp-ico{display:none}
+html:lang(zh)[data-size]:not(#sz) .K1a .hp-info .hp-v{font-size:20px;white-space:normal;max-width:192px}
+
+/* kakao card 1 B: the period and the contact lines put the value under the label (the WeChat line would run over the device picture);
+   the price box (the VAT note on its own line) keeps inside the card with less padding */
+html:lang(zh)[data-size]:not(#sz) .K1b .vb-mi{flex-wrap:wrap;white-space:normal;row-gap:2px}
+html:lang(zh)[data-size]:not(#sz) .K1b .vb-mi .vb-v{flex-basis:100%;padding-left:42px}
+html:lang(zh)[data-size]:not(#sz) .K1b .vb-meta{gap:4px}
+html:lang(zh)[data-size]:not(#sz) .K1b .vb-price{top:412px;padding-top:10px;padding-bottom:10px}
+
+/* kakao card 4 part 1: the answer and the title of point 2 take two lines and the point texts three, so the title, the answer and the four point
+   boxes are set tighter (same type sizes) */
+html:lang(zh)[data-size]:not(#sz) .K4p1 .q-ans{line-height:1.3}
+html:lang(zh)[data-size]:not(#sz) .K4p1 .c4-mid{margin-top:8px}
+html:lang(zh)[data-size]:not(#sz) .K4p1 .q-title{line-height:1}
+html:lang(zh)[data-size]:not(#sz) .K4p1 .points{row-gap:8px}
+html:lang(zh)[data-size]:not(#sz) .K4p1 .pt{padding:10px 12px 10px 16px}
+html:lang(zh)[data-size]:not(#sz) .K4p1 .pt-d{line-height:1.25}
+
+/* kakao card 5 part 2: the step texts take three lines and two info titles two, so the boxes are tighter and the source line stays inside */
+html:lang(zh)[data-size]:not(#sz) .K5p2 .st{padding:10px 16px 10px}
+html:lang(zh)[data-size]:not(#sz) .K5p2 .st-d{line-height:1.35}
+html:lang(zh)[data-size]:not(#sz) .K5p2 .infos{margin-top:8px}
+html:lang(zh)[data-size]:not(#sz) .K5p2 .inf{padding:10px 16px 10px}
+html:lang(zh)[data-size]:not(#sz) .K5p2 .inf-v{line-height:1.15}
+html:lang(zh)[data-size]:not(#sz) .K5p2 .c5-tip{padding-top:4px}
+
+/* kakao card 1 B: the Chinese kick reaches above its line box into the wordmark; the head starts 12 px lower (the title is shorter in Chinese) */
+html:lang(zh)[data-size]:not(#sz) .K1b .vb-head{top:56px}
+
+/* kakao card 4 part 2: a narrower device picture in the two comparison boxes, so '美版超声刀二代' stays on one line */
+html:lang(zh)[data-size]:not(#sz) .K4p2 .cmp-it{grid-template-columns:64px minmax(0,1fr);column-gap:14px}
+html:lang(zh)[data-size]:not(#sz) .K4p2 .cmp-dev{width:64px;height:129px}
+
+/* phones: the price-card title 'Sofwave 索夫波' is longer than the Korean one and would run under the device and the model at the sides; it takes
+   two lines there (it breaks at the space) instead of shrinking past its limit */
+@container (max-width:600px){
+ html:lang(zh) .pt-main{white-space:normal}
+}
+
+/* board preview widths (601-1079 px, e.g. the review board's 780-900 px frame): the type keeps its minimum sizes there, so the Chinese care and
+   menu lines wrap more and the 2 B ticket rows grew past the notes under them; the tickets are set a little tighter at these widths only
+   (the 1080 design and the downloads are not affected) */
+@container (min-width:601px) and (max-width:1079px){
+ html:lang(zh) .c2v .tk{padding-top:6px;padding-bottom:6px}
+ html:lang(zh) .c2v .tk .pcare,html:lang(zh) .c2v .tk .pdet{line-height:1.22}
+}

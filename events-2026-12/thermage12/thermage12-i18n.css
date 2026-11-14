@@ -1,0 +1,133 @@
+/* THM12 language versions (2026-11-14, lead order): CN, TH and HK. Copy = v4/langverify/out/THM12.final.json as it is (contact lines that contradicted
+   the country's channel: v4/thermage12/work/contact-overrides.json); this file only adds the language fonts and the line breaks / widths the longer
+   copy needs. Every selector names a language (:lang(zh|th) or html:not([data-locale=KO])), so the Korean page stays pixel-identical
+   (v4/thermage12/build-thermage12.cjs checks the selectors). */
+
+/* fonts: Chinese text in Noto Sans SC / TC first in the stack (Pretendard's Hanja never mixes in); Thai in Noto Sans Thai after Pretendard
+   (Latin letters and figures keep the Korean design's Pretendard). The display faces (Space Grotesk, Cormorant Garamond, Pinyon Script,
+   JetBrains Mono) keep their Latin letters; Chinese / Thai letters in them fall back to the language's Noto. */
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-en:'Space Grotesk',var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-serif:'Cormorant Garamond',var(--f-cjk),Georgia,serif;--f-script:'Pinyon Script','Snell Roundhand',var(--f-cjk),cursive;--f-mono:'JetBrains Mono',ui-monospace,var(--f-cjk),monospace}
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-en:'Space Grotesk','Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-serif:'Cormorant Garamond','Pretendard Variable',Pretendard,'Noto Sans Thai',Georgia,serif;--f-script:'Pinyon Script','Snell Roundhand','Noto Sans Thai',cursive;--f-mono:'JetBrains Mono',ui-monospace,'Noto Sans Thai',monospace}
+
+/* line breaks: Chinese breaks between characters, Thai at the browser's dictionary breaks (Korean keeps whole words) */
+html:not([data-locale=KO]) .sheet{word-break:normal}
+
+/* hero B (and its line / kakao copies): the long Thai and Hong Kong titles ('เทอร์มาจ เอฟแอลเอ็กซ์', 'Thermage FLX 熱瑪吉') take two lines in the plum panel
+   (the last word on its own line, as the title helper already splits it); one line ran past the panel into the photo */
+html:lang(th) .c1b .hero-title .t2,html:lang(zh-HK) .c1b .hero-title .t2{display:block}
+
+/* hero A: the Thai event price is a full won amount ('1,090,000 วอน'), so in the narrower boxes (phone, line) the VAT note and the price may take their own line */
+html:lang(th) .c1-price,html:lang(th) .tz-main{flex-wrap:wrap;justify-content:center;row-gap:calc(6*var(--px))}
+
+/* card 4 diagram labels: the Thai and Hong Kong labels are longer ('ระบบทำความเย็น', '冷卻技術'); the two right-hand labels hang from the right edge of the picture and are a little smaller */
+html:lang(th) .xl{font-size:max(11px,calc(16*var(--px)))}
+html:lang(th) .xl-cool,html:lang(th) .xl-heat,html:lang(zh-HK) .xl-cool,html:lang(zh-HK) .xl-heat{left:auto;right:3%}
+
+/* card 5 genuine-tip steps: the Thai step texts take two lines inside their chip instead of running out of the card on one line */
+html:lang(th) .gsteps .gs{flex:1 1 0;min-width:0}
+html:lang(th) .gs-t{white-space:normal}
+
+/* card 2 B group heads: the Thai names take two lines in the plum column */
+html:lang(th) .c2b .bd-name{white-space:normal;text-wrap:balance}
+
+/* ---------- home 1080 (and the board's 780 view): containers wider than 600 px ---------- */
+@container (min-width:601px){
+ /* 2 A, Thai: the won amounts are written out ('1,090,000 วอน'); the list and event prices keep their own width (auto columns) at a smaller size
+    and the names a little smaller, so every row stays on one line and the card keeps its height */
+ html:lang(th)[data-size=home] .c2 .prow,html:lang(th)[data-size=line] .L2a .prow,html:lang(th)[data-size=kakao] .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto;column-gap:calc(12*var(--px))}
+ html:lang(th)[data-size=home] .c2 .pl,html:lang(th)[data-size=line] .L2a .pl,html:lang(th)[data-size=kakao] .K2a .pl{font-size:calc(23*var(--px)*var(--fit,1))}
+ html:lang(th)[data-size=home] .c2 .plist,html:lang(th)[data-size=line] .L2a .plist,html:lang(th)[data-size=kakao] .K2a .plist{font-size:max(11px,calc(18*var(--px)))}
+ html:lang(th)[data-size=home] .c2 .psale,html:lang(th)[data-size=line] .L2a .psale,html:lang(th)[data-size=kakao] .K2a .psale{font-size:max(18px,calc(38*var(--px)))}
+ /* 2 A, Hong Kong: the package names ('Ultherapy PRIME 超聲刀 300發 + Thermage FLX 熱瑪吉 300發') read as two lines like card 2 B; the rows lose their
+    minimum height and padding (the event price sets their height) so the card keeps its 1350 height */
+ html:lang(zh-HK)[data-size=home] .c2 .g-ul .pl,html:lang(zh-HK)[data-size=home] .c2 .g-sf .pl{white-space:normal}
+ html:lang(zh-HK)[data-size=home] .c2 .g-ul .pn .n1,html:lang(zh-HK)[data-size=home] .c2 .g-sf .pn .n1{display:block}
+ html:lang(zh-HK)[data-size=home] .c2 .g-ul .pn,html:lang(zh-HK)[data-size=home] .c2 .g-sf .pn{line-height:1.18}
+ html:lang(zh-HK)[data-size=home] .c2 .prow{min-height:0;padding:0}
+ html:lang(zh-HK)[data-size=home] .c2 .pl{line-height:1.2}
+ /* the Hong Kong price-card title ('Thermage FLX') starts smaller so the fit stays inside its column (Korean '써마지' is short) */
+ html:lang(zh-HK) .c2 .p-title{font-size:calc(64*var(--px)*var(--fit,1))}
+ /* 2 B: the price columns take their own width and the names a little smaller (Thai won amounts, Hong Kong names in two languages) */
+ html:lang(th)[data-size=home] .c2b .brow,html:lang(zh-HK)[data-size=home] .c2b .brow,html:lang(th)[data-size=line] .L2b .brow,html:lang(th)[data-size=kakao] .K2b .brow{grid-template-columns:minmax(0,1fr) auto auto}
+ html:lang(th)[data-size=home] .c2b .bpl,html:lang(th)[data-size=line] .L2b .bpl,html:lang(th)[data-size=kakao] .K2b .bpl{font-size:calc(21*var(--px))}
+ html:lang(th)[data-size=home] .c2b .plist,html:lang(th)[data-size=line] .L2b .plist,html:lang(th)[data-size=kakao] .K2b .plist{font-size:max(11px,calc(17*var(--px)))}
+ html:lang(th)[data-size=home] .c2b .psale,html:lang(th)[data-size=line] .L2b .psale,html:lang(th)[data-size=kakao] .K2b .psale{font-size:max(18px,calc(34*var(--px)))}
+ html:lang(th)[data-size=home] .c2b .bd-name,html:lang(th)[data-size=line] .L2b .bd-name,html:lang(th)[data-size=kakao] .K2b .bd-name{font-size:max(15px,calc(25*var(--px)))}
+ html:lang(zh-HK)[data-size=home] .c2b .bpl{font-size:calc(22*var(--px));line-height:1.22}
+ /* 4, Thai: a narrower diagram leaves the point list room for its longer lines; tighter gaps keep the device row inside the card */
+ html:lang(th)[data-size=home] .c3-mid,html:lang(th)[data-size=line] .L4-1 .c3-mid{grid-template-columns:calc(400*var(--px)) minmax(0,1fr);column-gap:calc(28*var(--px))}
+ html:lang(th)[data-size=home] .xsec,html:lang(th)[data-size=line] .L4-1 .xsec{width:calc(400*var(--px))}
+ html:lang(th)[data-size=home] .points,html:lang(th)[data-size=line] .L4-1 .points{gap:calc(22*var(--px))}
+ html:lang(th)[data-size=home] .pt-d,html:lang(th)[data-size=line] .L4-1 .pt-d{margin-top:calc(6*var(--px));line-height:1.42}
+ html:lang(th)[data-size=line] .L4-1 .c3-mid{margin-top:30px}
+ /* 5, Thai: the longer step texts; tighter gaps keep the notes inside the card */
+ html:lang(th)[data-size=home] .c4-headrow{margin-top:calc(18*var(--px))}
+ html:lang(th)[data-size=home] .c4 .steps{gap:calc(6*var(--px));margin-top:calc(18*var(--px))}
+ html:lang(th)[data-size=home] .c4 .st{min-height:0}
+ html:lang(th)[data-size=home] .st-d{margin-top:calc(4*var(--px));line-height:1.38}
+ html:lang(th)[data-size=home] .c4 .infos{margin-top:calc(14*var(--px))}
+ html:lang(th)[data-size=home] .c4 .inf{padding:calc(14*var(--px)) calc(18*var(--px))}
+ html:lang(th)[data-size=home] .c4-tip{margin-top:calc(12*var(--px))}
+}
+
+/* ---------- line 1100x1000 ---------- */
+/* 2-2, Hong Kong: the package names read as two lines (as at home); the card has the room under its list */
+html:lang(zh-HK)[data-size=line] .L2a .g-ul .pl,html:lang(zh-HK)[data-size=line] .L2a .g-sf .pl{white-space:normal}
+html:lang(zh-HK)[data-size=line] .L2a .g-ul .pn .n1,html:lang(zh-HK)[data-size=line] .L2a .g-sf .pn .n1{display:block}
+html:lang(zh-HK)[data-size=line] .L2a .g-ul .pn,html:lang(zh-HK)[data-size=line] .L2a .g-sf .pn{line-height:1.18}
+/* 5-2, Thai: the longer step texts and notes; tighter gaps keep the source line inside the card */
+html:lang(th)[data-size=line] .L5-2 .steps{margin-top:18px;gap:12px}
+html:lang(th)[data-size=line] .L5-2 .infos{margin-top:20px}
+html:lang(th)[data-size=line] .L5-2 .inf{padding:14px 18px}
+html:lang(th)[data-size=line] .L5-2 .c4-tip{margin-top:12px}
+
+/* hero B, Thai: the written-out won amount ('1,090,000 วอน') at the Korean 96 px ran past the plum panel; it is set smaller so the figure and its unit
+   stay inside the panel (home, line and kakao) */
+html:lang(th) .c1b .hb-main .tz-price{font-size:max(30px,calc(64*var(--px)))}
+
+/* Chinese (CN) translated the white script words ('热玛吉', '价格', '施术当天流程'); in Noto Sans SC at the Pinyon Script size they read as a second,
+   heavier title and the line 1 B word touched the logo, so they are set at about two thirds of the script size (phones keep their own sizes) */
+@container (min-width:601px){
+ html:lang(zh-CN) .c1-script,html:lang(zh-CN) .hb-script{font-size:calc(96*var(--px))}
+ html:lang(zh-CN) .p-mark{font-size:calc(52*var(--px))}
+ html:lang(zh-CN) .kicker-script{font-size:calc(54*var(--px))}
+ html:lang(zh-CN) .c2b-mark{font-size:calc(80*var(--px))}
+}
+
+/* ---------- kakao 800x600 (the language versions follow the Korean kakao cards; BLF11 / NAD11 / OND12 use kakao for KO only) ---------- */
+/* 1-1 A: the contact line (WeChat ID, WhatsApp number) wraps inside the narrow title box instead of running out of the card */
+html:not([data-locale=KO])[data-size=kakao] .K1-1.K1a .c1-contact{white-space:normal;align-items:flex-start}
+/* 2 A parts: the package names read as two lines (as at home for Hong Kong) so the list price keeps its column */
+html:not([data-locale=KO])[data-size=kakao] .K2a .g-ul .pl,html:not([data-locale=KO])[data-size=kakao] .K2a .g-sf .pl{white-space:normal}
+html:not([data-locale=KO])[data-size=kakao] .K2a .g-ul .pn .n1,html:not([data-locale=KO])[data-size=kakao] .K2a .g-sf .pn .n1{display:block}
+html:not([data-locale=KO])[data-size=kakao] .K2a .g-ul .pn,html:not([data-locale=KO])[data-size=kakao] .K2a .g-sf .pn{line-height:1.18}
+/* 2 B parts: the group names take two lines in the narrow plum column */
+html:not([data-locale=KO])[data-size=kakao] .K2b .bd-name{white-space:normal;text-wrap:balance}
+/* 5-2: the step chips wrap to a second line in every language; smaller gaps keep them inside the card */
+html:not([data-locale=KO])[data-size=kakao] .K5 .steps{gap:10px}
+/* 6-3: the international phone number takes the full booking box width under a slightly smaller QR and the links (as OND12 line 7-2); the logo inside the\n   booking box is left out (the card header has it) and the map is a little shorter (cropped, not squeezed), so the longer location and booking texts stay inside */
+html:not([data-locale=KO])[data-size=kakao] .K6-3 .bk-row{grid-template-columns:104px minmax(0,1fr);grid-template-rows:auto auto;row-gap:8px;align-content:center;margin-top:4px}
+html:not([data-locale=KO])[data-size=kakao] .K6-3 .bk-text{display:contents}
+html:not([data-locale=KO])[data-size=kakao] .K6-3 .bk-row .qr{grid-column:1;grid-row:1}
+html:not([data-locale=KO])[data-size=kakao] .K6-3 .bk-links{grid-column:2;grid-row:1;align-self:center}
+html:not([data-locale=KO])[data-size=kakao] .K6-3 .bk-phone{grid-column:1 / -1;grid-row:2;margin-top:0}
+html:not([data-locale=KO])[data-size=kakao] .K6-3 .bt-book .wordmark{display:none}
+html:not([data-locale=KO])[data-size=kakao] .K6-3 .map{aspect-ratio:460/360}
+html:not([data-locale=KO])[data-size=kakao] .K6-3 .map-img{object-fit:cover}
+/* 1-1 A, Hong Kong: 'Thermage FLX' / '熱瑪吉' starts smaller so the fit stays inside the title box */
+html:lang(zh-HK)[data-size=kakao] .K1-1.K1a .hero-title{font-size:calc(64*var(--px)*var(--fit,1))}
+/* 2 B parts, Hong Kong: 'Softhermage｜' is one word; a smaller size keeps it inside the plum column */
+html:lang(zh-HK)[data-size=kakao] .K2b .bd-name{font-size:24px}
+/* 5-2, Thai: the step chips take one more line; the head row sits closer */
+html:lang(th)[data-size=kakao] .K5-2 .c4-headrow{margin-top:0}
+/* 6-3, Hong Kong: the WhatsApp QR note takes two lines; the booking rows sit a little closer */
+html:lang(zh-HK)[data-size=kakao] .K6-3 .bk-row{row-gap:2px}
+html:lang(zh-HK)[data-size=kakao] .K6-3 .qr figcaption{margin-top:2px;line-height:1.25}
+/* 2 B parts, Thai: in the 800 px card the written-out won amounts left the names too little room (the list price ran over '+ Thermage 600 ช็อต');
+   the two prices and the names are set a little smaller here than at home */
+html:lang(th)[data-size=kakao] .K2b .bpl{font-size:19px}
+html:lang(th)[data-size=kakao] .K2b .plist{font-size:14px}
+html:lang(th)[data-size=kakao] .K2b .psale{font-size:28px}
+html:lang(th)[data-size=kakao] .K2b .brow{column-gap:8px}
