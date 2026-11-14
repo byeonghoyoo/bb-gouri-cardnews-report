@@ -1,0 +1,54 @@
+/* DEN12 language version (2026-11-14, lead order): CN. Copy = v4/langverify/out/DEN12.final.json as it is; this file only adds the language
+   font and the line breaks / widths the Chinese copy needs. Every selector names a language (:lang(zh) or html:not([data-locale=KO])), so the
+   Korean page stays pixel-identical (v4/density12/build-density12.cjs checks the selectors). */
+
+/* fonts: Chinese text in Noto Sans SC first in the stack (Pretendard's Hanja never mixes in). The Latin display face (Bricolage Grotesque) keeps
+   its Latin letters; Chinese letters in it fall back to Noto Sans SC (same as SOF12 / THM12 / CRF12). */
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-label:'Bricolage Grotesque',var(--f-cjk),'Pretendard Variable',Pretendard,sans-serif}
+
+/* line breaks: Chinese breaks between characters (the Korean page keeps whole words with keep-all) */
+html:lang(zh) .sheet{word-break:normal}
+
+/* prices: the figure and its unit stay on one line ('115万韩元') */
+html:lang(zh) .money{white-space:nowrap}
+
+/* price names: the shot figure and its unit stay together ('600发') */
+html:lang(zh) .pnm .pv,html:lang(zh) .pg-name .pv{white-space:nowrap}
+
+/* hero hook: breaks only at its punctuation ('从 Classic、Hi、Alpha探头，' / '到全新推出的Boost探头'); it split '推 / 出' before */
+html:lang(zh) .hook{word-break:keep-all}
+
+/* hero title 'DENSITY射频' is 2.4 times as wide as the Korean '덴서티': where the Korean title is set at its full size and the Chinese one ran
+   into the photo, past the card or under the big 'Density' word (line 1 B, kakao 1 B parts 1 and 2, kakao 1 A part 2), it takes two lines
+   ('DENSITY' / '射频') at about half the size, so the block keeps the Korean title's width and height */
+html:lang(zh)[data-size="line"] .L1b .hero-title,html:lang(zh)[data-size="kakao"] .K1b .hero-title,html:lang(zh)[data-size="kakao"] .K1-2.K1a .hero-title{font-size:78px;line-height:1.02;white-space:normal;max-width:390px}
+
+/* kakao card 1 A part 1: the title at its smallest fit size still ran into the photo; one line at 80 px fits the head */
+html:lang(zh)[data-size="kakao"] .K1-1.K1a .hero-title{font-size:80px}
+
+/* hero A on phones: the title at its 44 px floor ran 55 px past its box into the photo; 34 px fits. The big 'Density' word is hidden as the
+   phone rule '.c1 .wm1{display:none}' intends (the later '.c1-head .wm1{display:block}' shows it again and pushes the hook under the price
+   callout, '65万韩元' over the hook lines; the Korean page has the same overlap on phones and is left as it is) */
+@container (max-width:600px){
+ html:lang(zh) .c1:not([data-variant="b"]) .hero-title{font-size:34px}
+ html:lang(zh) .c1:not([data-variant="b"]) .c1-head .wm1{display:none}
+}
+
+/* card 2 A head: the title and '300发 · 600发' side by side ran into the model photo (1080 / 780, line parts 1-2) and past the card (kakao part 1);
+   both are set smaller (title 64, shot line 38 instead of 100 / 52, close to card 2 B's 70 / 36) so they keep the Korean line and height; a separate
+   line for the shot line pushed the price boards into the device picture */
+@container (min-width:601px){
+ html:lang(zh) .c2:not([data-variant="b"]) .pt-main{font-size:calc(64*var(--px))}
+ html:lang(zh) .c2:not([data-variant="b"]) .pt-sub{font-size:calc(38*var(--px))}
+}
+
+/* card 4 title ('DENSITY与LinearZ组合 · 美版超声刀二代与DENSITY组合') is far longer than the Korean one and ran past the card even at the
+   smallest fit size; outside phones it takes two lines, broken at the spaces around '·' (phones already wrap it) */
+@container (min-width:601px){
+ html:lang(zh) .c4 .pt-main{white-space:normal;word-break:keep-all}
+}
+
+/* kakao card 8 part 3: the international number ('+82-2-336-7511') is three characters longer than the Korean one and ran past the booking box */
+html:lang(zh)[data-size="kakao"] .K8-3 .bk-phone{font-size:24px}

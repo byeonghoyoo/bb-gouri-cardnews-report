@@ -1,0 +1,61 @@
+/* CRF12 language version (2026-11-14, lead order): CN. Copy = v4/langverify/out/CRF12.final.json as it is; this file only adds the language
+   font and the line breaks / widths the Chinese copy needs. Every selector names a language (:lang(zh) or html:not([data-locale=KO])), so the
+   Korean page stays pixel-identical (v4/cerf12/build-cerf12.cjs checks the selectors). */
+
+/* fonts: Chinese text in Noto Sans SC first in the stack (Pretendard's Hanja never mixes in). The Latin display faces (DM Sans, Bodoni Moda)
+   keep their Latin letters; Chinese letters in them fall back to Noto Sans SC (same as SOF12 / THM12). */
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-label:'DM Sans',var(--f-cjk),'Pretendard Variable',Pretendard,sans-serif;--f-serif:'Bodoni Moda',var(--f-cjk),'Pretendard Variable',Pretendard,serif}
+
+/* line breaks: Chinese breaks between characters (the Korean page keeps whole words with keep-all) */
+html:lang(zh) .sheet{word-break:normal}
+
+/* prices: the figure and its unit stay on one line ('109万韩元') */
+html:lang(zh) .money{white-space:nowrap}
+
+/* price names: the shot figure and its unit stay together ('700发'); the unit alone started the second line of the name
+   ('眼部＋眉周XERF 700 / 发' on card 2 B at 1080 / 780 and kakao 2 B part 2) */
+html:lang(zh) .pnm .pv{white-space:nowrap}
+
+/* the card 2 lead and the about title break only at their punctuation and spaces: '双频协同' and the clinic name '丽朵皮肤科' split before
+   ('...2MHz双 / 频协同' on card 2 B phones, '...丽朵 / 皮肤科' on card 7 at 1080 and kakao 7) */
+html:lang(zh) .p-lead,html:lang(zh) .ab-title{word-break:keep-all}
+
+/* card 3 shot-unit chip: cf_p_unit_k is blank (as on the board's Korean), so the empty pill is not drawn and the unit note keeps the line */
+html:lang(zh) .unit-k.is-empty{display:none}
+
+/* card 3 (1080 / 780 layout): Noto Sans SC sets each combo row about 3 px taller than Pretendard; 2 px less padding above and below (of 7) keeps
+   the seven rows and the VAT note inside the card (the note ran 30 px past the bottom at 1080, 24 px at 780). Phones grow with the content. */
+@container (min-width:601px){
+ html:lang(zh) .c3:not([data-size-only]) .prow{padding:calc(5*var(--px)) 0 calc(5*var(--px))}
+}
+
+/* hero A on phones: the Chinese price and VAT note ('109万韩元' + '另收10%增值税') are wider than the Korean pair, so the VAT note dropped
+   under the contact pill; the price block is 18 px wider and the note 1 px smaller, and both stay on one line as in Korean */
+@container (max-width:600px){
+ html:lang(zh) .c1:not([data-variant="b"]) .hero-disc{width:calc(480*var(--px) + 18px)}
+ html:lang(zh) .c1:not([data-variant="b"]) .tz-main{flex-wrap:nowrap}
+ html:lang(zh) .c1:not([data-variant="b"]) .tz-vat{font-size:10px}
+}
+
+/* card 3 gift band on phones: the Chinese line ran under the cream picture ('修护霜' hidden); it keeps clear of the picture and takes two lines */
+@container (max-width:600px){
+ html:lang(zh) .c3 .gift-band [data-copy]{padding-right:40px}
+}
+
+/* kakao card 1 A / B: the WeChat contact line ('预约及咨询 官方微信：Beautyblossom00') is much longer than the Korean phone line and covered the
+   price; the pill keeps about the Korean width and takes two lines, broken at its space or colon only ('预约及咨询 官方微信：' / 'Beautyblossom00').
+   On 1 A it also sits 62 px further right (over the photo, as the Korean pill does), so the VAT note keeps its place right of the price
+   ('109万韩元 另收10%增值税') instead of running under the pill. */
+html:lang(zh)[data-size]:not(#sz) .K1a .c1-contact,html:lang(zh)[data-size]:not(#sz) .K1b .c1-contact{max-width:262px;white-space:normal;word-break:keep-all}
+html:lang(zh)[data-size]:not(#sz) .K1a .c1-contact{right:64px}
+
+/* kakao card 6 part 2: '可立即恢复日常生活' (9 characters) is 36 px wider than its info box at 26 px; the three values are set at 22 px together */
+html:lang(zh)[data-size]:not(#sz) .K6p2 .inf-v{font-size:22px}
+
+/* kakao card 3 part 1: the third combo row sat on the bottom edge of the price board; 1 px less padding above and below */
+html:lang(zh)[data-size]:not(#sz) .K3p1 .prow{padding:2px 0 1px}
+
+/* line card 7 part 2: the international number ('+82-2-336-7511') is three characters longer than the Korean one and ran out of the booking box */
+html:lang(zh)[data-size]:not(#sz) .L7p2 .bk-phone{font-size:27px}
