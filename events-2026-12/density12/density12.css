@@ -679,6 +679,10 @@ html[data-size="line"] .L2a.L2-1 .pgroups{margin-top:70px}
 html[data-size="line"] .L2a.L2-1 .c2-mdl{right:30px;bottom:-70px;height:300px}
 html[data-size="line"] .L2a.L2-1 .cp-head .dev-c{bottom:40px}
 html[data-size="line"] .L2a.L2-2 .c2-mdl{display:none}
+/* 2026-11-16 team comment #16 (card 1 A): the Density photo larger (330 instead of 270) and at the bottom: its straight bottom edge on the card's
+   bottom edge, right of the contact pill (x 430). Its box stays in the callouts grid (270 high beside the price, so the price column keeps its
+   width and line breaks); the picture is drawn larger and lower from the box's bottom left corner */
+html[data-size="line"] .L1a .co-dev-img{transform-origin:0 100%;transform:translate(-32.7px,184.35px) scale(1.2222)}
 /* ---------- /LINE ---------- */
 /* ---------- KAKAO 800x600 ---------- */
 /* DEN12 KAKAO 800x600 (2026-11-06). Clones of the home cards (.K + .K<key>, parts .K<n>-<part>); --px is 1px (home sizes kept). */
@@ -807,6 +811,11 @@ html[data-size="kakao"] .K2a.K2-1 .cp-head .dev-c{right:auto;left:24px;bottom:24
 html[data-size="kakao"] .K2a.K2-2 .c2-mdl,html[data-size="kakao"] .K2a.K2-3 .c2-mdl{display:none}
 html[data-size="kakao"] .K2a .pgroup:first-child .tile{grid-template-columns:minmax(0,1fr);grid-template-areas:"img" "top" "e" "pr"}
 html[data-size="kakao"] .K2a .pgroup:first-child .tl-img{justify-self:start;margin-bottom:6px}
+/* 2026-11-16 team comment #16 (card 1 A part 2): the Density photo larger (248 instead of 220); the contact pill holds the card's bottom strip here,
+   so the photo keeps its bottom just above the pill (516) and grows up to the 'Density' word. In site/density12/index.html this clone's img has
+   its own URL (density.webp?v=kakao1): at this size a shared copy would change the resampling of the other kakao cards' Density photos */
+html[data-size="kakao"] .K1-2.K1a .co-dev{position:absolute;left:396px;top:-32px;margin:0;padding:0}
+html[data-size="kakao"] .K1-2.K1a .co-dev-img{height:248px}
 /* ---------- /KAKAO ---------- */
 
 /* ===== 2026-11-09 team comments (qa/feedback-20261109/DEN12.json), card 1 A; home rules (the size cards: v4/density12/sizes/line.css, kakao.css) ===== */
@@ -832,6 +841,14 @@ html[data-size="kakao"] .K2a .pgroup:first-child .tl-img{justify-self:start;marg
 /* #5: the contact pill bottom right */
 .c1:not([data-variant]) .c1-contact{left:auto;right:calc(60*var(--px))}
 /* ===== /2026-11-09 card 1 A ===== */
+/* 2026-11-16 team comment #16 (card 1 A, '기기 이미지를 더 크게 확대하고 하단에 배치해 주세요'): the Density photo larger (466 instead of 330) and at the
+   bottom. The photo is cut straight at the bottom, so that edge now sits on the card's bottom edge (it no longer floats under the price); its
+   left edge stays on the text column. It leaves the callouts flow, so the price block keeps its place (KO and CN). Phones: the callouts start
+   higher (478 instead of 598), same picture place. 466 is half the file's height: up to there Chrome draws the other cards' copies of
+   density.webp exactly as before (a larger copy changes their resampling). The size cards: v4/density12/sizes/line.css, kakao.css */
+.c1:not([data-variant]):not([data-size-only]) .co-dev{position:absolute;left:0;top:calc(295*var(--px));margin:0;padding:0}
+.c1:not([data-variant]):not([data-size-only]) .co-dev-img{height:calc(466*var(--px))}
+@container (max-width:600px){.c1:not([data-variant]):not([data-size-only]) .co-dev{top:calc(415*var(--px))}}
 /* ===== 2026-11-09 team comments, cards 2 and 4 (home; the size cards follow, their own numbers in v4/density12/sizes/*.css) ===== */
 /* #7: the tip photos only once: smaller, at the top left of each tip cell of the 300샷 panel (the 600샷 panel lists the same tips without photos) */
 .c2:not([data-variant]) .pgroup:first-child .tile{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"img top" "img e" "pr pr";column-gap:calc(12*var(--px));align-content:start}

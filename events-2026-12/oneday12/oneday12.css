@@ -405,10 +405,9 @@ a[data-link="phone"]{white-space:nowrap}
    the bottom left as a backdrop, the two back ones taller, front ones down to just above the period line */
 @container (min-width:601px){.c1:not([data-variant="b"]):not([data-size-only]) .tz{top:calc(455*var(--px))}}
 .c1 .dev{z-index:2;filter:drop-shadow(0 calc(18*var(--px)) calc(26*var(--px)) rgba(20,4,6,.45))}
-.c1:not([data-size-only]) .dv1{left:calc(1*var(--px));top:calc(683*var(--px));width:calc(435*var(--px))}
-.c1:not([data-size-only]) .dv2{left:calc(216*var(--px));top:calc(650*var(--px));width:calc(467*var(--px))}
-.c1:not([data-size-only]) .dv3{left:calc(-23*var(--px));top:calc(863*var(--px));width:calc(335*var(--px))}
-.c1:not([data-size-only]) .dv4{left:calc(125*var(--px));top:calc(823*var(--px));width:calc(376*var(--px))}
+/* 2026-11-16 team comment #28: the team's picture of four devices (assets/products/devices-4-team.webp, v4/oneday12/a/team-devices-1116.cjs) replaces the four
+   cut-outs; it fills the same height (668.7-1184.6) from the same left edge (68.6), so the price block and the dates keep their places */
+.c1:not([data-size-only]) .dv-all{left:calc(66.8*var(--px));top:calc(666.9*var(--px));width:calc(427.3*var(--px))}
 /* cards 2 / 3 (#4-#6 #10-#13): a small modifier line over the name (.pmod), the 24 gifts as small notes (.pgift), HIT / BEST pills (.badge, as row 16);
    the rows sit closer so the boards keep their height */
 .pmod{margin:0 0 calc(3*var(--px));font-weight:600;font-size:max(11px,calc(15*var(--px)));line-height:1.3;letter-spacing:-.01em;color:var(--cherry)}
@@ -614,14 +613,9 @@ html[data-size="kakao"] .K63 .way-line{top:.1em}
 html[data-size="line"] .L42 .ly2 [data-copy],html[data-size="line"] .L42 .ly3 [data-copy]{position:relative;top:.6px}
 html[data-size="line"] .L62 .way-line{padding-top:.268em;padding-bottom:.132em}
 /* 2026-11-10 ONE12 #26: the four devices gathered at the bottom left (same cluster as home, scaled to the free space between the price and the period) */
-html[data-size="line"] .L1a .dv1{left:22px;top:580px;width:245px}
-html[data-size="line"] .L1a .dv2{left:143px;top:561px;width:263px}
-html[data-size="line"] .L1a .dv3{left:8px;top:681px;width:189px}
-html[data-size="line"] .L1a .dv4{left:92px;top:659px;width:212px}
-html[data-size="kakao"] .K1a2 .dv1{left:16px;top:270px;width:178px}
-html[data-size="kakao"] .K1a2 .dv2{left:104px;top:256px;width:191px}
-html[data-size="kakao"] .K1a2 .dv3{left:7px;top:343px;width:137px}
-html[data-size="kakao"] .K1a2 .dv4{left:67px;top:327px;width:153px}
+/* 2026-11-16 team comment #28: the team's four-device picture in the place of the four cut-outs (same height and left edge) */
+html[data-size="line"] .L1a .dv-all{left:58.7px;top:570.5px;width:241px}
+html[data-size="kakao"] .K1a2 .dv-all{left:43.7px;top:262.9px;width:174.7px}
 /* 2026-11-10 ONE12 modifier lines and gifts: kakao 2A part 2 and 3 part 2 sit closer (part 2 of card 3 drops the repeated 02 heading, its row continues part 1) */
 html[data-size="kakao"] .K2a2 .pboard,html[data-size="kakao"] .K32 .pboard{margin-top:8px}
 html[data-size="kakao"] .K2a2 .prow,html[data-size="kakao"] .K32 .prow{padding:5px 0 4px}

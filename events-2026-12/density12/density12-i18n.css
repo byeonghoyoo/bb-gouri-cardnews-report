@@ -52,3 +52,8 @@ html:lang(zh)[data-size="kakao"] .K1-1.K1a .hero-title{font-size:80px}
 
 /* kakao card 8 part 3: the international number ('+82-2-336-7511') is three characters longer than the Korean one and ran past the booking box */
 html:lang(zh)[data-size="kakao"] .K8-3 .bk-phone{font-size:24px}
+
+/* 2026-11-16 team comment #16 (card 1 A): the Density photo stands on the card's bottom edge (density12.css), the same for CN.
+   Line card 1 A: the Chinese contact pill reaches x 603 at the bottom, so the larger Density photo ends just above it (bottom 880), between the
+   longer price label and the model (x 440) */
+html:lang(zh)[data-size="line"] .L1a .co-dev-img{transform:translate(-63.2px,58px) scale(1.2222)}

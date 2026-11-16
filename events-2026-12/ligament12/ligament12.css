@@ -456,7 +456,8 @@ a[data-link="phone"]{white-space:nowrap}
 
 /* ==== 2026-11-09 team comments (qa/feedback-20261109/LIG12.json), home and every size ==== */
 /* 1 A (#14): thin white lifting arrows on her cheek, like the team's reference (assets/dec/lift-arrows.webp, v4/ligament12/a/lift-arrows.cjs) */
-.c1 .lift-h{position:absolute;z-index:2;left:calc(660*var(--px));top:calc(390*var(--px));width:calc(210*var(--px));height:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 0 calc(3*var(--px)) rgba(138,15,32,.4))}
+/* 2026-11-16 team comment #15: a thinner, shorter drawing (assets/dec/lift-arrows-hero.webp, v4/ligament12/a/lift-arrows-hero.cjs), 25 px lower */
+.c1 .lift-h{position:absolute;z-index:2;left:calc(660*var(--px));top:calc(415*var(--px));width:calc(210*var(--px));height:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 0 calc(3*var(--px)) rgba(138,15,32,.4))}
 /* 2 A / 3 (#2, #5): the hero model (the same cutout as the size heroes, whole) at the top right, standing behind the price board, with the same
    arrows on her cheek. The picture box runs from just under the top row down to the board's top edge (the board follows the title block 22 px
    lower), so she always stands on the board and only her head and shoulders show */
@@ -674,8 +675,9 @@ html[data-size="kakao"] .K3c .pparts .chip:nth-child(1){position:relative;top:.5
 /* 2026-11-09 team comments in the sizes (qa/feedback-20261109/LIG12.json): the lifting arrows on the size heroes sit on the cutout's cheek
    (the same place as on the price-card model: 47% across, 35.4% of its width down, 30% wide); the price-card model box ends at the card's right
    edge (line: head 60 px in, kakao: 40 px in) and is smaller on kakao */
-html[data-size="line"] .L1a .lift-h{left:814px;top:281px;width:162px}
-html[data-size="kakao"] .K1a1 .lift-h{left:614px;top:134px;width:105px}
+/* 2026-11-16 team comment #15: the thinner, shorter arrows (lift-arrows-hero.webp), lower by the home move (25 px at 1080 scale) */
+html[data-size="line"] .L1a .lift-h{left:814px;top:300px;width:162px}
+html[data-size="kakao"] .K1a1 .lift-h{left:614px;top:146px;width:105px}
 html[data-size="line"] .head > .lift-mod{left:740px}
 html[data-size="kakao"] .head > .lift-mod{left:560px;top:-6px;width:200px}
 html[data-size="kakao"] .K2a1 .dk2{left:470px;top:120px}
