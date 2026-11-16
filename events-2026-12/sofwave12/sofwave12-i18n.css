@@ -288,3 +288,296 @@ html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-va
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:1.845px!important;padding-bottom:3.475px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:2.728px!important;padding-bottom:2.872px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.badge[data-copy="sw_r19_badge"]{padding-top:3.134px!important;padding-bottom:1.986px!important}
+
+/* ---------- TH (2026-11-16 afternoon, lead order: the TH reviewer pressed 검토 완료 on the board 11/16 11:39 KST, 155/155 rows checked; reviewer text
+   first, contact as THM12 TH, v4/sofwave12/work/contact-overrides.json). Only html:lang(th) selectors below ---------- */
+
+/* fonts: Thai in Noto Sans Thai after Pretendard (Latin letters and figures keep the Korean design's Pretendard); the Latin display faces (Montserrat,
+   Pinyon Script) keep their letters and fall back to Noto Sans Thai for Thai (as THM12 TH) */
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-lat:'Montserrat','Pretendard Variable',Pretendard,'Noto Sans Thai',sans-serif;--f-script:'Pinyon Script','Times New Roman','Noto Sans Thai',serif}
+
+/* line breaks: Thai breaks at the browser's dictionary breaks (the Korean page keeps whole words with keep-all and line-break:strict, which in Chrome turns the Thai dictionary off) */
+html:lang(th) .sheet{word-break:normal;line-break:auto}
+
+html:lang(th) .c2:not([data-size-only]) .prows:not(.combo) .pdet{word-break:normal}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .pdet,html:lang(th)[data-size]:not(#sz) .K2ap1 .prows:not(.combo) .pdet{word-break:normal}
+
+/* prices: the figure and its unit stay on one line ('530,000 วอน') */
+html:lang(th) .money{white-space:nowrap}
+
+/* price names: sofwave12.js marks the pulse / shot figure with its Thai unit ('50 พัลส์', '200 ช็อต') like '50펄스'; the figure and its unit stay on one line
+   (Thai texts have no widow guard in sofwave12.js, THM12 rule: their lines break at the dictionary breaks) */
+html:lang(th) .pnm .pv{white-space:nowrap}
+
+/* contact value 'Line: @beautyblossom_th' (hero pill, B meta line): it breaks after 'Line:' inside the pill (the LINE ID stays whole) and may shrink (--fit) */
+html:lang(th) .c1 .hp-info .hp-v{white-space:normal}
+
+/* hero A price pill: the full won amount ('530,000 วอน') is wide; the VAT note takes its own line under the price */
+html:lang(th) .c1 .hp-main{flex-wrap:wrap;row-gap:calc(11*var(--px));margin-top:max(8px,calc(7*var(--px)))}
+html:lang(th) .c1 .hp-vat{flex-basis:100%;margin-left:0;padding-left:0;border-left:0}
+/* hero B price box: the same, and the amount is smaller so it stays inside the 404 px box */
+html:lang(th) .vb-price .hp-main{flex-wrap:wrap;row-gap:calc(11*var(--px));margin-top:max(8px,calc(7*var(--px)))}
+html:lang(th) .vb-price .hp-vat{flex-basis:100%}
+html:lang(th) .vb-price .hp-num{font-size:calc(68*var(--px))}
+
+/* card 2 A (home): the rows as HK (name | add-on line, then the chip and the care line on the second line) and the two prices stacked in one column at the
+   right (list price above the sale price, as on kakao): the full won amounts are three times as wide as '53만원' */
+@container (min-width:601px){
+ html:lang(th) .c2:not([data-size-only]) .prows:not(.combo) .pn{display:flex;flex-wrap:wrap;align-items:baseline}
+ html:lang(th) .c2:not([data-size-only]) .prows:not(.combo) .pn::after{content:'';order:3;flex-basis:100%;height:0}
+ html:lang(th) .c2:not([data-size-only]) .prows:not(.combo) .pname{display:contents}
+ html:lang(th) .c2:not([data-size-only]) .prows:not(.combo) .pnm{order:1;flex:none;width:calc(250*var(--px));white-space:nowrap}
+ html:lang(th) .c2:not([data-size-only]) .prows:not(.combo) .pdet{order:2;flex:1 1 0;min-width:0;margin:0}
+ html:lang(th) .c2:not([data-size-only]) .prows:not(.combo) .ptag{order:4;margin:0}
+ html:lang(th) .c2:not([data-size-only]) .prows:not(.combo) .pcare{order:5;flex:0 1 auto;min-width:0}
+ html:lang(th) .c2:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center}
+ html:lang(th) .c2:not([data-size-only]) .prow .pn{grid-column:1;grid-row:1 / 3}
+ html:lang(th) .c2:not([data-size-only]) .prow .plist{grid-column:2;grid-row:1;justify-self:end;align-self:end;margin-bottom:calc(6*var(--px))}
+ html:lang(th) .c2:not([data-size-only]) .prow .psale{grid-column:2;grid-row:2;justify-self:end;align-self:start}
+ html:lang(th) .c2:not([data-size-only]) .psale{font-size:calc(38*var(--px))}
+ html:lang(th) .c2:not([data-size-only]) .plist{font-size:max(11px,calc(18*var(--px)))}
+}
+
+/* card 2 B (home): the ticket text takes the full ticket width and the two prices sit on one line under it (right-aligned); the menu titles are smaller
+   ('แพ็กเกจ Sofwave + Ultherapy PRIME' breaks where the words break) */
+@container (min-width:601px){
+ html:lang(th) .c2v .tk{grid-template-columns:minmax(0,1fr);row-gap:calc(4*var(--px))}
+ html:lang(th) .c2v .tk-r{flex-direction:row;align-items:baseline;justify-content:flex-end;gap:calc(12*var(--px))}
+ html:lang(th) .c2v .tk .psale{font-size:calc(36*var(--px))}
+ html:lang(th) .c2v .tk .plist{font-size:max(11px,calc(18*var(--px)))}
+ html:lang(th) .c2v .vm-name{white-space:normal;font-size:calc(40*var(--px));line-height:1.12}
+ /* the pulse / shot figures are as large as on the Korean card ('50 พัลส์' at 1.48em) and the Thai tickets differ a lot in length: the tickets take
+    their own heights (not the height of the longest one), a little tighter, and the device photo of the package menu is a little smaller */
+ html:lang(th) .c2v:not([data-size-only]) .vtk{grid-auto-rows:auto}
+ html:lang(th) .c2v:not([data-size-only]) .tk{padding-top:calc(9*var(--px));padding-bottom:calc(9*var(--px))}
+ html:lang(th) .c2v:not([data-size-only]) .vm-pair{height:calc(170*var(--px))}
+}
+
+/* headings, leads and labels: two even lines instead of a long first line and a short second one (Chrome's Thai dictionary splits some loanwords badly
+   at the end of a full line, e.g. 'จำนว / นพัลส์'; balanced lines break between the words) */
+html:lang(th) .hook,html:lang(th) .p-lead,html:lang(th) .q-title,html:lang(th) .q-ans,html:lang(th) .cmp-title,html:lang(th) .who-lbl,html:lang(th) .st-t,
+html:lang(th) .ab-title,html:lang(th) .pg2-name,html:lang(th) .vm-name,html:lang(th) .bt-t,html:lang(th) .bb-ba__title,html:lang(th) .unit-d,html:lang(th) .uibeop{text-wrap:balance}
+
+/* card 2 A (home): the Thai rows are taller (Noto Sans Thai, two-line add-ons and stacked prices); the rows are tighter, so the note and the legal lines stay inside */
+@container (min-width:601px){
+ html:lang(th) .c2:not([data-size-only]) .prow{padding:calc(11*var(--px)) 0 calc(15*var(--px))}
+ html:lang(th) .c2:not([data-size-only]) .pgroup2 .prow{padding:calc(11*var(--px)) 0 calc(14*var(--px))}
+}
+
+/* phones: the hero A price pill puts the price under the label (the full won amount does not fit beside it); the B menu titles may wrap and the B prices are a little smaller, so the combo names keep their two lines */
+@container (max-width:600px){
+ html:lang(th) .c1 .hp-price{flex-wrap:wrap;row-gap:2px}
+ html:lang(th) .c2v .vm-name{white-space:normal;font-size:24px}
+ html:lang(th) .c2v .tk .psale{font-size:24px}
+}
+
+/* card 4 (home): the Thai point titles and texts take more lines; the picture column is narrower (420 instead of 508), the points wider, and the point
+   boxes and gaps tighter, so the two device boxes and the source line stay inside the card */
+@container (min-width:601px){
+ html:lang(th) .c4:not([data-size-only]) .c4-mid{grid-template-columns:calc(420*var(--px)) minmax(0,1fr);margin-top:calc(28*var(--px))}
+ html:lang(th) .c4:not([data-size-only]) .points{gap:calc(12*var(--px))}
+ html:lang(th) .c4:not([data-size-only]) .pt{padding:calc(16*var(--px)) calc(20*var(--px)) calc(16*var(--px)) calc(18*var(--px))}
+ html:lang(th) .c4:not([data-size-only]) .pt-d{margin-top:calc(4*var(--px));line-height:1.42}
+}
+
+/* card 5 (home): the target texts are 1 px smaller, so 'เล็ก ๆ' stays together at the end of the first line (a line must not start with the repeat
+   mark) and 'ลำคอ' does not leave 'คอ' alone on a third line */
+@container (min-width:601px){
+ html:lang(th) .c5:not([data-size-only]) .who-v{font-size:calc(20*var(--px))}
+}
+
+/* short names: Chrome's Thai dictionary splits 'อัลเทอราพี ไพรม์' as 'ไพร / ม์'; the device names break only at their spaces */
+html:lang(th) .cmp-n{word-break:keep-all}
+html:lang(th) .inf-v{text-wrap:balance}
+
+/* ---- line (1100 x 1000) ---- */
+/* line 2 A: the rows as home (name | add-on line, then the chip and the care line) with the two prices stacked at the right, as home and kakao; the
+   combo rows keep the two prices side by side; the prices are smaller (full won amounts) and the rows tighter, so the note and the legal lines stay in */
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .pn{display:flex;flex-wrap:wrap;align-items:baseline}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .pn::after{content:'';order:3;flex-basis:100%;height:0}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .pname{display:contents}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .pnm{order:1;flex:none;width:250px;white-space:nowrap}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .pdet{order:2;flex:1 1 0;min-width:0;margin:0}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .ptag{order:4;margin:0}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .pcare{order:5;flex:0 1 auto;min-width:0}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;column-gap:20px}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .prow .pn{grid-column:1;grid-row:1 / 3}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .prow .plist{grid-column:2;grid-row:1;justify-self:end;align-self:end;margin-bottom:4px}
+html:lang(th)[data-size]:not(#sz) .L2a .prows:not(.combo) .prow .psale{grid-column:2;grid-row:2;justify-self:end;align-self:start}
+html:lang(th)[data-size]:not(#sz) .L2a .prows.combo .prow{grid-template-columns:minmax(0,1fr) auto auto;column-gap:14px}
+html:lang(th)[data-size]:not(#sz) .L2a .prow{padding:4px 0 5px}
+html:lang(th)[data-size]:not(#sz) .L2a .pgroup2 .prow{padding:4px 0 5px}
+html:lang(th)[data-size]:not(#sz) .L2a .psale{font-size:34px}
+html:lang(th)[data-size]:not(#sz) .L2a .plist{font-size:16px}
+
+/* line 4 A-1: the picture column is narrower and the four points tighter and a little smaller, so all four and the source line stay inside */
+html:lang(th)[data-size]:not(#sz) .L4p1 .c4-mid{grid-template-columns:440px minmax(0,1fr);margin-top:16px}
+html:lang(th)[data-size]:not(#sz) .L4p1 .points{gap:10px}
+html:lang(th)[data-size]:not(#sz) .L4p1 .pt{padding:13px 18px 14px 16px}
+html:lang(th)[data-size]:not(#sz) .L4p1 .pt-t{font-size:23px}
+html:lang(th)[data-size]:not(#sz) .L4p1 .pt-d{margin-top:3px;font-size:17px;line-height:1.42}
+
+/* line 4 A-2: the two comparison boxes are a little tighter, so the title keeps its distance from the kicker */
+html:lang(th)[data-size]:not(#sz) .L4p2 .cmp-it{row-gap:16px;padding:26px 28px}
+
+/* line 5: the step, target and information boxes take smaller Thai text, so the tip and the source line stay inside */
+html:lang(th)[data-size]:not(#sz) .L5 .who-v{font-size:19px;line-height:1.35}
+html:lang(th)[data-size]:not(#sz) .L5 .st{padding:12px 18px 14px}
+html:lang(th)[data-size]:not(#sz) .L5 .st-t{font-size:21px}
+html:lang(th)[data-size]:not(#sz) .L5 .st-d{margin-top:4px;font-size:16px;line-height:1.42}
+html:lang(th)[data-size]:not(#sz) .L5 .inf{padding:12px 20px 14px}
+html:lang(th)[data-size]:not(#sz) .L5 .inf-v{font-size:21px}
+html:lang(th)[data-size]:not(#sz) .L5 .inf-n{font-size:15px;line-height:1.4}
+html:lang(th)[data-size]:not(#sz) .L5 .c5-tip{font-size:18px}
+
+/* ---- kakao (800 x 600) ---- */
+/* kakao 2 A: smaller prices (full won amounts), so the names keep their room and 'Sofwave 300 พัลส์ + Ultherapy PRIME 900 ช็อต' clears its price */
+html:lang(th)[data-size]:not(#sz) .K2a .psale{font-size:38px}
+html:lang(th)[data-size]:not(#sz) .K2a .plist{font-size:18px}
+/* kakao 2 B: the tickets keep the two columns of the Korean card (text | the two prices stacked at the right) */
+html:lang(th)[data-size]:not(#sz) .K2b .tk{grid-template-columns:minmax(0,1fr) auto;row-gap:0}
+html:lang(th)[data-size]:not(#sz) .K2b .tk-r{flex-direction:column;align-items:flex-end;gap:4px}
+/* kakao 2 A-3 / 2 B-4: the legal lines take two lines at the right, so the pulse note keeps a readable width */
+html:lang(th)[data-size]:not(#sz) .K .c2-legal,html:lang(th)[data-size]:not(#sz) .K .vt-legal{max-width:300px}
+
+/* kakao 4 A-1: smaller title, lead and points, so the four points stay inside */
+html:lang(th)[data-size]:not(#sz) .K4p1 .q-title{font-size:56px}
+html:lang(th)[data-size]:not(#sz) .K4p1 .q-ans{font-size:20px}
+html:lang(th)[data-size]:not(#sz) .K4p1 .c4-mid{margin-top:12px}
+html:lang(th)[data-size]:not(#sz) .K4p1 .points{gap:10px}
+html:lang(th)[data-size]:not(#sz) .K4p1 .pt{grid-template-columns:40px minmax(0,1fr);column-gap:12px;padding:12px 16px 12px 14px}
+html:lang(th)[data-size]:not(#sz) .K4p1 .pt-ico{width:40px;height:40px}
+html:lang(th)[data-size]:not(#sz) .K4p1 .pt-t{font-size:19px}
+html:lang(th)[data-size]:not(#sz) .K4p1 .pt-d{margin-top:3px;font-size:15px;line-height:1.42}
+/* kakao 4 A-2: the picture is smaller and the comparison column wider; smaller comparison text */
+html:lang(th)[data-size]:not(#sz) .K4p2 .c4-in{grid-template-columns:360px minmax(0,1fr)}
+html:lang(th)[data-size]:not(#sz) .K4p2 .cmp-title{font-size:19px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .cmp-row{margin-top:10px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .cmp-it{grid-template-columns:62px minmax(0,1fr);column-gap:14px;padding:10px 14px 10px 12px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .cmp-dev{width:62px;height:125px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .cmp-t{font-size:12px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .cmp-n{font-size:22px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .cmp-d{font-size:15px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .cmp-h{font-size:14px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .src{font-size:13px}
+
+/* kakao 5 A-2: smaller step and information text, so the tip and the source line stay inside */
+html:lang(th)[data-size]:not(#sz) .K5p2 .st{padding:10px 14px 12px}
+html:lang(th)[data-size]:not(#sz) .K5p2 .st-t{font-size:19px}
+html:lang(th)[data-size]:not(#sz) .K5p2 .st-d{margin-top:3px;font-size:15px;line-height:1.42}
+html:lang(th)[data-size]:not(#sz) .K5p2 .inf{padding:10px 14px 12px}
+html:lang(th)[data-size]:not(#sz) .K5p2 .inf-k{font-size:14px}
+html:lang(th)[data-size]:not(#sz) .K5p2 .inf-v{font-size:19px}
+html:lang(th)[data-size]:not(#sz) .K5p2 .inf-n{font-size:13px;line-height:1.4}
+html:lang(th)[data-size]:not(#sz) .K5p2 .c5-tip{font-size:16px;line-height:1.4}
+html:lang(th)[data-size]:not(#sz) .K5p2 .src{font-size:13px}
+
+/* kakao 6 A-3: the map is a little smaller and the station and address lines smaller, so the address stays inside the box */
+html:lang(th)[data-size]:not(#sz) .K6p3 .map{width:90%;align-self:center}
+html:lang(th)[data-size]:not(#sz) .K6p3 .way{margin-top:10px}
+html:lang(th)[data-size]:not(#sz) .K6p3 .way-st{font-size:20px}
+html:lang(th)[data-size]:not(#sz) .K6p3 .way-addr{font-size:14px;line-height:1.45}
+
+/* the cooling chip in the layer picture: the Thai beam label is about three times as wide as the Korean one, so the chip sits a little lower, at the
+   right edge inside the picture, clear of the beam label */
+html:lang(th) .l-cool{left:auto;right:2%;top:30%;transform:translateY(-50%)}
+/* more balanced Thai lines in the point titles, the comparison texts, the strength titles, the opening hours, the add-on and care lines, the quote, the point and step texts and the address */
+html:lang(th) .pt-t,html:lang(th) .cmp-d,html:lang(th) .cmp-h,html:lang(th) .at,html:lang(th) .hrs li,html:lang(th) .pdet,html:lang(th) .pcare,html:lang(th) .dr-quote,html:lang(th) .pt-d,html:lang(th) .st-d,html:lang(th) .way-addr{text-wrap:balance}
+
+/* line 2 B: the two short tickets of the left menu (no care line) keep the two columns of the Korean tickets (text | the two prices stacked at the
+   right) and the tickets are tighter, so the five tickets stay above the note; the prices of both menus are a little smaller */
+html:lang(th)[data-size]:not(#sz) .L2b .vm1 .tk:not(:has(.pcare)){grid-template-columns:minmax(0,1fr) auto;row-gap:0}
+html:lang(th)[data-size]:not(#sz) .L2b .tk{padding:5px 16px 5px 18px}
+html:lang(th)[data-size]:not(#sz) .L2b .vtk{row-gap:4px}
+html:lang(th)[data-size]:not(#sz) .L2b .vm1 .tk:not(:has(.pcare)) .tk-r{flex-direction:column;align-items:flex-end;gap:2px}
+html:lang(th)[data-size]:not(#sz) .L2b .tk .psale{font-size:28px}
+html:lang(th)[data-size]:not(#sz) .L2b .tk .plist{font-size:16px}
+
+/* kakao 1 A: the contact pill without the icon and with the LINE ID under 'Line:' clears the logo; the hook is smaller (two lines above the price
+   pill) and the full won amount smaller, so it stays inside the pill */
+html:lang(th)[data-size]:not(#sz) .K1a .hp-info .hp-ico{display:none}
+html:lang(th)[data-size]:not(#sz) .K1a .hp-info .hp-v{font-size:17px;width:min-content}
+html:lang(th)[data-size]:not(#sz) .K1a .hook{font-size:20px;max-width:400px}
+html:lang(th)[data-size]:not(#sz) .K1a .hp-num{font-size:76px}
+/* kakao 1 B: smaller title and hook; the contact value goes under its label (left of the device); the price box is a little wider with a smaller
+   amount */
+html:lang(th)[data-size]:not(#sz) .K1b .hero-title{font-size:120px}
+html:lang(th)[data-size]:not(#sz) .K1b .hook{font-size:19px}
+html:lang(th)[data-size]:not(#sz) .K1b .vb-meta{gap:4px}
+html:lang(th)[data-size]:not(#sz) .K1b .vb-mi{flex-wrap:wrap;white-space:normal;row-gap:2px}
+html:lang(th)[data-size]:not(#sz) .K1b .vb-mi .vb-v{flex-basis:100%;padding-left:42px}
+html:lang(th)[data-size]:not(#sz) .K1b .vb-mi:first-child{flex-wrap:nowrap}
+html:lang(th)[data-size]:not(#sz) .K1b .vb-mi:first-child .vb-v{flex-basis:auto;padding-left:0}
+html:lang(th)[data-size]:not(#sz) .K1b .vb-price{width:356px}
+html:lang(th)[data-size]:not(#sz) .K1b .vb-price .hp-num{font-size:60px}
+
+/* kakao 2 B-3: the menu title leaves room for the two devices at the right (it takes two lines) */
+html:lang(th)[data-size]:not(#sz) .K2bp3 .vm-tx{max-width:calc(100% - 124px)}
+
+/* kakao 4 A-2: the beam label and the cooling chip are smaller, so they stay inside the picture */
+html:lang(th)[data-size]:not(#sz) .K4p2 .l-beam{font-size:14px}
+html:lang(th)[data-size]:not(#sz) .K4p2 .l-cool{font-size:15px}
+
+/* TH chip text centring (2026-11-16): the Thai text is set in Noto Sans Thai, whose glyphs sit higher in the chips than the Korean text; padding measured on real pixels
+   with qa/text-center-check.cjs (?lang=TH), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.ptag[data-copy="sw_r45_tag"]{padding-top:0.45543em!important;padding-bottom:0.03948em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.ptag[data-copy="sw_r45_tag"]{padding-top:0.48589em!important;padding-bottom:0.02950em!important}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.33601em!important;padding-bottom:0.14399em!important}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-surface[data-copy="sw_c4_d_surface"]{padding-top:0.24300em!important;padding-bottom:-0.04300em!important}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:0.38222em!important;padding-bottom:-0.02000em!important}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:0.38266em!important;padding-bottom:-0.03199em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.ptag[data-copy="sw_r46_tag"]{padding-top:0.33658em!important;padding-bottom:-0.01658em!important}
+}
+@media (min-width:1000px){
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.ptag[data-copy="sw_r45_tag"]{padding-top:0.37933em!important;padding-bottom:0em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.ptag[data-copy="sw_r46_tag"]{padding-top:0.25601em!important;padding-bottom:0.06399em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.badge[data-copy="sw_r20_badge"]{padding-top:0.25313em!important;padding-bottom:0.06688em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.unit-k[data-copy="sw_p_unit_k"]{padding-top:0.26800em!important;padding-bottom:0.21200em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.ptag[data-copy="sw_r45_tag"]{padding-top:0.28597em!important;padding-bottom:0.03403em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.unit-k[data-copy="sw_p_unit_k"]{padding-top:0.27835em!important;padding-bottom:0.20165em!important}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.41836em!important;padding-bottom:0.06164em!important}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-cool > span{position:relative;top:0.11245em}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-surface[data-copy="sw_c4_d_surface"]{padding-top:0.41150em!important;padding-bottom:0.02950em!important}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:0.31733em!important;padding-bottom:0.02978em!important}
+html:lang(th):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:0.37777em!important;padding-bottom:0.01468em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="sw_g17_sub"]{padding-top:0.25059em!important;padding-bottom:0.26941em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.ptag[data-copy="sw_r46_tag"]{padding-top:0.25958em!important;padding-bottom:0.06042em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span[data-copy="sw_g17_sub"]{padding-top:0.27889em!important;padding-bottom:0.24111em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.badge[data-copy="sw_r20_badge"]{padding-top:0.23938em!important;padding-bottom:0.08063em!important}
+}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.ptag[data-copy="sw_r45_tag"]{padding-top:6.159px!important;padding-bottom:0.742px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.ptag[data-copy="sw_r46_tag"]{padding-top:3.981px!important;padding-bottom:0.678px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.badge[data-copy="sw_r19_badge"]{padding-top:4.386px!important;padding-bottom:1.734px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.badge[data-copy="sw_r20_badge"]{padding-top:3.385px!important;padding-bottom:1.735px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.unit-k[data-copy="sw_p_unit_k"]{padding-top:5.606px!important;padding-bottom:3.554px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.ptag[data-copy="sw_r45_tag"]{padding-top:5.285px!important;padding-bottom:0.195px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.ptag[data-copy="sw_r46_tag"]{padding-top:3.366px!important;padding-bottom:2.114px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span[data-copy="sw_g17_sub"]{padding-top:5.013px!important;padding-bottom:4.347px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.unit-k[data-copy="sw_p_unit_k"]{padding-top:5.228px!important;padding-bottom:2.932px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:7.174px!important;padding-bottom:0.986px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-cool > span{position:relative;top:1.762px}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-surface[data-copy="sw_c4_d_surface"]{padding-top:5.674px!important;padding-bottom:0.215px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:5.938px!important;padding-bottom:0.370px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:6.410px!important;padding-bottom:-0.078px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] li.tk{padding-top:3.900px!important;padding-bottom:6.100px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.badge[data-copy="sw_r20_badge"]{padding-top:3.385px!important;padding-bottom:1.735px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.badge[data-copy="sw_r19_badge"]{padding-top:3.100px!important;padding-bottom:2.020px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ptag[data-copy="sw_r45_tag"]{padding-top:6.034px!important;padding-bottom:0.587px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ptag[data-copy="sw_r46_tag"]{padding-top:5.196px!important;padding-bottom:1.463px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.badge[data-copy="sw_r19_badge"]{padding-top:4.377px!important;padding-bottom:1.743px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.ptag[data-copy="sw_r45_tag"]{padding-top:4.251px!important;padding-bottom:0.229px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.ptag[data-copy="sw_r46_tag"]{padding-top:3.591px!important;padding-bottom:1.889px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="4"][data-variant="b"][data-size-only~="kakao"] span[data-copy="sw_g17_sub"]{padding-top:5.276px!important;padding-bottom:5.084px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="4"][data-variant="b"][data-size-only~="kakao"] span.badge[data-copy="sw_r20_badge"]{padding-top:3.585px!important;padding-bottom:1.535px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="4"][data-variant="b"][data-size-only~="kakao"] span.unit-k[data-copy="sw_p_unit_k"]{padding-top:4.736px!important;padding-bottom:3.424px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:6.388px!important;padding-bottom:0.332px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-cool > span{position:relative;top:1.487px}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-surface[data-copy="sw_c4_d_surface"]{padding-top:5.968px!important;padding-bottom:0.600px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:5.960px!important;padding-bottom:0.061px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:7.320px!important;padding-bottom:0.826px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:3.226px!important;padding-bottom:2.374px!important;position:relative;top:-0.5px}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-cool{padding-top:3.700px}
+html:lang(th)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-cool > img{position:relative;top:-0.500px}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.badge[data-copy="sw_r19_badge"]{padding-top:3.226px!important;padding-bottom:1.894px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="4"][data-variant="b"][data-size-only~="kakao"] span.vb-period{padding-top:6.416px!important;padding-bottom:4.744px!important}

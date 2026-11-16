@@ -39,9 +39,10 @@ function setMoney(el,v){
 }
 /* price names: the shot / pulse figure at the end of each part stands out (Chinese '300发'); combo names break before every ' + ' (the text stays the same)
    2026-11-16 TW / HK: their combo names join the parts with a full-width '＋' and no spaces ('美國音波二代300發＋XERF雙頻電波300發'); they break before every
-   '＋' as well and the '＋' is marked like '+ ' (Korean and CN names only use ' + ' and are set exactly as before) */
+   '＋' as well and the '＋' is marked like '+ ' (Korean and CN names only use ' + ' and are set exactly as before)
+   2026-11-16 TH: the figure carries its Thai unit after a space ('300 ช็อต', '220 พัลส์'), marked like '300发' (no other language has these units) */
 function partSpan(parent,s){
- const m=/^([+＋]\s?)?(.*?)(\s*)(\d[\d,]*(?:发|發)?)$/.exec(s);
+ const m=/^([+＋]\s?)?(.*?)(\s*)(\d[\d,]*(?:发|發|\s?(?:ช็อต|พัลส์))?)$/.exec(s);
  if(!m){parent.append(document.createTextNode(s));return;}
  if(m[1]){const p=document.createElement('span');p.className='pl';p.textContent=m[1];parent.append(p);}
  if(m[2]){const a=document.createElement('span');a.className='pb';
@@ -115,7 +116,8 @@ function setText(el,v){
  /* Chinese: every text keeps its last word together (the Korean list GUARD stays as it was) */
  if(!v||(!el.matches(GUARD)&&!(CJK[locale]&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
  let m=null;
- if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ /* 2026-11-16 TH (THM12 rule): Thai has no guard, its lines break at the browser's dictionary breaks (a space ends a phrase, not a word) */
+ if(!CJK[locale]&&locale!=='TH')m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
  else{m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}

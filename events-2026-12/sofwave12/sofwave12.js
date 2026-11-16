@@ -37,9 +37,10 @@ function setMoney(el,v){
  const n=document.createElement('span');n.className='n';n.textContent=m[2];el.append(n);
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
-/* price names: the pulse / shot figure ('50펄스', '200샷'; Chinese '50发') stands out; combo names break before ' + ' (the text stays the same) */
+/* price names: the pulse / shot figure ('50펄스', '200샷'; Chinese '50发') stands out; combo names break before ' + ' (the text stays the same)
+   2026-11-16 TH (as cerf12.js): the figure carries its Thai unit after a space ('50 พัลส์', '200 ช็อต'), marked like '50펄스' (no other language has these units) */
 function unitSpan(parent,s){
- const m=/^(.*?)(\s*)(\d[\d,]*\s*(?:펄스|샷|发|發))$/.exec(s);
+ const m=/^(.*?)(\s*)(\d[\d,]*\s*(?:펄스|샷|发|發|พัลส์|ช็อต))$/.exec(s);
  if(!m){parent.append(document.createTextNode(s));return;}
  if(m[1]){const a=document.createElement('span');a.className='pb';a.textContent=m[1];parent.append(a);}
  if(m[2])parent.append(document.createTextNode(m[2]));
@@ -68,8 +69,9 @@ function setHours(el,v){
 /* widow guard: the last two words stay together */
 const GUARD='.hook,.p-lead,.unit-d,.pcare,.pdet,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.src,.bkl-msg,.cmp-d,.cmp-h,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.ba-note,.bb-ba__note';
 /* names that never break inside */
-/* 2026-11-14 language versions also keep the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
+/* 2026-11-14 language versions also keep the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them
+   2026-11-16 TH: a figure keeps its Thai unit after the space ('10 นาที', '1.5 มม.', '20:00 น.', '7 ลำ'), Thai lines have no other guard; no other language has these units */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|\d[\d.]* มม\.|\d+ นาที|\d{1,2}:\d{2} น\.|\d+ (?:ลำ|จุด|บริเวณ)|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
@@ -101,7 +103,9 @@ function setText(el,v){
  /* Chinese: every text keeps its last word together (the Korean list GUARD stays as it was) */
  if(!v||(!el.matches(GUARD)&&!(CJK[locale]&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
  let m=null;
- if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ /* 2026-11-16 TH (THM12 rule): Thai has no guard, its lines break at the browser's dictionary breaks (a space ends a phrase, not a word) */
+ if(locale==='TH')m=null;
+ else if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
  else{m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
