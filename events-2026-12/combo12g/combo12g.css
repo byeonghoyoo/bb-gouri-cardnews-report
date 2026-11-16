@@ -420,3 +420,45 @@ a[data-link="phone"]{white-space:nowrap}
   .c2-model{width:86px;height:110px}
 }
 /* ===== /FIXES 20261109 ===== */
+/* ===== B/A 20261114 (v4/combo12g/ba/ba-card.css) ===== */
+/* Before & After card 7 (2026-11-14, v4/combo12g/ba/ba-card.cjs): the approved bb-ba component (v4/_shared/ba/BA_SECTION.md, LIG12 / OND12) in this
+   page's linen / ruby palette and type: Michroma eyebrow and tags, the Pretendard 900 title with the page's triangle, a thin ruby line round each
+   photo (as the page's frames). The linen texture, the disc and the triangle are the page's own images. Colours only through the --ba-* variables.
+   Phone (container <= 600px): the card grows with its content like the other .cx cards (combo12g.css). Line / kakao: the B/A block of sizes/sizes.css. */
+.cba{--ba-ink:var(--ink);--ba-ink-soft:var(--ink-3);--ba-accent:var(--ruby);--ba-accent-hi:var(--ruby-d);--ba-accent-ink:var(--linen);
+  --ba-tag-bg:rgba(74,1,20,.8);--ba-tag-ink:var(--linen);--ba-frame:var(--line);--ba-shot-bg:var(--petal);--ba-shadow:rgba(59,10,22,.14);--ba-arrow-shadow:rgba(59,10,22,.3);
+  --ba-radius:0px;--ba-gap:calc(34*var(--px))}
+.cba .bb-ba__inner{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;text-align:center}
+.cba .bb-ba__eyebrow{margin-top:calc(30*var(--px));font-family:var(--f-wide);font-size:max(12px,calc(24*var(--px)));letter-spacing:.16em;line-height:1.3;color:var(--ba-accent-hi)}
+.cba .bb-ba__title{display:flex;align-items:center;justify-content:center;gap:calc(14*var(--px));margin-top:calc(12*var(--px));font-weight:900;font-size:max(21px,calc(54*var(--px)));line-height:1.2;letter-spacing:-.04em;color:var(--ba-ink);white-space:nowrap}
+.cba .bb-ba__title .tri{width:calc(30*var(--px));min-width:11px}
+.cba .bb-ba__rows{display:grid;gap:calc(26*var(--px));margin:auto 0;padding:calc(30*var(--px)) 0 calc(24*var(--px))}
+.cba .bb-ba__pair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--ba-gap)}
+.cba .bb-ba__shot{position:relative;margin:0;aspect-ratio:1/1;overflow:hidden;border-radius:var(--ba-radius);background:var(--ba-shot-bg);
+  box-shadow:0 0 0 calc(1.5*var(--px)) var(--ba-frame),0 calc(12*var(--px)) calc(28*var(--px)) var(--ba-shadow)}
+.cba .bb-ba__shot img{display:block;width:100%;height:100%;object-fit:cover}
+/* Michroma capitals sit low in their line box: the padding is uneven so the letters are centred (qa/text-center-check.cjs) */
+.cba .bb-ba__tag{position:absolute;left:calc(14*var(--px));bottom:calc(14*var(--px));padding:.452em .8em .608em;background:var(--ba-tag-bg);color:var(--ba-tag-ink);
+  font-family:var(--f-wide);font-size:max(11px,calc(16*var(--px)));line-height:1;letter-spacing:.14em}
+.cba .bb-ba__tag--after{left:auto;right:calc(14*var(--px));background:var(--ba-accent);color:var(--ba-accent-ink)}
+.cba .bb-ba__arrow{position:absolute;left:50%;top:50%;z-index:2;display:grid;place-items:center;width:max(26px,calc(52*var(--px)));height:max(26px,calc(52*var(--px)));border-radius:50%;
+  transform:translate(-50%,-50%);background:var(--ba-accent);color:var(--ba-accent-ink);font-weight:700;font-size:max(18px,calc(40*var(--px)));line-height:1;
+  padding-bottom:.1125em;box-shadow:0 calc(4*var(--px)) calc(12*var(--px)) var(--ba-arrow-shadow)} /* the '›' sits low in the em box: the bottom padding lifts it to the centre */
+.cba .bb-ba__arrow > span{display:block}
+.cba .bb-ba__note{font-size:max(12px,calc(19*var(--px)));font-weight:500;line-height:1.5;color:var(--ba-ink-soft)}
+/* board view (card about 780px wide): Michroma at 11.6px sits higher in its line box than at 16px, so the tag padding is even again there
+   (home mode only; the line / kakao cards keep the 16px padding) */
+@container (min-width:601px) and (max-width:900px){
+  html[data-size="home"] .cba .bb-ba__tag{padding-top:.57em;padding-bottom:.49em}
+}
+@container (max-width:600px){
+  .cba{--ba-gap:10px}
+  .cba .bb-ba__eyebrow{margin-top:12px;font-size:12px;letter-spacing:.12em}
+  .cba .bb-ba__title{margin-top:6px;font-size:21px;white-space:normal}
+  .cba .bb-ba__rows{gap:10px;margin:0;padding:14px 0 12px}
+  .cba .bb-ba__tag{left:5px;bottom:5px;padding:.42em .55em .576em;letter-spacing:.08em}
+  .cba .bb-ba__tag--after{left:auto;right:5px}
+  .cba .bb-ba__arrow{width:26px;height:26px;font-size:18px}
+  .cba .bb-ba__note{font-size:12px}
+}
+/* ===== /B/A 20261114 ===== */

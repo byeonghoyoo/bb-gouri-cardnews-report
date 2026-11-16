@@ -179,3 +179,14 @@ html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data
 html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pbadge[data-copy="c7_r105_badge"]{padding-top:3.65px;padding-bottom:3.85px;margin-bottom:0.82px}
 html[data-size="kakao"] main.bx section[data-size-only][data-card="3"]:not([data-variant])[data-part="3"] span.pchip[data-copy="c7_r107_chip"]{padding-top:2.10px;padding-bottom:0.30px}
 /* ==== /tc-fix ==== */
+
+/* ==== B/A card 7 (2026-11-14, v4/combo12g/ba/ba-card.cjs; sections from gen-sizes.cjs): line = the two pairs of the home card stacked, kakao = two
+   parts with one pair each. Every part keeps the eyebrow, the title and the AI note; type sizes as at home (--px 1px), only the photo column is
+   narrower. ==== */
+html[data-size="line"] main.bx .L7 .bb-ba__rows{width:640px;margin:auto;padding:24px 0 20px}
+html[data-size="kakao"] main.bx .K7 .bb-ba__eyebrow{margin-top:8px}
+html[data-size="kakao"] main.bx .K7 .bb-ba__rows{width:620px;margin:auto;padding:16px 0 12px}
+html[data-size="kakao"] main.bx .K7 .x-disc{right:30px;top:26px;width:70px}
+/* text snaps to whole pixels: at the kakao pair's position the '›' sat 0.75px low; 1.5px more bottom padding lifts it 0.75px */
+html[data-size="kakao"] main.bx .K7 .bb-ba__arrow{padding-bottom:calc(.1125em + 1.5px)}
+/* ==== /B/A card 7 ==== */

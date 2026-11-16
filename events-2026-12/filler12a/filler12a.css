@@ -545,3 +545,59 @@ html[data-size="kakao"] .K3.K3-2 .pt-cont{padding-bottom:6.52px;margin-bottom:-1
   .cp.fbm:not([data-size-only]) .bow-board{display:none}
 }
 /* ===== /FIXES 20261109 ===== */
+/* ===== B/A 20261114 (v4/filler12a/lib/fl-ba.css) ===== */
+/* 7 Before & After (2026-11-14, v4/filler12a/lib/fl-ba.cjs; lead spec v4/_shared/ba/winter-ba-10-20261114/INSERT_SPEC.md): the approved bb-ba
+   component (v4/_shared/ba/BA_SECTION.md, as on LIG12 / OND12) in this bundle's look: page texture, frost corner, centred wordmark header as on
+   cards 4-6, the script word (Yellowtail, as the B hero) as the eyebrow, the heavy title, the photos in the bundle's thick white frames, pill tags.
+   Colours only through the --ba-* variables, set here from this page's palette (FIL12A periwinkle accent, FIL12B pink accent: --acc, --acc-bg,
+   --cta-tx, --ink, --ink-2, white; the tag and shadow tints are the page ink #222b6e). Home numbers are 1080-design px through var(--px); phones
+   (<=600px container) flow like the page's other cards; the channel sizes (--px 1px, type as home) set their own numbers at the end.
+   No CSS translate / scale properties (LAYERS_RULE 6): the arrow is centred with transform. Used by FIL12A / FIL12B only. */
+.cba{--ba-ink:var(--ink);--ba-ink-soft:var(--ink-2);--ba-accent:var(--acc);--ba-accent-ink:var(--cta-tx);--ba-shot-bg:var(--acc-bg);
+  --ba-tag-bg:rgba(34,43,110,.74);--ba-tag-ink:var(--white);--ba-frame:var(--white);--ba-shadow:rgba(34,43,110,.2);
+  --ba-radius:calc(40*var(--px));--ba-gap:calc(40*var(--px))}
+.fr-c7{left:calc(-28*var(--px));top:calc(-22*var(--px));width:calc(250*var(--px));transform:scaleY(-1)}
+.c7-gl{right:calc(150*var(--px));top:calc(132*var(--px));width:calc(66*var(--px))}
+.bb-ba__inner{color:var(--ba-ink)}
+.bb-ba__head{margin-top:calc(26*var(--px));display:flex;flex-direction:column;align-items:center;text-align:center}
+.bb-ba__eyebrow{font-family:var(--f-script);font-weight:400;font-size:calc(72*var(--px));line-height:1.1;letter-spacing:.01em;white-space:nowrap;color:var(--ba-accent)}
+.bb-ba__title{margin-top:calc(2*var(--px));max-width:100%;font-weight:900;font-size:calc(58*var(--px));line-height:1.18;letter-spacing:-.025em;text-wrap:balance;color:var(--ba-ink)}
+.bb-ba__rows{width:calc(940*var(--px));max-width:100%;margin:calc(30*var(--px)) auto 0;display:grid;gap:calc(30*var(--px))}
+.bb-ba__pair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--ba-gap)}
+.bb-ba__shot{position:relative;margin:0;aspect-ratio:1/1;border:calc(10*var(--px)) solid var(--ba-frame);border-radius:var(--ba-radius);overflow:hidden;background:var(--ba-shot-bg);box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) var(--ba-shadow)}
+.bb-ba__shot img{display:block;width:100%;height:100%;object-fit:cover}
+/* the tags in the bundle's English label face (Fredoka 600, as the PRICE LIST pills and BEST badges); the extra left padding balances the
+   letter-spacing after the last letter. (2026-11-16: a Pretendard trial was reverted: the existing-card pixel differences it seemed to fix came from
+   the comparison method, web fonts fetched anew for every render; with the fonts fixed, Fredoka tags leave all existing cards identical.) */
+.bb-ba__tag{position:absolute;left:calc(16*var(--px));bottom:calc(16*var(--px));padding:.5em .81em .5em .95em;border-radius:999px;background:var(--ba-tag-bg);color:var(--ba-tag-ink);
+  font-family:var(--f-en);font-weight:600;font-size:max(11px,calc(20*var(--px)));line-height:1;letter-spacing:.14em}
+.bb-ba__tag--after{left:auto;right:calc(16*var(--px));background:var(--ba-accent);color:var(--ba-accent-ink)}
+.bb-ba__arrow{position:absolute;left:50%;top:50%;z-index:2;display:grid;place-items:center;width:calc(66*var(--px));height:calc(66*var(--px));border:calc(5*var(--px)) solid var(--ba-frame);border-radius:50%;
+  transform:translate(-50%,-50%);background:var(--ba-accent);color:var(--ba-accent-ink);box-shadow:0 calc(6*var(--px)) calc(16*var(--px)) var(--ba-shadow);font-weight:700;font-size:calc(40*var(--px));line-height:1}
+/* text centring (qa/text-center-check.cjs, 2026-11-16): the '›' glyph of Pretendard sits .053em low in its line (measured +2.13px at 40px, home 1080 /
+   line / kakao alike), so the glyph is lifted by that much with transform (the editor's own translate property stays free, LAYERS_RULE 6) */
+.bb-ba__arrow > span{display:block;transform:translateY(-.053em)}
+.bb-ba__note{margin-top:auto;padding-top:calc(16*var(--px));text-align:center;font-weight:600;font-size:max(11px,calc(19*var(--px)));line-height:1.5;color:var(--ba-ink-soft)}
+@container (max-width:600px){
+  .cba{aspect-ratio:auto;min-height:calc(1350*var(--px))}
+  .fr-c7{width:calc(220*var(--px))}
+  .bb-ba__rows{width:100%;margin-top:calc(26*var(--px));gap:calc(28*var(--px))}
+  .bb-ba__pair{gap:calc(30*var(--px))}
+  .bb-ba__shot{border-width:3px;border-radius:12px;box-shadow:0 5px 12px var(--ba-shadow)}
+  .bb-ba__tag{left:5px;bottom:5px;letter-spacing:.08em;padding:.5em .78em .5em .86em}
+  .bb-ba__tag--after{left:auto;right:5px}
+  .bb-ba__arrow{width:26px;height:26px;border-width:2px;font-size:17px}
+  .bb-ba__note{padding-top:12px}
+}
+/* LINE 1100x1000: one card with both pairs; squares 310px (home 450) so the header, eyebrow, title, both rows and the note fit; type as home */
+html[data-size="line"] .L7 .bb-ba__head{margin-top:16px}
+html[data-size="line"] .L7 .bb-ba__rows{width:660px;margin-top:22px;gap:22px}
+html[data-size="line"] .L7 .bb-ba__note{padding-top:14px}
+/* KAKAO 800x600: two parts, part 1 the front pair, part 2 the 45-degree pair, the header, title and AI note on both; squares 300px; type as home */
+html[data-size="kakao"] .K7-1 .bb-ba__row--45,html[data-size="kakao"] .K7-2 .bb-ba__row--front{display:none}
+html[data-size="kakao"] .K7 .fr-c7{width:200px}
+html[data-size="kakao"] .K7 .c7-gl{right:36px;top:64px;width:56px}
+html[data-size="kakao"] .K7 .bb-ba__head{margin-top:8px}
+html[data-size="kakao"] .K7 .bb-ba__rows{width:640px;margin-top:14px}
+html[data-size="kakao"] .K7 .bb-ba__note{padding-top:10px}
+/* ===== /B/A 20261114 ===== */

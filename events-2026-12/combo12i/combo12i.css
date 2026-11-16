@@ -549,3 +549,41 @@ a[data-link="phone"]{white-space:nowrap}
   .c2-model{right:10px;height:105px}
 }
 /* ===== /FIXES 20261109 ===== */
+/* ===== B/A 20261114 (v4/combo12i/ba/ba-card.css) ===== */
+/* Before & After card 8 (2026-11-14 spec, v4/combo12i/ba/ba-card.cjs): the approved bb-ba component (v4/_shared/ba/BA_SECTION.md, LIG12 / OND12) in this
+   page's oat / espresso / matcha palette and type (same system as CMB12H, colours swapped like the rest of the bundle): the Poppins kicker as the
+   eyebrow, the Song Myung title like the price-card titles, pill tags (BEFORE in the page's matcha, AFTER and the arrow in espresso), a white
+   frame round each photo like the page's model photo (.b-photo). The oat texture, the water drop and the wordmark are the page's own images.
+   Colours only through the --ba-* variables. Phone (container <= 600px): the card grows with its content like the other .cx cards.
+   Line / kakao: the B/A block of sizes/sizes.css. */
+.cba{--ba-ink:var(--esp);--ba-ink-soft:var(--ink-3);--ba-accent:var(--dom);--ba-accent-hi:var(--dom);--ba-accent-ink:var(--white);
+  --ba-tag-bg:rgba(92,103,68,.86);--ba-tag-ink:var(--white);--ba-frame:var(--white);--ba-shot-bg:var(--dom-soft);--ba-shadow:rgba(58,38,23,.14);--ba-arrow-shadow:rgba(58,38,23,.28);
+  --ba-radius:calc(26*var(--px));--ba-gap:calc(34*var(--px))}
+.cba .bb-ba__inner{position:relative;z-index:3;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;text-align:center}
+.cba .bb-ba__eyebrow{margin-top:calc(30*var(--px));font-family:var(--f-en);font-weight:800;font-size:max(11px,calc(20*var(--px)));letter-spacing:.2em;line-height:1.3;color:var(--ba-accent-hi);text-transform:uppercase}
+.cba .bb-ba__title{margin-top:calc(10*var(--px));font-family:var(--f-disp);font-weight:400;font-size:calc(70*var(--px));line-height:1.15;letter-spacing:-.02em;color:var(--ba-ink);white-space:nowrap}
+.cba .bb-ba__rows{display:grid;gap:calc(26*var(--px));margin:auto 0;padding:calc(30*var(--px)) 0 calc(24*var(--px))}
+.cba .bb-ba__pair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--ba-gap)}
+.cba .bb-ba__shot{position:relative;margin:0;aspect-ratio:1/1;overflow:hidden;border-radius:var(--ba-radius);border:calc(5*var(--px)) solid var(--ba-frame);background:var(--ba-shot-bg);
+  box-shadow:0 calc(14*var(--px)) calc(32*var(--px)) var(--ba-shadow)}
+.cba .bb-ba__shot img{display:block;width:100%;height:100%;object-fit:cover}
+.cba .bb-ba__tag{position:absolute;left:calc(14*var(--px));bottom:calc(14*var(--px));padding:.5em .95em .5em;border-radius:999px;background:var(--ba-tag-bg);color:var(--ba-tag-ink);
+  font-family:var(--f-en);font-weight:700;font-size:max(11px,calc(17*var(--px)));line-height:1;letter-spacing:.12em}
+.cba .bb-ba__tag--after{left:auto;right:calc(14*var(--px));background:var(--ba-accent);color:var(--ba-accent-ink)}
+.cba .bb-ba__arrow{position:absolute;left:50%;top:50%;z-index:2;display:grid;place-items:center;width:max(26px,calc(52*var(--px)));height:max(26px,calc(52*var(--px)));border-radius:50%;
+  transform:translate(-50%,-50%);background:var(--ba-accent);color:var(--ba-accent-ink);font-weight:700;font-size:max(18px,calc(40*var(--px)));line-height:1;
+  padding-bottom:.1125em;box-shadow:0 calc(4*var(--px)) calc(12*var(--px)) var(--ba-arrow-shadow)} /* the '›' sits low in the em box: the bottom padding lifts it to the centre */
+.cba .bb-ba__arrow > span{display:block}
+.cba .bb-ba__note{font-size:max(12px,calc(19*var(--px)));font-weight:500;line-height:1.5;color:var(--ba-ink-soft)}
+@container (max-width:600px){
+  .cba{--ba-gap:10px;--ba-radius:14px}
+  .cba .bb-ba__eyebrow{margin-top:12px;font-size:12px;letter-spacing:.14em}
+  .cba .bb-ba__title{margin-top:4px;font-size:26px;white-space:normal}
+  .cba .bb-ba__rows{gap:10px;margin:0;padding:14px 0 12px}
+  .cba .bb-ba__shot{border-width:3px}
+  .cba .bb-ba__tag{left:6px;bottom:6px;padding:.45em .7em .45em;letter-spacing:.08em}
+  .cba .bb-ba__tag--after{left:auto;right:6px}
+  .cba .bb-ba__arrow{width:26px;height:26px;font-size:18px}
+  .cba .bb-ba__note{font-size:12px}
+}
+/* ===== /B/A 20261114 ===== */

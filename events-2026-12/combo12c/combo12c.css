@@ -435,3 +435,52 @@ a[data-link="phone"]{white-space:nowrap}
 /* Bundle B: twelve-row compact ticket density, page D only */
 .p-d .b-tickets .b-ticket{min-height:calc(132*var(--px));padding:calc(14*var(--px)) calc(22*var(--px));gap:calc(6*var(--px))}.p-d .b-tickets .b-ticket-grid{gap:calc(12*var(--px))}.p-d .b-tickets .b-ticket .psale{font-size:max(22px,calc(35*var(--px)))}
 @container(max-width:600px){.p-d .b-tickets .b-ticket{min-height:122px;padding:14px}.p-d .b-tickets .b-ticket-grid{gap:10px}}
+/* ===== BA:css (2026-11-14 Before & After card of combo12c / combo12d, written by v4/combo12c/ba-card-1114.cjs; approved bb-ba component of
+   v4/_shared/ba/BA_SECTION.md, colours only through the --ba-* variables from the bundle palette and the page colour --rep / --rep-ink) ===== */
+.cba{--ba-ink:var(--ink);--ba-ink-soft:var(--ink-2);--ba-accent:var(--rep);--ba-accent-hi:var(--rep-ink);--ba-accent-ink:var(--ink);
+  --ba-tag-bg:rgba(47,59,12,.8);--ba-tag-ink:var(--paper);--ba-frame:var(--paper);--ba-shadow:rgba(47,59,12,.16);--ba-radius:calc(26*var(--px));--ba-gap:calc(36*var(--px))}
+.dkba{right:calc(78*var(--px));top:calc(116*var(--px));width:calc(84*var(--px));transform:rotate(-8deg)}
+.bb-ba__inner{text-align:center;color:var(--ba-ink)}
+.bb-ba__inner > .top{text-align:left}
+.bb-ba__eyebrow{margin-top:calc(34*var(--px));font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:max(16px,calc(46*var(--px)));line-height:1.1;letter-spacing:.005em;color:var(--ba-accent-hi)}
+.bb-ba__title{margin-top:calc(4*var(--px));font-weight:900;font-size:max(21px,calc(58*var(--px)));line-height:1.2;letter-spacing:-.04em;color:var(--ba-ink)}
+.bb-ba__rows{width:calc(936*var(--px));max-width:100%;margin:calc(32*var(--px)) auto 0;display:grid;gap:calc(28*var(--px))}
+.bb-ba__pair{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--ba-gap)}
+.bb-ba__shot{position:relative;margin:0;aspect-ratio:1/1;border-radius:var(--ba-radius);overflow:hidden;background:var(--ba-frame);border:calc(6*var(--px)) solid var(--ba-frame);box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) var(--ba-shadow)}
+.bb-ba__shot img{display:block;width:100%;height:100%;object-fit:cover;border-radius:calc(20*var(--px))}
+.bb-ba__tag{position:absolute;left:calc(14*var(--px));bottom:calc(14*var(--px));padding:.46em .74em .38em;border-radius:calc(8*var(--px));background:var(--ba-tag-bg);color:var(--ba-tag-ink);
+  font-weight:800;font-size:max(11px,calc(18*var(--px)));line-height:1;letter-spacing:.14em}
+.bb-ba__tag--after{left:auto;right:calc(14*var(--px));background:var(--ba-accent);color:var(--ba-accent-ink)}
+.bb-ba__arrow{position:absolute;left:50%;top:50%;z-index:2;display:grid;place-items:center;width:max(28px,calc(58*var(--px)));height:max(28px,calc(58*var(--px)));border-radius:50%;transform:translate(-50%,-50%);
+  background:var(--ba-accent);color:var(--ba-accent-ink);box-shadow:0 calc(4*var(--px)) calc(12*var(--px)) var(--ba-shadow);font-weight:700;font-size:max(18px,calc(44*var(--px)));line-height:1}
+.bb-ba__arrow > span{display:block;transform:translateY(-.05em)} /* the '›' ink sits low in its line (text-center-check +2.0 px at 44 px) */
+/* 2026-11-16 measured at DPR 4 (glyph ink vs circle centre): -.05em leaves -0.06 px at 1080 / line / kakao (-.06em: -0.56 px); at 601-900 px wide
+   (780 check, ink snapped differently at the 31.8 px size) -.03em leaves -0.47 / +0.31 px (C / D worst) */
+@container (min-width:601px) and (max-width:900px){html[data-size="home"] .bb-ba__arrow > span{transform:translateY(-.03em)}}
+.bb-ba__note{margin-top:auto;padding-top:calc(18*var(--px));font-weight:600;font-size:max(12px,calc(19*var(--px)));line-height:1.5;color:var(--ba-ink-soft)}
+@container (max-width:600px){
+  .dkba{right:14px;top:40px;width:30px}
+  .bb-ba__eyebrow{margin-top:14px;font-size:17px}
+  .bb-ba__title{margin-top:2px;font-size:22px}
+  .bb-ba__rows{width:auto;margin-top:14px;gap:12px}
+  .bb-ba__pair{gap:12px}
+  .bb-ba__shot{border-width:3px;border-radius:12px;box-shadow:0 6px 14px var(--ba-shadow)}
+  .bb-ba__shot img{border-radius:9px}
+  .bb-ba__tag{left:6px;bottom:6px;border-radius:5px;letter-spacing:.1em}
+  .bb-ba__tag--after{left:auto;right:6px}
+  .bb-ba__arrow{width:28px;height:28px}
+  .bb-ba__note{padding-top:14px}
+}
+/* LINE 1100x1000: both pairs stacked, squares 322 px (home 450) so the title, both rows and the note fit; type as home */
+html[data-size="line"] main .Lba .cx-in{padding:42px 52px 32px}
+html[data-size="line"] .Lba .bb-ba__eyebrow{margin-top:18px}
+html[data-size="line"] .Lba .bb-ba__rows{width:680px;margin-top:20px;gap:18px}
+html[data-size="line"] .Lba .bb-ba__note{padding-top:12px}
+/* KAKAO 800x600: one pair per part, squares 322 px; type as home */
+html[data-size="kakao"] main .Kba .cx-in{padding:24px 40px 22px}
+html[data-size="kakao"] .Kba .dkba{right:48px;top:80px;width:56px}
+html[data-size="kakao"] .Kba .bb-ba__eyebrow{margin-top:10px}
+html[data-size="kakao"] .Kba .bb-ba__title{margin-top:0}
+html[data-size="kakao"] .Kba .bb-ba__rows{width:680px;margin-top:14px}
+html[data-size="kakao"] .Kba .bb-ba__note{padding-top:10px}
+/* ===== /BA:css ===== */

@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Yellowtail&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&amp;display=swap">
-  <link rel="stylesheet" href="filler12a.css?v=20261110-filler12ab">
-  <script src="copy-data.js?v=20261110-filler12ab" defer></script>
+  <link rel="stylesheet" href="filler12a.css?v=20261114-filler12ac">
+  <script src="copy-data.js?v=20261114-filler12ac" defer></script>
   <script src="../text-format.js?v=20261109-type1" defer></script>
 <script src="../inline-format.js?v=20261109-type1" defer></script>
 <script src="../inline-edit.js?v=20261109-type1" defer></script>
-  <script src="filler12a.js?v=20261110-filler12ab" defer></script>
+  <script src="filler12a.js?v=20261114-filler12ac" defer></script>
 </head>
 <body>
 <!-- FIL12A 시그니처 디자인 필러 · 겨울 시즌 (Korean first). 필러 2주년 같은 주제 묶음 (FIL12A filler12a · FIL12B filler12b · FIL12C filler12c): same layout, colours, type and decoration set;
@@ -23,7 +23,7 @@
      Design references F55 (frosty winter poster: frost crystals in the top corners, glossy script word, centred model, round badge beside the face, product in the lower right)
      and F56 (snow gift poster: centred logo, script + heavy title, rounded benefit tiles, satin bow, CTA pill at the bottom). Palette H (sheet H55): periwinkle #92ABFF · soft periwinkle #A9BBFD ·
      pale periwinkle #BECCFD · ice #D3DFFC · white #F4F4FA · pastel pink #FCBDEE · pale pink #FCD4F4 · lime #E7FA9E, thick white rounded frames and white pills.
-     6 1080x1350 cards (section[data-card="1..6"]); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
+     7 1080x1350 cards (section[data-card="1..7"]; 7 = Before & After, v4/filler12a/lib/fl-ba.cjs); every word is editable copy (data-copy, ../inline-edit.js, aptos-* board messages).
      Pictures: generated model photos (v4/filler12a/a, qa/image-attempts.json), shared generated icons / decorations / texture (v4/filler12a/a), real product cut-outs (v3/products), shared clinic files.
      Price rows: data-price-row="12_filler:<sheet row>" with [data-price-list] / [data-price-sale]; strings from v4/events/_data/pages.json via v4/filler12a/build-filler12a.cjs. -->
 <main class="fl acc-peri">
@@ -1199,6 +1199,131 @@
         </section>
     <!-- /SZ:kakao:6 -->
 
+    <!-- 7 : Before & After (2026-11-14 user '하단에 BA도', lead spec v4/_shared/ba/winter-ba-10-20261114/INSERT_SPEC.md; the approved bb-ba component of
+         v4/_shared/ba/BA_SECTION.md, as LIG12 / OND12) in this bundle's look: page texture, frost corner, centred wordmark, script eyebrow, heavy title,
+         row 1 front BEFORE › AFTER, row 2 45 degrees BEFORE › AFTER in thick white frames, the AI note. No row labels. Photos copied unchanged from
+         v4/_shared/ba/winter-ba-10-20261114/signature-filler/ by v4/filler12a/lib/fl-ba.cjs, which also writes the line / kakao sections below. -->
+    <section class="card cba bb-ba" data-card="7" aria-labelledby="fa_tba" data-size-hide="line kakao">
+      <img class="tex tex-flip" src="assets/tex.jpg?v=a" data-layer="ba-tex" alt="" aria-hidden="true" width="1080" height="1350">
+      <img class="dec fr-c7" src="assets/dec/frost-2.png" data-layer="ba-frost" alt="" aria-hidden="true" width="388" height="321">
+      <img class="dec c7-gl" src="assets/dec/glint-1.png" data-layer="ba-glint" alt="" aria-hidden="true" width="224" height="228">
+      <div class="cx-in bb-ba__inner">
+        <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-222b6e.png" data-layer="ba-wordmark" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+        <div class="bb-ba__head">
+          <p class="bb-ba__eyebrow" data-copy="fa_ba_eyebrow"></p>
+          <h2 class="bb-ba__title" id="fa_tba" data-copy="fa_ba_title"></h2>
+        </div>
+        <div class="bb-ba__rows">
+          <div class="bb-ba__row bb-ba__row--front">
+            <div class="bb-ba__pair">
+              <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-front-before.jpg?v=a3e7e247cb" data-alt="fa_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="fa_ba_before"></figcaption></figure>
+              <span class="bb-ba__arrow" aria-hidden="true"><span data-copy="fa_ba_arrow"></span></span>
+              <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-front-after.jpg?v=971cb5cfac" data-alt="fa_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="fa_ba_after"></figcaption></figure>
+            </div>
+          </div>
+          <div class="bb-ba__row bb-ba__row--45">
+            <div class="bb-ba__pair">
+              <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-45-before.jpg?v=1cbe1be376" data-alt="fa_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="fa_ba_before"></figcaption></figure>
+              <span class="bb-ba__arrow" aria-hidden="true"><span data-copy="fa_ba_arrow"></span></span>
+              <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-45-after.jpg?v=8b8ab5dee7" data-alt="fa_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="fa_ba_after"></figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <p class="bb-ba__note" data-copy="fa_ba_note"></p>
+      </div>
+    </section>
+    <!-- SZ:line:7 -->
+    <section class="card cba bb-ba L L7" data-card="7" data-size-only="line" aria-labelledby="fa_tba-l">
+          <img class="tex tex-flip" src="assets/tex.jpg?v=a" data-layer="ba-tex" alt="" aria-hidden="true" width="1080" height="1350">
+          <img class="dec fr-c7" src="assets/dec/frost-2.png" data-layer="ba-frost" alt="" aria-hidden="true" width="388" height="321">
+          <img class="dec c7-gl" src="assets/dec/glint-1.png" data-layer="ba-glint" alt="" aria-hidden="true" width="224" height="228">
+          <div class="cx-in bb-ba__inner">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-222b6e.png" data-layer="ba-wordmark" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bb-ba__head">
+              <p class="bb-ba__eyebrow" data-copy="fa_ba_eyebrow"></p>
+              <h2 class="bb-ba__title" id="fa_tba-l" data-copy="fa_ba_title"></h2>
+            </div>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row bb-ba__row--front">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-front-before.jpg?v=a3e7e247cb" data-alt="fa_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="fa_ba_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true"><span data-copy="fa_ba_arrow"></span></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-front-after.jpg?v=971cb5cfac" data-alt="fa_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="fa_ba_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row bb-ba__row--45">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-45-before.jpg?v=1cbe1be376" data-alt="fa_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="fa_ba_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true"><span data-copy="fa_ba_arrow"></span></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-45-after.jpg?v=8b8ab5dee7" data-alt="fa_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="fa_ba_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="fa_ba_note"></p>
+          </div>
+        </section>
+    <!-- /SZ:line:7 -->
+    <!-- SZ:kakao:7 -->
+    <section class="card cba bb-ba K K7 K7-1" data-card="7" data-part="1" data-size-only="kakao" aria-labelledby="fa_tba-k1">
+          <img class="tex tex-flip" src="assets/tex.jpg?v=a" data-layer="ba-tex" alt="" aria-hidden="true" width="1080" height="1350">
+          <img class="dec fr-c7" src="assets/dec/frost-2.png" data-layer="ba-frost" alt="" aria-hidden="true" width="388" height="321">
+          <img class="dec c7-gl" src="assets/dec/glint-1.png" data-layer="ba-glint" alt="" aria-hidden="true" width="224" height="228">
+          <div class="cx-in bb-ba__inner">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-222b6e.png" data-layer="ba-wordmark" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bb-ba__head">
+              <p class="bb-ba__eyebrow" data-copy="fa_ba_eyebrow"></p>
+              <h2 class="bb-ba__title" id="fa_tba-k1" data-copy="fa_ba_title"></h2>
+            </div>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row bb-ba__row--front">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-front-before.jpg?v=a3e7e247cb" data-alt="fa_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="fa_ba_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true"><span data-copy="fa_ba_arrow"></span></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-front-after.jpg?v=971cb5cfac" data-alt="fa_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="fa_ba_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row bb-ba__row--45">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-45-before.jpg?v=1cbe1be376" data-alt="fa_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="fa_ba_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true"><span data-copy="fa_ba_arrow"></span></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-45-after.jpg?v=8b8ab5dee7" data-alt="fa_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="fa_ba_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="fa_ba_note"></p>
+          </div>
+        </section>
+    <section class="card cba bb-ba K K7 K7-2" data-card="7" data-part="2" data-size-only="kakao" aria-labelledby="fa_tba-k2">
+          <img class="tex tex-flip" src="assets/tex.jpg?v=a" data-layer="ba-tex" alt="" aria-hidden="true" width="1080" height="1350">
+          <img class="dec fr-c7" src="assets/dec/frost-2.png" data-layer="ba-frost" alt="" aria-hidden="true" width="388" height="321">
+          <img class="dec c7-gl" src="assets/dec/glint-1.png" data-layer="ba-glint" alt="" aria-hidden="true" width="224" height="228">
+          <div class="cx-in bb-ba__inner">
+            <header class="top solo"><img class="brand wordmark" src="assets/logo-wordmark-222b6e.png" data-layer="ba-wordmark" alt="BEAUTY BLOSSOM" width="975" height="111"></header>
+            <div class="bb-ba__head">
+              <p class="bb-ba__eyebrow" data-copy="fa_ba_eyebrow"></p>
+              <h2 class="bb-ba__title" id="fa_tba-k2" data-copy="fa_ba_title"></h2>
+            </div>
+            <div class="bb-ba__rows">
+              <div class="bb-ba__row bb-ba__row--front">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-front-before.jpg?v=a3e7e247cb" data-alt="fa_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="fa_ba_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true"><span data-copy="fa_ba_arrow"></span></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-front-after.jpg?v=971cb5cfac" data-alt="fa_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="fa_ba_after"></figcaption></figure>
+                </div>
+              </div>
+              <div class="bb-ba__row bb-ba__row--45">
+                <div class="bb-ba__pair">
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-45-before.jpg?v=1cbe1be376" data-alt="fa_alt_ba_before" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag" data-copy="fa_ba_before"></figcaption></figure>
+                  <span class="bb-ba__arrow" aria-hidden="true"><span data-copy="fa_ba_arrow"></span></span>
+                  <figure class="bb-ba__shot"><img src="assets/ba/signature-filler-45-after.jpg?v=8b8ab5dee7" data-alt="fa_alt_ba_after" alt="" width="1024" height="1024"><figcaption class="bb-ba__tag bb-ba__tag--after" data-copy="fa_ba_after"></figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <p class="bb-ba__note" data-copy="fa_ba_note"></p>
+          </div>
+        </section>
+    <!-- /SZ:kakao:7 -->
+
     <!-- notes under the cards (not a card) -->
     <section class="notes" aria-labelledby="fa_notes">
       <h2 id="fa_notes"><img class="notes-ico" src="assets/icons/snow.webp" alt="" aria-hidden="true" width="192" height="192"><span data-copy="fa_note_title"></span></h2>
@@ -1207,6 +1332,7 @@
         <li><span class="dot" aria-hidden="true"></span><span data-copy="fa_cond2"></span></li>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="fa_cond3"></span></li>
         <li><span class="dot" aria-hidden="true"></span><span data-copy="fa_cond4"></span></li>
+        <li><span class="dot" aria-hidden="true"></span><span data-copy="fa_cond_ba"></span></li>
         <li data-optional-group><span class="dot" aria-hidden="true"></span><span data-copy="fa_cond5" data-optional data-placeholder="추가 안내 (예: 대상·조건)"></span></li>
       </ul>
     </section>
