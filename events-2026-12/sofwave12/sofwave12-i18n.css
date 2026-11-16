@@ -130,3 +130,161 @@ html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-text{display:contents}
 html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-row .qr{grid-column:1;grid-row:1}
 html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-links{grid-column:2;grid-row:1;align-self:center}
 html:lang(zh-TW)[data-size]:not(#sz) .L6p2 .bk-phone{grid-column:1 / -1;grid-row:2;margin-top:0}
+
+/* ---------- HK (2026-11-16, lead order: the HK reviewer pressed 검토 완료 on the board 11/14 15:57; reviewer text first, contact as BLF11 HK,
+   v4/sofwave12/work/contact-overrides.json). The :lang(zh) rules above apply to HK as well; the rules below are HK only ---------- */
+
+/* contact value 'WhatsApp：+82 10-7215-7511' (hero pill, B meta line, booking-box phone line): it may break after 'WhatsApp：' (sofwave12.js keeps
+   the number whole), so it stays inside its pill / box; the booking-box line is set smaller than the Korean number and may still shrink (--fit) */
+html:lang(zh-HK) .c1 .hp-info .hp-v{white-space:normal}
+html:lang(zh-HK) .bk-phone.is-id{white-space:normal;align-items:flex-start;font-size:calc(max(15px,calc(22*var(--px)))*var(--fit,1));line-height:1.25}
+html:lang(zh-HK) .bk-phone.is-id .ph-ico{margin-top:.08em}
+html:lang(zh-HK)[data-size]:not(#sz) .L6p2 .bk-phone.is-id{font-size:calc(26px*var(--fit,1))}
+
+/* card 1 A on phones: the HK VAT note is long; it goes under the price at the right of the price pill (the label keeps its place at the left),
+   so the pill stays low under the model's chin */
+@container (max-width:600px){
+ html:lang(zh-HK) .c1 .hp-top{flex:none}
+ html:lang(zh-HK) .c1 .hp-main{flex:1 1 auto;min-width:0;flex-wrap:wrap;justify-content:flex-end;row-gap:0}
+ html:lang(zh-HK) .c1 .hp-vat{flex-basis:100%;margin-left:0;padding-left:0;border-left:0;text-align:right}
+}
+/* card 1 B on phones: the HK hook takes two lines, so the device and the framed photo move down by 30 px and the poster part grows with them */
+@container (max-width:600px){
+ html:lang(zh-HK) .card.c1v{padding-top:calc(1290*var(--px) + 30px)}
+ html:lang(zh-HK) .c1v .vb-dev{top:calc(470*var(--px) + 30px)}
+ html:lang(zh-HK) .c1v .vb-frame{top:calc(480*var(--px) + 30px)}
+}
+/* kakao card 1 A: the longer HK hook in three lines reached under the price box; 22 px in a slightly wider column keeps it to two lines, and the head
+   goes back to the Korean place (the HK kick is the Latin script line, as in Korean) */
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .c1-head{top:76px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .hook{font-size:22px;max-width:410px}
+/* kakao card 1 B: the period value stays beside its label (the contact value keeps its own line under the label, CN rule above), the head goes back to
+   the Korean place and the title is 104 px (as TW), so the contact line ends above the price box */
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .vb-head{top:44px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .hero-title{font-size:104px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .vb-mi:first-child{flex-wrap:nowrap}
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .vb-mi:first-child .vb-v{flex-basis:auto;padding-left:0}
+
+/* card 2 A: the HK 300 / 400-pulse names with the '可分次進行' chip are wider than the name column, so the chip took a line of its own and the board
+   ran out of the card. Each row is now a wrapping flex row: name | add-on line in the same columns as before (the grid's 16 px column gap stays as the
+   flex gap), then the chip and the care line together on the second line (.pname is display:contents, so sofwave12.js leaves its size at 100 %).
+   The rows are a little tighter (as TW): the HK lines are taller in Noto Sans TC */
+@container (min-width:601px){
+ html:lang(zh-HK) .c2:not([data-size-only]) .prows:not(.combo) .pn{display:flex;flex-wrap:wrap;align-items:baseline}
+ html:lang(zh-HK) .c2:not([data-size-only]) .prows:not(.combo) .pn::after{content:'';order:3;flex-basis:100%;height:0}
+ html:lang(zh-HK) .c2:not([data-size-only]) .prows:not(.combo) .pname{display:contents}
+ html:lang(zh-HK) .c2:not([data-size-only]) .prows:not(.combo) .pnm{order:1;flex:none;width:calc(300*var(--px));white-space:nowrap}
+ html:lang(zh-HK) .c2:not([data-size-only]) .prows:not(.combo) .pdet{order:2;flex:1 1 0;min-width:0;margin:0}
+ html:lang(zh-HK) .c2:not([data-size-only]) .prows:not(.combo) .ptag{order:4;margin:0}
+ html:lang(zh-HK) .c2:not([data-size-only]) .prows:not(.combo) .pcare{order:5;flex:0 1 auto;min-width:0}
+ html:lang(zh-HK) .c2:not([data-size-only]) .prow{padding:calc(14*var(--px)) 0 calc(18*var(--px))}
+ html:lang(zh-HK) .c2:not([data-size-only]) .pgroup2 .prow{padding:calc(14*var(--px)) 0 calc(17*var(--px))}
+}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prows:not(.combo) .pn{display:flex;flex-wrap:wrap;align-items:baseline}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prows:not(.combo) .pn::after{content:'';order:3;flex-basis:100%;height:0}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prows:not(.combo) .pname{display:contents}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prows:not(.combo) .pnm{order:1;flex:none;width:300px;white-space:nowrap}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prows:not(.combo) .pdet{order:2;flex:1 1 0;min-width:0;margin:0}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prows:not(.combo) .ptag{order:4;margin:0}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prows:not(.combo) .pcare{order:5;flex:0 1 auto;min-width:0}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prow,html:lang(zh-HK)[data-size]:not(#sz) .L2a .pgroup2 .prow{padding:2px 0 3px}
+/* kakao card 2 part 3: the HK note and the two legal lines take more room under the combo box; the four combo rows sit closer (as TW) */
+html:lang(zh-HK)[data-size]:not(#sz) .K2ap3 .pgroup2 .prow{padding:3px 0 5px}
+
+/* card 2 B: the same for the 300 / 400 tickets (chip and care line on one line under the name; the tallest ticket sets the height of every ticket),
+   and the second line of a combo name keeps its pulse figure with its unit ('600發' never splits) */
+html:lang(zh-HK) .c2v .tk-l:has(.ptag){display:flex;flex-wrap:wrap;align-items:baseline}
+html:lang(zh-HK) .c2v .tk-l:has(.ptag) > .tname{display:contents}
+html:lang(zh-HK) .c2v .tk-l:has(.ptag) .pnm{flex:1 0 100%}
+html:lang(zh-HK) .c2v .tk-l:has(.ptag) .ptag{margin:0 calc(8*var(--px)) 0 0}
+html:lang(zh-HK) .c2v .tk-l:has(.ptag) .pcare{flex:1 1 0;min-width:0}
+html:lang(zh-HK) .c2v .tk-l:has(.ptag) .pdet{flex:1 0 100%}
+html:lang(zh-HK) .c2v .tname .pv{white-space:nowrap}
+/* line card 2 B: 'Prime Softhera｜' is wider than its column next to the device pair */
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .vm-name{font-size:46px}
+
+/* kakao card 3: the HK B/A title is wider than the card (the page's fit measures the padded column), 64 px keeps it inside */
+html:lang(zh-HK)[data-size]:not(#sz) .K3 .bb-ba__title{font-size:64px}
+
+/* card 4 part 2: the HK comparison title is long; on the line card it is 40 px (one line; two even lines if it ever grows); on kakao it is 20 px (two lines instead of three)
+   and the source line is 14 px, so it stays on one line inside the card */
+html:lang(zh-HK)[data-size]:not(#sz) .L4p2 .cmp-title{font-size:40px;text-wrap:balance}
+html:lang(zh-HK)[data-size]:not(#sz) .K4p2 .cmp-title{font-size:20px}
+html:lang(zh-HK)[data-size]:not(#sz) .K4p2 .src{font-size:14px}
+
+/* kakao card 5 part 2: the HK step and info texts are longer; the boxes are set tighter (as TW) so the source line stays inside */
+html:lang(zh-HK)[data-size]:not(#sz) .K5p2 .steps{margin-top:8px}
+html:lang(zh-HK)[data-size]:not(#sz) .K5p2 .st{padding:7px 16px 7px}
+html:lang(zh-HK)[data-size]:not(#sz) .K5p2 .infos{margin-top:6px}
+html:lang(zh-HK)[data-size]:not(#sz) .K5p2 .inf{padding:7px 16px 7px}
+
+/* kakao card 1 B: the HK price label 'Sofwave 索夫波 50發' and its chip are wider than the 340 px price box (the label ran under the chip); the label is 18 px there */
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .hp-label{font-size:18px}
+/* kakao card 2 part 3: 'Prime Softhera｜' at 30 px leaves room for its chip on the same line (the head was two lines), so the note and the legal lines stay inside */
+html:lang(zh-HK)[data-size]:not(#sz) .K2ap3 .pg2-name{font-size:30px}
+
+/* kakao card 2 part 1: the 100-pulse add-on line '+ 韓國產 Skin Botox（1部位）+ 面膜' missed one line by 4 px and left '膜' alone on the second line;
+   the gap beside the name is 10 px and the add-on lines are set 0.01 em tighter, so it stays on one line */
+html:lang(zh-HK)[data-size]:not(#sz) .K2ap1 .prows:not(.combo) .pn{column-gap:10px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2ap1 .prows:not(.combo) .pdet{letter-spacing:-.01em}
+
+/* HK chip text centring (2026-11-16): the HK text is set in Noto Sans TC, whose glyphs sit lower in the chips than Pretendard; padding measured on real pixels
+   with qa/text-center-check.cjs (?lang=HK), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-HK):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="sw_ab_way_line"]{padding-top:0.19696em!important;padding-bottom:0.20304em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.ptag[data-copy="sw_r45_tag"]{padding-top:0.09669em!important;padding-bottom:0.22331em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.ptag[data-copy="sw_r46_tag"]{padding-top:0.15694em!important;padding-bottom:0.16306em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="sw_g17_sub"]{padding-top:0.22647em!important;padding-bottom:0.29353em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.ptag[data-copy="sw_r45_tag"]{padding-top:0.08303em!important;padding-bottom:0.23697em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.ptag[data-copy="sw_r46_tag"]{padding-top:0.09549em!important;padding-bottom:0.22451em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span[data-copy="sw_g17_sub"]{padding-top:0.24380em!important;padding-bottom:0.27620em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-HK):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hp-tag[data-copy="sw_hero_tag"]{padding-top:0.10963em!important;padding-bottom:0.23037em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hp-tag[data-copy="sw_hero_tag"]{padding-top:0.15200em!important;padding-bottom:0.18800em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.ptag[data-copy="sw_r45_tag"]{padding-top:0.14416em!important;padding-bottom:0.17584em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.ptag[data-copy="sw_r46_tag"]{padding-top:0.18966em!important;padding-bottom:0.13034em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="sw_g17_sub"]{padding-top:0.18981em!important;padding-bottom:0.33019em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.badge[data-copy="sw_r20_badge"]{padding-top:0.20813em!important;padding-bottom:0.11188em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.ptag[data-copy="sw_r45_tag"]{padding-top:0.12597em!important;padding-bottom:0.19403em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.ptag[data-copy="sw_r46_tag"]{padding-top:0.12943em!important;padding-bottom:0.19057em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span[data-copy="sw_g17_sub"]{padding-top:0.17511em!important;padding-bottom:0.34489em!important}
+html:lang(zh-HK):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:0.19059em!important;padding-bottom:0.28941em!important}
+html:lang(zh-HK):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-cool > span{position:relative;top:-0.04711em}
+html:lang(zh-HK):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-surface[data-copy="sw_c4_d_surface"]{padding-top:0.03650em!important;padding-bottom:0.16350em!important}
+html:lang(zh-HK):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:0.10044em!important;padding-bottom:0.13956em!important}
+html:lang(zh-HK):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:0.08044em!important;padding-bottom:0.15956em!important}
+html:lang(zh-HK):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="sw_ab_way_line"]{padding-top:0.18029em!important;padding-bottom:0.21971em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.badge[data-copy="sw_r19_badge"]{padding-top:0.18713em!important;padding-bottom:0.13287em!important}
+}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hp-tag[data-copy="sw_hero_tag"]{padding-top:2.140px!important;padding-bottom:3.300px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.hp-tag[data-copy="sw_hero_tag"]{padding-top:2.433px!important;padding-bottom:3.007px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.ptag[data-copy="sw_r45_tag"]{padding-top:2.263px!important;padding-bottom:2.396px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.ptag[data-copy="sw_r46_tag"]{padding-top:2.131px!important;padding-bottom:2.528px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span[data-copy="sw_g17_sub"]{padding-top:2.708px!important;padding-bottom:6.652px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.badge[data-copy="sw_r20_badge"]{padding-top:3.695px!important;padding-bottom:1.425px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.unit-k[data-copy="sw_p_unit_k"]{padding-top:3.844px!important;padding-bottom:5.316px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.ptag[data-copy="sw_r45_tag"]{padding-top:2.038px!important;padding-bottom:3.442px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span[data-copy="sw_g17_sub"]{padding-top:3.285px!important;padding-bottom:6.075px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:3.238px!important;padding-bottom:4.922px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-cool > span{position:relative;top:-0.845px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-surface[data-copy="sw_c4_d_surface"]{padding-top:0.590px!important;padding-bottom:2.610px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:1.807px!important;padding-bottom:2.513px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:1.448px!important;padding-bottom:2.872px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.hp-tag[data-copy="sw_hero_tag"]{padding-top:2.800px!important;padding-bottom:3.909px!important;position:relative;top:0px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.hp-tag[data-copy="sw_hero_tag"]{padding-top:2.300px!important;padding-bottom:3.140px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ptag[data-copy="sw_r46_tag"]{padding-top:3.264px!important;padding-bottom:3.395px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="sw_g17_sub"]{padding-top:3.353px!important;padding-bottom:7.007px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.unit-k[data-copy="sw_p_unit_k"]{padding-top:3.632px!important;padding-bottom:4.528px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.ptag[data-copy="sw_r45_tag"]{padding-top:1.940px!important;padding-bottom:2.540px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.ptag[data-copy="sw_r46_tag"]{padding-top:2.139px!important;padding-bottom:3.341px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span[data-copy="sw_g17_sub"]{padding-top:2.986px!important;padding-bottom:7.374px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="4"][data-variant="b"][data-size-only~="kakao"] span[data-copy="sw_g17_sub"]{padding-top:3.637px!important;padding-bottom:6.723px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="4"][data-variant="b"][data-size-only~="kakao"] span.badge[data-copy="sw_r20_badge"]{padding-top:3.634px!important;padding-bottom:1.986px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-beam[data-copy="sw_c4_d_beam"]{padding-top:3.524px!important;padding-bottom:4.636px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-cool > span{position:relative;top:-1.074px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-surface[data-copy="sw_c4_d_surface"]{padding-top:0.354px!important;padding-bottom:2.846px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-dermis[data-copy="sw_c4_d_dermis"]{padding-top:1.699px!important;padding-bottom:2.621px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ll.l-fat[data-copy="sw_c4_d_fat"]{padding-top:1.845px!important;padding-bottom:3.475px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:2.728px!important;padding-bottom:2.872px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.badge[data-copy="sw_r19_badge"]{padding-top:3.134px!important;padding-bottom:1.986px!important}

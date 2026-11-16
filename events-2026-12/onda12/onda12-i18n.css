@@ -139,3 +139,27 @@ html:lang(en)[data-size=line] .L2b .ob2-face .ob2-rows.opt .ob2-row,html:lang(th
    gaps (as Japanese) and the last point no longer runs into the device comparison */
 html:lang(en)[data-size=line] .L5 .points,html:lang(th)[data-size=line] .L5 .points{height:auto;gap:6px}
 html:lang(en)[data-size=line] .L5 .pt,html:lang(th)[data-size=line] .L5 .pt{padding:8px 20px}
+/* ---------- HK od_vat (2026-11-16, lead order): the HK reviewer changed the VAT note to '以上價格均未包含10%增值稅（VAT）', which is longer;
+   HK rules only ---------- */
+/* card 1 B (home and kakao): the VAT note takes its own line under the price (as EN / TH at home and every language on the line card), so it stays
+   inside the card and the price row no longer reaches past both edges */
+html:lang(zh-HK)[data-size=home] .ob1-pr,html:lang(zh-HK)[data-size=kakao] .K1b .ob1-pr{flex-wrap:wrap;row-gap:calc(4*var(--px))}
+html:lang(zh-HK)[data-size=home] .ob1-vat,html:lang(zh-HK)[data-size=kakao] .K1b .ob1-vat{flex-basis:100%;text-align:center}
+/* card 1 A on phones: the hero price pill puts the VAT note on a second line (the pill was wider than the phone) */
+@container (max-width:600px){
+ html:lang(zh-HK) .tz{flex-wrap:wrap;justify-content:center;row-gap:2px;border-radius:14px}
+ html:lang(zh-HK) .tz-vat{flex-basis:100%;text-align:center}
+}
+/* line card 2 B: the legal note and the longer VAT note stay on one line at the bottom (14 px, 20 px apart); the legal note broke under the card */
+html:lang(zh-HK)[data-size=line] .L2b .ob2-face .ob2-legal{font-size:14px;column-gap:20px}
+/* kakao card 1 B: the HK contact line (預約及查詢 + WhatsApp：+82 10-7215-7511) is longer than the room right of the BEAUTY::BLOSSOM wordmark and ran over
+   it; it takes its two lines at the top right (15 px), clear of the wordmark and of 'Warm & Cool' under it */
+html:lang(zh-HK)[data-size=kakao] .K1b .ob1-contact{top:6px;font-size:15px;line-height:1.2;white-space:normal;text-align:right}
+html:lang(zh-HK)[data-size=kakao] .K1b .ob1-contact [data-copy]{white-space:pre-line}
+/* kakao card 7 part 3: the HK location title and '→ 6樓接待處' take one line more each, so the last line ran out of the box; the map is 44 px lower
+   (cropped to the middle, not squeezed) */
+html:lang(zh-HK)[data-size=kakao] .K7p3 .map{aspect-ratio:384/302}
+html:lang(zh-HK)[data-size=kakao] .K7p3 .map-img{object-fit:cover}
+/* kakao card 6 part 2: the source line under the HK tip reached 2 px under the card; the steps and the source line sit 8 px closer */
+html:lang(zh-HK)[data-size=kakao] .K6p2 .steps{margin-top:8px}
+html:lang(zh-HK)[data-size=kakao] .K6p2 .src{margin-top:6px}

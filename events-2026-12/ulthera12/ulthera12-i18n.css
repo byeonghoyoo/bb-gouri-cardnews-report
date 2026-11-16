@@ -86,3 +86,20 @@ html:not([data-locale=KO]) .ko-text{word-break:keep-all}
 /* TH line 1100x1000 hero B: the written-out price shares the row with 'ราคาโปรโมชัน' as in Korean (on two rows the offer box grew 65 px and covered the
    first line of the gift band below it) */
 html:lang(th)[data-size=line] .L1b .rb-offer .money{font-size:66px}
+/* ---------- HK ut_vat (2026-11-16, lead order): the HK reviewer changed the VAT note to '以上價格均未包含10%增值稅（VAT）', which is longer;
+   HK rules only ---------- */
+/* card 1 A: the VAT band under the hero price takes two lines now; the price box is one band line taller, so the tag and the price keep the room
+   they have in the other languages, and the two lines are balanced (no lone '（VAT）' on the second line) */
+html:lang(zh-HK) .c1 .fr-tz{height:calc(289*var(--px))}
+html:lang(zh-HK) .c1 .fr-band.tz-vat{text-wrap:balance}
+/* kakao card 1 part 1: 'Ultherapy PRIME 超聲刀' broke inside 'Ultherapy' in the 300 px column and ran to four lines, so the contact pill covered the hook
+   and the period ran under the card; at 64 px 'Ultherapy' stays whole (Ultherapy / PRIME / 超聲刀) and the hook and the period end above the pill */
+html:lang(zh-HK)[data-size=kakao] .K1-1.K1a .hero-title{font-size:calc(64px*var(--fit,1));overflow-wrap:normal}
+/* kakao card 1 part 2: the title stays on one line ('Ultherapy PRIME 超聲刀', ulthera12.js fits it to the 752 px column), so it no longer runs into the
+   DeepSEE box */
+html:lang(zh-HK)[data-size=kakao] .K1-2.K1a .hero-title .t1,html:lang(zh-HK)[data-size=kakao] .K1-2.K1a .hero-title .t2{display:inline}
+/* kakao card 6 part 3: the international number '+82-2-336-7511' at 30 px ran past the booking box (the page fits it on home only); 22 px there */
+html:lang(zh-HK)[data-size=kakao] .K6-3 .bk-phone{font-size:22px}
+/* kakao card 4 part 1: the depth labels have 58 px left of the picture; '皮下脂肪層' and 'SMAS筋膜層' were cut at the box edge. At 11 px the first fits and
+   the second breaks after 'SMAS' (white-space normal inside the same 58 px) */
+html:lang(zh-HK)[data-size=kakao] .K4-1 .dl{font-size:11px;white-space:normal}
