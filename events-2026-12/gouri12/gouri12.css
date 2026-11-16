@@ -419,7 +419,7 @@ a[data-link="phone"]{white-space:nowrap}
 /* 1 A (#2, #3): the GOURI boxes the team attached in place of the syringe, and the perfection cream tube right after the gift line */
 .c1:not([data-variant="b"]) .c1-prod{right:calc(24*var(--px));bottom:calc(48*var(--px));width:calc(450*var(--px))}
 .c1[data-variant="b"] .c1-prod{width:calc(250*var(--px))}
-.c1-cream{position:absolute;z-index:5;left:calc(494*var(--px));bottom:calc(56*var(--px));width:calc(96*var(--px));transform:rotate(-8deg);pointer-events:none}
+.c1-cream{position:absolute;z-index:5;left:calc(502*var(--px));bottom:calc(56*var(--px));width:calc(80*var(--px));transform:rotate(-8deg);pointer-events:none} /* 2026-11-15 team #18: the gift tube a little smaller (was left 494, width 96) */
 .cream{display:block;width:100%;height:auto;max-width:none;filter:drop-shadow(0 calc(14*var(--px)) calc(18*var(--px)) rgba(83,23,69,.3))}
 /* 2 A (#12, #11): the title block on the left in two lines ('고우리' / '콜라겐 케어 이벤트'), the hero model (the same cutout as the size heroes)
    on the right, standing on the board (her picture box ends on the board's top edge); the board a little tighter for the taller title */
@@ -467,6 +467,46 @@ a[data-link="phone"]{white-space:nowrap}
 /* text snaps to whole pixels: the gift band text and one badge moved with these changes (1080 / 780 card widths) */
 @media (min-width:901px){.c2:not([data-variant="b"]) .gift-band .gb-tx{position:relative;top:.5px}}
 @media (min-width:600px) and (max-width:900px){.c2:not([data-variant="b"]) .badge[data-copy="gr_r10_badge"]{padding-top:calc(.34em - 1px);padding-bottom:calc(.26em + 1px)}}
+
+/* ---------- 7 / 7 Before & After (2026-11-16, lead spec v4/_shared/ba/winter-ba-10-20261114/INSERT_SPEC.md; the approved component of LIG12 / OND12:
+   eyebrow, treatment name, front and 45-degree BEFORE > AFTER pairs, the AI note. Only the --ba-* variables carry this page's colours (Heartless,
+   Violet Carmine, Wild Lilac, white frames like the card 5 photo); the card keeps the lilac background and the page's kicker / headline type) ---------- */
+.cba{--ba-ink:var(--carmine);--ba-ink-soft:var(--lilac-d);--ba-accent:var(--heart);--ba-accent-ink:#fff;--ba-tag-bg:rgba(21,8,17,.66);--ba-tag-ink:#fff;
+  --ba-frame:#fff;--ba-shot-bg:var(--lilac);--ba-shadow:rgba(83,23,69,.2);--ba-radius:calc(30*var(--px));--ba-gap:calc(28*var(--px))}
+.c7 .b13{left:calc(150*var(--px));top:calc(116*var(--px));width:calc(84*var(--px))}
+.c7 .s7{right:calc(168*var(--px));top:calc(150*var(--px));width:calc(28*var(--px))}
+.bb-ba{display:flex;flex-direction:column;align-items:center;gap:calc(24*var(--px));margin-top:auto;padding-top:calc(30*var(--px))} /* the photos and the note sit together, centred under the head (approved component: note right under the pairs) */
+.bb-ba__row{width:calc(940*var(--px));max-width:100%}
+.bb-ba__pair{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:var(--ba-gap)}
+.bb-ba__shot{position:relative;margin:0;aspect-ratio:1/1;border-radius:var(--ba-radius);overflow:hidden;border:calc(6*var(--px)) solid var(--ba-frame);
+  background:var(--ba-shot-bg);box-shadow:0 calc(14*var(--px)) calc(30*var(--px)) var(--ba-shadow)}
+.bb-ba__shot img{display:block;width:100%;height:100%;object-fit:cover}
+.bb-ba__tag{position:absolute;left:calc(14*var(--px));bottom:calc(14*var(--px));padding:.42em .9em .36em;border-radius:999px;background:var(--ba-tag-bg);color:var(--ba-tag-ink);
+  font-family:var(--f-num);font-weight:600;font-size:max(11px,calc(17*var(--px)));line-height:1;letter-spacing:.16em}
+.bb-ba__tag--after{left:auto;right:calc(14*var(--px));background:var(--ba-accent);color:var(--ba-accent-ink)}
+.bb-ba__arrow{position:absolute;left:50%;top:50%;z-index:1;display:grid;place-items:center;width:max(26px,calc(58*var(--px)));height:max(26px,calc(58*var(--px)));border-radius:50%;
+  transform:translate(-50%,-50%);background:var(--ba-accent);color:var(--ba-accent-ink);border:calc(3*var(--px)) solid var(--ba-frame);
+  box-shadow:0 calc(6*var(--px)) calc(14*var(--px)) var(--ba-shadow);font-weight:700;font-size:max(18px,calc(40*var(--px)));line-height:1}
+.bb-ba__arrow > span{display:block;transform:translate(.04em,-.06em)}
+.bb-ba__note{margin-top:calc(22*var(--px));margin-bottom:auto;font-size:max(12px,calc(19*var(--px)));font-weight:600;line-height:1.5;color:var(--ba-ink-soft);text-align:center}
+/* narrow boards and phones: the card flows like cards 2-6 */
+@container (min-width:601px) and (max-width:767px){
+  .c7{aspect-ratio:auto;min-height:calc(1350*var(--px));display:flex;flex-direction:column}
+  .c7 .in{position:relative;inset:auto;flex:1 0 auto}
+}
+@container (max-width:600px){
+  .card.c7{aspect-ratio:auto}
+  .c7 .b13{left:10px;top:44px;width:40px}
+  .c7 .s7{right:18px;top:56px;width:16px}
+  .bb-ba{gap:10px;padding-top:14px}
+  .bb-ba__row{width:100%}
+  .bb-ba__pair{gap:10px}
+  .bb-ba__shot{border-width:3px;border-radius:14px}
+  .bb-ba__tag{left:6px;bottom:6px;letter-spacing:.08em}
+  .bb-ba__tag--after{left:auto;right:6px}
+  .bb-ba__arrow{width:30px;height:30px;font-size:22px;border-width:2px}
+  .bb-ba__note{margin-top:12px}
+}
 
 /* ===== SZ:css (generated from v4/gouri12/sizes/sizes.css by inject-sizes.cjs, edit that file) ===== */
 /* 2026-11-06 channel sizes (v4/events/CHANNEL_SIZES_20261106.md). home 1080x1350 = every rule above, unchanged. line 1100x1000 and kakao 800x600
@@ -728,7 +768,7 @@ html[data-size="kakao"] .K6c .way-line{padding-top:.205em;padding-bottom:.195em}
    the cream right after the gift line column */
 html[data-size="kakao"] .K1a1 .c1-prod{right:26px;bottom:16px;width:300px}
 html[data-size="kakao"] .K1b1 .c1-prod{right:36px;bottom:14px;width:220px}
-html[data-size="kakao"] .K1a2 .c1-cream{left:392px;bottom:34px;width:62px}
+html[data-size="kakao"] .K1a2 .c1-cream{left:397px;bottom:34px;width:52px}
 /* 2 A rows with a badge on kakao keep the kakao price column (150) */
 html[data-size="kakao"] .c2.K2a:not([data-variant="b"]) .row:has(> .badge){grid-template-columns:38px minmax(0,max-content) auto minmax(0,1fr) auto 150px}
 html[data-size="kakao"] .c2-cream .cream{right:-18px;width:44px;bottom:-70px}
@@ -779,4 +819,16 @@ html[data-size="kakao"] main.gr section[data-size-only][data-card="2"]:not([data
 html[data-size="kakao"] main.gr section[data-size-only][data-card="2"]:not([data-variant])[data-part="3"] span.badge[data-copy="gr_r12_badge"]{padding-top:5.10px;padding-bottom:2.90px;line-height:17.50px;margin-bottom:1px}
 /* ==== /tc-fix ==== */
 html[data-size="kakao"] .c2.K2a2 .s3{left:500px;top:150px}
+
+/* 7 (B/A, 2026-11-16): line = both pairs as home, the shots smaller so both rows fit (shots stay square, whole photos); kakao = two parts, one
+   pair each (front / 45 degrees), the AI note on both (as LIG12 L4 / K4). Type sizes as the 1080 card. */
+html[data-size="line"] .L7 .bb-ba{gap:18px;padding-top:18px}
+html[data-size="line"] .L7 .bb-ba__row{width:680px}
+html[data-size="line"] .L7 .b13{left:170px;top:112px}
+html[data-size="line"] .L7 .s7{right:190px;top:146px}
+html[data-size="kakao"] .K7 .in{padding:24px 40px 22px}
+html[data-size="kakao"] .K7 .bb-ba{padding-top:14px}
+html[data-size="kakao"] .K7 .bb-ba__row{width:640px}
+html[data-size="kakao"] .K7 .b13{left:96px;top:70px;width:64px}
+html[data-size="kakao"] .K7 .s7{right:120px;top:96px}
 /* ===== /SZ:css ===== */

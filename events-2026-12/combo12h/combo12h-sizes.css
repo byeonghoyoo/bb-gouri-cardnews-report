@@ -168,3 +168,13 @@ html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="3"]:not([data-variant])[data-part="4"] span.pbadge[data-copy="c8_r152_badge"]{padding-bottom:calc(.3em - 1.82px);margin-bottom:1.82px}
 html[data-size="kakao"] main.b5 section[data-size-only][data-card="6"]:not([data-variant])[data-part="3"] span.way-line[data-copy="c8_ab_way_line"]{padding-top:3.06px;padding-bottom:2.54px}
 /* ==== /tc-fix ==== */
+
+/* ==== B/A card 7 (2026-11-14, v4/combo12h/ba/ba-card.cjs; sections from gen-sizes.cjs): line = the two pairs of the home card stacked, kakao = two
+   parts with one pair each. Every part keeps the eyebrow, the title and the AI note; type sizes as at home (--px 1px), only the photo column is
+   narrower. ==== */
+html[data-size="line"] main.b5 .L7 .bb-ba__rows{width:640px;margin:auto;padding:24px 0 20px}
+html[data-size="kakao"] main.b5 .K7 .bb-ba__eyebrow{margin-top:6px}
+/* the half-pixel padding puts the photo pair on whole pixels (text snaps to whole pixels: tags and '›' were 0.5px off centre) */
+html[data-size="kakao"] main.b5 .K7 .bb-ba__rows{width:640px;margin:auto;padding:14.5px 0 11.5px}
+html[data-size="kakao"] main.b5 .K7 .dp4{width:96px;right:28px;top:22px}
+/* ==== /B/A card 7 ==== */

@@ -1,0 +1,110 @@
+/* GOU12 language version (2026-11-14, lead order): CN. Copy = v4/langverify/out/GOU12.final.json as it is; this file only adds the language
+   font and the line breaks / widths the Chinese copy needs. Every selector names a language (:lang(zh)), so the Korean page stays
+   pixel-identical (v4/gouri12/build-gouri12.cjs checks the selectors). Same approach as site/cerf12/cerf12-i18n.css. */
+
+/* fonts: Chinese text in Noto Sans SC first in the stack (Pretendard's Hanja never mixes in). The Latin face Jost keeps its Latin letters and
+   figures; Chinese letters in it fall back to Noto Sans SC (same as CRF12 / SOF12 / THM12). */
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-num:'Jost',var(--f-cjk),'Pretendard Variable',sans-serif}
+
+/* line breaks: Chinese breaks between characters (the Korean page keeps whole words with keep-all) */
+html:lang(zh) .sheet{word-break:normal}
+
+/* prices: the figure and its unit stay on one line ('66万韩元') */
+html:lang(zh) .money{white-space:nowrap}
+
+/* the about title breaks only at its punctuation: the clinic name '丽朵皮肤科' split before ('...闪耀，丽 / 朵皮肤科' on card 6 at 1080 / 780) */
+html:lang(zh) .ab-title{word-break:keep-all}
+
+/* hero gift line: breaks at its comma and spaces only ('接受GOURI 1支及以上项目，' / '赠送Perfection面霜'); it split the word '项目' on phones and kakao 1 A */
+html:lang(zh) .c1 .gift-line{word-break:keep-all}
+
+/* card 2 B title: the Korean size has no fit factor; the Chinese title ('GOURI 胶原蛋白护理活动') is wider and ran past the kakao 2 B card edge
+   ('…护理活' cut), so it gets the fit factor the A title has (gouri12.js shrinks it until it fits, Chinese down to .56) */
+html:lang(zh) .c2[data-variant="b"] .ptitle{font-size:calc(75*var(--px)*var(--fit,1))}
+
+/* hero A (1080 / 780): the WeChat contact line ('预约及咨询 官方微信：Beautyblossom00') is much longer than the Korean phone line and ran 57 px
+   under the Perfection Cream tube, and the two-line gift band touched it; the band keeps 8 px clear of the tube picture and the contact line is
+   set a little smaller on one line (letter spacing 0), so both end left of the tube as in Korean */
+@container (min-width:601px){
+ html:lang(zh) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line{max-width:calc(424*var(--px))}
+ html:lang(zh) .c1:not([data-variant="b"]):not([data-size-only]) .c1-contact{font-size:calc(18.5*var(--px));letter-spacing:0}
+}
+
+/* hero A on phones: the cream tube stands over the right part of the offer column (as in Korean); the Chinese VAT note ('另收10%增值税') sat
+   under it, so it takes its own line under the price; the gift band text keeps clear of the tube (the purple band still runs behind it, as in
+   Korean); the WeChat contact line takes two lines ('预约及咨询 官方微信：' / 'Beautyblossom00') and stays left of the tube and the box */
+@container (max-width:600px){
+ html:lang(zh) .c1:not([data-variant="b"]):not([data-size-only]) .offer-vat{flex-basis:100%}
+ html:lang(zh) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line{padding-right:62px;font-size:10px}
+ html:lang(zh) .c1:not([data-variant="b"]):not([data-size-only]) .c1-contact{max-width:160px;white-space:normal;word-break:keep-all}
+ /* hero B on phones: the contact line ran 15 px past the card edge; it wraps inside the offer column */
+ html:lang(zh) .c1[data-variant="b"]:not([data-size-only]) .c1-contact{max-width:100%;white-space:normal;word-break:keep-all}
+}
+
+/* ==== channel sizes (line 1100 x 1000, kakao 800 x 600): html:lang(zh)[data-size]:not(#sz) outranks the size rules of gouri12.css ==== */
+
+/* line 1 A: same as hero A at 1080 (the tube stands at the same place) */
+html:lang(zh)[data-size]:not(#sz) .L1a .gift-line{max-width:424px}
+html:lang(zh)[data-size]:not(#sz) .L1a .c1-contact{font-size:18.5px;letter-spacing:0}
+
+/* kakao 1 A part 2 / 1 B part 2: the WeChat contact line covered the cream tube (1 A) and the corner of the product box (1 B); the pill keeps
+   under 300 px and takes two lines, broken at its colon ('预约及咨询 官方微信：' / 'Beautyblossom00'); on 1 A the gift band also keeps clear
+   of the tube */
+html:lang(zh)[data-size]:not(#sz) .K1a2 .c1-contact,html:lang(zh)[data-size]:not(#sz) .K1b2 .c1-contact{max-width:300px;white-space:normal;word-break:keep-all}
+html:lang(zh)[data-size]:not(#sz) .K1a2 .gift-line{max-width:340px}
+
+/* kakao 2 A: the event price column is 150 px for '126만원'; the Chinese '126万韩元' is 175 px wide and ran into the card padding */
+html:lang(zh)[data-size]:not(#sz) .c2.K2a:not([data-variant="b"]) .row:has(> .badge){grid-template-columns:38px minmax(0,max-content) auto minmax(0,1fr) 184px}
+
+/* kakao 2 A parts 2-3 / 2 B part 2: the one-line head ('GOURI · 高端抗衰老液态PCL胶原蛋白增生剂') is wider than the Korean, so the sparkle sat on
+   the 'GOURI' kicker; it moves left with the head */
+html:lang(zh)[data-size]:not(#sz) .K2a2 .s3,html:lang(zh)[data-size]:not(#sz) .K2a3 .s3,html:lang(zh)[data-size]:not(#sz) .K2b2 .s3{left:100px}
+
+/* kakao 4 part 2 (11/16, the reviewer's 'PCL + ECM' / 'PCL + PN' with spaces): name + formula chip were 1-2 px wider than the 430 px text column, so the
+   chip took its own line, both set-ups grew and the source line ran under the card bottom; the chip loses its letter spacing and a little side
+   padding (font sizes stay as on the home card) and sits on the name line again */
+html:lang(zh)[data-size]:not(#sz) .K4 .wf{letter-spacing:0;padding-left:.55em;padding-right:.55em}
+
+/* B/A card 7 (2026-11-16): the round '›' arrow is a symbol, not language copy; in Noto Sans SC it sat 2.7 px low in its circle, so it keeps the Korean
+   face (centred as on KO) */
+html:lang(zh) .bb-ba__arrow{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif}
+
+/* line 2 B: the first ticket is the narrowest (two lines of the Korean grid look); with the Chinese units the list price, the badge and the event
+   price no longer fit one line ('229万韩元' ran 29 px under the BEST badge). The list price goes over the event price at the right (as on kakao 2 A,
+   without the arrow), the badge stays on the price line */
+html:lang(zh)[data-size]:not(#sz) .c2.L2b .row:has(> .badge){grid-template-areas:"gift opt opt opt" ". . . old" "bd bd bd price";row-gap:0}
+html:lang(zh)[data-size]:not(#sz) .c2.L2b .row:has(> .badge) > .old{justify-self:end;line-height:1.2}
+html:lang(zh)[data-size]:not(#sz) .c2.L2b .row:has(> .badge) > .old::after{display:none}
+html:lang(zh)[data-size]:not(#sz) .c2.L2b .row:has(> .badge) > .badge{justify-self:end}
+
+/* ==== text centring inside chips (qa/text-center-check.cjs measured on ?lang=CN; the Korean values of gouri12.css stay as they are) ====
+   Noto Sans SC sets the glyphs about 1.3-3.5 px lower in the line box than Pretendard, so the Korean shifts (top / padding) leave the Chinese text
+   low in the gift lines, the gift bands and the contact pills; the photo labels sit a little high. Each value = Korean shift - measured offset,
+   per viewport range as in gouri12.css (>= 901 px: home 1080 and the channel sizes; 600-900 px: home 780); phones need none (tolerance). */
+@media (min-width:901px){
+ html:lang(zh) .c1:not([data-variant="b"]) .gift-line [data-copy]{top:-.04em}
+ html:lang(zh) .c1[data-variant="b"] .gift-line [data-copy]{top:-.056em}
+ html:lang(zh) .c2:not([data-variant="b"]) .gift-band .gb-tx{top:-.031em}
+ html:lang(zh) .c2[data-variant="b"] .gift-band [data-copy]{top:-.046em}
+ html:lang(zh) .ab-photos figcaption{padding-top:.42em;padding-bottom:.18em}
+ html:lang(zh) .way-line{padding-top:.15em;padding-bottom:.25em}
+ /* channel sizes whose chips sit on other sub-pixel positions or wrap differently */
+ html:lang(zh)[data-size]:not(#sz) .K1a2 .c1-contact [data-copy],html:lang(zh)[data-size]:not(#sz) .K1b2 .c1-contact [data-copy]{position:relative;top:-.103em}
+ html:lang(zh)[data-size]:not(#sz) .K1a2 .gift-line{padding-top:8.5px;padding-bottom:8.5px} /* the two-line band text snapped half a pixel off centre; half a pixel more on both sides centres text and icon */
+ html:lang(zh)[data-size]:not(#sz) .L2a2 .gift-band .gb-tx{top:-.056em}
+ html:lang(zh)[data-size]:not(#sz) .K2a2 .gift-band .gb-tx{top:-.071em}
+ html:lang(zh)[data-size]:not(#sz) .K2b1 .gift-band [data-copy]{top:-.033em}
+ html:lang(zh)[data-size]:not(#sz) .K6a .ab-photos figcaption{padding-top:.405em;padding-bottom:.195em}
+ html:lang(zh)[data-size]:not(#sz) .K6a .ab-photos figcaption[data-copy="gr_ab_ph1"]{padding-bottom:calc(.195em + 1px)}
+ html:lang(zh)[data-size]:not(#sz) .L2b .row > .badge[data-copy="gr_r9_badge"],html:lang(zh)[data-size]:not(#sz) .L2b .row > .badge[data-copy="gr_r12_badge"]{padding-top:calc(.34em - .7px);padding-bottom:calc(.26em + .7px)}
+ html:lang(zh)[data-size]:not(#sz) .K2a3 .row > .badge[data-copy="gr_r12_badge"]{padding-top:calc(5.1px - .8px);padding-bottom:calc(2.9px + .8px)}
+}
+@media (min-width:600px) and (max-width:900px){
+ html:lang(zh) .c1:not([data-variant="b"]) .c1-contact [data-copy]{top:-.05em}
+ html:lang(zh) .c1[data-variant="b"] .c1-contact [data-copy]{top:-.023em}
+ html:lang(zh) .c2:not([data-variant="b"]) .gift-band .gb-tx,html:lang(zh) .c2:not([data-variant="b"]) .gift-band [data-copy]{top:-.065em}
+ html:lang(zh) .c2[data-variant="b"] .gift-band [data-copy]{top:-.06em}
+ html:lang(zh) .way-line{padding-top:.19em;padding-bottom:.21em}
+}
