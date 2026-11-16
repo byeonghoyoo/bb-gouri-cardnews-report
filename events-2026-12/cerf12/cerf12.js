@@ -5,7 +5,7 @@
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
-/* 2026-11-14 language version (CN, copy from v4/langverify/out/CRF12.final.json): <html lang> drives the language fonts and layout rules in
+/* 2026-11-14 / 2026-11-16 language versions (CN, then TW and HK; copy from v4/langverify/out/CRF12.final.json): <html lang> drives the language fonts and layout rules in
    cerf12-i18n.css (:lang()); the Google font of the language is added here (same as sofwave12.js / thermage12.js). Korean renders exactly as before. */
 const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
 const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',HK:'Noto Sans TC',TH:'Noto Sans Thai'};
@@ -37,23 +37,31 @@ function setMoney(el,v){
  const n=document.createElement('span');n.className='n';n.textContent=m[2];el.append(n);
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
-/* price names: the shot / pulse figure at the end of each part stands out (Chinese '300发'); combo names break before every ' + ' (the text stays the same) */
+/* price names: the shot / pulse figure at the end of each part stands out (Chinese '300发'); combo names break before every ' + ' (the text stays the same)
+   2026-11-16 TW / HK: their combo names join the parts with a full-width '＋' and no spaces ('美國音波二代300發＋XERF雙頻電波300發'); they break before every
+   '＋' as well and the '＋' is marked like '+ ' (Korean and CN names only use ' + ' and are set exactly as before) */
 function partSpan(parent,s){
- const m=/^(\+\s)?(.*?)(\s*)(\d[\d,]*(?:发|發)?)$/.exec(s);
+ const m=/^([+＋]\s?)?(.*?)(\s*)(\d[\d,]*(?:发|發)?)$/.exec(s);
  if(!m){parent.append(document.createTextNode(s));return;}
  if(m[1]){const p=document.createElement('span');p.className='pl';p.textContent=m[1];parent.append(p);}
- if(m[2]){const a=document.createElement('span');a.className='pb';a.textContent=m[2];parent.append(a);}
+ if(m[2]){const a=document.createElement('span');a.className='pb';
+  /* 2026-11-16 TW: a name joined with a full-width '＋' ('眼周＋眉周XERF雙頻電波') may break right after the '＋' (cerf12-i18n.css keeps the rest of a TW
+     name whole); every other name is set as before */
+  if(locale==='TW'&&m[2].indexOf('＋')>0)m[2].split(/(?<=＋)/).forEach((p,i)=>{if(i)a.append(document.createElement('wbr'));a.append(document.createTextNode(p));});
+  else a.textContent=m[2];
+  parent.append(a);}
  if(m[3])parent.append(document.createTextNode(m[3]));
  const b=document.createElement('span');b.className='pv';b.textContent=m[4];parent.append(b);
 }
 function setName(el,v){
  el.textContent='';v=v||'';
- if(el.classList.contains('cmb')&&v.includes(' + ')){
-  const cuts=[];let i=v.indexOf(' + ');while(i>=0){cuts.push(i);i=v.indexOf(' + ',i+1);}
+ const SEP=/ \+ |＋/g;
+ if(el.classList.contains('cmb')&&SEP.test(v)){
+  SEP.lastIndex=0;const cuts=[];let s;while((s=SEP.exec(v)))cuts.push({at:s.index,next:s[0]===' + '?s.index+1:s.index});
   let start=0;
-  cuts.concat([v.length]).forEach((c,k)=>{
-   const seg=v.slice(start,c);const ln=document.createElement('span');ln.className='ln l'+(k+1);partSpan(ln,seg);
-   if(k)el.append(document.createTextNode(' '));el.append(ln);start=c+1;
+  cuts.concat([{at:v.length,next:v.length}]).forEach((c,k)=>{
+   const seg=v.slice(start,c.at);const ln=document.createElement('span');ln.className='ln l'+(k+1);partSpan(ln,seg);
+   if(k)el.append(document.createTextNode(' '));el.append(ln);start=c.next;
   });
   return;
  }
@@ -71,8 +79,9 @@ function setHours(el,v){
 /* widow guard: the last two words stay together */
 const GUARD='.hook,.p-lead,.unit-d,.pcare,.pg-note,.q-ans,.pt-d,.st-d,.who-v,.inf-n,.c5-tip [data-copy],.c5-combo,.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.gift-band [data-copy],.tip-d,.tz-care';
 /* names that never break inside */
-/* 2026-11-14 language version also keeps the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|6\.78MHz와|6\.78MHz|2MHz|ICD 쿨링|Shallow·Middle·Deep|10단계|i05 팁|i10 팁|세르프 맥시마이저 재생크림|600샷 이상 시|시트마스크와 LED|시트마스크 \+ LED|15~30분|두 주파수로|세 단계 깊이|신경 쓰일 때|고민일 때|샷 수|모노폴라 RF)/g;
+/* 2026-11-14 language version also keeps the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; 2026-11-16 also
+   a LINE ID ('@beautyblossom_tw', TW) and the clinic name 'Beauty Blossom' (TW / HK; Korean writes it 'BEAUTY BLOSSOM'). No Korean or CN copy has them */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|[@＠][A-Za-z][\w.]*|Beauty Blossom|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|6\.78MHz와|6\.78MHz|2MHz|ICD 쿨링|Shallow·Middle·Deep|10단계|i05 팁|i10 팁|세르프 맥시마이저 재생크림|600샷 이상 시|시트마스크와 LED|시트마스크 \+ LED|15~30분|두 주파수로|세 단계 깊이|신경 쓰일 때|고민일 때|샷 수|모노폴라 RF)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){

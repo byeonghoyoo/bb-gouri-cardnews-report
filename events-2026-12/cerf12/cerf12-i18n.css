@@ -1,5 +1,6 @@
-/* CRF12 language version (2026-11-14, lead order): CN. Copy = v4/langverify/out/CRF12.final.json as it is; this file only adds the language
-   font and the line breaks / widths the Chinese copy needs. Every selector names a language (:lang(zh) or html:not([data-locale=KO])), so the
+/* CRF12 language versions (lead order): CN (2026-11-14), TW and HK (2026-11-16). Copy = v4/langverify/out/CRF12.final.json as it is (HK contact keys:
+   v4/cerf12/work/contact-overrides.json); this file only adds the language fonts and the line breaks / widths the Chinese copy needs. Rules for all
+   Chinese versions use :lang(zh); TW / HK fixes use :lang(zh-TW) / :lang(zh-HK) only, so CN stays as deployed. Every selector names a language (:lang(zh) or html:not([data-locale=KO])), so the
    Korean page stays pixel-identical (v4/cerf12/build-cerf12.cjs checks the selectors). */
 
 /* fonts: Chinese text in Noto Sans SC first in the stack (Pretendard's Hanja never mixes in). The Latin display faces (DM Sans, Bodoni Moda)
@@ -59,3 +60,167 @@ html:lang(zh)[data-size]:not(#sz) .K3p1 .prow{padding:2px 0 1px}
 
 /* line card 7 part 2: the international number ('+82-2-336-7511') is three characters longer than the Korean one and ran out of the booking box */
 html:lang(zh)[data-size]:not(#sz) .L7p2 .bk-phone{font-size:27px}
+
+/* ===== TW (2026-11-16): fixes for the TW copy only (:lang(zh-TW)) ===== */
+
+/* hero title 'XERF雙頻電波' (four Latin letters + four Chinese characters) is more than twice as wide as '세르프'. Hero A: even at the smallest fit size it
+   ran over the model's arm; the title box may span the red disc a little (450 instead of 430; at 500 its last character still touched the arm) and the
+   title fits it from a 130 base (one line). Hero B has no fit size: one line at 70 instead of 118 (it ran 237 px past the card at 1080) */
+html:lang(zh-TW) .c1:not([data-variant="b"]) .hero-title{width:calc(450*var(--px))}
+html:lang(zh-TW) .c1:not([data-variant="b"]) .ht-ko{font-size:calc(130*var(--px)*var(--fit,1))}
+html:lang(zh-TW) .c1[data-variant="b"] .ht-ko{font-size:calc(70*var(--px))}
+
+/* price names: a TW name breaks only at its spaces and right after a full-width '＋' (cerf12.js adds that break); it broke inside words such as
+   '雙頻 / 電波' ('眼周＋眉周XERF雙頻電波 700發' on cards 2 A / B, line card 2) */
+html:lang(zh-TW) .pnm{word-break:keep-all}
+
+/* card 2 B price cards: the long names ('XERF雙頻電波 600發') ran under the BEST badge; outside phones the shot figure takes its own line and the
+   names are a little smaller (25 instead of 27; kakao 21, at 23 'XERF雙頻電波' still touched the badge), so the name keeps one line clear of the badge */
+@container (min-width:601px){
+ html:lang(zh-TW) .c2bn .pnm{font-size:calc(25*var(--px))}
+ html:lang(zh-TW) .c2bn .pnm .pv{display:block}
+}
+html:lang(zh-TW)[data-size]:not(#sz) .K2b .pnm{font-size:21px}
+
+/* ===== HK (2026-11-16): fixes for the HK copy only (:lang(zh-HK)) ===== */
+
+/* card 3 head device names: 'Ultherapy PRIME 超聲刀' ran into 'Sofwave 索夫波' on one line; the names break at their spaces */
+html:lang(zh-HK) .td-n{white-space:normal;word-break:keep-all}
+
+/* card 5 combo devices: 'Ultherapy PRIME 超聲刀' and 'Sofwave 索夫波' were wider than their boxes; they break at their spaces */
+html:lang(zh-HK) .cmb4-n{white-space:normal;word-break:keep-all}
+
+/* card 6 info values: '一般可即日恢復日常活動' (11 characters) was wider than its box; the three values are set a little smaller together
+   (24 instead of 26; kakao part 2 18 instead of the Chinese 22) */
+html:lang(zh-HK) .inf-v{font-size:max(13px,calc(24*var(--px)))}
+html:lang(zh-HK)[data-size]:not(#sz) .K6p2 .inf-v{font-size:18px}
+
+/* card 3 (1080 / 780): the HK unit note takes two lines, so the VAT note ran 2-4 px past the card; 1 px less padding above and below each row */
+@container (min-width:601px){
+ html:lang(zh-HK) .c3:not([data-size-only]) .prow{padding:calc(4*var(--px)) 0 calc(4*var(--px))}
+}
+
+/* TW booking box: the phone line holds the LINE ID '@beautyblossom_tw' (chat icon + LINE link, OND12 rule), 17 Latin letters, about a third wider than the
+   box at the Korean size (1080 / 780 by 89 / 70 px, line part 2 by 83 px; on kakao part 3 it pushed the box past the card); outside phones it is set
+   smaller so it keeps one line inside the box (phones already fit) */
+@container (min-width:601px){
+ html:lang(zh-TW) .bk-phone.is-id{font-size:calc(21*var(--px))}
+}
+html:lang(zh-TW)[data-size]:not(#sz) .L7p2 .bk-phone.is-id{font-size:19px}
+html:lang(zh-TW)[data-size]:not(#sz) .K7p3 .bk-phone.is-id{font-size:22px}
+
+/* line / kakao hero A: the title box keeps the Korean width (430) so 'XERF雙頻電波' stays on the red disc (at 500 it ran over the model's hand); a
+   120 base lets it fit that box */
+html:lang(zh-TW)[data-size]:not(#sz) .L1a .hero-title,html:lang(zh-TW)[data-size]:not(#sz) .K1a .hero-title{width:430px}
+html:lang(zh-TW)[data-size]:not(#sz) .L1a .ht-ko,html:lang(zh-TW)[data-size]:not(#sz) .K1a .ht-ko{font-size:calc(120*var(--px)*var(--fit,1))}
+
+/* kakao hero B: the TW label and its tag take two lines, so the price block ran 17 px past the card; it starts 30 px higher (still 32 px under the title) */
+html:lang(zh-TW)[data-size]:not(#sz) .K1b .hero-disc{top:372px}
+
+/* kakao hero A / B contact pill: 'LINE@beautyblossom_tw' is one unbreakable word and ran into the pill's edge at 18 px; 16 px keeps it inside */
+html:lang(zh-TW)[data-size]:not(#sz) .K1a .c1-contact,html:lang(zh-TW)[data-size]:not(#sz) .K1b .c1-contact{font-size:16px}
+
+/* line card 7 part 1: the about title is set at a fixed 44 px there; its first phrase '讓您的每一天綻放光彩，' (11 characters) is wider than the 374 px
+   box, so it broke inside '綻放光彩' and the title took three lines; 33 px keeps the two lines of the other sizes */
+html:lang(zh-TW)[data-size]:not(#sz) .L7p1 .ab-title{font-size:33px}
+
+/* ===== HK (2026-11-16), continued ===== */
+
+/* kakao hero A: the second hook line ('針對三種不同深度，實現多層次射頻緊緻提升', 19 characters) took two lines and ran into the title; at 20 px it keeps
+   one line. The VAT note ('以上價格均未包含10%增值稅（VAT）') takes its own line under the price and ran 12 px past the card; the block starts 20 px
+   higher (the hook ends 30 px above it) */
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .hook{font-size:20px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .hero-disc{top:202px}
+
+/* kakao hero B: the hook ran to a second line ('提升') over the photo and the title; at 22 px it keeps one line */
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .hook{font-size:22px}
+
+/* kakao hero A / B contact pill: '預約及查詢 WhatsApp：+82 10-7215-7511' took three lines; 290 px wide it takes two ('預約及查詢 WhatsApp：' / the number) */
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .c1-contact,html:lang(zh-HK)[data-size]:not(#sz) .K1b .c1-contact{max-width:290px}
+
+/* line hero A: the VAT note under the price ran 4 px past the card; the block starts 12 px higher */
+html:lang(zh-HK)[data-size]:not(#sz) .L1a .hero-disc{top:584px}
+
+/* kakao card 2 B: 'XERF 600發' ran under the BEST badge in the narrow kakao cards; the shot figure takes its own line ('XERF' / '600發') */
+html:lang(zh-HK)[data-size]:not(#sz) .K2b .pnm .pv{display:block}
+
+/* line card 2 A: with whole-word breaks the name '眼周＋眉周XERF雙頻電波 700發' takes three lines in the 255 px name column (the badge a fourth), so the
+   notes under the board ran 31 px past the card; the TW rows keep less padding (6 / 5 instead of 12 / 11) and the gift band 12 px instead of 20 above it */
+html:lang(zh-TW)[data-size]:not(#sz) .L2a .prow{padding:6px 0 5px}
+html:lang(zh-TW)[data-size]:not(#sz) .L2a .c2-gift{margin-top:12px}
+
+/* card 2 head: 'XERF雙頻電波' could not fit (it stopped at the smallest fit size), so 'X E R F' after it ran over the model cut (1080 / 780 A by 34 px,
+   B by 40 px, kakao A / B by 89 / 102 px) and on phones the title itself reached the model. Outside phones the title fits from a 90 base (A) or is set at
+   54 (B), kakao 48 / 46, so title and 'X E R F' end before the cut; on phones the title is 28 px and 'X E R F' may take the next line */
+@container (min-width:601px){
+ html:lang(zh-TW) .c2:not([data-variant="b"]) .pt-main{font-size:calc(90*var(--px)*var(--fit,1))}
+ html:lang(zh-TW) .c2[data-variant="b"] .pt-main{font-size:calc(54*var(--px))}
+}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a .pt-main{font-size:48px}
+html:lang(zh-TW)[data-size]:not(#sz) .K2b .pt-main{font-size:46px}
+@container (max-width:600px){
+ html:lang(zh-TW) .c2 .pt-main{font-size:28px}
+ html:lang(zh-TW) .c2 .p-title{flex-wrap:wrap}
+}
+
+/* hero A on phones: 'XERF雙頻電波' ran over the model's arm; the title box keeps to the red disc (360 instead of 500) and the title fits it from a 100 base */
+@container (max-width:600px){
+ html:lang(zh-TW) .c1:not([data-variant="b"]) .hero-title{width:calc(360*var(--px))}
+ html:lang(zh-TW) .c1:not([data-variant="b"]) .ht-ko{font-size:calc(100*var(--px)*var(--fit,1))}
+}
+
+/* kakao card 3 part 1: the gift line ('施作XERF雙頻電波600發以上，即贈XERF Maximizer修復霜') ran 15 px under the cream picture; 20 px instead of 21 keeps it clear */
+html:lang(zh-TW)[data-size]:not(#sz) .K3p1 .gift-band [data-copy]{font-size:20px}
+
+/* ===== TW / HK chip text centring (2026-11-16, user rule 2026-11-05: text in pills, chips, tags and bands sits on the box centre within 0.6 px).
+   Noto Sans TC sets Chinese ink lower than Pretendard sets Hangul (measured with qa/text-center-check.cjs + lang, 1080 / 780 / line / kakao), so for TW / HK
+   the text moves up (or down where it sat high) by the measured amount in em: chips with their own text swap top / bottom padding (same height),
+   bands and pills with a text child shift that child with transform (added to the Korean top correction). CN keeps its deployed rendering. */
+html:lang(zh-TW) .tz-tag,html:lang(zh-HK) .tz-tag{padding-top:.134em;padding-bottom:.186em}
+html:lang(zh-TW) .c1-contact [data-copy],html:lang(zh-HK) .c1-contact [data-copy]{transform:translateY(-.11em)}
+html:lang(zh-TW) .c2n .c2-gift [data-copy],html:lang(zh-HK) .c2n .c2-gift [data-copy],html:lang(zh-TW) .c2.c2bn[data-variant="b"] .c2-gift [data-copy],html:lang(zh-HK) .c2.c2bn[data-variant="b"] .c2-gift [data-copy],html:lang(zh-TW) .c3 .gift-band [data-copy],html:lang(zh-HK) .c3 .gift-band [data-copy]{transform:translateY(-.08em)}
+html:lang(zh-TW) .l-cool [data-copy],html:lang(zh-HK) .l-cool [data-copy]{transform:translateY(-.12em)}
+html:lang(zh-TW) .c2bn .pchip,html:lang(zh-HK) .c2bn .pchip{padding-top:.278em;padding-bottom:.082em}
+html:lang(zh-TW) .c5-combo{padding-top:calc(12*var(--px) - .045em);padding-bottom:calc(12*var(--px) + .045em)}
+@media(min-width:600px) and (max-width:900px){
+ html:lang(zh-TW) .pg-sub{padding-top:.268em;padding-bottom:.092em}
+ html:lang(zh-HK) .pg-sub{padding-top:.202em;padding-bottom:.158em}
+ html:lang(zh-TW) .c5-combo,html:lang(zh-HK) .c5-combo{padding-top:calc(12*var(--px) - .01em);padding-bottom:calc(12*var(--px) + .01em)}
+ html:lang(zh-TW) .way-line,html:lang(zh-HK) .way-line{padding-top:.14em;padding-bottom:.26em}
+}
+html:lang(zh-TW)[data-size]:not(#sz) .K7p3 .way-line,html:lang(zh-HK)[data-size]:not(#sz) .K7p3 .way-line{padding-top:.187em;padding-bottom:.213em}
+/* second pass: Korean has its own per-size corrections for some of these (780 media rules, the group labels cf_k1-3 per key and size, the card 3 band);
+   where the Chinese shift above overshot there, the Korean value comes back, and the group labels / badges move from the Korean value of that key and size */
+@media(min-width:600px) and (max-width:900px){
+ html:lang(zh-TW) .tz-tag,html:lang(zh-HK) .tz-tag{padding-top:.184em;padding-bottom:.136em}
+}
+@media(min-width:601px) and (max-width:900px){
+ html:lang(zh-TW) .c2.c2bn[data-variant="b"] .c2-gift [data-copy],html:lang(zh-HK) .c2.c2bn[data-variant="b"] .c2-gift [data-copy]{transform:none}
+ html:lang(zh-TW) .c2bn .pchip,html:lang(zh-HK) .c2bn .pchip{padding-top:.218em;padding-bottom:.142em}
+}
+@media(min-width:901px){
+ html:lang(zh-HK) .c3:not([data-size-only]) .gift-band [data-copy]{transform:translateY(-.03em)}
+ html:lang(zh-HK) .c3:not([data-size-only]) [data-copy="cf_k1"],html:lang(zh-HK) .c3:not([data-size-only]) [data-copy="cf_k3"]{padding-top:.133em;padding-bottom:.267em}
+ html:lang(zh-HK) .c3:not([data-size-only]) [data-copy="cf_k2"]{padding-top:.095em;padding-bottom:.145em}
+ html:lang(zh-HK) .c3:not([data-size-only]) .badge[data-copy="cf_r99_badge"]{padding-top:.281em;padding-bottom:.239em}
+}
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .c1-contact [data-copy],html:lang(zh-HK)[data-size]:not(#sz) .K1b .c1-contact [data-copy]{transform:none}
+html:lang(zh-TW)[data-size]:not(#sz) .K2b .c2-gift [data-copy]{transform:translateY(-.092em)}
+html:lang(zh-TW)[data-size]:not(#sz) .K2b [data-copy="cf_r92_detail"]{padding-top:.238em;padding-bottom:.122em}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a .pg-sub{padding-top:.148em;padding-bottom:.212em}
+html:lang(zh-TW)[data-size]:not(#sz) .K2bp2 .pg-sub,html:lang(zh-HK)[data-size]:not(#sz) .K2bp2 .pg-sub{padding-top:2.33px;padding-bottom:3.79px}
+html:lang(zh-TW)[data-size]:not(#sz) .L3 [data-copy="cf_k1"]{padding-top:3.34px;padding-bottom:3.46px}
+html:lang(zh-TW)[data-size]:not(#sz) .L3 [data-copy="cf_k2"]{padding-top:.072em;padding-bottom:.168em}
+html:lang(zh-TW)[data-size]:not(#sz) .L3 [data-copy="cf_k3"]{padding-top:.156em;padding-bottom:.244em}
+html:lang(zh-TW)[data-size]:not(#sz) .K3p1 [data-copy="cf_k1"]{padding-top:3.07px;padding-bottom:3.73px}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 [data-copy="cf_k1"]{padding-top:1.85px;padding-bottom:4.95px}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 [data-copy="cf_k3"]{padding-top:.106em;padding-bottom:.294em}
+html:lang(zh-HK)[data-size]:not(#sz) .K3p1 [data-copy="cf_k1"]{padding-top:2.26px;padding-bottom:4.54px}
+html:lang(zh-HK)[data-size]:not(#sz) .K3p3 [data-copy="cf_k3"]{padding-top:1.642px;padding-bottom:5.158px}
+html:lang(zh-TW)[data-size]:not(#sz) .L3 [data-copy="cf_r99_badge"]{padding-top:.287em;padding-bottom:.233em}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a [data-copy="cf_r92_badge"]{padding-top:.299em;padding-bottom:.221em}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 [data-copy="cf_r94_badge"]{padding-top:.283em;padding-bottom:.237em}
+html:lang(zh-HK) .c2n .pchip{padding-top:.25em;padding-bottom:.11em}
+@media(min-width:600px) and (max-width:900px){
+ html:lang(zh-HK) .c2n .pchip{padding-top:.278em;padding-bottom:.082em}
+}
