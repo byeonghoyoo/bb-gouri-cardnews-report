@@ -57,10 +57,10 @@ function setName(el,v){
  if(s){el.append(span('np',s[1]),document.createTextNode(s[2]),span('ns',s[3]));return;}
  el.textContent=v;
 }
-/* card 5 hours: the day label and the time are styled apart */
+/* card 5 hours: the day label and the time are styled apart (2026-11-14 EN: the times may carry AM / PM, '10:00 AM – 8:00 PM'; the other languages as before) */
 function setHours(el,v){
  el.textContent='';
- const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
+ const m=(locale==='EN'?/^(.*\S)(\s+)(\d{1,2}:\d{2}(?:\s*[AP]M)?\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/:/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/).exec(v||'');
  if(!m){el.textContent=v||'';return;}
  el.append(span('hd',m[1]),document.createTextNode(m[2]),span('ht',m[3]));
 }

@@ -1,4 +1,4 @@
-/* THM12 language versions (2026-11-14, lead order): CN, TW, TH and HK. Copy = v4/langverify/out/THM12.final.json as it is (contact lines that contradicted
+/* THM12 language versions (2026-11-14, lead order): CN, TW, TH and HK; EN added the same afternoon (section 'EN' below). Copy = v4/langverify/out/THM12.final.json as it is (contact lines that contradicted
    the country's channel: v4/thermage12/work/contact-overrides.json); this file only adds the language fonts and the line breaks / widths the longer
    copy needs. Every selector names a language (:lang(zh|th) or html:not([data-locale=KO])), so the Korean page stays pixel-identical
    (v4/thermage12/build-thermage12.cjs checks the selectors). */
@@ -149,3 +149,202 @@ html:lang(zh-TW)[data-size=line] .L6-2 .bk-phone{grid-column:1 / -1;grid-row:2;m
 html:lang(zh-TW)[data-size=kakao] .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
 /* kakao 2 B parts: the group names at the Hong Kong kakao size, so '鳳凰電波組合' fits the plum column whole */
 html:lang(zh-TW)[data-size=kakao] .K2b .bd-name{font-size:24px}
+/* ---------- EN (2026-11-14 afternoon, EN tab 166/166 checked, lead order) ----------
+   English keeps the Korean design's Pretendard / Space Grotesk (no language font); the English lines are longer, so these rules only re-fit them.
+   Every selector names :lang(en), so Korean and the other languages render as before; the only other rules here are the two Hong Kong VAT-note
+   rules (zh-HK, the staff's longer '以上價格均未包含10%增值稅（VAT）' from the same afternoon's final copy). */
+/* hero A on phones: the price label and the price with its VAT note take two centred lines (as Thai); card 4 device labels
+   ('Radiofrequency (RF)', 'Focused ultrasound') keep inside their plinths with a narrower side padding */
+@container (max-width:600px){
+ html:lang(en) .c1-price,html:lang(en) .tz-main{flex-wrap:wrap;justify-content:center;row-gap:calc(6*var(--px))}
+ html:lang(en) .cmp-t{padding-left:.3em;padding-right:.3em}
+ /* Hong Kong (2026-11-14 afternoon): the staff's new VAT note '以上價格均未包含10%增值稅（VAT）' is longer than '另加VAT 10%'; the price row wraps the same way */
+ html:lang(zh-HK) .c1-price,html:lang(zh-HK) .tz-main{flex-wrap:wrap;justify-content:center;row-gap:calc(6*var(--px))}
+}
+/* card 4: the point titles break into balanced lines ('Tips Selected for Each / Treatment Area') */
+html:lang(en) .pt-t{text-wrap:balance}
+/* card 2 B: the group names ('Ultherapy + Thermage') and the make-up line take balanced lines in the plum column */
+html:lang(en) .c2b .bd-name{white-space:normal;text-wrap:balance}
+html:lang(en) .c2b .bd-sub{text-wrap:balance}
+/* card 4 diagram: 'Cooling' and 'RF heat' hang from the right edge of the picture (as Thai and Hong Kong) */
+html:lang(en) .xl-cool,html:lang(en) .xl-heat{left:auto;right:3%}
+/* card 6: balanced title, doctor line ('Medical Director / Dr. Lee Geon-ho') and QR caption, so no word is left alone on a line */
+html:lang(en) .ab-title,html:lang(en) .dr-name,html:lang(en) .qr figcaption{text-wrap:balance}
+
+@container (min-width:601px){
+ /* hero A (home, line 1 A, kakao 1-2): 'VAT 10% not included' goes under the price, so the price label, the price and the note stay in one row
+    inside the label box (side by side they ran over the box's inner frame line) */
+ html:lang(en) .c1 .tz-main{flex-direction:column;align-items:center;gap:calc(2*var(--px))}
+ /* Hong Kong: the new longer VAT note ('以上價格均未包含10%增值稅（VAT）', 2026-11-14 staff edit) goes under the price the same way */
+ html:lang(zh-HK) .c1 .tz-main{flex-direction:column;align-items:center;gap:calc(2*var(--px))}
+ /* 2 A: the package names read as two lines ('Ultherapy PRIME 600' / '+ Thermage 600 shots'), as card 2 B; every name keeps the design size
+    (one line, they were shrunk one by one); the rows lose their padding so the card keeps its 1350 height */
+ html:lang(en)[data-size=home] .c2 .g-ul .pl,html:lang(en)[data-size=home] .c2 .g-sf .pl,html:lang(en)[data-size=line] .L2a .g-ul .pl,html:lang(en)[data-size=line] .L2a .g-sf .pl{white-space:normal}
+ html:lang(en)[data-size=home] .c2 .g-ul .pn .n1,html:lang(en)[data-size=home] .c2 .g-sf .pn .n1,html:lang(en)[data-size=line] .L2a .g-ul .pn .n1,html:lang(en)[data-size=line] .L2a .g-sf .pn .n1{display:block}
+ html:lang(en)[data-size=home] .c2 .g-ul .pn,html:lang(en)[data-size=home] .c2 .g-sf .pn,html:lang(en)[data-size=line] .L2a .g-ul .pn,html:lang(en)[data-size=line] .L2a .g-sf .pn{line-height:1.18}
+ html:lang(en)[data-size=home] .c2 .prow{padding:0}
+ /* the BEST! / HIT! badge follows '+ Thermage 600 shots' on the second line, as on card 2 B */
+ html:lang(en)[data-size=home] .c2 .g-ul .pl,html:lang(en)[data-size=home] .c2 .g-sf .pl,html:lang(en)[data-size=line] .L2a .g-ul .pl,html:lang(en)[data-size=line] .L2a .g-sf .pl{display:block}
+ html:lang(en)[data-size=home] .c2 .g-ul .pl .badge,html:lang(en)[data-size=home] .c2 .g-sf .pl .badge,html:lang(en)[data-size=line] .L2a .g-ul .pl .badge,html:lang(en)[data-size=line] .L2a .g-sf .pl .badge{margin-left:calc(8*var(--px));vertical-align:.08em}
+ /* 3: the B/A note takes two balanced lines in the middle, clear of the velvet ribbon at the lower right */
+ html:lang(en) .bb-ba__note{max-width:calc(400*var(--px));margin-left:auto;margin-right:auto;text-wrap:balance}
+ /* 4: a narrower diagram leaves the points room for their longer lines; smaller point text and tighter gaps keep the device row and the
+    source inside the card */
+ html:lang(en)[data-size=home] .c3-mid,html:lang(en)[data-size=line] .L4-1 .c3-mid{grid-template-columns:calc(370*var(--px)) minmax(0,1fr);column-gap:calc(26*var(--px));margin-top:calc(16*var(--px))}
+ html:lang(en)[data-size=home] .xsec,html:lang(en)[data-size=line] .L4-1 .xsec{width:calc(370*var(--px))}
+ html:lang(en)[data-size=home] .points,html:lang(en)[data-size=line] .L4-1 .points{gap:calc(18*var(--px))}
+ html:lang(en)[data-size=home] .pt-t,html:lang(en)[data-size=line] .L4-1 .pt-t{font-size:max(15px,calc(27*var(--px)))}
+ html:lang(en)[data-size=home] .pt-d,html:lang(en)[data-size=line] .L4-1 .pt-d{margin-top:calc(6*var(--px));font-size:max(12px,calc(20*var(--px)));line-height:1.45}
+ html:lang(en)[data-size=home] .tip-d,html:lang(en)[data-size=line] .L4-1 .tip-d{font-size:max(11px,calc(16*var(--px)))}
+ /* the source takes two balanced lines left of the velvet ribbon at the lower right */
+ html:lang(en)[data-size=home] .c3 .src{max-width:calc(700*var(--px));text-wrap:balance}
+ html:lang(en)[data-size=line] .L4-1 .c3-mid{margin-top:30px}
+ /* 5: the genuine-tip texts take two or three lines inside their chips (as Thai and Taiwanese); smaller step texts and tighter gaps keep the facts,
+    the note and the source inside the card */
+ html:lang(en) .gsteps .gs{flex:1 1 0;min-width:0}
+ html:lang(en) .gs-t{white-space:normal}
+ /* the widow guard keeps the last two words together ('double-layer sticker'), which is wider than the chip: in the chips they may break */
+ html:lang(en) .gs-t .nw{white-space:normal}
+ html:lang(en)[data-size=home] .c4-headrow{margin-top:calc(14*var(--px))}
+ html:lang(en)[data-size=home] .c4 .steps{gap:calc(8*var(--px));margin-top:calc(16*var(--px))}
+ html:lang(en)[data-size=home] .c4 .st{min-height:0}
+ html:lang(en)[data-size=home] .st-d{margin-top:calc(4*var(--px));font-size:max(12px,calc(19*var(--px)));line-height:1.4}
+ html:lang(en)[data-size=home] .c4 .shot .sh-it{font-size:max(11px,calc(16*var(--px)))}
+ html:lang(en)[data-size=home] .c4 .infos{margin-top:calc(14*var(--px))}
+ html:lang(en)[data-size=home] .c4 .inf{padding:calc(14*var(--px)) calc(18*var(--px));gap:calc(6*var(--px))}
+ html:lang(en)[data-size=home] .inf-v{font-size:max(14px,calc(22*var(--px)))}
+ html:lang(en)[data-size=home] .c4-tip{margin-top:calc(12*var(--px));font-size:max(13px,calc(19*var(--px)))}
+ /* 6: the strength titles keep one size and take two lines beside a smaller icon (they were shrunk to fit), the dotted joins give their room;
+    smaller notes and lower photos, a cropped (not squeezed) map, the hours in label / time columns (thermage12.js) and a smaller phone number
+    keep the directions, hours and booking texts inside their panels */
+ html:lang(en) .ab-strengths{column-gap:calc(14*var(--px))}
+ html:lang(en) .ab-strengths .dots{display:none}
+ html:lang(en) .ab-strengths .si{width:calc(40*var(--px));height:calc(40*var(--px))}
+ html:lang(en) .ab-strengths .at{font-size:max(13px,calc(17*var(--px)));line-height:1.2}
+ html:lang(en) .ab-strengths .ad{margin-top:calc(8*var(--px));padding-right:calc(4*var(--px));font-size:max(11px,calc(15*var(--px)))}
+ html:lang(en)[data-size=home] .ab-photos{height:calc(150*var(--px))}
+ html:lang(en)[data-size=home] .map{aspect-ratio:460/340}
+ html:lang(en)[data-size=home] .map-img{object-fit:cover}
+ html:lang(en) .bk-phone{font-size:max(17px,calc(26*var(--px)))}
+}
+
+/* ---------- EN kakao 800x600 ---------- */
+/* 2 B parts: the prices take their own width and the names are a little smaller, so 'Thermage FLX 600 shots BEST!' stays on one line and the
+   bands keep their height (the head stays under the logo); the group names at the Hong Kong / Taiwanese kakao size */
+html:lang(en)[data-size=kakao] .K2b .brow{grid-template-columns:minmax(0,1fr) auto auto;column-gap:16px}
+html:lang(en)[data-size=kakao] .K2b .bpl{font-size:21px}
+html:lang(en)[data-size=kakao] .K2b .bd-name{font-size:24px}
+/* 4-1: the two-line answer; a smaller script word and answer keep the cross-section inside the card */
+html:lang(en)[data-size=kakao] .K4-1 .kicker-script{font-size:62px}
+html:lang(en)[data-size=kakao] .K4-1 .q-ans{font-size:19px}
+html:lang(en)[data-size=kakao] .K4-1 .c3-mid{margin-top:10px}
+html:lang(en)[data-size=kakao] .K4-1 .xsec{width:290px}
+/* 4-2: the three points with smaller text and tighter gaps */
+html:lang(en)[data-size=kakao] .K4-2 .c3-mid{margin-top:12px;padding:16px 20px}
+html:lang(en)[data-size=kakao] .K4-2 .points{gap:12px}
+html:lang(en)[data-size=kakao] .K4-2 .pt-t{font-size:26px}
+html:lang(en)[data-size=kakao] .K4-2 .pt-d{margin-top:4px;font-size:19px;line-height:1.42}
+html:lang(en)[data-size=kakao] .K4-2 .tips{margin-top:8px;gap:6px}
+html:lang(en)[data-size=kakao] .K4-2 .tip-d{font-size:16px}
+/* 4-3 and line 4-2: the source takes two lines left of the velvet ribbon */
+html:lang(en)[data-size=kakao] .K4-3 .src{max-width:520px;text-wrap:balance}
+html:lang(en)[data-size=line] .L4-2 .src{max-width:660px;text-wrap:balance}
+/* 5-2, 5-3: the title on one line (thermage12.js may bring it down to 70 %), smaller step texts, chips and facts */
+html:lang(en)[data-size=kakao] .K5-2 .q-title,html:lang(en)[data-size=kakao] .K5-3 .q-title{white-space:nowrap}
+html:lang(en)[data-size=kakao] .K5 .st-t{font-size:27px}
+html:lang(en)[data-size=kakao] .K5 .st-d{margin-top:4px;font-size:18px;line-height:1.4}
+html:lang(en)[data-size=kakao] .K5 .steps{gap:12px;margin-top:12px}
+/* the three genuine-tip chips share the row without their arrows (as on phones), so each label has room for its words */
+html:lang(en)[data-size=kakao] .K5 .gsteps{flex-wrap:nowrap;gap:6px}
+html:lang(en)[data-size=kakao] .K5 .gs-ar{display:none}
+html:lang(en)[data-size=kakao] .K5 .gs{gap:8px;padding:6px 12px 6px 6px;font-size:16px}
+html:lang(en)[data-size=kakao] .K5 .gs-ico{width:44px;height:44px}
+html:lang(en)[data-size=kakao] .K5 .shot .sh-it,html:lang(en)[data-size=kakao] .K5 .chip{font-size:16px}
+html:lang(en)[data-size=kakao] .K5-3 .infos{margin-top:12px}
+html:lang(en)[data-size=kakao] .K5-3 .inf{padding:12px 16px;gap:6px}
+html:lang(en)[data-size=kakao] .K5-3 .inf-v{font-size:21px}
+html:lang(en)[data-size=kakao] .K5-3 .inf-n{font-size:15px}
+html:lang(en)[data-size=kakao] .K5-3 .c4-tip{margin-top:12px;font-size:18px}
+/* 6-2: the four strengths in two columns (the English titles need the width) */
+html:lang(en)[data-size=kakao] .K6-2 .ab-strengths{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:14px;column-gap:24px;margin-top:16px}
+html:lang(en)[data-size=kakao] .K6-2 .ab-strengths .at{font-size:19px}
+html:lang(en)[data-size=kakao] .K6-2 .ab-strengths .ad{font-size:16px}
+/* 2 A parts: the badge follows '+ Thermage 600 shots' on the second line of the package names (as at home and on card 2 B) */
+html:lang(en)[data-size=kakao] .K2a .g-ul .pl,html:lang(en)[data-size=kakao] .K2a .g-sf .pl{display:block}
+html:lang(en)[data-size=kakao] .K2a .g-ul .pl .badge,html:lang(en)[data-size=kakao] .K2a .g-sf .pl .badge{margin-left:8px;vertical-align:.08em}
+/* line 2-2: the two-line package rows lose their padding (as at home), so the list keeps room above the card foot */
+html:lang(en)[data-size=line] .L2a.L2-2 .prow{padding:0}
+/* line 1 B: the contact line takes two lines in the 290 px foot ('Bookings & Inquiries' / '+82-2-336-7511'), clear of the device picture */
+html:lang(en)[data-size=line] .L1b .c1-contact{white-space:normal}
+/* kakao 6-3: the location head as the other panels (kicker above the title), a shorter map crop, smaller station and address lines, the hours a
+   little smaller, and the phone number back in the text column beside the QR (smaller), so directions, hours and booking stay inside the card */
+html:lang(en)[data-size=kakao] .K6-3 .loc-head{flex-direction:column;align-items:flex-start;gap:4px}
+html:lang(en)[data-size=kakao] .K6-3 .map{aspect-ratio:460/290}
+html:lang(en)[data-size=kakao] .K6-3 .way-st{font-size:22px}
+html:lang(en)[data-size=kakao] .K6-3 .way-addr{font-size:15px}
+html:lang(en)[data-size=kakao] .K6-3 .hrs li{font-size:18px}
+html:lang(en)[data-size=kakao] .K6-3 .bk-text{display:block;align-self:center}
+html:lang(en)[data-size=kakao] .K6-3 .bk-phone{margin-top:8px;font-size:22px}
+/* kakao 5-2: the genuine-tip chip labels may break inside the kept last words (the chips are narrower than at home) */
+html:lang(en)[data-size=kakao] .K5 .gs-t .nw{white-space:normal}
+/* line 1 B: the price label row ('300 shots' + 'Special Event Price') is wider than the Korean one; its column takes 330 px (the device starts further right) */
+html:lang(en)[data-size=line] .L1b .hb-price{width:330px}
+/* kakao 5-3: the fact labels a little smaller, so 'Back to your daily routine' stays inside its box */
+html:lang(en)[data-size=kakao] .K5-3 .inf-k{font-size:15px}
+
+/* ---------- kakao 2 B parts, Hong Kong and Taiwanese (2026-11-14 afternoon, lead order; same fix as EN) ----------
+   HK: the two-language names ran over the list prices (rows 53-60) and the taller bands squeezed the part 1 head, so its title touched the logo;
+   TW: the part 1 head was squeezed the same way. The prices take their own width and the names are a little smaller, as in EN (CN and TH
+   measured clear and are not changed). HK parts 2 and 3: at 21 px the package names ('Ultherapy PRIME 超聲刀 300發' 297 px,
+   '+ Thermage FLX 熱瑪吉 300發' 288 px) are still wider than the name column (245-258 px), so in those rows the list price sits above the
+   event price (as the OND12 EN / TH card 2 B tickets) and the names keep 21 px. */
+html:lang(zh-HK)[data-size=kakao] .K2b .brow,html:lang(zh-TW)[data-size=kakao] .K2b .brow{grid-template-columns:minmax(0,1fr) auto auto;column-gap:16px}
+html:lang(zh-HK)[data-size=kakao] .K2b .bpl,html:lang(zh-TW)[data-size=kakao] .K2b .bpl{font-size:21px}
+html:lang(zh-HK)[data-size=kakao] .K2b .g-ul .brow,html:lang(zh-HK)[data-size=kakao] .K2b .g-sf .brow{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;row-gap:2px}
+html:lang(zh-HK)[data-size=kakao] .K2b .g-ul .bname,html:lang(zh-HK)[data-size=kakao] .K2b .g-sf .bname{grid-column:1;grid-row:1 / 3;align-self:center}
+html:lang(zh-HK)[data-size=kakao] .K2b .g-ul .plist,html:lang(zh-HK)[data-size=kakao] .K2b .g-sf .plist{grid-column:2;grid-row:1;align-self:end}
+html:lang(zh-HK)[data-size=kakao] .K2b .g-ul .psale,html:lang(zh-HK)[data-size=kakao] .K2b .g-sf .psale{grid-column:2;grid-row:2;align-self:start}
+
+/* ---------- EN text centring (2026-11-14, measured with the qa/text-center-check.cjs method on ?lang=EN at 1080, 780, line and kakao;
+   the Korean nudges were tuned to Hangul ink, Latin ink sits a little higher; box-only nudges, the copy is unchanged) ---------- */
+@media (min-width:1000px){
+html:lang(en)[data-size=home] [data-card="4"]:not([data-variant]) span.tip-k[data-copy="tm_c3_tip1_k"]{padding-top:0.29950em!important;padding-bottom:0.12050em!important}
+html:lang(en)[data-size=home] [data-card="4"]:not([data-variant]) span.cmp-t[data-copy="tm_c3_e1_type"]{padding-top:0.22165em!important;padding-bottom:0.13835em!important}
+html:lang(en)[data-size=home] [data-card="4"]:not([data-variant]) span.cmp-t[data-copy="tm_c3_e2_type"]{padding-top:0.18729em!important;padding-bottom:0.17271em!important}
+html:lang(en)[data-size=home] [data-card="4"]:not([data-variant]) span.cmp-t[data-copy="tm_c3_e3_type"]{padding-top:0.18729em!important;padding-bottom:0.17271em!important}
+html:lang(en)[data-size=home] [data-card="5"]:not([data-variant]) li.chip:has(> span[data-copy="tm_c4_c1"]){padding-top:0.33689em!important;padding-bottom:0.28311em!important}
+html:lang(en)[data-size=home] [data-card="5"]:not([data-variant]) li.chip:has(> span[data-copy="tm_c4_c2"]){padding-top:0.33689em!important;padding-bottom:0.28311em!important}
+html:lang(en)[data-size=home] [data-card="5"]:not([data-variant]) li.chip:has(> span[data-copy="tm_c4_a2"]){padding-top:0.32978em!important;padding-bottom:0.29022em!important}
+html:lang(en)[data-size=home] [data-card="5"]:not([data-variant]) li.sh-it.heat:has(> span[data-copy="tm_c4_h2"]) > span{position:relative;top:0.10061em}
+}
+@media (min-width:601px) and (max-width:999px){
+html:lang(en)[data-size=home] [data-card="2"][data-variant="b"] span.badge[data-copy="tm_r51_badge"]{padding-top:0.26982em!important;padding-bottom:0.11018em!important}
+html:lang(en)[data-size=home] [data-card="4"]:not([data-variant]) span.xl.xl-cool[data-copy="tm_c3_d_cool"]{padding-top:0.19326em!important;padding-bottom:0.22674em!important}
+html:lang(en)[data-size=home] [data-card="5"]:not([data-variant]) li.sh-it.pad:has(> span[data-copy="tm_c4_h0"]){padding-top:0.37550em!important;padding-bottom:0.24450em!important}
+}
+html:lang(en)[data-size=line] .L2a.L2-2 span.badge.hit[data-copy="tm_r58_badge"]{padding-top:0.27619em!important;padding-bottom:0.10381em!important}
+html:lang(en)[data-size=line] .L4.L4-1 span.xl.xl-tip[data-copy="tm_c3_d_tip"]{padding-top:0.28978em!important;padding-bottom:0.13022em!important}
+html:lang(en)[data-size=line] .L4.L4-1 span.xl.xl-heat[data-copy="tm_c3_d_heat"]{padding-top:0.31985em!important;padding-bottom:0.17813em!important}
+html:lang(en)[data-size=line] .L4.L4-1 span.tip-k[data-copy="tm_c3_tip1_k"]{padding-top:0.31178em!important;padding-bottom:0.10822em!important}
+html:lang(en)[data-size=line] .L5.L5-2 li.sh-it.pad:has(> span[data-copy="tm_c4_h0"]){padding-top:0.29735em!important;padding-bottom:0.32265em!important}
+html:lang(en)[data-size=line] .L6.L6-2 span.way-line[data-copy="tm_ab_way_line"]{padding-top:0.23550em!important;padding-bottom:0.16450em!important}
+/* kakao: three labels snap to whole pixels on either side of the centre; for them the box edge moves (padding-bottom) and the margin keeps the layout */
+html:lang(en)[data-size=kakao] .K2a.K2-1 span.badge[data-copy="tm_r51_badge"]{padding-top:0.32531em!important;padding-bottom:0.13927em!important}
+html:lang(en)[data-size=kakao] .K2b.K2-1 span.badge[data-copy="tm_r51_badge"]{padding-top:0.34865em!important;padding-bottom:0.17084em!important}
+html:lang(en)[data-size=kakao] .K2b.K2-1 span.badge[data-copy="tm_r54_badge"]{padding-top:0.33101em!important;padding-bottom:0.15194em!important}
+html:lang(en)[data-size=kakao] .K2b.K2-2 span.badge[data-copy="tm_r56_badge"]{padding-top:0.29525em!important;padding-bottom:0.08475em!important}
+html:lang(en)[data-size=kakao] .K2b.K2-3 span.badge.hit[data-copy="tm_r58_badge"]{padding-top:0.28823em!important;padding-bottom:0.09177em!important}
+html:lang(en)[data-size=kakao] .K2b.K2-3 span.badge[data-copy="tm_r59_badge"]{padding-top:0.30944em!important;padding-bottom:0.17216em!important}
+html:lang(en)[data-size=kakao] .K4.K4-1 span.xl.xl-tip[data-copy="tm_c3_d_tip"]{padding-top:0.28881em!important;padding-bottom:0.07961em!important}
+html:lang(en)[data-size=kakao] .K5.K5-1 li.chip:has(> span[data-copy="tm_c4_c3"]){padding-top:0.36741em!important;padding-bottom:0.25259em!important}
+html:lang(en)[data-size=kakao] .K5.K5-2 li.sh-it.pad:has(> span[data-copy="tm_c4_h0"]){padding-top:0.40085em!important;padding-bottom:0.21915em!important}
+html:lang(en)[data-size=kakao] .K5.K5-2 li.sh-it.cool:has(> span[data-copy="tm_c4_h1"]) > span{position:relative;top:0.07734em}
+html:lang(en)[data-size=kakao] .K5.K5-2 li.sh-it.heat:has(> span[data-copy="tm_c4_h2"]) > span{position:relative;top:0.08363em}
+html:lang(en)[data-size=kakao] .K5.K5-2 li.sh-it.cool:has(> span[data-copy="tm_c4_h3"]) > span{position:relative;top:0.07252em}
+html:lang(en)[data-size=kakao] .K5.K5-3 li.chip:has(> span[data-copy="tm_c4_a1"]){padding-top:0.39037em!important;padding-bottom:0.22963em!important}
+html:lang(en)[data-size=kakao] .K5.K5-3 li.chip:has(> span[data-copy="tm_c4_a2"]){padding-top:0.39037em!important;padding-bottom:0.22963em!important}
+html:lang(en)[data-size=kakao] .K5.K5-1 li.chip:has(> span[data-copy="tm_c4_c1"]){padding-top:0.41000em!important;padding-bottom:0.21000em!important}
+html:lang(en)[data-size=kakao] .K5.K5-1 li.chip:has(> span[data-copy="tm_c4_c2"]){padding-top:0.41000em!important;padding-bottom:0.21000em!important}
+html:lang(en)[data-size=kakao] .K4.K4-2 span.tip-k[data-copy="tm_c3_tip1_k"]{padding-top:0.31528em!important;padding-bottom:2.72px!important;margin-bottom:-1.04px}
+html:lang(en)[data-size=kakao] .K4.K4-2 span.tip-k[data-copy="tm_c3_tip2_k"]{padding-top:0.32232em!important;padding-bottom:1.59px!important;margin-bottom:.94px}
+html:lang(en)[data-size=kakao] .K5.K5-3 span.inf-k[data-copy="tm_c4_i3_k"]{padding-top:0.16113em!important;padding-bottom:2.54px!important;margin-bottom:-1.06px}
