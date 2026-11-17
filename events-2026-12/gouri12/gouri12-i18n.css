@@ -289,3 +289,114 @@ html:lang(th)[data-size]:not(#sz) .K2a2 .s3,html:lang(th)[data-size]:not(#sz) .K
  html:lang(th) .c2:not([data-variant="b"]):not([data-size-only]) .gift-band .gb-tx{top:.21em}
  html:lang(th) .c2[data-variant="b"]:not([data-size-only]) .gift-band [data-copy]{top:.17em}
 }
+
+/* ===== JP (2026-11-18, lead order): the Japanese version (html:lang(ja) only; Korean, the Chinese and the Thai versions are untouched) ===== */
+/* fonts exactly as OND12 / ULT12 JP: Japanese text in Noto Sans JP first in the stack (Pretendard's Hanja never mixes in); Jost keeps its Latin letters and
+   figures, Japanese letters in it fall back to Noto Sans JP */
+html:lang(ja){--f-cjk:'Noto Sans JP';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-num:'Jost',var(--f-cjk),'Pretendard Variable',sans-serif}
+/* line breaks: Japanese breaks between phrases (auto-phrase, as OND12 / ULT12 JP; the Korean page keeps whole words with keep-all) */
+html:lang(ja) .sheet{word-break:auto-phrase}
+/* prices: the figure and its unit stay on one line ('66万ウォン') */
+html:lang(ja) .money{white-space:nowrap}
+/* titles: the hero B second line ('オープンイベント', 743 px against 470 at 1080) and the one-line card 2 B title ('ゴウリ コラーゲンケアキャンペーン',
+   1175 against 968) are wider than their boxes; both get the fit factor (gouri12.js shrinks them; Japanese titles down to .56 as Chinese) */
+html:lang(ja) .c1[data-variant="b"] .title{font-size:calc(95*var(--px)*var(--fit,1))}
+@media(max-width:600px){html:lang(ja) .c1[data-variant="b"] .title{font-size:calc(90*var(--px)*var(--fit,1))}}
+html:lang(ja) .c2[data-variant="b"] .ptitle{font-size:calc(75*var(--px)*var(--fit,1))}
+/* hero A (1080 / 780) as zh: the LINE contact line ran under the Perfection Cream tube; the gift band keeps 8 px clear of the tube and the contact line is
+   a little smaller on one line (letter spacing 0) */
+@container (min-width:601px){
+ html:lang(ja) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line{max-width:calc(424*var(--px))}
+ html:lang(ja) .c1:not([data-variant="b"]):not([data-size-only]) .c1-contact{font-size:calc(17*var(--px));letter-spacing:0}
+}
+/* hero B: the contact line ('ご予約・お問い合わせ LINE：@beautyblossom_jp') ran past the card edge; it wraps inside the offer column at every size */
+html:lang(ja) .c1[data-variant="b"] .c1-contact{max-width:100%;white-space:normal}
+/* hero A on phones (as zh): VAT note on its own line, gift band text clear of the tube, contact line in two lines left of the tube */
+@container (max-width:600px){
+ html:lang(ja) .c1:not([data-variant="b"]):not([data-size-only]) .offer-vat{flex-basis:100%}
+ html:lang(ja) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line{padding-right:62px;font-size:10px}
+ html:lang(ja) .c1:not([data-variant="b"]):not([data-size-only]) .c1-contact{max-width:190px;white-space:normal}
+}
+/* line 1 A (as zh) and kakao 1 A / 1 B part 2: the contact pill takes two lines ('ご予約・お問い合わせ' / 'LINE：@beautyblossom_jp', 360 px wide, the tube
+   stands right of 560 px); it ran under the cream tube in one line; 1 A gift band clear of the tube */
+html:lang(ja)[data-size]:not(#sz) .L1a .gift-line{max-width:424px}
+html:lang(ja)[data-size]:not(#sz) .L1a .c1-contact{font-size:17px;letter-spacing:0}
+html:lang(ja)[data-size]:not(#sz) .K1a2 .c1-contact,html:lang(ja)[data-size]:not(#sz) .K1b2 .c1-contact{max-width:360px;white-space:normal}
+html:lang(ja)[data-size]:not(#sz) .K1a2 .gift-line{max-width:340px}
+/* kakao 2 A: the event price column is 150 px for '126만원'; '126万ウォン' is 199 px wide, so the column is 204 px (zh 184) */
+html:lang(ja)[data-size]:not(#sz) .c2.K2a:not([data-variant="b"]) .row:has(> .badge){grid-template-columns:38px minmax(0,max-content) auto minmax(0,1fr) 204px}
+/* card 2 B options ('ゴウリ1シリンジ＋リトゥオ1バイアル', 388 px against 234 at 1080) ran under their badges: home takes two lines; line / kakao keep the
+   Korean grid (option over list price, badge and event price, which fit one line in Japanese) and the option shrinks to the full row (fit factor) */
+html:lang(ja) .c2[data-variant="b"]:not([data-size-only]) .opt{white-space:normal}
+html:lang(ja)[data-size]:not(#sz) .c2.L2b .opt,html:lang(ja)[data-size]:not(#sz) .c2.K2b .opt{font-size:calc(22*var(--px)*var(--fit,1))}
+/* kakao 2 A part 2 / 2 B part 1: the gift band ('ゴウリ1シリンジ以上でパーフェクションクリームをプレゼント') took two lines and pushed the foot under the card;
+   it is set on one line (21 instead of 25) */
+html:lang(ja)[data-size]:not(#sz) .K2a2 .gift-band,html:lang(ja)[data-size]:not(#sz) .K2b1 .gift-band{font-size:21px}
+/* kakao 2 A parts 2-3 / 2 B part 2: the one-line head sub ('プレミアムアンチエイジング 液状PCLコラーゲンブースター') took two lines; 19 keeps it on one line
+   (2 A part 2: left of the model picture), the sparkle moves off the 'GOURI' kicker */
+html:lang(ja)[data-size]:not(#sz) .K2a2 .c2-sub,html:lang(ja)[data-size]:not(#sz) .K2a3 .c2-sub,html:lang(ja)[data-size]:not(#sz) .K2b2 .c2-sub{font-size:19px}
+html:lang(ja)[data-size]:not(#sz) .K2a2 .s3,html:lang(ja)[data-size]:not(#sz) .K2a3 .s3,html:lang(ja)[data-size]:not(#sz) .K2b2 .s3{left:12px}
+/* card 4: the Japanese descriptions take one line more than the Korean, so the tip / source lines ran under the card (line 45 px, kakao part 2 35 px);
+   descriptions and set-up lines a little smaller there; kakao part 2 name + formula chip as zh */
+html:lang(ja)[data-size]:not(#sz) .L4 .wd{font-size:19px;line-height:1.42}
+html:lang(ja)[data-size]:not(#sz) .L4 .ws{font-size:18px;line-height:1.45}
+html:lang(ja)[data-size]:not(#sz) .K4b .wd{font-size:18.5px;line-height:1.45}
+html:lang(ja)[data-size]:not(#sz) .K4 .wf{letter-spacing:0;padding-left:.55em;padding-right:.55em}
+/* B/A card 7: the round '›' arrow keeps the Korean face (centred as on KO), as zh */
+html:lang(ja) .bb-ba__arrow{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif}
+/* kakao 1 B part 1: 'オープンイベント' stayed 40 px wider than the 400 px title box at the smallest fit (.6); the Japanese title starts from 80 instead of 95 */
+html:lang(ja)[data-size]:not(#sz) .K1b1 .title{font-size:calc(80*var(--px)*var(--fit,1))}
+/* line 2 B (as zh): with '万ウォン' the list price, the badge and the event price no longer fit one ticket line; the list price goes over the event price at
+   the right (without the arrow), the badge stays on the price line */
+html:lang(ja)[data-size]:not(#sz) .c2.L2b .row:has(> .badge){grid-template-areas:"gift opt opt opt" ". . . old" "bd bd bd price";row-gap:0}
+html:lang(ja)[data-size]:not(#sz) .c2.L2b .row:has(> .badge) > .old{justify-self:end;line-height:1.2}
+html:lang(ja)[data-size]:not(#sz) .c2.L2b .row:has(> .badge) > .old::after{display:none}
+html:lang(ja)[data-size]:not(#sz) .c2.L2b .row:has(> .badge) > .badge{justify-self:end}
+/* kakao 2 B part 2: list price + badge + event price ran 24 px past the 305 px ticket ('300万ウォン' under the BEST badge) and the foot ran under the card;
+   in the two narrow tickets the event price is 38 (43), the list price 17 (19), the badge 2 px from the price, the kicker line one line (16) */
+html:lang(ja)[data-size]:not(#sz) .c2.K2b2 .row > .price{font-size:38px}
+html:lang(ja)[data-size]:not(#sz) .c2.K2b2 .row > .old{font-size:17px}
+html:lang(ja)[data-size]:not(#sz) .c2.K2b2 .row > .badge{margin-right:2px}
+html:lang(ja)[data-size]:not(#sz) .K2b2 .pre{font-size:16px}
+/* ===== JP chip text centring (2026-11-18, user rule 2026-11-05; measured with qa/text-center-check.cjs + ?lang=JP at 1080 / 780 / line / kakao): Noto Sans JP
+   sets the Japanese ink lower in the line box than Pretendard sets Hangul, so the contact pills, gift bands, BEST badges, the line chip and the kakao card 3
+   fact keys sat 0.6 to 3.3 px low; each text moves up by its measured amount (real px = offset x card width / 1080) ===== */
+@media (min-width:901px){
+ html:lang(ja) .c1:not([data-variant="b"]) .c1-contact [data-copy]{position:relative;top:-.102em}
+ html:lang(ja) .c1[data-variant="b"] .c1-contact [data-copy],html:lang(ja)[data-size]:not(#sz) .K1a2 .c1-contact [data-copy]{position:relative;top:-.0705em}
+ html:lang(ja) .c2:not([data-variant="b"]):not([data-size-only]) .row > .badge[data-copy="gr_r12_badge"]{padding-top:4.4px;padding-bottom:4.6px}
+ html:lang(ja) .c2:not([data-variant="b"]):not([data-size-only]) .gift-band .gb-tx{top:-.03em}
+ html:lang(ja) .c2[data-variant="b"]:not([data-size-only]) .row > .badge[data-copy="gr_r12_badge"]{padding-top:4.44px;padding-bottom:4.56px}
+ html:lang(ja) .c2[data-variant="b"]:not([data-size-only]) .gift-band [data-copy]{top:-.022em}
+ html:lang(ja) .c6:not([data-size-only]) .way-line{padding-top:.201em;padding-bottom:.199em}
+ html:lang(ja)[data-size]:not(#sz) .L2b .gift-band [data-copy]{top:-.0054em}
+ html:lang(ja)[data-size]:not(#sz) .L6b .way-line{padding-top:.157em;padding-bottom:.243em}
+ html:lang(ja)[data-size]:not(#sz) .K2a2 .gift-band .gb-tx{top:-.0682em}
+ html:lang(ja)[data-size]:not(#sz) .K1a2 .c1-contact [data-copy],html:lang(ja)[data-size]:not(#sz) .K1b2 .c1-contact [data-copy]{top:-.093em}
+ /* kakao: the text snaps to whole pixels (+0.65 or -0.70 only), so the two-line pills, the 2 A part 2 band and the card 3 key take half a pixel more padding on
+    both sides (1 px taller), which puts the text on the centre */
+ html:lang(ja)[data-size]:not(#sz) .K1a2 .c1-contact,html:lang(ja)[data-size]:not(#sz) .K1b2 .c1-contact{padding-top:9.95px;padding-bottom:9.95px}
+ html:lang(ja)[data-size]:not(#sz) .K2a2 .gift-band{padding-top:13.5px;padding-bottom:12.5px}
+ html:lang(ja)[data-size]:not(#sz) .K2b1 .gift-band [data-copy]{top:-.0257em}
+ html:lang(ja)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f1_k"]{padding-top:2.8px;padding-bottom:3.66px}
+ /* kakao card 3 key 2 ("製剤の形状"): the key sits centred in its fact row and its text snaps to whole pixels (+0.65 or -0.69 for any padding); the fact row moves
+    down half a pixel (padding 15.5 / 16.5 instead of 15 / 17, same height), which puts the key text on the chip centre */
+ html:lang(ja)[data-size]:not(#sz) .K3b .fact:has(> .fk[data-copy="gr_c3_f2_k"]){padding-top:15.5px;padding-bottom:16.5px}
+ html:lang(ja)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f3_k"]{padding-top:2.67px;padding-bottom:3.79px}
+}
+@media (min-width:600px) and (max-width:900px){
+ html:lang(ja) .c1:not([data-variant="b"]) .c1-contact [data-copy]{position:relative;top:-.0318em}
+ html:lang(ja) .c1[data-variant="b"] .c1-contact [data-copy]{position:relative;top:-.0876em}
+ html:lang(ja) .c2:not([data-variant="b"]):not([data-size-only]) .gift-band .gb-tx{top:-.0508em}
+ html:lang(ja) .c2[data-variant="b"]:not([data-size-only]) .gift-band [data-copy]{top:-.0576em}
+ html:lang(ja) .c6:not([data-size-only]) .way-line{padding-top:.1447em;padding-bottom:.2553em}
+}
+/* JP titles (two-tone headlines) break only at their spaces and, on phones, at the word breaks gouri12.js marks ('コラーゲンケア' / 'キャンペーン'); on the
+   larger cards the titles stay one line per part and shrink to fit as before (the marks are off there) */
+html:lang(ja) .title,html:lang(ja) .ptitle{word-break:keep-all}
+html:lang(ja) .title wbr,html:lang(ja) .ptitle wbr{display:none}
+@container (max-width:600px){html:lang(ja) .ptitle wbr{display:inline}} /* hero titles keep one line on phones (fit), as before */
+/* hero B (1080 / 780 / line): the longer Japanese title ('オープンイベント') ran under the bubble right of the title; the bubble moves down beside the
+   title's second line */
+html:lang(ja) .c1[data-variant="b"]:not([data-size-only]) .b2{top:calc(420*var(--px))}
+html:lang(ja)[data-size]:not(#sz) .L1b .b2{top:395px}

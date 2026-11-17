@@ -41,13 +41,15 @@ function setMoney(el,v){
 /* split at ' + ' outside brackets (the text stays the same: the ' + ' separators remain as text)
    2026-11-17 language versions (as sofwave12.js / cerf12.js TW): the TW copy joins the parts with a full-width '＋' and no spaces and uses full-width
    brackets ('索夫波200發＋核心支柱拉提（玻尿酸4cc＋舒顏萃1瓶）＋…'); it splits before every '＋' outside brackets too and the '＋' stays as the separator text
-   (Korean copy has neither, so it is set exactly as before) */
+   (Korean copy has neither, so it is set exactly as before). 2026-11-18 HK: the HK copy writes '…1瓶）+ 斜方肌肉毒' (a '+' right after a closing bracket, no space
+   before it); it splits there too and '+ ' stays as the separator text (KO / TW / TH have no such '+', checked) */
 function topSplit(v){
  const parts=[],seps=[];let depth=0,start=0;
  for(let i=0;i<v.length;i++){
   const c=v[i];if(c==='('||c==='['||c==='（'||c==='［')depth++;else if((c===')'||c===']'||c==='）'||c==='］')&&depth)depth--;
   else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));seps.push(' + ');start=i+3;i+=2;}
   else if(!depth&&c==='＋'){parts.push(v.slice(start,i));seps.push('＋');start=i+1;}
+  else if(!depth&&c==='+'&&(v[i-1]==='）'||v[i-1]===')')&&v[i+1]===' '){parts.push(v.slice(start,i));seps.push('+ ');start=i+2;i++;} /* 2026-11-18 HK: '…1瓶）+ 斜方肌肉毒' has no space before the '+' after a bracket */
  }
  parts.push(v.slice(start));return {parts,seps};
 }
@@ -77,7 +79,10 @@ const GUARD='.hook,.p-lead,.q-ans,.lg-d,.mx-d,.st-d,.inf-n,.c5-time,.care [data-
    director's name 'นพ. อี กอนโฮ' and a Thai volume with its space ('4 cc'); no Korean or TW copy has Thai letters or a spaced 'cc' */
 /* 2026-11-17 language versions also keep the international phone number, a chat ID ('@beautyblossom_tw'), the floor / house numbers of the address
    ('6樓', '66號') and a name in corner brackets (the TW LINE account '「🌸麗朵皮膚科🌸」') whole; no Korean copy has them */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|「[^」\n]{1,16}」|คอลลาเจน|ทรีตเมนต์|ความมั่นใจ|สารกระตุ้น|หย่อนคล้อย|เหมาะสม|ช่วงกลาง|สุดสัปดาห์|ฟิลเลอร์|แพ็กเกจ|โบท็อกซ์|พรีเมียม|วอลุ่ม|นพ\. อี กอนโฮ|\d+ cc|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|스컬트라·래디어스|스컬트라 · 래디어스|필러·스컬트라·래디어스|유지인대 자리|섬유 조직|병\(바이알\)|하루 5번|5분씩|5일 동안|연고·국소 마취|LDM을|LDM까지|LDM으로|주사 리프팅|국산과 수입)/g;
+/* 2026-11-18 HK: 'LDM 護理' (LDM care) stays together; the HK card 5 line ended '…LDM 護 / 理' (the Chinese last-word guard needs three letters after the
+   last space); also a number and 'vial(s)' ('2 vials' broke after the 2 in the kakao B box). TW writes 'LDM護理' without the space and KO / TW / TH
+   have no 'vial', so only HK changes */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|「[^」\n]{1,16}」|คอลลาเจน|ทรีตเมนต์|ความมั่นใจ|สารกระตุ้น|หย่อนคล้อย|เหมาะสม|ช่วงกลาง|สุดสัปดาห์|ฟิลเลอร์|แพ็กเกจ|โบท็อกซ์|พรีเมียม|วอลุ่ม|นพ\. อี กอนโฮ|LDM 護理|\d+ vials?|\d+ cc|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|스컬트라·래디어스|스컬트라 · 래디어스|필러·스컬트라·래디어스|유지인대 자리|섬유 조직|병\(바이알\)|하루 5번|5분씩|5일 동안|연고·국소 마취|LDM을|LDM까지|LDM으로|주사 리프팅|국산과 수입)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){

@@ -49,6 +49,9 @@ function setSplit(el,v){
  el.append(span('k1',m[1]),document.createTextNode(m[2]),span('k2',m[3]));
  /* 2026-11-17 TH: a Thai title breaks only at its spaces (the browser's Thai dictionary split 'คอลลา' / 'เจน' and 'กระ' / 'ตุ้น' on phones, and keep-all does
     not stop it); each phrase is kept whole. Display only; the other languages are set as before */
+ /* 2026-11-18 JP: a Japanese title breaks only at its spaces and before a katakana word that ends a compound ('コラーゲンケア' / 'キャンペーン' on phones; the
+    phrase breaker split 'キャ' / 'ンペーン'); the title keeps keep-all (gouri12-i18n.css). Display only; the other languages are set as before */
+ if(locale==='JP')for(const s of el.querySelectorAll('.k1,.k2')){const parts=s.textContent.split(/(?<=[\u30A1-\u30FA\u30FC])(?=キャンペーン|イベント|ブースター)/);if(parts.length>1){s.textContent='';parts.forEach((p,i)=>{if(i)s.append(document.createElement('wbr'));s.append(document.createTextNode(p));});}}
  if(locale==='TH')for(const s of el.querySelectorAll('.k1,.k2')){const t=s.textContent;s.textContent='';for(const p of t.split(/(\s+)/))if(p)s.append(/^\s+$/.test(p)?document.createTextNode(p):span('nw',p));}
 }
 /* card 5 hours: the day label and the time are styled apart */
@@ -64,8 +67,9 @@ const GUARD='.a,.fd,.std,.wd,.ws,.tip [data-copy],.src,.gift-line [data-copy],.g
 /* 2026-11-14 language version also keeps the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them */
 /* 2026-11-14 CN (11/17 TW / HK: 麗珠蘭, 'Re2O 1vial', 麗朵皮膚科, a short name in 「」 such as the TW LINE link '「🌸麗朵皮膚科🌸」', the brand 'Beauty Blossom'; 11/17 TH: Thai loan words the browser's Thai dictionary splits
    ('คอ|ล|ลา|เจน' collagen, 'บูส|เตอร์' booster, 'ไซ|ริงค์' syringe, 'แพ็ก|เกจ' package, 'เหมาะ|สม', 'ผู้|อำนวย|การ') the director's name 'นพ. อี กอนโฮ', 'ผิวตามวัย' ('วัย' alone took the last line of the card 2 A sub) and a Thai
-   volume with its space ('10 cc'; 'cc' alone took the second line of a card 2 B option); no other language has Thai letters or a spaced 'cc'): one set-up ('GOURI 1支 + 丽珠兰2cc' / 'GOURI 1支＋Re2O 1瓶', the Korean '고우리 1실린지 + 리쥬란 2cc' rule; 11/16 the reviewer's spacing) and the clinic name '丽朵皮肤科' never break inside */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼層层階號号]|GOURI \d支 ?[＋+] ?(?:丽珠兰|麗珠蘭|RE2O|Re2O) ?\d+(?:cc|瓶|vial)|丽朵皮肤科|麗朵皮膚科|「[^」\s]{1,12}」|Beauty Blossom|คอลลาเจน|สกินบูสเตอร์|บูสเตอร์|ไซริงค์|ไซริงจ์|แพ็กเกจ|เหมาะสม|ผู้อำนวยการ|นพ\. อี กอนโฮ|ผิวตามวัย|\d+ cc|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|재생크림 증정|PCL \(폴리카프로락톤\)|DEXLEVO|고우리 \d실린지 \+ 리(?:쥬란|투오) \d+(?:cc|vial)|[가-힣A-Za-z0-9]+(?:·[가-힣A-Za-z0-9]+)+)/g;
+   volume with its space ('10 cc'; 'cc' alone took the second line of a card 2 B option); no other language has Thai letters or a spaced 'cc'; 11/18 JP: on the contact line ('ご予約・お問い合わせ LINE：@beautyblossom_jp') the LINE label
+   stays with its ID (the kakao 1 B contact pill broke after 'LINE：' into three lines; the booking-box link keeps its break; only the JP copy has 'LINE：@')): one set-up ('GOURI 1支 + 丽珠兰2cc' / 'GOURI 1支＋Re2O 1瓶', the Korean '고우리 1실린지 + 리쥬란 2cc' rule; 11/16 the reviewer's spacing) and the clinic name '丽朵皮肤科' never break inside */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼層层階號号]|GOURI \d支 ?[＋+] ?(?:丽珠兰|麗珠蘭|RE2O|Re2O) ?\d+(?:cc|瓶|vial)|丽朵皮肤科|麗朵皮膚科|「[^」\s]{1,12}」|Beauty Blossom|คอลลาเจน|สกินบูสเตอร์|บูสเตอร์|ไซริงค์|ไซริงจ์|แพ็กเกจ|เหมาะสม|ผู้อำนวยการ|นพ\. อี กอนโฮ|ผิวตามวัย|\d+ cc|(?<=お問い合わせ )LINE：@[A-Za-z][\w.]*|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|재생크림 증정|PCL \(폴리카프로락톤\)|DEXLEVO|고우리 \d실린지 \+ 리(?:쥬란|투오) \d+(?:cc|vial)|[가-힣A-Za-z0-9]+(?:·[가-힣A-Za-z0-9]+)+)/g;
 function appendKept(el,s){
  let last=0;
  for(const m of s.matchAll(KEEP)){
