@@ -37,8 +37,10 @@ function setMoney(el,v){
  const n=document.createElement('span');n.className='n';n.textContent=m[2];el.append(n);
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}
 }
-/* shot figures ('300샷', '600', '1000'; Chinese '600发') stand out inside names; combo names break before ' + ' (the text stays the same) */
-const SHOT=/(\d[\d,]*\s*(?:샷|发|發)|\d{3,4})/g;
+/* shot figures ('300샷', '600', '1000'; Chinese '600发') stand out inside names; combo names break before ' + ' (the text stays the same)
+   2026-11-17 TH: the figure carries its Thai unit after a space ('300 ช็อต'), marked like '600发'; TW / HK: combo names joined with a full-width
+   '＋' and no spaces ('無雙電波Alpha探頭300發＋LinearZ音波500發') break before the '＋' as well (CN, TH and Korean names use ' + ' and are set as before) */
+const SHOT=/(\d[\d,]*\s*(?:샷|发|發|ช็อต|พัลส์)|\d{3,4})/g;
 function shotSpans(parent,s){
  let last=0;SHOT.lastIndex=0;
  for(const m of s.matchAll(SHOT)){
@@ -49,11 +51,11 @@ function shotSpans(parent,s){
 }
 function setName(el,v){
  el.textContent='';v=v||'';
- const i=v.indexOf(' + ');
- if(el.classList.contains('cmb')&&i>0){
-  const l1=document.createElement('span');l1.className='ln l1';shotSpans(l1,v.slice(0,i));
-  const l2=document.createElement('span');l2.className='ln l2';shotSpans(l2,v.slice(i+1));
-  el.append(l1,document.createTextNode(' '),l2);return;
+ const i=v.indexOf(' + '),j=i<0&&(locale==='TW'||locale==='HK')?v.indexOf('＋'):-1;
+ if(el.classList.contains('cmb')&&(i>0||j>0)){
+  const l1=document.createElement('span');l1.className='ln l1';shotSpans(l1,v.slice(0,i>0?i:j));
+  const l2=document.createElement('span');l2.className='ln l2';shotSpans(l2,v.slice(i>0?i+1:j));
+  if(i>0)el.append(l1,document.createTextNode(' '),l2);else el.append(l1,l2);return;
  }
  shotSpans(el,v);
 }
@@ -69,8 +71,12 @@ function setHours(el,v){
 /* widow guard: the last two words stay together */
 const GUARD='.hook,.launch,.p-lead,.eye-note [data-copy],.q-ans,.pt-d,.st-d,.who-v,.inf-n,.inf-v,.c6-tip [data-copy],.src,.bkl-msg,.tp-x,.tp-e,.dg-sub,.tips-t,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy]';
 /* names that never break inside */
-/* 2026-11-14 language version also keeps the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|LED 재생레이저|하이팁\(아이\)|시트마스크|제이시스메디칼|모노폴라 \+ 바이폴라|덴서티 알파팁|부스트 팁|2026년 9월|5단계|300샷·600샷|좁은 부위|피부 저항|두 가지|팁과 샷 수|샷 수·부위|덴서티 전용 팁|피부 표면|피부 얕은 층|피부 깊은 층)/g;
+/* 2026-11-14 language version also keeps the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them
+   2026-11-17 TW / TH / HK also a LINE ID ('@beautyblossom_tw'), the clinic name 'Beauty Blossom' (as cerf12.js) and the TW LINE channel name in corner brackets
+   ('「🌸麗朵皮膚科🌸」', its closing bracket alone started the last line in the kakao booking box), and the Thai RF names with their brackets ('(Monopolar RF)', 'Bipolar RF)')
+   ('RF)' or ')' alone started the last line of the card 2 / card 6 tip notes) and the Thai word 'เหมาะสม' (its last syllable alone took the last line
+   of the kakao card 7 step); no Korean or CN copy has them */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|[@＠][A-Za-z][\w.]*|Beauty Blossom|\(?(?:Mono|Bi)polar RF\)?|เหมาะสม|「[^」]{1,14}」|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|LED 재생레이저|하이팁\(아이\)|시트마스크|제이시스메디칼|모노폴라 \+ 바이폴라|덴서티 알파팁|부스트 팁|2026년 9월|5단계|300샷·600샷|좁은 부위|피부 저항|두 가지|팁과 샷 수|샷 수·부위|덴서티 전용 팁|피부 표면|피부 얕은 층|피부 깊은 층)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
@@ -98,8 +104,9 @@ function setText(el,v){
  /* Chinese: every text keeps its last word together (the Korean list GUARD stays as it was) */
  if(!v||(!el.matches(GUARD)&&!(CJK[locale]&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
  let m=null;
- if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
- else{m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
+ /* 2026-11-17 TH (THM12 rule): Thai has no guard, its lines break at the browser's dictionary breaks (a space ends a phrase, not a word) */
+ if(!CJK[locale]&&locale!=='TH')m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ else if(CJK[locale]){m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}

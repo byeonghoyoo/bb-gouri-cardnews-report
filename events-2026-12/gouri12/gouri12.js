@@ -42,6 +42,9 @@ function setMoney(el,v){
 function setSplit(el,v){
  el.textContent='';
  const m=/^(\S+)(\s+)(.+)$/.exec(v||'');
+ /* 2026-11-17 TW: a hero / card 2 title without a space after the Latin name ('GOURI上市優惠', 'GOURI膠原蛋白增生護理優惠活動') is split after the name
+    like the other versions ('GOURI 上市活动'); display only, the stored text keeps no space. CN / HK / KO titles have the space, so nothing changes there */
+ if(!m&&CJK[locale]&&el.matches('.title,.ptitle')){const c=/^([A-Za-z][A-Za-z0-9]*)([\u2E80-\u9FFF\uF900-\uFAFF].*)$/.exec(v||'');if(c){el.append(span('k1',c[1]),span('k2',c[2]));return;}}
  if(!m){el.append(span('k1',v||''));return;}
  el.append(span('k1',m[1]),document.createTextNode(m[2]),span('k2',m[3]));
 }
@@ -56,8 +59,8 @@ function setHours(el,v){
 const GUARD='.a,.fd,.std,.wd,.ws,.tip [data-copy],.src,.gift-line [data-copy],.gb-tx,.pdesc,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
 /* kept together: names, the phone number, one set-up ('고우리 2실린지 + 리쥬란 4cc') and words joined by a middle dot ('세안·화장·운동은') */
 /* 2026-11-14 language version also keeps the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them */
-/* 2026-11-14 CN: one set-up ('GOURI 1支 + 丽珠兰2cc' / 'GOURI 1支＋Re2O 1瓶', the Korean '고우리 1실린지 + 리쥬란 2cc' rule; 11/16 the reviewer's spacing) and the clinic name '丽朵皮肤科' never break inside */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼層层階號号]|GOURI \d支 ?[＋+] ?(?:丽珠兰|RE2O|Re2O) ?\d+(?:cc|瓶)|丽朵皮肤科|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|재생크림 증정|PCL \(폴리카프로락톤\)|DEXLEVO|고우리 \d실린지 \+ 리(?:쥬란|투오) \d+(?:cc|vial)|[가-힣A-Za-z0-9]+(?:·[가-힣A-Za-z0-9]+)+)/g;
+/* 2026-11-14 CN (11/17 TW / HK: 麗珠蘭, 'Re2O 1vial', 麗朵皮膚科, a short name in 「」 such as the TW LINE link '「🌸麗朵皮膚科🌸」', the brand 'Beauty Blossom'): one set-up ('GOURI 1支 + 丽珠兰2cc' / 'GOURI 1支＋Re2O 1瓶', the Korean '고우리 1실린지 + 리쥬란 2cc' rule; 11/16 the reviewer's spacing) and the clinic name '丽朵皮肤科' never break inside */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼層层階號号]|GOURI \d支 ?[＋+] ?(?:丽珠兰|麗珠蘭|RE2O|Re2O) ?\d+(?:cc|瓶|vial)|丽朵皮肤科|麗朵皮膚科|「[^」\s]{1,12}」|Beauty Blossom|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|재생크림 증정|PCL \(폴리카프로락톤\)|DEXLEVO|고우리 \d실린지 \+ 리(?:쥬란|투오) \d+(?:cc|vial)|[가-힣A-Za-z0-9]+(?:·[가-힣A-Za-z0-9]+)+)/g;
 function appendKept(el,s){
  let last=0;
  for(const m of s.matchAll(KEEP)){

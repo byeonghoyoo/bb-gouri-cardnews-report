@@ -108,3 +108,90 @@ html:lang(zh)[data-size]:not(#sz) .c2.L2b .row:has(> .badge) > .badge{justify-se
  html:lang(zh) .c2[data-variant="b"] .gift-band [data-copy]{top:-.06em}
  html:lang(zh) .way-line{padding-top:.19em;padding-bottom:.21em}
 }
+
+/* ===================== TW and HK (2026-11-17, lead order): fixes for their copy only (:lang(zh-TW) / :lang(zh-HK)); every :lang(zh) rule above applies
+   to them as well, so the CN version stays exactly as it was. Fonts: Noto Sans TC (html:lang(zh-TW), html:lang(zh-HK) at the top). ===================== */
+
+/* --- TW --- */
+/* booking box: the phone field holds the LINE ID '@beautyblossom_tw' (17 characters), which ran past the box at the phone-number size (30 at 1080);
+   the ID is set smaller (CRF12 TW rule), and the two LINE links break only at their spaces and brackets ('Line官方帳號預約' / 'Line@' / '「🌸麗朵皮膚科🌸」'
+   instead of 'Line官方 / 帳號預約') */
+html:lang(zh-TW) .bk-phone.is-id{font-size:max(15px,calc(24*var(--px)))}
+html:lang(zh-TW) .bk-links{word-break:keep-all}
+html:lang(zh-TW)[data-size]:not(#sz) .K6c .bk-phone.is-id{font-size:24px}
+/* kakao card 6 part 3: the two LINE links ('Line官方帳號預約', 'Line@「🌸麗朵皮膚科🌸」') broke into four short lines next to the QR, the '/' alone on one;
+   the QR column is a little narrower (108 instead of 124) and the links stand on two lines without the separator */
+html:lang(zh-TW)[data-size]:not(#sz) .K6c .bk-row{grid-template-columns:108px minmax(0,1fr);column-gap:12px}
+html:lang(zh-TW)[data-size]:not(#sz) .K6c .bk-links{font-size:17px}
+html:lang(zh-TW)[data-size]:not(#sz) .K6c .bk-sep{display:none}
+html:lang(zh-TW)[data-size]:not(#sz) .K6c .bk-alt{display:block}
+/* hero A on phones: 'LINE@beautyblossom_tw' is one unbreakable word and ran 11 px under the cream tube; the line is set 1 px smaller without letter spacing */
+@container (max-width:600px){
+ html:lang(zh-TW) .c1:not([data-variant="b"]):not([data-size-only]) .c1-contact{font-size:10px;letter-spacing:0}
+}
+/* kakao hero A / B contact pill: '預約・諮詢' / 'LINE@beautyblossom_tw' ran 29 px past the 300 px pill; the pill may be 330 wide (still left of the cream tube
+   and the product box) */
+html:lang(zh-TW)[data-size]:not(#sz) .K1a2 .c1-contact,html:lang(zh-TW)[data-size]:not(#sz) .K1b2 .c1-contact{max-width:330px}
+
+/* --- HK --- */
+/* kakao hero A / B contact pill: '預約及查詢 WhatsApp：+82 10-7215-7511' took three lines in 300 px; 340 px wide it takes two ('預約及查詢 WhatsApp：' / the number) */
+html:lang(zh-HK)[data-size]:not(#sz) .K1a2 .c1-contact,html:lang(zh-HK)[data-size]:not(#sz) .K1b2 .c1-contact{max-width:340px}
+/* kakao card 2 foot: the WhatsApp line (454 px) and the VAT note '以上價格均未包含10%增值稅（VAT）' (320 px) are 70 px wider than the card; there is no room
+   for a second line under the gift band, so both stay on one line a little smaller (19 / 16 instead of 21 / 19, as CRF12 HK set its long notes smaller) */
+html:lang(zh-HK)[data-size]:not(#sz) .K2a .foot-contact,html:lang(zh-HK)[data-size]:not(#sz) .K2b .foot-contact{font-size:19px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a .vat,html:lang(zh-HK)[data-size]:not(#sz) .K2b .vat{font-size:16px}
+/* kakao card 4 part 2: the longer HK descriptions (three lines each) pushed the source line 28 px under the card; the two set-ups keep less padding */
+html:lang(zh-HK)[data-size]:not(#sz) .K4b .ways{margin-top:10px}
+html:lang(zh-HK)[data-size]:not(#sz) .K4b .way{padding-top:9px;padding-bottom:9px}
+html:lang(zh-HK)[data-size]:not(#sz) .K4b .c4-foot{padding-top:6px}
+/* kakao card 6 part 3: '診所位置及交通' and 'LOCATION' were 4 px wider than the box, so the title dropped under the kicker; a smaller gap keeps one row */
+html:lang(zh-HK)[data-size]:not(#sz) .K6c .loc-head{gap:0 4px}
+@container (max-width:600px){
+ /* card 2 A on phones: 'GOURI' / '膠原增生療程限定優惠' left '惠' alone on the last line; a balanced break split '療程', so the line holds six characters
+    ('膠原增生療程' / '限定優惠') */
+ html:lang(zh-HK) .c2:not([data-variant="b"]) .ptitle .k2{max-width:6.2em}
+ /* hero B on phones: the VAT note '以上價格均未包含10%增值稅（VAT）' was wider than the price box; it may take two lines */
+ html:lang(zh-HK) .c1[data-variant="b"]:not([data-size-only]) .offer-vat{white-space:normal}
+}
+/* TW phone card 2 A: 'GOURI' / '膠原蛋白增生護理優惠活動' broke inside '優惠' ('…護理優' / '惠活動'); balanced it reads '膠原蛋白增生' / '護理優惠活動' */
+@container (max-width:600px){
+ html:lang(zh-TW) .c2:not([data-variant="b"]) .ptitle .k2{text-wrap:balance}
+}
+
+/* ===== TW / HK chip text centring (2026-11-17, user rule 2026-11-05: text in pills, chips, tags and bands sits on the box centre within 0.6 px; measured
+   with qa/text-center-check.cjs + ?lang=TW|HK at 1080 / 780 / line / kakao). The CN values above were measured on the CN copy; here each TW / HK chip moves
+   by its own measured offset (real px = offset x card width / 1080). The photo labels are English in TW / HK (RECEPTION, CARE ROOM, TREATMENT ROOM), so
+   they take the Korean values again (.37em / .23em). ===== */
+@media (min-width:901px){
+ html:lang(zh-TW) .ab-photos figcaption,html:lang(zh-HK) .ab-photos figcaption{padding-top:.37em;padding-bottom:.23em}
+ html:lang(zh-TW)[data-size]:not(#sz) .K6a .ab-photos figcaption,html:lang(zh-TW)[data-size]:not(#sz) .K6a .ab-photos figcaption[data-copy="gr_ab_ph1"],
+ html:lang(zh-HK)[data-size]:not(#sz) .K6a .ab-photos figcaption,html:lang(zh-HK)[data-size]:not(#sz) .K6a .ab-photos figcaption[data-copy="gr_ab_ph1"]{padding-top:.37em;padding-bottom:.23em}
+ /* card 3 kakao fact keys '成分' / '製造商' (Noto Sans TC sat 0.86 px low) */
+ html:lang(zh-TW)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f1_k"],html:lang(zh-TW)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f3_k"],
+ html:lang(zh-HK)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f1_k"],html:lang(zh-HK)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f3_k"]{padding-top:2.8px;padding-bottom:3.66px}
+ /* TW */
+ html:lang(zh-TW)[data-size]:not(#sz) .L2a2 .gift-band .gb-tx{top:-.029em}
+ html:lang(zh-TW)[data-size]:not(#sz) .L2b .row > .badge[data-copy="gr_r9_badge"],html:lang(zh-TW)[data-size]:not(#sz) .L2b .row > .badge[data-copy="gr_r12_badge"]{padding-top:5.33px;padding-bottom:3.67px}
+ html:lang(zh-TW)[data-size]:not(#sz) .L2b .gift-band [data-copy]{top:-.016em}
+ html:lang(zh-TW)[data-size]:not(#sz) .K2a1 .row > .badge[data-copy="gr_r9_badge"]{padding-top:4.49px;padding-bottom:4.51px}
+ html:lang(zh-TW)[data-size]:not(#sz) .K2a2 .gift-band .gb-tx{top:-.04em}
+ html:lang(zh-TW)[data-size]:not(#sz) .K2b1 .gift-band [data-copy]{top:-.022em}
+ /* HK: the WhatsApp contact line ('預約及查詢 WhatsApp：+82 10-7215-7511', Latin and figures) sat about 1.9 px low on the home / line heroes, and the
+    CN two-line kakao value (-.103em) lifted it 2.6 px too high */
+ html:lang(zh-HK) .c1:not([data-variant="b"]) .c1-contact [data-copy]{position:relative;top:-.104em}
+ html:lang(zh-HK) .c1[data-variant="b"] .c1-contact [data-copy]{position:relative;top:-.089em}
+ html:lang(zh-HK)[data-size]:not(#sz) .K1a2 .c1-contact [data-copy],html:lang(zh-HK)[data-size]:not(#sz) .K1b2 .c1-contact [data-copy]{top:.023em}
+ html:lang(zh-HK) .c2[data-variant="b"]:not([data-size-only]) .row > .badge[data-copy="gr_r12_badge"]{padding-top:4.45px;padding-bottom:4.55px}
+ html:lang(zh-HK) .c2[data-variant="b"]:not([data-size-only]) .gift-band [data-copy]{top:-.011em}
+ html:lang(zh-HK)[data-size]:not(#sz) .L2a1 .row > .badge[data-copy="gr_r9_badge"]{padding-top:4.39px;padding-bottom:4.61px}
+ html:lang(zh-HK)[data-size]:not(#sz) .K2a2 .gift-band .gb-tx{top:-.035em}
+ html:lang(zh-HK)[data-size]:not(#sz) .K2a3 .row > .badge[data-copy="gr_r12_badge"]{padding-top:5.31px;padding-bottom:2.69px}
+ html:lang(zh-HK)[data-size]:not(#sz) .K2b1 .gift-band [data-copy]{top:-.022em}
+ /* kakao 2 B part 1: the two-line gift band text can only snap half a pixel off centre (+0.6 / -0.7); half a pixel more padding above and below centres it */
+ html:lang(zh-TW)[data-size]:not(#sz) .K2b1 .gift-band,html:lang(zh-HK)[data-size]:not(#sz) .K2b1 .gift-band{padding-top:12.5px;padding-bottom:12.5px}
+ html:lang(zh-HK)[data-size]:not(#sz) .K2b2 .row > .badge[data-copy="gr_r11_badge"],html:lang(zh-HK)[data-size]:not(#sz) .K2b2 .row > .badge[data-copy="gr_r12_badge"]{padding-top:4.54px;padding-bottom:4.46px}
+}
+@media (min-width:600px) and (max-width:900px){
+ /* HK hero B at 780: the WhatsApp line sat 1.3 px low */
+ html:lang(zh-HK) .c1[data-variant="b"] .c1-contact [data-copy]{top:-.107em}
+}
