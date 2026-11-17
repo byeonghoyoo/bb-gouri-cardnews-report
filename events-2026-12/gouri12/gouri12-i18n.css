@@ -195,3 +195,97 @@ html:lang(zh-HK)[data-size]:not(#sz) .K6c .loc-head{gap:0 4px}
  /* HK hero B at 780: the WhatsApp line sat 1.3 px low */
  html:lang(zh-HK) .c1[data-variant="b"] .c1-contact [data-copy]{top:-.107em}
 }
+
+/* ===== TH (2026-11-17 afternoon, lead order): the Thai version (html:lang(th) only; Korean and the Chinese versions are untouched) ===== */
+/* fonts exactly as THM12 / CRF12 / DEN12 TH: Noto Sans Thai after Pretendard, so Latin letters and figures keep Pretendard and the Thai letters come from
+   Noto Sans Thai; the Latin face Jost keeps its Latin letters and figures */
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-num:'Jost','Pretendard Variable',Pretendard,'Noto Sans Thai',sans-serif}
+/* line breaks: Thai has no spaces between words; keep-all would only break at the phrase spaces, so Thai breaks at the browser's dictionary breaks */
+html:lang(th) .sheet{word-break:normal}
+/* prices: Thai prices are written in full won ('1,200,000 วอน', 13 characters against '120만원'); the figure and its unit stay on one line */
+html:lang(th) .money{white-space:nowrap}
+/* titles: the Thai hero B first line ('โปรโมชั่นเปิดตัว', 563 px against 470 at 1080) and the one-line card 2 B title ('โปรโมชัน GOURI กระตุ้นคอลลาเจน',
+   1057 against 968) are wider than their boxes; both get the fit factor the hero A / card 2 A titles have (gouri12.js shrinks them until they fit) */
+html:lang(th) .c1[data-variant="b"] .title{font-size:calc(95*var(--px)*var(--fit,1))}
+@media(max-width:600px){html:lang(th) .c1[data-variant="b"] .title{font-size:calc(90*var(--px)*var(--fit,1))}}
+html:lang(th) .c2[data-variant="b"] .ptitle{font-size:calc(75*var(--px)*var(--fit,1))}
+/* prices: the full won figure ('1,260,000', 9 characters against '126') ran past the price column (333 px against 236 at 1080); the figure is set smaller
+   in every size (the unit 'วอน' keeps the size of the Korean unit), the hero price a little less smaller */
+html:lang(th) .row > .price .n{font-size:.66em}
+html:lang(th) [data-copy="gr_h_price"] .n{font-size:.76em}
+/* kakao 2 A: the price column is 236 wide instead of 150 (the Thai figure does not fit 150 at a readable size); the option column gives the room */
+html:lang(th)[data-size]:not(#sz) .c2.K2a:not([data-variant="b"]) .row{grid-template-columns:38px minmax(0,1fr) auto 236px}
+html:lang(th)[data-size]:not(#sz) .c2.K2a:not([data-variant="b"]) .row:has(> .badge){grid-template-columns:38px minmax(0,max-content) auto minmax(0,1fr) 236px}
+/* Thai headlines break only at their spaces (keep-all): the browser's Thai dictionary splits loan words ('GOURI กระตุ้นคอลลา' / 'เจน' on the phone card 2 A
+   title); body copy keeps those words whole with gouri12.js KEEP */
+html:lang(th) .title,html:lang(th) .ptitle,html:lang(th) .q{word-break:keep-all}
+/* hero A on phones (as zh): the VAT note takes its own line under the price (the cream tube covered it), the gift band text keeps clear of the tube,
+   the contact line takes two lines ('จองคิวและสอบถาม' / '+82-2-336-7511') left of the tube; hero B: the contact line wraps inside the offer column */
+@container (max-width:600px){
+ html:lang(th) .c1:not([data-variant="b"]):not([data-size-only]) .offer-vat{flex-basis:100%}
+ html:lang(th) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line{padding-right:62px;font-size:10px}
+ html:lang(th) .c1:not([data-variant="b"]):not([data-size-only]) .c1-contact{max-width:160px;white-space:normal;word-break:keep-all}
+ html:lang(th) .c1[data-variant="b"]:not([data-size-only]) .c1-contact{max-width:100%;white-space:normal;word-break:keep-all}
+}
+/* kakao 1 A / 1 B part 2: the contact pill keeps under 300 px in two lines (it ran under the cream tube), the 1 A gift band keeps clear of the tube (as zh);
+   kakao 1 A part 2: the price ('660,000 วอน') ran 30 px past the offer box, its figure is a little smaller there */
+html:lang(th)[data-size]:not(#sz) .K1a2 .c1-contact,html:lang(th)[data-size]:not(#sz) .K1b2 .c1-contact{max-width:300px;white-space:normal;word-break:keep-all}
+html:lang(th)[data-size]:not(#sz) .K1a2 .gift-line{max-width:340px}
+html:lang(th)[data-size]:not(#sz) .K1a2 [data-copy="gr_h_price"] .n{font-size:.64em}
+/* card 2 B: the Thai options ('GOURI 1 ไซริงค์ + Re2O 1 ขวด', 283 px against 207 at 1080) ran under their badges. Home: the option takes two lines.
+   Line / kakao: the full won list price ('2,270,000 วอน'), the badge and the event price no longer fit one line, so the badge goes up to the option
+   line ('gift opt opt bd' / 'old old price price', as the home grid) and the option shrinks to its width (fit factor, Thai down to .56) */
+html:lang(th) .c2[data-variant="b"]:not([data-size-only]) .opt{white-space:normal}
+html:lang(th)[data-size]:not(#sz) .c2.L2b .row:has(> .badge),html:lang(th)[data-size]:not(#sz) .c2.K2b .row:has(> .badge){grid-template-columns:28px minmax(0,1fr) auto auto;grid-template-areas:"gift opt opt bd" "old old price price"}
+html:lang(th)[data-size]:not(#sz) .c2.L2b .opt,html:lang(th)[data-size]:not(#sz) .c2.K2b .opt{font-size:calc(22*var(--px)*var(--fit,1))}
+/* kakao 2 A part 2 / 2 B part 1: the gift band ('ทำ GOURI ตั้งแต่ 1 ไซริงค์ขึ้นไป รับฟรี! Perfection Cream') took two lines and pushed the foot 53 px under
+   the card; it is set on one line (22 instead of 25). Part 2 A: the one-line head ('GOURI · คอลลาเจนบูสเตอร์ PCL ชนิดเหลว …') takes two lines left of the
+   model picture, so the board starts 32 px higher (the rows keep their place under the picture) */
+html:lang(th)[data-size]:not(#sz) .K2a2 .gift-band,html:lang(th)[data-size]:not(#sz) .K2b1 .gift-band{font-size:22px}
+html:lang(th)[data-size]:not(#sz) .c2.K2a2 .c2-head{padding-right:190px}
+html:lang(th)[data-size]:not(#sz) .c2.K2a2 .board{margin-top:104px}
+/* kakao 2 A part 3 / 2 B part 2: the one-line head sub is set a little smaller so it stays one line (the 2 B part 2 foot ran 25 px under the card) */
+html:lang(th)[data-size]:not(#sz) .K2a3 .c2-sub,html:lang(th)[data-size]:not(#sz) .K2b2 .c2-sub{font-size:19px}
+/* card 4: the Thai descriptions take three to five lines (Korean two to three), so the source line ran under the card (line 8 px, kakao part 2 46 px);
+   descriptions and set-up lines are set a little smaller there */
+html:lang(th)[data-size]:not(#sz) .L4 .wd{font-size:19px;line-height:1.42}
+html:lang(th)[data-size]:not(#sz) .L4 .ws{font-size:18px;line-height:1.45}
+html:lang(th)[data-size]:not(#sz) .K4b .wd{font-size:18px;line-height:1.4}
+html:lang(th)[data-size]:not(#sz) .K4b .ws{font-size:18px;line-height:1.4}
+/* kakao 5 part 2: the step title 'วางแผนการทำหัตถการ' took two lines and the fourth step ran 31 px under the card; titles 22 (one line) */
+html:lang(th)[data-size]:not(#sz) .K5b .stt{font-size:22px}
+/* kakao 6 part 3: the station ('สถานี Hapjeong ทางออก 3') took two lines and the three-line address ran 52 px under the card; the station is set on one
+   line (21) and the map is 30 px shorter (the clinic marker stays in the middle) */
+html:lang(th)[data-size]:not(#sz) .K6c .way-st{font-size:21px}
+html:lang(th)[data-size]:not(#sz) .K6c .map{aspect-ratio:317/263}
+/* line 2 B, first ticket (the narrowest): the list price and the event price ran into each other ('2,290,000 วอน' under '1,260,000 วอน'); as zh the list
+   price goes over the event price at the right (without the arrow) and the badge sits on the price line, the option keeps the full width */
+html:lang(th)[data-size]:not(#sz) .c2.L2b .prod:first-child .row:has(> .badge){grid-template-columns:28px minmax(0,1fr) auto auto;grid-template-areas:"gift opt opt opt" ". . . old" "bd bd bd price";row-gap:0}
+html:lang(th)[data-size]:not(#sz) .c2.L2b .prod:first-child .row:has(> .badge) > .old{justify-self:end;line-height:1.2}
+html:lang(th)[data-size]:not(#sz) .c2.L2b .prod:first-child .row:has(> .badge) > .old::after{display:none}
+html:lang(th)[data-size]:not(#sz) .c2.L2b .prod:first-child .row:has(> .badge) > .badge{justify-self:end}
+/* kakao 2 A parts 2-3 / 2 B part 2: the longer Thai head put the sparkle on the 'GOURI' kicker; it moves into the left margin */
+html:lang(th)[data-size]:not(#sz) .K2a2 .s3,html:lang(th)[data-size]:not(#sz) .K2a3 .s3,html:lang(th)[data-size]:not(#sz) .K2b2 .s3{left:12px}
+/* ===== TH chip text centring (2026-11-17, user rule 2026-11-05; measured with qa/text-center-check.cjs + ?lang=TH at 1080 / 780 / line / kakao, the same
+   way as DEN12 TH): Noto Sans Thai sets the line with the tone marks above the letters, so the Korean top shifts left the Thai gift line and gift bands
+   2.8 to 5.2 px high; each text moves down by its measured amount (real px = offset x card width / 1080), the kakao BEST badge and the line chip
+   'สาย 2・6' swap a little top / bottom padding. The three card 3 fact keys ('ส่วนประกอบ' -1.27, 'รูปแบบผลิตภัณฑ์' +1.23, 'ผู้ผลิต' +0.86 at 1080) are
+   left as they are: the checker takes the ink with the marks above ('่ ั ิ ้ ์') and below ('ู'), so the three keys of one row read opposite ways while
+   their letters sit on the chip centre (DEN12 TH left its card 3 chip for the same reason) */
+@media (min-width:901px){
+ html:lang(th) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line [data-copy]{position:relative;top:.212em}
+ html:lang(th) .c2:not([data-variant="b"]):not([data-size-only]) .gift-band .gb-tx{top:.19em}
+ html:lang(th) .c2[data-variant="b"]:not([data-size-only]) .gift-band [data-copy]{top:.182em}
+ html:lang(th)[data-size]:not(#sz) .L1a .gift-line [data-copy]{position:relative;top:.212em}
+ html:lang(th)[data-size]:not(#sz) .L2a2 .gift-band .gb-tx{top:.191em}
+ html:lang(th)[data-size]:not(#sz) .L2b .gift-band [data-copy]{top:.168em}
+ html:lang(th)[data-size]:not(#sz) .K2a2 .gift-band .gb-tx{top:.158em}
+ html:lang(th)[data-size]:not(#sz) .K2b1 .gift-band [data-copy]{top:.205em}
+ html:lang(th)[data-size]:not(#sz) .K2a3 .row > .badge[data-copy="gr_r12_badge"]{padding-top:4.52px;padding-bottom:3.48px}
+ html:lang(th)[data-size]:not(#sz) .K6c .way-line{padding-top:.25em;padding-bottom:.15em}
+}
+@media (min-width:600px) and (max-width:900px){
+ html:lang(th) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line [data-copy]{position:relative;top:.152em}
+ html:lang(th) .c2:not([data-variant="b"]):not([data-size-only]) .gift-band .gb-tx{top:.21em}
+ html:lang(th) .c2[data-variant="b"]:not([data-size-only]) .gift-band [data-copy]{top:.17em}
+}

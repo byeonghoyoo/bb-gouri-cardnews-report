@@ -47,6 +47,9 @@ function setSplit(el,v){
  if(!m&&CJK[locale]&&el.matches('.title,.ptitle')){const c=/^([A-Za-z][A-Za-z0-9]*)([\u2E80-\u9FFF\uF900-\uFAFF].*)$/.exec(v||'');if(c){el.append(span('k1',c[1]),span('k2',c[2]));return;}}
  if(!m){el.append(span('k1',v||''));return;}
  el.append(span('k1',m[1]),document.createTextNode(m[2]),span('k2',m[3]));
+ /* 2026-11-17 TH: a Thai title breaks only at its spaces (the browser's Thai dictionary split 'คอลลา' / 'เจน' and 'กระ' / 'ตุ้น' on phones, and keep-all does
+    not stop it); each phrase is kept whole. Display only; the other languages are set as before */
+ if(locale==='TH')for(const s of el.querySelectorAll('.k1,.k2')){const t=s.textContent;s.textContent='';for(const p of t.split(/(\s+)/))if(p)s.append(/^\s+$/.test(p)?document.createTextNode(p):span('nw',p));}
 }
 /* card 5 hours: the day label and the time are styled apart */
 function setHours(el,v){
@@ -59,8 +62,10 @@ function setHours(el,v){
 const GUARD='.a,.fd,.std,.wd,.ws,.tip [data-copy],.src,.gift-line [data-copy],.gb-tx,.pdesc,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
 /* kept together: names, the phone number, one set-up ('고우리 2실린지 + 리쥬란 4cc') and words joined by a middle dot ('세안·화장·운동은') */
 /* 2026-11-14 language version also keeps the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them */
-/* 2026-11-14 CN (11/17 TW / HK: 麗珠蘭, 'Re2O 1vial', 麗朵皮膚科, a short name in 「」 such as the TW LINE link '「🌸麗朵皮膚科🌸」', the brand 'Beauty Blossom'): one set-up ('GOURI 1支 + 丽珠兰2cc' / 'GOURI 1支＋Re2O 1瓶', the Korean '고우리 1실린지 + 리쥬란 2cc' rule; 11/16 the reviewer's spacing) and the clinic name '丽朵皮肤科' never break inside */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼層层階號号]|GOURI \d支 ?[＋+] ?(?:丽珠兰|麗珠蘭|RE2O|Re2O) ?\d+(?:cc|瓶|vial)|丽朵皮肤科|麗朵皮膚科|「[^」\s]{1,12}」|Beauty Blossom|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|재생크림 증정|PCL \(폴리카프로락톤\)|DEXLEVO|고우리 \d실린지 \+ 리(?:쥬란|투오) \d+(?:cc|vial)|[가-힣A-Za-z0-9]+(?:·[가-힣A-Za-z0-9]+)+)/g;
+/* 2026-11-14 CN (11/17 TW / HK: 麗珠蘭, 'Re2O 1vial', 麗朵皮膚科, a short name in 「」 such as the TW LINE link '「🌸麗朵皮膚科🌸」', the brand 'Beauty Blossom'; 11/17 TH: Thai loan words the browser's Thai dictionary splits
+   ('คอ|ล|ลา|เจน' collagen, 'บูส|เตอร์' booster, 'ไซ|ริงค์' syringe, 'แพ็ก|เกจ' package, 'เหมาะ|สม', 'ผู้|อำนวย|การ') the director's name 'นพ. อี กอนโฮ', 'ผิวตามวัย' ('วัย' alone took the last line of the card 2 A sub) and a Thai
+   volume with its space ('10 cc'; 'cc' alone took the second line of a card 2 B option); no other language has Thai letters or a spaced 'cc'): one set-up ('GOURI 1支 + 丽珠兰2cc' / 'GOURI 1支＋Re2O 1瓶', the Korean '고우리 1실린지 + 리쥬란 2cc' rule; 11/16 the reviewer's spacing) and the clinic name '丽朵皮肤科' never break inside */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼層层階號号]|GOURI \d支 ?[＋+] ?(?:丽珠兰|麗珠蘭|RE2O|Re2O) ?\d+(?:cc|瓶|vial)|丽朵皮肤科|麗朵皮膚科|「[^」\s]{1,12}」|Beauty Blossom|คอลลาเจน|สกินบูสเตอร์|บูสเตอร์|ไซริงค์|ไซริงจ์|แพ็กเกจ|เหมาะสม|ผู้อำนวยการ|นพ\. อี กอนโฮ|ผิวตามวัย|\d+ cc|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|재생크림 증정|PCL \(폴리카프로락톤\)|DEXLEVO|고우리 \d실린지 \+ 리(?:쥬란|투오) \d+(?:cc|vial)|[가-힣A-Za-z0-9]+(?:·[가-힣A-Za-z0-9]+)+)/g;
 function appendKept(el,s){
  let last=0;
  for(const m of s.matchAll(KEEP)){
@@ -90,7 +95,8 @@ function setText(el,v){
  KEEP.lastIndex=0;
  if(!v||(!el.matches(GUARD)&&!cjkG)){el.textContent=v;return;}
  let m=null;
- if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ /* 2026-11-17 TH (THM12 / DEN12 rule): Thai has no last-words guard, its lines break at the browser's dictionary breaks (a space ends a phrase, not a word) */
+ if(!CJK[locale]&&locale!=='TH')m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
  else{m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
@@ -112,8 +118,9 @@ function fitLines(el,lines,min){
 function fit(){
  const phone=isPhone();
  for(const el of document.querySelectorAll('.tag,.title'))fitTo(el,el.clientWidth,.6);
- /* 2026-11-14: Chinese titles may shrink a little further (the kakao 2 B one-line title is wider than the Korean); Korean keeps .72 */
- for(const el of document.querySelectorAll('.ptitle,.q,.ft,.opt')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,CJK[locale]?.56:.72);}
+ /* 2026-11-14: Chinese titles may shrink a little further (the kakao 2 B one-line title is wider than the Korean); Korean keeps .72. 2026-11-17 TH the same
+    (the card 2 B title 'โปรโมชัน GOURI กระตุ้นคอลลาเจน' is 1057 px against 720 on kakao) */
+ for(const el of document.querySelectorAll('.ptitle,.q,.ft,.opt')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,CJK[locale]||locale==='TH'?.56:.72);}
  for(const el of document.querySelectorAll('.ab-title,.ab-strengths .at')){if(phone){el.style.removeProperty('--fit');continue;}fitLines(el,2,.74);}
  for(const el of document.querySelectorAll('.seal .sl'))fitTo(el,el.parentElement.clientWidth,.55);
 }
