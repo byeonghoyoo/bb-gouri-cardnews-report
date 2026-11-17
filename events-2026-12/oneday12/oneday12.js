@@ -57,7 +57,7 @@ function setParts(el,v,chip){
  const {parts,seps}=topSplit(v);
  parts.forEach((p,i)=>{
   if(i){const s=document.createElement('span');s.className='plus';s.textContent=seps[i-1];el.append(s);}
-  const c=document.createElement('span');c.className=chip?'chip':'seg';c.textContent=p;el.append(c);
+  const c=document.createElement('span');c.className=chip?'chip':'seg';if(locale==='TH')appendKept(c,p);else c.textContent=p;el.append(c); /* 2026-11-17 TH: its loanwords and number + unit stay whole inside a part (KEEP_TH) */
  });
 }
 /* card 6 hours: the day label and the time are styled apart */
@@ -76,9 +76,16 @@ const GUARD='.hook,.p-lead,.q-ans,.tier-d,.dv-t,.st-d,.inf-n,.ask-d,.care [data-
    ('6樓', '66號'), a name in corner brackets (the TW LINE account '「🌸麗朵皮膚科🌸」') the Latin 'One Day' / 'Beauty Blossom' and the TW title '一日全方位療程' of the TW copy whole (a two-line title breaks after 'One Day');
    no Korean copy has them */
 const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|「[^」\n]{1,16}」|一日全方位療程|One Day|Beauty Blossom|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|마스터 솔루션|울쎄라피 프라임|써마지 FLX|1\.5·3\.0·4\.5mm|근막\(SMAS\)층까지|3D 피부 진단기|진피 1\.5mm|두 주파수|세 단계|세 장비|두 장비|하루 일정|Plan A·B|Plan A|Plan B|목·어깨 라인|3중 레이어 리프팅|리프팅 솔루션|베이직 솔루션|연고 마취|마취 없이|붉어짐·붓기·멍|몸속 전자기기|금속·보형물|임신·수유|복용 중인 약|음주·사우나·과한 운동|자외선 차단제)/g;
+/* 2026-11-17 TH: Thai loanwords the browser's Thai dictionary does not know break between their syllables ('ฟิล|เลอร์', 'โบ|ท็อกซ์'), and so do
+   'ไขมัน', 'เหมาะสม', the director's name and the compounds 'หลอดเลือดดำ', 'ยาชา', 'ชั้นผิว' / 'ชั้นลึก' / 'ชั้นตื้น' (their last syllable alone took a last
+   line); they stay whole, and so do a number and its unit ('2,200 ช็อต', '24 cc', '20:00 น.') and an exit / line / floor /
+   house number ('ทางออก 3'). Only the Thai copy is set with this list (KEEP_TH = KEEP + these); Korean and TW use KEEP as before */
+const KEEP_TH=new RegExp(KEEP.source+'|ฟิลเลอร์|โบท็อกซ์|แพ็กเกจ|ทรีตเมนต์|อัลตราซาวนด์|มาสก์|คิวอาร์โค้ด|ซาวน่า|หลอดเลือดดำ|ยาชา|ชั้นผิว|ชั้นลึก|ชั้นตื้น|ไขมัน|เหมาะสม|อี กอนโฮ'
+ +'|\\d[\\d,.:]*\\s(?:ช็อต|พัลส์|cc|kJ|ขวด|ระดับ|ชนิด|มม\\.|แพ็กเกจ|ล้านจูล|แผ่น|น\\.)|(?:ทางออก|สาย|ชั้น|เลขที่)\\s\\d+','g');
+const keepRe=()=>locale==='TH'?KEEP_TH:KEEP;
 function appendKept(el,s){
- let last=0;KEEP.lastIndex=0;
- for(const m of s.matchAll(KEEP)){
+ let last=0;
+ for(const m of s.matchAll(keepRe())){
   if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));
   let e=m.index+m[0].length;while(e<s.length&&/[，。、：；！？）」』]/.test(s[e]))e++; /* 2026-11-17: Chinese punctuation right after a kept name stays with it (it may not start a line); Korean copy has none */
   const k=document.createElement('span');k.className='nw';k.textContent=s.slice(m.index,e);el.append(k);last=e;
@@ -99,8 +106,8 @@ function setText(el,v){
  if(el.classList.contains('pparts')){setParts(el,v,true);return;}
  if(el.parentElement&&el.parentElement.classList.contains('cmb')){setParts(el,v,false);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
- KEEP.lastIndex=0;
- const kept=!!v&&KEEP.test(v);KEEP.lastIndex=0;
+ const KR=keepRe();KR.lastIndex=0;
+ const kept=!!v&&KR.test(v);KR.lastIndex=0;
  /* Chinese: every text keeps its last word together (the Korean list GUARD stays as it was) */
  if(!v||(!el.matches(GUARD)&&!(CJK[locale]&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
  let m=null;
@@ -109,7 +116,7 @@ function setText(el,v){
  /* Chinese guard only in boxes whose text flows inline: in a flex / grid box the kept tail would become its own item with a gap before it */
  else if(guardable(el)){m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
- if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
+ if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KR))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
  el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);

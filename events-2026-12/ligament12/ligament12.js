@@ -72,9 +72,12 @@ function setHours(el,v){
 /* widow guard: the last two words stay together */
 const GUARD='.hook,.p-lead,.q-ans,.lg-d,.mx-d,.st-d,.inf-n,.c5-time,.care [data-copy],.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.pg-unit,.pfill';
 /* names that never break inside */
+/* 2026-11-17 TH (afternoon): Thai words the browser's Thai dictionary splits at a line end stay whole: loan words ('คอ|ลลาเจน' collagen, 'ทรีต|เมนต์'
+   treatment, filler, package, botox, premium, volume), compounds ('ความ|มั่นใจ', 'สาร|กระตุ้น', 'หย่อน|คล้อย', 'เหมาะ|สม', 'ช่วง|กลาง', 'สุด|สัปดาห์'), the
+   director's name 'นพ. อี กอนโฮ' and a Thai volume with its space ('4 cc'); no Korean or TW copy has Thai letters or a spaced 'cc' */
 /* 2026-11-17 language versions also keep the international phone number, a chat ID ('@beautyblossom_tw'), the floor / house numbers of the address
    ('6樓', '66號') and a name in corner brackets (the TW LINE account '「🌸麗朵皮膚科🌸」') whole; no Korean copy has them */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|「[^」\n]{1,16}」|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|스컬트라·래디어스|스컬트라 · 래디어스|필러·스컬트라·래디어스|유지인대 자리|섬유 조직|병\(바이알\)|하루 5번|5분씩|5일 동안|연고·국소 마취|LDM을|LDM까지|LDM으로|주사 리프팅|국산과 수입)/g;
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|「[^」\n]{1,16}」|คอลลาเจน|ทรีตเมนต์|ความมั่นใจ|สารกระตุ้น|หย่อนคล้อย|เหมาะสม|ช่วงกลาง|สุดสัปดาห์|ฟิลเลอร์|แพ็กเกจ|โบท็อกซ์|พรีเมียม|วอลุ่ม|นพ\. อี กอนโฮ|\d+ cc|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|스컬트라·래디어스|스컬트라 · 래디어스|필러·스컬트라·래디어스|유지인대 자리|섬유 조직|병\(바이알\)|하루 5번|5분씩|5일 동안|연고·국소 마취|LDM을|LDM까지|LDM으로|주사 리프팅|국산과 수입)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
