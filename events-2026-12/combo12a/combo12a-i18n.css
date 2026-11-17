@@ -1,0 +1,185 @@
+/* CMB12A language versions TW + TH (2026-11-17, lead order). Copy = v4/langverify/out/CMB12A.final.json as it is; this file only adds the language fonts
+   and the line breaks / widths the Chinese and Thai copy needs. Every selector names a language (:lang(zh) / :lang(th)), so the Korean page stays
+   pixel-identical (v4/combo12a/i18n-1117.cjs checks the selectors). CMB12B (combo12b) shares combo12a's layout system but not this file. */
+
+/* fonts: Chinese text in Noto Sans TC first in the stack (Pretendard's Hanja never mixes in). The Latin display face (Gloock: the English kickers, the
+   ribbon, the B&A eyebrow, the step numbers) keeps its Latin letters; Chinese letters typed into it later fall back to Noto Sans TC (as LIG12 / ONE12) */
+html:lang(zh-TW),html:lang(zh-HK){--f-cjk:'Noto Sans TC'}
+html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
+html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-en:'Gloock',var(--f-cjk),'Pretendard Variable',Pretendard,serif}
+
+/* line breaks: Chinese breaks between characters (the Korean page keeps whole words with keep-all) */
+html:lang(zh) .sheet{word-break:normal}
+/* Latin labels that do not change with the language (the BEST / HIT badges, BEFORE / AFTER, the B&A arrow, the card 3 ingredient chips PN / PDLLA · PDO ·
+   PLLA / HA, the card 5 photo captions) keep the Korean page's Latin face, so they sit exactly as on the Korean page (as LIG12 TW); Chinese letters typed
+   into them later fall back to Noto Sans TC */
+html:lang(zh) .badge,html:lang(zh) .bb-ba__tag,html:lang(zh) .bb-ba__arrow,html:lang(zh) [data-copy="c1_c4_b1_k"],html:lang(zh) [data-copy="c1_c4_b2_k"],html:lang(zh) [data-copy="c1_c4_b3_k"],html:lang(zh) [data-copy="c1_ab_ph1"],html:lang(zh) [data-copy="c1_ab_ph2"],html:lang(zh) [data-copy="c1_ab_ph3"]{font-family:'Pretendard Variable',Pretendard,var(--f-cjk),sans-serif}
+
+/* card 2 price title (TW '麗珠蘭＆膠原蛋白增生劑', TH 'Rejuran และสกินบูสเตอร์', both longer than '리쥬란 & 스킨부스터'):
+   - kakao: the 'Price list' kicker and the title share one flex line; the title box (flex 1 1 0, the title nowrap) would rather wrap under the kicker and
+     push the VAT line off the card, so it may shrink and combo12a.js fit() sets the title to its width as on the Korean card;
+   - 2 B (home and board): the snowflake sits right after the Korean title; the title box ends before it, fit() sets the title to that width */
+html:lang(zh)[data-size="kakao"] main.acc-pink .cp .p-title{min-width:0}
+@container (min-width:601px){html:lang(zh) .cp.c2.bv:not([data-size-only]) .p-title{max-width:calc(560*var(--px))}}
+html:lang(zh)[data-size="line"] .L2b .p-title{max-width:560px}
+/* phones, 2 B: the title runs one character into the model cut-out on the right; the head keeps clear of her and the title takes two lines
+   ('麗珠蘭＆膠原蛋白' / '增生劑', combo12a.js keeps the last word together) */
+@container (max-width:600px){html:lang(zh) .cp.c2.bv .cp-head{margin-right:116px}}
+
+/* card 2 B (home and board): the TW options of rows 15-16 on the wide 리쥬베룩 ticket ('麗珠蘭Healer 6cc＋水光肉毒雙倍劑量（韓國製）') are a little
+   wider than the ticket and each took a second line, pushing the VAT line down to the card edge; they are set a little smaller there, so each stays on
+   one line as on the Korean card */
+@container (min-width:601px){html:lang(zh) .cp.c2.bv:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .popt{font-size:calc(19.5*var(--px))}} /* 19.5 since the 18:17 re-review ('（韓國品牌）' rows 15-16, row 16 was 2 px over at 20) */
+/* line 2 B-1 (three tickets across, 269 px rows): the TW row 16 part '雙倍劑量水光肉毒（韓國品牌）' (re-review 18:17) is 308 px at the Korean size and its end was
+   cut by the ticket edge; the TW options of that ticket are set a little smaller, so each part keeps its line inside the ticket */
+html:lang(zh)[data-size]:not(#sz) .L2b1 .prod:has([data-copy="c1_p14_name"]) .popt{font-size:19px}
+
+/* card 5 booking box: the TW phone line holds the LINE ID '@beautyblossom_tw' (chat icon + LINE link, combo12a.js); about 1.5 times as long as the
+   Korean number, it ran out of the box at the big phone size. It is set at the size of the LIG12 / ONE12 TW line (home / board 20, kakao 23; the line card
+   and phones have room) */
+@container (min-width:601px){html:lang(zh-TW) .card:not([data-size-only]) .bk-phone.is-id{font-size:max(14px,calc(20*var(--px)))}}
+html:lang(zh-TW)[data-size]:not(#sz) .K63 .bk-phone.is-id{font-size:23px}
+
+/* kakao 3-3 (고민으로 보면, two narrow columns): the TW answers a little smaller (as TH), so '麗珠蘭Healer・' keeps one line over 'Lilied M',
+   'Skin／100／120' stays whole in its column and the source note stays on the card */
+html:lang(zh)[data-size]:not(#sz) .K43 .ch-a{font-size:18px}
+
+/* kakao 2 B-3 (the 리쥬베룩 ticket alone): beside the ticket name the TW parts '水光肉毒雙倍劑量（韓國製）' ran into the list price; the ticket name goes above
+   its rows (the ticket's phone arrangement, as TH), so each option has the row width */
+html:lang(zh)[data-size]:not(#sz) .K2b3 .prod{display:block}
+html:lang(zh)[data-size]:not(#sz) .K2b3 .prows{margin-top:10px}
+
+/* ===== TH (2026-11-17): Thai letters in Noto Sans Thai (Pretendard has none; its Latin letters and digits stay). Thai writes no spaces between words, so
+   keep-all would never break a Thai line: normal breaking (the browser's Thai dictionary; combo12a.js keeps the loanwords it splits whole) ===== */
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-en:'Gloock','Pretendard Variable',Pretendard,'Noto Sans Thai',serif}
+html:lang(th) .sheet{word-break:normal}
+html:lang(th)[data-size="kakao"] main.acc-pink .cp .p-title{min-width:0}
+
+/* hero 1 B (narrow left column on every size): the Thai pill 'Beauty Blossom' promotion line is about 1.4 times the column width; it wraps inside the
+   pill (rounded box instead of the capsule) rather than running out of the card. Hero 1 A has the width and keeps one line */
+html:lang(th) .bv.c1 .pill>span{white-space:normal}
+html:lang(th) .bv.c1 .pill{border-radius:calc(22*var(--px))}
+html:lang(th)[data-size]:not(#sz) .bv.c1 .pill{border-radius:18px}
+
+/* kakao 3-3 (고민으로 보면, two narrow columns): the Thai concerns are phrases of three to four lines there; they are set smaller with less row padding
+   and the answers a little smaller ('Rejuran Healer ·' kept one line), so the grid and the source note stay on the card */
+html:lang(th)[data-size]:not(#sz) .K43 .ch{padding-top:10px;padding-bottom:10px}
+html:lang(th)[data-size]:not(#sz) .K43 .ch-q{font-size:17px;line-height:1.3}
+html:lang(th)[data-size]:not(#sz) .K43 .ch-a{font-size:18px}
+
+/* kakao 5-3 location box: the Thai station line, its line chip and the address took five lines under the map (Korean: two) and ran past the card; the
+   map keeps its size (a map is never stretched), the Thai box title, station line and address are set smaller there */
+html:lang(th)[data-size]:not(#sz) .K63 .bt-loc .bt-t{font-size:22px}
+html:lang(th)[data-size]:not(#sz) .K63 .way{margin-top:8px}
+html:lang(th)[data-size]:not(#sz) .K63 .way-st{font-size:20px}
+html:lang(th)[data-size]:not(#sz) .K63 .way-addr{font-size:14px;line-height:1.45}
+/* its Thai line chip 'สาย 2 และ 6' sat exactly half a pixel off centre for any padding (its text snaps to whole pixels, the chip is centred in its row); a
+   quarter-pixel move of the chip lets the text snap to the centre */
+html:lang(th)[data-size]:not(#sz) .K63 .way-line{position:relative;top:.25px}
+/* same half-pixel case for four TW chips after the 18:17 re-review copy ('Skin / 100' on 2 A and line 2-1, 'Healer 2cc' on kakao 1 B-2, 'PN' on kakao 3-1):
+   whole-pixel shifts left them half a pixel above or below the centre, a quarter-pixel move of the chip centres the text */
+@container (min-width:801px){html:lang(zh) [data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_p7_sub"]{position:relative;top:.25px}}
+html:lang(zh)[data-size="line"]:not(#sz) .L2a1 span[data-copy="c1_p7_sub"]{position:relative;top:.25px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K1b2 span[data-copy="c1_hero_opt"]{position:relative;top:.25px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K41 span[data-copy="c1_c4_b1_k"]{position:relative;top:.25px}
+@container (min-width:601px){html:lang(th) .cp.c2.bv:not([data-size-only]) .p-title{max-width:calc(560*var(--px))}}
+html:lang(th)[data-size="line"] .L2b .p-title{max-width:560px}
+@container (max-width:600px){html:lang(th) .cp.c2.bv .cp-head{margin-right:130px}}
+
+/* hero 1 A: the Thai title 'Rejuran และสกินบูสเตอร์' (one line, team #20) filled the whole head width and its two ends sat on the frost bubbles
+   left and right of it; the head is a little narrower in Thai, so combo12a.js fit() sets the title between the bubbles (pill and sub line fit as before).
+   Kakao 1-1 (two title lines): the Thai first line 'Rejuran และ' reached the big bubble on the left; the Thai title is set a little smaller there */
+@container (min-width:601px){html:lang(th) .c1:not(.bv):not([data-size-only]) .h-head{left:calc(120*var(--px));right:calc(120*var(--px))}}
+html:lang(th)[data-size]:not(#sz) .K1a1 .h-title{font-size:calc(81*var(--px)*var(--fit,1))}
+html:lang(th)[data-size]:not(#sz) .K1a1 .h-title .tl{max-width:470px}
+/* kakao 1-1 sub line: a fixed 30 px there (fit() does not size it); the Thai line ran the framed box from card edge to card edge, it is set smaller */
+html:lang(th)[data-size]:not(#sz) .K1a1 .h-sub{font-size:23px;line-height:29px}
+/* its text sits half a pixel off centre after the whole-pixel shift in the generated block below (text snaps to whole pixels); a sub-pixel move of the line */
+html:lang(th)[data-size]:not(#sz) .K1a1 .h-box>.h-sub{transform:translateY(.47px)}
+/* card 3 title (home / board): the Thai question ran into the frost bubble at the top right; its box ends before the bubble, fit() sets it there */
+@container (min-width:601px){html:lang(th) .c4:not([data-size-only]) .q-title{max-width:calc(860*var(--px))}}
+
+/* TH card 2 prices: a Thai price is about two and a half times as wide as the Korean one ('1,270,000 วอน' / '127만원'), so the fixed Korean price columns
+   would put the list price under the sale price. Thai prices are set smaller and their columns take their width (as ONE12 / DEN12 TH); the option text
+   wraps between its words (combo12a.js keeps the Thai loanwords and number + unit whole) */
+html:lang(th) .seg{white-space:normal}
+@container (min-width:601px){
+ html:lang(th) .cp.c2:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) auto auto}
+ html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .psale,html:lang(th) .cp.c2.bv:not([data-size-only]) .psale{font-size:calc(28*var(--px))}
+ html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .plist,html:lang(th) .cp.c2.bv:not([data-size-only]) .plist{font-size:max(11px,calc(14*var(--px)))}
+}
+/* line: the list (one wide column) and the 2 B tickets; the three tickets across (L2b1) keep the name over the price pair, the pair fits there */
+html:lang(th)[data-size]:not(#sz) .L2a .prow,html:lang(th)[data-size]:not(#sz) .L2b2 .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(th)[data-size]:not(#sz) .L2a .psale,html:lang(th)[data-size]:not(#sz) .L2b2 .psale{font-size:32px}
+html:lang(th)[data-size]:not(#sz) .L2a .plist,html:lang(th)[data-size]:not(#sz) .L2b2 .plist{font-size:15px}
+html:lang(th)[data-size]:not(#sz) .L2b1 .psale{font-size:28px}
+html:lang(th)[data-size]:not(#sz) .L2b1 .plist{font-size:13px}
+/* kakao: the list cards (K2a) one line per row; the 2 B tickets (K2b) put the list price under the option and the sale price beside both */
+html:lang(th)[data-size]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(th)[data-size]:not(#sz) .K2a .psale{font-size:30px}
+html:lang(th)[data-size]:not(#sz) .K2a .plist{font-size:14px}
+html:lang(th)[data-size]:not(#sz) .K2b .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn ps" "pl ps";row-gap:2px}
+html:lang(th)[data-size]:not(#sz) .K2b .prow>.pn{grid-area:pn}
+html:lang(th)[data-size]:not(#sz) .K2b .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+html:lang(th)[data-size]:not(#sz) .K2b .prow>.psale{grid-area:ps;align-self:center}
+html:lang(th)[data-size]:not(#sz) .K2b .psale{font-size:28px}
+html:lang(th)[data-size]:not(#sz) .K2b .plist{font-size:13px}
+/* the long Thai options (row 10 '4 cc × 3 ครั้ง + ครีมบำรุงสำหรับ Juvelook' and the 리쥬베룩 rows 14-16, two to three times the Korean length) take the
+   whole row width and their price pair goes under them, as on the phone layout; beside the prices they took three to four lines and pushed card 2 A
+   (home / board) and the kakao 2-3 / 2 B-3 cards past the bottom */
+@container (min-width:601px){
+ html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"]),html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"]),html:lang(th) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:calc(2*var(--px))}
+ html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.pn,html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.pn,html:lang(th) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.pn{grid-area:pn}
+ html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.plist,html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.plist,html:lang(th) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+ html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.psale,html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.psale,html:lang(th) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.psale{grid-area:ps}
+}
+html:lang(th)[data-size]:not(#sz) .K2a3 .prow,html:lang(th)[data-size]:not(#sz) .K2b3 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:2px}
+html:lang(th)[data-size]:not(#sz) .K2a3 .prow>.pn,html:lang(th)[data-size]:not(#sz) .K2b3 .prow>.pn{grid-area:pn}
+html:lang(th)[data-size]:not(#sz) .K2a3 .prow>.plist,html:lang(th)[data-size]:not(#sz) .K2b3 .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+html:lang(th)[data-size]:not(#sz) .K2a3 .prow>.psale,html:lang(th)[data-size]:not(#sz) .K2b3 .prow>.psale{grid-area:ps}
+html:lang(th)[data-size]:not(#sz) .K2b3 .prow{padding-top:8px;padding-bottom:8px}
+/* kakao 2 B-3 (the 리쥬베룩 ticket alone): beside the ticket name the three Thai rows took three to four lines each and pushed the VAT line off the
+   card; the ticket name goes above its rows (the ticket's phone arrangement), so each option keeps one line over its price pair */
+html:lang(th)[data-size]:not(#sz) .K2b3 .prod{display:block}
+html:lang(th)[data-size]:not(#sz) .K2b3 .prows{margin-top:10px}
+/* card 2 A on the board (601-1000 px wide): the Thai rows are set with the small-size minimum fonts there and the first column ran 30 px longer than the
+   Korean one, the VAT line 4 px above the card edge; a little less row padding there (the 1080 card keeps the Korean padding) */
+@container (min-width:601px) and (max-width:1000px){html:lang(th) .cp.c2:not(.bv):not([data-size-only]) .prow{padding-top:calc(5*var(--px));padding-bottom:calc(4*var(--px))}}
+
+/* <lang-center> */
+/* TW / TH chip and pill text centring (generated, 2026-11-17): per element, measured with text-center-check + language (1080 / 780 / line / kakao).
+   The TW text is set in Noto Sans TC and the Thai text in Noto Sans Thai, whose letters sit lower / higher in the line than Pretendard's; each chip moves
+   its text by whole pixels (top / bottom padding swapped, same height; a 1 px taller box where the text sat half a pixel off), the hero sub box moves only its
+   text (its snowflake icon stays centred) */
+@container (min-width:801px){
+ html:lang(th) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:3px}
+ html:lang(zh) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill{padding-top:6px;padding-bottom:13px}
+ html:lang(zh) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+ html:lang(zh) [data-card="1"]:not([data-size-only])[data-variant="b"] p.pill{padding-top:6px;padding-bottom:13px}
+ html:lang(zh) [data-card="1"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_hero_opt"]{padding-top:2.42px;padding-bottom:2.14px}
+ html:lang(zh) [data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_p7_sub"]{padding-top:1.66px;padding-bottom:1.38px}
+ html:lang(zh) [data-card="2"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_p7_sub"]{padding-top:0.24px;padding-bottom:2.32px}
+}
+@container (min-width:601px) and (max-width:800px){
+ html:lang(th) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:2px}
+ html:lang(zh) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill{padding-top:4.5px;padding-bottom:9.222px}
+ html:lang(zh) [data-card="1"]:not([data-size-only])[data-variant="b"] p.pill{padding-top:5.5px;padding-bottom:8.222px}
+ html:lang(zh) [data-card="5"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_ab_way_line"]{padding-top:2.74px;padding-bottom:2.66px}
+}
+html:lang(zh)[data-size="line"]:not(#sz) .L1a p.pill{padding-top:6px;padding-bottom:13px}
+html:lang(zh)[data-size="line"]:not(#sz) .L1a span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+html:lang(zh)[data-size="line"]:not(#sz) .L1b p.pill{padding-top:6px;padding-bottom:13px}
+html:lang(zh)[data-size="line"]:not(#sz) .L1b span[data-copy="c1_hero_opt"]{padding-top:2.42px;padding-bottom:2.14px}
+html:lang(zh)[data-size="line"]:not(#sz) .L2a1 span[data-copy="c1_p7_sub"]{padding-top:1.66px;padding-bottom:1.38px}
+html:lang(zh)[data-size="line"]:not(#sz) .L2b1 span[data-copy="c1_p7_sub"]{padding-top:0.24px;padding-bottom:2.32px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K1a1 div.h-box [data-copy]{position:relative;top:2px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2a5 span[data-copy="c1_r20_badge"]{padding-top:5.45px;padding-bottom:7.15px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2a6 span[data-copy="c1_r22_badge"]{padding-top:5.45px;padding-bottom:7.15px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K1a1 p.pill{padding-top:7px;padding-bottom:13px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K1a2 span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K1b1 p.pill{padding-top:7px;padding-bottom:13px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K1b2 span[data-copy="c1_hero_opt"]{padding-top:2.42px;padding-bottom:2.14px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K2a1 span[data-copy="c1_p7_sub"]{padding-top:1.16px;padding-bottom:1.88px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K2b1 span[data-copy="c1_p7_sub"]{padding-top:1.24px;padding-bottom:2.32px}
+html:lang(zh)[data-size="kakao"]:not(#sz) .K2b2 span[data-copy="c1_r11_badge"]{padding-top:7.3px;padding-bottom:6.3px}
+/* </lang-center> */

@@ -4,12 +4,19 @@
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
+/* 2026-11-17 language versions TW + TH (v4/combo12a/i18n-1117.cjs; copy v4/langverify/out/CMB12A.final.json via v4/combo12a/work/i18n-prep.cjs): <html lang>
+   drives the language fonts and layout rules in combo12a-i18n.css (:lang()); the Google font of the language is added here (same as oneday12.js /
+   ligament12.js). Korean renders exactly as before. */
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',HK:'Noto Sans TC',TH:'Noto Sans Thai'};
+const CJK={JP:1,CN:1,TW:1,HK:1},SEGS={};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
 let editable=false,editMode=false,lastHeight=0;
 const root=document.documentElement;
 if(qs.get('capture')==='1')root.classList.add('is-capture');
+function setFonts(){let l=document.getElementById('locale-fonts');const family=FONT_FAMILY[locale];if(!family){if(l)l.remove();return;}if(!l){l=document.createElement('link');l.id='locale-fonts';l.rel='stylesheet';document.head.append(l);l.addEventListener('load',()=>document.fonts.ready.then(()=>{fit();report();}));}const href='https://fonts.googleapis.com/css2?family='+family.replace(/ /g,'+')+':wght@400;500;600;700;800;900&display=swap';if(l.getAttribute('href')!==href)l.setAttribute('href',href);}
 function reply(message){if(parent!==window)parent.postMessage(message,location.origin);}
 const IE=window.BBInlineEdit?window.BBInlineEdit.create({doc:document,raw:k=>fields[k]??'',send:m=>reply(m),refit:()=>{fit();report();},rerender:()=>render()}):null;
 function report(){const main=document.querySelector('main');if(!main)return;const h=Math.max(300,Math.min(25000,Math.ceil(main.getBoundingClientRect().height)));if(h===lastHeight)return;lastHeight=h;reply({type:'aptos-size',height:h});}
@@ -19,27 +26,55 @@ function setMoney(el,v){el.textContent='';const m=/^(\D*?)(\d[\d,.]*)(.*)$/.exec
  const n=document.createElement('span');n.className='n';n.textContent=m[2];el.append(n);
  if(m[3]){const s=document.createElement('span');s.className='u';s.textContent=m[3];el.append(s);}}
 /* options: each part stays on one line, breaks only at ' + ' (the separators stay as text) */
-function topSplit(v){const parts=[];let depth=0,start=0;for(let i=0;i<v.length;i++){const c=v[i];if(c==='('||c==='[')depth++;else if((c===')'||c===']')&&depth)depth--;else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));start=i+3;i+=2;}}parts.push(v.slice(start));return parts;}
-function setParts(el,v){el.textContent='';v=v||'';topSplit(v).forEach((p,i)=>{if(i){const s=document.createElement('span');s.className='plus';s.textContent=' + ';el.append(s);}const c=document.createElement('span');c.className='seg';c.textContent=p;el.append(c);});}
+/* 2026-11-17 language versions (as oneday12.js / ligament12.js TW): the TW copy joins the parts with a full-width '＋' and no spaces and uses full-width
+   brackets ('麗珠蘭Healer 2cc＋水光肉毒1部位（韓國製）'); it splits before every '＋' outside brackets too and the '＋' stays as the separator text (the Korean
+   copy has neither, so it is set exactly as before) */
+function topSplit(v){const parts=[],seps=[];let depth=0,start=0;for(let i=0;i<v.length;i++){const c=v[i];if(c==='('||c==='['||c==='（'||c==='［')depth++;else if((c===')'||c===']'||c==='）'||c==='］')&&depth)depth--;else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));seps.push(' + ');start=i+3;i+=2;}else if(!depth&&c==='＋'){parts.push(v.slice(start,i));seps.push('＋');start=i+1;}}parts.push(v.slice(start));return {parts,seps};}
+function setParts(el,v){el.textContent='';v=v||'';const {parts,seps}=topSplit(v);parts.forEach((p,i)=>{if(i){const s=document.createElement('span');s.className='plus';s.textContent=seps[i-1];el.append(s);}const c=document.createElement('span');c.className='seg';if(locale==='TH')appendKept(c,p);else c.textContent=p;el.append(c);});} /* 2026-11-17 TH: its loanwords and number + unit stay whole inside a part (KEEP_TH) */
 /* hero title: break after ' & ' (the text stays the same) */
 function setTitle(el,v){el.textContent='';if(true&&!el.closest('.bv')){const t=document.createElement('span');t.className='tl';t.textContent=v||'';el.append(t);return;}const i=(v||'').indexOf(' & ');if(i<0){el.textContent=v||'';return;}
  const a=document.createElement('span');a.className='tl';a.textContent=v.slice(0,i+2);const b=document.createElement('span');b.className='tl';b.textContent=v.slice(i+2);el.append(a,b);}
 function setHours(el,v){el.textContent='';const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];const t=document.createElement('span');t.className='ht';t.textContent=m[3];el.append(d,document.createTextNode(m[2]),t);}
 const GUARD='.p-lead,.q-ans,.blk-d,.blk-n,.ch-q,.ch-a,.st-d,.inf-n,.ask-d,.care [data-copy],.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.prod-note [data-copy]';
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|리쥬란 힐러|리쥬란 HB|릴리이드 M|울트라콜 100|콜라움 120|쥬베룩 스킨|스킨\/100\/120|스킨\/100|리쥬란 아이\(I\)|리쥬란 에스\(S\)|PN\(폴리뉴클레오타이드\)|히알루론산\(HA\)|1회 또는 3회 세션|3회 세션|마취 연고|국소마취 성분|고분자·저분자 HA|피부결·잔주름·모공)/g;
-function appendKept(el,s){let last=0;KEEP.lastIndex=0;for(const m of s.matchAll(KEEP)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;}if(last<s.length)el.append(document.createTextNode(s.slice(last)));}
+/* 2026-11-17 language versions: KEEP also keeps the international phone number, a chat ID, the TW floor / house numbers, a name in corner brackets and
+   the Latin names of the TW / TH copy whole (v4/combo12a/i18n-1117.cjs LANG_KEEP; no Korean copy has them, the build checks it) */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|「[^」\n]{1,16}」|Beauty Blossom|Skin Booster|QR Code|Skin／100(?:／120)?|Skin \/ 100(?: \/ 120)?|Ultracol 100|Lilied M|LILIED M|Juvelook Skin|喬雅露 Skin|Rejuran (?:Healer|HB|Eye \(I\)|S(?![A-Za-z]))|Eye \(I\)|Healer \d+ ?cc|Skin \d+ ?cc|Medione Medical Center|Yanghwa-ro|Mapo-gu|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|리쥬란 힐러|리쥬란 HB|릴리이드 M|울트라콜 100|콜라움 120|쥬베룩 스킨|스킨\/100\/120|스킨\/100|리쥬란 아이\(I\)|리쥬란 에스\(S\)|PN\(폴리뉴클레오타이드\)|히알루론산\(HA\)|1회 또는 3회 세션|3회 세션|마취 연고|국소마취 성분|고분자·저분자 HA|피부결·잔주름·모공)/g;
+/* 2026-11-17 TH (as oneday12.js): Thai loanwords the browser's Thai dictionary does not know break between their syllables ('สกิน|บูส|เตอร์', 'โบ|ท็|อกซ์'),
+   and so do a few compounds and the director's name; they stay whole, and so do a number and its unit ('2 cc', '3 ครั้ง', '20:00 น.') and an exit / line /
+   floor / house number ('ทางออก 3'). Only the Thai copy is set with this list (KEEP_TH = KEEP + these); Korean and TW use KEEP */
+const KEEP_TH=new RegExp(KEEP.source+'|สกินบูสเตอร์|สกินโบท็อกซ์|โบท็อกซ์|ไฮยาลูโรนิก|ซาวน่า|แอลกอฮอล์|รูขุมขน|เหมาะสม|คัดสรร|ผู้อำนวยการ|สุดสัปดาห์|ความเปล่งปลั่ง|ชุ่มชื้น|ส่วนผสม|ขั้นตอน|อี กอนโฮ|ยาชา|ก่อนฉีด|แต่ละคน|ยุบลง|สภาพผิว|\\d[\\d,.:]*\\s(?:cc|ครั้ง|บริเวณ|เท่า|นัด|กลุ่ม|วอน|น\\.)|(?:ทางออก|สาย|ชั้น|เลขที่)\\s\\d+','g');
+const keepRe=()=>locale==='TH'?KEEP_TH:KEEP;
+function appendKept(el,s){let last=0;const R=keepRe();R.lastIndex=0;for(const m of s.matchAll(R)){if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));let e=m.index+m[0].length;while(e<s.length&&/[，。、：；！？）」』]/.test(s[e]))e++; /* 2026-11-17: Chinese punctuation right after a kept name stays with it (it may not start a line); Korean copy has none */
+ const k=document.createElement('span');k.className='nw';k.textContent=s.slice(m.index,e);el.append(k);last=e;}if(last<s.length)el.append(document.createTextNode(s.slice(last)));}
+/* 2026-11-17 Chinese (same as oneday12.js / ligament12.js): the last three characters stay together, grown back to the start of their word (a '・' break or
+   Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside). Thai has no guard (dictionary breaks).
+   CMB12A: a '・' inside those last characters is a break too when two to five characters follow it ('膚質粗糙・乾燥' breaks after '・', not inside '粗糙') */
+function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;
+ const sep=Math.max(v.lastIndexOf('・'),v.lastIndexOf('·'));if(sep>0&&sep+1<v.length&&core(sep+1)>=2&&core(sep+1)<=5)return sep+1;
+ let seg=SEGS[locale];if(seg===undefined){try{seg=SEGS[locale]=new Intl.Segmenter(LANG[locale],{granularity:'word'});}catch(e){seg=SEGS[locale]=null;}}if(!seg)return cut;
+ let start=0,end=v.length;for(const g of seg.segment(v)){if(g.index>cut){end=g.index;break;}start=g.index;}
+ if(start===cut)return cut;if(start>0&&core(start)<=5)return start;return end<v.length?end:-1;}
+/* flex / grid boxes turn every text piece into its own item (gaps, trimmed spaces), so they keep their text whole */
+const guardable=(el)=>!/flex|grid/.test(getComputedStyle(el).display);
+/* CMB12A: the Chinese guard only for text with Chinese characters; a Latin-only TW text ('PDLLA · PDO · PLLA', 'Healer 2cc') is set as on the Korean page */
+const HAN=/[\u3400-\u9fff\uf900-\ufaff]/;
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
  if(el.classList.contains('h-title')){setTitle(el,v);return;}
  if(el.parentElement&&el.parentElement.classList.contains('cmb')){setParts(el,v);return;}
  if(el.matches('.blk-n,.ch-a,.prod-note [data-copy]')&&(v||'').includes(' · ')){el.textContent='';const ps=v.split(' · ');ps.forEach((p,i)=>{const s=document.createElement('span');s.className='nw';s.textContent=p+(i<ps.length-1?' ·':'');el.append(s);if(i<ps.length-1)el.append(document.createTextNode(' '));});return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
- KEEP.lastIndex=0;const kept=!!v&&KEEP.test(v);KEEP.lastIndex=0;
- if(!v||!el.matches(GUARD)){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
- let m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ const KR=keepRe();KR.lastIndex=0;const kept=!!v&&KR.test(v);KR.lastIndex=0;
+ /* Chinese: every text keeps its last word together (the Korean list GUARD stays as it was) */
+ if(!v||(!el.matches(GUARD)&&!(CJK[locale]&&HAN.test(v)&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
+ let m=null;
+ if(locale==='TH')m=null;
+ else if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ /* Chinese guard only in boxes whose text flows inline: in a flex / grid box the kept tail would become its own item with a gap before it */
+ else if(HAN.test(v)&&guardable(el)){m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
- if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
+ if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KR))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);}
 function isPhone(){const m=document.querySelector('main');return !!m&&m.clientWidth<=600;}
@@ -56,7 +91,7 @@ function fit(){
  for(const el of document.querySelectorAll('.seal .sl')){const p=el.parentElement;fitTo(el,p.clientWidth,.55);}
 }
 function render(){
- root.lang='ko';root.dataset.locale=locale;
+ root.lang=LANG[locale]||'ko';root.dataset.locale=locale;setFonts();
  root.classList.toggle('is-editable',editable);root.classList.toggle('is-editmode',editable&&editMode);
  for(const el of document.querySelectorAll('[data-copy]')){
   if(IE&&IE.holds(el))continue;
@@ -69,6 +104,19 @@ function render(){
  const CH=(DATA.channels&&DATA.channels[locale])||null;
  for(const a of document.querySelectorAll('a[data-link]')){const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}}
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
+ /* 2026-11-17 language versions (LIG12 / ONE12 / SOF12 / CRF12 / OND12 rule): the booking-box phone line (c1_ab_phone) may hold the country's chat ID (TW
+    LINE ID '@beautyblossom_tw') instead of a number; then the chat icon and the booking link replace the phone icon and tel:. A line that repeats the
+    second link line word for word is hidden outside the edit mode (the same words twice). Korean always holds the number: nothing changes there. */
+ const isId=(v)=>!!v&&!/^\+?\d[\d\s\-().]*$/.test(v);
+ for(const p of document.querySelectorAll('.bk-phone')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??'').trim(),id=isId(v);p.classList.toggle('is-id',id);
+  const img=p.querySelector('img.ico');if(img){if(id&&!img.dataset.src0)img.dataset.src0=img.getAttribute('src');const pic=id?'assets/icons/consult.webp':(img.dataset.src0||img.getAttribute('src'));if(img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
+  const a=p.querySelector('a[data-link]');if(a){if(id){const b=(CH&&CH.booking)||(DATA.links&&DATA.links.booking);if(b)a.href=b;a.target='_blank';a.rel='noopener noreferrer';}else{a.removeAttribute('target');a.removeAttribute('rel');}}
+  const box=p.closest('.bk-text'),alt=box&&box.querySelector('.bk-alt [data-copy]'),av=String((alt&&fields[alt.dataset.copy])??'').trim();
+  p.hidden=locale!=='KO'&&id&&!!av&&av===v&&!(editable&&editMode);}
+ /* 2026-11-17 language versions (CRF12 / THM12 / ONE12 rule): a hero contact line that names a chat channel (TW 'LINE@beautyblossom_tw', TH 'Line:
+    @beautyblossom_th') shows the consult icon instead of the phone; Korean and phone-number lines keep the phone icon */
+ for(const sp of document.querySelectorAll('.band-contact')){const p=sp.parentElement,v=String(fields[sp.dataset.copy]??''),chat=locale!=='KO'&&/微信|WeChat|WhatsApp|LINE/i.test(v);
+  const img=p&&p.querySelector('img.ico');if(!img)continue;if(chat&&!img.dataset.src0)img.dataset.src0=img.getAttribute('src');const pic=chat?'assets/icons/consult.webp':(img.dataset.src0||img.getAttribute('src'));if(img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;
  for(const el of document.querySelectorAll('[data-gmap]')){const u=GM&&GM[el.dataset.gmap];if(!u)continue;const a=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(a)!==u)el.setAttribute(a,u);}
  for(const w of document.querySelectorAll('[data-bk-alt]')){const lab=w.querySelector('[data-copy]');w.hidden=!String((lab&&fields[lab.dataset.copy])??'').trim()&&!(editable&&editMode);}
