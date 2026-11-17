@@ -408,6 +408,16 @@ a[data-link="phone"]{white-space:nowrap}
 /* 2026-11-16 team comment #28: the team's picture of four devices (assets/products/devices-4-team.webp, v4/oneday12/a/team-devices-1116.cjs) replaces the four
    cut-outs; it fills the same height (668.7-1184.6) from the same left edge (68.6), so the price block and the dates keep their places */
 .c1:not([data-size-only]) .dv-all{left:calc(66.8*var(--px));top:calc(666.9*var(--px));width:calc(427.3*var(--px))}
+/* 2026-11-17 team comment #29 ('기기 이미지를 인물 뒤쪽으로 이동하고, 위에서 아래로 갈수록 자연스럽게 투명해지는 그라데이션'): the device picture goes behind the
+   model and fades out downwards. Home: the model is part of the background photo, so a front copy of her (assets/cut/model-hero-front.webp,
+   v4/oneday12/a/front-1117.cjs: the photo's own pixels with the 11-06 person matte, same 1080x1350 box) lies over the device (z 2, after it
+   in the DOM); where no device is behind her it is the photo itself. Phones: the photo is in the flow and the device stays clear of her, so
+   the copy is off. Line / kakao: the model cut-out follows the device in the DOM (v4/oneday12/sizes). The fade is a mask on the device img
+   (transparency only, the picture file is unchanged; the board editor's translate / scale move the mask with it) */
+.c1-front{position:absolute;inset:0;z-index:2;margin:0;pointer-events:none}
+.c1-front .model-photo{object-position:50% 50%}
+@container (max-width:600px){.c1-front{display:none}}
+.c1 .dv-all{-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 40%,rgba(0,0,0,.84) 55%,rgba(0,0,0,.5) 70%,rgba(0,0,0,.16) 85%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 40%,rgba(0,0,0,.84) 55%,rgba(0,0,0,.5) 70%,rgba(0,0,0,.16) 85%,transparent 100%)}
 /* cards 2 / 3 (#4-#6 #10-#13): a small modifier line over the name (.pmod), the 24 gifts as small notes (.pgift), HIT / BEST pills (.badge, as row 16);
    the rows sit closer so the boards keep their height */
 .pmod{margin:0 0 calc(3*var(--px));font-weight:600;font-size:max(11px,calc(15*var(--px)));line-height:1.3;letter-spacing:-.01em;color:var(--cherry)}
@@ -616,6 +626,8 @@ html[data-size="line"] .L62 .way-line{padding-top:.268em;padding-bottom:.132em}
 /* 2026-11-16 team comment #28: the team's four-device picture in the place of the four cut-outs (same height and left edge) */
 html[data-size="line"] .L1a .dv-all{left:58.7px;top:570.5px;width:241px}
 html[data-size="kakao"] .K1a2 .dv-all{left:43.7px;top:262.9px;width:174.7px}
+/* 2026-11-17 team comment #29: the model cut-out follows the device picture in the DOM and stands in front of it (the fade: oneday12.css .c1 .dv-all) */
+html[data-size="line"] .L1a .sz-model,html[data-size="kakao"] .K1a2 .sz-model{z-index:2}
 /* 2026-11-10 ONE12 modifier lines and gifts: kakao 2A part 2 and 3 part 2 sit closer (part 2 of card 3 drops the repeated 02 heading, its row continues part 1) */
 html[data-size="kakao"] .K2a2 .pboard,html[data-size="kakao"] .K32 .pboard{margin-top:8px}
 html[data-size="kakao"] .K2a2 .prow,html[data-size="kakao"] .K32 .prow{padding:5px 0 4px}
