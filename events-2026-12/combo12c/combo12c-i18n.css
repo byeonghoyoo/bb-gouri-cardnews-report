@@ -1,0 +1,130 @@
+/* CMB12C language version TH (2026-11-18, v4/combo12c/i18n-1118.cjs). Rules for the Thai page only: every selector names the language (:lang(th)), so
+   the Korean page never matches them (the build checks it). No pictures here (no url(), gradients, data: images or svg) and no CSS translate / scale
+   properties (the board editor uses them; moves use transform). */
+
+/* Thai glyphs: Noto Sans Thai (loaded by combo12c.js for the Thai page) after the Latin fonts of each family, so Latin words keep their look */
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-en:'Jost','Pretendard Variable',Pretendard,'Noto Sans Thai',sans-serif;--f-serif:'Instrument Serif','Noto Sans Thai',Georgia,serif}
+
+/* ---- price tiles: a tile with a BEST / HIT badge keeps its option text clear of the badge (the Thai options are longer), as CMB12D TH ---- */
+html:lang(th) .cp .tile:has(.pbadge) .t-opt{padding-right:max(40px,calc(46*var(--px)))}
+
+/* ---- price rows: an option part (between ' + ') may wrap in Thai (the Korean parts are short and stay on one line each) ---- */
+html:lang(th) .popt .seg{white-space:normal}
+
+/* ---- price rows (card 2 A): the Thai list and sale prices are wider than the Korean price columns (122 / 190): the two price columns take their own
+   width (auto) and the option column the rest (about the Korean width at home and in line); in kakao the option and the prices are smaller (the Korean
+   kakao columns are 60 / 124) ---- */
+@container (min-width:601px){html:lang(th) .p-c .prow{grid-template-columns:minmax(0,1fr) auto auto}}
+html:lang(th)[data-size="kakao"]:not(#sz) main.p-c .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(th)[data-size]:not(#sz) .p-c .K2a .popt{font-size:18px}
+html:lang(th)[data-size]:not(#sz) .p-c .K2a .plist{font-size:15px}
+html:lang(th)[data-size]:not(#sz) .p-c .K2a .psale{font-size:34px}
+
+/* line 2B: four tickets side by side: the list price on its own row above the sale price, both from the left (the Korean narrow-tile pattern, phones),
+   smaller family line and option, as CMB12D TH line 2B */
+html:lang(th)[data-size]:not(#sz) .p-c .L2b .b-ticket{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto auto;padding:12px 16px;gap:4px}
+html:lang(th)[data-size]:not(#sz) .p-c .L2b .b-ticket .b-family{font-size:14px}
+html:lang(th)[data-size]:not(#sz) .p-c .L2b .b-ticket .popt{font-size:16px;line-height:1.35}
+html:lang(th)[data-size]:not(#sz) .p-c .L2b .b-ticket .plist{grid-column:1;justify-self:start;font-size:15px}
+html:lang(th)[data-size]:not(#sz) .p-c .L2b .b-ticket .psale{grid-column:1;justify-self:start;font-size:32px}
+
+/* ---- hero offer band: the Thai label and its option chip are about 1,020 px long at the Korean sizes (Korean 500 px) ---- */
+/* home, line: the label row takes the whole band width (the contact goes to the second row, beside the price, at the band's foot as in Korean), so
+   the label and the chip keep about the Korean sizes on one row */
+@container (min-width:601px){
+html:lang(th):not([data-size="kakao"]) .p-c .c1 .tz{display:contents}
+html:lang(th):not([data-size="kakao"]) .p-c .c1 .tz-top{grid-column:1/-1}
+html:lang(th):not([data-size="kakao"]) .p-c .c1 .tz-main{grid-column:1}
+html:lang(th):not([data-size="kakao"]) .p-c .c1 .h-contact{grid-column:2}
+}
+/* phones: the label and the chip take two rows (the Korean one), so the band is 20 px taller: the device photo stands 20 px higher, on the band */
+@container (max-width:600px){html:lang(th) .p-c .c1 .h-dev{bottom:calc(150*var(--px) + 20px)}}
+/* kakao 1 part 2 (A, B): the label on its own row and the chip on the row below; the band starts higher (180 px, Korean 206) with smaller gaps, so
+   the contact row stays where the Korean one is, clear of the yellow heart below */
+html:lang(th)[data-size="kakao"]:not(#sz) main.p-c .K1a2 .h-band,html:lang(th)[data-size="kakao"]:not(#sz) main.p-c .K1b2 .h-band{top:180px;row-gap:18px;padding-top:34px;padding-bottom:30px}
+html:lang(th)[data-size]:not(#sz) .p-c .K1a2 .tz-top,html:lang(th)[data-size]:not(#sz) .p-c .K1b2 .tz-top{flex-wrap:wrap;row-gap:8px}
+/* kakao 1 A part 2: the device photo stands on the band's right part (from x 582): the text ends before it (486 px): label 18 px, chip 16 px, price
+   70 px with the VAT note on the row below the price */
+html:lang(th)[data-size]:not(#sz) .p-c .K1a2 .tz{max-width:486px}
+html:lang(th)[data-size]:not(#sz) .p-c .K1a2 .tz-label{font-size:calc(18px*var(--fit,1))}
+html:lang(th)[data-size]:not(#sz) .p-c .K1a2 .tz-opt{font-size:calc(16px*var(--fit,1))}
+html:lang(th)[data-size]:not(#sz) .p-c .K1a2 .tz-price{font-size:70px}
+/* kakao 1 B part 1: the hook in two rows (Korean two rows at 28 px), ending above the yellow heart and the snowflake */
+html:lang(th)[data-size]:not(#sz) .p-c .K1b1 .b-hook{font-size:18.5px;line-height:1.6}
+
+/* ---- card 2 (A): the title ends before the green heart (x 390; the fit makes 'Potenza Edition' smaller, it is wider than the Korean title) and the
+   lead ends before the model photo ---- */
+@container (min-width:601px){
+html:lang(th) .p-c .c2:not(.b-tickets) .p-title{max-width:calc(388*var(--px))}
+html:lang(th):not([data-size="kakao"]) .p-c .c2:not(.b-tickets) .p-lead{max-width:calc(620*var(--px))}
+}
+html:lang(th)[data-size="kakao"]:not(#sz) main.p-c .K2a .p-title{max-width:406px}
+html:lang(th)[data-size]:not(#sz) .p-c .K2a1 .p-lead{max-width:408px;font-size:15px;line-height:1.5}
+@container (max-width:600px){
+html:lang(th) .p-c .c2:not(.b-tickets) .pt-main{font-size:17px}
+html:lang(th) .p-c .c2:not(.b-tickets) .p-lead{max-width:232px}
+}
+/* kakao 2 A part 3: the Thai 49 % note is longer than the bottom row's free part: it sits just below the price board (the VAT note and the period
+   stay on the bottom row, as in parts 1 and 2) */
+html:lang(th)[data-size="kakao"]:not(#sz) main.p-c .K2a3 .uibeop{bottom:66px}
+/* kakao 2 B: the family line on one row (14 px), so the two ticket rows and the VAT note stay inside the card */
+html:lang(th)[data-size]:not(#sz) .p-c .K2b .b-ticket .b-family{font-size:14px}
+
+/* ---- kakao 3 part 1: the way title on one row with its tip chip (title 27 px, chip 16.5 px) and the pick line on one row ---- */
+html:lang(th)[data-size]:not(#sz) .p-c .K31 .way-t{font-size:27px}
+html:lang(th)[data-size]:not(#sz) .p-c .K31 .way-k{font-size:16.5px}
+html:lang(th)[data-size]:not(#sz) .p-c .K31 .way-pick{font-size:18.5px}
+
+/* ---- kakao 4 part 3: the three info boxes (179 px of text) and the care list: smaller values, notes and labels (as CMB12D TH kakao 5-3) ---- */
+html:lang(th)[data-size]:not(#sz) .p-c .K43 .inf-k{font-size:15px}
+html:lang(th)[data-size]:not(#sz) .p-c .K43 .inf-v{font-size:20px;line-height:1.25}
+html:lang(th)[data-size]:not(#sz) .p-c .K43 .inf-n{font-size:14px;line-height:1.4}
+html:lang(th)[data-size]:not(#sz) .p-c .K43 .care li{font-size:18.5px}
+
+/* ---- kakao 5 part 3: the location box keeps its map (never resized): the title on one row with its LOCATION label, smaller station line and
+   address (as CMB12D TH kakao 6-3) ---- */
+html:lang(th)[data-size]:not(#sz) .p-c .K53 .loc-head .bt-t{font-size:22px}
+html:lang(th)[data-size]:not(#sz) .p-c .K53 .way-st{font-size:18px}
+html:lang(th)[data-size]:not(#sz) .p-c .K53 .way-addr{font-size:13px;line-height:1.4;margin-top:4px}
+
+/* ---- card 5 (home): the location box keeps its map; the Thai station line and address are longer (the line chip and the desk note wrap): the
+   station line a little smaller (its chip back on the same row), the address smaller, so they end inside the box as in Korean; the booking line
+   holds the international number '+82-2-336-7511' (three characters longer than '02-336-7511'): a little smaller, inside the box padding ---- */
+@container (min-width:601px){
+html:lang(th) .c5:not([data-size-only]) .way-st{font-size:max(15px,calc(22*var(--px)))}
+html:lang(th) .c5:not([data-size-only]) .way-addr{font-size:max(12px,calc(14*var(--px)));line-height:1.45}
+html:lang(th) .c5:not([data-size-only]) .bk-phone{font-size:max(17px,calc(26*var(--px)))}
+}
+
+/* ---- kakao 4 part 2: the step texts take two rows in Thai: smaller step texts and box padding, so the third step box ends inside the card ---- */
+html:lang(th)[data-size]:not(#sz) .p-c .K42 .st{padding-top:26px;padding-bottom:28px}
+html:lang(th)[data-size]:not(#sz) .p-c .K42 .st-d{font-size:18px;line-height:1.45}
+
+/* ---- hero (A, home): the hook bubble: the Thai hook has four lines where the Korean has three; its text box starts where the Korean text starts
+   (below the orange heart on the bubble's corner) and the fit makes the four lines a little smaller (line and kakao keep their boxes: the heart
+   is not on their bubble's corner) ---- */
+@container (min-width:601px){html:lang(th) .c1:not(.b-split):not([data-size-only]) .bub-box{top:13.5%;height:71.4%}}
+
+/* <lang-center> */
+/* TH chip and pill text centring (generated, 2026-11-18): per element, measured with text-center-check + language (1080 / 780 / line / kakao).
+   The Thai text is set in Noto Sans Thai, whose letters sit higher / lower in the line than Pretendard's; each chip moves its text by whole pixels
+   (top / bottom padding swapped, same height; a 1 px taller box where the text sat half a pixel off) */
+@container (min-width:801px){
+ html:lang(th):not(#sz) [data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c3_p46_chip"]{padding-top:4.195px!important;padding-bottom:0.005px!important}
+ html:lang(th):not(#sz) [data-card="3"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c3_w1_k"]{padding-top:2.18px!important;padding-bottom:3.9px!important}
+ html:lang(th):not(#sz) [data-card="3"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c3_w2_k"]{padding-top:3.18px!important;padding-bottom:2.9px!important}
+}
+@container (min-width:601px) and (max-width:800px){
+ html:lang(th):not(#sz) [data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c3_p46_chip"]{padding-top:3.606px!important;padding-bottom:0px!important}
+}
+html:lang(th)[data-size="line"]:not(#sz):not(#sz2) .L2a1 span[data-copy="c3_p46_chip"]{padding-top:4.195px!important;padding-bottom:0.005px!important}
+html:lang(th)[data-size="line"]:not(#sz):not(#sz2) .L31 span[data-copy="c3_w1_k"]{padding-top:2.18px!important;padding-bottom:3.9px!important}
+html:lang(th)[data-size="line"]:not(#sz):not(#sz2) .L31 span[data-copy="c3_w2_k"]{padding-top:3.18px!important;padding-bottom:2.9px!important}
+html:lang(th)[data-size="line"]:not(#sz):not(#sz2) .L52 span[data-copy="c3_ab_way_line"]{padding-top:2.78px!important;padding-bottom:2.82px!important}
+html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) .K1a2 span[data-copy="c3_hero_opt"]{padding-top:2.92px!important;padding-bottom:0.92px!important}
+html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) .K1b2 span[data-copy="c3_hero_opt"]{padding-top:2.04px!important;padding-bottom:3.04px!important}
+html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) .K2a1 span[data-copy="c3_r46_badge"]{padding-top:4.17px!important;padding-bottom:4.13px!important}
+html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) .K2a2 span[data-copy="c3_p46_chip"]{padding-top:4.195px!important;padding-bottom:0.005px!important}
+html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) .K31 span[data-copy="c3_w1_k"]{padding-top:1.63px!important;padding-bottom:3.65px!important}
+html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) .K32 span[data-copy="c3_w2_k"]{padding-top:2.18px!important;padding-bottom:3.9px!important}
+/* </lang-center> */
