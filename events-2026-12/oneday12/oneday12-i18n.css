@@ -1,6 +1,10 @@
 /* ONE12 language versions (2026-11-17, lead order): TW first. Copy = v4/langverify/out/ONE12.final.json as it is; this file only adds the language fonts
    and the line breaks / widths the Chinese copy needs. Every selector names a language (:lang(zh) ...), so the Korean page stays pixel-identical
-   (v4/oneday12/build-oneday12.cjs checks the selectors). */
+   (v4/oneday12/build-oneday12.cjs checks the selectors).
+   2026-11-18 CN (lead order): the first simplified-Chinese version. The TW-era rules written with the bare :lang(zh) (TW / HK copy, Noto Sans TC chip
+   centring) are scoped to html:lang(zh-TW) + html:lang(zh-HK) (each selector written twice, same specificity and order, so TW and HK render exactly as
+   before) and no longer style CN; only the font stack (--f-cjk per language) and the character line breaks stay shared by every Chinese version.
+   The CN rules are at the end of this file, all html:lang(zh-CN). */
 
 /* fonts: Chinese text in Noto Sans TC first in the stack (Pretendard's Hanja never mixes in). The Latin display face (Marcellus: the English kickers, the
    BEST / HIT badges, the photo captions) keeps its Latin letters; Chinese letters typed into it later fall back to Noto Sans TC (same as LIG12 / SOF12) */
@@ -15,17 +19,17 @@ html:lang(zh) .sheet{word-break:normal}
    ('鎖骨玻尿酸4cc＋肩部玻尿酸24cc＋…') are about 10 % longer than the Korean ones; each would take a second line and push the band under the card. They are
    set a little smaller there, so each stays on one line as on the Korean card (phones keep their own sizes) */
 @container (min-width:601px){
- html:lang(zh) .c2:not([data-size-only]):not([data-variant="b"]) .popt{font-size:max(13px,calc(19*var(--px)))}
- html:lang(zh) .c2:not([data-size-only]):not([data-variant="b"]) .pparts{font-size:max(11px,calc(14*var(--px)))}
- html:lang(zh) .c2:not([data-size-only]):not([data-variant="b"]) .pparts .chip{padding-left:.45em;padding-right:.45em}
- html:lang(zh) .c2:not([data-size-only]):not([data-variant="b"]) .pparts .plus{padding:0 .16em}
+ html:lang(zh-TW) .c2:not([data-size-only]):not([data-variant="b"]) .popt,html:lang(zh-HK) .c2:not([data-size-only]):not([data-variant="b"]) .popt{font-size:max(13px,calc(19*var(--px)))}
+ html:lang(zh-TW) .c2:not([data-size-only]):not([data-variant="b"]) .pparts,html:lang(zh-HK) .c2:not([data-size-only]):not([data-variant="b"]) .pparts{font-size:max(11px,calc(14*var(--px)))}
+ html:lang(zh-TW) .c2:not([data-size-only]):not([data-variant="b"]) .pparts .chip,html:lang(zh-HK) .c2:not([data-size-only]):not([data-variant="b"]) .pparts .chip{padding-left:.45em;padding-right:.45em}
+ html:lang(zh-TW) .c2:not([data-size-only]):not([data-variant="b"]) .pparts .plus,html:lang(zh-HK) .c2:not([data-size-only]):not([data-variant="b"]) .pparts .plus{padding:0 .16em}
 }
 
 /* card 5: the TW numbing fact '依設備與施作部位調整' is 3 px wider than its dark box on home / board; the three facts are set 1 px smaller there. Kakao
    boxes are narrower (184 px): less side padding and a smaller size, so each fact stays on one line inside its box */
-@container (min-width:601px){html:lang(zh) .c5:not([data-size-only]) .inf-v{font-size:calc(26*var(--px))}}
-html:lang(zh)[data-size]:not(#sz) .K52 .inf{padding-left:14px;padding-right:14px}
-html:lang(zh)[data-size]:not(#sz) .K52 .inf-v{font-size:20px}
+@container (min-width:601px){html:lang(zh-TW) .c5:not([data-size-only]) .inf-v,html:lang(zh-HK) .c5:not([data-size-only]) .inf-v{font-size:calc(26*var(--px))}}
+html:lang(zh-TW)[data-size]:not(#sz) .K52 .inf,html:lang(zh-HK)[data-size]:not(#sz) .K52 .inf{padding-left:14px;padding-right:14px}
+html:lang(zh-TW)[data-size]:not(#sz) .K52 .inf-v,html:lang(zh-HK)[data-size]:not(#sz) .K52 .inf-v{font-size:20px}
 
 /* card 6 booking box: the TW phone line holds the LINE ID '@beautyblossom_tw' (chat icon + LINE link, oneday12.js); it is about 1.5 times as long as the
    Korean number, so it is set smaller where its column is narrow (home and board, kakao); phones and the line card keep the Korean size */
@@ -33,58 +37,58 @@ html:lang(zh)[data-size]:not(#sz) .K52 .inf-v{font-size:20px}
 html:lang(zh-TW)[data-size]:not(#sz) .K63 .bk-phone.is-id{font-size:23px}
 /* kakao: the booking links are a little smaller, so 'Line官方帳號預約 /' stays on one line and the LINE account name '「🌸麗朵皮膚科🌸」' (kept whole by
    oneday12.js) fits the 162 px column */
-html:lang(zh)[data-size]:not(#sz) .K63 .bk-links{font-size:17px}
+html:lang(zh-TW)[data-size]:not(#sz) .K63 .bk-links,html:lang(zh-HK)[data-size]:not(#sz) .K63 .bk-links{font-size:17px}
 
 /* kakao card 2 B-4: the three TW body options are each one line, as on the Korean card (two lines each would push the band under the card) */
-html:lang(zh)[data-size]:not(#sz) .K2b4 .popt{font-size:16.5px}
+html:lang(zh-TW)[data-size]:not(#sz) .K2b4 .popt,html:lang(zh-HK)[data-size]:not(#sz) .K2b4 .popt{font-size:16.5px}
 /* kakao card 3-2: the TW row 24 name ('索夫波＋美國音波二代＋XERF雙頻電波') is set a little smaller, so it takes one line (its BEST pill goes under it) and the
    gift notes keep the band inside the card */
-html:lang(zh)[data-size]:not(#sz) .K32 [data-price-row="18_oneday:24"] .pname{font-size:21px}
+html:lang(zh-TW)[data-size]:not(#sz) .K32 [data-price-row="18_oneday:24"] .pname,html:lang(zh-HK)[data-size]:not(#sz) .K32 [data-price-row="18_oneday:24"] .pname{font-size:21px}
 
 /* chip / pill text centring base (2026-11-17): the TW text is set in Noto Sans TC, whose glyphs sit about .1em lower in the chips than Pretendard, and the
    Korean page's per-chip tweaks (written for the Korean words) do not fit the TW words; every chip of a kind gets one TW padding split per size
    (home 1080 and line, board 780, kakao), measured with qa/text-center-check.cjs (?lang=TW). The rules below the TW chip text centring note fine-tune it */
 @container (min-width:801px){
- html:lang(zh):not(#sz) [data-card]:not([data-variant="b"]) .pparts .chip{padding-top:.16em;padding-bottom:.24em}
- html:lang(zh):not(#sz) [data-card].c3:not([data-variant="b"]) .pparts .chip{padding-top:.17em;padding-bottom:.23em}
- html:lang(zh):not(#sz) .gh-k{padding-top:0;padding-bottom:.14em}
- html:lang(zh):not(#sz) .c2[data-variant="b"]:not([data-size-only]) .gh-n{position:relative;top:-1px}
- html:lang(zh):not(#sz) .tz-opt{padding-top:.238em;padding-bottom:.182em}
- html:lang(zh):not(#sz) .ly1,html:lang(zh):not(#sz) .ly4{padding-top:.12em;padding-bottom:.2em}
- html:lang(zh):not(#sz) .dv-e{padding-top:.065em;padding-bottom:.175em}
- html:lang(zh):not(#sz) .ptier{padding-top:.044em;padding-bottom:.156em}
- html:lang(zh):not(#sz) .way-line{top:.011em}
+ html:lang(zh-TW):not(#sz) [data-card]:not([data-variant="b"]) .pparts .chip,html:lang(zh-HK):not(#sz) [data-card]:not([data-variant="b"]) .pparts .chip{padding-top:.16em;padding-bottom:.24em}
+ html:lang(zh-TW):not(#sz) [data-card].c3:not([data-variant="b"]) .pparts .chip,html:lang(zh-HK):not(#sz) [data-card].c3:not([data-variant="b"]) .pparts .chip{padding-top:.17em;padding-bottom:.23em}
+ html:lang(zh-TW):not(#sz) .gh-k,html:lang(zh-HK):not(#sz) .gh-k{padding-top:0;padding-bottom:.14em}
+ html:lang(zh-TW):not(#sz) .c2[data-variant="b"]:not([data-size-only]) .gh-n,html:lang(zh-HK):not(#sz) .c2[data-variant="b"]:not([data-size-only]) .gh-n{position:relative;top:-1px}
+ html:lang(zh-TW):not(#sz) .tz-opt,html:lang(zh-HK):not(#sz) .tz-opt{padding-top:.238em;padding-bottom:.182em}
+ html:lang(zh-TW):not(#sz) .ly1,html:lang(zh-HK):not(#sz) .ly1,html:lang(zh-TW):not(#sz) .ly4,html:lang(zh-HK):not(#sz) .ly4{padding-top:.12em;padding-bottom:.2em}
+ html:lang(zh-TW):not(#sz) .dv-e,html:lang(zh-HK):not(#sz) .dv-e{padding-top:.065em;padding-bottom:.175em}
+ html:lang(zh-TW):not(#sz) .ptier,html:lang(zh-HK):not(#sz) .ptier{padding-top:.044em;padding-bottom:.156em}
+ html:lang(zh-TW):not(#sz) .way-line,html:lang(zh-HK):not(#sz) .way-line{top:.011em}
 }
 @container (max-width:800px) and (min-width:601px){
- html:lang(zh):not([data-size="kakao"]):not(#sz) .c2:not([data-variant="b"]) .pparts .chip{padding-top:.11em;padding-bottom:.29em}
- html:lang(zh):not([data-size="kakao"]):not(#sz) .c3 .pparts .chip{padding-top:.16em;padding-bottom:.24em}
- html:lang(zh):not([data-size="kakao"]):not(#sz) .gh-k{padding-top:0;padding-bottom:.21em}
- html:lang(zh):not([data-size="kakao"]):not(#sz) .ptier{padding-top:.1em;padding-bottom:.3em}
- html:lang(zh):not([data-size="kakao"]):not(#sz) .dv-e{padding-top:.03em;padding-bottom:.27em}
- html:lang(zh):not([data-size="kakao"]):not(#sz) .way-line{padding-top:.07em;padding-bottom:.33em}
+ html:lang(zh-TW):not([data-size="kakao"]):not(#sz) .c2:not([data-variant="b"]) .pparts .chip,html:lang(zh-HK):not([data-size="kakao"]):not(#sz) .c2:not([data-variant="b"]) .pparts .chip{padding-top:.11em;padding-bottom:.29em}
+ html:lang(zh-TW):not([data-size="kakao"]):not(#sz) .c3 .pparts .chip,html:lang(zh-HK):not([data-size="kakao"]):not(#sz) .c3 .pparts .chip{padding-top:.16em;padding-bottom:.24em}
+ html:lang(zh-TW):not([data-size="kakao"]):not(#sz) .gh-k,html:lang(zh-HK):not([data-size="kakao"]):not(#sz) .gh-k{padding-top:0;padding-bottom:.21em}
+ html:lang(zh-TW):not([data-size="kakao"]):not(#sz) .ptier,html:lang(zh-HK):not([data-size="kakao"]):not(#sz) .ptier{padding-top:.1em;padding-bottom:.3em}
+ html:lang(zh-TW):not([data-size="kakao"]):not(#sz) .dv-e,html:lang(zh-HK):not([data-size="kakao"]):not(#sz) .dv-e{padding-top:.03em;padding-bottom:.27em}
+ html:lang(zh-TW):not([data-size="kakao"]):not(#sz) .way-line,html:lang(zh-HK):not([data-size="kakao"]):not(#sz) .way-line{padding-top:.07em;padding-bottom:.33em}
 }
-html:lang(zh)[data-size="kakao"]:not(#sz) [data-card]:not([data-variant="b"]) .pparts .chip{padding-top:.16em;padding-bottom:.24em}
-html:lang(zh)[data-size="kakao"]:not(#sz) .gh-k{padding-top:0;padding-bottom:.165em}
-html:lang(zh)[data-size="kakao"]:not(#sz) .ly1{padding-top:.12em;padding-bottom:.2em}
-html:lang(zh)[data-size="kakao"]:not(#sz) .ly4{padding-top:.07em;padding-bottom:.25em}
-html:lang(zh)[data-size="kakao"]:not(#sz) .dv-e{padding-top:.08em;padding-bottom:.16em}
-html:lang(zh)[data-size="kakao"]:not(#sz) .ptier{padding-top:.044em;padding-bottom:.156em}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) [data-card]:not([data-variant="b"]) .pparts .chip,html:lang(zh-HK)[data-size="kakao"]:not(#sz) [data-card]:not([data-variant="b"]) .pparts .chip{padding-top:.16em;padding-bottom:.24em}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) .gh-k,html:lang(zh-HK)[data-size="kakao"]:not(#sz) .gh-k{padding-top:0;padding-bottom:.165em}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) .ly1,html:lang(zh-HK)[data-size="kakao"]:not(#sz) .ly1{padding-top:.12em;padding-bottom:.2em}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) .ly4,html:lang(zh-HK)[data-size="kakao"]:not(#sz) .ly4{padding-top:.07em;padding-bottom:.25em}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) .dv-e,html:lang(zh-HK)[data-size="kakao"]:not(#sz) .dv-e{padding-top:.08em;padding-bottom:.16em}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) .ptier,html:lang(zh-HK)[data-size="kakao"]:not(#sz) .ptier{padding-top:.044em;padding-bottom:.156em}
 /* the Korean line / kakao card 2 row 12 third chip has its own !important split (a Korean word); TW takes the common split */
-html:lang(zh)[data-size]:not(#sz) .L2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3),html:lang(zh)[data-size]:not(#sz) .K2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3){padding-top:.16em!important;padding-bottom:.24em!important}
+html:lang(zh-TW)[data-size]:not(#sz) .L2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3),html:lang(zh-HK)[data-size]:not(#sz) .L2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3),html:lang(zh-TW)[data-size]:not(#sz) .K2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3),html:lang(zh-HK)[data-size]:not(#sz) .K2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3){padding-top:.16em!important;padding-bottom:.24em!important}
 /* the skin-layer labels 2 / 3 (card 4): the TW text 1 px higher in its pill (the Korean line / kakao cards move the Korean text down .6 px; TW does not) */
-html:lang(zh):not(#sz) .ly2,html:lang(zh):not(#sz) .ly3{padding-top:0;padding-bottom:.06em}
-html:lang(zh):not(#sz) .ly2 [data-copy],html:lang(zh):not(#sz) .ly3 [data-copy]{top:0}
+html:lang(zh-TW):not(#sz) .ly2,html:lang(zh-HK):not(#sz) .ly2,html:lang(zh-TW):not(#sz) .ly3,html:lang(zh-HK):not(#sz) .ly3{padding-top:0;padding-bottom:.06em}
+html:lang(zh-TW):not(#sz) .ly2 [data-copy],html:lang(zh-HK):not(#sz) .ly2 [data-copy],html:lang(zh-TW):not(#sz) .ly3 [data-copy],html:lang(zh-HK):not(#sz) .ly3 [data-copy]{top:0}
 /* line cards: card 2 chips a hair lower, the card 6 subway pill text higher */
-html:lang(zh)[data-size="line"]:not(#sz) .c2:not([data-variant="b"]) .pparts .chip{padding-top:.17em;padding-bottom:.23em}
-html:lang(zh)[data-size="line"]:not(#sz) .L62 .way-line{padding-top:.175em;padding-bottom:.225em}
-html:lang(zh)[data-size="line"]:not(#sz) [data-card].L3.L32 .ptier{padding-top:.08em;padding-bottom:.12em}
+html:lang(zh-TW)[data-size="line"]:not(#sz) .c2:not([data-variant="b"]) .pparts .chip,html:lang(zh-HK)[data-size="line"]:not(#sz) .c2:not([data-variant="b"]) .pparts .chip{padding-top:.17em;padding-bottom:.23em}
+html:lang(zh-TW)[data-size="line"]:not(#sz) .L62 .way-line,html:lang(zh-HK)[data-size="line"]:not(#sz) .L62 .way-line{padding-top:.175em;padding-bottom:.225em}
+html:lang(zh-TW)[data-size="line"]:not(#sz) [data-card].L3.L32 .ptier,html:lang(zh-HK)[data-size="line"]:not(#sz) [data-card].L3.L32 .ptier{padding-top:.08em;padding-bottom:.12em}
 /* kakao cards: the hero option pill text 1 px higher, the 2 B-1 group title 1.4 px higher */
-html:lang(zh)[data-size="kakao"]:not(#sz) .K1a2 .tz-opt,html:lang(zh)[data-size="kakao"]:not(#sz) .K1b2 .tz-opt{padding-top:calc(.31em - 1px);padding-bottom:calc(.11em + 3px)}
-html:lang(zh)[data-size="kakao"]:not(#sz) .K2b1 .gh-n{position:relative;top:-1.4px}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) .K1a2 .tz-opt,html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K1a2 .tz-opt,html:lang(zh-TW)[data-size="kakao"]:not(#sz) .K1b2 .tz-opt,html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K1b2 .tz-opt{padding-top:calc(.31em - 1px);padding-bottom:calc(.11em + 3px)}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) .K2b1 .gh-n,html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K2b1 .gh-n{position:relative;top:-1.4px}
 /* single-pill nudges where the text lands on the other side of a whole pixel (line card 3-2 tier pill 'Plan B', kakao card 2-2 row 10 'LDM' and the second\n   line of row 11, kakao card 4-2 RF pill: there the box grows 1 px or moves half a pixel, which moves its centre against the text) */
-html:lang(zh)[data-size="line"]:not(#sz) [data-card].L3.L32 .ptier[data-copy="on_r27_tier"]{padding-top:.06em;padding-bottom:.14em}
-html:lang(zh)[data-size="kakao"]:not(#sz) [data-card].K2a2 [data-copy="on_r10_parts"] > .chip:nth-child(5),html:lang(zh)[data-size="kakao"]:not(#sz) [data-card].K2a2 [data-copy="on_r11_parts"] > .chip:nth-child(n+7){padding-top:.16em;padding-bottom:calc(.24em + 1px)}
-html:lang(zh)[data-size="kakao"]:not(#sz) [data-card].K4 .dv-e[data-copy="on_c4_d2_e"]{position:relative;top:-.5px}
+html:lang(zh-TW)[data-size="line"]:not(#sz) [data-card].L3.L32 .ptier[data-copy="on_r27_tier"],html:lang(zh-HK)[data-size="line"]:not(#sz) [data-card].L3.L32 .ptier[data-copy="on_r27_tier"]{padding-top:.06em;padding-bottom:.14em}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) [data-card].K2a2 [data-copy="on_r10_parts"] > .chip:nth-child(5),html:lang(zh-HK)[data-size="kakao"]:not(#sz) [data-card].K2a2 [data-copy="on_r10_parts"] > .chip:nth-child(5),html:lang(zh-TW)[data-size="kakao"]:not(#sz) [data-card].K2a2 [data-copy="on_r11_parts"] > .chip:nth-child(n+7),html:lang(zh-HK)[data-size="kakao"]:not(#sz) [data-card].K2a2 [data-copy="on_r11_parts"] > .chip:nth-child(n+7){padding-top:.16em;padding-bottom:calc(.24em + 1px)}
+html:lang(zh-TW)[data-size="kakao"]:not(#sz) [data-card].K4 .dv-e[data-copy="on_c4_d2_e"],html:lang(zh-HK)[data-size="kakao"]:not(#sz) [data-card].K4 .dv-e[data-copy="on_c4_d2_e"]{position:relative;top:-.5px}
 
 /* TW chip text centring (2026-11-17): the TW text is set in Noto Sans TC, whose glyphs sit lower in the chips than Pretendard; padding measured on real pixels
    with qa/text-center-check.cjs (?lang=TW), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
@@ -430,3 +434,102 @@ html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="4"]:not([data-va
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly1{padding-top:1.433px!important;padding-bottom:4.007px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly3{padding-top:0.000px!important;padding-bottom:2.339px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="on_ab_way_line"]{padding-top:2.200px!important;padding-bottom:3.400px!important}
+
+/* ===== CN (2026-11-18, lead order): simplified Chinese in Noto Sans SC (--f-cjk above). Every rule below names html:lang(zh-CN) only, so TW / HK /
+   TH / KO do not change; the TW / HK rules above (zh-TW + zh-HK) do not style CN. Copy = v4/langverify/out/ONE12.final.json CN as it is ===== */
+/* card 2 B (home / board): the CN row 10 name '支持韧带玻尿酸 + 塑妍萃' ran its last character '萃' onto a second line in the narrow ticket (the name is a
+   flex box, so the Chinese last-word guard of oneday12.js does not act there); it is set a little smaller and keeps one line, as the other ticket names */
+@container (min-width:601px){html:lang(zh-CN) .c2[data-variant="b"]:not([data-size-only]) [data-price-row="18_oneday:10"] .pname{font-size:max(14px,calc(20*var(--px)))}}
+/* card 5 facts: the CN third fact '施术后即可恢复日常生活' (297 px at the Korean size) is wider than its dark box (267 px on home / board, 273 on the line
+   card); the three facts are set a little smaller there (one line each, as the Korean facts) */
+@container (min-width:601px){html:lang(zh-CN) .c5:not([data-size-only]) .inf-v{font-size:calc(24*var(--px))}}
+html:lang(zh-CN)[data-size="line"]:not(#sz) .L52 .inf-v{font-size:24px}
+/* kakao 5-2: the three dark boxes are 184 px wide; the CN facts (up to 297 px) take two lines there at a smaller size (the card has the room) */
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K52 .inf{padding-left:14px;padding-right:14px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K52 .inf-v{font-size:20px;white-space:normal}
+/* kakao 2-2 and 3-3: the CN part chips of rows 12 and 26 took two more lines than the Korean ones and pushed the period / VAT line below the card; the
+   chips are a little smaller with less side padding (as the TW home card 2 chips), so the lists keep the Korean height */
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K2a2 .pparts,html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K33 .pparts{font-size:14px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K2a2 .pparts .chip,html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K33 .pparts .chip{padding-left:.45em;padding-right:.45em}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K2a2 .pparts .plus,html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K33 .pparts .plus{padding:0 .16em}
+/* kakao 2 B-4: the three CN body options took two lines each (Korean one) and pushed the band under the card; a little smaller, one line each (as TW) */
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K2b4 .popt{font-size:16.5px}/* card 2 A (home / board): as the TW / HK card, the CN option lines of rows 14-16 and the part chips of rows 11-12 are longer than the Korean ones and
+   took more lines; the price board ran 34 px longer than the Korean one (on the board at 780 its bottom edge ran into the '의료법상' line under it). They
+   are set a little smaller with less chip padding (the TW / HK sizes), so the board keeps about the Korean height */
+@container (min-width:601px){
+ html:lang(zh-CN) .c2:not([data-size-only]):not([data-variant="b"]) .popt{font-size:max(13px,calc(19*var(--px)))}
+ html:lang(zh-CN) .c2:not([data-size-only]):not([data-variant="b"]) .pparts{font-size:max(11px,calc(14*var(--px)))}
+ html:lang(zh-CN) .c2:not([data-size-only]):not([data-variant="b"]) .pparts .chip{padding-left:.45em;padding-right:.45em}
+ html:lang(zh-CN) .c2:not([data-size-only]):not([data-variant="b"]) .pparts .plus{padding:0 .16em}
+}/* (card 2 A, board width 601-800 px) the CN rows are a few pixels taller than the Korean ones (Noto Sans SC line boxes) and the board's bottom edge
+   came 5 px into the '의료법상' line under it; the board sits 6 px higher there (it is position:relative; the layout around it does not move) */
+@container (max-width:800px) and (min-width:601px){html:lang(zh-CN) .c2:not([data-size-only]):not([data-variant="b"]) .pboard{top:-6px}}/* CN chip / pill text centring base: Noto Sans SC has the vertical metrics of Noto Sans TC, so the TW / HK base split per chip kind and size (home 1080
+   and line, board 780, kakao; measured with qa/text-center-check.cjs) is written again for CN here; the generated <cn-center> block below corrects the rest */
+@container (min-width:801px){
+ html:lang(zh-CN):not(#sz) [data-card]:not([data-variant="b"]) .pparts .chip{padding-top:.16em;padding-bottom:.24em}
+ html:lang(zh-CN):not(#sz) [data-card].c3:not([data-variant="b"]) .pparts .chip{padding-top:.17em;padding-bottom:.23em}
+ html:lang(zh-CN):not(#sz) .gh-k{padding-top:0;padding-bottom:.14em}
+ html:lang(zh-CN):not(#sz) .tz-opt{padding-top:.238em;padding-bottom:.182em}
+ html:lang(zh-CN):not(#sz) .ly1,html:lang(zh-CN):not(#sz) .ly4{padding-top:.12em;padding-bottom:.2em}
+ html:lang(zh-CN):not(#sz) .dv-e{padding-top:.065em;padding-bottom:.175em}
+ html:lang(zh-CN):not(#sz) .ptier{padding-top:.044em;padding-bottom:.156em}
+ html:lang(zh-CN):not(#sz) .way-line{top:.011em}
+}
+@container (max-width:800px) and (min-width:601px){
+ html:lang(zh-CN):not([data-size="kakao"]):not(#sz) .c2:not([data-variant="b"]) .pparts .chip{padding-top:.11em;padding-bottom:.29em}
+ html:lang(zh-CN):not([data-size="kakao"]):not(#sz) .c3 .pparts .chip{padding-top:.16em;padding-bottom:.24em}
+ html:lang(zh-CN):not([data-size="kakao"]):not(#sz) .gh-k{padding-top:0;padding-bottom:.21em}
+ html:lang(zh-CN):not([data-size="kakao"]):not(#sz) .ptier{padding-top:.1em;padding-bottom:.3em}
+ html:lang(zh-CN):not([data-size="kakao"]):not(#sz) .dv-e{padding-top:.03em;padding-bottom:.27em}
+ html:lang(zh-CN):not([data-size="kakao"]):not(#sz) .way-line{padding-top:.07em;padding-bottom:.33em}
+}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) [data-card]:not([data-variant="b"]) .pparts .chip{padding-top:.16em;padding-bottom:.24em}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .gh-k{padding-top:0;padding-bottom:.165em}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .ly1{padding-top:.12em;padding-bottom:.2em}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .ly4{padding-top:.07em;padding-bottom:.25em}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .dv-e{padding-top:.08em;padding-bottom:.16em}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .ptier{padding-top:.044em;padding-bottom:.156em}
+html:lang(zh-CN)[data-size]:not(#sz) .L2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3),html:lang(zh-CN)[data-size]:not(#sz) .K2a2 [data-price-row="18_oneday:12"] .pparts > .chip:nth-child(3){padding-top:.16em!important;padding-bottom:.24em!important}
+html:lang(zh-CN):not(#sz) .ly2,html:lang(zh-CN):not(#sz) .ly3{padding-top:0;padding-bottom:.06em}
+html:lang(zh-CN):not(#sz) .ly2 [data-copy],html:lang(zh-CN):not(#sz) .ly3 [data-copy]{top:0}
+html:lang(zh-CN)[data-size="line"]:not(#sz) .c2:not([data-variant="b"]) .pparts .chip{padding-top:.17em;padding-bottom:.23em}
+html:lang(zh-CN)[data-size="line"]:not(#sz) .L62 .way-line{padding-top:.175em;padding-bottom:.225em}
+html:lang(zh-CN)[data-size="line"]:not(#sz) [data-card].L3.L32 .ptier{padding-top:.08em;padding-bottom:.12em}
+/* <cn-center> */
+/* CN chip and pill text centring (generated 2026-11-18 from qa/text-center-check + language CN at 1080 / 780 / line / kakao, after the base above): each
+   component moves its text by its measured offset (top / bottom padding swapped, same height) */
+@media (min-width:901px){
+ html:lang(zh-CN):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) span.tz-opt[data-copy="on_hero_opt"]{padding-top:2.62px;padding-bottom:3.68px} /* +0.95 */
+ html:lang(zh-CN):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] span.tz-opt[data-copy="on_hero_opt"]{padding-top:2.62px;padding-bottom:3.68px} /* +0.95 */
+ html:lang(zh-CN):not(#sz) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] p.gh .gh-n{position:relative;top:-0.6px} /* +0.95 */
+ html:lang(zh-CN):not(#sz) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span.ptier[data-copy="on_r27_tier"]{padding-top:1.26px;padding-bottom:1.54px} /* -0.64 */
+ html:lang(zh-CN):not(#sz) section.card[data-card="4"]:not([data-size-only]):not([data-variant="b"]) span.dv-e[data-copy="on_c4_d1_e"]{padding-top:1.58px;padding-bottom:1.78px} /* -0.67 */
+ html:lang(zh-CN):not(#sz) section.card[data-card="6"]:not([data-size-only]):not([data-variant="b"]) figcaption[data-copy="on_ab_ph1"]{padding-top:5.39px;padding-bottom:2.41px} /* -0.71 */
+ html:lang(zh-CN):not(#sz) section.card[data-card="6"]:not([data-size-only]):not([data-variant="b"]) figcaption[data-copy="on_ab_ph2"]{padding-top:5.52px;padding-bottom:2.28px} /* -0.84 */
+ html:lang(zh-CN):not(#sz) section.card[data-card="6"]:not([data-size-only]):not([data-variant="b"]) figcaption[data-copy="on_ab_ph3"]{padding-top:5.39px;padding-bottom:2.41px} /* -0.71 */
+}
+@media (min-width:600px) and (max-width:900px){
+ html:lang(zh-CN):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] span.tz-opt[data-copy="on_hero_opt"]{padding-top:1.98px;padding-bottom:2.64px} /* +1.98 */
+ html:lang(zh-CN):not(#sz) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span.gh-k[data-copy="on_p26_k"]{padding-top:1.07px;padding-bottom:1.66px} /* -1.48 */
+}
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) span.tz-opt[data-copy="on_hero_opt"]{padding-top:2.61px;padding-bottom:3.69px} /* +0.94 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] span.tz-opt[data-copy="on_hero_opt"]{padding-top:2.61px;padding-bottom:3.69px} /* +0.94 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="2"] [data-copy="on_r12_parts"] > span.chip:nth-child(n+5){padding-top:1.90px;padding-bottom:4.10px} /* +0.64, the four chips of the second line */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="3"]:not([data-variant="b"])[data-part="2"] span.ptier[data-copy="on_r27_tier"]{padding-top:0.42px;padding-bottom:2.38px} /* +0.69 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="4"]:not([data-variant="b"])[data-part="2"] span.ly.ly4 [data-copy]{position:relative;top:-0.0401em} /* +0.67 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="6"]:not([data-variant="b"])[data-part="1"] figcaption[data-copy="on_ab_ph1"]{padding-top:5.39px;padding-bottom:2.41px} /* -0.7 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="6"]:not([data-variant="b"])[data-part="1"] figcaption[data-copy="on_ab_ph2"]{padding-top:5.52px;padding-bottom:2.28px} /* -0.82 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="6"]:not([data-variant="b"])[data-part="1"] figcaption[data-copy="on_ab_ph3"]{padding-top:5.39px;padding-bottom:2.41px} /* -0.7 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="2"] span.tz-opt[data-copy="on_hero_opt"]{padding-top:4.49px;padding-bottom:4.85px;margin-top:-1.04px} /* +2: a 1.48 px move landed 2 px (whole-pixel text); 1.2 px, and the box 1.04 px taller at the top (margin keeps the layout) */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="2"] span.tz-opt[data-copy="on_hero_opt"]{padding-top:4.49px;padding-bottom:4.85px;margin-top:-1.04px} /* +2: a 1.48 px move landed 2 px (whole-pixel text); 1.2 px, and the box 1.04 px taller at the top (margin keeps the layout) */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="2"] [data-copy="on_r12_parts"] > span.chip:nth-child(3){padding-top:2.69px!important;padding-bottom:4.01px!important;margin-bottom:-1.1px} /* -0.61; the third chip has an !important split (Korean word, TW / CN base) */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="1"] p.gh .gh-n{position:relative;top:-0.0531em} /* +1.29 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="3"] span.ptier[data-copy="on_r26_tier"]{padding-top:1.28px;padding-bottom:1.52px} /* -0.89 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="4"] [data-copy="on_r27_parts"] > span.chip:nth-child(17){padding-top:3.17px;padding-bottom:3.23px} /* -0.83, the chip '全脸水光肉毒（面部+颈部）美国保妥适肉毒4cc' */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="4"]:not([data-variant="b"])[data-part="2"] span.dv-e[data-copy="on_c4_d1_e"]{padding-top:1.64px;padding-bottom:2.72px;margin-bottom:-1px} /* -0.7; generated move, the box 1 px taller at the bottom (whole-pixel text) */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="4"]:not([data-variant="b"])[data-part="2"] span.dv-e[data-copy="on_c4_d3_e"]{padding-top:1.57px;padding-bottom:2.89px;margin-bottom:-1.1px} /* -0.61; generated move, the box 1.1 px taller at the bottom (whole-pixel text) */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="6"]:not([data-variant="b"])[data-part="1"] figcaption[data-copy="on_ab_ph1"]{padding-top:5.68px;padding-bottom:3.12px} /* -0.73; box 1 px taller at the top (whole-pixel text) */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="6"]:not([data-variant="b"])[data-part="1"] figcaption[data-copy="on_ab_ph2"]{padding-top:5.68px;padding-bottom:3.12px} /* -0.9; box 1 px taller at the top (whole-pixel text) */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="6"]:not([data-variant="b"])[data-part="1"] figcaption[data-copy="on_ab_ph3"]{padding-top:5.68px;padding-bottom:3.12px} /* -0.73; box 1 px taller at the top (whole-pixel text) */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="6"]:not([data-variant="b"])[data-part="3"] span.way-line[data-copy="on_ab_way_line"]{padding-top:3.33px;padding-bottom:3.27px;margin-top:-1px} /* +0.64; generated move, the box 1 px taller at the top (whole-pixel text) */
+/* </cn-center> */
