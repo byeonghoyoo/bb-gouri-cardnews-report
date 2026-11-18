@@ -56,9 +56,11 @@ function setKJ(el,v){
  const b=document.createElement('span');b.className='kjv';b.textContent=m[3];el.append(b);
 }
 /* card 6 hours: the day label and the time are styled apart */
+/* 2026-11-18 EN: the English hours give 12-hour times ('10:00 AM – 4:30 PM'); an AM / PM after the first time is allowed, so the day and the time
+   are still set apart (every other value matches exactly as before) */
 function setHours(el,v){
  el.textContent='';
- const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
+ const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}(?:\s?[AP]M)?\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
  if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];
  const t=document.createElement('span');t.className='ht';t.textContent=m[3];

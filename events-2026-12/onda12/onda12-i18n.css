@@ -163,3 +163,51 @@ html:lang(zh-HK)[data-size=kakao] .K7p3 .map-img{object-fit:cover}
 /* kakao card 6 part 2: the source line under the HK tip reached 2 px under the card; the steps and the source line sit 8 px closer */
 html:lang(zh-HK)[data-size=kakao] .K6p2 .steps{margin-top:8px}
 html:lang(zh-HK)[data-size=kakao] .K6p2 .src{margin-top:6px}
+/* ---------- EN re-apply (2026-11-18, lead order 14:30): the EN reviewer revised the sheet (159 rows, 79 corrections; prices now '480K' / '1.15M',
+   longer KJ note, DCA, CA modifier, device points, steps and strengths); EN rules only ---------- */
+/* card 2 A: the longer DCA, CA modifier ('The more treatment you combine, the better the deal!') stays on the group head row at a smaller size, so the
+   board keeps its height and the legal and VAT lines stay on the card */
+html:lang(en) .cp.cpf:not([data-size-only]) .pg-mod{font-size:max(13px,calc(19*var(--px)))}
+html:lang(en)[data-size=line] .L2a .pg-mod{font-size:19px}
+/* card 5 (device): the four English points are a sentence or two each; titles and text a little smaller and the boxes a little tighter, so the
+   points end above the device comparison and the source line stays on the card (the diagram keeps its width for its English labels) */
+@container (min-width:601px){
+ html:lang(en) .c4:not([data-size-only]) .points{gap:calc(10*var(--px))}
+ html:lang(en) .c4:not([data-size-only]) .pt{padding:calc(14*var(--px)) calc(18*var(--px))}
+ html:lang(en) .c4:not([data-size-only]) .pt-t{font-size:max(14px,calc(23*var(--px)))}
+ html:lang(en) .c4:not([data-size-only]) .pt-d{font-size:max(12px,calc(18*var(--px)))}
+}
+/* card 7: the strength titles may break inside the kept last two words ('Evening & Weekend / Appointments' was wider than its column); the
+   director's name line and the QR caption break into balanced lines; the station and its line pill stay on one row on the board (780) */
+html:lang(en) .ab-strengths .at .nw{white-space:normal}
+html:lang(en) .dr-name,html:lang(en) .qr figcaption{text-wrap:balance}
+html:lang(en) .way-st{font-size:max(15px,calc(23*var(--px)))}
+/* line cards 5 and 6: the longer English points, steps and information values take a little smaller type, so the device comparison, the tip and
+   the source line stay on the 1100 x 1000 card; information values break into balanced lines ('A warm sensation / may be felt.') */
+html:lang(en)[data-size=line] .L5 .pt{padding:7px 18px}
+html:lang(en)[data-size=line] .L5 .pt-t{font-size:22px}
+html:lang(en)[data-size=line] .L5 .pt-d{font-size:17px}
+html:lang(en)[data-size=line] .L6 .st-t{font-size:22px}
+html:lang(en)[data-size=line] .L6 .st-d{font-size:17px}
+html:lang(en)[data-size=line] .L6 .inf-v{font-size:21px}
+html:lang(en) .inf-v{text-wrap:balance}
+/* card 1 A: the Korean hero pill lifts the price 0.025 em and lowers the contact text 0.065 em to centre its Korean glyphs; the English price
+   ('480K') and contact line ('Bookings & Inquiries WhatsApp: ...') are Latin glyphs that sit centred without that shift */
+@container (min-width:601px){
+ html:lang(en) .c1 .tz-price{top:-.012em}
+ html:lang(en) .c1 .c1-contact .contact{position:relative;top:-.07em}
+}
+@container (min-width:601px) and (max-width:999px){
+ html:lang(en) .c1 .c1-contact .contact{top:-.035em}
+}
+
+/* EN-CENTER START */
+/* EN chip text centring (2026-11-18, EN re-apply): the English words sit differently in these chips than the Korean ones; padding / offset measured on
+   real pixels with qa/text-center-check.cjs (?lang=EN), per component and size (home 1080 / board 780 / line; KakaoTalk is KO-only on this page) */
+@media (min-width:1000px){
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.kj-k[data-copy="od_p_kj_k"]{padding-top:0.27700em!important;padding-bottom:0.22300em!important}
+}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.kj-k[data-copy="od_p_kj_k"]{padding-top:5.544px!important;padding-bottom:4.456px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.badge[data-copy="od_r36_badge"]{padding-top:4.090px!important;padding-bottom:1.791px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-cool > span{position:relative;top:0.271px}
+/* EN-CENTER END */
