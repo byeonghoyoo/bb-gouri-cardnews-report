@@ -12,6 +12,9 @@ html:lang(zh){--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,s
 html:lang(zh) .h-ko,html:lang(zh) .p-title,html:lang(zh) .q-title{font-weight:900}
 /* line breaks: Chinese breaks between characters (the Korean page keeps whole words with keep-all) */
 html:lang(zh) .sheet{word-break:normal}
+/* CN (2026-11-18 afternoon, lead order): the three bare :lang(zh) rules above are generic Chinese typography (the --f-cjk font stack, the 900 title
+   weight, breaking between characters) and stay shared by TW, HK and CN; every TW layout and centring rule below names zh-TW, so none of them reaches
+   CN. CN sets its text in Noto Sans SC (line 10) and gets its own html:lang(zh-CN) layout and centring rules at the end of this file */
 
 /* ===== TH ===== */
 /* fonts exactly as LIG12 / CRF12 / DEN12 / GOU12 TH: Noto Sans Thai after Pretendard, so Latin letters and figures keep Pretendard and the Thai letters
@@ -259,3 +262,92 @@ html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b
 html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:7.336px!important;padding-bottom:2.024px!important}
 html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:1.752px!important;padding-bottom:5.808px!important}
 html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.kd-t[data-copy="iv_c3_k3_t"]{padding-top:4.554px!important;padding-bottom:4.006px!important}
+
+
+/* ===== CN layout (2026-11-18 afternoon, lead order) ===== */
+/* hero B: the CN title ('Blossom营养针加强套餐', one character longer than TW) ran 39 px past its box and under the sphere at its end at the Korean
+   89 px (hero B titles have no fit); it is 85 on home / board / line (it ends where the TW title ends), 61 on kakao and 28 on phones (TW 64 / 29). Kakao:
+   the badge price and the band line (period, VAT, WeChat ID) as TW, so they stay inside the badge and the card */
+@container (min-width:601px){html:lang(zh-CN) .c1[data-variant="b"]:not([data-size-only]) .h-ko{font-size:calc(85*var(--px))}}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .L1b .h-ko{font-size:85px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K1b .h-ko{font-size:61px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K1b .band{font-size:17px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K1b .hb-sale{font-size:88px}
+@container (max-width:600px){html:lang(zh-CN) .c1[data-variant="b"] .h-ko{font-size:28px}}
+
+/* card 2 A (home and board, line, kakao): the CN lead (35 characters) ran to a second line and the r9 / r11 compositions
+   ('维生素／曲马多／白玉针＋胸腺肽（皮下注射）', '白玉针／维生素／胎盘素针（Laennec）＋胸腺肽') dropped below their '+ immune booster shot' chips, so the board ran
+   over the 의료법 line and the VAT line left the card. The composition lines of card 2 A are 17 (KO / TW 20), so each fits beside its chip as in KO / TW,
+   and the lead is 19.5 on home and board (one line); kakao: the price title at 90 as TW and the lead at 20 (one line) */
+@container (min-width:601px){
+ html:lang(zh-CN) .c2:not([data-variant="b"]):not([data-size-only]) .p-lead{font-size:calc(19.5*var(--px))}
+ html:lang(zh-CN) .c2:not([data-variant="b"]) .popts,html:lang(zh-CN) .c2:not([data-variant="b"]) .pmix{font-size:calc(17*var(--px))}
+}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K2ap1 .p-title{font-size:90px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K2ap1 .p-lead{font-size:20px}
+
+/* card 2 B (home and board, line): the CN lead keeps the Korean 20 in two lines next to the model photo, so the board (and the photo standing on it) starts
+   34 px higher, where the KO board starts; in the boxes the composition lines are 16 (KO / TW 17) and the r12 brackets .6em, so 'Royal recovery'
+   keeps its name and brackets on one line and its composition beside its chip as in KO / TW. Line: the head is 660 wide (the model photo starts at 730)
+   and the lead 18.5 (one line); the line card has no room above the board (the photo standing on it already starts at the card's top), so its board
+   rows sit 6 px apart (Korean 10) and the sale prices are 36 (Korean 42); the boxes then end 25 px above the period */
+@container (min-width:601px){
+ html:lang(zh-CN) .c2[data-variant="b"]:not([data-size-only]) .pboard{margin-top:calc(111*var(--px))}
+ html:lang(zh-CN) .c2[data-variant="b"] .popts,html:lang(zh-CN) .c2[data-variant="b"] .pmix{font-size:calc(16*var(--px))}
+ html:lang(zh-CN) .c2[data-variant="b"] .pparen{font-size:.6em}
+}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .L2b .cp-head{max-width:660px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .L2b .p-lead{font-size:18.5px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .L2b .pboard{margin-top:30px;gap:6px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .L2b .psale{font-size:36px}
+
+/* card 3, kakao: the kept tail of '营养针套餐' broke it as '营养' / '针套餐'; that name breaks between its words ('营养针' / '套餐'); the notes list is 19
+   (Korean 21) so its second and third notes stay on one line each as in KO and the source line stays inside the card */
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K3p1 .kd-n[data-copy="iv_c3_k3_n"] .nw{white-space:normal}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K3p2 .pick-l li{font-size:19px}
+
+/* card 4 facts: '根据所选营养针套餐而定' (11 characters) ran past its box at the Korean 29 px; the three values are 23 on home / board / line and 17 on
+   kakao (TW 20), each on one line */
+@container (min-width:601px){html:lang(zh-CN) .c4:not([data-size-only]) .inf-v{font-size:calc(23*var(--px))}}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .L4p2 .inf-v{font-size:23px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K4p3 .inf-v{font-size:17px}
+
+/* card 5 booking box: the CN phone line is the international number ('+82-2-336-7511', three characters longer than the Korean one) and ran 37 px past
+   its column at the Korean 30 px; it is set smaller where its column is narrow, as TH: 25 on home and board, 28 on line, 24.5 on kakao; phones keep the
+   Korean size. (The TH line rule .L5p2 .bk-phone does not outweigh the Korean line rule, so TH line still shows 34 px; CN names main.iv) */
+@container (min-width:601px){html:lang(zh-CN) .card:not([data-size-only]) .bk-phone{font-size:max(14px,calc(25*var(--px)))}}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .L5p2 .bk-phone{font-size:28px}
+html:lang(zh-CN)[data-size]:not(#sz) main.iv .K5p3 .bk-phone{font-size:24.5px}
+
+
+/* CN chip text centring (2026-11-18 afternoon): the CN text is set in Noto Sans SC, whose glyphs sit lower in the pills than Pretendard; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=CN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules
+   <cn-center> */
+@media (min-width:901px){
+ html:lang(zh-CN) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="iv_g1"]{padding-top:3.67px;padding-bottom:4.68px} /* +1.55 */
+ html:lang(zh-CN) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="iv_g2"]{padding-top:4.13px;padding-bottom:4.23px} /* +1.45 */
+ html:lang(zh-CN) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) span.pplus[data-copy="iv_r10_plus"]{padding-top:2.36px;padding-bottom:2.74px} /* +0.7 */
+ html:lang(zh-CN) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) span.pplus[data-copy="iv_r12_plus"]{padding-top:2.91px;padding-bottom:2.19px} /* -0.65 */
+ html:lang(zh-CN) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] span[data-copy="iv_g1"]{padding-top:3.24px;padding-bottom:5.12px} /* +1.98 */
+ html:lang(zh-CN) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] span[data-copy="iv_g2"]{padding-top:3.95px;padding-bottom:4.41px} /* +1.56 */
+ html:lang(zh-CN) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] span.pbadge[data-copy="iv_r9_badge"]{padding-top:4.38px;padding-bottom:4.62px} /* +0.93 */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(zh-CN) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="iv_g2"]{padding-top:2.87px;padding-bottom:3.17px} /* +1.54 */
+ html:lang(zh-CN) section.card[data-card="5"]:not([data-size-only]):not([data-variant="b"]) span.way-line[data-copy="iv_ab_way_line"]{padding-top:0.62px;padding-bottom:2.13px} /* +1.89 */
+}
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"]) span[data-copy="iv_g1"]{padding-top:3.43px;padding-bottom:4.93px} /* +1.76 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"]) span[data-copy="iv_g2"]{padding-top:3.49px;padding-bottom:4.87px} /* +1.98 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"][data-variant="b"] span[data-copy="iv_g1"]{padding-top:3.99px;padding-bottom:4.37px} /* +1.21 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"][data-variant="b"] span[data-copy="iv_g2"]{padding-top:3.70px;padding-bottom:4.66px} /* +1.78 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"][data-variant="b"] span.pbadge[data-copy="iv_r9_badge"]{padding-top:5.33px;padding-bottom:3.67px} /* -0.81 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="5"]:not([data-variant="b"])[data-part="2"] span.way-line[data-copy="iv_ab_way_line"]{padding-top:1.56px;padding-bottom:1.94px} /* +0.94 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="1"] span[data-copy="iv_g1"]{padding-top:3.86px!important;padding-bottom:4.50px!important} /* +1.84 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="2"] span[data-copy="iv_g2"]{padding-top:4.99px!important;padding-bottom:5.37px!important;margin-top:-1px} /* +2.05, then -0.65 / +0.70 at whole pixels: 1 px taller at the top (same margin box), so its centre rises half a pixel */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="3"] span[data-copy="iv_g2"]{padding-top:4.99px!important;padding-bottom:5.37px!important;margin-top:-1px} /* +2.05, then -0.65 / +0.70 at whole pixels: 1 px taller at the top (same margin box), so its centre rises half a pixel */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="1"] span[data-copy="iv_g1"]{padding-top:3.24px!important;padding-bottom:5.12px!important} /* +2.68 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="2"] span[data-copy="iv_g2"]{padding-top:3.78px!important;padding-bottom:5.58px!important} /* +2.34 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="2"] span.pplus[data-copy="iv_r9_plus"]{padding-top:2.80px!important;padding-bottom:2.40px!important;margin-top:-1px} /* -0.68 either way at whole pixels: the Korean padding with the chip 1 px taller at the top (same margin box), so its centre rises half a pixel */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="3"] span[data-copy="iv_g2"]{padding-top:3.78px!important;padding-bottom:5.58px!important} /* +2.34 */
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="5"]:not([data-variant="b"])[data-part="3"] span.way-line[data-copy="iv_ab_way_line"]{padding-top:1.67px!important;padding-bottom:1.83px!important} /* +1.15 */
+/* </cn-center> */
