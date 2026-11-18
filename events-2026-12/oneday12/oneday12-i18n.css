@@ -533,3 +533,10 @@ html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-c
 html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="6"]:not([data-variant="b"])[data-part="1"] figcaption[data-copy="on_ab_ph3"]{padding-top:5.68px;padding-bottom:3.12px} /* -0.73; box 1 px taller at the top (whole-pixel text) */
 html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="6"]:not([data-variant="b"])[data-part="3"] span.way-line[data-copy="on_ab_way_line"]{padding-top:3.33px;padding-bottom:3.27px;margin-top:-1px} /* +0.64; generated move, the box 1 px taller at the top (whole-pixel text) */
 /* </cn-center> */
+
+/* card 5 facts, HK (2026-11-18 afternoon, lead check): the third value '一般可即日恢復日常活動' (eleven characters) ran past its box (home 19 px, board 14,
+   line 24 to the cell edge, kakao 16 past the cell edge); the three HK values are 24 (line 24, kakao 18), so the row keeps one size and every value
+   fits its box. TW keeps 26 / 20 (rules above) */
+@container (min-width:601px){html:lang(zh-HK) .c5:not([data-size-only]) .inf-v{font-size:calc(24*var(--px))}}
+html:lang(zh-HK)[data-size="line"]:not(#sz) .L52 .inf-v{font-size:24px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K52 .inf-v{font-size:18px}
