@@ -82,7 +82,9 @@ const GUARD='.hook,.p-lead,.q-ans,.lg-d,.mx-d,.st-d,.inf-n,.c5-time,.care [data-
 /* 2026-11-18 HK: 'LDM 護理' (LDM care) stays together; the HK card 5 line ended '…LDM 護 / 理' (the Chinese last-word guard needs three letters after the
    last space); also a number and 'vial(s)' ('2 vials' broke after the 2 in the kakao B box). TW writes 'LDM護理' without the space and KO / TW / TH
    have no 'vial', so only HK changes */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|「[^」\n]{1,16}」|คอลลาเจน|ทรีตเมนต์|ความมั่นใจ|สารกระตุ้น|หย่อนคล้อย|เหมาะสม|ช่วงกลาง|สุดสัปดาห์|ฟิลเลอร์|แพ็กเกจ|โบท็อกซ์|พรีเมียม|วอลุ่ม|นพ\. อี กอนโฮ|LDM 護理|\d+ vials?|\d+ cc|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|스컬트라·래디어스|스컬트라 · 래디어스|필러·스컬트라·래디어스|유지인대 자리|섬유 조직|병\(바이알\)|하루 5번|5분씩|5일 동안|연고·국소 마취|LDM을|LDM까지|LDM으로|주사 리프팅|국산과 수입)/g;
+/* 2026-11-18 CN: the kakao hero line broke inside 'hyaluronic acid' ('…注射玻尿 / 酸、塑妍萃…') and the phone card 6 source line started a line with
+   '·LDM）'; '玻尿酸' before '、塑妍萃' and '塑妍萃·LDM' stay whole. '塑妍萃' (Sculptra) is the CN name only (TW 舒顏萃, HK Sculptra), so only CN changes */
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|「[^」\n]{1,16}」|คอลลาเจน|ทรีตเมนต์|ความมั่นใจ|สารกระตุ้น|หย่อนคล้อย|เหมาะสม|ช่วงกลาง|สุดสัปดาห์|ฟิลเลอร์|แพ็กเกจ|โบท็อกซ์|พรีเมียม|วอลุ่ม|นพ\. อี กอนโฮ|LDM 護理|\d+ vials?|玻尿酸(?=、塑妍萃)|塑妍萃·LDM|\d+ cc|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|스컬트라·래디어스|스컬트라 · 래디어스|필러·스컬트라·래디어스|유지인대 자리|섬유 조직|병\(바이알\)|하루 5번|5분씩|5일 동안|연고·국소 마취|LDM을|LDM까지|LDM으로|주사 리프팅|국산과 수입)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
