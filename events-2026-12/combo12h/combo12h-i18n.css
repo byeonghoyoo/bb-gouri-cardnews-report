@@ -1,4 +1,4 @@
-/* CMB12H language version TH (2026-11-18, lead order). Copy = v4/langverify/out/CMB12H.final.json as it is (+ the visible non-sheet fills of
+/* CMB12H language versions TH (2026-11-18 morning) and TW (2026-11-18 afternoon, at the end of this file), lead order. Copy = v4/langverify/out/CMB12H.final.json as it is (+ the visible non-sheet fills of
    v4/combo12h/work/nonsheet-fills.json); this file only adds the Thai font and the line breaks / widths the Thai copy needs. Every selector names the
    language (:lang(th)), so the Korean page stays pixel-identical (v4/combo12h/i18n-1118.cjs checks the selectors). CMB12I (combo12i) shares the b5
    layout but not this file. */
@@ -214,3 +214,77 @@ html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card
 html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="4"]:not([data-variant="b"])[data-part="2"] h3.tl-n[data-copy="c8_a_k2_n"]{padding-top:4.51px;padding-bottom:7.58px} /* +2.86 */
 html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="4"]:not([data-variant="b"])[data-part="4"] h3.tl-n[data-copy="c8_a_k4_n"]{padding-top:4.84px;padding-bottom:7.25px} /* +2.42 */
 /* </lang-center> */
+
+/* ===== TW (2026-11-18 afternoon, lead order): traditional Chinese in Noto Sans TC first in every stack (Pretendard's and Song Myung's Hanja never mix
+   in; the Latin face Poppins keeps its Latin letters, Chinese letters typed into it fall back to Noto Sans TC, as CMB12A / ONE12 TW). Chinese breaks
+   between characters (the Korean page keeps whole words with keep-all); combo12h.js keeps the last word of a Chinese text together. Every rule below
+   names html:lang(zh-TW) only, so Korean and TH do not change ===== */
+html:lang(zh-TW){--f-cjk:'Noto Sans TC';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-disp:var(--f-cjk),'Song Myung','Pretendard Variable',Pretendard,serif;--f-en:'Poppins',var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif}
+html:lang(zh-TW) .sheet{word-break:normal}/* hero pill and the card 6 title: Chinese breaks between characters, and the TW pill '從肌膚保養到煥膚、雷射組合' broke inside '雷射' (kakao 1 A-2, line 1 A)
+   and the title '讓您的每一天綻放光彩，Beauty Blossom' inside '光彩'; both break only after their comma (combo12h.js fit() sizes the title to two lines) */
+html:lang(zh-TW) .pill,html:lang(zh-TW) .ab-title{word-break:keep-all}
+/* (the title) a first line wider than the box must not be broken anywhere (the page's overflow-wrap would put the comma at the start of line 2 on kakao 6-1); it overflows instead and fit() makes the title smaller until the first line fits */
+html:lang(zh-TW) .ab-title{overflow-wrap:normal}
+/* the TW hero LINE line ('預約・諮詢 LINE@beautyblossom_tw', 341 px; the chat ID is kept whole) is wider than the narrow bands (line 1 A 280 px, kakao
+   1 B-2, phones 1 B 144 px) and pushed the band content out of the card; it may wrap after '諮詢' there (it keeps one line where it fits) */
+html:lang(zh-TW) .band-contact{white-space:normal}
+/* card 6 booking box: the TW phone line holds the LINE ID '@beautyblossom_tw' (chat icon + LINE link, combo12h.js), about 1.6 times as long as the Korean
+   number; it ran out of the box at the big Korean size on home / board and kakao 6-3. It is set at the CMB12A / ONE12 TW size there */
+@container (min-width:601px){html:lang(zh-TW) .card:not([data-size-only]) .bk-phone.is-id{font-size:max(14px,calc(20*var(--px)))}}
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K63 .bk-phone.is-id{font-size:23px}
+/* kakao 1 B-1: the sparkle at the bottom right sits after the Korean hook lines; the TW hook ran under it, its lines end before the sparkle (as TH) */
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K1b1 .hook{max-width:300px}
+/* kakao 3-1: the TW sale price '22萬7千韓元' (row 146) is wider than the fixed Korean sale column (150 px) and ran into the list price; that row's price
+   columns take their width */
+html:lang(zh-TW)[data-size="kakao"] main.b5 [data-price-row="10_combo:146"]{grid-template-columns:minmax(70px,auto) minmax(0,1fr) auto auto}
+/* kakao 3-4, 트러블 package: as TH, the price row beside the package name and the TW week lines across the whole panel (they ran past the card) */
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K34 .pg-g8{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"nm pr" "wk wk";row-gap:10px}
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K34 .pg-g8>.pg-h{display:contents}
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K34 .pg-g8 .pg-name{grid-area:nm;align-self:center}
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K34 .pg-g8 .pg-weeks{grid-area:wk;margin-top:0}
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K34 .pg-g8>.prows{grid-area:pr;align-self:center}
+/* kakao 5-2: the TW care facts ('可立即恢復日常生活', 216 px) are wider than the 196 px boxes at the Korean size; a little smaller there */
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K52 .inf-v{font-size:21px}/* TW chip / pill text centring base: Noto Sans TC sets its letters about .06 em lower in the chips than Pretendard, for which the Korean fixpass split each
+   chip kind; the TW split moves the text up by that much (same box heights), the generated <tw-center> block below corrects the rest. The B/A arrow '›'
+   keeps the Korean page's face (in Noto Sans TC it sat 3 px low) */
+html:lang(zh-TW) .pill-n{padding-top:calc(.28em - .025em);padding-bottom:calc(.32em + .025em)}
+html:lang(zh-TW) .tl-n{padding-top:calc(.3em - .035em);padding-bottom:calc(.32em + .035em)}
+html:lang(zh-TW) .hp-tag{padding-top:calc(.22em - .01em);padding-bottom:calc(.24em + .01em)}
+html:lang(zh-TW) .pill{padding-top:calc(.4em - .025em);padding-bottom:calc(.44em + .025em)}
+html:lang(zh-TW) .band-vat{padding-top:calc(.24em - .025em);padding-bottom:calc(.24em + .025em)}
+html:lang(zh-TW) .wk{padding-top:calc(.12em - .03em);padding-bottom:calc(.12em + .03em)}
+html:lang(zh-TW) .way-line{padding-top:calc(.2em + .02em);padding-bottom:calc(.2em - .02em)}
+html:lang(zh-TW) .bb-ba__arrow{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif}
+/* <tw-center> */
+/* TW chip and pill text centring (generated 2026-11-18 from qa/text-center-check + language TW at 1080 / 780 / line / kakao, after the base above): each
+   component moves its text by its measured offset (top / bottom padding swapped, same height) */
+@media (min-width:901px){
+ html:lang(zh-TW) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) span.hp-tag[data-copy="c8_hp_tag"]{padding-top:4.35px;padding-bottom:3.69px} /* -0.68 */
+ html:lang(zh-TW) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill[data-copy="c8_pill"]{padding-top:9.23px;padding-bottom:10.09px} /* -0.61 */
+ html:lang(zh-TW) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span.wk[data-copy="c8_g8_w2_k"]{padding-top:2.33px;padding-bottom:1.75px} /* -0.8 */
+ html:lang(zh-TW) section.card[data-card="6"]:not([data-size-only]):not([data-variant="b"]) span.way-line[data-copy="c8_ab_way_line"]{padding-top:2.12px;padding-bottom:3.48px} /* +0.96 */
+}
+@media (min-width:600px) and (max-width:900px){
+ html:lang(zh-TW) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span.wk[data-copy="c8_g8_w1_k"]{padding-top:2.18px;padding-bottom:0.77px} /* -1.49 */
+ html:lang(zh-TW) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span.wk[data-copy="c8_g8_w2_k"]{padding-top:2.48px;padding-bottom:0.47px} /* -1.9 */
+ html:lang(zh-TW) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span.wk[data-copy="c8_g8_w3_k"]{padding-top:2.28px;padding-bottom:1.19px} /* -1.64 (after the other two moved) */
+}
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="1"] span.pill-n[data-copy="c8_g1_head"]{padding-top:7.10px;padding-bottom:7.90px} /* -0.71 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="3"]:not([data-variant="b"])[data-part="1"] span.pill-n[data-copy="c8_g6_head"]{padding-top:7.11px;padding-bottom:7.89px} /* -0.72 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="3"]:not([data-variant="b"])[data-part="2"] span.wk[data-copy="c8_g8_w3_k"]{padding-top:0.77px;padding-bottom:0.87px} /* +0.77 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="6"]:not([data-variant="b"])[data-part="2"] span.way-line[data-copy="c8_ab_way_line"]{padding-top:2.18px;padding-bottom:3.42px} /* +0.86 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="2"] span.hp-tag[data-copy="c8_hp_tag"]{padding-top:4.35px;padding-bottom:3.69px} /* -0.92 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="1"] span.pbadge[data-copy="c8_r137_badge"]{padding-top:4.39px;padding-bottom:4.03px;margin-bottom:-.3px} /* -0.64; the box 1 px taller at the bottom (whole-pixel text) */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="2"] span.pill-n[data-copy="c8_g2_head"]{padding-top:6.84px;padding-bottom:9.16px;margin-bottom:-1px} /* -0.63; the box 1 px taller at the bottom (whole-pixel text) */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="3"] span.period[data-copy="c8_period"]{padding-top:9.33px;padding-bottom:7.07px;margin-bottom:-1px} /* -0.71; the box 1 px taller at the bottom (whole-pixel text) */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="2"] span.pill-n[data-copy="c8_g2_head"]{padding-top:6.73px;padding-bottom:7.67px} /* -0.82 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="3"] span.pill-n[data-copy="c8_g3_head"]{padding-top:5.66px;padding-bottom:7.74px} /* +1.38 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="3"] span.pill-n[data-copy="c8_g4_head"]{padding-top:7.15px;padding-bottom:9.25px;margin-bottom:-1px} /* +2.06; the box 1 px taller at the bottom (whole-pixel text) */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="1"] span.pill-n[data-copy="c8_g5_head"]{padding-top:6.98px;padding-bottom:8.02px} /* -0.82 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="2"] span.pill-n[data-copy="c8_g6_head"]{padding-top:6.97px;padding-bottom:8.03px} /* -0.8 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="4"] span.pill-n[data-copy="c8_g8_head"]{padding-top:6.84px;padding-bottom:9.16px;margin-bottom:-1px} /* -0.63; the box 1 px taller at the bottom (whole-pixel text) */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="4"] span.wk[data-copy="c8_g8_w1_k"]{padding-top:2.48px;padding-bottom:1.60px} /* -1.28 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="4"] span.wk[data-copy="c8_g8_w2_k"]{padding-top:1.94px;padding-bottom:2.62px;margin-bottom:.52px} /* +0.82; the box 1 px taller at the bottom (whole-pixel text; the Korean chip keeps a 1.52 px margin) */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="4"] span.pbadge[data-copy="c8_r152_badge"]{padding-top:3.18px;padding-bottom:3.12px} /* +1 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="6"]:not([data-variant="b"])[data-part="3"] span.way-line[data-copy="c8_ab_way_line"]{padding-top:2.44px;padding-bottom:3.16px} /* +0.84 */
+/* </tw-center> */

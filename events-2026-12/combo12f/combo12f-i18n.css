@@ -1,0 +1,166 @@
+/* CMB12F language version TH (2026-11-18 afternoon, v4/combo12f/i18n-1118.cjs). Rules for the Thai page only: every selector names the language
+   (:lang(th)), so the Korean page never matches them (the build checks it). No pictures here (no url(), gradients, data: images or svg) and no CSS
+   translate / scale properties (the board editor uses them; moves use transform). */
+
+/* Thai glyphs: Noto Sans Thai (loaded by combo12f.js for the Thai page) after the Latin fonts of each family, so Latin words keep their look (the wide
+   Latin face Michroma keeps its Latin letters and figures) */
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-wide:'Michroma','Pretendard Variable',Pretendard,'Noto Sans Thai',sans-serif}
+/* line breaks: Thai has no spaces between words; keep-all would only break at the phrase spaces, so Thai breaks at the browser's dictionary breaks */
+html:lang(th) .sheet{word-break:normal}
+/* price rows: the Thai prices are written in full won ('88,000 วอน', '1,400,000 วอน' against '8만8천원'), the names are longer and the tag '국산' reads
+   'โบท็อกซ์แบรนด์เกาหลี'. As CMB12G TH: sale figure 28, list figure 16 (home, board, line). Card 2 A (eleven rows in one card): price columns 112 / 150
+   (the widest Thai prices fit), names at 19, so all but two rows stay on one line and the board ends above the Korean one */
+@container (min-width:601px){
+ html:lang(th) .prow .psale{font-size:calc(28*var(--px))}
+ html:lang(th) .prow .plist{font-size:calc(16*var(--px))}
+ html:lang(th) .cp.c2m:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) calc(112*var(--px)) calc(150*var(--px))}
+ html:lang(th) .cp.c2m:not([data-size-only]) .pline{font-size:calc(19*var(--px))}
+ html:lang(th) .cp.c2m:not([data-size-only]) .prow.solo .pline{font-size:calc(19.5*var(--px))}
+}
+/* hero titles: 'หัตถการยอดนิยมของ Beauty Blossom' is about twice the Korean title. Hero A keeps one fitted line (kakao, below the fit floor: 44); hero B
+   and the phone hero A break it into 'หัตถการยอดนิยม / ของ Beauty Blossom' at a fixed size (home and board 76, line 62, kakao 54, phone 30) */
+@container (min-width:601px){html:lang(th) .b-editorial:not([data-size-only]) .ht-a{white-space:normal;font-size:calc(76*var(--px))}}
+html:lang(th)[data-size]:not(#sz) .L1b .ht-a{white-space:normal;font-size:62px}
+html:lang(th)[data-size]:not(#sz) .K1b .ht-a{white-space:normal;font-size:54px}
+html:lang(th)[data-size]:not(#sz) .K1a .ht-a{font-size:44px}
+@container (max-width:600px){html:lang(th) .c1:not(.b-editorial) .ht-a{white-space:normal;font-size:30px}}
+/* kakao hero A: the Thai caption box is 27 px taller; the hook box moves down by as much, keeping the 20 px overlap of the two glass boxes */
+html:lang(th)[data-size]:not(#sz) .K1a .cb{top:263px}
+/* kakao hero B: with the two-line title the bracket line ends at 277; the caption box moves up to 20 px below it (as the Korean gap) and its sale figure
+   is 48, so the full-won list and sale prices share one line; the hook box (six Thai lines at 23) is set at 18 from 382 (12 px below the photo), so
+   both boxes end above the bottom band */
+html:lang(th)[data-size]:not(#sz) .K1b .ca{top:297px}
+html:lang(th)[data-size]:not(#sz) .K1b .ca-sale{font-size:48px}
+html:lang(th)[data-size]:not(#sz) .K1b .cb{top:382px}
+html:lang(th)[data-size]:not(#sz) .K1b .hook{font-size:18px}
+/* kakao hero A band: the Thai VAT box ('ราคายังไม่รวม VAT 10%', 202 against 131) pushed 'Line: @beautyblossom_th' to a second line below the card; the VAT box
+   is 15 and the contact 18 there */
+html:lang(th)[data-size="kakao"]:not(#sz) .K1a .band-vat{font-size:15px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K1a .band-contact{font-size:18px}
+/* card 3 (four ways to choose): the Thai descriptions run to four or five lines and the first name to two, and every tile row took the tallest tile's
+   height, so the source line fell below the card; for Thai each row takes its own height and the icons are 100 (Korean 124) */
+@container (min-width:601px){
+ html:lang(th) .xa .kinds.k4{grid-auto-rows:auto}
+ html:lang(th) .xa .kinds.k4 .kd-ico{width:calc(100*var(--px))}
+}
+/* card 4 facts: the Thai values ('โดยส่วนใหญ่สามารถกลับไปใช้ชีวิตประจำวันได้ภายในวันเดียวกัน') ran into the next box on one line; they wrap, at 21 (as CMB12G TH) */
+@container (min-width:601px){html:lang(th) .inf-v{white-space:normal;font-size:calc(21*var(--px))}}
+/* line card 3: the Thai tiles were 284 high (Korean 220) and the source line fell below the card; names 22, descriptions 16 */
+html:lang(th)[data-size="line"]:not(#sz) .L3 .kinds.k4 .kd-n{font-size:22px}
+html:lang(th)[data-size="line"]:not(#sz) .L3 .kinds.k4 .kd-d{font-size:16px}
+/* kakao card 3: two tiles side by side leave 211 px for text and the Thai descriptions ran to ten lines, so both parts fell below the card. Thai tiles:
+   icon 60, label 16, name 23, description 16.5 (line 1.5), padding 12 / 14; the part 1 intro 17, the pick box text 17 */
+html:lang(th)[data-size="kakao"]:not(#sz) .K3 .kinds.k4 .kd{grid-template-columns:60px minmax(0,1fr);column-gap:12px;padding:12px 14px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K3 .kinds.k4 .kd-ico{width:60px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K3 .kinds.k4 .kd-t{font-size:16px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K3 .kinds.k4 .kd-n{font-size:23px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K3 .kinds.k4 .kd-d{font-size:16.5px;line-height:1.5}
+html:lang(th)[data-size="kakao"]:not(#sz) .K3p1 .q-ans{font-size:17px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K3 .pick-d{font-size:17px}
+/* kakao card 2 A (three parts): as CMB12G TH, price columns 92 / 150 with the sale figure at 24 and the list figure at 13, names at 19, so the Thai rows
+   take two lines at most; part 1: the title box is 420 wide (Korean 340; it ends 19 px left of the model photo) and the title 44, so it breaks into
+   'หัตถการยอดนิยม / ของ Beauty Blossom' clear of the photo; the board's top margin takes up the lower title (the board and the photo keep their place) */
+html:lang(th)[data-size="kakao"]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) 92px 150px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2a .prow .psale{font-size:24px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2a .prow .plist{font-size:13px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2a .pline{font-size:19px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2ap1 .pt-main{width:420px;font-size:44px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2ap1 .pboard{margin-top:104px}
+/* kakao card 2 A part 2 (rows 76-80, three with the long tag 'โบท็อกซ์แบรนด์เกาหลี'): names 18, the tag 12, rows 3 above and below, so the part ends
+   inside the card */
+html:lang(th)[data-size="kakao"]:not(#sz) .K2ap2 .pline{font-size:18px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2ap2 .otag{font-size:12px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K2ap2 .prow{padding-top:3px;padding-bottom:3px}
+/* kakao card 4 part 3: the three Thai fact values wrap to three or four lines and pushed the care box and the source line below the card; there the
+   values are 17, the notes 14, the care lines and the alert 16, with smaller paddings and gaps in the boxes */
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .inf-v{font-size:17px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .inf{padding:14px 16px 14px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .infos{margin-top:10px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .care{padding-top:14px;padding-bottom:14px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .care-l{gap:3px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .alert{margin-top:8px;padding-top:8px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .src{margin-top:8px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .inf-n{font-size:14px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .care li,html:lang(th)[data-size="kakao"]:not(#sz) .K4p3 .alert{font-size:16px}
+/* kakao card 5 part 3 (location): the Thai title, station and address run to two, two and four lines; as CMB12G TH, the title is 22, the station 22,
+   the address 15, and the map is 200 px high, cut from its top (the clinic, the station and the map credit stay in view) */
+html:lang(th)[data-size="kakao"]:not(#sz) .K5p3 .loc-head .bt-t{font-size:22px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K5p3 .map{aspect-ratio:auto;height:200px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K5p3 .map-img{object-fit:cover;object-position:50% 100%}
+html:lang(th)[data-size="kakao"]:not(#sz) .K5p3 .way-st{font-size:22px}
+html:lang(th)[data-size="kakao"]:not(#sz) .K5p3 .way-addr{font-size:15px}
+/* line card 5 part 2: '+82-2-336-7511' at 34 ran past the card edge; 28 there */
+html:lang(th)[data-size="line"]:not(#sz) .L5p2 .bk-phone{font-size:28px}
+/* card 2 note 'ส่วนลดสูงสุด 49% ตามข้อกำหนดการโฆษณาทางการแพทย์ของเกาหลี' (the '의료법상' line, 437 px at 16) shares the bottom row with the VAT line: on kakao it is
+   14 (HK 13), so they keep a gap; on phones it moves to its own line below the VAT line (as LIG12 zh phones), still one small line */
+html:lang(th)[data-size="kakao"]:not(#sz) .cp .uibeop{font-size:14px}
+@container (max-width:600px){html:lang(th) .cp:not([data-size-only]) .uibeop{position:static;order:1;margin:4px 0 0}}
+/* card 2 A (home, board): the one-line Thai title ended at the model's hair; on this card the heading block stops left of the photo and the title breaks
+   into 'หัตถการยอดนิยม / ของ Beauty Blossom' at 48 (as CMB12G TH); the board moves down by the extra line and still ends where the Korean one does */
+@container (min-width:601px){
+ html:lang(th) .cp.c2m:not([data-size-only]) .cp-head{max-width:calc(657*var(--px))}
+ html:lang(th) .cp.c2m:not([data-size-only]) .pt-main{white-space:normal;font-size:calc(48*var(--px))}
+}
+
+/* TH chip text centring (2026-11-18 afternoon): the Thai text is set in Noto Sans Thai (Latin letters and figures in Pretendard); its vowel and tone
+   marks above and below the letters change the ink box, so each pill gets its own padding, measured on real pixels with qa/text-center-check.cjs
+   (?lang=TH), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules; a pill that kept flipping by about half a
+   pixel is moved as a whole by a quarter or half pixel instead */
+@media (min-width:601px) and (max-width:999px){
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-n[data-copy="c6_p74_name"]{padding-top:0.33800em!important;padding-bottom:0.08200em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pchip[data-copy="c6_r77_chip"]{padding-top:0.10333em!important;padding-bottom:0.10667em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c6_r78_tag"]{padding-top:0.23414em!important;padding-bottom:0.00586em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pchip[data-copy="c6_r76_chip"]{padding-top:0.10333em!important;padding-bottom:0.10667em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c6_r78_tag"]{padding-top:0.23014em!important;padding-bottom:0.00986em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c6_r79_tag"]{padding-top:0.23014em!important;padding-bottom:0.00986em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c6_r76_tag"]{padding-top:0.22671em!important;padding-bottom:0.01329em!important}
+}
+@media (min-width:1000px){
+html:lang(th):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.band-vat[data-copy="c6_vat"]{padding-top:0.26824em!important;padding-bottom:0.09176em!important}
+html:lang(th):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.band-vat[data-copy="c6_vat"]{padding-top:0.26824em!important;padding-bottom:0.09176em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-n[data-copy="c6_p74_name"]{padding-top:0.35555em!important;padding-bottom:0.06445em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pchip[data-copy="c6_r75_chip"]{padding-top:0.08133em!important;padding-bottom:0.07867em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pchip[data-copy="c6_r77_chip"]{padding-top:0.10986em!important;padding-bottom:0.05014em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pchip[data-copy="c6_r75_chip"]{padding-top:0.07173em!important;padding-bottom:0.08827em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c6_r76_tag"]{padding-top:0.20286em!important;padding-bottom:0.03714em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pchip[data-copy="c6_r76_chip"]{padding-top:0.07067em!important;padding-bottom:0.08933em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pchip[data-copy="c6_r77_chip"]{padding-top:0.08667em!important;padding-bottom:0.07333em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c6_r78_tag"]{padding-top:0.20500em!important;padding-bottom:0.03500em!important}
+html:lang(th):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c6_r79_tag"]{padding-top:0.20500em!important;padding-bottom:0.03500em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c6_r78_tag"]{padding-top:0.19643em!important;padding-bottom:0.04357em!important}
+html:lang(th):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c6_r79_tag"]{padding-top:0.19643em!important;padding-bottom:0.04357em!important}
+}
+html:lang(th)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.band-vat[data-copy="c6_vat"]{padding-top:4.558px!important;padding-bottom:1.562px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.band-vat[data-copy="c6_vat"]{padding-top:4.558px!important;padding-bottom:1.562px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.prod-n[data-copy="c6_p74_name"]{padding-top:7.619px!important;padding-bottom:1.621px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pchip[data-copy="c6_r75_chip"]{padding-top:0.837px!important;padding-bottom:1.563px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.prod-n[data-copy="c6_p76_name"]{padding-top:5.997px!important;padding-bottom:3.243px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag[data-copy="c6_r76_tag"]{padding-top:2.845px!important;padding-bottom:0.515px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pchip[data-copy="c6_r77_chip"]{padding-top:1.065px!important;padding-bottom:1.335px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag[data-copy="c6_r78_tag"]{padding-top:2.712px!important;padding-bottom:0.648px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag[data-copy="c6_r79_tag"]{padding-top:2.733px!important;padding-bottom:0.627px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.period[data-copy="c6_period"]{padding-top:7.433px!important;padding-bottom:9.967px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pchip[data-copy="c6_r75_chip"]{padding-top:1.143px!important;padding-bottom:1.257px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag[data-copy="c6_r76_tag"]{padding-top:2.763px!important;padding-bottom:0.597px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pchip[data-copy="c6_r76_chip"]{padding-top:1.367px!important;padding-bottom:1.033px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pchip[data-copy="c6_r76_chip"]{padding-top:1.000px!important;padding-bottom:1.400px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.band-vat[data-copy="c6_vat"]{padding-top:4.045px!important;padding-bottom:1.355px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.band-vat[data-copy="c6_vat"]{padding-top:4.287px!important;padding-bottom:1.833px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-n[data-copy="c6_p74_name"]{padding-top:7.639px!important;padding-bottom:2.601px!important;position:relative;top:-0.5px}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pchip[data-copy="c6_r75_chip"]{padding-top:1.182px!important;padding-bottom:1.218px!important;position:relative;top:-0.5px}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag[data-copy="c6_r76_tag"]{padding-top:3.411px!important;padding-bottom:0.949px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pchip[data-copy="c6_r76_chip"]{padding-top:1.460px!important;padding-bottom:0.940px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pchip[data-copy="c6_r77_chip"]{padding-top:1.051px!important;padding-bottom:1.349px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c6_r77_badge"]{padding-top:3.330px!important;padding-bottom:4.990px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag[data-copy="c6_r78_tag"]{padding-top:4.436px!important;padding-bottom:0.269px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag[data-copy="c6_r79_tag"]{padding-top:4.946px!important;padding-bottom:1.826px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pchip[data-copy="c6_r75_chip"]{padding-top:1.235px!important;padding-bottom:1.165px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.otag[data-copy="c6_r76_tag"]{padding-top:2.842px!important;padding-bottom:0.518px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pchip[data-copy="c6_r76_chip"]{padding-top:1.285px!important;padding-bottom:1.115px!important;position:relative;top:0.5px}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pchip[data-copy="c6_r77_chip"]{padding-top:0.880px!important;padding-bottom:1.520px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.otag[data-copy="c6_r78_tag"]{padding-top:3.216px!important;padding-bottom:0.144px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.otag[data-copy="c6_r79_tag"]{padding-top:3.216px!important;padding-bottom:0.144px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c6_ab_ph1"]{padding-top:3.720px!important;padding-bottom:5.680px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c6_ab_ph2"]{padding-top:3.720px!important;padding-bottom:5.680px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c6_ab_ph3"]{padding-top:3.720px!important;padding-bottom:5.680px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c6_r78_badge"]{padding-top:4.411px!important;padding-bottom:3.909px!important;position:relative;top:0.5px}
