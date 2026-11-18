@@ -52,6 +52,11 @@ html:lang(zh-TW)[data-size]:not(#sz) main.iv .K2bp1 .pboard{margin-top:10px}
 html:lang(zh-TW)[data-size]:not(#sz) main.iv .K4p3 .inf-v{font-size:20px}
 /* phones: the hero B title ('Blossom點滴加強組合') reached the sphere at its end at the Korean 32 px; it is 29 there */
 @container (max-width:600px){html:lang(zh-TW) .c1[data-variant="b"] .h-ko{font-size:29px}}
+/* kakao card 5 part 2 (2026-11-18 afternoon, lead check): the first two TW strengths run to two lines (+23 px) and pushed the opening-hours box 20 px past
+   the card; the hours box padding is 15 (Korean 22), the strengths row gap 12 (18) and the note margin 8 (12), so the box ends where the Korean one does */
+html:lang(zh-TW)[data-size]:not(#sz) main.iv .K5p2 .bt-hours{padding-top:15px;padding-bottom:15px}
+html:lang(zh-TW)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths{row-gap:12px}
+html:lang(zh-TW)[data-size]:not(#sz) main.iv .K5p2 .hrs-note{margin-top:8px}
 /* ===== TH layout ===== */
 /* hero B titles: 'แพ็กเกจ Blossom IV Booster' is 1158 px at the Korean 89 px (hero B titles have no fit): 68 (home and board), 69 (line), 50 (kakao),
    so the title ends before the sphere at its right */
@@ -189,6 +194,19 @@ html:lang(th)[data-size]:not(#sz) .K5p3 .bk-phone{font-size:24.5px}
 }
 
 
+/* lead check 2026-11-18 afternoon (TH, published version measured by the CN builder):
+   line card 5 part 2: the TH phone rule lost to the Korean line rule (main.iv .L5p2 .bk-phone, 34) and '+82-2-336-7511' ran 55 px past the booking box; the
+   same 28, with the main.iv scope (as CN) */
+html:lang(th)[data-size]:not(#sz) main.iv .L5p2 .bk-phone{font-size:28px}
+/* kakao card 2 B part 1: the fitted Thai title ('โปรแกรมฉีดดูแลระบบภูมิคุ้มกัน', 35.2) ran 7 px past its 460 px box toward the photo; 34 there */
+html:lang(th)[data-size]:not(#sz) main.iv .K2bp1 [data-copy="iv_p_title"]{font-size:34px}
+/* kakao card 4 part 2: the second step row ended 9 px below the card; the TH step boxes are 16 / 18 above and below (Korean 22 / 24) */
+html:lang(th)[data-size]:not(#sz) main.iv .K4p2 .st{padding-top:16px;padding-bottom:18px}
+/* kakao card 5 part 2: as TW, the first two strengths run to two lines and pushed the opening-hours box 20 px past the card; the hours box padding is 15,
+   the strengths row gap 12 and the note margin 8 */
+html:lang(th)[data-size]:not(#sz) main.iv .K5p2 .bt-hours{padding-top:15px;padding-bottom:15px}
+html:lang(th)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths{row-gap:12px}
+html:lang(th)[data-size]:not(#sz) main.iv .K5p2 .hrs-note{margin-top:8px}
 /* TW chip text centring (2026-11-17): the TW text is set in Noto Sans TC, whose glyphs sit lower in the chips than Pretendard; padding measured on real pixels
    with qa/text-center-check.cjs (?lang=TW), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
 @media (min-width:601px) and (max-width:999px){
