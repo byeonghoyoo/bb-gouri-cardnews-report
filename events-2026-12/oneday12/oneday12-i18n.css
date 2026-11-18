@@ -344,3 +344,89 @@ html:lang(th)[data-size="kakao"]:not(#sz) .K63 span[data-copy="on_ab_way_line"]{
 /* kakao card 2 B-1 group head: the number and the name sit 0.7 px apart; the head keeps its padding and the name alone moves half a pixel down */
 html:lang(th)[data-size="kakao"]:not(#sz) .K2b1 .gh-n{position:relative;top:0.5px}
 /* </th-center> */
+
+/* ===== HK (2026-11-18, lead order) =====
+   HK copy = v4/langverify/out/ONE12.final.json (HK reviewer, 193 rows, 193 checked, 95 corrections); the zh rules above (Noto Sans TC, Chinese line
+   breaks) serve HK as they serve TW; these rules only name zh-HK. The HK copy names the treatments with their Latin brand names ('Ultherapy PRIME +
+   ThermageFLX' against '美國音波二代＋鳳凰電波組合') and its VAT and 49% lines are about 1.4 times the TW ones, so some text is set a little smaller */
+/* price card foot (period, 49% line, VAT): the 49% line is 14 (home and board without the 11 px floor, line) so it keeps clear of the VAT line; kakao: the
+   VAT line is 17 in every price card part, and in the last parts the 49% line (13) sits between the period and the VAT line; phones: the 49% line of
+   card 2 A drops under the foot line (as on card 2 B) instead of lying over the VAT line */
+@container (min-width:601px){html:lang(zh-HK) .c2:not([data-size-only]) .uibeop{font-size:calc(14*var(--px))}}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a2 .uibeop,html:lang(zh-HK)[data-size]:not(#sz) .L2b2 .uibeop{font-size:14px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a .vat,html:lang(zh-HK)[data-size]:not(#sz) .K2b .vat,html:lang(zh-HK)[data-size]:not(#sz) .K3 .vat{font-size:17px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a3 .uibeop,html:lang(zh-HK)[data-size]:not(#sz) .K2b4 .uibeop{left:206px;transform:none;font-size:13px}
+@container (max-width:600px){html:lang(zh-HK) .c2:not([data-variant="b"]) .uibeop{position:static;transform:none;margin:0;padding:0 14px 12px}}
+/* price rows (all sizes but phones): card 2 B box names 20 and parts 13, card 3 parts 15; kakao: card 2 A parts 14, card 3 part 1 names 21 and lines under
+   them 17 (so 'Ultherapy PRIME + ThermageFLX' is one line) */
+@container (min-width:601px){
+ html:lang(zh-HK) .c2[data-variant="b"] .pname{font-size:calc(20*var(--px))}
+ html:lang(zh-HK) .c2[data-variant="b"] .pparts{font-size:calc(13*var(--px))}
+ html:lang(zh-HK) .c3 .pparts{font-size:calc(15*var(--px))}
+}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a .pparts{font-size:14px}
+html:lang(zh-HK)[data-size]:not(#sz) .K31 .pname{font-size:21px}
+html:lang(zh-HK)[data-size]:not(#sz) .K31 .psub{font-size:17px}
+/* kakao card 4: the answer line and the four plan cards (names, texts) and the device texts run longer than the TW ones; set a little smaller */
+html:lang(zh-HK)[data-size]:not(#sz) .K41 .q-ans{font-size:17px}
+html:lang(zh-HK)[data-size]:not(#sz) .K41 .tier-n{font-size:20px}
+html:lang(zh-HK)[data-size]:not(#sz) .K41 .tier-d{font-size:15px}
+html:lang(zh-HK)[data-size]:not(#sz) .K42 .dv-n{font-size:21px}
+html:lang(zh-HK)[data-size]:not(#sz) .K42 .dv-t{font-size:15.5px}/* the zh chip paddings of the price card 2 A (line part 2, kakao part 2) were measured on the TW chip texts; HK has its own texts, so its chips start from
+   the plain chip padding and get their own centring below */
+html:lang(zh-HK)[data-size]:not(#sz) [data-card].K2a2 .pparts[data-copy] > span.chip,html:lang(zh-HK)[data-size]:not(#sz) [data-card].L2a2 .pparts[data-copy] > span.chip{padding-top:.27em!important;padding-bottom:.13em!important}
+
+/* HK chip text centring (2026-11-18): the HK text is set in Noto Sans TC (Latin letters and figures in Pretendard), whose Chinese glyphs sit lower in
+   the chips than Pretendard; each pill gets its own padding, measured on real pixels with qa/text-center-check.cjs (?lang=HK), per component and size
+   (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="on_r26_parts"] > span.chip:nth-child(1){padding-top:0.07520em!important;padding-bottom:0.34613em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="on_r27_parts"] > span.chip:nth-child(19){padding-top:0.07253em!important;padding-bottom:0.32747em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="on_r27_parts"] > span.chip:nth-child(21){padding-top:0.07253em!important;padding-bottom:0.32747em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.gh-k[data-copy="on_g23_k"]{padding-top:0.00000em!important;padding-bottom:0.21444em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.ptier[data-copy="on_r27_tier"]{padding-top:0.09543em!important;padding-bottom:0.10457em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="on_r27_parts"] > span.chip:nth-child(19){padding-top:0.12467em!important;padding-bottom:0.27533em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="on_r27_parts"] > span.chip:nth-child(21){padding-top:0.12467em!important;padding-bottom:0.27533em!important}
+html:lang(zh-HK):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ly.ly2{padding-top:0.00000em!important;padding-bottom:0.13882em!important}
+html:lang(zh-HK):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.ly.ly3{padding-top:0.00000em!important;padding-bottom:0.13176em!important}
+html:lang(zh-HK):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.dv-e[data-copy="on_c4_d4_e"]{padding-top:0.11429em!important;padding-bottom:0.12571em!important}
+}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r12_parts"] > span.chip:nth-child(1){padding-top:2.494px!important;padding-bottom:3.506px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r12_parts"] > span.chip:nth-child(3){padding-top:2.494px!important;padding-bottom:3.506px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r12_parts"] > span.chip:nth-child(5){padding-top:2.396px!important;padding-bottom:3.604px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r12_parts"] > span.chip:nth-child(7){padding-top:2.779px!important;padding-bottom:3.221px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r12_parts"] > span.chip:nth-child(9){padding-top:2.779px!important;padding-bottom:3.221px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r12_parts"] > span.chip:nth-child(11){padding-top:2.779px!important;padding-bottom:3.221px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r12_parts"] > span.chip:nth-child(13){padding-top:2.779px!important;padding-bottom:3.221px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.gh-k[data-copy="on_g23_k"]{padding-top:0.000px!important;padding-bottom:3.864px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r27_parts"] > span.chip:nth-child(19){padding-top:1.888px!important;padding-bottom:4.112px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="on_r27_parts"] > span.chip:nth-child(21){padding-top:1.888px!important;padding-bottom:4.112px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.ly.ly1{padding-top:1.276px!important;padding-bottom:4.164px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r10_parts"] > span.chip:nth-child(5){padding-top:4.552px!important;padding-bottom:6.110px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r11_parts"] > span.chip:nth-child(5){padding-top:3.653px!important;padding-bottom:4.781px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r11_parts"] > span.chip:nth-child(7){padding-top:3.686px!important;padding-bottom:4.748px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r12_parts"] > span.chip:nth-child(5){padding-top:2.310px!important;padding-bottom:3.290px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r12_parts"] > span.chip:nth-child(7){padding-top:2.310px!important;padding-bottom:3.290px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r12_parts"] > span.chip:nth-child(11){padding-top:2.838px!important;padding-bottom:2.762px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r26_parts"] > span.chip:nth-child(5){padding-top:2.728px!important;padding-bottom:3.272px!important;position:relative;top:0.25px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly4{padding-top:1.806px!important;padding-bottom:3.634px!important;margin-top:.5px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.dv-e[data-copy="on_c4_d2_e"]{padding-top:0.976px!important;padding-bottom:2.384px!important;position:relative;top:-0.25px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.dv-e[data-copy="on_c4_d4_e"]{padding-top:0.736px!important;padding-bottom:2.624px!important;position:relative;top:-0.5px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.tz-opt[data-copy="on_hero_opt"]{padding-top:4.515px!important;padding-bottom:3.785px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.gh-k[data-copy="on_g6_k"]{padding-top:0.000px!important;padding-bottom:4.096px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r10_parts"] > span.chip:nth-child(1){padding-top:2.120px!important;padding-bottom:3.480px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r10_parts"] > span.chip:nth-child(3){padding-top:2.749px!important;padding-bottom:2.851px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r11_parts"] > span.chip:nth-child(1){padding-top:2.737px!important;padding-bottom:2.863px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r11_parts"] > span.chip:nth-child(3){padding-top:2.737px!important;padding-bottom:2.863px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r11_parts"] > span.chip:nth-child(9){padding-top:2.423px!important;padding-bottom:3.177px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r12_parts"] > span.chip:nth-child(1){padding-top:2.387px!important;padding-bottom:3.213px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r12_parts"] > span.chip:nth-child(3){padding-top:2.186px!important;padding-bottom:3.414px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r12_parts"] > span.chip:nth-child(9){padding-top:2.299px!important;padding-bottom:3.301px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r12_parts"] > span.chip:nth-child(13){padding-top:2.814px!important;padding-bottom:2.786px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.ptier[data-copy="on_r26_tier"]{padding-top:1.275px!important;padding-bottom:1.525px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="4"]:not([data-variant="b"])[data-size-only~="kakao"] [data-copy="on_r27_parts"] > span.chip:nth-child(17){padding-top:1.800px!important;padding-bottom:4.200px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly1{padding-top:1.433px!important;padding-bottom:4.007px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly3{padding-top:0.000px!important;padding-bottom:2.339px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="on_ab_way_line"]{padding-top:2.200px!important;padding-bottom:3.400px!important}
