@@ -1,11 +1,16 @@
 /* CMB12E 통합이벤트 ③ 바디 슬리밍 & 보톡스 · 겨울 시즌 renderer + review-board protocol (aptos-* messages, same as the other V4 pages).
    Every visible word comes from copy-data.js (titles, product heads, options and prices from v4/events/_data/pages.json via
-   v4/combo12e/build-combo12e.cjs) and is edited in place through ../inline-edit.js. Display-only helpers below never change the stored text. */
+   v4/combo12e/build-combo12e.cjs) and is edited in place through ../inline-edit.js. Display-only helpers below never change the stored text.
+   2026-11-18: plus the TH language pieces written by v4/combo12e/i18n-1118.cjs from v4/combo12e/i18n/renderer-ko.js; do not edit by hand. */
 (()=>{'use strict';
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
-const LANG={KO:'ko'};
+/* 2026-11-18 language version TH (v4/combo12e/i18n-1118.cjs; copy v4/langverify/out/CMB12E.final.json via v4/combo12e/work/i18n-prep.cjs): <html lang>
+   drives the Thai font and layout rules in combo12e-i18n.css (:lang(th)); the Google font of the language is added here (as CMB12I / CMB12H / CMB12D).
+   Korean renders exactly as before. */
+const LANG={KO:'ko',TH:'th'};
+const FONT_FAMILY={TH:'Noto Sans Thai'};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -14,6 +19,7 @@ const root=document.documentElement;
 /* ?capture=1 (board image download): no animation, fixed layout */
 if(qs.get('capture')==='1')root.classList.add('is-capture');
 
+function setFonts(){let l=document.getElementById('locale-fonts');const family=FONT_FAMILY[locale];if(!family){if(l)l.remove();return;}if(!l){l=document.createElement('link');l.id='locale-fonts';l.rel='stylesheet';document.head.append(l);l.addEventListener('load',()=>document.fonts.ready.then(()=>{fit();report();}));}const href='https://fonts.googleapis.com/css2?family='+family.replace(/ /g,'+')+':wght@400;500;600;700;800;900&display=swap';if(l.getAttribute('href')!==href)l.setAttribute('href',href);}
 function reply(message){if(parent!==window)parent.postMessage(message,location.origin);}
 const IE=window.BBInlineEdit?window.BBInlineEdit.create({doc:document,raw:k=>fields[k]??'',send:m=>reply(m),refit:()=>{fit();report();},rerender:()=>render()}):null;
 
@@ -42,7 +48,7 @@ function setPlus(el,v){
  el.textContent='';v=v||'';
  v.split(' + ').forEach((p,i)=>{
   if(i){const s=document.createElement('span');s.className='plus';s.textContent=' + ';el.append(s);}
-  const c=document.createElement('span');c.className='seg';c.textContent=p;el.append(c);
+  const c=document.createElement('span');c.className='seg';if(locale==='TH')appendKept(c,p);else c.textContent=p;el.append(c); /* 2026-11-18 TH: an option part keeps its Thai words whole */
  });
 }
 /* card 5 hours: the day label and the time are styled apart */
@@ -58,9 +64,14 @@ function setHours(el,v){
 const GUARD='.hook,.p-lead,.q-ans,.kd-d,.kd-n,.pick-d,.st-d,.inf-n,.care-l [data-copy],.alert,.src,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.q-wrap';
 /* names that never break inside */
 const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|뷰티핏\/블라썸핏 주사|바디 조각주사|승모근 200U|목빗근|승모근·종아리·허벅지·팔뚝|U 숫자끼리|2~3일|1주일|붓기·뻐근함|격한 운동·사우나·음주|음주·사우나|무거운 짐|하이힐|복용 중인 약|이전 시술 반응|피하지방|얼굴 아래쪽|단위 기준)/g;
+/* 2026-11-18 TH (as CMB12I / CMB12H / CMB12D TH): Thai loanwords the browser's Thai dictionary does not know break between their syllables
+   ('โบ|ท็|อกซ์'), and so do a few compounds; they stay whole, and so do a number and its unit and an exit / line / floor / house number
+   (v4/combo12e/i18n-1118.cjs TH_KEEP). Only the Thai copy is set with this list (KEEP_TH = the Thai names + KEEP); Korean uses KEEP as before */
+const KEEP_TH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Medione Medical Center|Beauty Blossom Clinic|Body Contouring|Nefertiti Lift|Beauty Blossom|Blossom Fit|Beauty Fit|Yanghwa-ro|Mapo-gu|'+KEEP.source+'|โบทูลินัมท็อกซิน|สกินโบท็อกซ์|โบท็อกซ์|โปรแกรม|ทรีตเมนต์|แพ็กเกจ|ซาวน่า|แอลกอฮอล์|ค่อย ๆ|ต้นแขน|ต้นขา|กล้ามเนื้อ|ไขมันสะสม|ไขมัน|สลายไขมัน|ปรับสัดส่วน|ประคบเย็น|รองเท้าส้นสูง|รอยช้ำ|ปวดเมื่อย|ใต้ผิวหนัง|ผู้อำนวยการ|รูปร่าง|ส่วนเกิน|เหมาะสม|ขั้นตอน|สุดสัปดาห์|จองคิว|หลังฉีด|ก่อนฉีด|การฉีด|รอยแดง|แตกต่าง|เครื่องมือ|กรุงโซล|เลเซอร์|ตัวเลือก|ตรงจุด|แนวเส้น|หลีกเลี่ยง|เพียงพอ|วันธรรมดา|กลางวัน|ข้อกำหนด|ทางการแพทย์|ขนาดเล็ก|นพ\\. อี กอนโฮ|อี กอนโฮ|\\d[\\d,.:–]*\\s?(?:cc|ครั้ง|นาที|วอน|ยูนิต|สัปดาห์|วัน|บริเวณ|เท่า|น\\.)|(?:ทางออก|เลขที่)\\s\\d+|(?:สาย|ชั้น)\\s\\d+(?:\\sและ\\s\\d+)?','g');
+const keepRe=()=>locale==='TH'?KEEP_TH:KEEP;
 function appendKept(el,s){
- let last=0;KEEP.lastIndex=0;
- for(const m of s.matchAll(KEEP)){
+ let last=0;const R=keepRe();R.lastIndex=0;
+ for(const m of s.matchAll(R)){
   if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));
   const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;
  }
@@ -71,8 +82,9 @@ function setText(el,v){
  if(el.classList.contains('pplus')){setPlus(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
  KEEP.lastIndex=0;
- const kept=!!v&&KEEP.test(v);KEEP.lastIndex=0;
- if(!v||!el.matches(GUARD)){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
+ const KR=keepRe();KR.lastIndex=0;const kept=!!v&&KR.test(v);KR.lastIndex=0;
+ /* 2026-11-18 TH: no Korean widow guard (Thai breaks by its dictionary; its words stay whole through KEEP_TH, as CMB12I / CMB12H / CMB12D TH) */
+ if(!v||!el.matches(GUARD)||locale==='TH'){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
  let m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
@@ -105,7 +117,7 @@ function fit(){
 }
 
 function render(){
- root.lang=LANG[locale]||'ko';root.dataset.locale=locale;
+ root.lang=LANG[locale]||'ko';root.dataset.locale=locale;setFonts();
  root.classList.toggle('is-editable',editable);
  root.classList.toggle('is-editmode',editable&&editMode);
  for(const el of document.querySelectorAll('[data-copy]')){
@@ -122,6 +134,10 @@ function render(){
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
+ /* 2026-11-18 language version (CRF12 / THM12 / ONE12 / CMB12A / CMB12B / CMB12D / CMB12H / CMB12I rule): a hero contact line that names a chat channel
+    (TH 'Line: @beautyblossom_th') shows the consult icon instead of the phone; Korean and phone-number lines keep the phone icon */
+ for(const p of document.querySelectorAll('.band-contact')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??''),chat=locale!=='KO'&&/微信|WeChat|WhatsApp|LINE/i.test(v);
+  const img=p.querySelector('img.ico');if(!img)continue;if(chat&&!img.dataset.src0)img.dataset.src0=img.getAttribute('src');const pic=chat?'assets/icons/consult.webp':(img.dataset.src0||img.getAttribute('src'));if(img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;
  for(const el of document.querySelectorAll('[data-gmap]')){const u=GM&&GM[el.dataset.gmap];if(!u)continue;const a=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(a)!==u)el.setAttribute(a,u);}
  for(const w of document.querySelectorAll('[data-bk-alt]')){const lab=w.querySelector('[data-copy]');w.hidden=!String((lab&&fields[lab.dataset.copy])??'').trim()&&!(editable&&editMode);}
