@@ -7,7 +7,9 @@ const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const P=DATA.prefix||'';
 const KEYS=Object.keys(DATA.locales.KO);
-const LANG={KO:'ko'};
+/* LV-1119 language versions (v4/diet12a/i18n-1119.cjs) */
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',HK:'Noto Sans TC',TH:'Noto Sans Thai'};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -41,8 +43,11 @@ function setMoney(el,v){
 /* option text with ' + ': each part stays on one line, the plus is coloured (text unchanged) */
 function setPlus(el,v){
  el.textContent='';v=v||'';
- v.split(' + ').forEach((p,i)=>{
-  if(i){const s=document.createElement('span');s.className='plus';s.textContent=' + ';el.append(s);}
+ /* language versions: the JP options join the parts with a full-width '＋' (no spaces); outside brackets it splits there too and the '＋' stays the
+    separator text (the Korean copy has no '＋', so Korean is set exactly as before) */
+ const parts=[],seps=[];{let depth=0,start=0;for(let i=0;i<v.length;i++){const c=v[i];if(c==='('||c==='（')depth++;else if((c===')'||c==='）')&&depth)depth--;else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));seps.push(' + ');start=i+3;i+=2;}else if(!depth&&c==='＋'){parts.push(v.slice(start,i));seps.push('＋');start=i+1;}}parts.push(v.slice(start));}
+ parts.forEach((p,i)=>{
+  if(i){const s=document.createElement('span');s.className='plus';s.textContent=seps[i-1];el.append(s);}
   const c=document.createElement('span');c.className='seg';c.textContent=p;el.append(c);
  });
 }
@@ -58,7 +63,7 @@ function setHours(el,v){
 /* widow guard: the last two words stay together */
 const GUARD='.p-lead,.q-ans,.kd-d,.vs-d,.pick-d,.facts li > [data-copy],.un-d,.en-d,.st-d,.inf-n,.care li > [data-copy],.alert,.src,.p-note,.pnote,.fn,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.psub';
 /* names that never break inside */
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|바디 온다|바디 인모드|바디 리니어지|바디 소프웨이브|바디 울쎄라|DCA 주사|CA 주사|조각주사 20cc|슬림바디 7주|2cc부터 10cc까지|비타민 B5·B2|데옥시콜산|콜산|피하지방층|피하지방|담즙산|처방 약|진료 후|주 1회|표면마취|마취 크림|냉찜질|음주·사우나·격한 운동|음주·사우나|붓기·멍|극초단파|고주파|초음파|리니어지·울쎄라|DCA 주사·조각주사|cc당 \+10,000원)/g;
+const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|[@＠][A-Za-z][\w.]*|Beauty Blossom|Beautyblossom00|รูปร่าง|น้ำหนัก|ไขมัน|ใบสั่งแพทย์|หลอดเลือดดำ|สารอาหาร|ผู้อำนวยการ|เคาน์เตอร์|กลูตาไธโอน|ค็อกเทล|ビューティーブロッサム|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|바디 온다|바디 인모드|바디 리니어지|바디 소프웨이브|바디 울쎄라|DCA 주사|CA 주사|조각주사 20cc|슬림바디 7주|2cc부터 10cc까지|비타민 B5·B2|데옥시콜산|콜산|피하지방층|피하지방|담즙산|처방 약|진료 후|주 1회|표면마취|마취 크림|냉찜질|음주·사우나·격한 운동|음주·사우나|붓기·멍|극초단파|고주파|초음파|리니어지·울쎄라|DCA 주사·조각주사|cc당 \+10,000원)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
@@ -74,7 +79,8 @@ function setText(el,v){
  KEEP.lastIndex=0;
  const kept=!!v&&KEEP.test(v);KEEP.lastIndex=0;
  if(!v||!el.matches(GUARD)){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
- let m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ /* language versions: the Korean widow guard (last two words together) only for Korean / English; Thai, Chinese and Japanese break by the browser */
+ let m=(locale==='KO'||locale==='EN')?(el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/)):null;
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
@@ -105,8 +111,10 @@ function fit(){
  for(const el of document.querySelectorAll('.seal .sl')){const p=el.parentElement;fitTo(el,p.clientWidth,.55);}
 }
 
+/* language versions: the Google font of the language (Korean: none, as before) */
+function setFonts(){let l=document.getElementById('locale-fonts');const family=FONT_FAMILY[locale];if(!family){if(l)l.remove();return;}if(!l){l=document.createElement('link');l.id='locale-fonts';l.rel='stylesheet';document.head.append(l);l.addEventListener('load',()=>document.fonts.ready.then(()=>{fit();report();}));}const href='https://fonts.googleapis.com/css2?family='+family.replace(/ /g,'+')+':wght@400;500;600;700;800;900&display=swap';if(l.getAttribute('href')!==href)l.setAttribute('href',href);}
 function render(){
- root.lang=LANG[locale]||'ko';root.dataset.locale=locale;
+ root.lang=LANG[locale]||'ko';root.dataset.locale=locale;setFonts();
  root.classList.toggle('is-editable',editable);
  root.classList.toggle('is-editmode',editable&&editMode);
  for(const el of document.querySelectorAll('[data-copy]')){
@@ -123,6 +131,10 @@ function render(){
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
+ /* language versions (CRF12 / THM12 / ONE12 rule): a hero contact line that names a chat channel ('Line: @beautyblossom_th', 'LINE：@beautyblossom_jp',
+    '预约咨询：官方微信 Beautyblossom00') shows the consult icon instead of the phone; Korean and phone-number lines keep the phone icon */
+ for(const sp of document.querySelectorAll('.hb-contact > [data-copy]')){const p=sp.parentElement,v=String(fields[sp.dataset.copy]??''),chat=locale!=='KO'&&/微信|WeChat|WhatsApp|LINE/i.test(v);
+  const img=p&&p.querySelector('img.ico');if(!img)continue;if(chat&&!img.dataset.src0)img.dataset.src0=img.getAttribute('src');const pic=chat?'assets/icons/consult.webp':(img.dataset.src0||img.getAttribute('src'));if(img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;
  for(const el of document.querySelectorAll('[data-gmap]')){const u=GM&&GM[el.dataset.gmap];if(!u)continue;const a=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(a)!==u)el.setAttribute(a,u);}
  for(const w of document.querySelectorAll('[data-bk-alt]')){const lab=w.querySelector('[data-copy]');w.hidden=!String((lab&&fields[lab.dataset.copy])??'').trim()&&!(editable&&editMode);}

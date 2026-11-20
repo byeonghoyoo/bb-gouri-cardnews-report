@@ -2,6 +2,8 @@
    layout the longer copy needs. Every selector names a language (:lang(ja|zh|th)), so the Korean page stays pixel-identical
    (v4/diet12a/i18n-1119.cjs checks the selectors). The shared bundle stylesheet diet12a.css (= diet12b.css) is not changed. */
 
+/* home / board sizes only (601 px and wider): on phones these cards are not scaled posters and keep the Korean phone sizes */
+
 /* fonts: Japanese / Chinese text in Noto Sans JP / SC first (Pretendard's Hanja never mixes in); Thai letters in Noto Sans Thai after Pretendard, so
    Latin letters and figures keep the Korean design's faces (as BLF11 / ULT12 TH). Montserrat keeps the Latin labels; their other letters fall back. */
 html:lang(ja){--f-text:'Noto Sans JP','Pretendard Variable',Pretendard,system-ui,sans-serif;--f-en:'Montserrat','Noto Sans JP','Pretendard Variable',Pretendard,sans-serif}
@@ -64,10 +66,10 @@ html:lang(th)[data-size]:not(#sz) main .K1b .b-title h2{font-size:38px}
 html:lang(th)[data-size]:not(#sz) main .K1b .b-hook{font-size:20px}
 
 /* home price card A (TH): the stacked prices make every row taller; the lead line and the gap above the board are smaller so the notes stay on the card */
-html:lang(th) .p-a .c2:not(.b-price):not([data-size-only]) .p-lead{font-size:calc(17*var(--px))}
-html:lang(th) .p-a .c2:not(.b-price):not([data-size-only]) .pboard{margin-top:calc(80*var(--px))}
+@media(min-width:601px){html:lang(th) .p-a .c2:not(.b-price):not([data-size-only]) .p-lead{font-size:calc(17*var(--px))}}
+@media(min-width:601px){html:lang(th) .p-a .c2:not(.b-price):not([data-size-only]) .pboard{margin-top:calc(80*var(--px))}}
 /* home price card 3 (JP / CN): the event price keeps inside the striped row */
-html:lang(ja) .c3:not([data-size-only]) .psale,html:lang(zh) .c3:not([data-size-only]) .psale{font-size:max(20px,calc(39*var(--px)))}
+@media(min-width:601px){html:lang(ja) .c3:not([data-size-only]) .psale,html:lang(zh) .c3:not([data-size-only]) .psale{font-size:max(20px,calc(39*var(--px)))}}
 /* hero A on phones (TH): the long title may come down further than the Korean minimum size */
 html:lang(th) .h-l1{font-size:max(15px,calc(90*var(--px)*var(--fit,1)))}
 html:lang(th) .h-l2{font-size:max(17px,calc(122*var(--px)*var(--fit,1)))}
@@ -86,8 +88,8 @@ html:lang(th)[data-size]:not(#sz) main .K6p3 .map{aspect-ratio:460/330}
 html:lang(zh)[data-size]:not(#sz) main .K5p3 .src{font-size:13px}
 html:lang(zh)[data-size]:not(#sz) main .K2ap1 .psub{font-size:16px}
 /* card 4 (TH, home and kakao): smaller key titles and texts so the four boxes and the source line stay on the card */
-html:lang(th) .c4:not([data-size-only]) .kd-t{font-size:calc(25*var(--px))}
-html:lang(th) .c4:not([data-size-only]) .kd-d{font-size:calc(16*var(--px))}
+@media(min-width:601px){html:lang(th) .c4:not([data-size-only]) .kd-t{font-size:calc(25*var(--px))}}
+@media(min-width:601px){html:lang(th) .c4:not([data-size-only]) .kd-d{font-size:calc(16*var(--px))}}
 html:lang(th)[data-size]:not(#sz) main .K4p1 .kd-t{font-size:21px}
 html:lang(th)[data-size]:not(#sz) main .K4p1 .kd-d{font-size:15px;line-height:1.35}
 /* kakao card 5 part 3 (JP): the care list one size smaller so the source line stays on the card */
