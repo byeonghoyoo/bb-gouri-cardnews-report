@@ -6,11 +6,12 @@ const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const P='c6_';
 const KEYS=Object.keys(DATA.locales.KO);
-/* 2026-11-18 language version TH (v4/combo12f/i18n-1118.cjs; copy v4/langverify/out/CMB12F.final.json via v4/combo12f/work/i18n-prep.cjs): <html lang>
-   drives the Thai font and layout rules in combo12f-i18n.css (:lang(th)); the Google font of the language is added here (as CMB12A / CMB12B / CMB12D / CMB12G).
-   Korean renders exactly as before. */
-const LANG={KO:'ko',TH:'th'};
-const FONT_FAMILY={TH:'Noto Sans Thai'};
+/* 2026-11-18 language version TH, 2026-11-20 JP / CN (v4/combo12f/i18n-1120.cjs; copy v4/langverify/out/CMB12F.final.json via
+   v4/combo12f/work/i18n-prep.cjs): <html lang> drives the language fonts and layout rules in combo12f-i18n.css (:lang()); the Google font of the language
+   is added here (as CMB12A / CMB12B / CMB12D / CMB12G). Korean renders exactly as before. */
+const LANG={KO:'ko',JP:'ja',CN:'zh-CN',TH:'th'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TH:'Noto Sans Thai'};
+const CJK={JP:1,CN:1},SEGS={};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -42,10 +43,14 @@ function setMoney(el,v){
  }
 }
 /* option text with ' + ': each part stays on one line, the plus is coloured (text unchanged) */
+/* 2026-11-20 JP / CN (as CMB12A / CMB12G): the Chinese / Japanese copy may join the parts with a full-width '＋' and no spaces; it splits before every
+   '＋' outside brackets too and the '＋' stays as the separator text. Korean and TH split at ' + ' exactly as before */
+function splitPlus(v){if(!CJK[locale]){const parts=v.split(' + ');return {parts,seps:parts.slice(1).map(()=>' + ')};}
+ const parts=[],seps=[];let depth=0,start=0;for(let i=0;i<v.length;i++){const c=v[i];if(c==='('||c==='['||c==='（'||c==='［')depth++;else if((c===')'||c===']'||c==='）'||c==='］')&&depth)depth--;else if(!depth&&v.startsWith(' + ',i)){parts.push(v.slice(start,i));seps.push(' + ');start=i+3;i+=2;}else if(!depth&&c==='＋'){parts.push(v.slice(start,i));seps.push('＋');start=i+1;}}parts.push(v.slice(start));return {parts,seps};}
 function setPlus(el,v){
  el.textContent='';v=v||'';
- v.split(' + ').forEach((p,i)=>{
-  if(i){const s=document.createElement('span');s.className='plus';s.textContent=' + ';el.append(s);}
+ const SP=splitPlus(v);SP.parts.forEach((p,i)=>{
+  if(i){const s=document.createElement('span');s.className='plus';s.textContent=SP.seps[i-1];el.append(s);}
   const c=document.createElement('span');c.className='seg';if(locale==='TH')appendKept(c,p);else c.textContent=p;el.append(c); /* 2026-11-18 TH: its loanwords and number + unit stay whole inside a part (KEEP_TH) */
  });
 }
@@ -64,15 +69,29 @@ const GUARD='.hook,.p-lead,.q-ans,.kd-d,.kd-n,.pick-d,.st-d,.inf-n,.care-l [data
 const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|FX\/포마|뷰티핏\/블라썸핏|V핏 주사|사각턱 톡신|스킨 톡신|PDO 실|1~2주|24시간|5분 내외|얼굴 비율|이전 시술|복용 중인 약|음주와 사우나|얼굴 마사지|격한 운동|목주름|고민 부위)/g;
 /* 2026-11-18 TH (as CMB12A / CMB12B / CMB12D / CMB12G TH): Thai loanwords the browser's Thai dictionary does not know break between their syllables ('ช็|อต',
    'โบ|ท็|อกซ์'), and so do a few compounds and the director's name; they stay whole, and so do a number and its unit, an exit / line / floor / house number
-   and the Latin product names with a space (v4/combo12f/i18n-1118.cjs LANG_KEEP / TH_KEEP). Only the Thai copy is set with this list (KEEP_TH = the Thai
+   and the Latin product names with a space (v4/combo12f/i18n-1120.cjs LANG_KEEP / TH_KEEP). Only the Thai copy is set with this list (KEEP_TH = the Thai
    names + KEEP); Korean uses KEEP as before */
 const KEEP_TH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Beauty Blossom Clinic|Beauty Blossom|Beauty Fit|Blossom Fit|Medione Medical Center|Yanghwa-ro|Mapo-gu|InMode FX|V-Slim Solution|V-Fit|Juvelook Volume|'+KEEP.source+'|สกินโบท็อกซ์|โบท็อกซ์|โปรแกรม|แบรนด์|หน้าผาก|ขากรรไกร|หางตา|ลำคอ|หว่างคิ้ว|ร่องแก้ม|กรอบหน้า|ริ้วรอย|แตกต่าง|เครื่องมือ|กรุงโซล|เหมาะสม|ขั้นตอน|ผู้อำนวยการ|สุดสัปดาห์|เล็ก ๆ|แรง ๆ|ค่อย ๆ|ช็อต|หย่อนคล้อย|ความมั่นใจ|ยกกระชับ|ประจำวัน|จำนวน|สุดคุ้ม|ความลึก|ความกระชับ|ความหนา|ความเย็น|ความร้อน|เป้าหมาย|เฉพาะบุคคล|ถัดไป|ทั้งสอง|วันหยุด|ฟิลเลอร์|แพ็กเกจ|ซิกเนเจอร์|วอลุ่ม|ของ Beauty Blossom|ไขมัน|รูปทรง|ลดลง|ร่วมกับ|ร่วมกัน|ออกกำลังกาย|วันเดียวกัน|ไม่พักกลางวัน|การรับบริการ|นพ\\. อี กอนโฮ|อี กอนโฮ|\\d[\\d,.:]*(?:[~–-]\\d[\\d,.:]*)?\\s(?:cc|ขวด|ครั้ง|บริเวณ|เท่า|นัด|กลุ่ม|วอน|ยูนิต|ช็อต|kJ|น\\.|เส้น|นาที|สัปดาห์|ชั่วโมง|วัน)|(?:ทางออก|สาย|ชั้น|เลขที่)\\s\\d+(?:[・·]\\d+)*','g');
-const keepRe=()=>locale==='TH'?KEEP_TH:KEEP;
+/* 2026-11-20 JP / CN: the phone numbers, a chat ID, the Latin names with a space and a number with its unit stay whole (v4/combo12f/i18n-1120.cjs NEW_KEEP;
+   KEEP_L = these + KEEP) */
+const KEEP_L=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分|本|条|小时|時間|週間|周|号线|号線|号出口|番出口|楼|階)|'+KEEP.source,'g');
+const keepRe=()=>locale==='TH'?KEEP_TH:(locale!=='KO'&&LANG[locale]?KEEP_L:KEEP);
+/* 2026-11-20 Chinese / Japanese (same as CMB12A / CMB12G): the last three characters stay together, grown back to the start of their word (a '・' break or
+   Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside). Thai has no guard (dictionary breaks) */
+function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;
+ const sep=Math.max(v.lastIndexOf('・'),v.lastIndexOf('·'));if(sep>0&&sep+1<v.length&&core(sep+1)>=2&&core(sep+1)<=5)return sep+1;
+ let seg=SEGS[locale];if(seg===undefined){try{seg=SEGS[locale]=new Intl.Segmenter(LANG[locale],{granularity:'word'});}catch(e){seg=SEGS[locale]=null;}}if(!seg)return cut;
+ let start=0,end=v.length;for(const g of seg.segment(v)){if(g.index>cut){end=g.index;break;}start=g.index;}
+ if(start===cut)return cut;if(start>0&&core(start)<=5)return start;return end<v.length?end:-1;}
+/* flex / grid boxes turn every text piece into its own item (gaps, trimmed spaces), so they keep their text whole */
+const guardable=(el)=>!/flex|grid/.test(getComputedStyle(el).display);
+const HAN=/[㐀-鿿豈-﫿]/;
 function appendKept(el,s){
  let last=0;const R=keepRe();R.lastIndex=0;
  for(const m of s.matchAll(R)){
   if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));
-  const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;
+  let e=m.index+m[0].length;if(CJK[locale])while(e<s.length&&/[，。、：；！？）」』]/.test(s[e]))e++; /* 2026-11-20 CJK: Chinese / Japanese punctuation right after a kept name stays with it (it may not start a line) */
+  const k=document.createElement('span');k.className='nw';k.textContent=s.slice(m.index,e);el.append(k);last=e;
  }
  if(last<s.length)el.append(document.createTextNode(s.slice(last)));
 }
@@ -82,11 +101,14 @@ function setText(el,v){
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
  KEEP.lastIndex=0;
  const KR=keepRe();KR.lastIndex=0;const kept=!!v&&KR.test(v);KR.lastIndex=0;
- /* 2026-11-18 TH: no Korean widow guard (Thai breaks by its dictionary; its words stay whole through KEEP_TH, as CMB12A / CMB12B / CMB12D TH) */
- if(!v||!el.matches(GUARD)||locale==='TH'){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
- let m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ /* 2026-11-18 TH: no Korean widow guard (Thai breaks by its dictionary; its words stay whole through KEEP_TH, as CMB12A / CMB12B / CMB12D TH);
+    2026-11-20 Chinese / Japanese: every text with Chinese characters in a box whose text flows inline keeps its last word together (the Korean list GUARD stays as it was) */
+ if(!v||locale==='TH'||(!el.matches(GUARD)&&!(CJK[locale]&&HAN.test(v)&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
+ let m=null;
+ if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
+ else if(HAN.test(v)&&guardable(el)){m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
- if(m){let cut=v.length-m[1].length;KEEP.lastIndex=0;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
+ if(m){let cut=v.length-m[1].length;KEEP.lastIndex=0;for(const k of v.matchAll(KR))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
  el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);
