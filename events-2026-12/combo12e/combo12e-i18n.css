@@ -140,6 +140,13 @@ html:lang(th)[data-size]:not(#sz) .K5p3 .way-pin{width:36px}
 html:lang(th)[data-size]:not(#sz) .K5p3 .way-st{font-size:18px}
 html:lang(th)[data-size]:not(#sz) .K5p3 .way-addr{font-size:13.5px;line-height:1.4;margin-top:4px}
 
+/* ===== TH fit fixes (2026-11-20, lead order): KakaoTalk 1A (the hook's second line sat under the price badge) and 2A-3 (the 49% line sat under the
+   board). The Thai copy is unchanged; only these two cards change (every other card is pixel-identical) ===== */
+/* KakaoTalk 1A: the two-line hook starts higher (as JP), so its second line clears the price badges */
+html:lang(th)[data-size]:not(#sz) .K1a .hook{top:296px}
+/* KakaoTalk 2A-3: tighter price rows and a smaller gap between the two boards, so the second board ends above the 49% line */
+html:lang(th)[data-size]:not(#sz) .K2ap3 .prow{padding-top:4px;padding-bottom:3px}
+html:lang(th)[data-size]:not(#sz) .K2ap3 .pboard{row-gap:6px}
 /* TH-CENTER START */
 /* TH chip text centring (2026-11-18): the TH text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
    on real pixels with qa/text-center-check.cjs (?lang=TH), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */

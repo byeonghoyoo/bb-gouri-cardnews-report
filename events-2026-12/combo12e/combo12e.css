@@ -624,6 +624,8 @@ html[data-size]:not(#sz) .K4p2 .st{padding:18px 20px 20px}
 html[data-size]:not(#sz) .K4p3 .infos{margin-top:12px}
 html[data-size]:not(#sz) .K4p3 .inf{padding:16px 18px 18px}
 html[data-size]:not(#sz) .K4p3 .care{margin-top:12px;padding:14px 22px}
+/* 2026-11-20 (lead order): Korean KakaoTalk 4-3, '부위·용량마다 달라요' was wider than its box at 26; the three values of this part are 23 (Korean only) */
+html[data-locale="KO"][data-size]:not(#sz) .K4p3 .inf-v{font-size:23px}
 html[data-size]:not(#sz) .K4p3 .src{padding-top:8px}/* 5 clinic intro in three parts (as OND12 / SOF12) */
 html[data-size]:not(#sz) .K5 .cx-in{padding:30px 44px 26px}
 html[data-size]:not(#sz) .K5 .bento{margin-top:16px}

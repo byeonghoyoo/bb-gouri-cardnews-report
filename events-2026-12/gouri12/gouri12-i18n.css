@@ -497,3 +497,36 @@ html:lang(en)[data-size]:not(#sz) .K1b2 .c1-contact{padding-top:9.95px;padding-b
 /* kakao card 3 key 2 ('Formulation'): its text snaps to whole pixels, -0.7 for any padding or a half-pixel move of its row; at 16.6 px (17) the ink sits on the centre */
 html:lang(en)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f2_k"]{font-size:16.6px}
 /* </en-center> */
+
+/* <gift-center-1120> */
+/* 2026-11-20 (lead order): JP / CN / TW / TH gift line gr_benefit now names 재생크림 (work/stale-drafts.json; JP 再生クリーム, CN 修护霜, TW 修復霜, TH ครีมบำรุงฟื้นฟูผิว). The new
+   words moved the measured letters of the JP / CN / TH gift chips off the chip centre (qa/text-center-check, language JP / CN / TH at 1080 / 780 / line / kakao); each
+   gift text moves by its measured offset (TW measured centred). Only the gift chips of cards 1 and 2 */
+@media (min-width:901px){
+ html:lang(ja) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:-0.062em} /* +0.97; the generated -0.0135em left the whole-pixel text where it was, -0.062em measured centred */
+ html:lang(ja) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.gift-line [data-copy]{position:relative;top:-0.0633em} /* +1.77 */
+}
+html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:-0.062em} /* +0.95; as the home card (-0.062em measured centred) */
+html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.gift-line [data-copy]{position:relative;top:-0.0629em} /* +1.73 */
+html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="2"] p.gift-line [data-copy]{position:relative;top:-0.0261em} /* +1.65 */
+html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="2"] p.gift-line [data-copy]{position:relative;top:-0.0629em} /* +2.38 */
+@media (min-width:901px){
+ html:lang(zh-CN) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.gift-line [data-copy]{position:relative;top:-0.0960em} /* +0.72 */
+}
+html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.gift-line [data-copy]{position:relative;top:-0.0962em} /* +0.71 */
+@media (min-width:901px){
+ html:lang(th) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:0.0575em} /* +3.09 */
+ html:lang(th) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) p.gift-band [data-copy]{position:relative;top:0.0524em} /* +3.44 */
+ html:lang(th) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] p.gift-band [data-copy]{position:relative;top:0.075em} /* +3.33; the generated 0.0488em overshot (-0.67), 0.075em */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(th) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:0.0255em} /* +2.53 */
+ html:lang(th) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) p.gift-band [data-copy]{position:relative;top:0.0628em} /* +3.68 */
+ html:lang(th) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] p.gift-band [data-copy]{position:relative;top:0.0376em} /* +3.31 */
+}
+html:lang(th)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:0.0572em} /* +3.04 */
+html:lang(th)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="2"] p.gift-band [data-copy]{position:relative;top:0.043em} /* +2.81; the generated 0.0765em left it 0.84 low, 0.043em */
+html:lang(th)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"][data-variant="b"] p.gift-band [data-copy]{position:relative;top:0.0519em} /* +2.85 */
+html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="2"] p.gift-band [data-copy]{position:relative;top:0.0317em} /* +3.75 */
+html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="1"] p.gift-band [data-copy]{position:relative;top:0.0730em} /* +3.92 */
+/* </gift-center-1120> */

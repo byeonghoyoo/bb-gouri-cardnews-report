@@ -211,3 +211,7 @@ html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-s
 html:lang(en)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.badge[data-copy="od_r36_badge"]{padding-top:4.090px!important;padding-bottom:1.791px!important}
 html:lang(en)[data-size]:not(#sz) [data-card="5"]:not([data-variant="b"])[data-size-only~="line"] span.ll.l-cool > span{position:relative;top:0.271px}
 /* EN-CENTER END */
+
+/* 2026-11-20 EN (lead order; the EN reviewer shortened the card 4 question to 'What is ONDA?'): on kakao 5-1 the shorter title no longer needs fit() to shrink it,
+   so it took the full 62 px and pushed the last point title 8 px below the card; it keeps the size it had (53 px), so the card below stays as before */
+html:lang(en)[data-size=kakao] .K5p1 [data-copy="od_c4_q"]{font-size:53.32px}

@@ -472,3 +472,13 @@ html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-varia
 html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.inf-k[data-copy="tm_c4_i3_k"]{padding-top:2.164px!important;padding-bottom:2.256px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="tm_ab_way_line"]{padding-top:1.887px!important;padding-bottom:2.233px!important}
 /* JP-CENTER END */
+
+/* 2026-11-20 EN (lead order; the EN reviewer's new hero contact line 'Bookings & Inquiries / WhatsApp: +82 10-7215-7511', 453 px at the Korean 19 px): in kakao
+   1 B-2 the line sits at the bottom of the card and ran past its right edge; there it keeps one line a little smaller (no room for a second line) */
+html:lang(en)[data-size=kakao] .K1-2.K1b .c1-contact{font-size:16px}
+/* (2026-11-20 EN) hero 1 B on the home card / board: the same line is wider than the purple panel (490 px in 404 px) and ran onto the photo; it breaks where the
+   reviewer broke it ('Bookings & Inquiries' / 'WhatsApp: +82 10-7215-7511'), two lines inside the panel (the panel has the room below) */
+html:lang(en)[data-size=home] .c1b .c1-contact{white-space:pre-line;align-items:flex-start}
+/* (2026-11-20 EN) card 2 B on the board (780): the longer row name 'Eye Thermage FLX 450 shots' moved its BEST! badge to another line position and the badge text
+   sat 1.45 px high (qa/text-center-check, language EN); its top / bottom padding are swapped by that much (same height) */
+@media (min-width:601px) and (max-width:900px){html:lang(en)[data-size=home] [data-card="2"][data-variant="b"]:not([data-size-only]) span.badge[data-copy="tm_r54_badge"]{padding-top:3.03px!important;padding-bottom:1.15px!important}}
