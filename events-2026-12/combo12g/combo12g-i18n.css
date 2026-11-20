@@ -122,7 +122,7 @@ html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-varia
 html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.gift-tag[data-copy="c7_gift_tag"]{padding-top:4.307px!important;padding-bottom:-0.002px!important}
 html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pchip[data-copy="c7_r107_chip"]{padding-top:2.581px!important;padding-bottom:-0.181px!important}
 html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c7_r107_badge"]{padding-top:4.389px!important;padding-bottom:3.931px!important}
-html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-n[data-copy="c7_p88_name"]{position:relative;top:-0.5px}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-n[data-copy="c7_p88_name"]{position:relative;top:0px}
 
 /* ===== 2026-11-20 language versions EN / JP / CN / TW (v4/combo12g/i18n-1120.cjs). Same rule as the Thai block above: every selector names the language
    (:lang(en) / :lang(ja) / :lang(zh) = zh-CN and zh-TW), so the Korean and Thai pages never match them. ===== */
@@ -516,3 +516,11 @@ html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-va
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.gift-tag[data-copy="c7_gift_tag"]{padding-top:1.692px!important;padding-bottom:1.908px!important}
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c7_ab_way_line"]{padding-top:2.438px!important;padding-bottom:3.162px!important}
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag[data-copy="c7_r100_tag"]{padding-top:1.437px!important;padding-bottom:2.923px!important}
+/* card 6 booking box TH (2026-11-20 afternoon, lead decision): the international number ran 13 px past the box (home 1080; 9 px on the board); at 27 as
+   the new language versions, inside the box. Line, kakao and phones already fit */
+@container (min-width:601px){html:lang(th) .c5c:not([data-size-only]) .bk-phone:not(.is-id){font-size:max(17px,calc(27*var(--px)))}}
+/* card 1 TH hero caption (2026-11-20 afternoon, lead order): '140,000 วอน' at 62 ran 4.6 px past the caption box (home A and line A; board A 3.6 px) and
+   at 30 past the phone B box (3.9 px); the sale figure is 56 there (phone B 26), inside the box and its padding. The kakao heroes already fit */
+@container (min-width:601px){html:lang(th) .c1:not(.b-editorial):not([data-size-only]) .ca-sale{font-size:max(26px,calc(56*var(--px)))}}
+html:lang(th)[data-size="line"]:not(#sz) .L1a .ca-sale{font-size:56px}
+@container (max-width:600px){html:lang(th) .c1.b-editorial .ca-sale{font-size:26px}}
