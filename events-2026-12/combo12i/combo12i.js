@@ -10,10 +10,11 @@ const P=DATA.prefix||'';
 /* 2026-11-18 language version TH (v4/combo12i/i18n-1118.cjs; copy v4/langverify/out/CMB12I.final.json via v4/combo12i/work/i18n-prep.cjs): <html lang>
    drives the Thai font and layout rules in combo12i-i18n.css (:lang(th)); the Google font of the language is added here (as CMB12H / CMB12A / CMB12B / CMB12D).
    Korean renders exactly as before. */
-const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th'};
-const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai'};
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai',HK:'Noto Sans TC'};
 /* 2026-11-19 EN / JP / CN / TW: the Chinese pieces below act only for a CJK locale (JP / CN / TW, as CMB12A / CMB12H TW) */
-const CJK={JP:1,CN:1,TW:1},SEGS={};
+/* 2026-11-20 HK takes the same Chinese pieces (as CMB12H HK) */
+const CJK={JP:1,CN:1,TW:1,HK:1},SEGS={};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
