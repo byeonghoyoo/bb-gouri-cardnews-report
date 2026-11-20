@@ -64,9 +64,25 @@ function setHours(el,v){
 const GUARD='.p-lead,.q-ans,.kd-d,.vs-d,.pick-d,.facts li > [data-copy],.un-d,.en-d,.st-d,.inf-n,.care li > [data-copy],.alert,.src,.p-note,.pnote,.fn,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.psub';
 /* names that never break inside */
 const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|[@＠][A-Za-z][\w.]*|Beauty Blossom|Beautyblossom00|รูปร่าง|น้ำหนัก|ไขมัน|ใบสั่งแพทย์|หลอดเลือดดำ|สารอาหาร|ผู้อำนวยการ|เคาน์เตอร์|กลูตาไธโอน|ค็อกเทล|ビューティーブロッサム|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|바디 온다|바디 인모드|바디 리니어지|바디 소프웨이브|바디 울쎄라|DCA 주사|CA 주사|조각주사 20cc|슬림바디 7주|2cc부터 10cc까지|비타민 B5·B2|데옥시콜산|콜산|피하지방층|피하지방|담즙산|처방 약|진료 후|주 1회|표면마취|마취 크림|냉찜질|음주·사우나·격한 운동|음주·사우나|붓기·멍|극초단파|고주파|초음파|리니어지·울쎄라|DCA 주사·조각주사|cc당 \+10,000원)/g;
+/* LV-1120 TW language version (v4/diet12a/i18n-1119.cjs) */
+/* TW: the TW names kept whole (KEEP_TW = these + KEEP): a name in corner brackets (the LINE account '「🌸麗朵皮膚科🌸」'), a floor / house number ('6樓',
+   '66號') and 'QR Code'; only the TW copy is set with this list (Korean, JP, CN and TH keep KEEP as before) */
+const KEEP_TW=new RegExp('「[^」\\n]{1,16}」|\\d+[樓號]|QR Code|'+KEEP.source,'g');
+const keepRe=()=>locale==='TW'?KEEP_TW:KEEP;
+/* TW (as the other TW pages, CMB12A / CMB12H / ULT12 / OND12 TW): the last three characters of a Chinese text stay together, grown back to the start of
+   their word (a '・' break or Intl.Segmenter('zh-TW')), so a line never ends inside a word; only in boxes whose text flows inline (in a flex / grid box the
+   kept tail would become its own item) and only for text with Chinese characters */
+const CJK={TW:1},SEGS={};
+function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;
+ const sep=Math.max(v.lastIndexOf('・'),v.lastIndexOf('·'));if(sep>0&&sep+1<v.length&&core(sep+1)>=2&&core(sep+1)<=5)return sep+1;
+ let seg=SEGS[locale];if(seg===undefined){try{seg=SEGS[locale]=new Intl.Segmenter(LANG[locale],{granularity:'word'});}catch(e){seg=SEGS[locale]=null;}}if(!seg)return cut;
+ let start=0,end=v.length;for(const g of seg.segment(v)){if(g.index>cut){end=g.index;break;}start=g.index;}
+ if(start===cut)return cut;if(start>0&&core(start)<=5)return start;return end<v.length?end:-1;}
+const guardable=(el)=>!/flex|grid/.test(getComputedStyle(el).display);
+const HAN=/[\u3400-\u9fff\uf900-\ufaff]/;
 function appendKept(el,s){
- let last=0;KEEP.lastIndex=0;
- for(const m of s.matchAll(KEEP)){
+ let last=0;const R=keepRe();R.lastIndex=0;
+ for(const m of s.matchAll(R)){
   if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));
   const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;
  }
@@ -76,13 +92,16 @@ function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
  if(el.classList.contains('pplus')){setPlus(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
- KEEP.lastIndex=0;
- const kept=!!v&&KEEP.test(v);KEEP.lastIndex=0;
- if(!v||!el.matches(GUARD)){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
+ const KR=keepRe();KR.lastIndex=0;
+ const kept=!!v&&KR.test(v);KR.lastIndex=0;
+ /* TW: the Chinese last-word guard also outside the Korean GUARD list (text with Chinese characters in an inline box) */
+ if(!v||(!el.matches(GUARD)&&!(CJK[locale]&&HAN.test(v)&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
  /* language versions: the Korean widow guard (last two words together) only for Korean / English; Thai, Chinese and Japanese break by the browser */
  let m=(locale==='KO'||locale==='EN')?(el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/)):null;
+ /* TW: the last word of a Chinese text stays together (cjkCut) */
+ if(!m&&CJK[locale]&&HAN.test(v)&&guardable(el)){m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
- if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
+ if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KR))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
  el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);
@@ -131,6 +150,12 @@ function render(){
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
+ /* TW (LIG12 / ONE12 / CMB12A / CMB12H TW rule): the booking-box phone line may hold the country's chat ID (TW LINE ID '@beautyblossom_tw') instead of a number;
+    then the chat icon and the booking link replace the phone icon and tel:. Korean, JP, CN and TH hold the number: nothing changes there */
+ {const isId=(v)=>!!v&&!/^\+?\d[\d\s\-().]*$/.test(v);
+  for(const p of document.querySelectorAll('.bk-phone')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??'').trim(),id=locale!=='KO'&&isId(v);if(!id&&!p.classList.contains('is-id'))continue;p.classList.toggle('is-id',id);
+   const img=p.querySelector('img.ico');if(img){if(id&&!img.dataset.src0)img.dataset.src0=img.getAttribute('src');const pic=id?'assets/icons/consult.webp':(img.dataset.src0||img.getAttribute('src'));if(img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
+   const a=p.querySelector('a[data-link]');if(a){if(id){const b=(CH&&CH.booking)||(DATA.links&&DATA.links.booking);if(b)a.href=b;a.target='_blank';a.rel='noopener noreferrer';}else{a.removeAttribute('target');a.removeAttribute('rel');}}}}
  /* language versions (CRF12 / THM12 / ONE12 rule): a hero contact line that names a chat channel ('Line: @beautyblossom_th', 'LINE：@beautyblossom_jp',
     '预约咨询：官方微信 Beautyblossom00') shows the consult icon instead of the phone; Korean and phone-number lines keep the phone icon */
  for(const sp of document.querySelectorAll('.hb-contact > [data-copy]')){const p=sp.parentElement,v=String(fields[sp.dataset.copy]??''),chat=locale!=='KO'&&/微信|WeChat|WhatsApp|LINE/i.test(v);
