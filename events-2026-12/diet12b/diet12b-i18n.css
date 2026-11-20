@@ -116,8 +116,8 @@ html:lang(ja) .plist{position:relative;top:calc(-1.5*var(--px))}html:lang(zh) .p
 
 /* ---------- DIE12B only (cards that differ from DIE12A): checked on this page's renders ---------- */
 /* hero band (JP): the name 'お手頃スリムボディ' shows whole (no '…'); the option pill moves under it when the band is narrow */
-html:lang(ja) .hb-name{white-space:normal;overflow:visible;text-overflow:clip}
-html:lang(ja) .hb-top{flex-wrap:wrap;row-gap:calc(4*var(--px))}
+html:lang(ja) .hb-name,html:lang(zh) .hb-name{white-space:normal;overflow:visible;text-overflow:clip}
+html:lang(ja) .hb-top,html:lang(zh) .hb-top{flex-wrap:wrap;row-gap:calc(4*var(--px))} /* CN too (2026-11-20): '超值纤体' beside the long option pill */
 /* hero B (JP): 'スリムボディ / パッケージ' break between the two words (at the Korean 82 px 'スリムボディ' is wider than the column) */
 html:lang(ja) .b-title h2{font-size:calc(68*var(--px));max-width:6.3em} /* 6.3em holds the six kana of スリムボディ but not seven, so the line ends between the two words at every size */
 html:lang(ja)[data-size]:not(#sz) main .K1b .b-title h2{font-size:64px}
@@ -246,3 +246,63 @@ html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-varia
 html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] p.fn[data-copy="db_fn37"]{padding-top:14.430px!important;padding-bottom:17.570px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.dev-e[data-copy="db_c4_dev_e"]{padding-top:1.781px!important;padding-bottom:3.699px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="db_ab_way_line"]{padding-top:2.321px!important;padding-bottom:3.279px!important}
+
+/* ---------- DIE12B CN (2026-11-20): Chinese breaks between any two characters, so short titles and names are sized to keep their words ---------- */
+/* kakao hero band: '预约咨询：官方微信 Beautyblossom00' (469 px at 23) ran over the event price; 21 there */
+html:lang(zh)[data-size]:not(#sz) main .K1a .hb-contact,html:lang(zh)[data-size]:not(#sz) main .K1b .hb-contact{font-size:21px}
+/* kakao price cards A (parts 1): '体重管理 / 纤体套餐' break after the fourth character (the box holds four, not five; '纤|体' broke) */
+html:lang(zh)[data-size]:not(#sz) main .K2ap1 .pt-main,html:lang(zh)[data-size]:not(#sz) main .K3p1 .pt-main{max-width:4.6em}
+/* kakao B price part 2: '身体LinearZ 2000发' keeps one line at 20 ('2000 / 发' broke) */
+html:lang(zh)[data-size]:not(#sz) main .K2bp2 .popt{font-size:20px}
+/* kakao card 4 part 2: the unit names 'LinearZ·美版超声刀' / 'DCA注射·身体雕刻针' keep one line at 18 ('超声|刀', '雕刻|针' broke) */
+html:lang(zh)[data-size]:not(#sz) main .K4p2 .un-n{font-size:18px}
+/* kakao card 5: the title '从面诊到护理的流程' keeps one line at 45 ('流|程' broke); the step titles at 22 ('仪器护理·注射' keeps one line; the full-width '·' and the step number take room) */
+html:lang(zh)[data-size]:not(#sz) main .K5p1 .q-title{font-size:45px}
+html:lang(zh)[data-size]:not(#sz) main .K5p2 .st-t{font-size:22px}
+/* phones: the price card titles beside the photo break as '体重管理 / 纤体套餐' too ('纤|体' broke at five characters a line) */
+@media(max-width:600px){html:lang(zh) .c2:not(.b-price) .pt-main,html:lang(zh) .c3 .pt-main{max-width:4.6em}}
+
+/* CN chip text centring (2026-11-19, language versions): the  text is set in its language font; its ink box differs from the Korean one, so each pill gets its own padding, measured on real pixels with qa/text-center-check.cjs
+   (?lang=CN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules; a pill that kept flipping by about half a
+   pixel is moved as a whole by a quarter or half pixel instead */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-CN):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hb-tag[data-copy="db_hb_tag"]{padding-top:0.16000em!important;padding-bottom:0.16000em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) p.p-lead[data-copy="db_p_lead2"]{padding-top:0.38960em!important;padding-bottom:0.49040em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) p.p-lead[data-copy="db_p_lead2"]{padding-top:0.39560em!important;padding-bottom:0.48440em!important}
+html:lang(zh-CN):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="db_ab_way_line"]{padding-top:0.18764em!important;padding-bottom:0.21236em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-CN):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.h-pill[data-copy="db_hook"]{padding-top:0.35400em!important;padding-bottom:0.48600em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hb-tag[data-copy="db_hb_tag"]{padding-top:0.15250em!important;padding-bottom:0.16750em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hb-opt.pplus[data-copy="db_hb_opt"]{padding-top:0.06500em!important;padding-bottom:0.13500em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hb-tag[data-copy="db_hb_tag"]{padding-top:0.15250em!important;padding-bottom:0.16750em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hb-opt.pplus[data-copy="db_hb_opt"]{padding-top:0.06500em!important;padding-bottom:0.13500em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) p.fn[data-copy="db_fn37"]{padding-top:0.77221em!important;padding-bottom:0.91200em!important}
+html:lang(zh-CN):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.dev-e[data-copy="db_c4_dev_e"]{padding-top:0.12650em!important;padding-bottom:0.15350em!important}
+html:lang(zh-CN):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) figcaption[data-copy="db_ab_ph2"]{padding-top:0.35077em!important;padding-bottom:0.24923em!important}
+html:lang(zh-CN):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) figcaption[data-copy="db_ab_ph3"]{padding-top:0.35077em!important;padding-bottom:0.24923em!important}
+html:lang(zh-CN):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="db_ab_way_line"]{padding-top:0.18314em!important;padding-bottom:0.21686em!important}
+}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] p.h-pill[data-copy="db_hook"]{padding-top:9.910px!important;padding-bottom:13.610px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hb-tag[data-copy="db_hb_tag"]{padding-top:2.442px!important;padding-bottom:2.678px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hb-opt.pplus[data-copy="db_hb_opt"]{padding-top:1.169px!important;padding-bottom:2.431px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.hb-tag[data-copy="db_hb_tag"]{padding-top:2.442px!important;padding-bottom:2.678px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.hb-opt.pplus[data-copy="db_hb_opt"]{padding-top:1.169px!important;padding-bottom:2.431px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.dev-e[data-copy="db_c4_dev_e"]{padding-top:2.263px!important;padding-bottom:2.217px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] figcaption[data-copy="db_ab_ph2"]{padding-top:4.562px!important;padding-bottom:3.238px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] figcaption[data-copy="db_ab_ph3"]{padding-top:4.562px!important;padding-bottom:3.238px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="6"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="db_ab_way_line"]{padding-top:2.892px!important;padding-bottom:2.708px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.h-pill[data-copy="db_hook"]{padding-top:10.827px!important;padding-bottom:12.693px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.hb-tag[data-copy="db_hb_tag"]{padding-top:1.704px!important;padding-bottom:3.416px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.hb-opt.pplus[data-copy="db_hb_opt"]{padding-top:1.041px!important;padding-bottom:2.559px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.hb-tag[data-copy="db_hb_tag"]{padding-top:1.704px!important;padding-bottom:3.416px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.hb-opt.pplus[data-copy="db_hb_opt"]{padding-top:1.041px!important;padding-bottom:2.559px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.p-lead[data-copy="db_p_lead2"]{padding-top:8.126px!important;padding-bottom:10.474px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] p.p-lead[data-copy="db_p_lead2"]{padding-top:8.252px!important;padding-bottom:9.348px!important;position:relative;top:0.5px}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="db_p_cont"]{padding-top:2.210px!important;padding-bottom:3.550px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] p.fn[data-copy="db_fn37"]{padding-top:14.415px!important;padding-bottom:17.585px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.dev-e[data-copy="db_c4_dev_e"]{padding-top:2.825px!important;padding-bottom:2.655px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="db_ab_ph1"]{padding-top:4.730px!important;padding-bottom:4.070px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="db_ab_ph2"]{padding-top:4.830px!important;padding-bottom:3.970px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="db_ab_ph3"]{padding-top:4.830px!important;padding-bottom:3.970px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="db_ab_way_line"]{padding-top:2.642px!important;padding-bottom:2.958px!important}
