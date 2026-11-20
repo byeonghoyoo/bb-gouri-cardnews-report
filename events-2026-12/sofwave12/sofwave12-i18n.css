@@ -921,3 +921,20 @@ html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-varia
 html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="4"][data-variant="b"][data-size-only~="kakao"] span.badge[data-copy="sw_r20_badge"]{padding-top:3.382px!important;padding-bottom:1.738px!important}
 html:lang(en)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="sw_ab_way_line"]{padding-top:3.196px!important;padding-bottom:2.404px!important;position:relative;top:-0.5px}
 /* EN-CENTER END */
+
+/* ===== JP / HK fit fixes (2026-11-20, lead order): LINE 6-2 (the phone line ran out of the booking box: JP by 33 px, HK by 11 px) and LINE 2-A (the
+   add-on lines' Japanese / Chinese text boxes stood 2 px outside their line box), plus KakaoTalk 6-3 (JP / HK / CN address). The copy is
+   unchanged; only these cards change ===== */
+/* LINE 6-2: the JP phone number is 28 (as EN); the HK WhatsApp chat line starts from 22, so the fit can set it inside the box */
+html:lang(ja)[data-size]:not(#sz) .L6p2 .bk-phone{font-size:28px}
+html:lang(zh-HK)[data-size]:not(#sz) .L6p2 .bk-phone.is-id{font-size:calc(22px*var(--fit,1))}
+/* LINE 2-A: the add-on lines get a line height of 1.4 (the CJK faces' text box is taller than 1.35); HK takes the 2 px back under the board, so the
+   footer keeps its place */
+html:lang(ja)[data-size]:not(#sz) .L2a .prows:not(.combo) .pdet,html:lang(zh-HK)[data-size]:not(#sz) .L2a .prows:not(.combo) .pdet{line-height:1.4}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .pboard{padding-bottom:2px}
+/* KakaoTalk 6-3 (found in the same check): the station, the line pill and the three-line address ran out of the location box (JP 13 px, HK 7 px,
+   CN 13 px); they are set a little smaller and tighter (as EN / TH), so the address stays in the box */
+html:lang(ja)[data-size]:not(#sz) .K6p3 .way,html:lang(zh-HK)[data-size]:not(#sz) .K6p3 .way,html:lang(zh-CN)[data-size]:not(#sz) .K6p3 .way{margin-top:8px;gap:10px}
+html:lang(ja)[data-size]:not(#sz) .K6p3 .way-pin,html:lang(zh-HK)[data-size]:not(#sz) .K6p3 .way-pin,html:lang(zh-CN)[data-size]:not(#sz) .K6p3 .way-pin{width:36px}
+html:lang(ja)[data-size]:not(#sz) .K6p3 .way-st,html:lang(zh-HK)[data-size]:not(#sz) .K6p3 .way-st,html:lang(zh-CN)[data-size]:not(#sz) .K6p3 .way-st{font-size:20px}
+html:lang(ja)[data-size]:not(#sz) .K6p3 .way-addr,html:lang(zh-HK)[data-size]:not(#sz) .K6p3 .way-addr,html:lang(zh-CN)[data-size]:not(#sz) .K6p3 .way-addr{font-size:14px;line-height:1.45;margin-top:4px}
