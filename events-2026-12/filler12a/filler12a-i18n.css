@@ -60,7 +60,7 @@ html:lang(th) .fb-hero .tz-price{font-size:calc(56*var(--px))}
  html:lang(th) .cp:not(.fb-price):not([data-size-only]) .prod{padding-top:calc(8*var(--px));padding-bottom:calc(8*var(--px))}
 }
 /* kakao price cards A: the fixed Korean price columns (104 / 150 px) take their width in Thai, as at home */
-html:lang(th)[data-size]:not(#sz) .K2a .prod:not(.solo) .prow,html:lang(th)[data-size]:not(#sz) .K3 .prod:not(.solo) .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(th)[data-size]:not(#sz) .K2a .prod:not(.solo) .prow,html:lang(th)[data-size]:not(#sz) .K3 .prod:not(.solo) .prow,html:lang(zh)[data-size]:not(#sz) .K2a .prod:not(.solo) .prow,html:lang(zh)[data-size]:not(#sz) .K3 .prod:not(.solo) .prow,html:lang(ja)[data-size]:not(#sz) .K2a .prod:not(.solo) .prow,html:lang(ja)[data-size]:not(#sz) .K3 .prod:not(.solo) .prow{grid-template-columns:minmax(0,1fr) auto auto} /* CN / JP: three-digit 万 prices ('198万ウォン') were wider than the Korean columns too */
 /* card 4 '부위로 찾기': the Korean answers keep one line (nowrap); the Thai answers are up to three times as long and ran into the next column, so
    they wrap at the right of their row */
 html:lang(th) .ch-a{flex:0 1 auto;min-width:0;white-space:normal}
@@ -95,7 +95,7 @@ html:lang(th)[data-size]:not(#sz) .K6-3 .qr figcaption{font-size:12px}
 /* JP price titles: the Japanese titles are about twice as long as the Korean ones; where the Korean title keeps one line (kakao parts without the
    model) fit() would have to go below its minimum, so the Japanese title wraps (balanced) at a smaller size */
 html:lang(ja) .pt-main{white-space:normal;text-wrap:balance}
-html:lang(ja)[data-size]:not(#sz) .K2a .pt-main,html:lang(ja)[data-size]:not(#sz) .K2b .pt-main,html:lang(ja)[data-size]:not(#sz) .K3 .pt-main{font-size:42px}
+html:lang(ja)[data-size]:not(#sz) .K2a .pt-main,html:lang(ja)[data-size]:not(#sz) .K2b .pt-main,html:lang(ja)[data-size]:not(#sz) .K3 .pt-main{font-size:calc(42px*var(--fit,1))} /* fit() may still shrink a phrase that does not fit */
 
 /* ===== this page (v4/filler12a/i18n/filler12a-i18n.page.css) ===== */
 /* FIL12A (filler12a) language rules TH · CN · JP (2026-11-19): only what this page's copy needs on top of v4/filler12a/lib/fl-i18n.css. Every selector
@@ -161,8 +161,8 @@ html:lang(ja)[data-size]:not(#sz) .K1-2.K1a .h-script{margin-top:6px}
 /* KAKAO 1 B-1: the title on one line above the notes */
 html:lang(ja)[data-size]:not(#sz) .K1-1.K1b .fb-heading h1{font-size:52px}
 /* KAKAO 2 A-1 / 3-2 (title beside the model, 470 px): 'ビューティーブロッサムの' is one unbreakable word group, the title is set smaller there */
-html:lang(ja)[data-size]:not(#sz) .K2a.K2-1 .pt-main{font-size:36px}
-html:lang(ja)[data-size]:not(#sz) .K3.K3-2 .pt-main{font-size:30px} /* beside the '続き' pill */
+html:lang(ja)[data-size]:not(#sz) .K2a.K2-1 .pt-main{font-size:calc(36px*var(--fit,1))}
+html:lang(ja)[data-size]:not(#sz) .K3.K3-2 .pt-main{font-size:calc(30px*var(--fit,1))} /* beside the '続き' pill */
 /* LINE 1 B and KAKAO 7 (B/A): the title on one line as on the Korean card, so the event line and the AI note keep their places */
 html:lang(ja)[data-size]:not(#sz) .L1b .fb-heading h1{font-size:64px}
 html:lang(ja)[data-size]:not(#sz) .K7 .bb-ba__title{font-size:48px}
