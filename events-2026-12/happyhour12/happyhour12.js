@@ -4,8 +4,10 @@
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
-const LANG={KO:'ko'};
-const FONT_CSS={KO:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&display=swap'};
+const LANG={KO:'ko',TH:'th'};
+const FONT_CSS={KO:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&display=swap',
+ /* language versions (2026-11-20 TH): the same Latin display fonts plus Noto Sans Thai for the Thai letters */
+ TH:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&family=Noto+Sans+Thai:wght@400;500;600;700;800;900&display=swap'};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -51,9 +53,11 @@ function fitTo(el,limit,min=.6){
 function fit(){for(const el of document.querySelectorAll('.fit'))if(el.offsetParent){const box=el.closest('.mi-price')||el.parentElement;const old=box.querySelector('.mi-old'),arr=box.querySelector('.mi-arrow');const room=box.clientWidth-(old?old.offsetWidth:0)-(arr?arr.offsetWidth:0)-24;fitTo(el,Math.max(60,room));}}
 
 /* words that must never be split across lines (display only, the text stays identical) */
-const KEEP={ALL:['02-336-7511','10:00 – 17:00','12.01 – 02.28','VAT 10%','1회 한정가','스킨보톡스','슈링크 유니버스','포트라 콰트로','울쎄라피프라임','써마지 FLX','리쥬란 힐러','덴서티 알파팁','인모드 FX','(5분 이내)']};
+const KEEP={ALL:['02-336-7511','10:00 – 17:00','12.01 – 02.28','VAT 10%','1회 한정가','스킨보톡스','슈링크 유니버스','포트라 콰트로','울쎄라피프라임','써마지 FLX','리쥬란 힐러','덴서티 알파팁','인모드 FX','(5분 이내)'],
+ /* TH: the international number, the LINE ID and the brand never break */
+ TH:['+82-2-336-7511','@beautyblossom_th','Beauty Blossom','(ไม่เกิน 5 นาที)','SHURINK UNIVERSE','DENSITY Alpha','Rejuran Healer','Thermage FLX','Ultherapy PRIME','FOTRA Quattro','InMode FX']};
 const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-const keepRe=()=>{const l=[...KEEP.ALL].sort((a,b)=>b.length-a.length);return new RegExp(l.map(esc).join('|'),'gu');};
+const keepRe=()=>{const l=[...KEEP.ALL,...(KEEP[locale]||[])].sort((a,b)=>b.length-a.length);return new RegExp(l.map(esc).join('|'),'gu');};
 function appendKeep(parent,s){
  const re=keepRe();let last=0;
  for(const m of s.matchAll(re)){if(m.index>last)parent.append(document.createTextNode(s.slice(last,m.index)));const k=document.createElement('span');k.className='nw';k.textContent=m[0];parent.append(k);last=m.index+m[0].length;}
@@ -61,13 +65,19 @@ function appendKeep(parent,s){
 }
 /* display-only accents: spec numbers in menu names (4CC, 600샷, 40KJ, 1v …) and the 만원 unit of prices. textContent stays identical. */
 const SPEC=/(\d[\d,.]*\s?(?:CC|cc|KJ|kJ|샷|v)(?![A-Za-z가-힣])|\(5분 이내\))/gu;
-function appendSpec(parent,s){let last=0;for(const m of s.matchAll(SPEC)){if(m.index>last)appendKeep(parent,s.slice(last,m.index));const k=document.createElement('span');k.className='spec nw';k.textContent=m[0];parent.append(k);last=m.index+m[0].length;}if(last<s.length)appendKeep(parent,s.slice(last));}
-function appendPrice(parent,s){const m=s.match(/^(.*?)(만원)$/u);if(!m){parent.textContent=s;return;}const n=document.createElement('span');n.className='num';n.textContent=m[1];const u=document.createElement('span');u.className='unit';u.textContent=m[2];parent.append(n,u);}
+/* TH: the same accent on the Thai units (600 ช็อต, 1 ขวด, 4 cc, 40 kJ) and on '(ไม่เกิน 5 นาที)' */
+const SPEC_TH=/(\d[\d,.]*\s?(?:CC|cc|KJ|kJ|\u0e0a\u0e47\u0e2d\u0e15|\u0e02\u0e27\u0e14)(?![A-Za-z\u0e00-\u0e7f])|\(\u0e44\u0e21\u0e48\u0e40\u0e01\u0e34\u0e19 5 \u0e19\u0e32\u0e17\u0e35\))/gu;
+function appendSpec(parent,s){let last=0;for(const m of s.matchAll(locale==='TH'?SPEC_TH:SPEC)){if(m.index>last)appendKeep(parent,s.slice(last,m.index));const k=document.createElement('span');k.className='spec nw';k.textContent=m[0];parent.append(k);last=m.index+m[0].length;}if(last<s.length)appendKeep(parent,s.slice(last));}
+function appendPrice(parent,s){
+ /* TH: '130,000 วอน' -> the number large, ' วอน' small (the space stays inside the unit, so it is set at the unit size) */
+ if(locale==='TH'){const t=s.match(/^(.*?\d)(\s*\u0e27\u0e2d\u0e19)$/u);if(t){const n=document.createElement('span');n.className='num';n.textContent=t[1];const u=document.createElement('span');u.className='unit';u.textContent=t[2];parent.append(n,u);return;}}
+ const m=s.match(/^(.*?)(만원)$/u);if(!m){parent.textContent=s;return;}const n=document.createElement('span');n.className='num';n.textContent=m[1];const u=document.createElement('span');u.className='unit';u.textContent=m[2];parent.append(n,u);}
 /* widow guard: keep the last two words together. Text content stays identical. */
 const GUARD='.title,.c-title,.c-lead,.gi-fact,.c5-d,.b5-intro,.b5-dr-quote,.b5-addr,.notes li,.bk-text,.holiday';
 function setText(el,v){
  el.textContent='';
  if(v)v=v.replace(/ ([\u00b7\u30fb])/g,'\u00a0$1');
+ if(locale==='TH'&&v)v=v.replace(/ (?=\u0e46)/g,'\u00a0').replace(/(\S) (?=\d[\d,.]*\s?(?:CC|cc|KJ|kJ|\u0e0a\u0e47\u0e2d\u0e15|\u0e02\u0e27\u0e14)(?![A-Za-z\u0e00-\u0e7f]))/g,'$1\u00a0'); /* TH: the repetition mark never starts a line, and a dose / shot count stays with its word ('VOLNEWMER 600 ช็อต') (display only; the editor folds the no-break spaces back) */
  if(!v){el.textContent=v;return;}
  if(el.matches('.mi-sale,.mi-old')){appendPrice(el,v);return;}
  if(el.matches('.mi-name,.gi-name')){appendSpec(el,v);return;}
@@ -75,7 +85,7 @@ function setText(el,v){
  const lines=v.split('\n');
  lines.forEach((line,i)=>{
   if(i)el.append(document.createTextNode('\n'));
-  const m=line.match(/(\S+[ \t]+\S+)$/);
+  const m=locale==='TH'?null:line.match(/(\S+[ \t]+\S+)$/); /* TH: no Korean two-word rule (Thai spaces mark phrases, not words) */
   if(!m||m[1].length>=line.length){appendKeep(el,line);return;}
   let cut=line.length-m[1].length;
   for(const k of line.matchAll(keepRe()))if(k.index<cut&&k.index+k[0].length>cut)cut=k.index;
@@ -83,6 +93,28 @@ function setText(el,v){
   const tail=document.createElement('span');tail.className='nw';appendKeep(tail,line.slice(cut));el.append(tail);
  });
 }
+/* TH line breaks (2026-11-20, display only: nowrap spans, the stored text is unchanged and the editor folds them back). Thai has no spaces
+   between words, so the browser breaks by its Thai dictionary. Kept whole here: the nominal prefix 'ความ' with its word (Intl.Segmenter,
+   the same dictionary; 'การ' is not glued: it also ends compounds such as 'ผู้อำนวยการ'), and the words / short phrases of this page that read
+   badly when split (list below, extended after reading the rendered line breaks at 1080 / 780 / 390). */
+const TH_GLUE=/(ช่วงเวลาพิเศษ|เข้มข้น|เฉพาะบุคคล|แต่ละบุคคล|แต่ละคน|เติมความมั่นใจ|ที่เป็นธรรมชาติ|ในแบบของคุณ|ของแท้|ผู้อำนวยการ|เป้าหมาย|ไม่พักกลางวัน|พักกลางวัน|สุดสัปดาห์|ปลอบประโลม|อัลตราซาวนด์|แรงดันสูง|สกินโบท็อกซ์|โบท็อกซ์|เหมาะกับ|อาการแดง|แบบโฟกัส|พักฟื้น|ทั่วใบหน้า|ขั้วเดียว|4 ความยาวคลื่น|ฉ่ำวาว|เรียลไทม์)/g;
+const TH_SEG=(typeof Intl!=='undefined'&&Intl.Segmenter)?new Intl.Segmenter('th',{granularity:'word'}):null;
+function thGlue(el){
+ const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);const nodes=[];
+ for(let n=tw.nextNode();n;n=tw.nextNode())if(!(n.parentElement&&n.parentElement.closest('.nw,.th-nw')))nodes.push(n);
+ for(const n of nodes){
+  const s=n.data;const cuts=[];
+  for(const m of s.matchAll(TH_GLUE))cuts.push([m.index,m.index+m[0].length]);
+  if(TH_SEG){const sg=[...TH_SEG.segment(s)];for(let i=0;i+1<sg.length;i++){const a=sg[i],b=sg[i+1];
+   if(a.segment==='ความ'&&b.isWordLike){const x=a.index,y=b.index+b.segment.length;if(!cuts.some(c=>x<c[1]&&y>c[0]))cuts.push([x,y]);i++;}}}
+  if(!cuts.length)continue;
+  cuts.sort((p,q)=>p[0]-q[0]);const f=document.createDocumentFragment();let last=0;
+  for(const [x,y] of cuts){if(x<last)continue;if(x>last)f.append(document.createTextNode(s.slice(last,x)));const sp=document.createElement('span');sp.className='th-nw';sp.textContent=s.slice(x,y);f.append(sp);last=y;}
+  if(last<s.length)f.append(document.createTextNode(s.slice(last)));
+  n.replaceWith(f);
+ }
+}
+
 function render(){
  root.lang=LANG[locale]||'ko';root.dataset.locale=locale;
  root.classList.toggle('is-editable',editable);
@@ -90,7 +122,7 @@ function render(){
  setFonts();
  for(const el of document.querySelectorAll('[data-copy]')){
   if(IE&&IE.holds(el))continue; /* never overwrite the copy someone is typing in */
-  const v=fields[el.dataset.copy]??'';setText(el,v);
+  const v=fields[el.dataset.copy]??'';setText(el,v);if(locale==='TH')thGlue(el);
   const empty=!String(v).trim();el.classList.toggle('is-empty',empty);
   if(el.hasAttribute('data-optional'))el.hidden=empty&&!(editable&&editMode);
   if(!IE){if(editable)el.title='더블클릭하여 수정';else el.removeAttribute('title');}
