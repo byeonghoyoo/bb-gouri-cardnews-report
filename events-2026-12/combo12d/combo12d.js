@@ -9,9 +9,9 @@ const KEYS=Object.keys(DATA.locales.KO);
 /* 2026-11-18 language versions TH + TW (v4/combo12d/i18n-1118.cjs; copy v4/langverify/out/CMB12D.final.json via v4/combo12d/work/i18n-prep.cjs): <html lang>
    drives the language fonts and layout rules in combo12d-i18n.css (:lang(th) / :lang(zh)); the Google font of the language is added here (as
    CMB12A / CMB12B). Korean renders exactly as before; TW added 2026-11-18 12:10. */
-const LANG={KO:'ko',TW:'zh-TW',TH:'th'};
-const FONT_FAMILY={TW:'Noto Sans TC',TH:'Noto Sans Thai'};
-const CJK={TW:1},SEGS={};
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',HK:'Noto Sans TC',TH:'Noto Sans Thai'};
+const CJK={TW:1,JP:1,CN:1,HK:1},SEGS={}; /* 2026-11-19 EN / JP / CN / HK added (v4/combo12d/i18n-1118.cjs, as CMB12A: HK in Noto Sans TC, EN in the Korean page's Latin fonts) */
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -76,7 +76,11 @@ const KEEP_TH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Beau
 /* 2026-11-18 TW (as CMB12A / CMB12B TW): the LINE handle with its name in corner brackets, chat IDs, floor / house numbers and numbers with their part or
    unit stay whole (v4/combo12d/i18n-1118.cjs LANG_KEEP_TW); only the TW copy is set with this list */
 const KEEP_TW=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|LINE@[\\w.\\-]+|Line@「[^」\\n]{1,16}」|@[\\w.\\-]+|「[^」\\n]{1,16}」|\\d+[樓楼階號号]|\\d+部位|\\d+U\\b|\\([^()\\n]{1,6}\\)|Beauty Blossom|QR Code|Medione醫療中心|'+KEEP.source,'g');
-const keepRe=()=>locale==='TH'?KEEP_TH:locale==='TW'?KEEP_TW:KEEP;
+/* 2026-11-19 EN / JP / CN / HK: each language has its own keep list (v4/combo12d/i18n-1118.cjs LANG_KEEP_JP / _ZH / _EN); Korean, TW and TH as before */
+const KEEP_JP=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|LINE：@[\\w.\\-]+|@[\\w.\\-]+|ビューティーブロッサム|カウンセリング|フェイスライン|フェイス|ボトックス|ソリューション|コアトックス|\\d+u\\b|\\d+部位|\\d+倍量|\\d+か所|\\d+%OFF|\\d[\\d,]*万?ウォン|\\d+(?:・\\d+)*(?:号線|階)|\\d+番出口|\\d{1,2}:\\d{2}[–-]\\d{1,2}:\\d{2}|Beauty Blossom|QR|'+KEEP.source,'g');
+const KEEP_ZH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|療程|疗程|肉毒|@[\\w.\\-]+|\\d+(?:・\\d+)*[樓楼階號号]|\\d+部位|\\d+[Uu]\\b|\\d+%|\\d{1,2}:\\d{2}[–-]\\d{1,2}:\\d{2}|（[^（）\\n]{1,8}）|\\([^()\\n]{1,6}\\)|Beauty Blossom|Beautyblossom00|Coretox|Xeomin|Allergan|Skin Botox|Gangnam Unni|QR Code|'+KEEP.source,'g');
+const KEEP_EN=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|Follow-Up|Beauty Blossom|Gangnam Unni|Dr\\. Lee Geon-ho|\\d{1,2}:\\d{2} [AP]M|\\d{1,2} [AP]M|\\d+u\\b|VAT 10%|'+KEEP.source,'g');
+const keepRe=()=>locale==='TH'?KEEP_TH:locale==='TW'?KEEP_TW:locale==='JP'?KEEP_JP:(locale==='CN'||locale==='HK')?KEEP_ZH:locale==='EN'?KEEP_EN:KEEP;
 /* 2026-11-18 Chinese (same as CMB12A / CMB12B, oneday12.js / ligament12.js): the last three characters stay together, grown back to the start of their word
    (a '・' break or Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside); a '・' inside those last characters is a
    break too when two to five characters follow it. Thai has no guard (dictionary breaks) */
@@ -89,12 +93,16 @@ function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]
 const guardable=(el)=>!/flex|grid/.test(getComputedStyle(el).display);
 /* the Chinese guard only for text with Chinese characters; a Latin-only TW text ('Coretox') is set as on the Korean page */
 const HAN=/[\u3400-\u9fff\uf900-\ufaff]/;
+/* 2026-11-19 JP: kana count too (a kana-only Japanese line keeps its last word as well); the other languages test HAN as before */
+const JPCH=/[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/;
+const hanOf=(v)=>(locale==='JP'?JPCH:HAN).test(v);
 function appendKept(el,s){
  let last=0;const R=keepRe();R.lastIndex=0;
  for(const m of s.matchAll(R)){
   if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));
   let e=m.index+m[0].length;if(CJK[locale])while(e<s.length&&/[，。、：；！？）」』]/.test(s[e]))e++; /* 2026-11-18 TW: Chinese punctuation right after a kept name stays with it (it may not start a line); Korean and Thai: unchanged */
   const k=document.createElement('span');k.className='nw';k.textContent=s.slice(m.index,e);el.append(k);last=e;
+  if(locale==='JP'&&el.closest('.h-ko'))el.append(document.createElement('wbr')); /* 2026-11-19 JP: the hero title breaks only between its kept katakana words (KEEP_JP), never inside one */
  }
  if(last<s.length)el.append(document.createTextNode(s.slice(last)));
 }
@@ -106,16 +114,17 @@ function setText(el,v){
  const KR=keepRe();KR.lastIndex=0;const kept=!!v&&KR.test(v);KR.lastIndex=0;
  /* 2026-11-18 TH: no Korean widow guard (Thai breaks by its dictionary; its words stay whole through KEEP_TH, as CMB12A / CMB12B TH). TW: a text with
     Chinese characters keeps its last word together where it flows inline (the Korean list GUARD stays as it was) */
- if(!v||locale==='TH'||(!el.matches(GUARD)&&!(CJK[locale]&&HAN.test(v)&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
+ if(!v||locale==='TH'||(!el.matches(GUARD)&&!(CJK[locale]&&hanOf(v)&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
  let m=null;
  if(!CJK[locale])m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/);
  /* 2026-11-18 TW: the Chinese guard only in boxes whose text flows inline (in a flex / grid box the kept tail would become its own item) */
- else if(HAN.test(v)&&guardable(el)){m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
+ else if(hanOf(v)&&guardable(el)){m=v.match(/([^\s]{3}[。！？，、）)]*)$/u);if(m&&m[1].length<v.length){const c=cjkCut(v,v.length-m[1].length);m=c>0?[null,v.slice(c)]:null;}}
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KR))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;}
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
- el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);
+ el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));if(locale==='JP'&&el.matches('.h-ko'))el.append(document.createElement('wbr')); /* 2026-11-19 JP: a break opportunity before the kept last word of the hero title */
+ el.append(tail);
 }
 
 function isPhone(){const m=document.querySelector('main');return !!m&&m.clientWidth<=600;}
