@@ -453,3 +453,138 @@ html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card
 @media (min-width:600px) and (max-width:900px){html:lang(ja) section.card[data-card="4"]:not([data-size-only]) span.plus[data-copy="dn_c_plus"]{padding-top:.1604em;padding-bottom:0}}
 html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="4"] span.plus[data-copy="dn_c_plus"]{padding-top:2.73px;padding-bottom:0}
 html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="4"] span.plus[data-copy="dn_c_plus"]{padding-top:1.68px;padding-bottom:0}
+
+/* ===== EN (2026-11-19 evening, lead order, v4/langverify/out/LV_BUILD_1119.md): the English version (html:lang(en) only; Korean and the other language
+   versions are untouched). The Korean faces carry English (Pretendard text, Bricolage Grotesque labels), as OND12 / THM12 EN; no extra font. The English
+   copy runs about as long as the Thai / Japanese copy in the same places (hero title on kakao, card 2 head, card 4 title, card 6 points and tips, card 7
+   steps, booking box), so it takes the same widths and sizes as TH / JP (their values of 2026-11-17 / 18, html:lang(en) only); EN fixes follow below ===== */
+/* prices and the shot figures stay on one line ('650K' wrapped its 'K' alone; '300 shots') */
+html:lang(en) .money{white-space:nowrap}
+html:lang(en) .pnm .pv,html:lang(en) .pg-name .pv{white-space:nowrap}
+/* kakao 1 B / 1 A part 2: 'DENSITY' (seven capitals) at the Korean title size ran past the 480 px box; 78 px as TH / JP; line hero B 116 px */
+html:lang(en)[data-size="kakao"] .K1b .hero-title,html:lang(en)[data-size="kakao"] .K1-2.K1a .hero-title{font-size:78px;line-height:1.02}
+html:lang(en)[data-size="line"] .L1b .hero-title{font-size:116px}
+/* card 2 A head: 'DENSITY' with '300 shots · 600 shots' beside it ran into the model photo and past the kakao card; title 64, shot line 29 (as JP) */
+@container (min-width:601px){
+ html:lang(en) .c2:not([data-variant="b"]) .pt-main{font-size:calc(64*var(--px))}
+ html:lang(en) .c2:not([data-variant="b"]) .pt-sub{font-size:calc(29*var(--px))}
+}
+/* tile names that do not fit at their smallest fit size wrap instead of running into the next tile (as TH / JP) */
+html:lang(en) .tl-top.wrap{white-space:normal}
+/* card 4 title: 'DENSITY + LinearZ · Ultherapy Prime + DENSITY' (1103 px) kept one line and ran past the card; as HK / TH / JP it takes two lines balanced
+   at the '·', 76 outside phones, 58 on kakao part 1 */
+@container (min-width:601px){html:lang(en) .c4 .pt-main{white-space:normal;font-size:calc(76*var(--px));text-wrap:balance}}
+html:lang(en)[data-size="kakao"] .K4-1 .pt-main{font-size:58px}
+/* kakao card 8 part 3: the international number ('+82-2-336-7511') ran past the booking box (as CN / TH / JP) */
+html:lang(en)[data-size="kakao"] .K8-3 .bk-phone{font-size:24px}
+/* hero tags: '#Smoother texture' ran 21 px past the line card 1 A, 31 px past kakao 1 A part 2 and 11 px past the phone card; the tags start 20 / 20 /
+   14 px further left (the markers stay on the cheek) and are a little smaller: line 21 (Korean 25), kakao 22 (25), phones 10 (12) */
+html:lang(en)[data-size="line"] .L1a .c1-tags{left:818px}
+html:lang(en)[data-size="line"] .L1a .tg-t{font-size:21px}
+html:lang(en)[data-size="kakao"] .K1-2.K1a .c1-tags{left:540px}
+html:lang(en)[data-size="kakao"] .K1-2.K1a .tg-t{font-size:22px}
+@container (max-width:600px){html:lang(en) .c1 .c1-tags{left:calc(700*var(--px))}html:lang(en) .c1 .tg-t{font-size:10px}}
+/* card 2 A care line and phone heading (as TH / JP) */
+html:lang(en)[data-size="kakao"] .K2a .pg-care{font-size:15px}
+@container (max-width:600px){html:lang(en) .c2:not([data-variant="b"]) .pg-head{padding-right:48px}}
+/* card 4 device captions break inside their column (as TH / JP) */
+html:lang(en) .pdev figcaption{white-space:normal}
+/* card 6 (1080 / 780, line, kakao parts 2-3): the longer point titles and tip notes pushed the tips past the card (line part 1: the fourth point note; kakao
+   part 2: the third note); the TH / JP widths and sizes */
+@container (min-width:601px){
+ html:lang(en) .c5:not([data-size-only]) .c5-mid{grid-template-columns:calc(420*var(--px)) minmax(0,1fr);margin-top:calc(20*var(--px))}
+ html:lang(en) .c5:not([data-size-only]) .pt-t{font-size:max(14px,calc(24*var(--px)))}
+ html:lang(en) .c5:not([data-size-only]) .tips{margin-top:calc(22*var(--px))}
+ html:lang(en) .c5:not([data-size-only]) .tp-x{font-size:max(11px,calc(15*var(--px)))}
+ html:lang(en) .c5:not([data-size-only]) .tp-e{font-size:max(12px,calc(17*var(--px)))}
+}
+html:lang(en)[data-size="line"] .L6 .c5-mid{grid-template-columns:420px minmax(0,1fr);margin-top:20px}
+html:lang(en)[data-size="line"] .L6 .pt-t{font-size:24px}
+html:lang(en)[data-size="kakao"] .K6-2 .points{gap:10px}
+html:lang(en)[data-size="kakao"] .K6-2 .pt{padding:14px 18px}
+html:lang(en)[data-size="kakao"] .K6-2 .pt-t{font-size:21px}
+html:lang(en)[data-size="kakao"] .K6-2 .pt-d{font-size:16.5px}
+html:lang(en)[data-size="kakao"] .K6-3 .tp-e{font-size:19px}
+html:lang(en)[data-size="kakao"] .K6-3 .tp-n{font-size:16.5px}
+/* kakao card 7 part 3: the two steps, the three info boxes and the tip ran past the card; the TH / JP sizes */
+html:lang(en)[data-size="kakao"] .K7-3 .st{padding:16px 20px 18px}
+html:lang(en)[data-size="kakao"] .K7-3 .st-ico{width:46px;height:46px}
+html:lang(en)[data-size="kakao"] .K7-3 .st-t{font-size:22px}
+html:lang(en)[data-size="kakao"] .K7-3 .st-d{font-size:17px}
+html:lang(en)[data-size="kakao"] .K7-3 .infos{margin-top:12px}
+html:lang(en)[data-size="kakao"] .K7-3 .inf{padding:14px 16px 16px;gap:6px}
+html:lang(en)[data-size="kakao"] .K7-3 .inf-k{font-size:15px}
+html:lang(en)[data-size="kakao"] .K7-3 .inf-v{font-size:19px}
+html:lang(en)[data-size="kakao"] .K7-3 .inf-n{font-size:14.5px}
+html:lang(en)[data-size="kakao"] .K7-3 .c6-tip{font-size:18px}
+/* kakao card 8 part 3: the station and the address took more lines, so the location box ran past the card; the map is 63 px lower, the title 24 (as TH / JP) */
+html:lang(en)[data-size="kakao"] .K8-3 [data-copy="dn_ab_loc_title"]{font-size:24px}
+html:lang(en)[data-size="kakao"] .K8-3 .map{aspect-ratio:384/270}
+/* phones (as zh / JP): hero A title 34 with the big 'Density' word hidden as the phone rule intends; card 4 booking line wraps
+   ('Bookings & Inquiries' / 'WhatsApp: +82 10-7215-7511', it ran past the card) */
+@container (max-width:600px){
+ html:lang(en) .c1:not([data-variant="b"]) .hero-title{font-size:34px}
+ html:lang(en) .c1:not([data-variant="b"]) .c1-head .wm1{display:none}
+ html:lang(en) .bkl-phone{white-space:normal}
+}
+/* card 7 (1080 / 780): the English title and lead take two lines each and the concern, step and info texts one more, so the tip and the source ran 94 px
+   under the card; title 54 (Korean 64), lead 22 (25), step boxes 6 px less padding with notes 18 (20), info boxes less padding with values 21 (24), the
+   tip 18 (21, one line) */
+@container (min-width:601px){
+ html:lang(en) .c6:not([data-size-only]) .q-title{font-size:calc(54*var(--px))}
+ html:lang(en) .c6:not([data-size-only]) .q-ans{font-size:max(12px,calc(22*var(--px)))}
+ html:lang(en) .c6:not([data-size-only]) .st{padding-top:calc(18*var(--px));padding-bottom:calc(18*var(--px))}
+ html:lang(en) .c6:not([data-size-only]) .st-d{font-size:max(12px,calc(18*var(--px)))}
+ html:lang(en) .c6:not([data-size-only]) .inf{padding-top:calc(16*var(--px));padding-bottom:calc(18*var(--px))}
+ html:lang(en) .c6:not([data-size-only]) .inf-v{font-size:max(13px,calc(21*var(--px)))}
+ html:lang(en) .c6:not([data-size-only]) .c6-tip{font-size:max(13px,calc(18*var(--px)))}
+}
+/* kakao card 8 part 2: the four strength titles ('Personalized Consultations', 'Evening & Weekend Appointments') broke inside their words ('Personaliz' /
+   'ed') and ran into each other in the 81 px title columns; without the dotted joining lines the titles have 125 px and break between words */
+html:lang(en)[data-size="kakao"] .K8-2 .ab-strengths .dots-line{display:none}
+/* the kept last two words ('Weekend Appointments', 'Accurate Dosages', density12.js) were wider than the title column at every size (1080 39 px, line 34,
+   phones 22, kakao part 2) and 'Multilingual' broke inside on kakao; the words break only between words and the pair may break, so the fit factor
+   (density12.js) shrinks the title until each word fits */
+html:lang(en) .ab-strengths .at{overflow-wrap:normal;word-break:normal}
+html:lang(en) .ab-strengths .at .nw{white-space:normal}
+/* list prices ('1.18M', '1.8M') were 2 px wider than their boxes (line / kakao card 2 B, phone card 2 A); the box takes the price's width so the strike
+   line covers it */
+html:lang(en) .tile .plist,html:lang(en) .c2[data-variant="b"] .plist{width:max-content}
+/* kakao 1 A part 2: the price callout is one line taller in English ('Special Event Price' under the label), so the VAT note reached the contact pill
+   (666 px, one line from x 110); at 19 the pill starts right of the note */
+html:lang(en)[data-size="kakao"] .K1-2.K1a .c1-contact{font-size:19px}
+/* card 8 (780 board): the strength titles and notes take more lines in English, so the location box started 45 px lower and its two-line address ran under
+   the card; on home / board the map is 40 px shorter (460 / 385; the tile is cropped, not squeezed, and the clinic marker stays in the middle) */
+@container (min-width:601px){
+ html:lang(en) [data-card="8"]:not([data-size-only]) .bt-loc .map{aspect-ratio:460/385}
+ html:lang(en) [data-card="8"]:not([data-size-only]) .bt-loc .map-img{object-fit:cover}
+}
+/* ===== EN chip text centring (2026-11-19, user rule 2026-11-05; measured with qa/text-center-check.cjs + ?lang=EN at 1080 / 780 / line / kakao): the
+   WhatsApp contact pills, the hero tags, the Boost chip, the offer tag, the '+' circles and a layer label sit off the box centre in English; each text
+   moves by its measured offset <en-center> */
+@media (min-width:901px){
+ html:lang(en) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.c1-contact [data-copy]{position:relative;top:-0.0183em} /* +1.57 */
+ html:lang(en) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.c1-contact [data-copy]{position:relative;top:-0.0183em} /* +1.57 */
+ html:lang(en) section.card[data-card="4"]:not([data-size-only]):not([data-variant="b"]) span.plus[data-copy="dn_c_plus"]{padding-top:1.23px;padding-bottom:0.93px} /* -0.75 */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(en) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) span.tg-t[data-copy="dn_tag1"]{padding-top:6.77px;padding-bottom:4.79px} /* -1.87 */
+ html:lang(en) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.c1-contact [data-copy]{position:relative;top:-0.0187em} /* +1.58 */
+ html:lang(en) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.c1-contact [data-copy]{position:relative;top:-0.0487em} /* +2.27 */
+ html:lang(en) section.card[data-card="4"]:not([data-size-only]):not([data-variant="b"]) span.plus[data-copy="dn_c_plus"]{padding-top:1.38px;padding-bottom:0.18px} /* -1.43 */
+ html:lang(en) section.card[data-card="4"]:not([data-size-only]):not([data-variant="b"]) span.plus[data-copy="dn_c_plus"]{padding-top:1.44px;padding-bottom:0.12px} /* -1.51 */
+}
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) span.tg-t[data-copy="dn_tag1"]{padding-top:7.36px;padding-bottom:6.08px} /* -1.04 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.c1-contact [data-copy]{position:relative;top:-0.0182em} /* +1.54 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.c1-contact [data-copy]{position:relative;top:-0.0182em} /* +1.54 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="3"]:not([data-variant="b"])[data-part="1"] span[data-copy="dn_b_chip"]{padding-top:6.32px;padding-bottom:5.12px} /* -1.02 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="4"]:not([data-variant="b"])[data-part="1"] span.plus[data-copy="dn_c_plus"]{padding-top:1.23px;padding-bottom:0.93px} /* -0.74 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="4"]:not([data-variant="b"])[data-part="2"] span.plus[data-copy="dn_c_plus"]{padding-top:1.23px;padding-bottom:0.93px} /* -0.74 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="6"]:not([data-variant="b"])[data-part="1"] span.ll.l-mono[data-copy="dn_c5_d_mono"]{padding-top:3.88px;padding-bottom:2.60px} /* -0.63 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="1"] p.c1-contact [data-copy]{position:relative;top:-0.065em} /* +2.12, then +0.77 at -0.0183em (whole pixels) */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="2"] p.c1-contact [data-copy]{position:relative;top:-0.0404em} /* +2.32 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="1"] p.c1-contact [data-copy]{position:relative;top:-0.065em} /* +2.12, then +0.77 at -0.0183em (whole pixels) */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="2"] p.c1-contact [data-copy]{position:relative;top:-0.065em} /* +2.12, then +0.77 at -0.0183em (whole pixels) */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="1"] span[data-copy="dn_b_chip"]{padding-top:5.69px;padding-bottom:5.75px} /* -1.63, then +1.07 at 6.49 / 4.95 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="4"]:not([data-variant="b"])[data-part="2"] span.dg-tag[data-copy="dn_g77_tag"]{padding-top:4.33px;padding-bottom:1.11px} /* -1.66 */
+/* </en-center> */

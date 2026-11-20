@@ -103,3 +103,77 @@ html:lang(zh-HK)[data-size=kakao] .K6-3 .bk-phone{font-size:22px}
 /* kakao card 4 part 1: the depth labels have 58 px left of the picture; '皮下脂肪層' and 'SMAS筋膜層' were cut at the box edge. At 11 px the first fits and
    the second breaks after 'SMAS' (white-space normal inside the same 58 px) */
 html:lang(zh-HK)[data-size=kakao] .K4-1 .dl{font-size:11px;white-space:normal}
+
+/* ---------- EN (2026-11-19 evening, lead order LV_BUILD_1119): layout fixes for the longer English copy found in the QA renders; EN rules only ---------- */
+@container (min-width:601px){
+ /* card 1 A: 'Special Event Price 300 shots' ran past both sides of the price frame at the 27 px pill size; one line at 19 px fits the frame */
+ html:lang(en) .c1 .tz-pill{font-size:calc(19*var(--px))}
+ /* card 1 A: the English hook wraps before the model's hair (the Korean hook is two short lines) */
+ html:lang(en) .c1 .hero-sub{max-width:calc(330*var(--px))}
+ /* card 2 B: 'Ultherapy Prime' price title stays inside its box */
+ html:lang(en) .rb2 .p-title{font-size:calc(47*var(--px))}
+ /* card 6: the location box starts lower (the longer English about text above); a slightly lower map keeps the two-line address inside the box */
+ html:lang(en) .c5 .map{aspect-ratio:460/380}
+}
+/* card 4 depth labels: 'subcutaneous fat layer' takes two lines inside the label column instead of running off the card */
+html:lang(en) .dl{white-space:normal;line-height:1.1;font-size:max(9px,calc(12.5*var(--px)))}
+@container (max-width:600px){
+ /* EN phones: a package name keeps clear of the BEST / HIT badge in the row's top right corner (as CN) */
+ html:lang(en) .prow:has(> .event-badge) > .pname{padding-right:40px}
+ /* EN phones: the depth labels at 9.5 px ('subcutaneous / fat layer' on two lines inside the label column) */
+ html:lang(en) .dl{font-size:9.5px;letter-spacing:-.02em}
+}
+/* line 1100x1000 card 5: the English step and info texts are longer; the question stays on one line and the texts are set smaller so the tip and the
+   sources stay on the card */
+html:lang(en)[data-size=line] .L5 .q-title{font-size:44px}
+html:lang(en)[data-size=line] .L5 .q-ans{font-size:21px}
+html:lang(en)[data-size=line] .L5 .st-t{font-size:24px}
+html:lang(en)[data-size=line] .L5 .st-d{font-size:18px}
+html:lang(en)[data-size=line] .L5 .inf-v{font-size:20px}
+html:lang(en)[data-size=line] .L5 .inf-n{font-size:15px}
+html:lang(en)[data-size=line] .L5 .c4-tip{font-size:20px}
+
+/* EN chip text centring (2026-11-19, language versions): the  text is set in its language font; its ink box differs from the Korean one, so each pill gets its own padding, measured on real pixels with qa/text-center-check.cjs
+   (?lang=EN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules; a pill that kept flipping by about half a
+   pixel is moved as a whole by a quarter or half pixel instead */
+@media (min-width:601px) and (max-width:999px){
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.c1-contact > span{position:relative;top:-0.03062em}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) p.fr-band.gift-band > span{position:relative;top:-0.08000em}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) h3.pill.pg-name[data-copy="ut_g9_name"]{padding-top:0.24746em!important;padding-bottom:0.39254em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) p.fr-band.pg-sub{padding-top:0.34160em!important;padding-bottom:0.45840em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) p.fr-band.gift-band > span{position:relative;top:-0.07537em}
+html:lang(en):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.fr-band.cmp-t[data-copy="ut_c3_e3_type"]{padding-top:0.41610em!important;padding-bottom:0.43390em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.pill.inf-k[data-copy="ut_c4_i1_k"]{padding-top:0.36889em!important;padding-bottom:0.27111em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.pill.inf-k[data-copy="ut_c4_i2_k"]{padding-top:0.36889em!important;padding-bottom:0.27111em!important}
+}
+@media (min-width:1000px){
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.tz-pill > span{position:relative;top:0.02495em}
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.c1-contact > span{position:relative;top:-0.07108em}
+html:lang(en):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.rb-gift[data-copy="ut_gift"]{padding-top:0.48000em!important;padding-bottom:0.64000em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) p.fr-band.gift-band > span{position:relative;top:-0.11685em}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) p.fr-band.pg-sub{padding-top:0.34320em!important;padding-bottom:0.45680em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) p.fr-band.gift-band > span{position:relative;top:-0.11355em}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.ns{padding-top:0.04043em!important;padding-bottom:0.01522em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) p.fr-band.pg-sub{padding-top:0.40144em!important;padding-bottom:0.48744em!important}
+html:lang(en):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) figcaption.fr-band{padding-top:0.41638em!important;padding-bottom:0.48838em!important}
+html:lang(en):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill.cmp-n[data-copy="ut_c3_e1_name"]{padding-top:0.34571em!important;padding-bottom:0.29429em!important}
+html:lang(en):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill.cmp-n[data-copy="ut_c3_e2_name"]{padding-top:0.33381em!important;padding-bottom:0.30619em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.pill.inf-k[data-copy="ut_c4_i1_k"]{padding-top:0.34167em!important;padding-bottom:0.29833em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.pill.inf-k[data-copy="ut_c4_i2_k"]{padding-top:0.34167em!important;padding-bottom:0.29833em!important}
+}
+html:lang(en)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] p.tz-pill > span{position:relative;top:0.473px}
+html:lang(en)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] p.c1-contact > span{position:relative;top:-1.850px}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.fr-band.gift-band > span{position:relative;top:-2.458px}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] p.fr-band.pg-sub{padding-top:6.876px!important;padding-bottom:9.124px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="line"] p.fr-band.gift-band > span{position:relative;top:-2.048px}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="line"] span.ns{padding-top:0.872px!important;padding-bottom:0.411px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] h3.pill.pg-name[data-copy="ut_g11_name"]{padding-top:10.547px!important;padding-bottom:9.453px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] p.fr-band.pg-sub{padding-top:6.655px!important;padding-bottom:9.345px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] h3.pill.pg-name[data-copy="ut_g14_name"]{padding-top:10.618px!important;padding-bottom:9.382px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.dm.dm1[data-copy="ut_c3_d1"]{padding-top:3.872px!important;padding-bottom:2.208px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] figcaption.fr-band{padding-top:8.083px!important;padding-bottom:10.917px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.fr-band.cmp-t[data-copy="ut_c3_e1_type"]{padding-top:8.639px!important;padding-bottom:8.361px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.fr-band.cmp-t[data-copy="ut_c3_e2_type"]{padding-top:9.694px!important;padding-bottom:7.306px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"]:not([data-variant="b"])[data-size-only~="line"] span.pill.inf-k[data-copy="ut_c4_i1_k"]{padding-top:6.368px!important;padding-bottom:5.152px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"]:not([data-variant="b"])[data-size-only~="line"] span.pill.inf-k[data-copy="ut_c4_i2_k"]{padding-top:6.368px!important;padding-bottom:5.152px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"]:not([data-variant="b"])[data-size-only~="line"] span.pill.inf-k[data-copy="ut_c4_i3_k"]{padding-top:6.123px!important;padding-bottom:5.397px!important}

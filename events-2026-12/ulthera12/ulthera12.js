@@ -67,7 +67,7 @@ function setHours(el,v){
 const GUARD='.hook [data-copy],.q-ans,.pt-d,.st-d,.inf-n,.inf-v,.c4-tip [data-copy],.src,.ba-note,.gift-band [data-copy],.pg-sub [data-copy],.fr-depth .fr-band [data-copy],.cmp-title,.notes [data-copy],.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note';
 /* 2026-11-11 language versions also keep the international phone number, the floor / house numbers of the address ('6樓', '8階', '66號'), a LINE ID
    ('＠beautyblossom_jp') and 'Beauty Blossom' whole; no Korean copy has them */
-const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|정품 마스크팩|DeepSEE|\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|[@＠][A-Za-z][\w.]*|Beauty Blossom)/g;
+const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|정품 마스크팩|DeepSEE|\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|[@＠][A-Za-z][\w.]*|Beauty Blossom|Dr\. Lee Geon-ho)/g; /* 2026-11-19 EN: the director's name never breaks at its hyphen (only the EN copy has it) */
 function appendKept(el,s){
  let last=0;
  for(const m of s.matchAll(KEEP)){
