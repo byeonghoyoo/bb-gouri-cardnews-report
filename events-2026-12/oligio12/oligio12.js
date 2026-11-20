@@ -48,9 +48,13 @@ function setMoney(el,v){
 const GUARD='.hook span,.t-pre,.grp-title,.contact,.p2-foot .vat,.name [data-copy]:not(.badge):not(.pre),.notes [data-copy],.cx-q,.cx-a,.en-desc,.depth-title,.depth-note,.band [data-copy],.sd,.iv,.in,.st,.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy],.bb-ba__title,.bb-ba__note'; /* 2026-11-03: B/A card title and note */
 /* names that must never break inside (display only: wrapped in nowrap spans, the stored text is unchanged) */
 const KEEP=/(\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07|Beauty Blossom|Oligio XM|02-336-7511|\u30d3\u30e5\u30fc\u30c6\u30a3\u30fc\u30d6\u30ed\u30c3\u30b5\u30e0|\u30ab\u30ab\u30aa\u30c8\u30fc\u30af|Head Director|Chat on WhatsApp|\u0e1c\u0e39\u0e49\u0e2d\u0e33\u0e19\u0e27\u0e22\u0e01\u0e32\u0e23\u0e04\u0e25\u0e34\u0e19\u0e34\u0e01)/g; /* 2026-10-30b: card 5 only (these words do not occur on cards 1-4): JP clinic name, KakaoTalk, the director's title */
+/* 2026-11-20 CN (reviewed copy, lead order): Chinese words / phrases kept the same way, so a CN line never breaks inside them ('\u82b1|\u5f00', '\u81ea|\u7136', '\u6807|\u51c6', '\u8d85|\u58f0\u6ce2',
+   '\u5c04|\u9891', '6|\u697c' ...); display only (nowrap spans, the stored text is unchanged) and only on the CN page: every other language keeps exactly the list above */
+const KEEP_CN=new RegExp(KEEP.source.slice(0,-1)+'|\u51ac\u65e5\u91cc\u4e5f\u6709\u82b1\u5f00\u7684\u5730\u65b9|\u8ffd\u6c42\u81ea\u7136\u4e4b\u7f8e|\u6807\u51c6\u7528\u91cf|\u5468\u672b\u63a5\u8bca|\u8bbe\u5907\u53c2\u6570\u800c\u5b9a|\u5171\u540c\u786e\u5b9a|\u76ae\u80a4\u8868\u9762|\u63d0\u62c9HIFU\u8d85\u58f0\u6ce2\\d+\u53d1|\u7f8e\u7248\u8d85\u58f0\u5200\u4e8c\u4ee3\\d+\u53d1|\u8d85\u58f0\u6ce2\u63a2\u5934|\u8d85\u58f0\u6ce2|\u5c04\u9891|\\d+\u697c|MediOne Medical Center|\u5236\u5b9a\u65b9\u6848|\u7ffb\u8bd1\u4eba\u5458|\u4e25\u683c|\u4e0d\u540c|\u72b6\u6001)','g');
+const keepRe=()=>locale==='CN'?KEEP_CN:KEEP;
 function appendKept(el,s){
  let last=0;
- for(const m of s.matchAll(KEEP)){
+ for(const m of s.matchAll(keepRe())){
   if(m.index>last)el.append(document.createTextNode(s.slice(last,m.index)));
   const k=document.createElement('span');k.className='nw';k.textContent=m[0];el.append(k);last=m.index+m[0].length;
  }
@@ -68,14 +72,14 @@ function setHours(el,v){
 function setText(el,v){
  if(el.classList.contains('money')){setMoney(el,v);return;}
  if(el.matches('.hrs [data-copy]')){setHours(el,v);return;}
- if(v&&!el.matches(GUARD)&&KEEP.test(v)){KEEP.lastIndex=0;el.textContent='';appendKept(el,v);return;}
- KEEP.lastIndex=0;
+ const K=keepRe();if(v&&!el.matches(GUARD)&&K.test(v)){K.lastIndex=0;el.textContent='';appendKept(el,v);return;}
+ K.lastIndex=0;
  if(!v||!el.matches(GUARD)){el.textContent=v;return;}
  let m=null;
  if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\uff09)\]\u00b7]*)$/u);
  else if(locale!=='TH')m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/); /* card 5 title: only a very short last word is kept with the previous one, so the Korean title breaks before '뷰티블라썸' */
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
- if(m&&el.closest('.p5')){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;} /* card 5: never split a kept word at the widow cut */
+ if(m&&(el.closest('.p5')||locale==='CN')){let cut=v.length-m[1].length;for(const k of v.matchAll(K))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;} /* card 5 (and every CN card, 2026-11-20): never split a kept word at the widow cut */
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
  el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);
