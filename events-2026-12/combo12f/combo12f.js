@@ -9,9 +9,9 @@ const KEYS=Object.keys(DATA.locales.KO);
 /* 2026-11-18 language version TH, 2026-11-20 JP / CN (v4/combo12f/i18n-1120.cjs; copy v4/langverify/out/CMB12F.final.json via
    v4/combo12f/work/i18n-prep.cjs): <html lang> drives the language fonts and layout rules in combo12f-i18n.css (:lang()); the Google font of the language
    is added here (as CMB12A / CMB12B / CMB12D / CMB12G). Korean renders exactly as before. */
-const LANG={KO:'ko',JP:'ja',CN:'zh-CN',TH:'th'};
-const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TH:'Noto Sans Thai'};
-const CJK={JP:1,CN:1},SEGS={};
+const LANG={KO:'ko',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai'};
+const CJK={JP:1,CN:1,TW:1},SEGS={};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -74,8 +74,10 @@ const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|FX\/포
 const KEEP_TH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Beauty Blossom Clinic|Beauty Blossom|Beauty Fit|Blossom Fit|Medione Medical Center|Yanghwa-ro|Mapo-gu|InMode FX|V-Slim Solution|V-Fit|Juvelook Volume|'+KEEP.source+'|สกินโบท็อกซ์|โบท็อกซ์|โปรแกรม|แบรนด์|หน้าผาก|ขากรรไกร|หางตา|ลำคอ|หว่างคิ้ว|ร่องแก้ม|กรอบหน้า|ริ้วรอย|แตกต่าง|เครื่องมือ|กรุงโซล|เหมาะสม|ขั้นตอน|ผู้อำนวยการ|สุดสัปดาห์|เล็ก ๆ|แรง ๆ|ค่อย ๆ|ช็อต|หย่อนคล้อย|ความมั่นใจ|ยกกระชับ|ประจำวัน|จำนวน|สุดคุ้ม|ความลึก|ความกระชับ|ความหนา|ความเย็น|ความร้อน|เป้าหมาย|เฉพาะบุคคล|ถัดไป|ทั้งสอง|วันหยุด|ฟิลเลอร์|แพ็กเกจ|ซิกเนเจอร์|วอลุ่ม|ของ Beauty Blossom|ไขมัน|รูปทรง|ลดลง|ร่วมกับ|ร่วมกัน|ออกกำลังกาย|วันเดียวกัน|ไม่พักกลางวัน|การรับบริการ|นพ\\. อี กอนโฮ|อี กอนโฮ|\\d[\\d,.:]*(?:[~–-]\\d[\\d,.:]*)?\\s(?:cc|ขวด|ครั้ง|บริเวณ|เท่า|นัด|กลุ่ม|วอน|ยูนิต|ช็อต|kJ|น\\.|เส้น|นาที|สัปดาห์|ชั่วโมง|วัน)|(?:ทางออก|สาย|ชั้น|เลขที่)\\s\\d+(?:[・·]\\d+)*','g');
 /* 2026-11-20 JP / CN: the phone numbers, a chat ID, the Latin names with a space and a number with its unit stay whole (v4/combo12f/i18n-1120.cjs NEW_KEEP;
    KEEP_L = these + KEEP) */
-const KEEP_L=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分|本|条|小时|時間|週間|周|号线|号線|号出口|番出口|楼|階)|'+KEEP.source,'g');
-const keepRe=()=>locale==='TH'?KEEP_TH:(locale!=='KO'&&LANG[locale]?KEEP_L:KEEP);
+const KEEP_L=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分鐘|分|本|条|條|小时|小時|時間|週間|週|周|号线|號線|号線|号出口|號出口|番出口|楼|樓|階)|'+KEEP.source,'g');
+/* 2026-11-20 TW: these + a few Traditional Chinese words that broke in the middle (v4/combo12f/i18n-1120.cjs TW_KEEP); JP / CN keep KEEP_L */
+const KEEP_TW=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分鐘|分|本|条|條|小时|小時|時間|週間|週|周|号线|號線|号線|号出口|號出口|番出口|楼|樓|階)|水光肉毒|咀嚼肌肉毒|療程|精選|合集|注射|保養|玻尿酸|'+KEEP.source,'g');
+const keepRe=()=>locale==='TH'?KEEP_TH:(locale==='TW'?KEEP_TW:(locale!=='KO'&&LANG[locale]?KEEP_L:KEEP));
 /* 2026-11-20 Chinese / Japanese (same as CMB12A / CMB12G): the last three characters stay together, grown back to the start of their word (a '・' break or
    Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside). Thai has no guard (dictionary breaks) */
 function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;
@@ -158,6 +160,16 @@ function render(){
     @beautyblossom_th') shows the consult icon instead of the phone; Korean and phone-number lines keep the phone icon */
  for(const p of document.querySelectorAll('.band-contact')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??''),chat=locale!=='KO'&&/微信|WeChat|WhatsApp|LINE/i.test(v);
   const img=p.querySelector('img.ico');if(!img)continue;if(chat&&!img.dataset.src0)img.dataset.src0=img.getAttribute('src');const pic=chat?'assets/icons/consult.webp':(img.dataset.src0||img.getAttribute('src'));if(img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
+ /* 2026-11-20 TW (LIG12 / ONE12 / SOF12 / CRF12 / OND12 / CMB12A / CMB12B / CMB12D / CMB12G / CMB12H TW rule): the booking-box phone line (c6_ab_phone) may hold
+    the country's chat ID (TW LINE ID '@beautyblossom_tw') instead of a number; then the chat icon and the booking link replace the phone icon and tel:. A line
+    that repeats the second link line word for word is hidden outside the edit mode (the same words twice). Korean, JP, CN and TH hold the number: nothing
+    changes there. */
+ const isId=(v)=>!!v&&!/^\+?\d[\d\s\-().]*$/.test(v);
+ for(const p of document.querySelectorAll('.bk-phone')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??'').trim(),id=isId(v);p.classList.toggle('is-id',id);
+  const img=p.querySelector('img.ico');if(img){if(id&&!img.dataset.src0)img.dataset.src0=img.getAttribute('src');const pic=id?'assets/icons/consult.webp':(img.dataset.src0||img.getAttribute('src'));if(img.getAttribute('src')!==pic)img.setAttribute('src',pic);}
+  const a=p.querySelector('a[data-link]');if(a){if(id){const b=(CH&&CH.booking)||(DATA.links&&DATA.links.booking);if(b)a.href=b;a.target='_blank';a.rel='noopener noreferrer';}else{a.removeAttribute('target');a.removeAttribute('rel');}}
+  const box=p.closest('.bk-text'),alt=box&&box.querySelector('.bk-alt [data-copy]'),av=String((alt&&fields[alt.dataset.copy])??'').trim();
+  p.hidden=locale!=='KO'&&id&&!!av&&av===v&&!(editable&&editMode);}
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;
  for(const el of document.querySelectorAll('[data-gmap]')){const u=GM&&GM[el.dataset.gmap];if(!u)continue;const a=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(a)!==u)el.setAttribute(a,u);}
  for(const w of document.querySelectorAll('[data-bk-alt]')){const lab=w.querySelector('[data-copy]');w.hidden=!String((lab&&fields[lab.dataset.copy])??'').trim()&&!(editable&&editMode);}
