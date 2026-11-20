@@ -553,3 +553,191 @@ html:lang(ja)[data-size]:not(#sz) [data-card="7"][data-part="1"]:not([data-varia
 html:lang(ja)[data-size]:not(#sz) [data-card="7"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="cf_ab_ph3"]{padding-top:5.129px!important;padding-bottom:3.671px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="7"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="cf_ab_way_line"]{padding-top:2.147px!important;padding-bottom:3.453px!important}
 /* JP-CENTER END */
+
+/* ===== EN (2026-11-19, lead order LV_BUILD_1119; EN review done, final.cjs 11/19 19:15): the English version (html:lang(en) only; Korean, CN, TW, TH, HK
+   and JP are untouched) ===== English uses the page's own Latin faces (no extra font). Copy = v4/langverify/out/CRF12.final.json as it is; these rules
+   only fit the longer English copy. */
+/* card 3 shot-unit pill: cf_p_unit_k is blank (as on the board's Korean), so the empty pill is not drawn (as the other language versions) */
+html:lang(en) .unit-k.is-empty{display:none}
+/* price names: the shot / pulse figure keeps its English unit on one line ('300 shots', marked by cerf12.js as '300发'), as JP / TH */
+html:lang(en) .pnm .pv{white-space:nowrap}
+/* hero contact pill: the reviewer's contact keeps its own line break ('Bookings & Inquiries' / 'WhatsApp: +82 10-7215-7511'), so the pill is about half as
+   wide; in one line it ran over the VAT note */
+html:lang(en) .c1-contact [data-copy="cf_contact"]{white-space:pre-line;line-height:1.25}
+/* card 3 head devices: the English device lines ('Radiofrequency (RF)', 'Focused ultrasound') are wider than their columns and ran into each other; the
+   name is 16 and the line 13, and they may break, centred under their device (as TH) */
+html:lang(en) .td-n,html:lang(en) .td-t{white-space:normal}
+html:lang(en) .c3 .td-n{font-size:max(11px,calc(16*var(--px)))}
+html:lang(en) .c3 .td-t{font-size:max(11px,calc(13*var(--px)))}
+/* card 3 gift band: the two-line English gift line ran under the cream tube; the text stops left of the tube */
+html:lang(en) .c3 .gift-band{padding-right:calc(150*var(--px))}
+/* card 7 strengths: a title may break inside its kept last two words ('Weekend Appointments' is wider than its column); the director's name line, the QR
+   caption and the about title break into balanced lines */
+html:lang(en) .at .nw{white-space:normal}
+html:lang(en) .dr-name,html:lang(en) .qr figcaption,html:lang(en) .ab-title{text-wrap:balance}
+/* combination devices: 'Ultherapy Prime' is wider than its column on the line card; it breaks at its space (as JP) */
+html:lang(en) .cmb4-n{white-space:normal;word-break:keep-all}
+/* card 6 location box on the 780 board: the about box above is taller in English, so the map is a little shorter there and the two-line address stays
+   inside the box (1080, phones and the downloads keep the Korean map) */
+@media (min-width:601px) and (max-width:1023px){
+ html:lang(en) .c6:not([data-size-only]) .map{aspect-ratio:384/320}
+}
+@container (min-width:601px){
+ /* card 3 (1080 / 780): 3 px less padding above and below each combo row (as JP), so the VAT note stays inside at 780 */
+ html:lang(en) .c3:not([data-size-only]) .prow{padding:calc(4*var(--px)) 0 calc(4*var(--px))}
+ /* card 5 (1080 / 780): the English points take two to four lines and the bottom row ran 150 px past the card; the skin picture is 420 instead of 500 wide
+    (as TH / JP), the lead 23, the point titles 24 and notes 18 with less padding, the tip notes 15 */
+ html:lang(en) .c4:not([data-size-only]) .q-ans{font-size:max(13px,calc(23*var(--px)));line-height:1.4}
+ html:lang(en) .c4:not([data-size-only]) .c4-mid{grid-template-columns:calc(420*var(--px)) minmax(0,1fr)}
+ html:lang(en) .c4:not([data-size-only]) .points{gap:calc(8*var(--px))}
+ html:lang(en) .c4:not([data-size-only]) .pt{padding:calc(12*var(--px)) calc(18*var(--px)) calc(13*var(--px))}
+ html:lang(en) .c4:not([data-size-only]) .pt-t{font-size:max(14px,calc(24*var(--px)));line-height:1.25}
+ html:lang(en) .c4:not([data-size-only]) .pt-d{margin-top:calc(4*var(--px));font-size:max(12px,calc(18*var(--px)));line-height:1.42}
+ html:lang(en) .c4:not([data-size-only]) .tip-d{font-size:max(11px,calc(15*var(--px)));line-height:1.3}
+ /* card 6 (1080 / 780): the two-line title, the three-line EYE concern, the two-line step titles and notes, the combo note and the care tip pushed the source
+    line 110 px past the card. Title 58, concerns 21, step titles 22 (one line) and notes 18 with less padding, information values 22 with the third box
+    wider (1 : 1 : 1.3) so 'Back to your routine right away' keeps one line, combo note 17 and both tips 18 (one line each) */
+ html:lang(en) .c5:not([data-size-only]) .q-title{font-size:calc(58*var(--px)*var(--fit,1))}
+ html:lang(en) .c5:not([data-size-only]) .who-it{gap:calc(4*var(--px));padding:calc(15*var(--px)) calc(20*var(--px))}
+ html:lang(en) .c5:not([data-size-only]) .who-v{font-size:max(13px,calc(21*var(--px)));line-height:1.35}
+ html:lang(en) .c5:not([data-size-only]) .st{padding:calc(15*var(--px)) calc(20*var(--px)) calc(17*var(--px));row-gap:calc(6*var(--px))}
+ html:lang(en) .c5:not([data-size-only]) .st-t{font-size:max(14px,calc(22*var(--px)))}
+ html:lang(en) .c5:not([data-size-only]) .st-d{margin-top:calc(4*var(--px));font-size:max(12px,calc(18*var(--px)));line-height:1.45}
+ html:lang(en) .c5:not([data-size-only]) .infos{grid-template-columns:1fr 1fr 1.3fr}
+ html:lang(en) .c5:not([data-size-only]) .inf{padding:calc(15*var(--px)) calc(20*var(--px)) calc(16*var(--px))}
+ html:lang(en) .c5:not([data-size-only]) .inf-v{font-size:max(13px,calc(22*var(--px)))}
+ html:lang(en) .c5:not([data-size-only]) .c5-combo{font-size:max(12px,calc(17*var(--px)));line-height:1.4}
+ html:lang(en) .c5:not([data-size-only]) .c5-tip{font-size:max(12px,calc(18*var(--px)))}
+}
+@container (max-width:600px){
+ /* hero A on phones: the contact pill moves to the right edge over the photo (as TH), clear of the VAT note under the price */
+ html:lang(en) .c1:not([data-variant="b"]) .c1-contact{left:auto;right:14px}
+}
+/* EN line (1100 x 1000) */
+/* line hero B: the two-line contact pill grew upward over the price; it keeps one line here (the card has room to its right) */
+html:lang(en)[data-size]:not(#sz) .L1b .c1-contact [data-copy="cf_contact"]{white-space:nowrap}
+/* line card 5 part 2: the tip lines are 15 in tip boxes with 8 px side padding, so 'contoured areas' (kept together) fits its column */
+html:lang(en)[data-size]:not(#sz) .L5p2 .tip{padding-left:8px;padding-right:8px;column-gap:8px}
+html:lang(en)[data-size]:not(#sz) .L5p2 .tip-d{font-size:15px;line-height:1.3}
+/* line card 6: the English lines pushed the information row, the tips and the source line 257 px past the card. The title keeps one line at 54, the lead
+   is 21, the concerns 18 with less padding, the four step titles 20 and notes 16, the information values 22 with the third box wider (1 : 1 : 1.3), the
+   combo note 15 (one line) and the tips 18 (one line each) */
+html:lang(en)[data-size]:not(#sz) .L6 .q-title{font-size:54px}
+html:lang(en)[data-size]:not(#sz) .L6 .q-ans{margin-top:8px;font-size:21px;line-height:1.4}
+html:lang(en)[data-size]:not(#sz) .L6 .who-it{gap:4px;padding:12px 14px}
+html:lang(en)[data-size]:not(#sz) .L6 .who-v{font-size:18px;line-height:1.35}
+html:lang(en)[data-size]:not(#sz) .L6 .st{row-gap:6px}
+html:lang(en)[data-size]:not(#sz) .L6 .st-t{font-size:20px;line-height:1.25}
+html:lang(en)[data-size]:not(#sz) .L6 .st-d{margin-top:4px;font-size:16px;line-height:1.42}
+html:lang(en)[data-size]:not(#sz) .L6 .infos{grid-template-columns:1fr 1fr 1.3fr}
+html:lang(en)[data-size]:not(#sz) .L6 .inf{padding:11px 18px 12px}
+html:lang(en)[data-size]:not(#sz) .L6 .inf-v{font-size:22px}
+html:lang(en)[data-size]:not(#sz) .L6 .inf-n{font-size:15px;line-height:1.4}
+html:lang(en)[data-size]:not(#sz) .L6 .c5-combo{font-size:15px;line-height:1.4}
+html:lang(en)[data-size]:not(#sz) .L6 .c5-tip{font-size:18px}
+/* line card 7 part 2: the international number ran 40 px out of the booking box at 34 (as JP / TH / CN); 26 keeps it inside */
+html:lang(en)[data-size]:not(#sz) .L7p2 .bk-phone{font-size:26px}
+/* EN kakao (800 x 600) */
+/* kakao hero A: the hook at 22 keeps two lines (three ran into the title), the two-line contact pill sits 102 px further right over the photo, clear of the
+   VAT note */
+html:lang(en)[data-size]:not(#sz) .K1a .hook{font-size:22px}
+html:lang(en)[data-size]:not(#sz) .K1a .c1-contact{right:24px}
+/* kakao hero B: the hook keeps one line at 19, the title starts 18 px and the price block 30 px higher (as JP), the label is 22 (its chip takes the next
+   line) and the price 64 with the VAT note under it, so the note stays inside; the contact pill is 16 so it ends left of the price */
+html:lang(en)[data-size]:not(#sz) .K1b .hook{font-size:19px}
+html:lang(en)[data-size]:not(#sz) .K1b > .hero-title{top:150px}
+html:lang(en)[data-size]:not(#sz) .K1b .hero-disc{top:372px}
+html:lang(en)[data-size]:not(#sz) .K1b .tz-label{font-size:22px}
+html:lang(en)[data-size]:not(#sz) .K1b .tz-price{font-size:64px}
+html:lang(en)[data-size]:not(#sz) .K1b .c1-contact{font-size:16px}
+/* kakao card 2 A: the English names with their tip chips took two or three lines and pushed the board over the kicker and the legal lines past the card;
+   the columns are sized to the prices and the names are 26 (as TH), so each name keeps one line with its chip (the last row: chips under the name) */
+html:lang(en)[data-size]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(en)[data-size]:not(#sz) .K2a .pname{font-size:26px}
+/* kakao card 2 B: the BEST badge covered 'shots' of 'XERF 600 shots' in the narrow cards; the shot figure takes its own line ('XERF' / '600 shots', as TH) */
+html:lang(en)[data-size]:not(#sz) .K2b .pnm .pv{display:block}
+/* kakao card 3 part 1: the two-line gift line pushed the third combo row past the card; the gift line is 18 and the rows are tighter (as JP / CN) */
+html:lang(en)[data-size]:not(#sz) .K3p1 .gift-band [data-copy]{font-size:18px;line-height:1.3}
+html:lang(en)[data-size]:not(#sz) .K3p1 .prow{padding:1px 0 0}
+/* kakao card 5 part 1: the English points are longer and the last two ran past the card; the question 54, the lead 21 next to a 170 px device (as TH / JP),
+   the point titles 22 and notes 16.5 with less padding */
+html:lang(en)[data-size]:not(#sz) .K5p1 .q-title{font-size:calc(54*var(--px)*var(--fit,1))}
+html:lang(en)[data-size]:not(#sz) .K5p1 .q-ans{font-size:21px;line-height:1.4}
+html:lang(en)[data-size]:not(#sz) .K5p1 .ds-5{height:170px}
+html:lang(en)[data-size]:not(#sz) .K5p1 .points{gap:8px}
+html:lang(en)[data-size]:not(#sz) .K5p1 .pt{padding:10px 14px}
+html:lang(en)[data-size]:not(#sz) .K5p1 .pt-t{font-size:22px;line-height:1.2}
+html:lang(en)[data-size]:not(#sz) .K5p1 .pt-d{margin-top:4px;font-size:16.5px;line-height:1.4}
+/* kakao card 6 part 1: the three-line lead and the four-line EYE concern ran past the card; the lead is 20 and the concerns 19 with less padding */
+html:lang(en)[data-size]:not(#sz) .K6p1 .q-ans{font-size:20px;line-height:1.4}
+html:lang(en)[data-size]:not(#sz) .K6p1 .who-it{gap:4px;padding:14px 16px}
+html:lang(en)[data-size]:not(#sz) .K6p1 .who-v{font-size:19px;line-height:1.35}
+/* kakao card 6 part 2: the four 150 px step columns were too narrow for the English titles and notes; the steps sit 2 x 2 (as TH / JP) with titles 20 and
+   notes 15.5, the information values 20 may take two lines and the notes are 15 */
+html:lang(en)[data-size]:not(#sz) .K6p2 .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+html:lang(en)[data-size]:not(#sz) .K6p2 .st{padding-top:10px;padding-bottom:12px;row-gap:4px}
+html:lang(en)[data-size]:not(#sz) .K6p2 .st-ico{width:40px;height:40px}
+html:lang(en)[data-size]:not(#sz) .K6p2 .st-num{font-size:24px}
+html:lang(en)[data-size]:not(#sz) .K6p2 .st-t{font-size:20px;line-height:1.2}
+html:lang(en)[data-size]:not(#sz) .K6p2 .st-d{margin-top:3px;font-size:15.5px;line-height:1.38}
+html:lang(en)[data-size]:not(#sz) .K6p2 .inf{padding-top:10px;padding-bottom:12px}
+html:lang(en)[data-size]:not(#sz) .K6p2 .inf-v{font-size:20px;white-space:normal;line-height:1.2}
+html:lang(en)[data-size]:not(#sz) .K6p2 .inf-n{font-size:15px;line-height:1.35}
+/* kakao card 7 part 2: the two-line strength titles and notes pushed the opening-hours box past the card; smaller strength titles and notes, closer rows */
+html:lang(en)[data-size]:not(#sz) .K7p2 .bt-str{padding-top:14px;padding-bottom:14px}
+html:lang(en)[data-size]:not(#sz) .K7p2 .bt-str .ab-strengths{margin-top:8px;gap:10px 24px}
+html:lang(en)[data-size]:not(#sz) .K7p2 .at{font-size:18px}
+html:lang(en)[data-size]:not(#sz) .K7p2 .ad{margin-top:4px;font-size:14px;line-height:1.38}
+/* kakao card 7 part 3: the title took two rows with 'LOCATION', the station two lines and the address four, so the address ran 94 px past the card; the
+   title is 25 (as TH), the map 46 px shorter, the station 20 and the address 14 */
+html:lang(en)[data-size]:not(#sz) .K7p3 [data-copy="cf_ab_loc_title"]{font-size:25px}
+html:lang(en)[data-size]:not(#sz) .K7p3 .map{aspect-ratio:384/300}
+html:lang(en)[data-size]:not(#sz) .K7p3 .way-st{font-size:20px}
+html:lang(en)[data-size]:not(#sz) .K7p3 .way-addr{margin-top:4px;font-size:14px;line-height:1.4}
+
+/* EN-CENTER START */
+/* EN chip text centring (2026-11-18): the EN text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=EN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.c1-contact{padding-top:0.40311em!important;padding-bottom:0.55689em!important}
+html:lang(en):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.c1-contact{padding-top:0.41644em!important;padding-bottom:0.54356em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pg-sub[data-copy="cf_g89_sub"]{padding-top:0.22212em!important;padding-bottom:0.13788em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pchip[data-copy="cf_r92_detail"]{padding-top:0.18976em!important;padding-bottom:0.17024em!important}
+}
+@media (min-width:1000px){
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.c1-contact{padding-top:0.43833em!important;padding-bottom:0.52167em!important}
+html:lang(en):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.c1-contact{padding-top:0.43833em!important;padding-bottom:0.52167em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pg-sub[data-copy="cf_g89_sub"]{padding-top:0.21765em!important;padding-bottom:0.14235em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pchip[data-copy="cf_r90_detail"]{padding-top:0.20110em!important;padding-bottom:0.15890em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pchip[data-copy="cf_r92_detail"]{padding-top:0.13653em!important;padding-bottom:0.22347em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pg-sub[data-copy="cf_g89_sub"]{padding-top:0.20176em!important;padding-bottom:0.15824em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) p.gift-band.c2-gift > span{position:relative;top:-0.07060em}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="cf_k1"]{padding-top:0.21765em!important;padding-bottom:0.18235em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.badge[data-copy="cf_r94_badge"]{padding-top:0.30812em!important;padding-bottom:0.21188em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.badge[data-copy="cf_r99_badge"]{padding-top:0.30125em!important;padding-bottom:0.21875em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="cf_k3"]{padding-top:0.21765em!important;padding-bottom:0.18235em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-mi[data-copy="cf_c4_d_middle"]{padding-top:0.20087em!important;padding-bottom:0.03913em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.ll.l-de[data-copy="cf_c4_d_deep"]{padding-top:0.16687em!important;padding-bottom:0.07312em!important}
+}
+html:lang(en)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] p.c1-contact{padding-top:7.886px!important;padding-bottom:9.394px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] p.c1-contact > span{position:relative;top:-0.741px}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pg-sub[data-copy="cf_g89_sub"]{padding-top:3.372px!important;padding-bottom:2.748px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.badge[data-copy="cf_r92_badge"]{padding-top:4.190px!important;padding-bottom:4.130px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] p.gift-band.c2-gift > span{position:relative;top:-0.347px}
+html:lang(en)[data-size]:not(#sz) [data-card="6"]:not([data-variant="b"])[data-size-only~="line"] p.c5-combo[data-copy="cf_c5_combo"]{padding-top:11.435px!important;padding-bottom:12.565px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pchip[data-copy="cf_r91_detail"]{padding-top:3.214px!important;padding-bottom:2.834px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.c1-contact{padding-top:8.041px!important;padding-bottom:9.239px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.tz-tag[data-copy="cf_hero_tag"]{padding-top:2.513px!important;padding-bottom:2.927px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.badge[data-copy="cf_r87_badge"]{padding-top:4.800px!important;padding-bottom:3.520px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-sub[data-copy="cf_g89_sub"]{padding-top:3.209px!important;padding-bottom:2.911px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pchip[data-copy="cf_r90_detail"]{padding-top:4.123px!important;padding-bottom:1.119px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pchip[data-copy="cf_r91_detail"]{padding-top:4.123px!important;padding-bottom:1.119px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pchip[data-copy="cf_r92_detail"]{padding-top:4.540px!important;padding-bottom:0.702px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.pg-sub[data-copy="cf_g89_sub"]{padding-top:3.486px!important;padding-bottom:2.634px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.pchip[data-copy="cf_r90_detail"]{padding-top:3.510px!important;padding-bottom:1.390px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.pchip[data-copy="cf_r91_detail"]{padding-top:3.510px!important;padding-bottom:1.390px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.badge[data-copy="cf_r94_badge"]{padding-top:4.847px!important;padding-bottom:3.473px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="cf_k2"]{padding-top:2.947px!important;padding-bottom:2.133px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.badge[data-copy="cf_r99_badge"]{padding-top:4.864px!important;padding-bottom:3.456px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.badge[data-copy="cf_r92_badge"]{padding-top:4.708px!important;padding-bottom:3.612px!important}
+/* EN-CENTER END */

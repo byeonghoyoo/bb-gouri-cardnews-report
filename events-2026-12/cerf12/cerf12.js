@@ -40,9 +40,11 @@ function setMoney(el,v){
 /* price names: the shot / pulse figure at the end of each part stands out (Chinese '300发'); combo names break before every ' + ' (the text stays the same)
    2026-11-16 TW / HK: their combo names join the parts with a full-width '＋' and no spaces ('美國音波二代300發＋XERF雙頻電波300發'); they break before every
    '＋' as well and the '＋' is marked like '+ ' (Korean and CN names only use ' + ' and are set exactly as before)
-   2026-11-16 TH: the figure carries its Thai unit after a space ('300 ช็อต', '220 พัลส์'), marked like '300发' (no other language has these units) */
+   2026-11-16 TH: the figure carries its Thai unit after a space ('300 ช็อต', '220 พัลส์'), marked like '300发' (no other language has these units)
+   2026-11-19 EN: the English figure carries 'shots' / 'pulses' after a space ('300 shots', '110 pulses'), marked the same way (no other language's name ends
+   in these words) */
 function partSpan(parent,s){
- const m=/^([+＋]\s?)?(.*?)(\s*)(\d[\d,]*(?:发|發|\s?(?:ช็อต|พัลส์))?)$/.exec(s);
+ const m=/^([+＋]\s?)?(.*?)(\s*)(\d[\d,]*(?:发|發|\s?(?:ช็อต|พัลส์|shots|pulses))?)$/.exec(s);
  if(!m){parent.append(document.createTextNode(s));return;}
  if(m[1]){const p=document.createElement('span');p.className='pl';p.textContent=m[1];parent.append(p);}
  if(m[2]){const a=document.createElement('span');a.className='pb';
@@ -69,9 +71,11 @@ function setName(el,v){
  partSpan(el,v);
 }
 /* card 6 hours: the day label and the time are styled apart */
+/* 2026-11-19 EN: the English hours give 12-hour times ('10:00 AM – 4:30 PM'); an AM / PM after the first time is allowed, so the day and the time
+   are still set apart (every other value matches exactly as before) */
 function setHours(el,v){
  el.textContent='';
- const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
+ const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}(?:\s?[AP]M)?\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
  if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];
  const t=document.createElement('span');t.className='ht';t.textContent=m[3];
@@ -82,7 +86,8 @@ const GUARD='.hook,.p-lead,.unit-d,.pcare,.pg-note,.q-ans,.pt-d,.st-d,.who-v,.in
 /* names that never break inside */
 /* 2026-11-14 language version also keeps the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; 2026-11-16 also
    a LINE ID ('@beautyblossom_tw', TW) and the clinic name 'Beauty Blossom' (TW / HK; Korean writes it 'BEAUTY BLOSSOM'). No Korean or CN copy has them */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|[@＠][A-Za-z][\w.]*|Beauty Blossom|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|6\.78MHz와|6\.78MHz|2MHz|ICD 쿨링|Shallow·Middle·Deep|10단계|i05 팁|i10 팁|세르프 맥시마이저 재생크림|600샷 이상 시|시트마스크와 LED|시트마스크 \+ LED|15~30분|두 주파수로|세 단계 깊이|신경 쓰일 때|고민일 때|샷 수|모노폴라 RF)/g;
+/* 2026-11-19 EN: English hyphenated words stay whole (Chrome breaks after the hyphen, e.g. 'Neck- / Line'); none occurs in the other locales */
+const KEEP=/(Multi-dimensional|AI-generated|Geon-ho|XERF-only|\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|\d+[樓楼階號号]|[@＠][A-Za-z][\w.]*|Beauty Blossom|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|6\.78MHz와|6\.78MHz|2MHz|ICD 쿨링|Shallow·Middle·Deep|10단계|i05 팁|i10 팁|세르프 맥시마이저 재생크림|600샷 이상 시|시트마스크와 LED|시트마스크 \+ LED|15~30분|두 주파수로|세 단계 깊이|신경 쓰일 때|고민일 때|샷 수|모노폴라 RF)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){
