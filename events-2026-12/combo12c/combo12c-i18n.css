@@ -129,6 +129,19 @@ html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) .K31 span[data-copy="c3_w1_k
 html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) .K32 span[data-copy="c3_w2_k"]{padding-top:2.18px!important;padding-bottom:3.9px!important}
 /* </lang-center> */
 
+/* ==== 2026-11-20 TH: the 12 rows whose Korean changed after the sheet (lead decision): rows 46-53 now start with 'Potenza (รูขุมขน) + ' /
+   'Potenza (Pumping) + ', so the price boards of card 2 are taller; only card 2 changes here (TH only) ==== */
+/* home / board 2 A: the rows a little tighter, so the board, the 49 % line, VAT and the period stay on the card */
+@container (min-width:601px){html:lang(th) .p-c .c2:not(.b-tickets):not([data-size-only]) .prow{padding-top:calc(9*var(--px));padding-bottom:calc(8*var(--px))}}
+/* phones 2 A: the Thai 49 % line is longer than the free part of the foot row and ran 3 px into VAT: as on card 2 B, VAT and the period go one row up and
+   the 49 % line takes its own row below them */
+@container (max-width:600px){html:lang(th) .p-c .c2:not(.b-tickets):not([data-size-only]) .cp-foot{margin-bottom:26px}}
+/* kakao 2 A: tighter rows, so part 3's board ends above its 49 % line */
+html:lang(th)[data-size="kakao"]:not(#sz) main.p-c .K2a .prow{padding-top:5px;padding-bottom:4px}
+/* kakao 2 A part 1: the tighter rows moved the row 46 BEST badge; its text a little lower in the badge (same height; the 11/18 TH rule above it is more specific, so this one is too) */
+html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2):not(#sz3) .K2a1 span[data-copy="c3_r46_badge"]{padding-top:5.41px!important;padding-bottom:2.89px!important}
+/* kakao 2 B: the option a little smaller, so VAT stays on part 2 */
+html:lang(th)[data-size]:not(#sz) .p-c .K2b .b-ticket .popt{font-size:16px;line-height:1.35}
 /* ==== 2026-11-19 language versions TW / JP / CN (built 2026-11-20, v4/combo12c/i18n-1118.cjs). Only zh-TW / zh-CN / ja selectors (the TH rules above
    are not changed: the Thai page stays as built on 11/18). Fonts and line breaks as CMB12D (the same layout system and renderer). ==== */
 /* TW (zh-TW) in Noto Sans TC, CN (zh-CN) in Noto Sans SC, JP in Noto Sans JP (loaded by combo12c.js), the Latin display fonts (Jost, Instrument Serif) first */
@@ -283,6 +296,8 @@ html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-varia
 html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-k[data-copy="c3_w2_k"]{padding-top:4.779px!important;padding-bottom:1.301px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.dev-e[data-copy="c3_dev_e"]{padding-top:1.921px!important;padding-bottom:1.679px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c3_ab_way_line"]{padding-top:2.372px!important;padding-bottom:3.228px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-chip[data-copy="c3_p46_chip"]{padding-top:3.948px!important;padding-bottom:0.252px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.badge[data-copy="c3_r46_badge"]{padding-top:4.905px!important;padding-bottom:3.395px!important}
 @media (min-width:601px) and (max-width:999px){
 html:lang(zh-TW):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.tz-opt[data-copy="c3_hero_opt"]{padding-top:0.00392em!important;padding-bottom:0.23608em!important}
 html:lang(zh-TW):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-chip[data-copy="c3_p46_chip"]{padding-top:0.13526em!important;padding-bottom:0.14474em!important}
