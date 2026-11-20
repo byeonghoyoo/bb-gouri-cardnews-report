@@ -58,9 +58,11 @@ function setPulse(el,v){
  unitSpan(el,v);
 }
 /* card 6 hours: the day label and the time are styled apart */
+/* 2026-11-19 EN: the English hours give 12-hour times ('10:00 AM – 4:30 PM'); an AM / PM after the first time is allowed, so the day and the time
+   are still set apart (every other value matches exactly as before) */
 function setHours(el,v){
  el.textContent='';
- const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
+ const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}(?:\s?[AP]M)?\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
  if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];
  const t=document.createElement('span');t.className='ht';t.textContent=m[3];
@@ -71,7 +73,8 @@ const GUARD='.hook,.p-lead,.unit-d,.pcare,.pdet,.q-ans,.pt-d,.st-d,.who-v,.inf-n
 /* names that never break inside */
 /* 2026-11-14 language versions also keep the international phone number and the floor / house numbers of the address ('6楼', '66號') whole; no Korean copy has them
    2026-11-16 TH: a figure keeps its Thai unit after the space ('10 นาที', '1.5 มม.', '20:00 น.', '7 ลำ'), Thai lines have no other guard; no other language has these units */
-const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|\d[\d.]* มม\.|\d+ นาที|\d{1,2}:\d{2} น\.|\d+ (?:ลำ|จุด|บริเวณ)|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
+/* 2026-11-19 EN: English hyphenated words stay whole (Chrome breaks after the hyphen, e.g. 'Neck- / Line'); none occurs in the other locales */
+const KEEP=/(Neck-Line|Full-face|[Mm]id-dermis|real-time|skin-layer|Geon-ho|AI-generated|\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|@[\w.\-]+|\d+[樓楼階號号]|\d[\d.]* มม\.|\d+ นาที|\d{1,2}:\d{2} น\.|\d+ (?:ลำ|จุด|บริเวณ)|BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|울쎄라피 프라임|1\.5 · 3\.0 · 4\.5mm|1\.5mm|SUPERB 7개 빔|Sofcool|MFU-V|소노 or LDM 10'|소노 5'|국산 스킨보톡스|제오민 풀페이스 스킨보톡스|풀페이스 스킨보톡스|목주름 스킨보톡스|프리미엄 수분케어|7개 트랜스듀서|신경 쓰일 때|펄스 수)/g;
 function appendKept(el,s){
  let last=0;KEEP.lastIndex=0;
  for(const m of s.matchAll(KEEP)){

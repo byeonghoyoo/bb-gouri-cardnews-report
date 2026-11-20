@@ -400,3 +400,100 @@ html:lang(ja) .title wbr,html:lang(ja) .ptitle wbr{display:none}
    title's second line */
 html:lang(ja) .c1[data-variant="b"]:not([data-size-only]) .b2{top:calc(420*var(--px))}
 html:lang(ja)[data-size]:not(#sz) .L1b .b2{top:395px}
+
+/* ===== EN (2026-11-19 evening, lead order, v4/langverify/out/LV_BUILD_1119.md): the English version (html:lang(en) only; Korean and the other language
+   versions are untouched). The Korean faces carry English (Pretendard text, Jost figures), as OND12 / THM12 EN; no extra font ===== */
+/* prices: the figure and its unit stay on one line ('1.26M') */
+html:lang(en) .money{white-space:nowrap}
+/* titles: the hero B second line ('Launch Offer', 525 px against 470 at 1080) and the one-line card 2 B title ('GOURI Collagen Care Offer', 917 against 720
+   on kakao) are wider than their boxes; both get the fit factor (gouri12.js shrinks them), as TH / JP */
+html:lang(en) .c1[data-variant="b"] .title{font-size:calc(95*var(--px)*var(--fit,1))}
+@media(max-width:600px){html:lang(en) .c1[data-variant="b"] .title{font-size:calc(90*var(--px)*var(--fit,1))}}
+html:lang(en) .c2[data-variant="b"] .ptitle{font-size:calc(75*var(--px)*var(--fit,1))}
+/* hero contact pill: the reviewer wrote two lines ('Bookings & Inquiries' / 'WhatsApp: +82 10-7215-7511'); on one line it ran under the cream tube (hero A)
+   and past the card edge (hero B), so the pill keeps the reviewer's break; the hero A gift band keeps 8 px clear of the tube (as zh / JP) */
+html:lang(en) .c1-contact [data-copy]{white-space:pre-line}
+html:lang(en) .c1[data-variant="b"] .c1-contact{max-width:100%}
+@container (min-width:601px){html:lang(en) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line{max-width:calc(424*var(--px))}}
+html:lang(en)[data-size]:not(#sz) .L1a .gift-line{max-width:424px}
+html:lang(en)[data-size]:not(#sz) .K1a2 .gift-line{max-width:340px}
+/* kakao 1 A part 2: in the 344 px pill the WhatsApp line broke after 'WhatsApp:'; at 18 it keeps the reviewer's two lines (left of the tube) */
+html:lang(en)[data-size]:not(#sz) .K1a2 .c1-contact{font-size:18px}
+html:lang(en)[data-size]:not(#sz) .K1a2 .c1-contact [data-copy]{position:relative;top:-.0894em} /* text centring: it sat 1.6 px low (+2.17 on the 1080 scale) */
+/* hero A on phones (as zh / JP): the gift band text keeps clear of the cream tube; the WhatsApp line is 10 so '+82 10-7215-7511' stays clear of the box */
+@container (max-width:600px){
+ html:lang(en) .c1:not([data-variant="b"]):not([data-size-only]) .gift-line{padding-right:62px;font-size:10px}
+ html:lang(en) .c1:not([data-variant="b"]):not([data-size-only]) .c1-contact{font-size:10px}
+}
+/* card 2 B options ('GOURI 1 syringe + Re2O 1 vial', 299 px against 263 on line) ran under their badges: home takes two lines; line / kakao shrink the
+   option to the row (fit factor), as JP / TH */
+html:lang(en) .c2[data-variant="b"]:not([data-size-only]) .opt{white-space:normal;text-wrap:balance}
+html:lang(en)[data-size]:not(#sz) .c2.L2b .opt,html:lang(en)[data-size]:not(#sz) .c2.K2b .opt{font-size:calc(22*var(--px)*var(--fit,1))}
+/* kakao 2 A part 2 / 2 B part 1: the gift band ('Receive a complimentary repair cream with GOURI treatments of 1 syringe or more.') took three lines and
+   pushed the foot under the card; it is 20 with 8 px padding (two lines); kakao card 2 foot: the WhatsApp line and 'VAT 10% not included' were 26 px wider
+   than the card, both a little smaller on one line (19 / 16, as HK) */
+html:lang(en)[data-size]:not(#sz) .K2a2 .gift-band,html:lang(en)[data-size]:not(#sz) .K2b1 .gift-band{font-size:20px;padding-top:8px;padding-bottom:8px}
+html:lang(en)[data-size]:not(#sz) .K2a .foot-contact,html:lang(en)[data-size]:not(#sz) .K2b .foot-contact{font-size:19px}
+html:lang(en)[data-size]:not(#sz) .K2a .vat,html:lang(en)[data-size]:not(#sz) .K2b .vat{font-size:16px}
+/* kakao 4 part 1 / 5 part 2: the questions ('Three options. What is the difference?', 'What to Expect on Treatment Day') stayed wider than the card at the
+   smallest fit (.72) of the Korean 66; they start from 58 / 60 */
+html:lang(en)[data-size]:not(#sz) .K4a .q{font-size:calc(58*var(--px)*var(--fit,1))}
+html:lang(en)[data-size]:not(#sz) .K5b .q{font-size:calc(60*var(--px)*var(--fit,1))}
+/* card 4: the English descriptions take one or two lines more than the Korean, so the tip / source lines ran under the card (line, kakao part 2);
+   descriptions and set-up lines a little smaller there (as JP); line: the option name 'GOURI + Rejuran' (301 px at the Korean 40) ran 34 px past its column,
+   names 34, and the tip takes one line (19); kakao part 2: the two set-ups keep less padding (as HK) */
+html:lang(en)[data-size]:not(#sz) .L4 .wd{font-size:19px;line-height:1.42}
+html:lang(en)[data-size]:not(#sz) .L4 .ws{font-size:18px;line-height:1.45}
+html:lang(en)[data-size]:not(#sz) .K4b .wd{font-size:18.5px;line-height:1.45}
+html:lang(en)[data-size]:not(#sz) .L4 .wn{font-size:34px}
+html:lang(en)[data-size]:not(#sz) .L4 .tip{font-size:19px}
+html:lang(en)[data-size]:not(#sz) .K4b .ways{margin-top:10px}
+html:lang(en)[data-size]:not(#sz) .K4b .way{padding-top:9px;padding-bottom:9px}
+html:lang(en)[data-size]:not(#sz) .K4b .c4-foot{padding-top:6px}
+/* kakao 5 part 2: 'After the procedure' took two lines and its six-line note ran 16 px under the card; step titles 22 (one line, as TH), notes 17 */
+html:lang(en)[data-size]:not(#sz) .K5b .stt{font-size:22px}
+html:lang(en)[data-size]:not(#sz) .K5b .std{font-size:17px;line-height:1.42}
+/* card 6 location: 'Hapjeong Station, Exit 3' with its line chip did not fit one row (780 board: the chip dropped and the address ran under the card;
+   kakao part 3: the station took two lines and the four-line address ran 55 px under the card); the station is set smaller (25 / kakao 21) and the kakao
+   map is 30 px shorter (as TH) */
+@container (min-width:601px){html:lang(en) .c6:not([data-size-only]) .way-st{font-size:calc(25*var(--px))}}
+html:lang(en)[data-size]:not(#sz) .K6c .way-st{font-size:21px}
+html:lang(en)[data-size]:not(#sz) .K6c .map{aspect-ratio:317/263}
+/* ===== EN chip text centring (2026-11-19, user rule 2026-11-05; measured with qa/text-center-check.cjs + ?lang=EN at 1080 / 780 / line / kakao): the
+   two- and three-line pills (gift line, contact pill, gift band) and a few Latin chips sit off the box centre in English; each text moves by its measured
+   offset <en-center> */
+@media (min-width:901px){
+ html:lang(en) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:-0.0445em} /* +1.59 */
+ html:lang(en) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.c1-contact [data-copy]{position:relative;top:-0.0705em} /* +1.48 */
+ html:lang(en) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.c1-contact [data-copy]{position:relative;top:-0.0705em} /* +1.48 */
+ html:lang(en) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) span.badge[data-copy="gr_r9_badge"]{padding-top:4.48px;padding-bottom:4.52px} /* +0.62 */
+ html:lang(en) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) p.gift-band [data-copy]{position:relative;top:-0.0624em} /* +2.06 */
+ html:lang(en) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] p.gift-band [data-copy]{position:relative;top:-0.0508em} /* +2.02 */
+ html:lang(en) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span.fk[data-copy="gr_c3_f2_k"]{padding-top:3.89px;padding-bottom:2.57px} /* -0.83 */
+ html:lang(en) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span.fk[data-copy="gr_c3_f3_k"]{padding-top:3.76px;padding-bottom:2.70px} /* -0.7 */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(en) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:-0.1050em} /* +2.3 */
+ html:lang(en) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.c1-contact [data-copy]{position:relative;top:0.0029em} /* +1.41 */
+ html:lang(en) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) p.gift-band [data-copy]{position:relative;top:-0.0560em} /* +2.9 */
+ html:lang(en) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] p.gift-band [data-copy]{position:relative;top:-0.0628em} /* +3.07 */
+}
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:-0.0444em} /* +1.56 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.c1-contact [data-copy]{position:relative;top:-0.0708em} /* +1.46 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.c1-contact [data-copy]{position:relative;top:-0.0708em} /* +1.46 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="2"] span.badge[data-copy="gr_r12_badge"]{padding-top:4.47px;padding-bottom:4.53px} /* +0.62 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="2"] p.gift-band [data-copy]{position:relative;top:0.0473em} /* -0.67 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"][data-variant="b"] span.badge[data-copy="gr_r9_badge"]{padding-top:4.44px;padding-bottom:4.56px} /* +0.65 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="3"]:not([data-variant="b"]) span.fk[data-copy="gr_c3_f2_k"]{padding-top:3.89px;padding-bottom:2.57px} /* -0.81 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="3"]:not([data-variant="b"]) span.fk[data-copy="gr_c3_f3_k"]{padding-top:3.76px;padding-bottom:2.70px} /* -0.69 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="2"] p.c1-contact [data-copy]{position:relative;top:-0.0705em} /* +2, then +0.65 at whole pixels: the pill takes half a pixel more padding on both sides (below, as JP) */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="1"] span.period[data-copy="gr_period"]{position:relative;top:.5px} /* -0.64 at the Korean padding, +0.71 with the measured one (whole pixels): the Korean padding, the pill half a pixel lower */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="1"] span.badge[data-copy="gr_r9_badge"]{padding-top:4.37px;padding-bottom:4.63px} /* +0.98 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="2"] p.gift-band [data-copy]{position:relative;top:-0.0580em} /* +2.24 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="3"] span.badge[data-copy="gr_r11_badge"]{padding-top:5.10px;padding-bottom:4.90px;margin-bottom:-1px} /* +0.66 at the Korean padding, -0.69 with the measured one (whole pixels): the Korean padding with the badge 1 px taller at the bottom */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="1"] p.gift-band [data-copy]{position:relative;top:-0.0652em} /* +2.57 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="6"]:not([data-variant="b"])[data-part="3"] span.way-line[data-copy="gr_ab_way_line"]{padding-top:3.51px;padding-bottom:2.09px} /* -0.86 */
+html:lang(en)[data-size]:not(#sz) .K1b2 .c1-contact{padding-top:9.95px;padding-bottom:9.95px}
+/* kakao card 3 key 2 ('Formulation'): its text snaps to whole pixels, -0.7 for any padding or a half-pixel move of its row; at 16.6 px (17) the ink sits on the centre */
+html:lang(en)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f2_k"]{font-size:16.6px}
+/* </en-center> */

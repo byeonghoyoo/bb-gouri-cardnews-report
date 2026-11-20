@@ -168,7 +168,7 @@ function typeSwap(){
 function logoSwap(){
  for(const img of document.querySelectorAll('img.t-logo')){
   const wrap=img.parentElement,main=wrap&&wrap.querySelector('.t-main');if(!main)continue;
-  const same=norm(main.textContent)===norm(img.dataset.logoText||'oligio xm');
+  const same=norm(main.textContent).toLowerCase()===norm(img.dataset.logoText||'oligio xm').toLowerCase(); /* 2026-11-19: the reviewed TH writes 'OLIGIO XM'; the same name in capitals still shows the official logo */
   const typing=main.contains(document.activeElement)&&document.activeElement.isContentEditable;
   const on=img.complete&&img.naturalWidth>0&&same&&!typing;
   if(wrap.classList.contains('is-logo')!==on){wrap.classList.toggle('is-logo',on);requestAnimationFrame(()=>{fit();report();});}
