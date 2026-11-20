@@ -10,10 +10,11 @@ const P=DATA.prefix||'';
 /* 2026-11-18 language version TH (v4/combo12h/i18n-1118.cjs; copy v4/langverify/out/CMB12H.final.json via v4/combo12h/work/i18n-prep.cjs): <html lang>
    drives the Thai font and layout rules in combo12h-i18n.css (:lang(th)); the Google font of the language is added here (as CMB12A / CMB12B / CMB12D).
    Korean renders exactly as before. */
-const LANG={KO:'ko',TW:'zh-TW',TH:'th'};
-const FONT_FAMILY={TW:'Noto Sans TC',TH:'Noto Sans Thai'};
-/* 2026-11-18 TW: the Chinese pieces below act only for a CJK locale (TW) */
-const CJK={TW:1},SEGS={};
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+/* 2026-11-19 JP / CN / HK fonts as CMB12A / CMB12B / CMB12D; EN keeps the page font */
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',HK:'Noto Sans TC',TH:'Noto Sans Thai'};
+/* 2026-11-18 TW: the Chinese pieces below act only for a CJK locale (TW; JP / CN / HK 2026-11-19) */
+const CJK={TW:1,JP:1,CN:1,HK:1},SEGS={};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -82,7 +83,11 @@ const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|SPF 50 
 const KEEP_TH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Beauty Blossom|Beauty Omakase|Premium Skin Care|Skin Care|(?:New )?Celebrity Peel|Oxygen Peel|Aqua Peel|LHALA Peel|Black Peel|YES Peel|Gold PTT|Genesis Laser|Accu Toning|Potenza AGNES|PicoSure Focus|Medione Medical Center|Yanghwa-ro|Mapo-gu|'+KEEP.source+'|ทรีตเมนต์|มาสก์|โมเดลลิ่ง|แพ็กเกจ|อัลตราซาวนด์|มอยส์เจอไรเซอร์|ซาวน่า|แอลกอฮอล์|เชียบัตเตอร์|กรดแลกติก|ยาชา|โปรโมชัน|โปรแกรม|ฮับจอง|กรุงโซล|เหมาะสม|ขั้นตอน|รูขุมขน|ผู้อำนวยการ|สุดสัปดาห์|จัดเต็ม|หัวทิป|ต่อมไขมัน|ชุ่มชื้น|เรียบเนียน|อ่อนโยน|ปลอบประโลม|น้ำส้มสายชู|ทำความเย็น|แตกต่าง|เครื่องมือ|เครื่องดื่ม|ต่อเนื่อง|หลีกเลี่ยง|เป้าหมาย|ประจำวัน|ลงทะเบียน|จองคิว|เดินทาง|กลางวัน|ข้อกำหนด|ทางการแพทย์|วันธรรมดา|นพ\\. อี กอนโฮ|อี กอนโฮ|\\d[\\d,.:]*\\s(?:cc|ครั้ง|นาที|วอน|ความถี่|สัปดาห์|ขั้นตอน|น\\.)|สัปดาห์ที่\\s\\d+|(?:ทางออก|เลขที่)\\s\\d+|(?:สาย|ชั้น)\\s\\d+(?:\\sและ\\s\\d+)?','g');
 /* 2026-11-18 TW (as CMB12A TW): the TW names kept whole (KEEP_TW = the TW names + KEEP) */
 const KEEP_TW=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|\\d+[樓楼階號号]|「[^」\\n]{1,16}」|Beauty Blossom|QR Code|Q-LDM \\d+分鐘|LDM \\d+分鐘|Accu Toning|'+KEEP.source,'g');
-const keepRe=()=>locale==='TH'?KEEP_TH:locale==='TW'?KEEP_TW:KEEP;
+/* 2026-11-19 JP / CN / HK: their Latin names, numbers + units and the TW pieces kept whole (KEEP_CJK = these + KEEP); EN: its numbers + units and
+   Latin product names (KEEP_EN = these + KEEP) */
+const KEEP_CJK=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|\\d+[樓楼階號号]|「[^」\\n]{1,16}」|Beauty Blossom|Beauty Omakase|QR Code|(?:Q-LDM|Q-ldm|LDM|Cryo) \\d+分(?:鐘|钟)?|(?:New )?Celebrity Peel|Oxygen Peel|Aqua Peel|LHALA Peel|Black Peel|Salmon Peel|Asce Peel|YES Peel|PicoSure Focus|Acc?u Toning|Potenza AGNES|Medi[Oo]ne Medical Center|'+KEEP.source,'g');
+const KEEP_EN=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Beauty Blossom|Beauty Omakase|(?:Q-LDM|Q-ldm|LDM|Cryo) \\d+ minutes|\\d+ sessions?|Week \\d+|Gold PTT|(?:New )?Celebrity Peel|Oxygen Peel|Aqua Peel|LHALA Peel|Black Peel|YES Peel|Yes Peel|PicoSure Focus|Acc?u Toning|Potenza AGNES|'+KEEP.source,'g');
+const keepRe=()=>locale==='TH'?KEEP_TH:locale==='TW'?KEEP_TW:(locale==='JP'||locale==='CN'||locale==='HK')?KEEP_CJK:locale==='EN'?KEEP_EN:KEEP;
 /* 2026-11-18 TW (same as CMB12A / ONE12 / LIG12 TW): the last three characters of a Chinese text stay together, grown back to the start of their word
    (a '・' break or Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside); a '・' inside those last characters is a
    break too when two to five characters follow it */
@@ -95,6 +100,11 @@ function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]
 const guardable=(el)=>!/flex|grid/.test(getComputedStyle(el).display);
 /* the Chinese guard only for text with Chinese characters; a Latin-only TW text is set as on the Korean page */
 const HAN=/[\u3400-\u9fff\uf900-\ufaff]/;
+/* 2026-11-19 JP: a name pill written in kana ('ビューティーおまかせスキンケア') is one phrase for the browser and broke inside a word ('スキ|ンケア',
+   'おま|かせ'); a JP name pill and the hero price name may break where katakana and hiragana meet ('ビューティー|おまかせ|スキンケア'), nowhere else (<wbr>).
+   Other locales: unchanged */
+const JPGUARD=(v,el)=>locale==='JP'&&(el.classList.contains('pill-n')||/_hp_name$/.test(el.dataset.copy||''))&&/[\u3040-\u30ff]/.test(v);
+const JPB=/(?<=[\u3041-\u309f])(?=[\u30a1-\u30ff])|(?<=[\u30a1-\u30ff])(?=[\u3041-\u309f])/;
 function appendKept(el,s){
  let last=0;const R=keepRe();R.lastIndex=0;
  for(const m of s.matchAll(R)){
@@ -113,6 +123,7 @@ function setText(el,v){
  const KR=keepRe();KR.lastIndex=0;const kept=!!v&&KR.test(v);KR.lastIndex=0;
  /* 2026-11-18 TH: no Korean widow guard (Thai breaks by its dictionary; its words stay whole through KEEP_TH, as CMB12A / CMB12B / CMB12D TH).
     TW: every Chinese text in an inline box keeps its last word together (cjkCut); the Korean list GUARD stays as it was */
+ if(v&&!kept&&JPGUARD(v,el)){el.textContent='';v.split(JPB).forEach((p,i)=>{if(i)el.append(document.createElement('wbr'));el.append(document.createTextNode(p));});return;}
  if(!v||locale==='TH'||(!el.matches(GUARD)&&!(CJK[locale]&&HAN.test(v)&&guardable(el)))){if(kept){el.textContent='';appendKept(el,v);}else el.textContent=v;return;}
  let m=null;
  if(locale==='TH')m=null;
