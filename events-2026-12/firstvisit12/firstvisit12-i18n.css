@@ -1,0 +1,45 @@
+/* FV12 language version TH (2026-11-20, lead order: reviewed TH copy of v4/langverify/out/FV12.final.json; built by v4/firstvisit12/work/i18n-th.cjs).
+   Language fonts and the layout the longer copy needs. Every selector names a language (:lang(th)), so the Korean page stays pixel-identical
+   (checked with pixdiff against backup/before-lv-20261119/firstvisit12/site). firstvisit12.css is not changed. */
+
+/* fonts: Thai letters in Noto Sans Thai after Pretendard / Outfit, so Latin letters and figures keep the Korean design's faces (as OXM12 / DIE12B TH) */
+html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-num:'Outfit','Pretendard Variable','Noto Sans Thai',sans-serif}
+
+/* line breaks: Korean keeps whole words (keep-all); Thai has no spaces between words, so it breaks normally (the browser's Thai dictionary) */
+html:lang(th) .sheet{word-break:normal}
+
+/* card 4 care guide (home / board widths, 601 px and wider): the Thai labels ('เหมาะสำหรับผู้ที่มีปัญหา', 'โปรแกรมที่เกี่ยวข้อง', about 11.4 em of the label size)
+   need a wider label column than the Korean '이런 고민에' / '구성'; both rows keep one width so the values stay aligned. Phones stack label over value as in Korean. */
+@container (min-width:601px){html:lang(th) .gd-l{grid-template-columns:max(128px,9.55em) minmax(0,1fr)}}
+
+/* hero title on phones: the Thai first line is wider than the 161 px column at the 19 px minimum size, so it wraps (balanced) instead of overflowing */
+@container (max-width:600px){html:lang(th) .p1 .title .t1{white-space:normal;text-wrap:balance}}
+
+/* Thai line endings: multi-line texts avoid a lone last word (the Korean page keeps its own widow rule in firstvisit12.js) */
+html:lang(th) .hook,html:lang(th) .c4-a,html:lang(th) .c4-tip,html:lang(th) .dr-quote,html:lang(th) .ab-lead,html:lang(th) .ad,html:lang(th) .notes li,html:lang(th) .bkl-msg,html:lang(th) .hrs-note,html:lang(th) .gd-v{text-wrap:pretty}
+html:lang(th) .at,html:lang(th) .hrs .hd,html:lang(th) .ab-title{text-wrap:balance}
+
+/* Thai words kept whole by firstvisit12.js (thGlue: 'ความ' + its word, 'มาสก์', compounds; display-only spans); KEEP spans (.nw) are the same on every language */
+html:lang(th) .th-nw{white-space:nowrap}
+
+/* decorations the longer Thai lines would touch: the hero heart moves below the two-line hook (phones: below the three-line title and hook),
+   the price-card gift moves along the board edge past the long group title (home / board widths; phones hide the gift as in Korean) */
+html:lang(th) .p1 .h1{top:calc(452*var(--px))}
+@container (max-width:600px){html:lang(th) .p1 .h1{top:calc(560*var(--px))}}
+@container (min-width:601px){html:lang(th) .g2{left:calc(845*var(--px));top:calc(276*var(--px))}}
+
+/* TH component text centring (measured on real pixels with the language copy of qa/text-center-check.cjs, ?lang=TH, home 1080 / board 780;
+   phones use the 780 values, the em rules scale): Thai ink sits higher ('ในราคาทดลอง', 'โปรแกรมที่เกี่ยวข้อง': marks above the letters) or lower
+   ('ราคาทดลอง') than the Korean ink the Korean padding was set for. The care-guide label keeps its pill height: its bottom padding is already
+   almost 0, so the line box is lowered instead (one line, nowrap) */
+html:lang(th) .pp .title .t2{padding-top:.1541em;padding-bottom:.0059em}
+html:lang(th) .tag{padding-top:.0942em;padding-bottom:.1658em}
+html:lang(th) .gd-k[data-copy="fv_c4_what_lbl"]{line-height:1.197;padding-top:.4333em;padding-bottom:0}
+@media (min-width:901px){
+html:lang(th) .pp .title .t2{padding-top:.16em;padding-bottom:0}
+html:lang(th) .tag{padding-top:.0842em;padding-bottom:.1758em}
+html:lang(th) .gd-k[data-copy="fv_c4_what_lbl"]{line-height:1.226;padding-top:.3549em;padding-bottom:.0488em}
+html:lang(th) .p1-contact .contact{top:-.074em}
+html:lang(th) .gd-k[data-copy="fv_c4_who_lbl"]{padding-top:.1755em;padding-bottom:.0045em}
+html:lang(th) .gd-h .gnum{padding-bottom:.064em} /* the guide numbers sit about 0.4 px high on the taller Thai guide cards (half-pixel position) */
+}
