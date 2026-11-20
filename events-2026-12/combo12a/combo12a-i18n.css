@@ -49,6 +49,13 @@ html:lang(zh)[data-size]:not(#sz) .K43 .ch-a{font-size:18px}
 html:lang(zh)[data-size]:not(#sz) .K2b3 .prod{display:block}
 html:lang(zh)[data-size]:not(#sz) .K2b3 .prows{margin-top:10px}
 
+/* ===== JP (2026-11-19): Japanese text in Noto Sans JP first (as THM12 / CRF12 / OND12 JP; Pretendard's kana never mix in), phrase breaking
+   (word-break:auto-phrase, as THM12 / CRF12 / OND12 JP: the browser keeps a Japanese phrase whole); the Latin labels keep the Korean page's Latin face
+   (as TW above). EN (2026-11-19) uses the page's own fonts; CN / HK take the Chinese rules above (:lang(zh)) ===== */
+html:lang(ja){--f-cjk:'Noto Sans JP';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-en:'Gloock',var(--f-cjk),'Pretendard Variable',Pretendard,serif}
+html:lang(ja) .sheet{word-break:auto-phrase}
+html:lang(ja) .badge,html:lang(ja) .bb-ba__tag,html:lang(ja) .bb-ba__arrow,html:lang(ja) [data-copy="c1_c4_b1_k"],html:lang(ja) [data-copy="c1_c4_b2_k"],html:lang(ja) [data-copy="c1_c4_b3_k"],html:lang(ja) [data-copy="c1_ab_ph1"],html:lang(ja) [data-copy="c1_ab_ph2"],html:lang(ja) [data-copy="c1_ab_ph3"]{font-family:'Pretendard Variable',Pretendard,var(--f-cjk),sans-serif}
+
 /* ===== TH (2026-11-17): Thai letters in Noto Sans Thai (Pretendard has none; its Latin letters and digits stay). Thai writes no spaces between words, so
    keep-all would never break a Thai line: normal breaking (the browser's Thai dictionary; combo12a.js keeps the loanwords it splits whole) ===== */
 html:lang(th){--f-text:'Pretendard Variable',Pretendard,'Noto Sans Thai',system-ui,sans-serif;--f-en:'Gloock','Pretendard Variable',Pretendard,'Noto Sans Thai',serif}
@@ -183,3 +190,305 @@ html:lang(zh)[data-size="kakao"]:not(#sz) .K2a1 span[data-copy="c1_p7_sub"]{padd
 html:lang(zh)[data-size="kakao"]:not(#sz) .K2b1 span[data-copy="c1_p7_sub"]{padding-top:1.24px;padding-bottom:2.32px}
 html:lang(zh)[data-size="kakao"]:not(#sz) .K2b2 span[data-copy="c1_r11_badge"]{padding-top:7.3px;padding-bottom:6.3px}
 /* </lang-center> */
+
+/* ===== 2026-11-19 EN / JP / CN / HK layout ===== */
+/* hero title: combo12a.js sets the new languages' title as two unbreakable halves split after its '&' ('Rejuran &' / 'Skin Boosters', 'リジュラン＆' /
+   'スキンブースター'), so a wrapped title breaks there as the Korean '리쥬란 &' / '스킨부스터' (kakao 1-1, phones) */
+html:lang(en) .h-title .tw,html:lang(ja) .h-title .tw,html:lang(zh-CN) .h-title .tw,html:lang(zh-HK) .h-title .tw{white-space:nowrap}
+/* B (the narrow left column; home, line, kakao): the two title lines take fit() (the Korean 76 px is set without it), so the longer lines ('Skin Boosters',
+   'スキンブースター', 'Skin Booster 水光針') end inside the column */
+@container (min-width:601px){html:lang(en) .bv.c1 .h-title,html:lang(ja) .bv.c1 .h-title,html:lang(zh-CN) .bv.c1 .h-title,html:lang(zh-HK) .bv.c1 .h-title{font-size:calc(76*var(--px)*var(--fit,1))}}
+/* A (home, line 1-A, kakao 1-1): the HK title 'REJURAN 麗珠蘭＆Skin Booster 水光針' is about twice the Korean length (on one line fit() stops at 0.6 with
+   the title still at the card edges): two centred lines at a smaller size */
+@container (min-width:601px){html:lang(zh-HK):not([data-size="kakao"]) .c1:not(.bv) .h-title{font-size:calc(64*var(--px)*var(--fit,1))}html:lang(zh-HK):not([data-size="kakao"]) .c1:not(.bv) .h-title .tl{white-space:normal;max-width:calc(760*var(--px))}}
+/* phones, A: the title may take two lines (the Korean title fits one; the EN / JP / HK titles are longer than the phone width) */
+@container (max-width:600px){html:lang(en) .c1:not(.bv) .h-title .tl,html:lang(ja) .c1:not(.bv) .h-title .tl,html:lang(zh-CN) .c1:not(.bv) .h-title .tl,html:lang(zh-HK) .c1:not(.bv) .h-title .tl{white-space:normal;max-width:calc(820*var(--px))}}
+/* kakao 1-1: the sub line (Korean one line at 30 px) takes two lines, the product names over the guide line, as on the line card */
+html:lang(en)[data-size="kakao"] .K1a1 .h-sub,html:lang(ja)[data-size="kakao"] .K1a1 .h-sub,html:lang(zh-CN)[data-size="kakao"] .K1a1 .h-sub,html:lang(zh-HK)[data-size="kakao"] .K1a1 .h-sub{white-space:normal;line-height:1.3}
+html:lang(en)[data-size="kakao"] .K1a1 .h-sub>span,html:lang(ja)[data-size="kakao"] .K1a1 .h-sub>span,html:lang(zh-CN)[data-size="kakao"] .K1a1 .h-sub>span,html:lang(zh-HK)[data-size="kakao"] .K1a1 .h-sub>span{display:block;margin-left:0}
+/* kakao 1 B-1: the EN / JP sub lines (Korean four lines at 30 px) took six to seven lines and ran past the card: 24 px */
+html:lang(en)[data-size="kakao"] .K1b1 .h-sub,html:lang(ja)[data-size="kakao"] .K1b1 .h-sub{font-size:24px}
+/* phones, B (the 179 px column beside the photo): the JP / HK title lines ('スキンブースター', 'Skin Booster 水光針') are set smaller so they stay in it */
+@container (max-width:600px){html:lang(ja) .bv.c1 .h-title{font-size:22px}html:lang(zh-HK) .bv.c1 .h-title{font-size:20px}}
+
+/* card 2 prices, JP / HK: a JP / HK price written in full ('198,000ウォン', '198,000韓元') is about twice as wide as the Korean one ('19만8천원'), so the fixed
+   Korean price columns put the list price under the sale price; the TH price rules (above) for JP and HK: the prices set smaller, their columns take
+   their width, long options take the whole row with the price pair under them, the 2 B kakao tickets put the list price under the option */
+html:lang(ja) .seg{white-space:normal}
+@container (min-width:601px){
+ html:lang(ja) .cp.c2:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) auto auto}
+ html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .psale,html:lang(ja) .cp.c2.bv:not([data-size-only]) .psale{font-size:calc(28*var(--px))}
+ html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .plist,html:lang(ja) .cp.c2.bv:not([data-size-only]) .plist{font-size:max(11px,calc(14*var(--px)))}
+}
+html:lang(ja)[data-size]:not(#sz) .L2a .prow,html:lang(ja)[data-size]:not(#sz) .L2b2 .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(ja)[data-size]:not(#sz) .L2a .psale,html:lang(ja)[data-size]:not(#sz) .L2b2 .psale{font-size:32px}
+html:lang(ja)[data-size]:not(#sz) .L2a .plist,html:lang(ja)[data-size]:not(#sz) .L2b2 .plist{font-size:15px}
+html:lang(ja)[data-size]:not(#sz) .L2b1 .psale{font-size:28px}
+html:lang(ja)[data-size]:not(#sz) .L2b1 .plist{font-size:13px}
+html:lang(ja)[data-size]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(ja)[data-size]:not(#sz) .K2a .psale{font-size:30px}
+html:lang(ja)[data-size]:not(#sz) .K2a .plist{font-size:14px}
+html:lang(ja)[data-size]:not(#sz) .K2b .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn ps" "pl ps";row-gap:2px}
+html:lang(ja)[data-size]:not(#sz) .K2b .prow>.pn{grid-area:pn}
+html:lang(ja)[data-size]:not(#sz) .K2b .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+html:lang(ja)[data-size]:not(#sz) .K2b .prow>.psale{grid-area:ps;align-self:center}
+html:lang(ja)[data-size]:not(#sz) .K2b .psale{font-size:28px}
+html:lang(ja)[data-size]:not(#sz) .K2b .plist{font-size:13px}
+@container (min-width:601px){
+ html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"]),html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"]),html:lang(ja) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:calc(2*var(--px))}
+ html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.pn,html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.pn,html:lang(ja) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.pn{grid-area:pn}
+ html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.plist,html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.plist,html:lang(ja) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+ html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.psale,html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.psale,html:lang(ja) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.psale{grid-area:ps}
+}
+html:lang(ja)[data-size]:not(#sz) .K2a3 .prow,html:lang(ja)[data-size]:not(#sz) .K2b3 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:2px}
+html:lang(ja)[data-size]:not(#sz) .K2a3 .prow>.pn,html:lang(ja)[data-size]:not(#sz) .K2b3 .prow>.pn{grid-area:pn}
+html:lang(ja)[data-size]:not(#sz) .K2a3 .prow>.plist,html:lang(ja)[data-size]:not(#sz) .K2b3 .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+html:lang(ja)[data-size]:not(#sz) .K2a3 .prow>.psale,html:lang(ja)[data-size]:not(#sz) .K2b3 .prow>.psale{grid-area:ps}
+html:lang(ja)[data-size]:not(#sz) .K2b3 .prow{padding-top:8px;padding-bottom:8px}
+html:lang(ja)[data-size]:not(#sz) .K2b3 .prod{display:block}
+html:lang(ja)[data-size]:not(#sz) .K2b3 .prows{margin-top:10px}
+@container (min-width:601px) and (max-width:1000px){html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow{padding-top:calc(5*var(--px));padding-bottom:calc(4*var(--px))}}
+html:lang(zh-HK) .seg{white-space:normal}
+@container (min-width:601px){
+ html:lang(zh-HK) .cp.c2:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) auto auto}
+ html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .psale,html:lang(zh-HK) .cp.c2.bv:not([data-size-only]) .psale{font-size:calc(28*var(--px))}
+ html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .plist,html:lang(zh-HK) .cp.c2.bv:not([data-size-only]) .plist{font-size:max(11px,calc(14*var(--px)))}
+}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .prow,html:lang(zh-HK)[data-size]:not(#sz) .L2b2 .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .psale,html:lang(zh-HK)[data-size]:not(#sz) .L2b2 .psale{font-size:32px}
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .plist,html:lang(zh-HK)[data-size]:not(#sz) .L2b2 .plist{font-size:15px}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b1 .psale{font-size:28px}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b1 .plist{font-size:13px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a .psale{font-size:30px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a .plist{font-size:14px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn ps" "pl ps";row-gap:2px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b .prow>.pn{grid-area:pn}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b .prow>.psale{grid-area:ps;align-self:center}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b .psale{font-size:28px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b .plist{font-size:13px}
+@container (min-width:601px){
+ html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"]),html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"]),html:lang(zh-HK) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:calc(2*var(--px))}
+ html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.pn,html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.pn,html:lang(zh-HK) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.pn{grid-area:pn}
+ html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.plist,html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.plist,html:lang(zh-HK) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+ html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r10_opt"])>.psale,html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow:has([data-copy="c1_r12_opt"])>.psale,html:lang(zh-HK) .cp.c2:not([data-size-only]) .prod:has([data-copy="c1_p14_name"]) .prow>.psale{grid-area:ps}
+}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a3 .prow,html:lang(zh-HK)[data-size]:not(#sz) .K2b3 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pn" "pl ps";row-gap:2px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a3 .prow>.pn,html:lang(zh-HK)[data-size]:not(#sz) .K2b3 .prow>.pn{grid-area:pn}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a3 .prow>.plist,html:lang(zh-HK)[data-size]:not(#sz) .K2b3 .prow>.plist{grid-area:pl;justify-self:start;align-self:baseline}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a3 .prow>.psale,html:lang(zh-HK)[data-size]:not(#sz) .K2b3 .prow>.psale{grid-area:ps}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b3 .prow{padding-top:8px;padding-bottom:8px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b3 .prod{display:block}
+html:lang(zh-HK)[data-size]:not(#sz) .K2b3 .prows{margin-top:10px}
+@container (min-width:601px) and (max-width:1000px){html:lang(zh-HK) .cp.c2:not(.bv):not([data-size-only]) .prow{padding-top:calc(5*var(--px));padding-bottom:calc(4*var(--px))}}
+/* option parts may wrap between their words in every new language (the Korean parts are short; '丽珠兰红盒（含麻醉成分）1cc', 'Skin Botox, 1 area (Korean)') */
+html:lang(en) .seg,html:lang(zh-CN) .seg{white-space:normal}
+/* card 2 prices, EN / CN: the prices are short ('320K', '32万韩元') but the options long ('Rejuran Healer 2cc + Skin Botox, 1 area (Korean)'); the price
+   columns take their own width (the Korean fixed columns are wider than these prices), so the options have that room and keep fewer lines */
+@container (min-width:601px){html:lang(en) .cp.c2:not([data-size-only]) .prow,html:lang(zh-CN) .cp.c2:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) auto auto}}
+html:lang(en)[data-size]:not(#sz) .L2a .prow,html:lang(en)[data-size]:not(#sz) .L2b2 .prow,html:lang(en)[data-size]:not(#sz) .K2a .prow,html:lang(zh-CN)[data-size]:not(#sz) .L2a .prow,html:lang(zh-CN)[data-size]:not(#sz) .L2b2 .prow,html:lang(zh-CN)[data-size]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+/* card 2 options (home / board): the EN / JP / CN options are longer than the Korean ones and took more lines, so the left column of the price board ran
+   under the VAT line; they are set a little smaller (EN / JP 20, CN 19, Korean 22) with a little less row padding (CN; JP on the 1080 card, the board
+   size keeps the TH-rule padding above), and the board ends above the VAT line as in Korean. HK fits at the Korean size */
+@container (min-width:601px){html:lang(en) .cp.c2:not([data-size-only]) .popt,html:lang(ja) .cp.c2:not([data-size-only]) .popt{font-size:calc(20*var(--px))}html:lang(zh-CN) .cp.c2:not(.bv):not([data-size-only]) .popt{font-size:calc(19*var(--px))}html:lang(zh-CN) .cp.c2:not(.bv):not([data-size-only]) .prow{padding-top:calc(7*var(--px));padding-bottom:calc(6*var(--px))}}
+@container (min-width:1001px){html:lang(ja) .cp.c2:not(.bv):not([data-size-only]) .prow{padding-top:calc(7*var(--px));padding-bottom:calc(6*var(--px))}}
+/* kakao card 2: the 'Price list' kicker and the title share one flex line as in Korean: the EN / JP title box may shrink and fit() sets the title to it
+   (as TW / TH above); the HK title ('REJURAN 麗珠蘭＆Skin Booster 水光針', about twice the Korean length) does not fit beside the kicker even at the smallest
+   fit, so the HK title takes its own row under the kicker */
+html:lang(en)[data-size="kakao"] main.acc-pink .cp .p-title,html:lang(ja)[data-size="kakao"] main.acc-pink .cp .p-title{min-width:0}
+html:lang(zh-HK)[data-size="kakao"] main.acc-pink .cp .p-title{flex-basis:100%}
+/* kakao 2 B: the EN price columns take their width (short prices, as home), and the 리쥬베룩 ticket alone (2 B-3) puts its name above its rows (as TW /
+   TH), so the long EN options keep fewer lines and the VAT line stays on the card */
+html:lang(en)[data-size]:not(#sz) .K2b .prow{grid-template-columns:minmax(0,1fr) auto auto}
+html:lang(en)[data-size]:not(#sz) .K2b3 .prod{display:block}
+html:lang(en)[data-size]:not(#sz) .K2b3 .prows{margin-top:10px}
+/* hero A (home / board): the EN / JP / CN title ends between the two small bubbles left and right of it (as TH: a narrower head, fit() sets the title
+   to it); the head's sub box is then wider than the Korean one, so the sparkle at its left end moves left with it (same 4 px gap as Korean). HK: its two
+   title lines put the sub box 31 px lower, the 'WINTER PICK' ribbon moves down with it (the Korean box / ribbon arrangement) */
+@container (min-width:601px){
+ html:lang(en) .c1:not(.bv):not([data-size-only]) .h-head,html:lang(ja) .c1:not(.bv):not([data-size-only]) .h-head,html:lang(zh-CN) .c1:not(.bv):not([data-size-only]) .h-head,html:lang(zh-HK) .c1:not(.bv):not([data-size-only]) .h-head{left:calc(120*var(--px));right:calc(120*var(--px))}
+ html:lang(en) .c1:not(.bv):not([data-size-only]) .sp1,html:lang(ja) .c1:not(.bv):not([data-size-only]) .sp1,html:lang(zh-CN) .c1:not(.bv):not([data-size-only]) .sp1,html:lang(zh-HK) .c1:not(.bv):not([data-size-only]) .sp1{left:calc(97*var(--px))}
+ html:lang(zh-HK) .c1:not(.bv):not([data-size-only]) .ribbon{top:calc(441*var(--px))}
+}
+/* phones, A: the title takes two lines in every new language (the phone title box is 296 px), so the sub box sits 37 px lower; the ribbon moves down with
+   it and keeps the Korean place under the box */
+@container (max-width:600px){html:lang(en) .c1:not(.bv) .ribbon,html:lang(ja) .c1:not(.bv) .ribbon,html:lang(zh-CN) .c1:not(.bv) .ribbon,html:lang(zh-HK) .c1:not(.bv) .ribbon{top:calc(410*var(--px) + 37px)}}
+/* kakao 1-1: the two title lines are set smaller (Korean 98 px: EN / CN 80, JP 64, HK 56; the second lines 'Skin Boosters', 'スキンブースター',
+   '肌肤焕活项目', 'Skin Booster 水光針' are longer than '스킨부스터'), and the two bubbles beside the second line move out a little, so the lines stay clear of them */
+html:lang(en)[data-size="kakao"] .K1a1 .h-title,html:lang(zh-CN)[data-size="kakao"] .K1a1 .h-title{font-size:calc(80px*var(--fit,1))}
+html:lang(ja)[data-size="kakao"] .K1a1 .h-title{font-size:calc(64px*var(--fit,1))}
+html:lang(zh-HK)[data-size="kakao"] .K1a1 .h-title{font-size:calc(56px*var(--fit,1))}
+html:lang(en)[data-size="kakao"] .K1a1 .bbs1,html:lang(ja)[data-size="kakao"] .K1a1 .bbs1,html:lang(zh-CN)[data-size="kakao"] .K1a1 .bbs1,html:lang(zh-HK)[data-size="kakao"] .K1a1 .bbs1{left:20px}
+html:lang(en)[data-size="kakao"] .K1a1 .bbs2,html:lang(ja)[data-size="kakao"] .K1a1 .bbs2,html:lang(zh-CN)[data-size="kakao"] .K1a1 .bbs2,html:lang(zh-HK)[data-size="kakao"] .K1a1 .bbs2{left:662px}
+/* phones, A: the HK second title line 'Skin Booster 水光針' is 19 px wider than the phone title box (296 px) at the Korean 35 px; 33 px */
+@container (max-width:600px){html:lang(zh-HK) .c1:not(.bv) .h-title{font-size:33px}}
+/* card 3 (home / board): the EN / JP lead, block texts and concern rows are longer; the concern rows a little tighter and the block texts a little
+   smaller, so the source line stays on the card */
+@container (min-width:601px){html:lang(en) .c4:not([data-size-only]) .ch,html:lang(ja) .c4:not([data-size-only]) .ch{padding-top:calc(12*var(--px));padding-bottom:calc(12*var(--px))}html:lang(en) .c4:not([data-size-only]) .blk-d,html:lang(ja) .c4:not([data-size-only]) .blk-d{font-size:max(12px,calc(17.5*var(--px)))}}
+/* kakao 3-3 (the concern table in two narrow columns): as TW / TH, smaller concerns with less row padding and smaller answers */
+html:lang(en)[data-size]:not(#sz) .K43 .ch,html:lang(ja)[data-size]:not(#sz) .K43 .ch{padding-top:10px;padding-bottom:10px}
+html:lang(en)[data-size]:not(#sz) .K43 .ch-q,html:lang(ja)[data-size]:not(#sz) .K43 .ch-q{font-size:17px;line-height:1.3}
+html:lang(en)[data-size]:not(#sz) .K43 .ch-a,html:lang(ja)[data-size]:not(#sz) .K43 .ch-a{font-size:18px}
+/* kakao 3-2: the JP block 3 text a little smaller, so it ends on the card */
+html:lang(ja)[data-size]:not(#sz) .K42 .blk-d{font-size:17px}
+/* card 4 (home / board): the EN title takes two lines (Korean one); smaller step texts and care lines with less step padding keep the source line on the card */
+@container (min-width:601px){html:lang(en) .c5:not([data-size-only]) .st-d{font-size:max(12px,calc(18*var(--px)))}html:lang(en) .c5:not([data-size-only]) .care li{font-size:max(12px,calc(19.5*var(--px)))}html:lang(en) .c5:not([data-size-only]) .care{margin-top:calc(18*var(--px))}html:lang(en) .c5:not([data-size-only]) .st{padding-top:calc(28*var(--px));padding-bottom:calc(30*var(--px))}}
+/* card 5 strengths (four narrow columns): the English widow guard kept 'Weekend Appointments' / 'Accurate Dosages' whole, wider than the column; there it
+   may wrap (fit() then sets the lines) */
+html:lang(en) .ab-strengths .at .nw{white-space:normal}
+/* card 6 B&A (kakao): the JP title 'リジュラン＆スキンブースター' took two lines (Korean one) and pushed the note off the card; one line at 48 px */
+html:lang(ja)[data-size]:not(#sz) .Kba .bb-ba__title{font-size:48px}
+/* card 5 (home / board): the EN strengths take more lines (above), so the location box's station line and address are a little smaller and the strengths'
+   notes a little smaller; the address stays inside the box (the map keeps its size) */
+@container (min-width:601px){html:lang(en) .c6:not([data-size-only]) .way-st{font-size:max(15px,calc(23*var(--px)))}html:lang(en) .c6:not([data-size-only]) .way-addr{font-size:max(12px,calc(14.5*var(--px)));line-height:1.4}html:lang(en) .c6:not([data-size-only]) .ab-strengths .ad{font-size:max(11px,calc(15*var(--px)))}}
+/* kakao 4-2: the three info boxes (as CMB12D TH kakao 5-3): smaller labels, values and notes, so the EN notes end on the card */
+html:lang(en)[data-size]:not(#sz) .K52 .inf-k{font-size:15px}
+html:lang(en)[data-size]:not(#sz) .K52 .inf-v{font-size:20px;line-height:1.25}
+html:lang(en)[data-size]:not(#sz) .K52 .inf-n{font-size:14px;line-height:1.4}
+/* kakao 5-3 location box (as TH): the map keeps its size; the EN box title, station line and address smaller so the address ends in the box */
+html:lang(en)[data-size]:not(#sz) .K63 .bt-loc .bt-t{font-size:22px}
+html:lang(en)[data-size]:not(#sz) .K63 .way{margin-top:8px}
+html:lang(en)[data-size]:not(#sz) .K63 .way-st{font-size:20px}
+html:lang(en)[data-size]:not(#sz) .K63 .way-addr{font-size:14px;line-height:1.45}
+/* card 2 B on the board (601-800 px): the JP option 'アイ（I）／エス（S）' (one phrase, no break) is 3 px wider than its row; JP options a little smaller there.
+   Line 2 B-1 (three tickets across): the CN option '丽珠兰白盒（I）/ 蓝盒（S）' is 8 px wider than its row; CN options 19 px there (as TW row 16 above) */
+@container (min-width:601px) and (max-width:800px){html:lang(ja) .cp.c2.bv:not([data-size-only]) .popt{font-size:calc(19*var(--px))}}
+html:lang(zh-CN)[data-size]:not(#sz) .L2b1 .popt{font-size:19px}
+/* card 2 B head (home / board, line 2 B): the snowflake sits right after the Korean title and the model cut-out at the right; the EN / JP title box ends
+   before the snowflake (as TW / TH: fit() sets the title to it) and the EN / JP lead (two lines) ends before the model. The HK title is too long for that
+   box even at the smallest fit, so on HK the snowflake moves up beside the 'Price list' kicker (clear of the title) */
+@container (min-width:601px){html:lang(en) .cp.c2.bv:not([data-size-only]) .p-title,html:lang(ja) .cp.c2.bv:not([data-size-only]) .p-title{max-width:calc(560*var(--px))}html:lang(en) .cp.c2.bv:not([data-size-only]) .p-lead,html:lang(ja) .cp.c2.bv:not([data-size-only]) .p-lead{max-width:calc(620*var(--px))}html:lang(zh-HK) .cp.c2.bv:not([data-size-only]) .dk2{top:calc(92*var(--px))}}
+html:lang(en)[data-size="line"] .L2b .p-title,html:lang(ja)[data-size="line"] .L2b .p-title{max-width:560px}
+html:lang(en)[data-size="line"] .L2b .p-lead,html:lang(ja)[data-size="line"] .L2b .p-lead{max-width:620px}
+html:lang(zh-HK)[data-size="line"] .L2b1 .dk2{top:92px}
+html:lang(zh-HK)[data-size="line"] .L2b2 .dk2{right:300px}
+html:lang(en)[data-size="kakao"] .K2b1 .p-lead,html:lang(ja)[data-size="kakao"] .K2b1 .p-lead{padding-right:150px}
+/* kakao 1-2 and line 1-A (the hero price beside the model): the JP / HK price in full ('198,000ウォン', '198,000韓元') ran into the model's hand; the price
+   tag goes above the price (the price starts at the left edge), so the price ends before her */
+html:lang(ja)[data-size="kakao"] .K1a2 .tz-main,html:lang(zh-HK)[data-size="kakao"] .K1a2 .tz-main,html:lang(ja)[data-size="line"] .L1a .tz-main,html:lang(zh-HK)[data-size="line"] .L1a .tz-main{grid-template-columns:auto}
+html:lang(ja)[data-size="kakao"] .K1a2 .tz-price,html:lang(zh-HK)[data-size="kakao"] .K1a2 .tz-price,html:lang(ja)[data-size="line"] .L1a .tz-price,html:lang(zh-HK)[data-size="line"] .L1a .tz-price{grid-column:1;grid-row:2}
+html:lang(ja)[data-size="kakao"] .K1a2 .tz-vat,html:lang(zh-HK)[data-size="kakao"] .K1a2 .tz-vat,html:lang(ja)[data-size="line"] .L1a .tz-vat,html:lang(zh-HK)[data-size="line"] .L1a .tz-vat{grid-column:1;grid-row:3}
+/* kakao 2 B-1: the HK title row (under the kicker) ran into the model cut-out at the right and the snowflake: a smaller start size and a narrower box,
+   so it ends before her (fit() stops at its smallest step there), and the snowflake moves up beside the kicker */
+html:lang(zh-HK)[data-size="kakao"] .K2b1 .p-title{max-width:600px}
+html:lang(zh-HK)[data-size="kakao"] .K2b1 .pt-main{font-size:calc(54px*var(--fit,1))}
+html:lang(zh-HK)[data-size="kakao"] .K2b1 .dk2{top:80px}
+/* line 2 B-1 / kakao 2 B-1 (the ticket name beside the product photo): the JP name 'ジュベルック／ウルトラコール' broke inside 'ウルトラコール' (one word wider
+   than the column at 28 px) and the HK 'JUVELOOK／ULTRACOL' inside 'ULTRACOL'; smaller there, so each word keeps one line */
+html:lang(ja)[data-size]:not(#sz) .L2b1 [data-copy="c1_p7_name"]{font-size:22px}
+html:lang(ja)[data-size]:not(#sz) .K2b1 [data-copy="c1_p7_name"]{font-size:26px}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b1 [data-copy="c1_p7_name"]{font-size:24px}
+/* card 2 B (home / board): the JP ticket name 'リジュラン＋ジュベルック' broke into four lines in the narrow name column; 22 px, two lines */
+@container (min-width:601px){html:lang(ja) .cp.c2.bv:not([data-size-only]) [data-copy="c1_p14_name"]{font-size:calc(22*var(--px))}}
+/* card 5 booking box (home / board): the international number '+82-2-336-7511' is three characters longer than '02-336-7511'; its line is a little
+   smaller and stays inside the box padding (as CMB12C / CMB12D TH) */
+@container (min-width:601px){html:lang(en) .c6:not([data-size-only]) .bk-phone,html:lang(ja) .c6:not([data-size-only]) .bk-phone,html:lang(zh-CN) .c6:not([data-size-only]) .bk-phone,html:lang(zh-HK) .c6:not([data-size-only]) .bk-phone{font-size:max(17px,calc(26*var(--px)))}}
+/* card 5 on the board (601-800 px): the EN address is set at the 12 px minimum there; the station line a little smaller and the gap above it smaller */
+@container (min-width:601px) and (max-width:800px){html:lang(en) .c6:not([data-size-only]) .way-st{font-size:15px}html:lang(en) .c6:not([data-size-only]) .way{margin-top:calc(6*var(--px))}}
+/* kakao 5-3 booking box: the JP second link 'LINE：@beautyblossom_jp' was 9 px wider than the box; the JP links a little smaller there */
+html:lang(ja)[data-size]:not(#sz) .K63 .bk-links{font-size:16px}
+/* hero B (home / board): the JP price in full ('198,000ウォン') did not fit beside its tag; the tag takes its own row and the price with its VAT note the next */
+@container (min-width:601px){html:lang(ja) .c1.bv:not([data-size-only]) .tz-tag{flex-basis:100%}}
+/* hero B (home / board): with the tag on its own row, the JP price '198,000ウォン' and its VAT note were 8 px wider than the price box, so the note fell
+   to a fourth row below the stage; the box gives up part of its right padding (the lineup photo stays 30 px away) and the note sits beside the price */
+@container (min-width:601px){html:lang(ja) .c1.bv:not([data-size-only]) .tz{padding-right:calc(8*var(--px))}}
+/* card 5 location box (home / board): the JP address takes two lines; the station line and the address a little smaller (as EN), so it stays in the box */
+@container (min-width:601px){html:lang(ja) .c6:not([data-size-only]) .way-st{font-size:max(15px,calc(23*var(--px)))}html:lang(ja) .c6:not([data-size-only]) .way-addr{font-size:max(12px,calc(14.5*var(--px)));line-height:1.4}}
+/* kakao 5-3 location box: the EN address with its check-in note ran 6 px past the box; the address a little smaller there */
+html:lang(en)[data-size]:not(#sz) .K63 .way-addr{font-size:13px}
+
+/* card 3 on the board (601-800 px): the JP answers 'リジュラン ヒーラー・リリイドM' / 'リジュラン エス（S）' took three / two lines and the source note
+   ran past the card; the answers a little smaller there (two lines / one line) */
+@container (min-width:601px) and (max-width:800px){html:lang(ja) .c4:not([data-size-only]) .ch-a{font-size:14px}}
+/* <lang-center-1119> */
+/* EN / JP / CN / HK chip and pill text centring (generated, 2026-11-19; a separate block after the TW / TH one, which stays as it was): per element,
+   measured with text-center-check + language (1080 / 780 / line / kakao). The TW rules above (:lang(zh)) also reach CN and HK; these come later and win.
+   The JP / CN / HK text is set in Noto Sans JP / SC / TC, whose letters sit lower / higher in the line than Pretendard's; each chip moves
+   its text by whole pixels (top / bottom padding swapped, same height; a 1 px taller box where the text sat half a pixel off), the hero sub box moves only its
+   text (its snowflake icon stays centred) */
+@container (min-width:801px){
+ html:lang(en) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill{padding-top:10px;padding-bottom:9px}
+ html:lang(en) [data-card="1"]:not([data-size-only])[data-variant="b"] p.pill{padding-top:10px;padding-bottom:9px}
+ html:lang(en) [data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_p7_sub"]{padding-top:1.66px;padding-bottom:1.38px}
+ html:lang(ja) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:1px}
+ html:lang(ja) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill{padding-top:8px;padding-bottom:11px}
+ html:lang(ja) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+ html:lang(ja) [data-card="1"]:not([data-size-only])[data-variant="b"] p.pill{padding-top:8px;padding-bottom:11px}
+ html:lang(ja) [data-card="1"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_hero_opt"]{padding-top:2.42px;padding-bottom:2.14px}
+ html:lang(ja) [data-card="2"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_p7_sub"]{padding-top:1.66px;padding-bottom:1.38px}
+ html:lang(ja) [data-card="2"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_p7_sub"]{padding-top:0.24px;padding-bottom:2.32px}
+ html:lang(ja) [data-card="5"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_ab_way_line"]{padding-top:2.22px;padding-bottom:3.38px}
+ html:lang(zh-CN) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:-1px}
+ html:lang(zh-CN) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill{padding-top:8px;padding-bottom:11px}
+ html:lang(zh-CN) [data-card="1"]:not([data-size-only])[data-variant="b"] p.pill{padding-top:8px;padding-bottom:11px}
+ html:lang(zh-CN) [data-card="5"]:not([data-size-only]):not([data-variant="b"]) figcaption[data-copy="c1_ab_ph1"]{padding-top:5.94px;padding-bottom:1.86px}
+ html:lang(zh-CN) [data-card="5"]:not([data-size-only]):not([data-variant="b"]) figcaption[data-copy="c1_ab_ph2"]{padding-top:5.94px;padding-bottom:1.86px}
+ html:lang(zh-CN) [data-card="5"]:not([data-size-only]):not([data-variant="b"]) figcaption[data-copy="c1_ab_ph3"]{padding-top:5.94px;padding-bottom:1.86px}
+ html:lang(zh-HK) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:-1px}
+ html:lang(zh-HK) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill{padding-top:8px;padding-bottom:11px}
+ html:lang(zh-HK) [data-card="1"]:not([data-size-only])[data-variant="b"] p.pill{padding-top:8px;padding-bottom:11px}
+ html:lang(zh-HK) [data-card="1"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+ html:lang(zh-HK) [data-card="2"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_p7_sub"]{padding-top:1.24px;padding-bottom:1.32px}
+}
+@container (min-width:601px) and (max-width:800px){
+ html:lang(ja) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_hero_opt"]{padding-top:1.47px;padding-bottom:1.823px}
+ html:lang(ja) [data-card="1"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_hero_opt"]{padding-top:1.47px;padding-bottom:1.823px}
+ html:lang(ja) [data-card="5"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_ab_way_line"]{padding-top:2.74px;padding-bottom:2.66px}
+ html:lang(zh-CN) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:-1px}
+ html:lang(zh-CN) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill{padding-top:5.5px;padding-bottom:8.222px}
+ html:lang(zh-CN) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_hero_opt"]{padding-top:1.47px;padding-bottom:1.823px}
+ html:lang(zh-CN) [data-card="2"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_p7_sub"]{padding-top:0.618px;padding-bottom:1.231px}
+ html:lang(zh-HK) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:-1.5px}
+ html:lang(zh-HK) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill{padding-top:5.5px;padding-bottom:8.222px}
+ html:lang(zh-HK) [data-card="1"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="c1_hero_opt"]{padding-top:1.47px;padding-bottom:1.823px}
+ html:lang(zh-HK) [data-card="1"]:not([data-size-only])[data-variant="b"] span[data-copy="c1_hero_opt"]{padding-top:1.47px;padding-bottom:1.823px}
+}
+html:lang(en)[data-size="line"]:not(#sz) .L1a p.pill{padding-top:10px;padding-bottom:9px}
+html:lang(en)[data-size="line"]:not(#sz) .L1b p.pill{padding-top:10px;padding-bottom:9px}
+html:lang(en)[data-size="line"]:not(#sz) .L2a1 span[data-copy="c1_p7_sub"]{padding-top:1.66px;padding-bottom:1.38px}
+html:lang(ja)[data-size="line"]:not(#sz) .L1a p.pill{padding-top:8px;padding-bottom:11px}
+html:lang(ja)[data-size="line"]:not(#sz) .L1a span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+html:lang(ja)[data-size="line"]:not(#sz) .L1b p.pill{padding-top:8px;padding-bottom:11px}
+html:lang(ja)[data-size="line"]:not(#sz) .L1b span[data-copy="c1_hero_opt"]{padding-top:2.42px;padding-bottom:2.14px}
+html:lang(ja)[data-size="line"]:not(#sz) .L2a1 span[data-copy="c1_p7_sub"]{padding-top:0.66px;padding-bottom:2.38px}
+html:lang(ja)[data-size="line"]:not(#sz) .L2b1 span[data-copy="c1_p7_sub"]{padding-top:1.24px;padding-bottom:1.32px}
+html:lang(zh-CN)[data-size="line"]:not(#sz) .L1a p.pill{padding-top:8px;padding-bottom:11px}
+html:lang(zh-CN)[data-size="line"]:not(#sz) .L1b p.pill{padding-top:8px;padding-bottom:11px}
+html:lang(zh-CN)[data-size="line"]:not(#sz) .L61 figcaption[data-copy="c1_ab_ph1"]{padding-top:5.94px;padding-bottom:1.86px}
+html:lang(zh-CN)[data-size="line"]:not(#sz) .L61 figcaption[data-copy="c1_ab_ph2"]{padding-top:5.94px;padding-bottom:1.86px}
+html:lang(zh-CN)[data-size="line"]:not(#sz) .L61 figcaption[data-copy="c1_ab_ph3"]{padding-top:5.94px;padding-bottom:1.86px}
+html:lang(zh-HK)[data-size="line"]:not(#sz) .L1a p.pill{padding-top:8px;padding-bottom:11px}
+html:lang(zh-HK)[data-size="line"]:not(#sz) .L1b p.pill{padding-top:8px;padding-bottom:11px}
+html:lang(zh-HK)[data-size="line"]:not(#sz) .L1b span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+html:lang(zh-HK)[data-size="line"]:not(#sz) .L2b1 span[data-copy="c1_p7_sub"]{padding-top:1.24px;padding-bottom:1.32px}
+html:lang(en)[data-size="kakao"]:not(#sz) .K1a1 p.pill{padding-top:10px;padding-bottom:9px}
+html:lang(en)[data-size="kakao"]:not(#sz) .K1b1 p.pill{padding-top:10px;padding-bottom:9px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K1a1 p.pill{padding-top:8px;padding-bottom:11px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K1a2 span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K1b1 p.pill{padding-top:8px;padding-bottom:11px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K1b2 span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:4.14px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K2a1 span[data-copy="c1_p7_sub"]{padding-top:1.16px;padding-bottom:1.88px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K2a3 span[data-copy="c1_r14_badge"]{padding-top:7.3px;padding-bottom:6.3px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K2b1 span[data-copy="c1_p7_sub"]{padding-top:0.24px;padding-bottom:2.32px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K42 span[data-copy="c1_c4_b2_k"]{padding-top:2.36px;padding-bottom:2.12px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K1a1 p.pill{padding-top:9px;padding-bottom:11px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K1b1 p.pill{padding-top:9px;padding-bottom:11px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K2a1 span[data-copy="c1_p7_sub"]{padding-top:1.16px;padding-bottom:1.88px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K61 figcaption[data-copy="c1_ab_ph1"]{padding-top:5.94px;padding-bottom:2.86px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K61 figcaption[data-copy="c1_ab_ph2"]{padding-top:5.94px;padding-bottom:1.86px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz) .K61 figcaption[data-copy="c1_ab_ph3"]{padding-top:5.94px;padding-bottom:1.86px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K1a1 p.pill{padding-top:9px;padding-bottom:11px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K1b1 p.pill{padding-top:9px;padding-bottom:11px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K1b2 span[data-copy="c1_hero_opt"]{padding-top:1.42px;padding-bottom:3.14px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K2a1 span[data-copy="c1_p7_sub"]{padding-top:2.16px;padding-bottom:2.88px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K2a2 span[data-copy="c1_r11_badge"]{padding-top:7.3px;padding-bottom:7.3px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) .K2b2 span[data-copy="c1_r11_badge"]{padding-top:6.3px;padding-bottom:7.3px}
+/* </lang-center-1119> */
+/* <chip-font-1119> */
+/* centring, kakao: three chips whose text stayed half a pixel off whatever the padding (their row centre falls on a half pixel); a slightly different
+   type size moves the letters onto the pixel grid */
+html:lang(ja)[data-size="kakao"]:not(#sz):not(#sz2) .K1b2 span[data-copy="c1_hero_opt"]{font-size:18.5px}
+html:lang(zh-CN)[data-size="kakao"]:not(#sz):not(#sz2) .K2a1 span[data-copy="c1_p7_sub"]{font-size:18px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz):not(#sz2) .K2a2 span[data-copy="c1_r11_badge"]{font-size:14.5px}
+/* </chip-font-1119> */
