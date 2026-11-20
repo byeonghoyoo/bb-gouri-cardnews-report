@@ -146,6 +146,7 @@ html:lang(th)[data-size]:not(#sz) .p-c .K2b .b-ticket .popt{font-size:16px;line-
    are not changed: the Thai page stays as built on 11/18). Fonts and line breaks as CMB12D (the same layout system and renderer). ==== */
 /* TW (zh-TW) in Noto Sans TC, CN (zh-CN) in Noto Sans SC, JP in Noto Sans JP (loaded by combo12c.js), the Latin display fonts (Jost, Instrument Serif) first */
 html:lang(zh-TW){--f-cjk:'Noto Sans TC'}
+html:lang(zh-HK){--f-cjk:'Noto Sans TC'} /* 2026-11-20 HK (traditional characters, as CMB12A / CMB12D HK); every :lang(zh) rule below applies to HK as to TW / CN */
 html:lang(zh-CN){--f-cjk:'Noto Sans SC'}
 html:lang(ja){--f-cjk:'Noto Sans JP';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-en:'Jost',var(--f-cjk),'Pretendard Variable',Pretendard,sans-serif;--f-serif:'Instrument Serif',var(--f-cjk),Georgia,serif}
 /* JP: phrase breaks so a line breaks between words, never inside a katakana word; the Latin B/A labels keep the Korean page's font */
@@ -235,6 +236,49 @@ html:lang(zh-TW)[data-size]:not(#sz) .p-c .K53 .bk-phone.is-id{font-size:21px}
 /* CN kakao 5-1: the reception photo label's text flipped between half a pixel above and below the middle; the label stands a quarter pixel higher / lower */
 html:lang(zh-CN)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c3_ab_ph1"]{bottom:10.25px}
 
+/* ==== 2026-11-20 language version HK (v4/combo12c/i18n-1118.cjs). Only zh-HK selectors; HK also takes the :lang(zh) rules above (as TW / CN). The
+   HK copy is longer than the TW / CN one in the price cards (the Potenza tip in front of every option, 'Cryo 冷凍舒緩護理', the VAT line
+   '以上價格均未包含10%增值稅（VAT）'), so the price cards take the JP sizes; everything else stays as on the TW / CN pages ==== */
+/* about title: the HK reviewers broke it into two phrases with a line break ('讓美麗綻放' / '點亮你的每一天'); the break is kept (as CMB12D HK) */
+html:lang(zh-HK) .ab-title{white-space:pre-line}
+/* kakao 1 B part 1: 'Potenza' (Latin) at the Korean 108 px is wider than the 400 px title column and broke inside ('Potenz' / 'a'), the title took three
+   lines and ran into the hook; smaller, so 'Potenza' / '專屬療程' take two lines above the hook; the hook as JP */
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K1b1 .h-ko{font-size:90px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K1b1 .b-hook{font-size:17px;line-height:1.45}
+/* kakao 1 A part 2: the HK VAT line beside the hero price ran under the device photo at the right; it takes two lines there ('以上價格均未包含' / '10%增值稅（VAT）') */
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K1a2 .tz-vat{max-width:9.2em}
+/* ---- price card 2 A: the title 'Potenza專屬療程' ran under the green heart; it ends before the heart (as JP: the fit makes it smaller), and the rows are
+   a little tighter, so the board, the 49 % line and VAT stay on the card ---- */
+@container (min-width:601px){
+html:lang(zh-HK) .p-c .c2:not(.b-tickets) .p-title{max-width:calc(388*var(--px))}
+html:lang(zh-HK) .p-c .c2:not(.b-tickets):not([data-size-only]) .prow{padding-top:calc(8*var(--px));padding-bottom:calc(7*var(--px))}
+}
+/* phones: the heart stands right after the title; 'Potenza' / '專屬療程' take two lines (as JP), and the 49 % line wraps in its half of the card foot (as
+   JP / CN) */
+@container (max-width:600px){html:lang(zh-HK) .p-c .c2:not(.b-tickets):not([data-size-only]) .p-title{max-width:124px}html:lang(zh-HK) .p-c .c2:not(.b-tickets):not([data-size-only]) .pt-main{font-size:20px;word-break:normal}html:lang(zh-HK) .p-c .cp:not([data-size-only]) > .uibeop{max-width:130px}html:lang(zh-HK) .p-c .cp:not([data-size-only]) .cp-foot .vat{max-width:9.2em}}
+/* kakao 2 A: the title before the heart; smaller option and prices, tighter rows (as JP), so VAT and the period stay on parts 2 and 3 */
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) main.p-c .K2a .p-title{max-width:406px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2a .popt{font-size:17px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2a .plist{font-size:13px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2a .psale{font-size:30px}
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) main.p-c .K2a .prow{padding-top:5px;padding-bottom:4px}
+/* card foot (phones above, kakao 2 A here): the HK VAT line '以上價格均未包含10%增值稅（VAT）' is three times as long as the TW / CN ones and ran into the
+   49 % line at the left of the foot; it takes two lines at the right ('以上價格均未包含' / '10%增值稅（VAT）'), and on phones the 49 % line a little narrower */
+html:lang(zh-HK)[data-size="kakao"]:not(#sz) main.p-c .K2a .cp-foot .vat{max-width:9.2em}
+/* line 2 B: the nine tickets three across: the list price on its own row above the sale price, smaller family line and option (as JP), so the third
+   row of tickets and VAT stay on the card */
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .L2b .b-ticket{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto auto;padding:12px 16px;gap:4px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .L2b .b-ticket .b-family{font-size:14px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .L2b .b-ticket .popt{font-size:16px;line-height:1.35}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .L2b .b-ticket .plist{grid-column:1;justify-self:start;font-size:15px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .L2b .b-ticket .psale{grid-column:1;justify-self:start;font-size:30px}
+/* board 780: the HK tickets are a few lines longer than the JP ones and pushed VAT under the card; the tickets a little tighter there (home has room) */
+@media (min-width:601px) and (max-width:999px){html:lang(zh-HK) .p-c .c2.b-tickets:not([data-size-only]) .b-ticket{padding-top:calc(14*var(--px));padding-bottom:calc(14*var(--px))}}
+/* kakao 2 B: the tickets two across: smaller family line, option and prices (as JP), so VAT stays on part 2 */
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2b .b-ticket .b-family{font-size:13px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2b .b-ticket .popt{font-size:15.5px;line-height:1.35}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2b .b-ticket .plist{font-size:13px}
+html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2b .b-ticket .psale{font-size:30px}
 /* <lang-center-1120> component text centring per language (generated by v4/filler12a/qa/lang-center.cjs with qa/tc-lang.cjs on real pixels, 2026-11-19):
    the language text is set in Noto Sans Thai / SC / JP, whose letters sit higher or lower in the line than the Korean Pretendard text; each off-centre
    component moves its text by padding (same height) or a relative top next to an icon, per size (home 1080 / board 780 / line / kakao) */
@@ -271,6 +315,29 @@ html:lang(zh-CN)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-va
 html:lang(zh-CN)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c3_ab_ph2"]{padding-top:5.789px!important;padding-bottom:2.011px!important}
 html:lang(zh-CN)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c3_ab_ph3"]{padding-top:5.789px!important;padding-bottom:2.011px!important}
 html:lang(zh-CN)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c3_ab_way_line"]{padding-top:2.372px!important;padding-bottom:3.228px!important}
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-chip[data-copy="c3_p46_chip"]{padding-top:0.10322em!important;padding-bottom:0.17678em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.dev-e[data-copy="c3_dev_e"]{padding-top:0.11818em!important;padding-bottom:0.14182em!important}
+html:lang(zh-HK):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c3_ab_way_line"]{padding-top:0.17188em!important;padding-bottom:0.22812em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-HK):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.tz-opt[data-copy="c3_hero_opt"]{padding-top:0.03818em!important;padding-bottom:0.20182em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.tz-opt[data-copy="c3_hero_opt"]{padding-top:0.03818em!important;padding-bottom:0.20182em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-chip[data-copy="c3_p46_chip"]{padding-top:0.12873em!important;padding-bottom:0.15127em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.way-k[data-copy="c3_w2_k"]{padding-top:0.16358em!important;padding-bottom:0.15642em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.dev-e[data-copy="c3_dev_e"]{padding-top:0.10953em!important;padding-bottom:0.13047em!important}
+html:lang(zh-HK):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c3_ab_way_line"]{padding-top:0.19743em!important;padding-bottom:0.20257em!important}
+}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.prod-chip[data-copy="c3_p46_chip"]{padding-top:1.932px!important;padding-bottom:2.268px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.way-k[data-copy="c3_w2_k"]{padding-top:3.104px!important;padding-bottom:2.976px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.dev-e[data-copy="c3_dev_e"]{padding-top:1.859px!important;padding-bottom:1.741px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="c3_ab_way_line"]{padding-top:2.607px!important;padding-bottom:2.993px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-chip[data-copy="c3_p46_chip"]{padding-top:1.248px!important;padding-bottom:2.952px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-chip[data-copy="c3_p46_chip"]{padding-top:2.182px!important;padding-bottom:2.018px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-k[data-copy="c3_w1_k"]{padding-top:4.869px!important;padding-bottom:1.211px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-k[data-copy="c3_w2_k"]{padding-top:3.392px!important;padding-bottom:2.688px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.dev-e[data-copy="c3_dev_e"]{padding-top:1.536px!important;padding-bottom:2.064px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c3_ab_way_line"]{padding-top:2.372px!important;padding-bottom:3.228px!important}
 @media (min-width:601px) and (max-width:999px){
 html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-chip[data-copy="c3_p46_chip"]{padding-top:0.07959em!important;padding-bottom:0.20041em!important}
 html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.dev-e[data-copy="c3_dev_e"]{padding-top:0.12133em!important;padding-bottom:0.13867em!important}

@@ -9,9 +9,9 @@ const KEYS=Object.keys(DATA.locales.KO);
 /* 2026-11-18 language version TH, 2026-11-20 EN / JP / CN / TW (v4/combo12g/i18n-1120.cjs; copy v4/langverify/out/CMB12G.final.json via
    v4/combo12g/work/i18n-prep.cjs): <html lang> drives the language fonts and layout rules in combo12g-i18n.css (:lang()); the Google font of the language
    is added here (as CMB12A / CMB12B / CMB12D). Korean renders exactly as before. */
-const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th'};
-const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai'};
-const CJK={JP:1,CN:1,TW:1},SEGS={};
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai',HK:'Noto Sans TC'};
+const CJK={JP:1,CN:1,TW:1,HK:1},SEGS={}; /* HK added 2026-11-20 afternoon */
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -75,7 +75,8 @@ const KEEP_TH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Beau
 /* 2026-11-20 EN / JP / CN / TW: the phone numbers, a chat ID, a name in corner brackets, the Latin names with a space and a number with its unit stay whole
    (v4/combo12g/i18n-1120.cjs NEW_KEEP; KEEP_L = these + KEEP) */
 const KEEP_L=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Beauty Blossom|SHURINK UNIVERSE|Shurink Universe|Dr\\. Lee Geon-ho|Medione Medical Center|MediOne Medical Center|Mediwon Medical Center|Yanghwa-ro|Mapo-gu|FOTRA Quattro|Fortra Premium|ALLTITE (?:Mini|Face|Master)|Aurora Ampoule|\\d[\\d,.]*\\s?(?:shots|shot|KJ|kJ)\\b|'+KEEP.source,'g');
-const keepRe=()=>locale==='TH'?KEEP_TH:(locale!=='KO'&&LANG[locale]?KEEP_L:KEEP);
+const KEEP_HK=new RegExp(KEEP_L.source+'|\\d+(?:[・·、]\\d+)*[樓楼]','g'); /* 2026-11-20 HK: + floor numbers ('6・8樓') */
+const keepRe=()=>locale==='TH'?KEEP_TH:(locale==='HK'?KEEP_HK:(locale!=='KO'&&LANG[locale]?KEEP_L:KEEP));
 /* 2026-11-20 Chinese / Japanese (same as CMB12A / ONE12 / LIG12): the last three characters stay together, grown back to the start of their word (a '・'
    break or Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside). Thai has no guard (dictionary breaks), EN takes the
    Korean last-two-words guard */
