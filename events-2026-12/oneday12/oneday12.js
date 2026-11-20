@@ -63,7 +63,8 @@ function setParts(el,v,chip){
 /* card 6 hours: the day label and the time are styled apart */
 function setHours(el,v){
  el.textContent='';
- const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
+ /* 2026-11-19 EN: the time may carry AM / PM ('Weekdays 10:00 AM – 8:00 PM'); no other language writes AM / PM, so only EN changes */
+ const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}(?:\s?[AP]M)?\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
  if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];
  const t=document.createElement('span');t.className='ht';t.textContent=m[3];

@@ -567,10 +567,8 @@ html:lang(en) .ab-strengths .at{flex:1 1 auto;overflow-wrap:normal}
 /* kakao 7a-3: the station name keeps one line so the address stays on the card (as the Thai version) */
 html:lang(en)[data-size]:not(#sz) .K7c .way-st{font-size:20px}
 
-/* CN chip text centring (2026-11-18 noon): the CN text is set in Noto Sans SC (Latin letters and figures in Pretendard), whose Chinese glyphs sit
-   lower in the chips than Pretendard; each pill gets its own padding, measured on real pixels with qa/text-center-check.cjs (?lang=JP), per component
-   and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules; a pill that kept flipping by about half a pixel is moved as a whole by a
-   quarter or half pixel instead */
+/* JP chip text centring (2026-11-19): the JP text is set in Noto Sans JP (Latin letters and figures in Pretendard); each pill gets its own padding (or a small relative top), measured on
+   real pixels with qa/text-center-check.cjs (?lang=JP), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
 @media (min-width:601px) and (max-width:999px){
 html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) p.lig-fig-t[data-copy="lg_p_fig"]{padding-top:0.34505em!important;padding-bottom:0.45495em!important}
 html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.badge[data-copy="lg_r13_badge"]{padding-top:0.40299em!important;padding-bottom:0.19701em!important}
@@ -638,10 +636,8 @@ html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-varia
 html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.mk.mk7{padding-top:1.822px!important;padding-bottom:2.978px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="7"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="lg_ab_way_line"]{padding-top:2.998px!important;padding-bottom:2.602px!important}
 
-/* CN chip text centring (2026-11-18 noon): the CN text is set in Noto Sans SC (Latin letters and figures in Pretendard), whose Chinese glyphs sit
-   lower in the chips than Pretendard; each pill gets its own padding, measured on real pixels with qa/text-center-check.cjs (?lang=EN), per component
-   and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules; a pill that kept flipping by about half a pixel is moved as a whole by a
-   quarter or half pixel instead */
+/* EN chip text centring (2026-11-19): the EN text is set in Pretendard; each pill gets its own padding (or a small relative top), measured on
+   real pixels with qa/text-center-check.cjs (?lang=EN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
 @media (min-width:601px) and (max-width:999px){
 html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.badge[data-copy="lg_r8_badge"]{padding-top:0.40299em!important;padding-bottom:0.19701em!important}
 }
