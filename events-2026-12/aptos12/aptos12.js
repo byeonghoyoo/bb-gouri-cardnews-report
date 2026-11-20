@@ -67,13 +67,14 @@ function fit(){for(const el of document.querySelectorAll('.fit'))if(el.offsetPar
  for(const el of document.querySelectorAll('.bb-ba__title')){if(phone){el.style.removeProperty('--fit');continue;}fitTo(el,el.clientWidth,.6);}}
 
 /* words that must never be split across lines (display only, text content stays identical) */
+/* 2026-11-19 reviewed TH / JP: + 'ร้อยไหม', 'ยกกระชับ' (TH) and 'リフト', 'キャンペーン', 'ビューティーブロッサム' (JP) so the widow guard never cuts inside them ('NAMICAリフ|ト導入！') */
 const KEEP={
  ALL:['NAMICA 19','NAMICA S','NAMICA nano','02-336-7511','Exit 3'],
- TH:['แคปซูล','เนื้อเยื่อ','ดูดซึม','หัตถการ','ยกศีรษะ','สัปดาห์','สารคัดหลั่ง','คลินิก','ไฮยาลูรอนิก','แอซิด','เจเนอเรชัน','ไบโอลิฟติ้ง','ความกระชับ','รูปหน้า','พร้อมกัน','สกินโบท็อกซ์','อีเวนต์','เปิดตัว','กรอบหน้า','ใบหน้า','ส่วนกลาง','ระยะพักฟื้น','หัตถการ','แต่ละบุคคล','จัดฉาก','ถ่ายทำ','ทั้งหน้า','ช็อต','เส้น','ไหม','ปรึกษา','ข้อมูลการจอง','นางแบบ','สอบถาม','ที่นี่คือ','เฉพาะบุคคล','เราจะอยู่เคียงข้างคุณเสมอ'],
+ TH:['ร้อยไหม','ยกกระชับ','แคปซูล','เนื้อเยื่อ','ดูดซึม','หัตถการ','ยกศีรษะ','สัปดาห์','สารคัดหลั่ง','คลินิก','ไฮยาลูรอนิก','แอซิด','เจเนอเรชัน','ไบโอลิฟติ้ง','ความกระชับ','รูปหน้า','พร้อมกัน','สกินโบท็อกซ์','อีเวนต์','เปิดตัว','กรอบหน้า','ใบหน้า','ส่วนกลาง','ระยะพักฟื้น','หัตถการ','แต่ละบุคคล','จัดฉาก','ถ่ายทำ','ทั้งหน้า','ช็อต','เส้น','ไหม','ปรึกษา','ข้อมูลการจอง','นางแบบ','สอบถาม','ที่นี่คือ','เฉพาะบุคคล','เราจะอยู่เคียงข้างคุณเสมอ'],
  CN:['透明质酸','可吸收线','微胶囊','倒刺','疗程','诊察','复诊','玻尿酸','生物提升','新品首发','首发活动','下颌线','中下面部','第四代','皮肤肉毒','紧致','轮廓','咨询','摆拍图片','这里是Beauty Blossom'],
  TW:['可吸收線','微膠囊','倒刺','療程','回診','玻尿酸','生物拉提','新品首發','首發活動','下顎線','中下臉','第四代','皮膚肉毒','緊緻','輪廓','諮詢','示意圖','這裡是Beauty Blossom'],
  HK:['可吸收線','微膠囊','倒刺','療程','覆診','透明質酸','生物提升','新品首發','首發活動','下顎線','中下面部','第四代','皮膚肉毒','緊緻','輪廓','查詢','示意圖','這裡是Beauty Blossom'],
- JP:['微細カプセル','バーブ','フェイスマッサージ','入浴施設','ヒアルロン酸','バイオリフティング','リフティング','ローンチイベント','ローンチ','フェイスライン','中・下顔面','スキンボトックス','コアトックス','シグネチャー','デュアル','ダブル','カウンセリング','ハリと輪郭']
+ JP:['リフト','キャンペーン','ビューティーブロッサム','微細カプセル','バーブ','フェイスマッサージ','入浴施設','ヒアルロン酸','バイオリフティング','リフティング','ローンチイベント','ローンチ','フェイスライン','中・下顔面','スキンボトックス','コアトックス','シグネチャー','デュアル','ダブル','カウンセリング','ハリと輪郭']
 };
 const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const keepRe=loc=>{const l=[...KEEP.ALL,...(KEEP[loc]||[])].sort((a,b)=>b.length-a.length);return l.length?new RegExp(l.map(esc).join('|'),'gu'):null;};
@@ -123,6 +124,9 @@ function render(){
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
+ /* 2026-11-19 reviewed TH / JP (v4/aptos12/work/i18n-1119.cjs): the phone field may hold the country's LINE ID ('Line: @beautyblossom_th', 'LINE：@beautyblossom_jp');
+    then its link opens the LINE account instead of tel: (LIG12 / ONE12 / CRF12 / CMB12A TW rule). Korean and the other languages hold the number: nothing changes there. */
+ {const pv=String(fields.ap_phone??'').trim();if(locale!=='KO'&&pv&&!/^\+?\d[\d\s\-().]*$/.test(pv)&&CH&&CH.booking)for(const a of document.querySelectorAll('a[data-link="phone"]')){a.href=CH.booking;a.target='_blank';a.rel='noopener noreferrer';}}
  /* 2026-10-30: card 5 map = Google Maps capture for this locale (PAGE_COPY.maps); the <picture> media queries pick the width tier */
  const MAPS=(DATA.maps&&DATA.maps[locale])||null;
  for(const el of document.querySelectorAll('[data-map-tier]')){const f=MAPS&&MAPS[el.dataset.mapTier];if(!f)continue;const at=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(at)!==f)el.setAttribute(at,f);}
