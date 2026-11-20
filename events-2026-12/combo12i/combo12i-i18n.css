@@ -259,3 +259,794 @@ html:lang(th)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-varia
 html:lang(th)[data-size]:not(#sz) [data-card="7"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c9_ab_way_line"]{padding-top:3.170px!important;padding-bottom:2.430px!important}
 html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_g5_badge"]{padding-top:4.297px!important;padding-bottom:3.123px!important}
 /* TH-CENTER END */
+
+/* ===== EN / JP / CN / TW (2026-11-19, lead order LV_BUILD_1119): the English, Japanese, Simplified and Traditional Chinese versions (each rule names its
+   language; Korean and TH are untouched) =====
+   fonts as CMB12H TW / CMB12A JP: the language's Noto face first for its letters, the page's Latin display face (Poppins) keeps the Latin letters, the
+   display serif keeps its place after the CJK face; English uses the page's own faces. Chinese breaks between characters (normal; combo12i.js keeps the
+   last word of a Chinese text together), Japanese at its phrase boundaries (auto-phrase, as THM12 / CRF12 / OND12 / CMB12A JP) */
+html:lang(ja){--f-cjk:'Noto Sans JP';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-disp:var(--f-cjk),'Song Myung','Pretendard Variable',Pretendard,serif;--f-en:'Poppins',var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif}
+html:lang(zh-CN){--f-cjk:'Noto Sans SC';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-disp:var(--f-cjk),'Song Myung','Pretendard Variable',Pretendard,serif;--f-en:'Poppins',var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif}
+html:lang(zh-TW){--f-cjk:'Noto Sans TC';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-disp:var(--f-cjk),'Song Myung','Pretendard Variable',Pretendard,serif;--f-en:'Poppins',var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif}
+html:lang(ja) .sheet{word-break:auto-phrase}
+html:lang(zh-CN) .sheet,html:lang(zh-TW) .sheet{word-break:normal}
+/* hero pill and the about title: a Chinese name may not break between its characters (as CMB12H TW) */
+html:lang(zh-CN) .pill,html:lang(zh-CN) .ab-title,html:lang(zh-TW) .pill,html:lang(zh-TW) .ab-title{word-break:keep-all}
+
+/* ===== CN / TW layout (2026-11-19): html:lang(zh) = the Simplified (zh-CN) and Traditional (zh-TW) Chinese versions; the rules start from the TH rules of
+   this page where the Chinese copy has the same problem ===== */
+/* composition lines: the part after '+' is one long piece ('美白/补水/舒缓/修复护理'); it may wrap (as TH) */
+html:lang(zh) .pg-comp .seg,html:lang(zh) .b2-comp .seg{white-space:normal}
+/* information values: one Korean line, wider than the box in Chinese; they wrap (as TH) */
+html:lang(zh) .inf-v{white-space:normal}
+/* hero 1 B and the line hero 1 A band: the contact line (CN '预约咨询：官方微信 Beautyblossom00', TW '預約・諮詢 LINE@beautyblossom_tw') is about twice as
+   wide as the Korean one and squeezed the price column; it may wrap at its space in a column of 300 px (home / line) */
+html:lang(zh) .c1b .band-contact,html:lang(zh)[data-size="line"] main.b5 .L1a .band-contact{white-space:normal}
+@container (min-width:601px){html:lang(zh) .c1b:not([data-size-only]) .band-contact{max-width:calc(320*var(--px))}}
+html:lang(zh)[data-size="line"] main.b5 .L1b .band-contact{max-width:320px}
+/* card 7 booking box: the LINE ID / number ran out of the box at 30; 26 keeps it inside (as TH) */
+@container (min-width:601px){html:lang(zh) .cab:not([data-size-only]) .bk-phone{font-size:calc(26*var(--px))}}
+/* kakao hero 1 A-1: the two-character second title line ('激光', '雷射') is shorter than the Korean '레이저', so the fitted title grew to 178 px and ran past
+   the card; it keeps the Korean size (146) */
+html:lang(zh)[data-size="kakao"] main.b5 .K1a1 .h-big{font-size:calc(146px*var(--fit,1))}
+/* kakao hero 1 B-2: the contact line squeezed the price column to nothing and pushed the devices off the top; it wraps in 300 px and the price name is 20 */
+html:lang(zh)[data-size="kakao"] main.b5 .K1b2 .band-contact{max-width:300px}
+html:lang(zh)[data-size="kakao"] main.b5 .K1b2 .hp-name{font-size:20px}
+/* kakao 2 B tickets: the sale price is 28 with its unit under the figure and the list price 15 (as TH), so '55万韩元' and '160万韩元' stay in their columns */
+html:lang(zh)[data-size="kakao"] main.b5 .K2b .psale{font-size:28px}
+html:lang(zh)[data-size="kakao"] main.b5 .K2b .psale .u{display:block}
+html:lang(zh)[data-size="kakao"] main.b5 .K2b .plist{font-size:15px}
+/* kakao price cards (as TH): the list price goes under the option and the sale price beside both, with a little less row padding */
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn ps" "pl ps";row-gap:2px;align-items:center;padding-top:9px;padding-bottom:8px}
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .prow>.popt-w,html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .prow>.popt{grid-area:pn}
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .prow>.pmid{display:none}
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .prow>.plist{grid-area:pl;justify-self:start}
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .prow>.psale{grid-area:ps}
+/* kakao price cards: the two-line title and the lead (in the narrow right-hand column) made the head taller than the board; the lead goes under the title
+   across the card (16, one line, as TH), the title is 40 */
+html:lang(zh)[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini){grid-template-columns:minmax(0,1fr);grid-template-areas:"k" "t" "l";row-gap:4px}
+html:lang(zh)[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini) .p-lead{margin:0;max-width:none;font-size:16px}
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .pt-main{font-size:40px}
+/* price card 2 B tickets (home / board / line): '160万韩元' was clipped in the third option column of the second ticket; the sale price keeps its unit under
+   the figure and the three option columns are equal (as TH, at the Korean price size) */
+@container (min-width:601px){
+ html:lang(zh) .c2b:not([data-size-only]) .psale .u{display:block}
+ html:lang(zh) .c2b:not([data-size-only]) .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+html:lang(zh)[data-size="line"] main.b5 .c2b .psale .u{display:block}
+html:lang(zh)[data-size="line"] main.b5 .c2b .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* kakao 2 B: the composition line in the 200 px ticket stub is 13, so it ends above the device photos (as TH) */
+html:lang(zh)[data-size="kakao"] main.b5 .K2b .b2-comp{font-size:13px}
+/* kakao 7-3 booking box: the TW LINE ID line ran 31 px out of the box at 30; 24 keeps it inside */
+html:lang(zh)[data-size="kakao"] main.b5 .K73 .bk-phone{font-size:24px}
+/* card 7 booking box, TW: the phone line holds the LINE ID '@beautyblossom_tw' (17 Latin letters, chat icon and LINE link); it is 20 (as CMB12H TW) so it
+   stays inside the box */
+@container (min-width:601px){html:lang(zh-TW) .card:not([data-size-only]) .bk-phone.is-id{font-size:max(14px,calc(20*var(--px)))}}
+/* kakao 7-3 location box: the station line and the address are smaller, so the CN address stays inside the box (as TH) */
+html:lang(zh)[data-size="kakao"] main.b5 .K73 .way{margin-top:8px}
+html:lang(zh)[data-size="kakao"] main.b5 .K73 .way-st{font-size:20px}
+html:lang(zh)[data-size="kakao"] main.b5 .K73 .way-addr{font-size:14px;line-height:1.4}
+/* kakao price cards with the model photo (mini head): the one-line TW title ran under the photo; the title ends at 520 px (as TH) */
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .cp-mini .p-title{max-width:520px}
+
+/* ===== JP layout (2026-11-19) ===== The same layout rules as the TH version above (the TH comments explain each one), for the Japanese copy:
+   its prices are written in full ('15万ウォン' / '150K'), its pre-title, pill, composition, laser and information lines are longer than the Korean ones;
+   values that differ for this copy follow after the block. */
+html:lang(ja) .c1:not(.b-gallery) .h-pre>span{white-space:normal}
+@container (min-width:601px){html:lang(ja) .c1:not(.b-gallery):not([data-size-only]) .h-pre{font-size:calc(40*var(--px));max-width:calc(270*var(--px))}}
+@container (min-width:601px){
+ html:lang(ja) .c1:not(.b-gallery):not([data-size-only]) .pill{white-space:normal;font-size:calc(24*var(--px));border-radius:calc(22*var(--px))}
+ html:lang(ja) .c1:not(.b-gallery):not([data-size-only]) .hp-name{font-size:calc(20*var(--px))}
+ html:lang(ja) .c1:not(.b-gallery):not([data-size-only]) .band-main{gap:calc(10*var(--px))}
+}
+@container (min-width:601px){
+ html:lang(ja) .c1.b-gallery:not([data-size-only]) .hp-sale{font-size:calc(58*var(--px))}
+ html:lang(ja) .c1.b-gallery:not([data-size-only]) .hp-list{font-size:max(13px,calc(21*var(--px)))}
+}
+@container (min-width:601px){
+ html:lang(ja) .cp.pcm:not([data-size-only]) .prow{grid-template-columns:minmax(calc(80*var(--px)),auto) minmax(0,1fr) auto calc(250*var(--px))}
+ html:lang(ja) .cp.pcm:not([data-size-only]) .psale{font-size:calc(40*var(--px))}
+ html:lang(ja) .cp.pcm:not([data-size-only]) .plist{font-size:max(11px,calc(17*var(--px)))}
+}
+html:lang(ja) .inf-v{white-space:normal}
+html:lang(ja) .c1 .h-pre>span,html:lang(ja) .c1 .pill{text-wrap:balance}
+html:lang(ja) .pill-n{border-radius:.9em}
+@container (max-width:600px){
+ html:lang(ja) .c1.b-gallery .hp-price{flex-wrap:wrap;row-gap:2px}
+ html:lang(ja) .c1.b-gallery .hp-sale{font-size:28px}
+ html:lang(ja) .c1.b-gallery .band-contact{white-space:normal}
+ html:lang(ja) .c1:not(.b-gallery) .hp-price{margin-top:10px}
+ html:lang(ja) .cp.pcm .uibeop{position:static;margin-top:10px}
+}
+html:lang(ja)[data-size="line"] main.b5 .L1a .h-pre{font-size:40px;max-width:270px}
+html:lang(ja)[data-size="line"] main.b5 .L1a .hp-price{flex-wrap:wrap;row-gap:10px}
+html:lang(ja)[data-size="line"] main.b5 .L1a .hp-sale{font-size:60px}
+html:lang(ja)[data-size="line"] main.b5 .L1a .hp-name{font-size:21px}
+html:lang(ja)[data-size="line"] main.b5 .L1a .pill{font-size:24px;border-radius:22px}
+html:lang(ja)[data-size="line"] main.b5 .L1b .hp-name{display:block;font-size:19px}
+html:lang(ja)[data-size="line"] main.b5 .L1b .hp-sale{font-size:54px}
+html:lang(ja)[data-size="line"] main.b5 .L1b .hp-tag{margin-right:10px}
+html:lang(ja)[data-size="line"] main.b5 .L1b .hp-n{margin-right:.3em}
+html:lang(ja)[data-size="line"] main.b5 .L1b .band-main{gap:10px}
+html:lang(ja)[data-size="line"] main.b5 .L1b .hp-list{font-size:21px}
+html:lang(ja)[data-size="line"] main.b5 .L1b .pill{font-size:19px;border-radius:18px}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .prow{grid-template-columns:minmax(80px,auto) minmax(0,1fr) auto 250px}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .psale{font-size:40px}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .plist{font-size:17px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1a1 .h-pre{font-size:36px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1a2 .hp-name{font-size:20px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1a2 .hp-sale{font-size:52px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1a2 .hp-list{font-size:21px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1a2 .pill{font-size:22px;border-radius:20px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1a2 .band-period{font-size:27px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1a2 .band-row{column-gap:10px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .h-pre{display:block;font-size:28px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .h-pre>span{display:inline}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .h-pre>span+span::before{content:' '}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .h-big{font-size:120px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .hook{font-size:19px;max-width:300px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b2 .hp-name{font-size:20px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b2 .hp-price{flex-wrap:wrap;row-gap:10px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b2 .hp-sale{font-size:56px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b2 .pill{font-size:20px;border-radius:18px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn ps" "pl ps";row-gap:2px;align-items:center;padding-top:9px;padding-bottom:8px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .prow>.popt-w,html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .prow>.popt{grid-area:pn}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .prow>.pmid{display:none}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .prow>.plist{grid-area:pl;justify-self:start}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .prow>.psale{grid-area:ps;font-size:40px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .plist{font-size:17px}
+@container (min-width:601px){html:lang(ja) .cp.pcm:not([data-size-only]) .p-lead{max-width:calc(650*var(--px))}}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .p-lead{max-width:700px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .p-lead{max-width:500px}
+@container (min-width:601px){html:lang(ja) .cx.ca:not([data-size-only]) .q-title{max-width:calc(800*var(--px))}}
+html:lang(ja) .pg-comp .seg,html:lang(ja) .b2-comp .seg{white-space:normal}
+@container (min-width:601px){
+ html:lang(ja) .c1b:not([data-size-only]) .b1-big{font-size:calc(104*var(--px))}
+ html:lang(ja) .c1b:not([data-size-only]) .b1-gl1{right:calc(20*var(--px))}
+ html:lang(ja) .c1b:not([data-size-only]) .hp-sale{font-size:calc(56*var(--px))}
+ html:lang(ja) .c2b:not([data-size-only]) .psale{font-size:calc(34*var(--px))}
+ html:lang(ja) .c2b:not([data-size-only]) .psale .u{display:block}
+ html:lang(ja) .c2b:not([data-size-only]) .plist{font-size:max(11px,calc(17*var(--px)))}
+ html:lang(ja) .c2b:not([data-size-only]) .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+ html:lang(ja) .cp.pcm:not([data-size-only]) .pt-main{font-size:calc(54*var(--px))}
+ html:lang(ja) .cp.pcm:not([data-size-only]) .pill-n{font-size:max(13px,calc(22*var(--px)))}
+ html:lang(ja) .cp.pcm:not([data-size-only]) .pg-comp{font-size:max(11px,calc(16*var(--px)))}
+ html:lang(ja) .cp.pcm:not([data-size-only]) .pg-list{font-size:max(11px,calc(15*var(--px)))}
+ html:lang(ja) .cp.pcm:not([data-size-only]) .psv{font-size:max(11px,calc(14*var(--px)))}
+ html:lang(ja) .cx.cb:not([data-size-only]) .inf-v{font-size:calc(20*var(--px))}
+ html:lang(ja) .cx.cb:not([data-size-only]) .st-t{font-size:calc(21*var(--px))}
+ html:lang(ja) .cx.cb:not([data-size-only]) .st-d{font-size:max(11px,calc(16*var(--px)))}
+ html:lang(ja) .cab:not([data-size-only]) .bk-phone{font-size:calc(26*var(--px))}
+}
+@container (max-width:600px){
+ html:lang(ja) .c1b .b1-big{font-size:40px}
+ html:lang(ja) .c2b .psale{font-size:18px}
+ html:lang(ja) .c2b .psale .u{display:block}
+ html:lang(ja) .c2b .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+html:lang(ja)[data-size="line"] main.b5 .L1b .b1-big{font-size:104px}
+html:lang(ja)[data-size="line"] main.b5 .L1b .b1-gl1{right:20px}
+html:lang(ja)[data-size="line"] main.b5 .L1b .hp-sale{font-size:50px}
+html:lang(ja)[data-size="line"] main.b5 .c2b .psale{font-size:34px}
+html:lang(ja)[data-size="line"] main.b5 .c2b .psale .u{display:block}
+html:lang(ja)[data-size="line"] main.b5 .c2b .plist{font-size:17px}
+html:lang(ja)[data-size="line"] main.b5 .c2b .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .pt-main{font-size:54px}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .pill-n{font-size:22px}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .pg-comp{font-size:16px}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .pg-list{font-size:15px}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .psv{font-size:14px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .b1-pre{font-size:36px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .b1-big{font-size:84px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .b1-gl1{right:12px}
+html:lang(ja)[data-size="kakao"] main.b5 .K1b1 .pill{font-size:26px;white-space:normal}
+html:lang(ja)[data-size="kakao"] main.b5 .K2b .psale{font-size:28px}
+html:lang(ja)[data-size="kakao"] main.b5 .K2b .psale .u{display:block}
+html:lang(ja)[data-size="kakao"] main.b5 .K2b .plist{font-size:15px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .pill-n{font-size:19px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .pg-comp{font-size:16px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .pg-list{font-size:15px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .psv{font-size:14px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini){grid-template-columns:minmax(0,1fr);grid-template-areas:"k" "t" "l";row-gap:4px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini) .p-lead{margin:0;max-width:none;font-size:16px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .pt-main{font-size:36px}
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .cp-mini .p-title{max-width:520px}
+html:lang(ja)[data-size="kakao"] main.b5 .K2b .b2-comp{font-size:13px}
+html:lang(ja)[data-size="kakao"] main.b5 .K73 .way{margin-top:8px}
+html:lang(ja)[data-size="kakao"] main.b5 .K73 .way-st{font-size:20px}
+html:lang(ja)[data-size="kakao"] main.b5 .K73 .way-addr{font-size:14px;line-height:1.4}
+/* JP values that differ from the TH block */
+/* card 5 (1080 / 780): the Japanese device and guide notes take a line more and pushed the source line past the card; the notes are 16.5 and the guide
+   rows have 3 px less padding above and below */
+@container (min-width:601px){
+ html:lang(ja) .cx.ca:not([data-size-only]) .dv-d{font-size:max(11px,calc(16.5*var(--px)));line-height:1.5}
+ html:lang(ja) .cx.ca:not([data-size-only]) .gd li{padding-top:calc(9*var(--px));padding-bottom:calc(9*var(--px))}
+ html:lang(ja) .cx.ca:not([data-size-only]) .gd-n{font-size:max(11px,calc(16.5*var(--px)));line-height:1.45}
+}
+/* phones, price card titles: 'オーダーメイド色素治療' broke before its last character beside the model photo; the title is 22 and keeps its words whole, so
+   it breaks only after '＋' */
+@container (max-width:600px){
+ html:lang(ja) .cp .p-title{font-size:22px}
+ html:lang(ja) .cp .pt-main{word-break:keep-all}
+}
+/* card 7 (1080 / 780): the Japanese strengths take a line more, so the about box is 74 px taller and the address ran out of the location box; the map is
+   74 px lower (its picture is cropped, the marker stays in the middle) */
+@container (min-width:601px){html:lang(ja) .cab:not([data-size-only]) .map{aspect-ratio:460/350}}
+@media (min-width:601px) and (max-width:1023px){html:lang(ja) .cab:not([data-size-only]) .map{aspect-ratio:384/300}}
+/* price card 2 B ticket stubs: the katakana name 'デュアルピコシュアトーニング' (no break opportunity for auto-phrase) ran out of the stub; the stub pill breaks
+   by character here, and combo12i.js keeps 'デュアル', 'ピコシュア' and 'トーニング' whole, so it breaks only between them */
+/* kakao 2 B: the stub pill is 20, so 'ピコシュア' fits the 200 px stub on one line */
+html:lang(ja)[data-size="kakao"] main.b5 .K2b .pill-n{font-size:20px}
+html:lang(ja) .c2b .pill-n{word-break:normal}
+/* kakao price parts with the short head (cp-mini): the title took two lines at 36, so the price board ran over the '최대 49%' line in part 2 A-2; the title is
+   30 and keeps one line before the model photo */
+html:lang(ja)[data-size="kakao"] main.b5 .cp.pcm .cp-mini .pt-main{font-size:30px}
+
+/* ===== EN layout (2026-11-19) ===== The same layout rules as the TH version above (the TH comments explain each one), for the English copy:
+   its prices are written in full ('15万ウォン' / '150K'), its pre-title, pill, composition, laser and information lines are longer than the Korean ones;
+   values that differ for this copy follow after the block. */
+html:lang(en) .c1:not(.b-gallery) .h-pre>span{white-space:normal}
+@container (min-width:601px){html:lang(en) .c1:not(.b-gallery):not([data-size-only]) .h-pre{font-size:calc(40*var(--px));max-width:calc(270*var(--px))}}
+@container (min-width:601px){
+ html:lang(en) .c1:not(.b-gallery):not([data-size-only]) .pill{white-space:normal;font-size:calc(24*var(--px));border-radius:calc(22*var(--px))}
+ html:lang(en) .c1:not(.b-gallery):not([data-size-only]) .hp-name{font-size:calc(20*var(--px))}
+ html:lang(en) .c1:not(.b-gallery):not([data-size-only]) .band-main{gap:calc(10*var(--px))}
+}
+@container (min-width:601px){
+ html:lang(en) .c1.b-gallery:not([data-size-only]) .hp-sale{font-size:calc(58*var(--px))}
+ html:lang(en) .c1.b-gallery:not([data-size-only]) .hp-list{font-size:max(13px,calc(21*var(--px)))}
+}
+@container (min-width:601px){
+ html:lang(en) .cp.pcm:not([data-size-only]) .prow{grid-template-columns:minmax(calc(80*var(--px)),auto) minmax(0,1fr) auto calc(250*var(--px))}
+ html:lang(en) .cp.pcm:not([data-size-only]) .psale{font-size:calc(40*var(--px))}
+ html:lang(en) .cp.pcm:not([data-size-only]) .plist{font-size:max(11px,calc(17*var(--px)))}
+}
+html:lang(en) .inf-v{white-space:normal}
+html:lang(en) .c1 .h-pre>span,html:lang(en) .c1 .pill{text-wrap:balance}
+html:lang(en) .pill-n{border-radius:.9em}
+@container (max-width:600px){
+ html:lang(en) .c1.b-gallery .hp-price{flex-wrap:wrap;row-gap:2px}
+ html:lang(en) .c1.b-gallery .hp-sale{font-size:28px}
+ html:lang(en) .c1.b-gallery .band-contact{white-space:normal}
+ html:lang(en) .c1:not(.b-gallery) .hp-price{margin-top:10px}
+ html:lang(en) .cp.pcm .uibeop{position:static;margin-top:10px}
+}
+html:lang(en)[data-size="line"] main.b5 .L1a .h-pre{font-size:40px;max-width:270px}
+html:lang(en)[data-size="line"] main.b5 .L1a .hp-price{flex-wrap:wrap;row-gap:10px}
+html:lang(en)[data-size="line"] main.b5 .L1a .hp-sale{font-size:60px}
+html:lang(en)[data-size="line"] main.b5 .L1a .hp-name{font-size:21px}
+html:lang(en)[data-size="line"] main.b5 .L1a .pill{font-size:24px;border-radius:22px}
+html:lang(en)[data-size="line"] main.b5 .L1b .hp-name{display:block;font-size:19px}
+html:lang(en)[data-size="line"] main.b5 .L1b .hp-sale{font-size:54px}
+html:lang(en)[data-size="line"] main.b5 .L1b .hp-tag{margin-right:10px}
+html:lang(en)[data-size="line"] main.b5 .L1b .hp-n{margin-right:.3em}
+html:lang(en)[data-size="line"] main.b5 .L1b .band-main{gap:10px}
+html:lang(en)[data-size="line"] main.b5 .L1b .hp-list{font-size:21px}
+html:lang(en)[data-size="line"] main.b5 .L1b .pill{font-size:19px;border-radius:18px}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .prow{grid-template-columns:minmax(80px,auto) minmax(0,1fr) auto 250px}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .psale{font-size:40px}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .plist{font-size:17px}
+html:lang(en)[data-size="kakao"] main.b5 .K1a1 .h-pre{font-size:36px}
+html:lang(en)[data-size="kakao"] main.b5 .K1a2 .hp-name{font-size:20px}
+html:lang(en)[data-size="kakao"] main.b5 .K1a2 .hp-sale{font-size:52px}
+html:lang(en)[data-size="kakao"] main.b5 .K1a2 .hp-list{font-size:21px}
+html:lang(en)[data-size="kakao"] main.b5 .K1a2 .pill{font-size:22px;border-radius:20px}
+html:lang(en)[data-size="kakao"] main.b5 .K1a2 .band-period{font-size:27px}
+html:lang(en)[data-size="kakao"] main.b5 .K1a2 .band-row{column-gap:10px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .h-pre{display:block;font-size:28px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .h-pre>span{display:inline}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .h-pre>span+span::before{content:' '}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .h-big{font-size:120px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .hook{font-size:19px;max-width:300px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b2 .hp-name{font-size:20px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b2 .hp-price{flex-wrap:wrap;row-gap:10px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b2 .hp-sale{font-size:56px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b2 .pill{font-size:20px;border-radius:18px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn ps" "pl ps";row-gap:2px;align-items:center;padding-top:9px;padding-bottom:8px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .prow>.popt-w,html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .prow>.popt{grid-area:pn}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .prow>.pmid{display:none}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .prow>.plist{grid-area:pl;justify-self:start}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .prow>.psale{grid-area:ps;font-size:40px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .plist{font-size:17px}
+@container (min-width:601px){html:lang(en) .cp.pcm:not([data-size-only]) .p-lead{max-width:calc(650*var(--px))}}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .p-lead{max-width:700px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .p-lead{max-width:500px}
+@container (min-width:601px){html:lang(en) .cx.ca:not([data-size-only]) .q-title{max-width:calc(800*var(--px))}}
+html:lang(en) .pg-comp .seg,html:lang(en) .b2-comp .seg{white-space:normal}
+@container (min-width:601px){
+ html:lang(en) .c1b:not([data-size-only]) .b1-big{font-size:calc(104*var(--px))}
+ html:lang(en) .c1b:not([data-size-only]) .b1-gl1{right:calc(20*var(--px))}
+ html:lang(en) .c1b:not([data-size-only]) .hp-sale{font-size:calc(56*var(--px))}
+ html:lang(en) .c2b:not([data-size-only]) .psale{font-size:calc(34*var(--px))}
+ html:lang(en) .c2b:not([data-size-only]) .psale .u{display:block}
+ html:lang(en) .c2b:not([data-size-only]) .plist{font-size:max(11px,calc(17*var(--px)))}
+ html:lang(en) .c2b:not([data-size-only]) .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+ html:lang(en) .cp.pcm:not([data-size-only]) .pt-main{font-size:calc(54*var(--px))}
+ html:lang(en) .cp.pcm:not([data-size-only]) .pill-n{font-size:max(13px,calc(22*var(--px)))}
+ html:lang(en) .cp.pcm:not([data-size-only]) .pg-comp{font-size:max(11px,calc(16*var(--px)))}
+ html:lang(en) .cp.pcm:not([data-size-only]) .pg-list{font-size:max(11px,calc(15*var(--px)))}
+ html:lang(en) .cp.pcm:not([data-size-only]) .psv{font-size:max(11px,calc(14*var(--px)))}
+ html:lang(en) .cx.cb:not([data-size-only]) .inf-v{font-size:calc(20*var(--px))}
+ html:lang(en) .cx.cb:not([data-size-only]) .st-t{font-size:calc(21*var(--px))}
+ html:lang(en) .cx.cb:not([data-size-only]) .st-d{font-size:max(11px,calc(16*var(--px)))}
+ html:lang(en) .cab:not([data-size-only]) .bk-phone{font-size:calc(26*var(--px))}
+}
+@container (max-width:600px){
+ html:lang(en) .c1b .b1-big{font-size:40px}
+ html:lang(en) .c2b .psale{font-size:18px}
+ html:lang(en) .c2b .psale .u{display:block}
+ html:lang(en) .c2b .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+html:lang(en)[data-size="line"] main.b5 .L1b .b1-big{font-size:104px}
+html:lang(en)[data-size="line"] main.b5 .L1b .b1-gl1{right:20px}
+html:lang(en)[data-size="line"] main.b5 .L1b .hp-sale{font-size:50px}
+html:lang(en)[data-size="line"] main.b5 .c2b .psale{font-size:34px}
+html:lang(en)[data-size="line"] main.b5 .c2b .psale .u{display:block}
+html:lang(en)[data-size="line"] main.b5 .c2b .plist{font-size:17px}
+html:lang(en)[data-size="line"] main.b5 .c2b .b2-g2 .b2-opts{grid-template-columns:repeat(3,minmax(0,1fr))}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .pt-main{font-size:54px}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .pill-n{font-size:22px}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .pg-comp{font-size:16px}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .pg-list{font-size:15px}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .psv{font-size:14px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .b1-pre{font-size:36px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .b1-big{font-size:84px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .b1-gl1{right:12px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .pill{font-size:26px;white-space:normal}
+html:lang(en)[data-size="kakao"] main.b5 .K2b .psale{font-size:28px}
+html:lang(en)[data-size="kakao"] main.b5 .K2b .psale .u{display:block}
+html:lang(en)[data-size="kakao"] main.b5 .K2b .plist{font-size:15px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .pill-n{font-size:19px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .pg-comp{font-size:16px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .pg-list{font-size:15px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .psv{font-size:14px}
+html:lang(en)[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini){grid-template-columns:minmax(0,1fr);grid-template-areas:"k" "t" "l";row-gap:4px}
+html:lang(en)[data-size="kakao"] main.b5 .cp .cp-head:not(.cp-mini) .p-lead{margin:0;max-width:none;font-size:16px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .pt-main{font-size:36px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .cp-mini .p-title{max-width:520px}
+html:lang(en)[data-size="kakao"] main.b5 .K2b .b2-comp{font-size:13px}
+html:lang(en)[data-size="kakao"] main.b5 .K73 .way{margin-top:8px}
+html:lang(en)[data-size="kakao"] main.b5 .K73 .way-st{font-size:20px}
+html:lang(en)[data-size="kakao"] main.b5 .K73 .way-addr{font-size:14px;line-height:1.4}
+/* EN values that differ from the TH block */
+/* contact line ('Bookings & Inquiries' / 'WhatsApp: +82 10-7215-7511'): it keeps the reviewer's line break where the one-line contact ran out of the band
+   (hero 1 B, line hero 1 A, kakao hero 1 A-2) */
+html:lang(en) .c1b .band-contact [data-copy="c9_contact"],html:lang(en)[data-size="line"] main.b5 .L1a .band-contact [data-copy="c9_contact"],html:lang(en)[data-size="kakao"] main.b5 .K1a2 .band-contact [data-copy="c9_contact"]{white-space:pre-line;line-height:1.25}
+/* kakao hero 1 B-1: 'Pigmentation Laser care' keeps one line at 62 (TH 84) and the pre-title at 30 */
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .b1-big{font-size:62px}
+html:lang(en)[data-size="kakao"] main.b5 .K1b1 .b1-pre{font-size:30px}
+/* kakao hero 1 B-2: the contact line is 20 */
+html:lang(en)[data-size="kakao"] main.b5 .K1b2 .band-contact{font-size:20px}
+/* kakao price parts: the long English title is set at 26 on one line; the title box takes the same size (at 36 inside the Korean-sized title box each of
+   its two lines took the Korean line height and the board ran past the card) */
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .p-title{font-size:26px}
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .pt-main{font-size:calc(var(--fit,1)*1em)}
+/* kakao 2 B tickets: the option labels ('10 sessions') are 15, so they stay in their columns */
+html:lang(en)[data-size="kakao"] main.b5 .K2b .b2-opt{font-size:15px}
+/* kakao 6-1: the three-line title and the four-line lead pushed the steps past the card; the title is 44 and the lead 17 */
+html:lang(en)[data-size="kakao"] main.b5 .K61 .q-title{font-size:44px}
+html:lang(en)[data-size="kakao"] main.b5 .K61 .q-ans{font-size:17px}
+/* card 7 strengths: a title may break inside its kept last two words ('Weekend Appointments' is wider than its column, as CRF12 / SOF12 EN) */
+html:lang(en) .at .nw{white-space:normal}
+/* card 7 (1080 / 780): the about box is taller in English (wrapped strength titles), so the map is lower and the address stays inside the location box
+   (as JP) */
+@container (min-width:601px){html:lang(en) .cab:not([data-size-only]) .map{aspect-ratio:460/330}}
+@media (min-width:601px) and (max-width:1023px){html:lang(en) .cab:not([data-size-only]) .map{aspect-ratio:384/285}}
+/* phones, hero 1 B: 'Pigmentation Laser care' keeps one line at 30 (TH 40) and the pre-title wraps (balanced) */
+@container (max-width:600px){
+ html:lang(en) .c1b .b1-big{font-size:30px}
+ html:lang(en) .c1b .b1-pre{white-space:normal;text-wrap:balance}
+}
+/* line price cards: the title box takes the title size (40, two lines) instead of the Korean 70, so the head is 66 px lower and the rows stay on the board */
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .p-title{font-size:40px}
+html:lang(en)[data-size="line"] main.b5 .cp.pcm .pt-main{font-size:calc(var(--fit,1)*1em)}
+/* kakao 2 B tickets: the service chip under the middle option is 12 and wraps in its column, so it stays clear of the next prices */
+html:lang(en)[data-size="kakao"] main.b5 .K2b .psv{font-size:12px;white-space:normal}
+/* kakao price cards: the package-name pills are 17 (TH 19), so '(Premium Beauty Omakase)' (kept whole) fits the 250 px column */
+html:lang(en)[data-size="kakao"] main.b5 .cp.pcm .pill-n{font-size:17px}
+/* line and kakao price cards: the Chinese composition, laser and service lines take more lines, so the last row of price card 3 ran past its board; the
+   composition is 16, the laser list 15 and the service lines 14 (as TH) */
+html:lang(zh)[data-size="line"] main.b5 .cp.pcm .pg-comp,html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .pg-comp{font-size:16px}
+html:lang(zh)[data-size="line"] main.b5 .cp.pcm .pg-list,html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .pg-list{font-size:15px}
+html:lang(zh)[data-size="line"] main.b5 .cp.pcm .psv,html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .psv{font-size:14px}
+/* kakao price cards: rows with 3 px less padding above and below and package-name pills of 17, laser list 14, so price card 3 part 2 (the longest names)
+   keeps its rows and the left column on the board; line price card 3: rows with 2 px less padding above and below */
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .prow{padding-top:6px;padding-bottom:5px}
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .pill-n{font-size:17px}
+html:lang(zh)[data-size="kakao"] main.b5 .cp.pcm .pg-list{font-size:14px}
+html:lang(zh)[data-size="line"] main.b5 .L3 .prow{padding-top:6px;padding-bottom:5px}
+/* EN / JP price cards 2 A to 4 A (1080 / 780): the two-line title kept the Korean 70 title box, so each line took the Korean line height and the last
+   laser list ran past the board; the title box takes the title size (50) */
+@container (min-width:601px){
+ html:lang(en) .cp.pcm:not([data-size-only]) .p-title,html:lang(ja) .cp.pcm:not([data-size-only]) .p-title{font-size:calc(50*var(--px))}
+ html:lang(en) .cp.pcm:not([data-size-only]) .pt-main,html:lang(ja) .cp.pcm:not([data-size-only]) .pt-main{font-size:calc(var(--fit,1)*1em)}
+}
+/* JP line price cards: the same (title box 40, as EN) */
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .p-title{font-size:40px}
+html:lang(ja)[data-size="line"] main.b5 .cp.pcm .pt-main{font-size:calc(var(--fit,1)*1em)}
+/* EN price cards 2 A to 4 A (1080 / 780): the second title line ran under the model photo; the title box ends before her (690) and the title is fitted to it */
+@container (min-width:601px){html:lang(en) .cp.pcm:not([data-size-only]) .p-title{max-width:calc(690*var(--px))}}
+/* kakao 2 B ticket stubs: the stub pill is 17, so 'Dual' / 'PicoSure Toning' fits the 200 px stub in two lines (the keep list keeps 'PicoSure Toning', not
+   the whole name) */
+html:lang(en)[data-size="kakao"] main.b5 .K2b .pill-n{font-size:17px}
+/* kakao hero 1 B-2: the VAT chip and the two-line contact sit under each other at the right, so the price column keeps its width */
+html:lang(en)[data-size="kakao"] main.b5 .K1b2 .band-row{flex-direction:column;align-items:flex-end}
+/* kakao 5-1: the title and the lead ran under the water drop; the title is 36 (one line, so the device box keeps its place) and the lead ends at 560 px */
+html:lang(en)[data-size="kakao"] main.b5 .K51 .q-title{font-size:36px}
+html:lang(en)[data-size="kakao"] main.b5 .K51 .q-ans{max-width:560px}
+/* JP / CN / TW card 5: the fitted title (and the JP lead) ran under the water drop at the top right; the title box ends at 800 at home (as TH) and at
+   540 px on the kakao card, and so does the kakao lead */
+@container (min-width:601px){html:lang(zh) .cx.ca:not([data-size-only]) .q-title{max-width:calc(800*var(--px))}}
+html:lang(ja)[data-size="kakao"] main.b5 .K51 .q-title,html:lang(zh)[data-size="kakao"] main.b5 .K51 .q-title{max-width:540px}
+html:lang(ja)[data-size="kakao"] main.b5 .K51 .q-ans,html:lang(zh)[data-size="kakao"] main.b5 .K51 .q-ans{max-width:540px}
+/* kakao 5-1: the JP and TW titles are longer than the fitting allows (70 % at least); they are 32 (JP) and 36 (TW), one line within 540 px */
+html:lang(ja)[data-size="kakao"] main.b5 .K51 .q-title{font-size:32px}
+html:lang(zh-TW)[data-size="kakao"] main.b5 .K51 .q-title{font-size:36px}
+/* ===== JP / CN / TW centring outside the chips (2026-11-20) ===== */
+/* B/A arrow: the '›' is set in the Korean face (Pretendard), so it sits in the middle of its circle as on the Korean page (the CJK face drew it 3-4 px
+   low) */
+html:lang(ja) .cba .bb-ba__arrow,html:lang(zh) .cba .bb-ba__arrow{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif}
+/* card 5 Accu Toning band (home and LINE): the Chinese name sits 1.5 (CN) / 1.8 (TW) px and the description about 1 px low in the band (the Latin
+   wavelength is centred); the name and the description move up by that much */
+@container (min-width:601px){
+ html:lang(zh-CN) .cx.ca:not([data-size-only]) .dv3-n{position:relative;top:calc(-1.5*var(--px))}
+ html:lang(zh-TW) .cx.ca:not([data-size-only]) .dv3-n{position:relative;top:calc(-1.8*var(--px))}
+ html:lang(zh) .cx.ca:not([data-size-only]) .dv3-d{position:relative;top:calc(-1*var(--px))}
+}
+html:lang(zh)[data-size="line"] main.b5 .dv3-n{position:relative;top:-1.5px}
+html:lang(zh)[data-size="line"] main.b5 .dv3-d{position:relative;top:-.8px}
+/* TW-CENTER START */
+/* TW chip text centring (2026-11-20): the TW text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=TW), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-TW):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c9_pill"]{padding-top:0.38353em!important;padding-bottom:0.45647em!important}
+html:lang(zh-TW):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill.b1-pill[data-copy="c9_pill"]{padding-top:0.39687em!important;padding-bottom:0.44313em!important}
+html:lang(zh-TW):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.band-vat[data-copy="c9_vat"]{padding-top:0.20137em!important;padding-bottom:0.27863em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.25792em!important;padding-bottom:0.34208em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.26208em!important;padding-bottom:0.33792em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.25472em!important;padding-bottom:0.34528em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:0.19174em!important;padding-bottom:0.28826em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g3_head"]{padding-top:0.21440em!important;padding-bottom:0.38560em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:0.11045em!important;padding-bottom:0.36955em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g4_head"]{padding-top:0.20356em!important;padding-bottom:0.39644em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g5_head"]{padding-top:0.27744em!important;padding-bottom:0.32256em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g5_note"]{padding-top:0.20850em!important;padding-bottom:0.27150em!important}
+html:lang(zh-TW):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g7_head"]{padding-top:0.24640em!important;padding-bottom:0.35360em!important}
+html:lang(zh-TW):not(#sz) [data-card="7"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c9_ab_way_line"]{padding-top:0.15707em!important;padding-bottom:0.24293em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-TW):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c9_pill"]{padding-top:0.36833em!important;padding-bottom:0.47167em!important}
+html:lang(zh-TW):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill.b1-pill[data-copy="c9_pill"]{padding-top:0.37020em!important;padding-bottom:0.46980em!important}
+html:lang(zh-TW):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hp-tag[data-copy="c9_hp_tag"]{padding-top:0.21767em!important;padding-bottom:0.24233em!important}
+html:lang(zh-TW):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.band-vat[data-copy="c9_vat"]{padding-top:0.21621em!important;padding-bottom:0.26379em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.25568em!important;padding-bottom:0.34432em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.26720em!important;padding-bottom:0.33280em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r160_sv"]{padding-top:0.18735em!important;padding-bottom:0.29265em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.27936em!important;padding-bottom:0.32064em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.25440em!important;padding-bottom:0.34560em!important}
+html:lang(zh-TW):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:0.15497em!important;padding-bottom:0.32503em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g3_head"]{padding-top:0.25088em!important;padding-bottom:0.34912em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g3_note"]{padding-top:0.15837em!important;padding-bottom:0.32163em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:0.12594em!important;padding-bottom:0.35406em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g4_head"]{padding-top:0.21092em!important;padding-bottom:0.38908em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g4_note"]{padding-top:0.21500em!important;padding-bottom:0.34500em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:0.14297em!important;padding-bottom:0.43510em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g5_head"]{padding-top:0.26464em!important;padding-bottom:0.33536em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g5_note"]{padding-top:0.21950em!important;padding-bottom:0.26050em!important}
+html:lang(zh-TW):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g6_head"]{padding-top:0.26624em!important;padding-bottom:0.33376em!important}
+html:lang(zh-TW):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g7_head"]{padding-top:0.25064em!important;padding-bottom:0.34936em!important}
+html:lang(zh-TW):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g8_head"]{padding-top:0.27168em!important;padding-bottom:0.32832em!important}
+html:lang(zh-TW):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d1_m"]{padding-top:0.27235em!important;padding-bottom:0.28765em!important}
+html:lang(zh-TW):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d2_m"]{padding-top:0.27800em!important;padding-bottom:0.28200em!important}
+html:lang(zh-TW):not(#sz) [data-card="7"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c9_ab_way_line"]{padding-top:0.20214em!important;padding-bottom:0.19786em!important}
+}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:3.801px!important;padding-bottom:4.240px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] p.pill[data-copy="c9_pill"]{padding-top:11.514px!important;padding-bottom:13.686px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] p.pill.b1-pill[data-copy="c9_pill"]{padding-top:11.440px!important;padding-bottom:13.760px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:3.801px!important;padding-bottom:4.240px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.band-vat[data-copy="c9_vat"]{padding-top:4.117px!important;padding-bottom:5.003px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.392px!important;padding-bottom:8.608px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g2_head"]{padding-top:5.579px!important;padding-bottom:8.421px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c9_r160_badge"]{padding-top:4.582px!important;padding-bottom:2.838px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="line"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.978px!important;padding-bottom:8.022px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] span.pill-n[data-copy="c9_g2_head"]{padding-top:7.067px!important;padding-bottom:7.933px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:2.665px!important;padding-bottom:4.775px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g3_head"]{padding-top:6.391px!important;padding-bottom:9.909px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g3_note"]{padding-top:3.662px!important;padding-bottom:4.018px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:2.017px!important;padding-bottom:4.423px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g4_head"]{padding-top:5.058px!important;padding-bottom:9.942px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g4_note"]{padding-top:3.296px!important;padding-bottom:5.604px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.607px!important;padding-bottom:7.413px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g5_head"]{padding-top:6.228px!important;padding-bottom:8.772px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g5_note"]{padding-top:2.978px!important;padding-bottom:4.702px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.618px!important;padding-bottom:7.402px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g6_head"]{padding-top:7.157px!important;padding-bottom:7.843px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g7_head"]{padding-top:7.192px!important;padding-bottom:7.808px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.607px!important;padding-bottom:7.413px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g8_head"]{padding-top:7.133px!important;padding-bottom:7.867px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.dv-m[data-copy="c9_a_d1_m"]{padding-top:4.697px!important;padding-bottom:4.823px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.dv-m[data-copy="c9_a_d2_m"]{padding-top:4.819px!important;padding-bottom:4.701px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="7"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="c9_ab_way_line"]{padding-top:2.904px!important;padding-bottom:2.696px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] p.pill[data-copy="c9_pill"]{padding-top:11.210px!important;padding-bottom:13.990px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-part="1"][data-variant="b"][data-size-only~="kakao"] p.pill.b1-pill[data-copy="c9_pill"]{padding-top:11.103px!important;padding-bottom:14.097px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:2.730px!important;padding-bottom:4.262px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.band-vat[data-copy="c9_vat"]{padding-top:4.128px!important;padding-bottom:4.992px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g1_head"]{padding-top:4.634px!important;padding-bottom:5.566px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_g1_badge"]{padding-top:3.313px!important;padding-bottom:2.687px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g2_head"]{padding-top:6.585px!important;padding-bottom:7.415px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.766px!important;padding-bottom:8.234px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.pill-n[data-copy="c9_g2_head"]{padding-top:6.683px!important;padding-bottom:8.317px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:2.899px!important;padding-bottom:4.541px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.604px!important;padding-bottom:7.416px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g3_head"]{padding-top:5.754px!important;padding-bottom:8.246px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g3_note"]{padding-top:3.550px!important;padding-bottom:4.130px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_r163_badge"]{padding-top:4.520px!important;padding-bottom:2.900px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:1.636px!important;padding-bottom:5.084px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g4_head"]{padding-top:5.267px!important;padding-bottom:9.743px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g4_note"]{padding-top:3.662px!important;padding-bottom:4.018px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:1.567px!important;padding-bottom:4.653px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.604px!important;padding-bottom:7.416px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g5_head"]{padding-top:6.281px!important;padding-bottom:8.719px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g5_note"]{padding-top:3.123px!important;padding-bottom:5.057px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.604px!important;padding-bottom:7.416px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g6_head"]{padding-top:7.548px!important;padding-bottom:8.452px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_r170_badge"]{padding-top:4.520px!important;padding-bottom:2.900px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.604px!important;padding-bottom:7.416px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g7_head"]{padding-top:3.769px!important;padding-bottom:6.431px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.604px!important;padding-bottom:7.416px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g8_head"]{padding-top:4.735px!important;padding-bottom:5.465px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.dv-m[data-copy="c9_a_d1_m"]{padding-top:4.831px!important;padding-bottom:4.689px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="7"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c9_ab_way_line"]{padding-top:3.004px!important;padding-bottom:2.596px!important}
+/* TW-CENTER END */
+
+/* JP-CENTER START */
+/* JP chip text centring (2026-11-20): the JP text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=JP), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(ja):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.band-vat[data-copy="c9_vat"]{padding-top:0.21526em!important;padding-bottom:0.26474em!important}
+html:lang(ja):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.27296em!important;padding-bottom:0.32704em!important}
+html:lang(ja):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:0.21032em!important;padding-bottom:0.26968em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g3_note"]{padding-top:0.21700em!important;padding-bottom:0.26300em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g5_note"]{padding-top:0.21150em!important;padding-bottom:0.26850em!important}
+}
+@media (min-width:1000px){
+html:lang(ja):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hp-tag[data-copy="c9_hp_tag"]{padding-top:0.20421em!important;padding-bottom:0.25579em!important}
+html:lang(ja):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c9_pill"]{padding-top:0.40400em!important;padding-bottom:0.43600em!important}
+html:lang(ja):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill.b1-pill[data-copy="c9_pill"]{padding-top:0.36033em!important;padding-bottom:0.47967em!important}
+html:lang(ja):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hp-tag[data-copy="c9_hp_tag"]{padding-top:0.20680em!important;padding-bottom:0.25320em!important}
+html:lang(ja):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.band-vat[data-copy="c9_vat"]{padding-top:0.22411em!important;padding-bottom:0.25589em!important}
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.28436em!important;padding-bottom:0.31564em!important}
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.27709em!important;padding-bottom:0.32291em!important}
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c9_r160_badge"]{padding-top:0.32714em!important;padding-bottom:0.20286em!important}
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r160_sv"]{padding-top:0.19286em!important;padding-bottom:0.28714em!important}
+html:lang(ja):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.25760em!important;padding-bottom:0.34240em!important}
+html:lang(ja):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.27712em!important;padding-bottom:0.32288em!important}
+html:lang(ja):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:0.15497em!important;padding-bottom:0.32503em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g3_head"]{padding-top:0.27200em!important;padding-bottom:0.32800em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g3_note"]{padding-top:0.19600em!important;padding-bottom:0.28400em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g4_note"]{padding-top:0.22050em!important;padding-bottom:0.33950em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:0.28571em!important;padding-bottom:0.32857em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g5_head"]{padding-top:0.29300em!important;padding-bottom:0.30700em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g5_note"]{padding-top:0.15787em!important;padding-bottom:0.32212em!important}
+html:lang(ja):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g6_head"]{padding-top:0.27018em!important;padding-bottom:0.32982em!important}
+html:lang(ja):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g7_head"]{padding-top:0.28109em!important;padding-bottom:0.31891em!important}
+html:lang(ja):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g8_head"]{padding-top:0.27200em!important;padding-bottom:0.32800em!important}
+html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d1_m"]{padding-top:0.27000em!important;padding-bottom:0.29000em!important}
+html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d2_m"]{padding-top:0.30494em!important;padding-bottom:0.25506em!important}
+html:lang(ja):not(#sz) [data-card="7"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c9_ab_way_line"]{padding-top:0.18771em!important;padding-bottom:0.21229em!important}
+}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:3.213px!important;padding-bottom:4.129px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] p.pill[data-copy="c9_pill"]{padding-top:9.858px!important;padding-bottom:10.302px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:2.929px!important;padding-bottom:3.713px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.band-vat[data-copy="c9_vat"]{padding-top:4.575px!important;padding-bottom:4.545px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.100px!important;padding-bottom:7.100px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g2_head"]{padding-top:5.693px!important;padding-bottom:8.307px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c9_r160_badge"]{padding-top:4.602px!important;padding-bottom:2.818px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.psv.psv-2[data-copy="c9_r160_sv"]{padding-top:2.718px!important;padding-bottom:4.002px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="line"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.428px!important;padding-bottom:8.572px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] span.pill-n[data-copy="c9_g2_head"]{padding-top:6.880px!important;padding-bottom:8.120px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:2.360px!important;padding-bottom:5.080px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g3_note"]{padding-top:3.190px!important;padding-bottom:4.490px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:3.657px!important;padding-bottom:2.783px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g4_note"]{padding-top:3.524px!important;padding-bottom:5.376px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c9_r166_badge"]{padding-top:3.299px!important;padding-bottom:2.821px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:3.981px!important;padding-bottom:4.559px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g5_head"]{padding-top:6.564px!important;padding-bottom:6.636px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g5_note"]{padding-top:2.953px!important;padding-bottom:4.727px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g6_head"]{padding-top:5.782px!important;padding-bottom:7.418px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g7_head"]{padding-top:6.018px!important;padding-bottom:7.182px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g8_head"]{padding-top:6.157px!important;padding-bottom:7.043px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.dv-m[data-copy="c9_a_d1_m"]{padding-top:4.695px!important;padding-bottom:4.825px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.dv-m[data-copy="c9_a_d2_m"]{padding-top:4.574px!important;padding-bottom:4.946px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="7"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="c9_ab_way_line"]{padding-top:2.904px!important;padding-bottom:2.696px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] p.pill[data-copy="c9_pill"]{padding-top:8.217px!important;padding-bottom:10.263px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="1"][data-variant="b"][data-size-only~="kakao"] p.pill.b1-pill[data-copy="c9_pill"]{padding-top:9.687px!important;padding-bottom:12.153px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:3.312px!important;padding-bottom:3.680px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.band-vat[data-copy="c9_vat"]{padding-top:4.276px!important;padding-bottom:4.844px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g1_head"]{padding-top:4.881px!important;padding-bottom:6.519px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r160_sv"]{padding-top:2.641px!important;padding-bottom:4.079px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pill-n[data-copy="c9_g1_head"]{padding-top:4.948px!important;padding-bottom:7.052px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:3.000px!important;padding-bottom:4.440px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g3_note"]{padding-top:3.105px!important;padding-bottom:4.575px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:2.893px!important;padding-bottom:3.827px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g4_note"]{padding-top:2.749px!important;padding-bottom:4.431px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:2.471px!important;padding-bottom:3.749px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g5_note"]{padding-top:2.726px!important;padding-bottom:4.954px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_r170_badge"]{padding-top:4.520px!important;padding-bottom:2.900px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g7_head"]{padding-top:5.082px!important;padding-bottom:6.318px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="4"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g8_head"]{padding-top:4.603px!important;padding-bottom:6.797px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="7"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c9_ab_way_line"]{padding-top:2.767px!important;padding-bottom:2.833px!important}
+/* JP-CENTER END */
+
+/* EN-CENTER START */
+/* EN chip text centring (2026-11-20): the EN text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=EN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.band-vat[data-copy="c9_vat"]{padding-top:0.34500em!important;padding-bottom:0.13500em!important}
+html:lang(en):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill.b1-pill[data-copy="c9_pill"]{padding-top:0.37367em!important;padding-bottom:0.46633em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.25418em!important;padding-bottom:0.34582em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:0.18400em!important;padding-bottom:0.29600em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pt-cont[data-copy="c9_p_cont"]{padding-top:0.35676em!important;padding-bottom:0.26324em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g3_note"]{padding-top:0.20200em!important;padding-bottom:0.27800em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:0.33349em!important;padding-bottom:0.38287em!important}
+html:lang(en):not(#sz) [data-card="7"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c9_ab_way_line"]{padding-top:0.34459em!important;padding-bottom:0.05541em!important}
+}
+@media (min-width:1000px){
+html:lang(en):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill.b1-pill[data-copy="c9_pill"]{padding-top:0.32727em!important;padding-bottom:0.51273em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.25455em!important;padding-bottom:0.34545em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c9_r160_badge"]{padding-top:0.32714em!important;padding-bottom:0.20286em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r160_sv"]{padding-top:0.12929em!important;padding-bottom:0.35071em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.35280em!important;padding-bottom:0.24720em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:0.22426em!important;padding-bottom:0.25574em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g3_note"]{padding-top:0.21950em!important;padding-bottom:0.26050em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c9_r163_badge"]{padding-top:0.32429em!important;padding-bottom:0.20571em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:0.17657em!important;padding-bottom:0.30343em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g4_note"]{padding-top:0.21600em!important;padding-bottom:0.34400em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g5_note"]{padding-top:0.19100em!important;padding-bottom:0.28900em!important}
+html:lang(en):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c9_r170_badge"]{padding-top:0.32429em!important;padding-bottom:0.20571em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d1_m"]{padding-top:0.20271em!important;padding-bottom:0.35729em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d2_m"]{padding-top:0.20271em!important;padding-bottom:0.35729em!important}
+html:lang(en):not(#sz) [data-card="7"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c9_ab_way_line"]{padding-top:0.21000em!important;padding-bottom:0.19000em!important}
+}
+html:lang(en)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:4.964px!important;padding-bottom:2.377px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] p.pill.b1-pill[data-copy="c9_pill"]{padding-top:7.496px!important;padding-bottom:8.464px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g2_head"]{padding-top:4.662px!important;padding-bottom:9.338px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.psv.psv-2[data-copy="c9_r160_sv"]{padding-top:2.484px!important;padding-bottom:4.236px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="line"] span.pill-n[data-copy="c9_g1_head"]{padding-top:8.821px!important;padding-bottom:6.179px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:2.570px!important;padding-bottom:4.870px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g3_note"]{padding-top:2.511px!important;padding-bottom:5.169px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g4_note"]{padding-top:3.703px!important;padding-bottom:5.197px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g5_note"]{padding-top:2.605px!important;padding-bottom:5.075px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:7.196px!important;padding-bottom:5.824px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.dv-m[data-copy="c9_a_d1_m"]{padding-top:4.271px!important;padding-bottom:5.249px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.dv-m[data-copy="c9_a_d2_m"]{padding-top:4.271px!important;padding-bottom:5.249px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="7"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="c9_ab_way_line"]{padding-top:3.138px!important;padding-bottom:2.462px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:4.687px!important;padding-bottom:2.305px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.band-vat[data-copy="c9_vat"]{padding-top:3.908px!important;padding-bottom:3.772px!important;position:relative;top:-0.5px}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-part="1"][data-variant="b"][data-size-only~="kakao"] p.pill.b1-pill[data-copy="c9_pill"]{padding-top:9.000px!important;padding-bottom:12.840px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:4.656px!important;padding-bottom:2.336px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g1_head"]{padding-top:5.716px!important;padding-bottom:4.484px!important;position:relative;top:-0.5px}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_g1_badge"]{padding-top:3.209px!important;padding-bottom:2.791px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g2_head"]{padding-top:6.044px!important;padding-bottom:7.956px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.176px!important;padding-bottom:4.024px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:2.817px!important;padding-bottom:2.943px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:7.211px!important;padding-bottom:6.309px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:2.173px!important;padding-bottom:4.547px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:2.370px!important;padding-bottom:4.350px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:6.916px!important;padding-bottom:6.104px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g5_head"]{padding-top:8.507px!important;padding-bottom:6.993px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:7.141px!important;padding-bottom:5.879px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:6.916px!important;padding-bottom:6.104px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g7_head"]{padding-top:6.382px!important;padding-bottom:3.818px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="4"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:6.916px!important;padding-bottom:6.104px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.dv-m[data-copy="c9_a_d1_m"]{padding-top:4.055px!important;padding-bottom:5.465px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] p.dv-m[data-copy="c9_a_d2_m"]{padding-top:4.541px!important;padding-bottom:4.979px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.period[data-copy="c9_period"]{padding-top:9.400px!important;padding-bottom:6.000px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g3_note"]{padding-top:4.136px!important;padding-bottom:3.544px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_r163_badge"]{padding-top:4.535px!important;padding-bottom:2.885px!important}
+/* EN-CENTER END */
+
+/* CN-CENTER START */
+/* CN chip text centring (2026-11-20): the CN text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=CN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-CN):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c9_pill"]{padding-top:0.37900em!important;padding-bottom:0.46100em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill.b1-pill[data-copy="c9_pill"]{padding-top:0.39687em!important;padding-bottom:0.44313em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.band-vat[data-copy="c9_vat"]{padding-top:0.20137em!important;padding-bottom:0.27863em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.26368em!important;padding-bottom:0.33632em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.26784em!important;padding-bottom:0.33216em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.25472em!important;padding-bottom:0.34528em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.27584em!important;padding-bottom:0.32416em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:0.19174em!important;padding-bottom:0.28826em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g3_head"]{padding-top:0.25280em!important;padding-bottom:0.34720em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:0.13161em!important;padding-bottom:0.34839em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g5_head"]{padding-top:0.25184em!important;padding-bottom:0.34816em!important}
+html:lang(zh-CN):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g6_head"]{padding-top:0.27104em!important;padding-bottom:0.32896em!important}
+html:lang(zh-CN):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g7_head"]{padding-top:0.24640em!important;padding-bottom:0.35360em!important}
+html:lang(zh-CN):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d1_m"]{padding-top:0.25353em!important;padding-bottom:0.30647em!important}
+html:lang(zh-CN):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d2_m"]{padding-top:0.25353em!important;padding-bottom:0.30647em!important}
+html:lang(zh-CN):not(#sz) [data-card="7"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c9_ab_way_line"]{padding-top:0.15707em!important;padding-bottom:0.24293em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-CN):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c9_pill"]{padding-top:0.36833em!important;padding-bottom:0.47167em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill.b1-pill[data-copy="c9_pill"]{padding-top:0.37340em!important;padding-bottom:0.46660em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hp-tag[data-copy="c9_hp_tag"]{padding-top:0.21767em!important;padding-bottom:0.24233em!important}
+html:lang(zh-CN):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.band-vat[data-copy="c9_vat"]{padding-top:0.21621em!important;padding-bottom:0.26379em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.25568em!important;padding-bottom:0.34432em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.26720em!important;padding-bottom:0.33280em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r160_sv"]{padding-top:0.18735em!important;padding-bottom:0.29265em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g1_head"]{padding-top:0.24920em!important;padding-bottom:0.35080em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pill-n[data-copy="c9_g2_head"]{padding-top:0.27936em!important;padding-bottom:0.32064em!important}
+html:lang(zh-CN):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:0.15497em!important;padding-bottom:0.32503em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g3_head"]{padding-top:0.28032em!important;padding-bottom:0.31968em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g3_note"]{padding-top:0.20000em!important;padding-bottom:0.28000em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:0.08207em!important;padding-bottom:0.39793em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g4_head"]{padding-top:0.26820em!important;padding-bottom:0.33180em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:0.15845em!important;padding-bottom:0.41961em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g5_head"]{padding-top:0.27840em!important;padding-bottom:0.32160em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g5_note"]{padding-top:0.18450em!important;padding-bottom:0.29550em!important}
+html:lang(zh-CN):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g6_head"]{padding-top:0.28480em!important;padding-bottom:0.31520em!important}
+html:lang(zh-CN):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g7_head"]{padding-top:0.25064em!important;padding-bottom:0.34936em!important}
+html:lang(zh-CN):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c9_g8_head"]{padding-top:0.27168em!important;padding-bottom:0.32832em!important}
+html:lang(zh-CN):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d1_m"]{padding-top:0.28365em!important;padding-bottom:0.27635em!important}
+html:lang(zh-CN):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) p.dv-m[data-copy="c9_a_d2_m"]{padding-top:0.28365em!important;padding-bottom:0.27635em!important}
+html:lang(zh-CN):not(#sz) [data-card="7"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c9_ab_way_line"]{padding-top:0.20214em!important;padding-bottom:0.19786em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pg-note[data-copy="c9_g4_note"]{padding-top:0.21374em!important;padding-bottom:0.34626em!important}
+}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:3.801px!important;padding-bottom:4.240px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] p.pill[data-copy="c9_pill"]{padding-top:11.514px!important;padding-bottom:13.686px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] p.pill.b1-pill[data-copy="c9_pill"]{padding-top:11.538px!important;padding-bottom:13.662px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:3.801px!important;padding-bottom:4.240px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.band-vat[data-copy="c9_vat"]{padding-top:4.117px!important;padding-bottom:5.003px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.392px!important;padding-bottom:8.608px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g2_head"]{padding-top:5.579px!important;padding-bottom:8.421px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c9_r160_badge"]{padding-top:4.582px!important;padding-bottom:2.838px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="line"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.228px!important;padding-bottom:8.772px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] span.pill-n[data-copy="c9_g2_head"]{padding-top:7.165px!important;padding-bottom:7.835px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="line"] span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:2.665px!important;padding-bottom:4.775px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g3_head"]{padding-top:7.232px!important;padding-bottom:9.068px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g3_note"]{padding-top:3.100px!important;padding-bottom:4.580px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:1.926px!important;padding-bottom:4.514px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g4_head"]{padding-top:6.657px!important;padding-bottom:8.343px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g4_note"]{padding-top:3.336px!important;padding-bottom:5.564px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:2.433px!important;padding-bottom:6.107px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g5_head"]{padding-top:6.782px!important;padding-bottom:8.218px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pg-note[data-copy="c9_g5_note"]{padding-top:3.581px!important;padding-bottom:4.099px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g6_head"]{padding-top:6.815px!important;padding-bottom:8.185px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g7_head"]{padding-top:7.192px!important;padding-bottom:7.808px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.pill-n[data-copy="c9_g8_head"]{padding-top:7.133px!important;padding-bottom:7.867px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.dv-m[data-copy="c9_a_d1_m"]{padding-top:4.819px!important;padding-bottom:4.701px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.dv-m[data-copy="c9_a_d2_m"]{padding-top:4.819px!important;padding-bottom:4.701px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="7"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="c9_ab_way_line"]{padding-top:2.904px!important;padding-bottom:2.696px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] p.pill[data-copy="c9_pill"]{padding-top:11.210px!important;padding-bottom:13.990px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-part="1"][data-variant="b"][data-size-only~="kakao"] p.pill.b1-pill[data-copy="c9_pill"]{padding-top:10.597px!important;padding-bottom:14.603px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.hp-tag[data-copy="c9_hp_tag"]{padding-top:2.730px!important;padding-bottom:4.262px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.band-vat[data-copy="c9_vat"]{padding-top:4.128px!important;padding-bottom:4.992px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g1_head"]{padding-top:4.634px!important;padding-bottom:5.566px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_g1_badge"]{padding-top:3.313px!important;padding-bottom:2.687px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g2_head"]{padding-top:6.585px!important;padding-bottom:7.415px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pill-n[data-copy="c9_g1_head"]{padding-top:6.932px!important;padding-bottom:8.068px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.pill-n[data-copy="c9_g2_head"]{padding-top:7.121px!important;padding-bottom:7.879px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.psv.b2-sv[data-copy="c9_r160_sv"]{padding-top:2.548px!important;padding-bottom:4.892px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.730px!important;padding-bottom:7.290px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g3_head"]{padding-top:6.483px!important;padding-bottom:7.517px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g3_note"]{padding-top:2.726px!important;padding-bottom:4.954px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r163_sv"]{padding-top:1.447px!important;padding-bottom:5.273px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g4_note"]{padding-top:2.766px!important;padding-bottom:4.914px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.psv.psv-2[data-copy="c9_r166_sv"]{padding-top:1.567px!important;padding-bottom:4.653px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.730px!important;padding-bottom:7.290px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g5_head"]{padding-top:6.382px!important;padding-bottom:8.618px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-note[data-copy="c9_g5_note"]{padding-top:3.123px!important;padding-bottom:5.057px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.730px!important;padding-bottom:7.290px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g6_head"]{padding-top:7.548px!important;padding-bottom:8.452px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c9_r170_badge"]{padding-top:4.520px!important;padding-bottom:2.900px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.730px!important;padding-bottom:7.290px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g7_head"]{padding-top:3.769px!important;padding-bottom:6.431px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="c9_p_cont"]{padding-top:5.730px!important;padding-bottom:7.290px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="4"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pill-n[data-copy="c9_g8_head"]{padding-top:4.735px!important;padding-bottom:5.465px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.dv-m[data-copy="c9_a_d1_m"]{padding-top:4.706px!important;padding-bottom:4.814px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="7"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c9_ab_ph1"]{padding-top:5.706px!important;padding-bottom:1.844px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="7"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c9_ab_ph2"]{padding-top:5.209px!important;padding-bottom:2.591px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="7"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="c9_ab_ph3"]{padding-top:5.209px!important;padding-bottom:2.591px!important}
+html:lang(zh-CN)[data-size]:not(#sz) [data-card="7"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c9_ab_way_line"]{padding-top:2.767px!important;padding-bottom:2.833px!important}
+/* CN-CENTER END */
