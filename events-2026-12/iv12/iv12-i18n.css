@@ -369,3 +369,381 @@ html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-c
 html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="3"] span[data-copy="iv_g2"]{padding-top:3.78px!important;padding-bottom:5.58px!important} /* +2.34 */
 html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="5"]:not([data-variant="b"])[data-part="3"] span.way-line[data-copy="iv_ab_way_line"]{padding-top:1.67px!important;padding-bottom:1.83px!important} /* +1.15 */
 /* </cn-center> */
+
+/* ===== EN, JP and HK (2026-11-19 evening, lead order, v4/langverify/out/LV_BUILD_1119.md). Every rule below names html:lang(en), html:lang(ja) or
+   html:lang(zh-HK); KO / CN / TW / TH do not change. HK takes the Noto Sans TC stack of the rule above (html:lang(zh-TW),html:lang(zh-HK)) ===== */
+/* JP glyphs: Noto Sans JP (loaded by iv12.js) in the same stacks as the Chinese ones above; Japanese breaks at its phrase boundaries (word-break:auto-phrase,
+   as LIG12 / ONE12 JP) */
+html:lang(ja){--f-cjk:'Noto Sans JP';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-disp:var(--f-cjk),'Black Han Sans','Pretendard Variable',sans-serif;--f-latin:'Outfit',var(--f-cjk),'Pretendard Variable',sans-serif}
+html:lang(ja) .h-ko,html:lang(ja) .p-title,html:lang(ja) .q-title{font-weight:900}
+html:lang(ja) .sheet{word-break:auto-phrase}
+
+/* IVS12 EN / JP from the Thai layout rules, HK from the TW layout rules (2026-11-19 evening, starting point) */
+html:lang(en) .h-ko,html:lang(en) .p-title,html:lang(en) .q-title{font-weight:800}
+html:lang(en) .money{white-space:nowrap}
+@container (min-width:601px){html:lang(en) .c1[data-variant="b"]:not([data-size-only]) .h-ko{font-size:calc(68*var(--px))}}
+html:lang(en)[data-size]:not(#sz) main.iv .L1b .h-ko{font-size:69px}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .h-ko{font-size:50px}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .hook{font-size:18px}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .hb{padding:16px 18px}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .hb-name{font-size:22px}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .hb-sale{font-size:44px}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .band{font-size:17px}
+@container (min-width:601px){html:lang(en) .c1:not([data-variant="b"]) .hb-name{font-size:calc(22*var(--px))}}
+@container (min-width:601px){html:lang(en) .c1:not([data-variant="b"]) .hb-sale{font-size:calc(40*var(--px))}}
+@container (min-width:601px){html:lang(en) .c1[data-variant="b"] .hb-name{font-size:calc(30*var(--px))}}
+@container (min-width:601px){html:lang(en) .c1[data-variant="b"] .hb-sale{font-size:calc(62*var(--px))}}
+html:lang(en) .hb-price{flex-direction:column;align-items:flex-end;gap:2px}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .hb-price{flex-direction:column;align-items:flex-end;gap:2px;margin-top:10px}
+html:lang(en) .pg-h span.nw{display:inline;padding:0;border-radius:0;background:none}
+html:lang(en) .pparen{white-space:normal}
+@container (min-width:601px){html:lang(en):not(#sz) .c2[data-variant="b"] .pparen{display:block;margin-left:0}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2:not([data-variant="b"]) .pname{font-size:calc(28*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2:not([data-variant="b"]) .pmod{font-size:calc(17*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2:not([data-variant="b"]) .popts,html:lang(en):not(#sz) .c2:not([data-variant="b"]) .pmix{font-size:calc(18*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2:not([data-variant="b"]) .pplus{font-size:calc(15*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2[data-variant="b"] .pname{font-size:calc(22*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2[data-variant="b"] .pmod{font-size:calc(15*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2[data-variant="b"] .popts,html:lang(en):not(#sz) .c2[data-variant="b"] .pmix{font-size:calc(15*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2[data-variant="b"] .pplus{font-size:calc(13*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2[data-variant="b"] .prow > .pbadge ~ .pn .pmod{padding-right:calc(70*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2[data-variant="b"]:not([data-size-only]) .pboard{margin-top:calc(110*var(--px))}}
+@container (min-width:601px){html:lang(en):not(#sz) .c2[data-variant="b"]:not([data-size-only]) .prow{padding:calc(14*var(--px)) calc(22*var(--px))}}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .cp-head{grid-template-columns:minmax(0,1fr)}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .p-lead{grid-column:1;margin:4px 0 8px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .p-title{font-size:56px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .pset-t{font-size:28px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .pname{font-size:26px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .pmod{font-size:16px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .popts,html:lang(en)[data-size]:not(#sz) main.iv .L2a .pmix{font-size:17px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .pplus{font-size:14px}
+@container (min-width:601px){html:lang(en) .c2:not([data-variant="b"]):not([data-size-only]) .sp-p1{left:calc(800*var(--px))}}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .sp-p1{left:840px;top:100px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2ap1 .sp-p1{left:680px;top:92px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2ap2 .sp-p1,html:lang(en)[data-size]:not(#sz) main.iv .K2ap3 .sp-p1{left:690px;top:70px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2ap1 .p-title{font-size:46px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2a .p-lead{font-size:17px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2a .pset-t{font-size:26px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2a .pname{font-size:24px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2a .pmod{font-size:14px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2a .popts,html:lang(en)[data-size]:not(#sz) main.iv .K2a .pmix{font-size:15px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2a .pplus{font-size:13px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2b .pboard{margin-top:20px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2b .p-title{font-size:54px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2b .p-lead{font-size:17px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2b .pset-t{font-size:26px}
+html:lang(en)[data-size]:not(#sz) main.iv .L3p1 .q-ans{max-width:800px}
+@container (min-width:601px){html:lang(en) .c3 .q-title{max-width:calc(800*var(--px))}}
+@container (min-width:601px){html:lang(en) .kd-n{font-size:calc(28*var(--px))}}
+@container (min-width:601px){html:lang(en) .kd-d{font-size:calc(18*var(--px))}}
+@container (min-width:601px){html:lang(en) .mix-d{font-size:calc(19*var(--px))}}
+@container (min-width:601px){html:lang(en) .pick-l li{font-size:calc(19*var(--px))}}
+@container (min-width:601px){html:lang(en) .st-t{font-size:calc(24*var(--px))}}
+@container (min-width:601px){html:lang(en) .st-d{font-size:calc(18*var(--px))}}
+@container (min-width:601px){html:lang(en) .inf-v{font-size:calc(24*var(--px));white-space:normal}}
+@container (min-width:601px){html:lang(en) .care-l li{font-size:calc(18.5*var(--px))}}
+html:lang(en)[data-size]:not(#sz) main.iv .K3p2 .mix{padding:18px 30px}
+html:lang(en)[data-size]:not(#sz) main.iv .K3p2 .mix-d{font-size:17px}
+html:lang(en)[data-size]:not(#sz) main.iv .K3p2 .pick{padding:18px 30px}
+html:lang(en)[data-size]:not(#sz) main.iv .K3p2 .pick-ico{width:44px;min-width:0}
+html:lang(en)[data-size]:not(#sz) main.iv .K3p2 .pick-l li{font-size:17px}
+html:lang(en)[data-size]:not(#sz) main.iv .K3p1 .kd-n{font-size:22px}
+html:lang(en)[data-size]:not(#sz) main.iv .K4p3 .inf-v{font-size:21px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p3 .loc-head .bt-t{font-size:24px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p3 .map{aspect-ratio:auto;height:200px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p3 .map-img{object-fit:cover;object-position:50% 100%}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p3 .way-st{font-size:22px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p3 .way-addr{font-size:15px}
+@container (min-width:601px){html:lang(en) .card:not([data-size-only]) .bk-phone{font-size:max(14px,calc(25*var(--px)))}}
+html:lang(en)[data-size]:not(#sz) .L5p2 .bk-phone{font-size:28px}
+html:lang(en)[data-size]:not(#sz) .K5p3 .bk-phone{font-size:24.5px}
+@container (max-width:600px){html:lang(en) .p-title{font-size:26px}}
+@container (max-width:600px){html:lang(en) .p-title .pt-main{white-space:normal}}
+@container (max-width:600px){html:lang(en) .c1[data-variant="b"] .hb-name{font-size:16px}}
+@container (max-width:600px){html:lang(en) .c1[data-variant="b"] .hb-sale{font-size:26px}}
+@container (max-width:600px){html:lang(en) .c2[data-variant="b"] .prow > .pbadge ~ .pn .pmod{padding-right:50px}}
+html:lang(en)[data-size]:not(#sz) main.iv .L5p2 .bk-phone{font-size:28px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2bp1 [data-copy="iv_p_title"]{font-size:34px}
+html:lang(en)[data-size]:not(#sz) main.iv .K4p2 .st{padding-top:16px;padding-bottom:18px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .bt-hours{padding-top:15px;padding-bottom:15px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths{row-gap:12px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .hrs-note{margin-top:8px}
+html:lang(ja) .h-ko,html:lang(ja) .p-title,html:lang(ja) .q-title{font-weight:800}
+html:lang(ja) .money{white-space:nowrap}
+@container (min-width:601px){html:lang(ja) .c1[data-variant="b"]:not([data-size-only]) .h-ko{font-size:calc(68*var(--px))}}
+html:lang(ja)[data-size]:not(#sz) main.iv .L1b .h-ko{font-size:69px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K1b .h-ko{font-size:50px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hook{font-size:18px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hb{padding:16px 18px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hb-name{font-size:22px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hb-sale{font-size:44px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K1b .band{font-size:17px}
+@container (min-width:601px){html:lang(ja) .c1:not([data-variant="b"]) .hb-name{font-size:calc(22*var(--px))}}
+@container (min-width:601px){html:lang(ja) .c1:not([data-variant="b"]) .hb-sale{font-size:calc(40*var(--px))}}
+@container (min-width:601px){html:lang(ja) .c1[data-variant="b"] .hb-name{font-size:calc(30*var(--px))}}
+@container (min-width:601px){html:lang(ja) .c1[data-variant="b"] .hb-sale{font-size:calc(62*var(--px))}}
+html:lang(ja) .hb-price{flex-direction:column;align-items:flex-end;gap:2px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hb-price{flex-direction:column;align-items:flex-end;gap:2px;margin-top:10px}
+html:lang(ja) .pg-h span.nw{display:inline;padding:0;border-radius:0;background:none}
+html:lang(ja) .pparen{white-space:normal}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"] .pparen{display:block;margin-left:0}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2:not([data-variant="b"]) .psale{font-size:calc(34*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2:not([data-variant="b"]) .plist{font-size:calc(18*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2:not([data-variant="b"]) .pname{font-size:calc(28*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2:not([data-variant="b"]) .pmod{font-size:calc(17*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2:not([data-variant="b"]) .popts,html:lang(ja):not(#sz) .c2:not([data-variant="b"]) .pmix{font-size:calc(18*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2:not([data-variant="b"]) .pplus{font-size:calc(15*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"] .psale{font-size:calc(34*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"] .pname{font-size:calc(22*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"] .pmod{font-size:calc(15*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"] .popts,html:lang(ja):not(#sz) .c2[data-variant="b"] .pmix{font-size:calc(15*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"] .pplus{font-size:calc(13*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"] .prow > .pbadge ~ .pn .pmod{padding-right:calc(70*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"]:not([data-size-only]) .pboard{margin-top:calc(110*var(--px))}}
+@container (min-width:601px){html:lang(ja):not(#sz) .c2[data-variant="b"]:not([data-size-only]) .prow{padding:calc(14*var(--px)) calc(22*var(--px))}}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .cp-head{grid-template-columns:minmax(0,1fr)}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .p-lead{grid-column:1;margin:4px 0 8px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .p-title{font-size:56px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .pset-t{font-size:28px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .pname{font-size:26px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .pmod{font-size:16px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .popts,html:lang(ja)[data-size]:not(#sz) main.iv .L2a .pmix{font-size:17px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .pplus{font-size:14px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .psale{font-size:32px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .plist{font-size:17px}
+@container (min-width:601px){html:lang(ja) .c2:not([data-variant="b"]):not([data-size-only]) .sp-p1{left:calc(800*var(--px))}}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2a .sp-p1{left:840px;top:100px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2ap1 .sp-p1{left:680px;top:92px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2ap2 .sp-p1,html:lang(ja)[data-size]:not(#sz) main.iv .K2ap3 .sp-p1{left:690px;top:70px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2ap1 .p-title{font-size:46px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2a .p-lead{font-size:17px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2a .pset-t{font-size:26px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2a .pname{font-size:24px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2a .pmod{font-size:14px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2a .popts,html:lang(ja)[data-size]:not(#sz) main.iv .K2a .pmix{font-size:15px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2a .pplus{font-size:13px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2a .psale{font-size:30px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2a .plist{font-size:16px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2b .pboard{margin-top:20px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2b .p-title{font-size:54px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L2b .p-lead{font-size:17px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2b .pset-t{font-size:26px}
+html:lang(ja)[data-size]:not(#sz) main.iv .L3p1 .q-ans{max-width:800px}
+@container (min-width:601px){html:lang(ja) .c3 .q-title{max-width:calc(800*var(--px))}}
+@container (min-width:601px){html:lang(ja) .kd-n{font-size:calc(28*var(--px))}}
+@container (min-width:601px){html:lang(ja) .kd-d{font-size:calc(18*var(--px))}}
+@container (min-width:601px){html:lang(ja) .mix-d{font-size:calc(19*var(--px))}}
+@container (min-width:601px){html:lang(ja) .pick-l li{font-size:calc(19*var(--px))}}
+@container (min-width:601px){html:lang(ja) .st-t{font-size:calc(24*var(--px))}}
+@container (min-width:601px){html:lang(ja) .st-d{font-size:calc(18*var(--px))}}
+@container (min-width:601px){html:lang(ja) .inf-v{font-size:calc(24*var(--px));white-space:normal}}
+@container (min-width:601px){html:lang(ja) .care-l li{font-size:calc(18.5*var(--px))}}
+html:lang(ja)[data-size]:not(#sz) main.iv .K3p2 .mix{padding:18px 30px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K3p2 .mix-d{font-size:17px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K3p2 .pick{padding:18px 30px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K3p2 .pick-ico{width:44px;min-width:0}
+html:lang(ja)[data-size]:not(#sz) main.iv .K3p2 .pick-l li{font-size:17px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K3p1 .kd-n{font-size:22px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K4p3 .inf-v{font-size:21px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K5p3 .loc-head .bt-t{font-size:24px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K5p3 .map{aspect-ratio:auto;height:200px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K5p3 .map-img{object-fit:cover;object-position:50% 100%}
+html:lang(ja)[data-size]:not(#sz) main.iv .K5p3 .way-st{font-size:22px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K5p3 .way-addr{font-size:15px}
+@container (min-width:601px){html:lang(ja) .card:not([data-size-only]) .bk-phone{font-size:max(14px,calc(25*var(--px)))}}
+html:lang(ja)[data-size]:not(#sz) .L5p2 .bk-phone{font-size:28px}
+html:lang(ja)[data-size]:not(#sz) .K5p3 .bk-phone{font-size:24.5px}
+@container (max-width:600px){html:lang(ja) .p-title{font-size:26px}}
+@container (max-width:600px){html:lang(ja) .p-title .pt-main{white-space:normal}}
+@container (max-width:600px){html:lang(ja) .c1[data-variant="b"] .hb-name{font-size:16px}}
+@container (max-width:600px){html:lang(ja) .c1[data-variant="b"] .hb-sale{font-size:26px}}
+@container (max-width:600px){html:lang(ja) .c2[data-variant="b"] .prow > .pbadge ~ .pn .pmod{padding-right:50px}}
+html:lang(ja)[data-size]:not(#sz) main.iv .L5p2 .bk-phone{font-size:28px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K2bp1 [data-copy="iv_p_title"]{font-size:34px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K4p2 .st{padding-top:16px;padding-bottom:18px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .bt-hours{padding-top:15px;padding-bottom:15px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths{row-gap:12px}
+html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .hrs-note{margin-top:8px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K1b .h-ko{font-size:64px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K1b .band{font-size:17px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K1b .hb-sale{font-size:88px}
+@container (min-width:601px){html:lang(zh-HK) .c2[data-variant="b"]:not([data-size-only]) .p-lead{font-size:calc(17*var(--px))}}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2b .p-lead{font-size:17px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2b .pboard{margin-top:30px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K2ap1 .p-title{font-size:90px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K2bp1 .pboard{margin-top:10px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K4p3 .inf-v{font-size:20px}
+@container (max-width:600px){html:lang(zh-HK) .c1[data-variant="b"] .h-ko{font-size:29px}}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K5p2 .bt-hours{padding-top:15px;padding-bottom:15px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths{row-gap:12px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K5p2 .hrs-note{margin-top:8px}
+
+/* ===== IVS12 EN / JP / HK fixes on top of the copied rules (2026-11-19 evening) ===== */
+/* card 2 A: the orange sphere stays clear of the longer titles (HK '免疫營養針' ran into it; the EN title is fitted to stop before it) */
+@container (min-width:601px){html:lang(zh-HK) .c2:not([data-size-only]):not(.v-b) .sp-p1{left:calc(600*var(--px))}}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2a .sp-p1{left:600px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K2ap1 .sp-p1{left:510px}
+html:lang(en)[data-size]:not(#sz) main.iv .L2a .p-title{max-width:760px}
+html:lang(en)[data-size]:not(#sz) main.iv .K2ap1 .p-title{max-width:620px}
+/* card 2 A (HK, home 1080 / board 780): tighter rows and a smaller ingredient line so the list ends above the footer */
+@container (min-width:601px){
+ html:lang(zh-HK) .cp.c2:not(.v-b):not([data-size-only]) .prow{padding:calc(5*var(--px)) 0}
+ html:lang(zh-HK) .c2:not(.v-b):not([data-size-only]) .pmix,html:lang(zh-HK) .c2:not(.v-b):not([data-size-only]) .popts{font-size:max(11px,calc(17*var(--px)))}
+}
+/* card 4: the EN / JP titles are fitted to two lines from a smaller start (EN took four lines, JP broke 'カウンセリングか / らお帰りまで') */
+@container (min-width:601px){html:lang(en) .c4-headrow .q-title{font-size:calc(46*var(--px)*var(--fit,1))}html:lang(ja) .c4-headrow .q-title{font-size:calc(60*var(--px)*var(--fit,1))}}
+/* card 5 (home 1080 / board 780): a slightly narrower map (same proportions) so the EN / JP address stays in its box */
+@container (min-width:601px){html:lang(en) .c5c:not([data-size-only]) .map,html:lang(ja) .c5c:not([data-size-only]) .map{width:calc(380*var(--px))}}
+/* card 5: the EN QR caption and director line break evenly; the strength titles take the dotted leaders' room (as LIG12 / ONE12 / BLF11 EN) */
+html:lang(en) .qr figcaption,html:lang(en) .dr-name{text-wrap:balance}
+html:lang(en) .ab-strengths .dots{display:none}
+html:lang(en) .ab-strengths .at{flex:1 1 auto;overflow-wrap:normal}
+@container (min-width:601px){html:lang(en) .ab-strengths .at .nw{white-space:normal}}
+/* kakao: hero B band line, card 4 part 2 steps, card 5 part 2 strengths and hours (EN / JP as the TW / HK rules) */
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .band{font-size:16px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K1b .band{font-size:14px}
+html:lang(en)[data-size]:not(#sz) main.iv .K4p2 .st-d{font-size:16px}
+html:lang(en)[data-size]:not(#sz) main.iv .K4p2 .st{padding:16px 18px 18px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .bt-hours,html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .bt-hours{padding-top:15px;padding-bottom:15px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths,html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths{row-gap:12px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .hrs-note,html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .hrs-note{margin-top:8px}
+/* LINE 5a-1 (JP): 'ビューティーブロッサム' keeps one line */
+html:lang(ja)[data-size]:not(#sz) main.iv .L5p1 .ab-title{font-size:38px}
+/* card 4 (home 1080 / board 780): EN step boxes a little tighter so the aftercare box and source stay on the card */
+@container (min-width:601px){html:lang(en) .c4:not([data-size-only]) .st{padding:calc(14*var(--px)) calc(20*var(--px)) calc(16*var(--px))}}
+/* kakao 3a-1 (HK): the box title fits its 127px box so 'Booster' is not cut ('Booste / r') */
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K3p1 .kd-n{font-size:26px}
+/* kakao 3a-2 (HK): the ingredient note and the before-treatment list fit above the source line */
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K3p2 .pick-l li{font-size:18px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K3p2 .mix-d{font-size:19px}
+/* kakao 2a-3 (HK): the two set rows fit above the footer */
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K2ap3 .pmix{font-size:17px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K2ap3 .pname{font-size:28px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K2ap3 .prow{padding:3px 0}
+/* kakao 5a-2 (EN / JP / HK): the hours box keeps its note on the card; kakao 5a-3 (HK): a smaller map so the address stays in its box */
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .bt-hours,html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .bt-hours,html:lang(zh-HK)[data-size]:not(#sz) main.iv .K5p2 .bt-hours{padding-top:10px;padding-bottom:10px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .hrs li,html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .hrs li,html:lang(zh-HK)[data-size]:not(#sz) main.iv .K5p2 .hrs li{font-size:19px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .hrs-note,html:lang(ja)[data-size]:not(#sz) main.iv .K5p2 .hrs-note,html:lang(zh-HK)[data-size]:not(#sz) main.iv .K5p2 .hrs-note{margin-top:4px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .ad{font-size:14px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .K5p3 .map{width:280px}
+html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths{row-gap:6px}
+@container (min-width:601px){html:lang(ja) .c4:not([data-size-only]) .st{padding:calc(16*var(--px)) calc(22*var(--px)) calc(18*var(--px))}}
+/* hero (EN / JP, stacked as the Thai version): a little air between the list and the sale price */
+html:lang(en) .hb-price,html:lang(ja) .hb-price{gap:6px}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .hb-price,html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hb-price{gap:6px}
+/* LINE 2b (HK): the set boxes size to their content with slightly smaller lines so the last row stays above the period and the medical-law line */
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2b .prow{min-height:0;padding:12px 18px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2b .pboard{margin-top:16px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2b .pname{font-size:22px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2b .pmod{font-size:14px}
+html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2b .pmix,html:lang(zh-HK)[data-size]:not(#sz) main.iv .L2b .popts{font-size:15px}
+/* phone hero: the count and its unit stay together ('1 session', '1次'); HK QR caption: 'WhatsApp' is never split */
+@container (max-width:600px){html:lang(en) .hb-sub,html:lang(zh-HK) .hb-sub{white-space:nowrap}}
+html:lang(zh-HK) .qr figcaption{overflow-wrap:normal}
+
+/* JP chip text centring (2026-11-19): each pill gets its own padding (or a small relative top), measured on real pixels with
+   qa/text-center-check.cjs (?lang=JP), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="iv_g2"]{padding-top:0.21716em!important;padding-bottom:0.22284em!important}
+html:lang(ja):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span[data-copy="iv_g2"]{padding-top:0.21337em!important;padding-bottom:0.22663em!important}
+html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="iv_ab_way_line"]{padding-top:0.06917em!important;padding-bottom:0.18083em!important}
+}
+@media (min-width:1000px){
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="iv_g1"]{padding-top:0.22574em!important;padding-bottom:0.21426em!important}
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="iv_g2"]{padding-top:0.20105em!important;padding-bottom:0.23895em!important}
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pplus[data-copy="iv_r9_plus"]{padding-top:0.19933em!important;padding-bottom:0.14067em!important}
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pplus[data-copy="iv_r12_plus"]{padding-top:0.19267em!important;padding-bottom:0.14733em!important}
+html:lang(ja):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span[data-copy="iv_g1"]{padding-top:0.19668em!important;padding-bottom:0.24332em!important}
+html:lang(ja):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span[data-copy="iv_g2"]{padding-top:0.19189em!important;padding-bottom:0.24811em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) p.kd-t[data-copy="iv_c3_k1_t"]{padding-top:0.17810em!important;padding-bottom:0.18190em!important}
+html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) p.kd-t[data-copy="iv_c3_k3_t"]{padding-top:0.17190em!important;padding-bottom:0.18810em!important}
+html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="iv_ab_way_line"]{padding-top:0.10743em!important;padding-bottom:0.14257em!important}
+}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span[data-copy="iv_g1"]{padding-top:4.353px!important;padding-bottom:4.007px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span[data-copy="iv_g2"]{padding-top:3.611px!important;padding-bottom:4.749px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pplus[data-copy="iv_r9_plus"]{padding-top:1.817px!important;padding-bottom:2.383px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span[data-copy="iv_g1"]{padding-top:4.109px!important;padding-bottom:4.251px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span[data-copy="iv_g2"]{padding-top:3.701px!important;padding-bottom:4.659px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="iv_ab_way_line"]{padding-top:1.563px!important;padding-bottom:1.937px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="iv_g1"]{padding-top:3.524px!important;padding-bottom:4.836px!important;position:relative;top:-0.5px}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:3.898px!important;padding-bottom:5.462px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pplus[data-copy="iv_r9_plus"]{padding-top:2.904px!important;padding-bottom:3.196px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:3.898px!important;padding-bottom:5.462px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pplus[data-copy="iv_r12_plus"]{padding-top:2.840px!important;padding-bottom:3.260px!important;position:relative;top:-0.5px}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span[data-copy="iv_g1"]{padding-top:3.738px!important;padding-bottom:4.622px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:3.720px!important;padding-bottom:5.640px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.pplus[data-copy="iv_r10_plus"]{padding-top:1.809px!important;padding-bottom:2.391px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:3.720px!important;padding-bottom:5.640px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="iv_ab_way_line"]{padding-top:1.794px!important;padding-bottom:1.706px!important}
+
+/* EN chip text centring (2026-11-19): each pill gets its own padding (or a small relative top), measured on real pixels with
+   qa/text-center-check.cjs (?lang=EN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:1000px){
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pbadge[data-copy="iv_r9_badge"]{padding-top:0.30333em!important;padding-bottom:0.29667em!important}
+}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span[data-copy="iv_g1"]{padding-top:5.877px!important;padding-bottom:2.483px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pbadge[data-copy="iv_r9_badge"]{padding-top:5.223px!important;padding-bottom:3.777px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pbadge[data-copy="iv_r12_badge"]{padding-top:5.142px!important;padding-bottom:3.858px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.hb-tag[data-copy="iv_hb_tag"]{padding-top:3.963px!important;padding-bottom:2.837px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] p.hb-tag[data-copy="iv_hb_tag"]{padding-top:3.963px!important;padding-bottom:2.837px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pplus[data-copy="iv_r9_plus"]{padding-top:2.840px!important;padding-bottom:3.260px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pplus[data-copy="iv_r12_plus"]{padding-top:2.840px!important;padding-bottom:3.260px!important;position:relative;top:-0.5px}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.pplus[data-copy="iv_r10_plus"]{padding-top:1.809px!important;padding-bottom:2.391px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.pplus[data-copy="iv_r12_plus"]{padding-top:1.924px!important;padding-bottom:2.276px!important;position:relative;top:-0.25px}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:1.764px!important;padding-bottom:5.796px!important}
+
+/* HK chip text centring (2026-11-19): each pill gets its own padding (or a small relative top), measured on real pixels with
+   qa/text-center-check.cjs (?lang=HK), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-HK):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="iv_ab_way_line"]{padding-top:0.08073em!important;padding-bottom:0.16927em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="iv_g1"]{padding-top:0.23079em!important;padding-bottom:0.20921em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.nw{padding-top:0.03500em!important;padding-bottom:0.05033em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="iv_g2"]{padding-top:0.23432em!important;padding-bottom:0.20568em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pplus[data-copy="iv_r10_plus"]{padding-top:0.13882em!important;padding-bottom:0.16118em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pplus[data-copy="iv_r12_plus"]{padding-top:0.18471em!important;padding-bottom:0.11529em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span[data-copy="iv_g1"]{padding-top:0.23079em!important;padding-bottom:0.20921em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.nw{padding-top:0.03042em!important;padding-bottom:0.06825em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span[data-copy="iv_g2"]{padding-top:0.23400em!important;padding-bottom:0.20600em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pplus[data-copy="iv_r10_plus"]{padding-top:0.17286em!important;padding-bottom:0.12714em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:0.06857em!important;padding-bottom:0.29143em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.period[data-copy="iv_period"]{padding-top:0.31792em!important;padding-bottom:0.34208em!important}
+}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span[data-copy="iv_g1"]{padding-top:4.386px!important;padding-bottom:3.974px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.nw{padding-top:0.917px!important;padding-bottom:1.707px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span[data-copy="iv_g2"]{padding-top:4.451px!important;padding-bottom:3.909px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pplus[data-copy="iv_r9_plus"]{padding-top:2.337px!important;padding-bottom:2.763px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pplus[data-copy="iv_r12_plus"]{padding-top:2.228px!important;padding-bottom:2.872px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span[data-copy="iv_g1"]{padding-top:4.386px!important;padding-bottom:3.974px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.nw{padding-top:0.929px!important;padding-bottom:2.200px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span[data-copy="iv_g2"]{padding-top:4.451px!important;padding-bottom:3.909px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pbadge[data-copy="iv_r8_badge"]{padding-top:4.622px!important;padding-bottom:4.378px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.kd-t[data-copy="iv_c3_k1_t"]{padding-top:3.412px!important;padding-bottom:4.148px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.kd-t[data-copy="iv_c3_k3_t"]{padding-top:3.412px!important;padding-bottom:4.148px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="iv_ab_way_line"]{padding-top:1.563px!important;padding-bottom:1.937px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="iv_g1"]{padding-top:4.389px!important;padding-bottom:3.971px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.nw{padding-top:0.681px!important;padding-bottom:1.749px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:4.846px!important;padding-bottom:4.514px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.nw{padding-top:0.693px!important;padding-bottom:1.737px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pplus[data-copy="iv_r9_plus"]{padding-top:3.254px!important;padding-bottom:2.846px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pplus[data-copy="iv_r10_plus"]{padding-top:3.614px!important;padding-bottom:2.486px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:4.846px!important;padding-bottom:4.514px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.nw{padding-top:0.693px!important;padding-bottom:1.737px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pplus[data-copy="iv_r12_plus"]{padding-top:3.581px!important;padding-bottom:2.519px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span[data-copy="iv_g1"]{padding-top:4.389px!important;padding-bottom:3.971px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.nw{padding-top:1.289px!important;padding-bottom:1.330px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:4.846px!important;padding-bottom:4.514px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.nw{padding-top:4.123px!important;padding-bottom:4.237px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.pbadge[data-copy="iv_r9_badge"]{padding-top:5.099px!important;padding-bottom:3.901px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span[data-copy="iv_g2"]{padding-top:4.846px!important;padding-bottom:4.514px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.nw{padding-top:4.123px!important;padding-bottom:4.237px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.pbadge[data-copy="iv_r8_badge"]{padding-top:4.493px!important;padding-bottom:4.507px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.pbadge[data-copy="iv_r12_badge"]{padding-top:5.099px!important;padding-bottom:3.901px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.kd-t[data-copy="iv_c3_k1_t"]{padding-top:3.521px!important;padding-bottom:4.039px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:1.737px!important;padding-bottom:5.823px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="iv_ab_way_line"]{padding-top:2.000px!important;padding-bottom:1.500px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.pplus[data-copy="iv_r12_plus"]{padding-top:2.556px!important;padding-bottom:1.644px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.period[data-copy="iv_period"]{padding-top:7.790px!important;padding-bottom:8.050px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.period[data-copy="iv_period"]{padding-top:7.790px!important;padding-bottom:8.050px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.period[data-copy="iv_period"]{padding-top:7.919px!important;padding-bottom:8.921px!important}
