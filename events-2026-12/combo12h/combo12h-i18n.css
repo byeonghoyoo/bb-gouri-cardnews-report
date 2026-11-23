@@ -615,3 +615,119 @@ html:lang(zh-HK)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-c
 html:lang(zh-HK)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="4"] span.wk[data-copy="c8_g8_w2_k"]{padding-top:1.33px;padding-bottom:2.23px} /* +0.82 */
 html:lang(zh-HK)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="4"] span.pbadge[data-copy="c8_r152_badge"]{padding-top:3.18px;padding-bottom:3.12px} /* +1 */
 /* </en-jp-cn-hk-center> */
+
+/* ===== 2026-11-23 re-synced rows (lead order LV_BUILD_1123): the four rows with new Korean (hero hook, hero pill, two price-card leads) in all six languages.
+   LINE 1A (CN / TW / HK): the new pill '为水润肌肤打造的个性化护理！' / '為水潤肌膚打造的個人化護理！' has no comma, so with keep-all it had no break at all,
+   widened the price column past the card edge and pushed the price name, the pill and the contact line out of the card; here the pill may break
+   between Chinese characters, its last word stays whole (the guard, '个性化' / '個人化' kept), so it reads '为水润肌肤打造的 / 个性化护理！' as before in two lines */
+/* the price column keeps its width from before (330, set then by the old pill's longest unbreakable line) so the pill's first line holds '为水润肌肤打造的' and the price name breaks as before */
+html:lang(zh)[data-size="line"] main.b5 .L1a .pill{word-break:normal}
+html:lang(zh)[data-size="line"] main.b5 .L1a .band-main{min-width:330px}
+/* JP-CENTER START */
+/* JP chip text centring (2026-11-18): the JP text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=JP), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:1000px){
+html:lang(ja):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c8_pill"]{padding-top:0.41000em!important;padding-bottom:0.43000em!important}
+}
+html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] p.pill[data-copy="c8_pill"]{padding-top:7.746px!important;padding-bottom:8.214px!important}
+/* JP-CENTER END */
+/* TH-CENTER START */
+/* TH chip text centring (2026-11-18): the TH text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=TH), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(th):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill[data-copy="c8_pill"]{padding-top:0.41884em!important;padding-bottom:0.42157em!important}
+}
+@media (min-width:1000px){
+html:lang(th):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c8_pill"]{padding-top:0.47600em!important;padding-bottom:0.36400em!important}
+html:lang(th):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.band-vat[data-copy="c8_vat"]{padding-top:0.33500em!important;padding-bottom:0.14500em!important}
+html:lang(th):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill[data-copy="c8_pill"]{padding-top:0.34635em!important;padding-bottom:0.49365em!important}
+}
+html:lang(th)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] p.pill[data-copy="c8_pill"]{padding-top:9.330px!important;padding-bottom:6.630px!important}
+/* TH-CENTER END */
+
+/* EN-CENTER START */
+/* EN chip text centring (2026-11-18): the EN text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=EN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c8_pill"]{padding-top:0.44642em!important;padding-bottom:0.39358em!important}
+html:lang(en):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill[data-copy="c8_pill"]{padding-top:0.49074em!important;padding-bottom:0.34926em!important}
+}
+@media (min-width:1000px){
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) p.pill[data-copy="c8_pill"]{padding-top:0.45725em!important;padding-bottom:0.38275em!important}
+}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] p.pill[data-copy="c8_pill"]{padding-top:8.537px!important;padding-bottom:7.423px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] p.pill[data-copy="c8_pill"]{padding-top:8.710px!important;padding-bottom:8.090px!important;position:relative;top:-0.5px}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] p.pill[data-copy="c8_pill"]{padding-top:7.848px!important;padding-bottom:8.952px!important}
+/* EN-CENTER END */
+
+/* ===== 2026-11-23 overflow fixes (lead order after the re-sync): the CMB12H overflows found by board-check / inbox / lvqa that were there before.
+   (1) home price cards (JP / CN / TW / HK): the Noto Sans JP / TC / SC sale line is 4 px taller than the Pretendard one (50 against 46: its strut and the
+   Poppins numbers sit on one baseline with other ascents), so every price row grew by 4 px and the boards of card 2 (226 / 226 / 163 / 163 in Korean,
+   238 / 238 / 171 / 171 here) ran 21 px past their board area; the rows lose that 4 px of padding (8 / 7 -> 6 / 5), which gives the Korean row height.
+   Card 3: the three-week combo (CN / TW / HK) still had its week lines in the narrow left column (three lines each) and ran up to 51 px below the board,
+   over the VAT line; it gets the EN / JP / TH arrangement (name and price row on top, the weeks across the board below). Both at home / board widths only\n   (phones keep their layout) */
+@container (min-width:601px){html:lang(ja) .cp.pcm:not([data-size-only]) .prow,html:lang(zh) .cp.pcm:not([data-size-only]) .prow{padding-top:calc(6*var(--px));padding-bottom:calc(5*var(--px))}
+html:lang(zh) .cp.pcm:not([data-size-only]) .pg-g8{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"nm pr" "wk wk";row-gap:calc(10*var(--px))}
+html:lang(zh) .cp.pcm:not([data-size-only]) .pg-g8>.pg-h{display:contents}
+html:lang(zh) .cp.pcm:not([data-size-only]) .pg-g8 .pg-name{grid-area:nm;align-self:center}
+html:lang(zh) .cp.pcm:not([data-size-only]) .pg-g8 .pg-weeks{grid-area:wk;margin-top:0}
+html:lang(zh) .cp.pcm:not([data-size-only]) .pg-g8>.prows{grid-area:pr;align-self:center}}
+/* (2) card 6 location box: the address under the map is longer than the Korean one (EN three lines; JP / CN / HK a little taller) and ran below the box
+   (EN home 25 px, JP board 8 px, JP / CN / HK kakao 6 px); the map is a little shorter there (its top strip is cropped, not squeezed; the map credit at the
+   bottom stays, as CMB12E EN / JP / TH). Phones keep their own map size. The TH booking box: the international number at the Korean 30 px ran 6 px past the
+   box; it takes the 26 px of the EN / JP / CN / HK booking boxes (one line) */
+@media (min-width:601px){html:lang(en) .cab:not([data-size-only]) .map{aspect-ratio:460/376}html:lang(en) .cab:not([data-size-only]) .map-img{object-fit:cover;object-position:50% 100%}}
+@media (min-width:601px) and (max-width:1023px){html:lang(ja) .cab:not([data-size-only]) .map{aspect-ratio:384/332}html:lang(ja) .cab:not([data-size-only]) .map-img{object-fit:cover;object-position:50% 100%}}
+html:lang(ja)[data-size="kakao"] main.b5 .K63 .map,html:lang(zh-CN)[data-size="kakao"] main.b5 .K63 .map,html:lang(zh-HK)[data-size="kakao"] main.b5 .K63 .map{aspect-ratio:460/394}
+html:lang(ja)[data-size="kakao"] main.b5 .K63 .map-img,html:lang(zh-CN)[data-size="kakao"] main.b5 .K63 .map-img,html:lang(zh-HK)[data-size="kakao"] main.b5 .K63 .map-img{object-fit:cover;object-position:50% 100%}
+@container (min-width:601px){html:lang(th) .card:not([data-size-only]) .bk-phone:not(.is-id){font-size:max(15px,calc(26*var(--px)))}}
+/* (3) TH kakao 2 B-3 (two half-width boards): the Thai price pair '490,000 วอน' + '270,000 วอน' is wider than the 308 px board and ran up to 19 px past it;
+   as the TH kakao price cards 2 A / 3 A, the list price goes under the option and the sale price stands beside both */
+html:lang(th)[data-size="kakao"] main.b5 .K2b3 .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn ps" "pl ps";row-gap:2px;align-items:center}
+html:lang(th)[data-size="kakao"] main.b5 .K2b3 .prow>.popt-w,html:lang(th)[data-size="kakao"] main.b5 .K2b3 .prow>.popt{grid-area:pn}
+html:lang(th)[data-size="kakao"] main.b5 .K2b3 .prow>.pmid{display:none}
+html:lang(th)[data-size="kakao"] main.b5 .K2b3 .prow>.plist{grid-area:pl;justify-self:start}
+html:lang(th)[data-size="kakao"] main.b5 .K2b3 .prow>.psale{grid-area:ps}
+/* kakao 1 A-1 big title (CN / TW / HK): the Noto Sans SC / TC face at the Korean 178 px (HK 160) sat 5 to 10 px above the card edge and its letter box ran
+   past the card; it is a little smaller (CN / TW 160, HK with its two-line lead 145), the same two lines */
+html:lang(zh-CN)[data-size="kakao"] main.b5 .K1a1 .h-big,html:lang(zh-TW)[data-size="kakao"] main.b5 .K1a1 .h-big{font-size:160px}
+html:lang(zh-HK)[data-size="kakao"] main.b5 .K1a1 .h-big{font-size:145px}
+
+/* CN-CENTER START */
+/* CN chip text centring (2026-11-18): the CN text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=CN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:1000px){
+html:lang(zh-CN):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) p.pill[data-copy="c8_pill"]{padding-top:0.40152em!important;padding-bottom:0.43848em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c8_g6_head"]{padding-top:0.25080em!important;padding-bottom:0.34920em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c8_g7_head"]{padding-top:0.25080em!important;padding-bottom:0.34920em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c8_g8_head"]{padding-top:0.27940em!important;padding-bottom:0.32060em!important}
+html:lang(zh-CN):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.wk[data-copy="c8_g8_w2_k"]{padding-top:0.13647em!important;padding-bottom:0.10353em!important}
+}
+/* CN-CENTER END */
+
+/* TW-CENTER START */
+/* TW chip text centring (2026-11-18): the TW text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=TW), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) figcaption[data-copy="c8_ab_ph1"]{padding-top:0.29386em!important;padding-bottom:0.30614em!important}
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) figcaption[data-copy="c8_ab_ph2"]{padding-top:0.29386em!important;padding-bottom:0.30614em!important}
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) figcaption[data-copy="c8_ab_ph3"]{padding-top:0.29386em!important;padding-bottom:0.30614em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c8_ab_way_line"]{padding-top:0.19500em!important;padding-bottom:0.20500em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c8_g6_head"]{padding-top:0.28420em!important;padding-bottom:0.31580em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c8_g7_head"]{padding-top:0.28940em!important;padding-bottom:0.31060em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.wk[data-copy="c8_g8_w3_k"]{padding-top:0.14176em!important;padding-bottom:0.11235em!important}
+}
+/* TW-CENTER END */
+
+/* HK-CENTER START */
+/* HK chip text centring (2026-11-18): the HK text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=HK), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pill-n[data-copy="c8_g5_head"]{padding-top:0.20348em!important;padding-bottom:0.39652em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.wk[data-copy="c8_g8_w2_k"]{padding-top:0.13471em!important;padding-bottom:0.10529em!important}
+}
+/* HK-CENTER END */

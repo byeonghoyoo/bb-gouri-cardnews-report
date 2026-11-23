@@ -2072,9 +2072,10 @@
         return capSettle(iwin);
       }).then(function () {
         var fallback = capFallback(iwin);
-        var lang = idocLang(iwin);
-        /* line pinning only where the drawn card breaks CJK lines differently (JP card 5); KO/EN/TH already match without it */
-        state.lastCapture = { itemId: cap.itemId, locale: cap.locale, fallback: fallback, freeze: /^(ja|zh)/.test(lang) ? capFreeze(iwin) : null };
+        var counted = capCounters(iwin);
+        /* line pinning in every language (2026-11-23): it used to run for JP/CN only, but a team PC drew KO labels a hair wider than
+           the page measured them, so labels sized to their text wrapped in the file ("300샷" -> "300 / 샷", pill names lost their second half) */
+        state.lastCapture = { itemId: cap.itemId, locale: cap.locale, fallback: fallback, counters: counted, freeze: capFreeze(iwin) };
         if (iwin.modernScreenshot) return null;
         return new Promise(function (resolve, reject) {
           var s = idoc.createElement('script');
@@ -2149,20 +2150,113 @@
       return saved.length;
     }
 
-    /* pin every soft line break of the live page (nowrap spans + <br>), so the drawn card cannot wrap text differently
-       (2026-10-30: the drawn JP card 5 wrapped one line more than the page). A card whose layout moves is restored. */
+    /* the drawing library drops counter() from ::before/::after content, so step numbers came out as "0" ('0' counter(st)) or not at all
+       (counter(pt)) in every downloaded card (2026-11-23). Write each counter text out as a literal string first, counted the way CSS
+       counts (document order, counter-reset scoped to the parent, counter-set, counter-increment; hidden boxes do not count). */
+    function capCounters(iwin) {
+      var idoc = iwin.document, counters = {}, rules = [], marks = [], n = 0;
+      var parseOps = function (v, dflt) {
+        var out = []; if (!v || v === 'none') return out;
+        var t = String(v).trim().split(/\s+/);
+        for (var i = 0; i < t.length; i++) {
+          var name = t[i], num = dflt;
+          if (/^-?\d+$/.test(name)) continue;
+          if (i + 1 < t.length && /^-?\d+$/.test(t[i + 1])) { num = parseInt(t[i + 1], 10); i++; }
+          out.push([name, num]);
+        }
+        return out;
+      };
+      var cssStr = function (s) { return '"' + String(s).replace(/\\/g, '\\5C ').replace(/"/g, '\\22 ').replace(/\n/g, '\\A ') + '"'; };
+      var fmt = function (v, style) {
+        style = String(style || 'decimal').trim();
+        if (style === 'none') return '';
+        if (style === 'decimal-leading-zero') return (v < 0 ? '-' : '') + (Math.abs(v) < 10 ? '0' : '') + Math.abs(v);
+        if (/^(lower|upper)-(alpha|latin)$/.test(style) && v > 0) { var s = '', x = v; while (x > 0) { x--; s = String.fromCharCode(97 + (x % 26)) + s; x = Math.floor(x / 26); } return /^upper/.test(style) ? s.toUpperCase() : s; }
+        if (/^(lower|upper)-roman$/.test(style) && v > 0 && v < 4000) { var r = '', y = v; [[1000, 'm'], [900, 'cm'], [500, 'd'], [400, 'cd'], [100, 'c'], [90, 'xc'], [50, 'l'], [40, 'xl'], [10, 'x'], [9, 'ix'], [5, 'v'], [4, 'iv'], [1, 'i']].forEach(function (p) { while (y >= p[0]) { r += p[1]; y -= p[0]; } }); return /^upper/.test(style) ? r.toUpperCase() : r; }
+        return /^(decimal|)$/.test(style) ? String(v) : null;
+      };
+      var top = function (name) { var st = counters[name]; return st && st.length ? st[st.length - 1] : null; };
+      var ensure = function (name) { var st = counters[name] || (counters[name] = []); if (!st.length) st.push({ v: 0, owner: null }); return st[st.length - 1]; };
+      var ops = function (cs, owner) {
+        parseOps(cs.counterReset, 0).forEach(function (o) { (counters[o[0]] = counters[o[0]] || []).push({ v: o[1], owner: owner }); });
+        parseOps(cs.counterSet, 0).forEach(function (o) { ensure(o[0]).v = o[1]; });
+        parseOps(cs.counterIncrement, 1).forEach(function (o) { ensure(o[0]).v += o[1]; });
+      };
+      /* quoted strings, counter(), counters() and attr() only; anything else leaves the box as it is */
+      var text = function (content, el) {
+        var s = String(content), out = '', i = 0;
+        while (i < s.length) {
+          var c = s[i];
+          if (c === ' ') { i++; continue; }
+          if (c === '"' || c === "'") {
+            var j = i + 1, str = '';
+            while (j < s.length && s[j] !== c) {
+              if (s[j] === '\\') { var hex = /^[0-9a-fA-F]{1,6} ?/.exec(s.slice(j + 1)); if (hex) { str += String.fromCodePoint(parseInt(hex[0], 16)); j += 1 + hex[0].length; } else { str += s[j + 1] || ''; j += 2; } continue; }
+              str += s[j]; j++;
+            }
+            out += str; i = j + 1; continue;
+          }
+          var m = /^(counters?)\(([^)]*)\)/.exec(s.slice(i));
+          if (m) {
+            var a = m[2].split(','), name = a[0].trim(), t;
+            if (m[1] === 'counter') { var tp = top(name); t = fmt(tp ? tp.v : 0, a[1]); }
+            else { var st = counters[name] && counters[name].length ? counters[name] : [{ v: 0 }], sep = (a[1] || '').trim().replace(/^["']|["']$/g, ''); var parts = st.map(function (x) { return fmt(x.v, a[2]); }); t = parts.indexOf(null) >= 0 ? null : parts.join(sep); }
+            if (t === null) return null;
+            out += t; i += m[0].length; continue;
+          }
+          var at = /^attr\(([^)]*)\)/.exec(s.slice(i));
+          if (at) { out += el.getAttribute(at[1].trim()) || ''; i += at[0].length; continue; }
+          return null;
+        }
+        return out;
+      };
+      var pseudo = function (el, which) {
+        var ps = iwin.getComputedStyle(el, which), ct = ps.content;
+        if (!ct || ct === 'none' || ct === 'normal') return;
+        ops(ps, el);
+        if (!/counters?\(/.test(ct) || !el.closest(CAP.sel)) return;
+        var t = text(ct, el); if (t === null) return;
+        var attr = 'data-cap-pc' + (which === '::before' ? 'b' : 'a'), id = 'c' + (++n);
+        el.setAttribute(attr, id); marks.push([el, attr]);
+        rules.push('[' + attr + '="' + id + '"]' + which + '{content:' + cssStr(t) + '!important}');
+      };
+      var walk = function (el) {
+        var cs = iwin.getComputedStyle(el); if (cs.display === 'none') return;
+        ops(cs, el.parentElement);
+        pseudo(el, '::before');
+        for (var c = el.firstElementChild; c; c = c.nextElementSibling) walk(c);
+        pseudo(el, '::after');
+        Object.keys(counters).forEach(function (k) { counters[k] = counters[k].filter(function (x) { return x.owner !== el; }); });
+      };
+      if (idoc.body) walk(idoc.body);
+      if (!rules.length) return 0;
+      var cards = Array.prototype.slice.call(idoc.querySelectorAll(CAP.sel)), els = [];
+      cards.forEach(function (card) { els.push(card); Array.prototype.push.apply(els, card.querySelectorAll('*')); });
+      var sig = function () { return els.map(function (el) { return el.offsetWidth + ',' + el.offsetHeight + ',' + el.offsetLeft + ',' + el.offsetTop; }).join(';'); };
+      var before = sig(), style = idoc.createElement('style');
+      style.setAttribute('data-cap-counters', ''); style.textContent = rules.join('\n'); idoc.head.appendChild(style);
+      if (sig() !== before) { style.parentNode.removeChild(style); marks.forEach(function (m) { m[0].removeAttribute(m[1]); }); return -1; }
+      return rules.length;
+    }
+
+    /* pin the live page's line breaks, so the drawn card cannot wrap text differently (2026-10-30: the drawn JP card 5 wrapped one
+       line more than the page; 2026-11-23: on a team PC a drawn KO label sized to its text wrapped, "300샷" -> "300 / 샷").
+       1. a box whose text sits on one line gets white-space nowrap, so nothing inside it (or between its pieces and badges) can wrap;
+       2. a wrapping flex row whose items sit on one line gets flex-wrap nowrap;
+       3. every soft line break inside a text node becomes nowrap spans + <br>, as before, and a text alone on its line is pinned whole.
+       Whatever moves the live layout is put back, one box or one text at a time. */
     function capFreeze(iwin) {
-      var idoc = iwin.document, frozen = 0, undone = 0;
+      var idoc = iwin.document, frozen = 0, undone = 0, boxes = 0, flexRows = 0, disp = new Map();
+      var display = function (el) { var d = disp.get(el); if (d === undefined) { d = iwin.getComputedStyle(el).display; disp.set(el, d); } return d; };
       Array.prototype.forEach.call(idoc.querySelectorAll(CAP.sel), function (card) {
         var els = Array.prototype.slice.call(card.querySelectorAll('*'));
         var sig = function () { return els.map(function (el) { return el.offsetWidth + ',' + el.offsetHeight + ',' + el.offsetLeft + ',' + el.offsetTop; }).join(';'); };
-        var before = sig(), plans = [], walker = idoc.createTreeWalker(card, 4), t;
+        var before = sig(), plans = [], recs = [], walker = idoc.createTreeWalker(card, 4), t;
         while ((t = walker.nextNode())) {
           var pe = t.parentElement;
           if (!t.data.trim() || !pe || pe.closest('svg,script,style,textarea')) continue;
           var ws = iwin.getComputedStyle(pe).whiteSpace;
-          if (ws === 'nowrap' || ws === 'pre') continue;
-          var r = idoc.createRange(), cuts = [], lastTop = null, i = 0;
+          var r = idoc.createRange(), cuts = [], lastTop = null, i = 0, first = null, last = null;
           while (i < t.data.length) {
             var len = t.data.codePointAt(i) > 0xffff ? 2 : 1;
             r.setStart(t, i); r.setEnd(t, i + len);
@@ -2170,23 +2264,58 @@
             if (rc && rc.width > 0) {
               var top = Math.round(rc.top);
               if (lastTop !== null && Math.abs(top - lastTop) > 2) cuts.push(i);
-              lastTop = top;
+              lastTop = top; if (!first) first = rc; last = rc;
             }
             i += len;
           }
-          if (cuts.length) plans.push({ node: t, cuts: cuts, keep: ws === 'pre-wrap' || ws === 'break-spaces' });
+          if (!first) continue; /* not drawn: hidden variant or empty box */
+          var box = pe; while (box !== card && box.parentElement && (display(box) === 'inline' || display(box) === 'contents')) box = box.parentElement;
+          recs.push({ box: box, cuts: cuts.length, left: first.left, lastLeft: last.left, node: t, ws: ws });
+          if (ws !== 'nowrap' && ws !== 'pre' && cuts.length) plans.push({ node: t, cuts: cuts, keep: ws === 'pre-wrap' || ws === 'break-spaces' });
         }
+        /* 1. one-line boxes: no break inside any of its text, and no jump back to the left from one piece to the next */
+        var multi = new Set(), prevOf = new Map(), order = [];
+        recs.forEach(function (x) {
+          var p = prevOf.get(x.box);
+          if (!p) order.push(x.box);
+          if (x.cuts || (p && x.left < p.lastLeft - 1)) multi.add(x.box);
+          prevOf.set(x.box, x);
+        });
+        /* in a box of several lines, a text that sits on one line of its own (lines split by <br>) is pinned whole, so it cannot break */
+        recs.forEach(function (x) { if (multi.has(x.box) && !x.cuts && x.ws !== 'nowrap' && x.ws !== 'pre') plans.push({ node: x.node, cuts: [], keep: x.ws === 'pre-wrap' || x.ws === 'break-spaces' }); });
+        var one = order.filter(function (b) { return !multi.has(b); }).map(function (b) {
+          var w = iwin.getComputedStyle(b).whiteSpace;
+          return w === 'nowrap' || w === 'pre' ? null : { el: b, css: b.style.whiteSpace, to: w === 'pre-wrap' || w === 'break-spaces' ? 'pre' : 'nowrap' };
+        }).filter(Boolean);
+        one.forEach(function (o) { o.el.style.whiteSpace = o.to; });
+        if (one.length && sig() !== before) {
+          /* something moved: keep only the boxes that leave the live layout exactly as it was */
+          one.forEach(function (o) { o.el.style.whiteSpace = o.css; });
+          one = one.filter(function (o) { o.el.style.whiteSpace = o.to; if (sig() === before) return true; o.el.style.whiteSpace = o.css; return false; });
+        }
+        boxes += one.length;
+        /* 2. wrapping flex rows whose items all sit on one line: the drawn card put the last item on a second line
+           (2026-11-23: CMB12H "뷰마카세 스킨케어 / 1회", DEN12 "BOOST TIP / 사진: 제이시스메디칼"), so set flex-wrap nowrap where nothing moves */
+        var rows = els.filter(function (el) { var fw = iwin.getComputedStyle(el).flexWrap; return (fw === 'wrap' || fw === 'wrap-reverse') && /flex/.test(display(el)); })
+          .map(function (el) { return { el: el, css: el.style.flexWrap }; });
+        rows.forEach(function (o) { o.el.style.flexWrap = 'nowrap'; });
+        if (rows.length && sig() !== before) {
+          rows.forEach(function (o) { o.el.style.flexWrap = o.css; });
+          rows = rows.filter(function (o) { o.el.style.flexWrap = 'nowrap'; if (sig() === before) return true; o.el.style.flexWrap = o.css; return false; });
+        }
+        flexRows += rows.length;
         /* lock the used width of every non-inline box around the frozen text, so nowrap lines cannot shrink-to-fit it */
         var lockSet = [];
         plans.forEach(function (p) {
-          for (var el = p.node.parentElement; el && el !== card.parentElement; el = el.parentElement) {
+          /* stop below the card: the card is a fixed 1080x1350 box, and locking it as well moved the big EN price figures 3 px down
+             in the drawn card once one-line boxes were nowrap too (2026-11-23) */
+          for (var el = p.node.parentElement; el && el !== card; el = el.parentElement) {
             var d = iwin.getComputedStyle(el).display;
             if (d !== 'inline' && d !== 'contents' && lockSet.indexOf(el) < 0) lockSet.push(el);
           }
         });
         var locks = lockSet.map(function (el) { return { el: el, w: iwin.getComputedStyle(el).width, css: el.style.cssText }; });
-        var undo = [];
-        plans.forEach(function (p) {
+        var pin = function (p) {
           var node = p.node, parent = node.parentNode, frag = idoc.createDocumentFragment(), start = 0, ends = p.cuts.concat([node.data.length]);
           ends.forEach(function (end, k) {
             var s = node.data.slice(start, end);
@@ -2197,16 +2326,25 @@
           });
           var nodes = Array.prototype.slice.call(frag.childNodes);
           parent.replaceChild(frag, node);
-          undo.push({ node: node, nodes: nodes, parent: parent });
-        });
-        locks.forEach(function (k) { if (/px$/.test(k.w)) { k.el.style.width = k.w; k.el.style.minWidth = k.w; k.el.style.maxWidth = k.w; } });
+          return { node: node, nodes: nodes, parent: parent };
+        };
+        var unpin = function (u) { u.parent.insertBefore(u.node, u.nodes[0]); u.nodes.forEach(function (n) { u.parent.removeChild(n); }); };
+        var lockOn = function () { locks.forEach(function (k) { if (/px$/.test(k.w)) { k.el.style.width = k.w; k.el.style.minWidth = k.w; k.el.style.maxWidth = k.w; } }); };
+        var lockOff = function () { locks.forEach(function (k) { k.el.style.cssText = k.css; }); };
+        var undo = plans.map(pin);
+        lockOn();
         if (undo.length && sig() !== before) {
-          undo.forEach(function (u) { u.parent.insertBefore(u.node, u.nodes[0]); u.nodes.forEach(function (n) { u.parent.removeChild(n); }); });
-          locks.forEach(function (k) { k.el.style.cssText = k.css; });
-          undone++;
+          /* something moved (2026-11-23: a whole card used to lose all its pins here): keep the pins that leave the live layout
+             exactly as it was, one text at a time */
+          undo.forEach(unpin); lockOff();
+          lockOn(); if (sig() !== before) lockOff();
+          var kept = 0;
+          plans.forEach(function (p) { var u = pin(p); if (sig() === before) kept++; else unpin(u); });
+          if (!kept) lockOff();
+          frozen += kept; undone += plans.length - kept;
         } else frozen += undo.length;
       });
-      return { frozenTextNodes: frozen, cardsRestored: undone };
+      return { frozenTextNodes: frozen, nowrapBoxes: boxes, flexRows: flexRows, pinsDropped: undone };
     }
 
     /* @font-face rules for the fonts the five cards actually use, files inlined as data URLs:
@@ -2227,6 +2365,9 @@
           var u = used[k] || (used[k] = { want: {} });
           var want = u.want[w + '|' + st] || (u.want[w + '|' + st] = { w: w, st: st, cps: {} });
           Array.from(text).forEach(function (ch) { want.cps[ch.codePointAt(0)] = true; });
+          /* always the face that holds the space: CSS takes the line's ascent and descent from the first font whose unicode-range has
+             U+0020, so a title without spaces (HK "身體纖體塑形") was set 5 px lower in the drawn card when that face was left out (2026-11-23) */
+          want.cps[32] = true;
         });
       };
       Array.prototype.forEach.call(idoc.querySelectorAll(CAP.sel), function (card) {

@@ -241,6 +241,60 @@ html:lang(zh-HK)[data-size]:not(#sz) .K2a.K2-3 .uibeop{margin-top:8px}
    pixel up (as the JP / CN chips) */
 html:lang(zh-HK)[data-size]:not(#sz) .K3-3 span.prod-s[data-copy="fb_p46_sub"]{position:relative;top:-.25px}
 
+/* ===== JP / CN / TW / TH re-applied from the current sheet (2026-11-23, LV_BUILD_1123 step 4) ===== */
+/* The staff's new titles are much longer: JP 'ビューティーブロッサムの人気ヒアルロン酸注入キャンペーン' (27 characters), CN '丽朵皮肤科人气玻尿酸优惠活动', TW 'Beauty Blossom人氣玻尿酸優惠活動',
+   TH 'โปรโมชันฟิลเลอร์ตัวดังจาก Beauty Blossom'. Where the old titles took one line the CN / TW / TH titles stay on one line; the JP title takes two balanced lines. */
+/* hero A (home / board): TH on one line (fit() sizes it); the two-line title had pushed the hook lines under the offer box */
+@media (min-width:601px){html:lang(th) .c1:not([data-size-only]):not([data-variant]) .h-title{white-space:nowrap}}
+/* hero A, JP: one line cannot fit (fit() stops at 60 %); two balanced lines, and the offer box a little lower so the hook lines clear it */
+html:lang(ja) .c1:not([data-size-only]):not([data-variant]) .h-title{white-space:normal;text-wrap:balance;font-size:calc(58*var(--px))}
+@media (min-width:601px){html:lang(ja) .c1:not([data-size-only]):not([data-variant]) .tz{bottom:calc(566*var(--px))}}
+@media (max-width:600px){html:lang(ja) .c1:not([data-size-only]):not([data-variant]) .tz{bottom:calc(520*var(--px))}}
+/* hero B (home / board / phone): the title on one line (CN / TW) or two lines (JP) so the event line stays above the notes and the photo */
+html:lang(zh-CN) .fb-hero:not([data-size-only]) .fb-heading h1{font-size:calc(64*var(--px))}
+html:lang(zh-TW) .fb-hero:not([data-size-only]) .fb-heading h1{font-size:calc(57*var(--px))}
+html:lang(ja) .fb-hero:not([data-size-only]) .fb-heading h1{font-size:calc(58*var(--px));text-wrap:balance}
+/* LINE 1 A: CN / TW on one line (fit() sizes it to the text column, as HK) so the hook lines stay above the offer box and its bow; JP in two lines */
+html:lang(zh-CN)[data-size]:not(#sz) .L1a .h-title,html:lang(zh-TW)[data-size]:not(#sz) .L1a .h-title{white-space:nowrap;font-size:calc(58px*var(--fit,1))}
+html:lang(ja)[data-size]:not(#sz) .L1a .h-title{text-wrap:balance;font-size:38px}
+/* LINE 1 B: one line (CN / TW) or two lines with the masthead higher (JP), so the event line stays above the notes and the photo */
+html:lang(zh-CN)[data-size]:not(#sz) .L1b .fb-heading h1{font-size:64px}
+html:lang(zh-TW)[data-size]:not(#sz) .L1b .fb-heading h1{font-size:58px}
+html:lang(ja)[data-size]:not(#sz) .L1b .fb-heading{top:60px}
+html:lang(ja)[data-size]:not(#sz) .L1b .fb-heading h1{font-size:52px;margin-top:4px;text-wrap:balance}
+html:lang(ja)[data-size]:not(#sz) .L1b .fb-event{margin-top:10px}
+html:lang(ja)[data-size]:not(#sz) .L1b .fb-notes{font-size:25px;line-height:1.42} /* the notes on one line each (as TH), so they stay above the offer box */
+/* KAKAO 1 A-1: CN in three lines '丽朵皮肤科' / '人气玻尿酸' / '优惠活动' (five characters a line; the balanced wrap split '人气'); JP in three lines
+   'ビューティーブロッサムの' / '人気ヒアルロン酸' / '注入キャンペーン' (four lines had left 'の' alone and pushed the hook lines into the contact pill) */
+html:lang(zh-CN)[data-size]:not(#sz) .K1-1.K1a .h-title{font-size:60px;max-width:5.3em}
+html:lang(ja)[data-size]:not(#sz) .K1-1.K1a .h-title{font-size:34px;text-wrap:balance}
+/* KAKAO 1 B-1: one line (CN / TW) or two lines (JP) so the event line stays above the notes */
+html:lang(zh-CN)[data-size]:not(#sz) .K1-1.K1b .fb-heading h1{font-size:50px}
+html:lang(zh-TW)[data-size]:not(#sz) .K1-1.K1b .fb-heading h1{font-size:44px}
+html:lang(ja)[data-size]:not(#sz) .K1-1.K1b .fb-heading{top:56px}
+html:lang(ja)[data-size]:not(#sz) .K1-1.K1b .fb-heading h1{font-size:44px;margin-top:4px;text-wrap:balance}
+html:lang(ja)[data-size]:not(#sz) .K1-1.K1b .fb-event{margin-top:10px}
+/* KAKAO price parts (2 A, 3), TW: fit() could not bring the new title 'Beauty Blossom人氣玻尿酸優惠活動' under the 520 px of these parts (60 % floor) and it ran
+   out of 2 A-1 / 3-1; two lines ('Beauty Blossom' / '人氣玻尿酸優惠活動') at 38 px on 42 px lines with the head and board a little higher, as the HK rules above */
+html:lang(zh-TW)[data-size]:not(#sz) .K2a .pt-main,html:lang(zh-TW)[data-size]:not(#sz) .K3 .pt-main{white-space:normal;text-wrap:balance;font-size:38px;line-height:42px}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a.K2-1 .cp-head,html:lang(zh-TW)[data-size]:not(#sz) .K3.K3-1 .cp-head{margin-top:16px}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a.K2-1 .pboard,html:lang(zh-TW)[data-size]:not(#sz) .K3.K3-1 .pboard{margin-top:20px}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a.K2-2 .cp-head,html:lang(zh-TW)[data-size]:not(#sz) .K2a.K2-3 .cp-head{margin-top:6px}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a.K2-2 .pboard,html:lang(zh-TW)[data-size]:not(#sz) .K2a.K2-3 .pboard{margin-top:12px}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a.K2-3 .uibeop{margin-top:8px}
+/* the balanced break fell inside '人氣' ('Beauty Blossom人' / '氣玻尿酸優惠活動'); 'Beauty Blossom' as an inline block and keep-all leave the break after it */
+html:lang(zh-TW)[data-size]:not(#sz) .K2a .pt-main,html:lang(zh-TW)[data-size]:not(#sz) .K3 .pt-main{word-break:keep-all}
+html:lang(zh-TW)[data-size]:not(#sz) .K2a .pt-main > .nw:first-child,html:lang(zh-TW)[data-size]:not(#sz) .K3 .pt-main > .nw:first-child{display:inline-block}
+/* LINE 1 A, JP: the two-line title brings the hook lines down to the offer box (the JP box is taller: its label takes two lines), and the bow on the box sat
+   on the hook lines (already on their second line in the 11/19 version); the bow is left out and the box a little lower (as the TW / HK kakao boards) */
+html:lang(ja)[data-size]:not(#sz) .L1a .bow-tz{display:none}
+html:lang(ja)[data-size]:not(#sz) .L1a .tz{bottom:128px}
+/* price leads (TH): 'ตั้งแต่ใบหน้าจนถึงไหล่ เพื่อไลน์ที่ดูสง่างามด้วย Nefertiti Filler' left 'Filler' alone on the second line; balanced (as FIL12C TH) */
+html:lang(th) .p-lead{text-wrap:balance}
+/* KAKAO 2 A-1 / 3-1 (TH): the last row's BEST badge sat on the card's bottom edge (as in the 11/19 version); the head and the board a little higher, as the HK / TW rules */
+html:lang(th)[data-size]:not(#sz) .K2a.K2-1 .cp-head,html:lang(th)[data-size]:not(#sz) .K3.K3-1 .cp-head{margin-top:16px}
+html:lang(th)[data-size]:not(#sz) .K2a.K2-1 .pboard,html:lang(th)[data-size]:not(#sz) .K3.K3-1 .pboard{margin-top:20px}
+
 /* <lang-center> component text centring per language (generated by v4/filler12a/qa/lang-center.cjs with qa/tc-lang.cjs on real pixels, 2026-11-19):
    the language text is set in Noto Sans Thai / SC / JP, whose letters sit higher or lower in the line than the Korean Pretendard text; each off-centre
    component moves its text by padding (same height) or a relative top next to an icon, per size (home 1080 / board 780 / line / kakao) */
@@ -361,11 +415,11 @@ html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="1"]:not([data-varia
 html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.tz-opt[data-copy="fb_hero_opt"]{padding-top:2.311px!important;padding-bottom:4.569px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="1"][data-variant="b"][data-size-only~="kakao"] a.cta-a > span{position:relative;top:-4.000px}
 html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.tz-opt[data-copy="fb_hero_opt"]{padding-top:2.999px!important;padding-bottom:5.001px!important}
-html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="fb_r36_badge"]{padding-top:3.637px!important;padding-bottom:4.323px!important}
-html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="fb_cont"]{padding-top:3.999px!important;padding-bottom:6.001px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="fb_r36_badge"]{padding-top:4.259px!important;padding-bottom:3.701px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="fb_cont"]{padding-top:3.169px!important;padding-bottom:6.831px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="fb_cont"]{padding-top:3.524px!important;padding-bottom:6.476px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pt-cont[data-copy="fb_cont"]{padding-top:3.524px!important;padding-bottom:6.476px!important}
-html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-s[data-copy="fb_p46_sub"]{padding-top:3.199px!important;padding-bottom:2.801px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-s[data-copy="fb_p46_sub"]{padding-top:2.429px!important;padding-bottom:3.571px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.inf-k[data-copy="fb_c5_i1_k"]{padding-top:0.999px!important;padding-bottom:3.001px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.inf-k[data-copy="fb_c5_i2_k"]{padding-top:0.999px!important;padding-bottom:3.001px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.inf-k[data-copy="fb_c5_i3_k"]{padding-top:0.999px!important;padding-bottom:3.001px!important}
@@ -460,4 +514,7 @@ html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-va
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.inf-k[data-copy="fb_c5_i2_k"]{padding-top:0.999px!important;padding-bottom:3.001px!important}
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.inf-k[data-copy="fb_c5_i3_k"]{padding-top:0.999px!important;padding-bottom:3.001px!important}
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="fb_ab_way_line"]{padding-top:1.224px!important;padding-bottom:2.776px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="fb_r36_badge"]{padding-top:3.607px!important;padding-bottom:4.353px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="fb_r44_badge"]{padding-top:3.607px!important;padding-bottom:4.353px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="fb_r47_badge"]{padding-top:3.607px!important;padding-bottom:4.353px!important}
 /* </lang-center> */
