@@ -224,3 +224,45 @@ html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-va
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] div.band.b4{padding-top:5.348px!important;padding-bottom:6.652px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] ul.chips li > span{position:relative;top:-0.735px}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="ox_ab_way_line"]{padding-top:2.301px!important;padding-bottom:3.299px!important}
+
+/* TW (2026-11-23, reviewed copy v4/langverify/out/OXM12.final.json, lead order); every selector names TW. */
+/* price card foot (every size from 601 px): the contact line ('預約・諮詢 LINE@beautyblossom_tw') starts at the left so the VAT line keeps its place
+   at the right without touching it (as HK; phones already stack the two) */
+@container (min-width:601px){html[data-locale=TW] main.ox .p2-foot{justify-content:flex-start}}
+/* the TW words kept together by oligio12.js (KEEP_TW) also hold inside the B price card's group heads (text-wrap:balance resets the nowrap of .nw), as CN / HK */
+html[data-locale=TW] main.ox .b2-gh span.nw{white-space:nowrap}
+/* device card, kakao part 1: the TW mode names ('G・X模式', full-width middle dot) fit their box, as JP */
+html[data-locale=TW][data-size=kakao] main.ox .K41 .en-mode{font-size:34px}
+/* card 6 booking box (every size): the phone line holds the LINE ID '@beautyblossom_tw' (is-id, oligio12.js), longer than the number; a size smaller so it
+   stays inside the box (phones keep their 17px floor) */
+html[data-locale=TW] main.ox .bk-phone.is-id{font-size:max(17px,calc(22*var(--px)))}
+
+/* TW chip text centring (2026-11-19, language versions): the  text is set in its language font; its ink box differs from the Korean one, so each pill gets its own padding, measured on real pixels with qa/text-center-check.cjs
+   (?lang=TW), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules; a pill that kept flipping by about half a
+   pixel is moved as a whole by a quarter or half pixel instead */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-TW):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) div.band.b2{padding-top:0.29904em!important;padding-bottom:0.27238em!important}
+html:lang(zh-TW):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) div.band.b4{padding-top:0.25600em!important;padding-bottom:0.31543em!important}
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="ox_ab_way_line"]{padding-top:0.22310em!important;padding-bottom:0.17690em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-TW):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.b2-badge[data-copy="ox_r8_badge"]{padding-top:0.18714em!important;padding-bottom:0.13286em!important}
+html:lang(zh-TW):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.en-tag[data-copy="ox_c3_e1_tag"]{padding-top:0.26063em!important;padding-bottom:0.37937em!important}
+html:lang(zh-TW):not(#sz) [data-card="4"]:not([data-variant="b"]):not([data-size-only]) span.en-tag[data-copy="ox_c3_e2_tag"]{padding-top:0.23211em!important;padding-bottom:0.40789em!important}
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="ox_ab_way_line"]{padding-top:0.18029em!important;padding-bottom:0.21971em!important}
+}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.en-tag[data-copy="ox_c3_e1_tag"]{padding-top:5.151px!important;padding-bottom:7.009px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.en-tag[data-copy="ox_c3_e2_tag"]{padding-top:4.817px!important;padding-bottom:7.343px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] div.band.b1{padding-top:5.185px!important;padding-bottom:6.815px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] div.band.b2{padding-top:5.185px!important;padding-bottom:6.815px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] div.band.b3{padding-top:5.185px!important;padding-bottom:6.815px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] div.band.b4{padding-top:5.185px!important;padding-bottom:6.815px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] ul.chips li > span{position:relative;top:-0.937px}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.en-tag[data-copy="ox_c3_e1_tag"]{padding-top:4.628px!important;padding-bottom:7.532px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.en-tag[data-copy="ox_c3_e2_tag"]{padding-top:4.628px!important;padding-bottom:7.532px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] div.band.b1{padding-top:5.348px!important;padding-bottom:6.652px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] div.band.b2{padding-top:5.348px!important;padding-bottom:6.652px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] div.band.b3{padding-top:5.348px!important;padding-bottom:6.652px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="4"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] div.band.b4{padding-top:5.348px!important;padding-bottom:6.652px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] ul.chips li > span{position:relative;top:-1.102px}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="ox_ab_way_line"]{padding-top:2.313px!important;padding-bottom:3.287px!important}

@@ -54,7 +54,10 @@ const KEEP_CN=new RegExp(KEEP.source.slice(0,-1)+'|\u51ac\u65e5\u91cc\u4e5f\u670
 /* 2026-11-23 HK (reviewed copy, lead order): the HK words kept the same way, so an HK line never breaks inside a word or a number ('\u5c04|\u983b',
    '\u8d85\u8072|\u6ce2', '600|\u767c', '+82 10-7215-|7511', '\u500b\u4eba|\u5316' ...); display only (nowrap spans, the stored text is unchanged) and only on the HK page */
 const KEEP_HK=new RegExp(KEEP.source.slice(0,-1)+'|\\+82 10-7215-7511|\\+82-2-336-7511|Ultherapy PRIME|3\\.0mm \u00b7 4\\.5mm|HIFU\u805a\u7126\u8d85\u8072\u6ce2|HIFU\u8d85\u8072\u6ce2\\d+\u767c|RF\u5c04\u983b\\d+\u767c|\u8d85\u8072\u5200\\d+\u767c|\\d+\u767c|RF\u5c04\u983b|\u805a\u7126\u8d85\u8072\u6ce2|\u8d85\u8072\u6ce2|\u5c04\u983b|\u63d0\u5347|\u7dca\u7dfb|\u7d30\u7dfb\u8b77\u7406|\u5100\u5668|\u7528\u91cf|\u500b\u4eba\u5316|\u4e00\u5c0d\u4e00|\u6548\u679c|\u9031\u672b|\u7ffb\u8b6f|\u65e5\u8a9e|\u6cf0\u8a9e|\u7642\u7a0b|\u8a2d\u5b9a|\u8aee\u8a62\u6642|\u4e00\u540c|\u8868\u9762|\u6df1\u5ea6)','g');
-const keepRe=()=>locale==='CN'?KEEP_CN:locale==='HK'?KEEP_HK:KEEP;
+/* 2026-11-23 TW (reviewed copy, lead order): the TW words kept the same way ('RF|\u96fb\u6ce2', '600|\u767c', '\u81ea|\u7136\u4e4b\u7f8e', '\u5c08|\u5c6c\u8aee\u8a62', the LINE name in corner
+   brackets ...); display only (nowrap spans, the stored text is unchanged) and only on the TW page */
+const KEEP_TW=new RegExp(KEEP.source.slice(0,-1)+'|RF\u96fb\u6ce2\\d+\u767c|HIFU\u97f3\u6ce2\\d+\u767c|\u7f8e\u570b\u97f3\u6ce2\u4e8c\u4ee3\\d+\u767c|\\d+\u767c|RF\u96fb\u6ce2|Medione\u91ab\u7642\u4e2d\u5fc3|\u300c\ud83c\udf38\u9e97\u6735\u8a3a\u6240\ud83c\udf38\u300d|\u805a\u7126\u8d85\u97f3\u6ce2|\u773c\u5468\u7dda\u689d|\u81ea\u7136\u4e4b\u7f8e|\u8db3\u91cf\u65bd\u4f5c|\u5c08\u5c6c\u8aee\u8a62|\u9031\u672b\u9580\u8a3a|\u7ffb\u8b6f\u670d\u52d9|\u96fb\u6ce2\u6280\u8853|\u808c\u819a\u8868\u9762|\u8aee\u8a62\u6642|\u8a2d\u5099|\u76ee\u6a19|\u8a2d\u5b9a|\u4e00\u8d77|\u5e33\u865f|\u642d\u914d|\u5176\u4e2d|\u96d9\u80fd\u91cf|HIFU\u97f3\u6ce2|\u773c\u5468)','g');
+const keepRe=()=>locale==='CN'?KEEP_CN:locale==='HK'?KEEP_HK:locale==='TW'?KEEP_TW:KEEP;
 function appendKept(el,s){
  let last=0;
  for(const m of s.matchAll(keepRe())){
@@ -82,7 +85,7 @@ function setText(el,v){
  if(/^(JP|CN|TW|HK)$/.test(locale))m=v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\uff09)\]\u00b7]*)$/u);
  else if(locale!=='TH')m=el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/); /* card 5 title: only a very short last word is kept with the previous one, so the Korean title breaks before '뷰티블라썸' */
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
- if(m&&(el.closest('.p5')||locale==='CN'||locale==='HK')){let cut=v.length-m[1].length;for(const k of v.matchAll(K))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;} /* card 5 (and every CN card, 2026-11-20; every HK card, 2026-11-23): never split a kept word at the widow cut */
+ if(m&&(el.closest('.p5')||locale==='CN'||locale==='HK'||locale==='TW')){let cut=v.length-m[1].length;for(const k of v.matchAll(K))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;} /* card 5 (and every CN card, 2026-11-20; every HK / TW card, 2026-11-23): never split a kept word at the widow cut */
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
  const tail=document.createElement('span');tail.className='nw';tail.textContent=m[1];
  el.textContent='';appendKept(el,v.slice(0,v.length-m[1].length));el.append(tail);
@@ -138,6 +141,13 @@ function render(){
   const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
+ /* 2026-11-23 reviewed TW (lead order; the LIG12 / ONE12 / CMB12A-E TW rule): the card-6 phone field may hold the country's chat ID (TW LINE ID
+    '@beautyblossom_tw') instead of a number; then a chat icon replaces the phone icon and the line opens the booking LINE instead of tel:. TW only: the
+    other languages keep their published phone line */
+ {const CHAT_D='M12 3C6.5 3 2 6.6 2 11c0 2.5 1.4 4.7 3.6 6.2L4.8 21l4.2-2.3c1 .2 2 .3 3 .3 5.5 0 10-3.6 10-8s-4.5-8-10-8z';
+  for(const p of document.querySelectorAll('.bk-phone')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??'').trim(),id=locale==='TW'&&!!v&&!/^\+?\d[\d\s\-().]*$/.test(v);
+   p.classList.toggle('is-id',id);const ico=p.querySelector('svg.ph-ico path');if(ico){if(!ico.dataset.d0)ico.dataset.d0=ico.getAttribute('d');const d=id?CHAT_D:ico.dataset.d0;if(ico.getAttribute('d')!==d)ico.setAttribute('d',d);}
+   const a=p.querySelector('a[data-link="phone"]');if(a){if(id&&CH&&CH.booking){a.href=CH.booking;a.target='_blank';a.rel='noopener noreferrer';}else{a.removeAttribute('target');a.removeAttribute('rel');}}}}
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
  /* 2026-10-30c: card-5 Google map, this locale's own capture for every width tier (copy-data gmap; the picture sources pick the tier) */
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;

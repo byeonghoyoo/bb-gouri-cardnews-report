@@ -185,3 +185,46 @@ html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-va
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="ap_c5_cap1"]{padding-top:4.960px!important;padding-bottom:2.840px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="ap_c5_cap3"]{padding-top:4.960px!important;padding-bottom:2.840px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.b5-pill[data-copy="ap_c5_lines"]{padding-top:3.531px!important;padding-bottom:3.969px!important;position:relative;top:-0.5px}
+
+/* TW (2026-11-23, reviewed copy v4/langverify/out/APT12.final.json, lead order); every selector names TW. */
+/* kakao card 6-3: the phone field holds the LINE ID '@beautyblossom_tw' (as JP '@beautyblossom_jp'), a size smaller so it stays inside the box */
+html[data-locale=TW][data-size=kakao] .K63 .bk-phone{font-size:15px}/* price card foot (phones): the uibeop line wraps to two lines and the VAT line '*另加加值稅（VAT）' keeps its full width (it overflowed its own box by 2px) */
+html[data-locale=TW] .p2-foot .vat{flex-shrink:0}
+/* kakao hero B: the reviewed TW title ('NAMICA拉提全新登場！') set a size smaller and the copy block raised, as HK / JP / CN, so it takes two lines
+   ('NAMICA拉提' / '全新登場！'); the subtitle a size smaller (as HK / TH), so the copy stays clear of the contact line below and the product box above */
+html[data-locale=TW][data-size=kakao] main .K1b .p1-copy{bottom:98px}
+html[data-locale=TW][data-size=kakao] .K1b .title{font-size:56px}
+html[data-locale=TW][data-size=kakao] .K1b .sub{font-size:18px}
+
+/* TW chip text centring (2026-11-19, language versions): the  text is set in its language font; its ink box differs from the Korean one, so each pill gets its own padding, measured on real pixels with qa/text-center-check.cjs
+   (?lang=TW), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules; a pill that kept flipping by about half a
+   pixel is moved as a whole by a quarter or half pixel instead */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-TW):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.chip.chip1[data-copy="ap_chip1"]{padding-top:0.39314em!important;padding-bottom:0.44686em!important}
+html:lang(zh-TW):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.chip.chip2[data-copy="ap_chip2"]{padding-top:0.37981em!important;padding-bottom:0.46019em!important}
+html:lang(zh-TW):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.chip.chip1[data-copy="ap_chip1"]{padding-top:0.41219em!important;padding-bottom:0.42781em!important}
+html:lang(zh-TW):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.chip.chip2[data-copy="ap_chip2"]{padding-top:0.36190em!important;padding-bottom:0.47810em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.bb-ba__arrow[data-copy="ap_ba_arrow"]{padding-top:0.00000em!important;padding-bottom:0.18750em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-TW):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.chip.chip2[data-copy="ap_chip2"]{padding-top:0.38476em!important;padding-bottom:0.45524em!important}
+html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.bb-ba__arrow[data-copy="ap_ba_arrow"]{padding-top:0.00000em!important;padding-bottom:0.31763em!important}
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) figcaption[data-copy="ap_c5_cap1"]{padding-top:0.38154em!important;padding-bottom:0.21846em!important}
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) figcaption[data-copy="ap_c5_cap2"]{padding-top:0.38769em!important;padding-bottom:0.21231em!important}
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) figcaption[data-copy="ap_c5_cap3"]{padding-top:0.38154em!important;padding-bottom:0.21846em!important}
+html:lang(zh-TW):not(#sz) [data-card="6"]:not([data-variant="b"]):not([data-size-only]) span.b5-pill[data-copy="ap_c5_lines"]{padding-top:0.24367em!important;padding-bottom:0.25633em!important}
+}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.bb-ba__arrow[data-copy="ap_ba_arrow"]{padding-top:0.000px!important;padding-bottom:10.144px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] figcaption[data-copy="ap_c5_cap1"]{padding-top:5.158px!important;padding-bottom:2.642px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] figcaption[data-copy="ap_c5_cap2"]{padding-top:5.036px!important;padding-bottom:2.764px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] figcaption[data-copy="ap_c5_cap3"]{padding-top:5.158px!important;padding-bottom:2.642px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.b5-pill[data-copy="ap_c5_lines"]{padding-top:3.333px!important;padding-bottom:4.167px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.chip.chip1[data-copy="ap_chip1"]{padding-top:8.864px!important;padding-bottom:8.776px!important;margin-top:0.5px}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.chip.chip2[data-copy="ap_chip2"]{padding-top:8.864px!important;padding-bottom:8.776px!important;margin-top:0.5px}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.chip.chip1[data-copy="ap_chip1"]{padding-top:8.864px!important;padding-bottom:8.776px!important;margin-top:0.5px}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.chip.chip2[data-copy="ap_chip2"]{padding-top:8.864px!important;padding-bottom:8.776px!important;margin-top:0.5px}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.bb-ba__arrow[data-copy="ap_ba_arrow"]{padding-top:0.000px!important;padding-bottom:9.560px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.bb-ba__arrow[data-copy="ap_ba_arrow"]{padding-top:0.000px!important;padding-bottom:9.560px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="ap_c5_cap1"]{padding-top:4.834px!important;padding-bottom:2.966px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] figcaption[data-copy="ap_c5_cap3"]{padding-top:4.834px!important;padding-bottom:2.966px!important}
+html:lang(zh-TW)[data-size]:not(#sz) [data-card="6"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.b5-pill[data-copy="ap_c5_lines"]{padding-top:3.680px!important;padding-bottom:3.820px!important}

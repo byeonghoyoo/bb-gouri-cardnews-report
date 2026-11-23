@@ -567,6 +567,21 @@ html:lang(en) .ab-strengths .at{flex:1 1 auto;overflow-wrap:normal}
 /* kakao 7a-3: the station name keeps one line so the address stays on the card (as the Thai version) */
 html:lang(en)[data-size]:not(#sz) .K7c .way-st{font-size:20px}
 
+/* 2026-11-23 (lead order LV_BUILD_1123): the reviewed EN answer lg_c4_a ('Retaining ligaments are firm bands ... three-dimensional facial lines.') is longer
+   than the retired draft; on the kakao card 5 part 1 it took four lines and pushed the three injectable boxes 32 px past the card, so it is set at 18 px (three lines) */
+html:lang(en)[data-size="kakao"]:not(#sz) .K5a .q-ans{font-size:18px}
+/* the reviewed answer is three lines on the home / board card 5 too (EN, JP), which pushed the three injectable boxes 10-19 px under the dark band
+   (home and board widths only): EN's seven concern rows step closer (4 px above and below, as the JP rule of 11/19); JP, whose rows already have 4 px,
+   sets its two-line list label and the 'Injectable' heading at line height 1.2 (as the TH card), the answer at 1.5 and its rows at 3.5 px */
+@container (min-width:601px){html:lang(en) .c4[data-card="5"]:not([data-size-only]) .lg-it{padding-top:calc(4*var(--px));padding-bottom:calc(4*var(--px))}
+ html:lang(ja) .c4[data-card="5"]:not([data-size-only]) .lig-lbl,html:lang(ja) .c4[data-card="5"]:not([data-size-only]) .mat-title{line-height:1.2}
+ html:lang(ja) .c4[data-card="5"]:not([data-size-only]) .q-ans{line-height:1.5}
+ html:lang(ja) .c4[data-card="5"]:not([data-size-only]) .lg-it{padding-top:calc(3.5*var(--px));padding-bottom:calc(3.5*var(--px))}}
+/* the reviewed EN lg_c5_a ('We carefully assess your facial structure ... before the treatment.') takes three lines on the kakao card 6 part 1 and pushed the
+   steps 21 px past the card: the title and the answer are set as on the TH card (38 px title, 18 px answer, line height 1.5) */
+html:lang(en)[data-size]:not(#sz) .K6a .q-title{font-size:38px}
+html:lang(en)[data-size]:not(#sz) .K6a .q-ans{font-size:18px;line-height:1.5}
+
 /* JP chip text centring (2026-11-19): the JP text is set in Noto Sans JP (Latin letters and figures in Pretendard); each pill gets its own padding (or a small relative top), measured on
    real pixels with qa/text-center-check.cjs (?lang=JP), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
 @media (min-width:601px) and (max-width:999px){
@@ -591,11 +606,12 @@ html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-on
 html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="lg_r17_parts"] > span.chip:nth-child(9){padding-top:0.16200em!important;padding-bottom:0.23800em!important}
 html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="lg_r17_parts"] > span.chip:nth-child(11){padding-top:0.16200em!important;padding-bottom:0.23800em!important}
 html:lang(ja):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="lg_r17_parts"] > span.chip:nth-child(13){padding-top:0.16200em!important;padding-bottom:0.23800em!important}
-html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk1{padding-top:0.09867em!important;padding-bottom:0.22133em!important}
-html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk2{padding-top:0.10600em!important;padding-bottom:0.21400em!important}
+html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk1{padding-top:0.14734em!important;padding-bottom:0.17266em!important}
+html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk2{padding-top:0.16200em!important;padding-bottom:0.15800em!important}
 html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk4{padding-top:0.07733em!important;padding-bottom:0.24267em!important}
-html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk7{padding-top:0.10467em!important;padding-bottom:0.21533em!important}
+html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk7{padding-top:0.16000em!important;padding-bottom:0.16000em!important}
 html:lang(ja):not(#sz) [data-card="7"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="lg_ab_way_line"]{padding-top:0.17357em!important;padding-bottom:0.22643em!important}
+html:lang(ja):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk5{padding-top:0.11933em!important;padding-bottom:0.20067em!important}
 }
 html:lang(ja)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.tz-opt[data-copy="lg_hero_opt"]{padding-top:0.338px!important;padding-bottom:1.702px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.pg-tag[data-copy="lg_g6_tag"]{padding-top:3.614px!important;padding-bottom:-0.534px!important}
@@ -613,6 +629,10 @@ html:lang(ja)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-varia
 html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.mk.mk2{padding-top:1.748px!important;padding-bottom:3.052px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="6"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] p.c5-time[data-copy="lg_c5_time"]{padding-top:13.155px!important;padding-bottom:14.845px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="7"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="lg_ab_way_line"]{padding-top:2.304px!important;padding-bottom:3.296px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.mk.mk1{padding-top:1.512px!important;padding-bottom:3.288px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.mk.mk3{padding-top:1.555px!important;padding-bottom:3.245px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.mk.mk4{padding-top:1.748px!important;padding-bottom:3.052px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.mk.mk7{padding-top:1.544px!important;padding-bottom:3.256px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.tz-opt[data-copy="lg_hero_opt"]{padding-top:0.000px!important;padding-bottom:2.441px!important;position:relative;top:-0.5px}
 html:lang(ja)[data-size]:not(#sz) [data-card="1"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.tz-opt[data-copy="lg_hero_opt"]{padding-top:0.084px!important;padding-bottom:1.956px!important}
 html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-tag[data-copy="lg_g6_tag"]{padding-top:3.549px!important;padding-bottom:-0.469px!important}
@@ -649,6 +669,7 @@ html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-on
 html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) [data-copy="lg_r17_parts"] > span.chip:nth-child(5){padding-top:0.26312em!important;padding-bottom:0.13687em!important}
 html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk4{padding-top:0.11333em!important;padding-bottom:0.20667em!important}
 html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk5{padding-top:0.21533em!important;padding-bottom:0.10467em!important}
+html:lang(en):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.mk.mk6{padding-top:0.21333em!important;padding-bottom:0.10667em!important}
 }
 html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.period[data-copy="lg_period"]{padding-top:6.231px!important;padding-bottom:3.889px!important}
 html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.badge[data-copy="lg_r11_badge"]{padding-top:5.462px!important;padding-bottom:3.538px!important}
@@ -656,6 +677,8 @@ html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-on
 html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.badge[data-copy="lg_r9_badge"]{padding-top:4.904px!important;padding-bottom:4.096px!important}
 html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.badge[data-copy="lg_r11_badge"]{padding-top:5.431px!important;padding-bottom:3.569px!important}
 html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] [data-copy="lg_r17_parts"] > span.chip:nth-child(5){padding-top:4.908px!important;padding-bottom:1.492px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.mk.mk5{padding-top:3.133px!important;padding-bottom:1.667px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="5"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.mk.mk6{padding-top:3.164px!important;padding-bottom:1.636px!important}
 html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant="b"][data-size-only~="kakao"] span.badge[data-copy="lg_r11_badge"]{padding-top:4.756px!important;padding-bottom:4.244px!important;position:relative;top:-0.5px}
 html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.ptier[data-copy="lg_r13_tier"]{padding-top:1.546px!important;padding-bottom:-0.072px!important}
 html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pg-tag[data-copy="lg_g12_tag"]{padding-top:3.282px!important;padding-bottom:0.798px!important}

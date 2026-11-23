@@ -381,9 +381,9 @@ html:lang(ja) .sheet{word-break:auto-phrase}
 /* IVS12 EN / JP from the Thai layout rules, HK from the TW layout rules (2026-11-19 evening, starting point) */
 html:lang(en) .h-ko,html:lang(en) .p-title,html:lang(en) .q-title{font-weight:800}
 html:lang(en) .money{white-space:nowrap}
-@container (min-width:601px){html:lang(en) .c1[data-variant="b"]:not([data-size-only]) .h-ko{font-size:calc(68*var(--px))}}
-html:lang(en)[data-size]:not(#sz) main.iv .L1b .h-ko{font-size:69px}
-html:lang(en)[data-size]:not(#sz) main.iv .K1b .h-ko{font-size:50px}
+@container (min-width:601px){html:lang(en) .c1[data-variant="b"]:not([data-size-only]) .h-ko{font-size:calc(68*var(--px)*var(--fit,1))}}
+html:lang(en)[data-size]:not(#sz) main.iv .L1b .h-ko{font-size:calc(69px*var(--fit,1))}
+html:lang(en)[data-size]:not(#sz) main.iv .K1b .h-ko{font-size:calc(50px*var(--fit,1))}
 html:lang(en)[data-size]:not(#sz) main.iv .K1b .hook{font-size:18px}
 html:lang(en)[data-size]:not(#sz) main.iv .K1b .hb{padding:16px 18px}
 html:lang(en)[data-size]:not(#sz) main.iv .K1b .hb-name{font-size:22px}
@@ -470,9 +470,9 @@ html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .ab-strengths{row-gap:12px}
 html:lang(en)[data-size]:not(#sz) main.iv .K5p2 .hrs-note{margin-top:8px}
 html:lang(ja) .h-ko,html:lang(ja) .p-title,html:lang(ja) .q-title{font-weight:800}
 html:lang(ja) .money{white-space:nowrap}
-@container (min-width:601px){html:lang(ja) .c1[data-variant="b"]:not([data-size-only]) .h-ko{font-size:calc(68*var(--px))}}
-html:lang(ja)[data-size]:not(#sz) main.iv .L1b .h-ko{font-size:69px}
-html:lang(ja)[data-size]:not(#sz) main.iv .K1b .h-ko{font-size:50px}
+@container (min-width:601px){html:lang(ja) .c1[data-variant="b"]:not([data-size-only]) .h-ko{font-size:calc(68*var(--px)*var(--fit,1))}}
+html:lang(ja)[data-size]:not(#sz) main.iv .L1b .h-ko{font-size:calc(69px*var(--fit,1))}
+html:lang(ja)[data-size]:not(#sz) main.iv .K1b .h-ko{font-size:calc(50px*var(--fit,1))}
 html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hook{font-size:18px}
 html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hb{padding:16px 18px}
 html:lang(ja)[data-size]:not(#sz) main.iv .K1b .hb-name{font-size:22px}
@@ -747,3 +747,36 @@ html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"][data-variant
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.period[data-copy="iv_period"]{padding-top:7.790px!important;padding-bottom:8.050px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.period[data-copy="iv_period"]{padding-top:7.790px!important;padding-bottom:8.050px!important}
 html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.period[data-copy="iv_period"]{padding-top:7.919px!important;padding-bottom:8.921px!important}
+
+/* <final-1123> 2026-11-23 (lead order, v4/langverify/out/LV_BUILD_1123.md): EN / JP / HK back to the reviewed copy (final.json) for iv_title, iv_hook,
+   iv_p_event, iv_p_lead, iv_c3_q. The B hero title 'Blossom IV Booster Packages' / 'ブロッサム点滴ブースターパッケージ' is longer than the 11/19 drafts: the EN / JP
+   B-title sizes above now carry the renderer's --fit (one line, shrunk to the column as the A title). */
+/* EN card 2A: the reviewed lead takes two lines at 21 px and pushed the VAT line 12 px past the card; 19.5 px keeps it on one line (as CN) */
+@container (min-width:601px){html:lang(en) .c2:not([data-variant="b"]):not([data-size-only]) .p-lead{font-size:calc(19.5*var(--px))}}
+/* EN kakao card 3 part 1: 'Beauty and wellness in one solutiion' was 24 px too wide at the renderer's smallest fit (0.5 of 74 px); from 60 px the fit keeps it in the line */
+html:lang(en)[data-size]:not(#sz) main.iv .K3p1 .q-title{font-size:calc(60px*var(--fit,1))}
+/* </final-1123> */
+
+/* IVS12 EN chip text re-centring (2026-11-23: the reviewed iv_title / iv_p_lead / iv_c3_q changed the line count of card 1 / 2 / 3 heads and moved these pills by a fraction of a pixel): measured on real pixels with qa/text-center-check.cjs (?lang=EN) per component and size (home 1080 /
+   board 780 / line / kakao), as the Korean fixpass and TH rules; each off-centre pill gets its own padding (a text next to an icon a relative top) */
+@media (min-width:1000px){
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pplus[data-copy="iv_r10_plus"]{padding-top:0.12533em!important;padding-bottom:0.17467em!important}
+html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) p.kd-t[data-copy="iv_c3_k2_t"]{padding-top:0.05524em!important;padding-bottom:0.30476em!important}
+}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pbadge[data-copy="iv_r9_badge"]{padding-top:4.439px!important;padding-bottom:4.561px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pplus[data-copy="iv_r11_plus"]{padding-top:1.524px!important;padding-bottom:2.376px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.kd-t[data-copy="iv_c3_k1_t"]{padding-top:3.768px!important;padding-bottom:3.792px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] p.kd-t[data-copy="iv_c3_k3_t"]{padding-top:3.646px!important;padding-bottom:3.914px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.kd-t[data-copy="iv_c3_k1_t"]{padding-top:4.395px!important;padding-bottom:3.165px!important;position:relative;top:0.5px}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] p.kd-t[data-copy="iv_c3_k3_t"]{padding-top:4.270px!important;padding-bottom:4.290px!important;position:relative;top:-0.5px}
+
+/* IVS12 JP chip text re-centring (2026-11-23: the reviewed iv_title / iv_p_lead / iv_c3_q changed the line count of card 1 / 2 / 3 heads and moved these pills by a fraction of a pixel): measured on real pixels with qa/text-center-check.cjs (?lang=JP) per component and size (home 1080 /
+   board 780 / line / kakao), as the Korean fixpass and TH rules; each off-centre pill gets its own padding (a text next to an icon a relative top) */
+@media (min-width:1000px){
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="iv_g1"]{padding-top:0.17890em!important;padding-bottom:0.26110em!important}
+html:lang(ja):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span[data-copy="iv_g2"]{padding-top:0.15263em!important;padding-bottom:0.28737em!important}
+}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pplus[data-copy="iv_r9_plus"]{padding-top:2.611px!important;padding-bottom:1.589px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span[data-copy="iv_g2"]{padding-top:2.937px!important;padding-bottom:5.423px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pbadge[data-copy="iv_r8_badge"]{padding-top:5.121px!important;padding-bottom:3.879px!important}
+html:lang(ja)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span[data-copy="iv_g1"]{padding-top:3.524px!important;padding-bottom:4.836px!important;position:relative;top:-0.25px}

@@ -73,7 +73,9 @@ const KEEP={
  TH:['ร้อยไหม','ยกกระชับ','แคปซูล','เนื้อเยื่อ','ดูดซึม','หัตถการ','ยกศีรษะ','สัปดาห์','สารคัดหลั่ง','คลินิก','ไฮยาลูรอนิก','แอซิด','เจเนอเรชัน','ไบโอลิฟติ้ง','ความกระชับ','รูปหน้า','พร้อมกัน','สกินโบท็อกซ์','อีเวนต์','เปิดตัว','กรอบหน้า','ใบหน้า','ส่วนกลาง','ระยะพักฟื้น','หัตถการ','แต่ละบุคคล','จัดฉาก','ถ่ายทำ','ทั้งหน้า','ช็อต','เส้น','ไหม','ปรึกษา','ข้อมูลการจอง','นางแบบ','สอบถาม','ที่นี่คือ','เฉพาะบุคคล','เราจะอยู่เคียงข้างคุณเสมอ'],
  /* 2026-11-20 reviewed CN (lead order): the words of the reviewed copy a CN line must not break inside ('全|新', '什|么', '地|方', '支|撑', '6|楼' ...); display only, CN page only */
  CN:['透明质酸','可吸收线','微胶囊','倒钩','玻尿酸','生物提拉','上市活动','NAMICA提拉','全新上线','下颌线','中下面部','第四代','高端线材','面部轮廓','皮肤弹性','紧致','轮廓','咨询','摆拍图片','什么样的线材','冬日里','也有花开的地方','经过设计','支撑组织','剧烈运动','公共浴场','加重','设备','遵守','标准用量','制定方案','晚上8点','日语','翻译人员','6楼','8楼','进行布线','保持仰卧','垫高头部','面诊','施术','美版超声刀','水光肉毒','微滴肉毒注射','李建镐代表院长','自然之美','个性化诊疗','全程透明','补休日','MediOne Medical Center','释放','分泌物','症状','联系医院','热感','桑拿','1个月','英语','中文','泰语','恢复时间','一对一','个性化咨询','更加闪耀','每一天'], /* 2026-11-23: + the words of the reviewed card-6 title (only there) */
- TW:['可吸收線','微膠囊','倒刺','療程','回診','玻尿酸','生物拉提','新品首發','首發活動','下顎線','中下臉','第四代','皮膚肉毒','緊緻','輪廓','諮詢','示意圖','這裡是Beauty Blossom'],
+ /* 2026-11-23 reviewed TW (lead order): + the words of the reviewed copy a TW line must not break inside ('光|彩', 'Beauty | Blossom', '目|標', '設|備', '週|末門診',
+    the LINE name in corner brackets ...); display only, TW page only */
+ TW:['可吸收線','微膠囊','倒刺','療程','回診','玻尿酸','生物拉提','新品首發','首發活動','下顎線','中下臉','第四代','皮膚肉毒','緊緻','輪廓','諮詢','示意圖','這裡是Beauty Blossom','全新登場','臉部輪廓','分階段','看診時','墊高頭部','平躺','劇烈運動','公共浴場','三溫暖','1個月','反應','Beauty Blossom','綻放光彩','足量施作','設備','藥劑','正確','目標','週末門診','泰文','日文','Medione醫療中心','「🌸麗朵診所🌸」','最高49%折扣','肌膚彈性','NAMICA拉提','分泌物','熱感','翻譯服務','劑量原則','恢復期','聯繫診所'],
  /* 2026-11-23 reviewed HK (lead order): + the words of the reviewed copy an HK line must not break inside ('改|善', '儀|器', '效|果', '個人|化', '分|泌物',
     '預|約時間', '+82 10-|7215-7511' ...); display only, HK page only */
  HK:['可吸收線','微膠囊','倒刺','療程','覆診','透明質酸','生物提升','新品首發','首發活動','下顎線','中下面部','第四代','皮膚肉毒','緊緻','輪廓','查詢','示意圖','這裡是Beauty Blossom','+82 10-7215-7511','改善','面部輪廓','皮膚彈性','診症時','建議','墊高頭部','劇烈運動','一個月','症狀','加劇','分泌物','聯絡診所','藥物','儀器','效果','一對一','個人化','廣東話','預約時間','最高','水光肉毒','nano 線材','全新'],
@@ -129,7 +131,10 @@ function render(){
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
  /* 2026-11-19 reviewed TH / JP (v4/aptos12/work/i18n-1119.cjs): the phone field may hold the country's LINE ID ('Line: @beautyblossom_th', 'LINE：@beautyblossom_jp');
     then its link opens the LINE account instead of tel: (LIG12 / ONE12 / CRF12 / CMB12A TW rule). Korean and the other languages hold the number: nothing changes there. */
- {const pv=String(fields.ap_phone??'').trim();if(locale!=='KO'&&pv&&!/^\+?\d[\d\s\-().]*$/.test(pv)&&CH&&CH.booking)for(const a of document.querySelectorAll('a[data-link="phone"]')){a.href=CH.booking;a.target='_blank';a.rel='noopener noreferrer';}}
+ {const pv=String(fields.ap_phone??'').trim();if(locale!=='KO'&&pv&&!/^\+?\d[\d\s\-().]*$/.test(pv)&&CH&&CH.booking)for(const a of document.querySelectorAll('a[data-link="phone"]')){a.href=CH.booking;a.target='_blank';a.rel='noopener noreferrer';}
+ /* 2026-11-23 reviewed TW (lead order; the other TW pages' rule): the phone field holds the LINE ID, so the phone icon of its lines becomes the chat icon of
+    this page's icon set (icon_chat.webp); TW only, the other languages keep their published icons */
+ const twId=locale==='TW'&&!!pv&&!/^\+?\d[\d\s\-().]*$/.test(pv);for(const a of document.querySelectorAll('a[data-link="phone"]')){const img=a.parentElement&&a.parentElement.querySelector('img.ico-phone');if(!img)continue;if(!img.dataset.src0)img.dataset.src0=img.getAttribute('src');const pic=twId?img.dataset.src0.replace(/icon_phone\.webp$/,'icon_chat.webp'):img.dataset.src0;if(img.getAttribute('src')!==pic)img.setAttribute('src',pic);}}
  /* 2026-10-30: card 5 map = Google Maps capture for this locale (PAGE_COPY.maps); the <picture> media queries pick the width tier */
  const MAPS=(DATA.maps&&DATA.maps[locale])||null;
  for(const el of document.querySelectorAll('[data-map-tier]')){const f=MAPS&&MAPS[el.dataset.mapTier];if(!f)continue;const at=el.tagName==='SOURCE'?'srcset':'src';if(el.getAttribute(at)!==f)el.setAttribute(at,f);}

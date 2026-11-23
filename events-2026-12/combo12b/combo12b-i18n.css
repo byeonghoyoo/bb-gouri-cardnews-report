@@ -460,3 +460,121 @@ html:lang(zh-HK)[data-size="kakao"]:not(#sz):not(#sz2) .K2b2 span[data-copy="c2_
 /* </chip-font-1119> */
 /* (JP B&A title at 46 px still reached the bubble at its right end on the home card and the board; 42 px, as the line card) */
 @container (min-width:601px){html:lang(ja) .cba:not([data-size-only]) .bb-ba__title{font-size:calc(42*var(--px))}}
+
+/* ===== 2026-11-23 (lead order LV_BUILD_1123): copy re-applied from final.json in all six languages (c2_pill, c2_title, c2_sub1, c2_sub2, c2_p2_lead,
+   c2_p35_lead, c2_p35_name, c2_p3_lead, c2_ba_title). Rules below name their language only ===== */
+/* hero 1 B pill (the same pill copy as CMB12A, the same fixes): JP 'ビューティーブロッサム 冬のキャンペーン' ran past the card's left edge and into the photo
+   frame -> 21 px (1080 scale; kakao 18 px); EN reached 11 px into the photo frame in kakao -> 22 px there; on phones EN and JP take two lines as TH */
+html:lang(ja) .bv.c1 .pill>span{font-size:max(12px,calc(21*var(--px)))}
+html:lang(en)[data-size="kakao"]:not(#sz) .K1b1 .pill>span{font-size:22px}
+html:lang(ja)[data-size="kakao"]:not(#sz) .K1b1 .pill>span{font-size:18px}
+@container (max-width:600px){html:lang(en) .bv.c1 .pill>span,html:lang(ja) .bv.c1 .pill>span{white-space:normal;word-break:keep-all;text-align:center}html:lang(en) .bv.c1 .pill>span{max-width:120px}html:lang(ja) .bv.c1 .pill>span{max-width:140px}html:lang(en) .bv.c1 .pill,html:lang(ja) .bv.c1 .pill{border-radius:10px}}
+/* hero 1 B pill, TH: the new copy 'โปรโมชันพิเศษต้อนรับหน้าหนาวจาก Beauty Blossom' (652 px on one line at 1080) ran past both card edges; it takes two lines
+   as on CMB12A TH (same copy, same rules) */
+html:lang(th) .bv.c1 .pill>span{white-space:normal}
+html:lang(th) .bv.c1 .pill{border-radius:calc(22*var(--px))}
+html:lang(th)[data-size]:not(#sz) .bv.c1 .pill{border-radius:18px}
+/* kakao 2 A-3: the under-eye set now shows its lead line ('目の下のクマ・くぼみ専用') above the name, and the JP name took two lines at 32 px, so the
+   board ran under the 49 % note and the VAT line left the card; the JP product names of this part are 25 px (one line) */
+html:lang(ja)[data-size="kakao"]:not(#sz) .K2a3 .prod-n{font-size:25px}
+
+/* <en-center-1123> */
+/* EN chip and pill text centring after the 11/23 copy (2026-11-23, qa/text-center-check + language EN at 1080 / 780 / line / kakao, after the rules
+   above): the hook and lead pills got new copy (da_hook, da_p_lead2, da_p_lead3); each chip moves its text by its measured offset (top / bottom padding
+   swapped, same height; the kakao whole-pixel text one whole pixel with the box kept by its bottom margin). Measured again after each pass; the last
+   rule of a chip wins */
+/* pass 1 */
+@media (min-width:901px){
+ html:lang(en):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.1000em!important} /* +2.5 */
+ html:lang(en):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill [data-copy]{position:relative;top:-0.1000em!important} /* +2.5 */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(en):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0402em!important} /* +2.13 */
+ html:lang(en):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0186em!important} /* +1.59 */
+}
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0998em!important} /* +2.45 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0998em!important} /* +2.45 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="1"] p.pill [data-copy]{position:relative;top:-0.1001em!important} /* +3.38 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="1"] p.pill [data-copy]{position:relative;top:-0.0990em!important} /* +2.94 */
+
+/* <jp-center-1123> */
+/* JP chip and pill text centring after the 11/23 copy (2026-11-23, qa/text-center-check + language JP at 1080 / 780 / line / kakao, after the rules
+   above): the hook and lead pills got new copy (da_hook, da_p_lead2, da_p_lead3); each chip moves its text by its measured offset (top / bottom padding
+   swapped, same height; the kakao whole-pixel text one whole pixel with the box kept by its bottom margin). Measured again after each pass; the last
+   rule of a chip wins */
+/* pass 1 */
+@media (min-width:901px){
+ html:lang(ja):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill [data-copy]{position:relative;top:0.0519em!important} /* -1.09 */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(ja):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0298em!important} /* +1.57 */
+}
+html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.pill [data-copy]{position:relative;top:0.0519em!important} /* -1.07 */
+html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="1"] p.pill [data-copy]{position:relative;top:0.0650em!important} /* -1.58 */
+
+/* <tw-center-1123> */
+/* TW chip and pill text centring after the 11/23 copy (2026-11-23, qa/text-center-check + language TW at 1080 / 780 / line / kakao, after the rules
+   above): the hook and lead pills got new copy (da_hook, da_p_lead2, da_p_lead3); each chip moves its text by its measured offset (top / bottom padding
+   swapped, same height; the kakao whole-pixel text one whole pixel with the box kept by its bottom margin). Measured again after each pass; the last
+   rule of a chip wins */
+/* pass 1 */
+@media (min-width:901px){
+ html:lang(zh-TW):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0600em!important} /* +1.5 */
+ html:lang(zh-TW):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0600em!important} /* +1.5 */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(zh-TW):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0470em!important} /* +2.3 */
+ html:lang(zh-TW):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0254em!important} /* +1.76 */
+}
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0599em!important} /* +1.47 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0599em!important} /* +1.47 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="1"] p.pill [data-copy]{position:relative;top:-0.0599em!important} /* +2.02 */
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="1"] p.pill [data-copy]{position:relative;top:-0.0599em!important} /* +2.02 */
+
+/* <th-center-1123> */
+/* TH chip and pill text centring after the 11/23 copy (2026-11-23, qa/text-center-check + language TH at 1080 / 780 / line / kakao, after the rules
+   above): the hook and lead pills got new copy (da_hook, da_p_lead2, da_p_lead3); each chip moves its text by its measured offset (top / bottom padding
+   swapped, same height; the kakao whole-pixel text one whole pixel with the box kept by its bottom margin). Measured again after each pass; the last
+   rule of a chip wins */
+/* pass 1 */
+@media (min-width:901px){
+ html:lang(th):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0900em!important} /* +2.25 */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(th):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0470em!important} /* +2.3 */
+ html:lang(th):not(#sz) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) span.prod-s[data-copy="c2_p29_sub"]{padding-top:0.56px!important;padding-bottom:1.63px!important} /* +1.5 */
+}
+html:lang(th)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0900em!important} /* +2.21 */
+html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="1"] p.pill [data-copy]{position:relative;top:-0.0901em!important} /* +3.04 */
+html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="1"] span.prod-s[data-copy="c2_p29_sub"]{padding-top:1.29px!important;padding-bottom:1.27px!important} /* +0.85 */
+
+/* <hk-center-1123> */
+/* HK chip and pill text centring after the 11/23 copy (2026-11-23, qa/text-center-check + language HK at 1080 / 780 / line / kakao, after the rules
+   above): the hook and lead pills got new copy (da_hook, da_p_lead2, da_p_lead3) and HK is new; each chip moves its text by its measured offset (top / bottom padding
+   swapped, same height; the kakao whole-pixel text one whole pixel with the box kept by its bottom margin). Measured again after each pass; the last
+   rule of a chip wins */
+/* pass 1 */
+@media (min-width:901px){
+ html:lang(zh-HK):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0600em!important} /* +1.5 */
+ html:lang(zh-HK):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0600em!important} /* +1.5 */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(zh-HK):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0470em!important} /* +2.3 */
+ html:lang(zh-HK):not(#sz) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0254em!important} /* +1.76 */
+}
+html:lang(zh-HK)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.pill [data-copy]{position:relative;top:-0.0599em!important} /* +1.47 */
+html:lang(zh-HK)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.pill [data-copy]{position:relative;top:-0.0599em!important} /* +1.47 */
+html:lang(zh-HK)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="1"] p.pill [data-copy]{position:relative;top:-0.0599em!important} /* +2.02 */
+html:lang(zh-HK)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="1"] p.pill [data-copy]{position:relative;top:-0.0599em!important} /* +2.02 */
+/* pass 2 (sub box and kakao pills; TH / EN / TW rules here too) */
+/* pass 2 (whole pixels; a fraction is snapped back): the hero sub box TH 1080 2 px down, TH 780 3 px down, HK 1080 0 (the 11/20 2 px up is too much for
+   the new copy); kakao pills whose text sat 0.68 px low get 1 px more box at the bottom (EN 1 A-1, TW and HK 1 A-1 / 1 B-1) */
+@media (min-width:901px){
+ html:lang(th):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:2px!important} /* -2.39 */
+ html:lang(zh-HK):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:0px!important} /* -2.39 with 2 px up */
+}
+@media (min-width:601px) and (max-width:900px){
+ html:lang(th):not(#sz) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) div.h-box [data-copy]{position:relative;top:3px!important} /* -3.29 */
+}
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="1"] p.pill{padding-bottom:10px!important}
+html:lang(zh-TW)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-part="1"] p.pill,html:lang(zh-HK)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-part="1"] p.pill{padding-bottom:12px!important}
