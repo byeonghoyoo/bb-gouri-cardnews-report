@@ -4,10 +4,16 @@
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
-const LANG={KO:'ko',TH:'th'};
+const LANG={KO:'ko',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+/* 2026-11-23 Chinese locales (as APT12): CJK line ends, price units and spec accents */
+const CJK={CN:1,TW:1,HK:1};
 const FONT_CSS={KO:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&display=swap',
  /* language versions (2026-11-20 TH): the same Latin display fonts plus Noto Sans Thai for the Thai letters */
- TH:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&family=Noto+Sans+Thai:wght@400;500;600;700;800;900&display=swap'};
+ TH:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&family=Noto+Sans+Thai:wght@400;500;600;700;800;900&display=swap',
+ /* 2026-11-23 CN / TW / HK: the same Latin display fonts plus Noto Sans SC / TC for the Chinese characters (as APT12) */
+ CN:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap',
+ TW:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap',
+ HK:'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Sacramento&family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap'};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -55,7 +61,11 @@ function fit(){for(const el of document.querySelectorAll('.fit'))if(el.offsetPar
 /* words that must never be split across lines (display only, the text stays identical) */
 const KEEP={ALL:['02-336-7511','10:00 – 17:00','12.01 – 02.28','VAT 10%','1회 한정가','스킨보톡스','슈링크 유니버스','포트라 콰트로','울쎄라피프라임','써마지 FLX','리쥬란 힐러','덴서티 알파팁','인모드 FX','(5분 이내)'],
  /* TH: the international number, the LINE ID and the brand never break */
- TH:['+82-2-336-7511','@beautyblossom_th','Beauty Blossom','(ไม่เกิน 5 นาที)','SHURINK UNIVERSE','DENSITY Alpha','Rejuran Healer','Thermage FLX','Ultherapy PRIME','FOTRA Quattro','InMode FX']};
+ TH:['+82-2-336-7511','@beautyblossom_th','Beauty Blossom','(ไม่เกิน 5 นาที)','SHURINK UNIVERSE','DENSITY Alpha','Rejuran Healer','Thermage FLX','Ultherapy PRIME','FOTRA Quattro','InMode FX'],
+ /* 2026-11-23 CN / TW / HK: the clinic number, the chat ID and the Latin names of each reviewed copy never break (work/i18n-lang.cjs keepList) */
+ CN:["+82-2-336-7511","Beauty Blossom","Beautyblossom00","DENSITY Alpha","FORTRA 45KJ","FORTRA Quattro","HAPPY HOUR MENU","HAPPY HOUR TIME","Happy Hour","InMode FX","LinearZ 1000","MENU GUIDE","MediOne Medical Center","ONDA 40KJ","ONDA 60KJ","RE2O 1","更加闪耀"],
+ TW:["+82-2-336-7511","@beautyblossom_tw","ABOUT BEAUTY BLOSSOM","Beauty Blossom","Beauty Blossom LINE","CARE ROOM","HAPPY HOUR MENU","HAPPY HOUR TIME","Happy Hour","Healer 4CC","InMode FX","Lee Geon-ho","MENU GUIDE","ONDA 40KJ","ONDA 60KJ","Q Facial","QR Code","Re2O 1","TREATMENT ROOM","VAT 10"],
+ HK:["+82 10-7215-7511","+82-2-336-7511","ABOUT BEAUTY BLOSSOM","Beauty Blossom","Beauty Blossom WhatsApp","CARE ROOM","Coretox Skin Botox","Density Alpha","FORTRA 45kJ","FORTRA Quattro","HAPPY HOUR MENU","HAPPY HOUR TIME","Happy Hour","InMode FX","LinearZ 1","MENU GUIDE","Medione Medical Center","ONDA 40kJ","ONDA 60kJ","Re2O 1","Rejuran Healer","Rejuran Healer 4cc","SHURINK UNIVERSE","Shurink Universe 600","Skin Booster","Skin Botox","TREATMENT ROOM","Thermage FLX","Ultherapy PRIME 600","Volnewmer 600","肌膚增效療程"]};
 const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const keepRe=()=>{const l=[...KEEP.ALL,...(KEEP[locale]||[])].sort((a,b)=>b.length-a.length);return new RegExp(l.map(esc).join('|'),'gu');};
 function appendKeep(parent,s){
@@ -67,10 +77,14 @@ function appendKeep(parent,s){
 const SPEC=/(\d[\d,.]*\s?(?:CC|cc|KJ|kJ|샷|v)(?![A-Za-z가-힣])|\(5분 이내\))/gu;
 /* TH: the same accent on the Thai units (600 ช็อต, 1 ขวด, 4 cc, 40 kJ) and on '(ไม่เกิน 5 นาที)' */
 const SPEC_TH=/(\d[\d,.]*\s?(?:CC|cc|KJ|kJ|\u0e0a\u0e47\u0e2d\u0e15|\u0e02\u0e27\u0e14)(?![A-Za-z\u0e00-\u0e7f])|\(\u0e44\u0e21\u0e48\u0e40\u0e01\u0e34\u0e19 5 \u0e19\u0e32\u0e17\u0e35\))/gu;
-function appendSpec(parent,s){let last=0;for(const m of s.matchAll(locale==='TH'?SPEC_TH:SPEC)){if(m.index>last)appendKeep(parent,s.slice(last,m.index));const k=document.createElement('span');k.className='spec nw';k.textContent=m[0];parent.append(k);last=m.index+m[0].length;}if(last<s.length)appendKeep(parent,s.slice(last));}
+/* 2026-11-23 CN / TW / HK: the accent on '600发' / '600發', '1瓶', '4CC', '40KJ' and on '（5分钟以内）' / '（5分鐘以內）' / '（5分鐘內）' */
+const SPEC_ZH=/(\d[\d,.]*\s?(?:CC|cc|KJ|kJ|\u53d1|\u767c|\u74f6)(?![A-Za-z])|[\uff08(]5\u5206[\u949f\u9418](?:\u4ee5\u5185|\u4ee5\u5167|\u5167)[\uff09)])/gu;
+function appendSpec(parent,s){let last=0;for(const m of s.matchAll(locale==='TH'?SPEC_TH:(CJK[locale]?SPEC_ZH:SPEC))){if(m.index>last)appendKeep(parent,s.slice(last,m.index));const k=document.createElement('span');k.className='spec nw';k.textContent=m[0];parent.append(k);last=m.index+m[0].length;}if(last<s.length)appendKeep(parent,s.slice(last));}
 function appendPrice(parent,s){
  /* TH: '130,000 วอน' -> the number large, ' วอน' small (the space stays inside the unit, so it is set at the unit size) */
  if(locale==='TH'){const t=s.match(/^(.*?\d)(\s*\u0e27\u0e2d\u0e19)$/u);if(t){const n=document.createElement('span');n.className='num';n.textContent=t[1];const u=document.createElement('span');u.className='unit';u.textContent=t[2];parent.append(n,u);return;}}
+ /* 2026-11-23 CN / TW / HK: '13万韩元' / '13萬韓元' -> the number large, the unit small (as 13만원) */
+ if(CJK[locale]){const t=s.match(/^(.*?\d)(\s*[\u4e07\u842c][\u97e9\u97d3]\u5143)$/u);if(t){const n=document.createElement('span');n.className='num';n.textContent=t[1];const u=document.createElement('span');u.className='unit';u.textContent=t[2];parent.append(n,u);return;}}
  const m=s.match(/^(.*?)(만원)$/u);if(!m){parent.textContent=s;return;}const n=document.createElement('span');n.className='num';n.textContent=m[1];const u=document.createElement('span');u.className='unit';u.textContent=m[2];parent.append(n,u);}
 /* widow guard: keep the last two words together. Text content stays identical. */
 const GUARD='.title,.c-title,.c-lead,.gi-fact,.c5-d,.b5-intro,.b5-dr-quote,.b5-addr,.notes li,.bk-text,.holiday';
@@ -85,10 +99,11 @@ function setText(el,v){
  const lines=v.split('\n');
  lines.forEach((line,i)=>{
   if(i)el.append(document.createTextNode('\n'));
-  const m=locale==='TH'?null:line.match(/(\S+[ \t]+\S+)$/); /* TH: no Korean two-word rule (Thai spaces mark phrases, not words) */
+  const m=locale==='TH'?null:(CJK[locale]?line.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\u300d\u300f\uff09)\]\u00b7~\u301c]*)$/u):line.match(/(\S+[ \t]+\S+)$/)); /* TH: no Korean two-word rule (Thai spaces mark phrases, not words); CN / TW / HK: the last three characters stay together (as APT12) */
   if(!m||m[1].length>=line.length){appendKeep(el,line);return;}
   let cut=line.length-m[1].length;
   for(const k of line.matchAll(keepRe()))if(k.index<cut&&k.index+k[0].length>cut)cut=k.index;
+  if(CJK[locale]&&/[\uff09)]$/.test(line.slice(0,cut))){const o=Math.max(line.lastIndexOf('\uff08',cut-1),line.lastIndexOf('(',cut-1));if(o>0&&cut-o<=12)cut=o;} /* 2026-11-23 CN / TW / HK: a bracket closed right before the kept tail goes down with it ('（海芙音波）的組合'), so no line ends on a hanging bracket */
   appendKeep(el,line.slice(0,cut));
   const tail=document.createElement('span');tail.className='nw';appendKeep(tail,line.slice(cut));el.append(tail);
  });
@@ -134,6 +149,10 @@ function render(){
   const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
+ /* 2026-11-23 (as APT12, LIG12 / ONE12 / CRF12 TW rule): a phone field holding the country's chat ID ('官方微信 Beautyblossom00', '@beautyblossom_tw')
+    opens that chat (the booking link) instead of tel:; a phone link that is not tel: (HK: WhatsApp) opens in a new tab. KO / TH hold the clinic number. */
+ {const pv=String(fields.hh_phone??'').trim();const ph=[...document.querySelectorAll('a[data-link="phone"]')];if(locale!=='KO'&&pv&&!/^\+?\d[\d\s\-().]*$/.test(pv)&&CH&&CH.booking)for(const a of ph)a.href=CH.booking;
+  for(const a of ph){const h=a.getAttribute('href')||'';if(h&&!/^tel:/.test(h)){a.target='_blank';a.rel='noopener noreferrer';}}}
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
  for(const w of document.querySelectorAll('[data-bk-alt]')){const lab=w.querySelector('[data-copy]');w.hidden=!String((lab&&fields[lab.dataset.copy])??'').trim()&&!(editable&&editMode);}
  /* card 5 map: Google Maps capture for this locale (PAGE_COPY.maps); <picture> media queries pick the width tier */

@@ -587,4 +587,6 @@ html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="2"] p.c1-contact [data-copy]{position:relative;top:-0.065em} /* +2.12, then +0.77 at -0.0183em (whole pixels) */
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="3"]:not([data-variant="b"])[data-part="1"] span[data-copy="dn_b_chip"]{padding-top:5.69px;padding-bottom:5.75px} /* -1.63, then +1.07 at 6.49 / 4.95 */
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="4"]:not([data-variant="b"])[data-part="2"] span.dg-tag[data-copy="dn_g77_tag"]{padding-top:4.33px;padding-bottom:1.11px} /* -1.66 */
+/* 2026-11-23: the final dn_b_lead is one line on the home card (was two), the chip moved by a fraction of a pixel and measured -1.2 (text 1.2px high); down 0.7px (1.2px overshot to +0.8), padding sum kept */
+@media (min-width:901px){html:lang(en):not(#sz) section.card[data-card="3"]:not([data-size-only]):not([data-variant="b"]) span[data-copy="dn_b_chip"]{padding-top:0.2718em!important;padding-bottom:0.2482em!important}}
 /* </en-center> */

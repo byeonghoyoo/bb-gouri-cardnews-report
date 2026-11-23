@@ -107,10 +107,9 @@ html:lang(th)[data-size]:not(#sz) .p-d .L6p2 .bk-phone{font-size:28px}
 html:lang(th)[data-size]:not(#sz) .p-d .K6p3 .bk-phone{font-size:27px}
 
 /* ---- hero ---- */
-/* the hook bubble (A): the Thai hook has three or four lines where the Korean has two; its text box starts below the green heart on the bubble's corner
-   (home, line) and keeps a margin at the top (kakao); the text fits the smaller box (fit, at least 0.7 of the Korean size) */
-@container (min-width:601px){html:lang(th) .c1:not(.b-split):not([data-size-only]) .bub-box{top:23.5%;height:63%}}
-html:lang(th)[data-size]:not(#sz) .p-d .L1a .bub-box{top:28%;height:57%}
+/* the hook bubble (A): kakao keeps a margin at the top; the text fits the box (fit, at least 0.7 of the Korean size). 2026-11-23: the new Thai hook
+   ('ออกแบบโบท็อกซ์ให้เหมาะกับใบหน้าของคุณ') has two lines as the Korean, so home and line use the Korean text box again (the lower box was for the three or
+   four lines of the 11/18 hook; it put the two new lines below the bubble's middle) */
 html:lang(th)[data-size]:not(#sz) .p-d .K1a .bub-box{top:9%;height:74%}
 /* kakao: the title from 64 px (Korean 112 x fit): the fit makes it two lines ('\u0e42\u0e1b\u0e23\u0e41\u0e01\u0e23\u0e21\u0e14\u0e39\u0e41\u0e25' / '\u0e43\u0e1a\u0e2b\u0e19\u0e49\u0e32\u0e40\u0e09\u0e1e\u0e32\u0e30\u0e08\u0e38\u0e14') above the offer band; the sale price
    70 px so the label and the price share a row (the VAT note below them); the B hook smaller so it ends above the band */
@@ -119,6 +118,14 @@ html:lang(th)[data-size]:not(#sz) .p-d .K1a .tz-price,html:lang(th)[data-size]:n
 html:lang(th)[data-size]:not(#sz) .p-d .K1b .b-hook{font-size:17px;line-height:1.45}
 /* line 1B: the hook smaller so its three lines end above the yellow heart */
 html:lang(th)[data-size]:not(#sz) .p-d .L1b .b-hook{font-size:22px;line-height:1.55}
+
+/* phones (2026-11-23, the new title 'โปรแกรมโบท็อกซ์สำหรับใบหน้า'): 'สำหรับใบหน้า' stays on one line, so the title keeps three lines as before: A in a
+   166 px column at 30 px (its kicker stays below the bubble), B at 32 px in the Korean column (the hook stays below the title) */
+@container (max-width:600px){
+html:lang(th) .c1:not(.b-split):not([data-size-only]) .h-title{width:166px}
+html:lang(th) .c1:not(.b-split):not([data-size-only]) .h-ko{font-size:30px}
+html:lang(th) .c1.b-split:not([data-size-only]) .h-ko{font-size:32px}
+}
 
 /* ---- text kept clear of a picture or a decoration where the Thai line is longer than the Korean ---- */
 /* line 2A: the lead ends before the model photo (the Korean line ends at 741 px, the photo starts at 748 px) */
@@ -390,10 +397,9 @@ html:lang(zh)[data-size="kakao"]:not(#sz):not(#sz2) .K6p1 figcaption[data-copy="
 html:lang(zh)[data-size="kakao"]:not(#sz):not(#sz2) .K6p3 span[data-copy="c4_ab_way_line"]{padding-top:2.78px!important;padding-bottom:2.82px!important}
 /* </lang-center> */
 /* <lang-center-1119> */
-/* EN / JP / CN / HK component text centring (2026-11-20, measured on real pixels with the lead's language text-centre check, ?lang=<LOC>, home 1080 /
+/* EN / JP / CN / HK (2026-11-20) and TW / TH (2026-11-23: the re-applied copy moved their price tiles by fractions of a pixel) component text centring (measured on real pixels with the lead's language text-centre check, ?lang=<LOC>, home 1080 /
    board 780 / line / kakao): the language text sits higher or lower in its pill than the Korean text the Korean centring was measured for, so each
-   off-centre pill / chip / badge moves its text by padding (same height) or a relative top next to an icon; these rules come after the TW / TH block;
-   a pill that kept flipping by about half a pixel is moved by half a step */
+   off-centre pill / chip / badge moves its text by padding (same height) or a relative top next to an icon; these rules come after the TW / TH block */
 @container (min-width:801px){
  html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c4_r124_badge"]{padding-top:0.35214em!important;padding-bottom:0.24786em!important}
  html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c4_r125_badge"]{padding-top:0.29000em!important;padding-bottom:0.31000em!important}
@@ -477,4 +483,21 @@ html:lang(zh)[data-size="kakao"]:not(#sz):not(#sz2) .K6p3 span[data-copy="c4_ab_
  html:lang(zh-HK)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c4_r125_badge"]{padding-top:3.994px!important;padding-bottom:4.406px!important}
  html:lang(zh-HK)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-chip[data-copy="c4_p127_chip"]{padding-top:1.317px!important;padding-bottom:2.883px!important}
  html:lang(zh-HK)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c4_r130_badge"]{padding-top:4.790px!important;padding-bottom:3.610px!important;transform:translateY(.3px)}
+@container (min-width:801px){
+ html:lang(zh-TW):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c4_r120_badge"]{padding-top:0.35286em!important;padding-bottom:0.24714em!important}
+ html:lang(zh-TW):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c4_r121_badge"]{padding-top:0.30929em!important;padding-bottom:0.29071em!important}
+ html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c4_r125_badge"]{padding-top:0.30500em!important;padding-bottom:0.29500em!important}
+ html:lang(zh-TW):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.pbadge[data-copy="c4_r130_badge"]{padding-top:0.30286em!important;padding-bottom:0.29714em!important}
+}
+ html:lang(zh-TW)[data-size="line"]:not(#sz):not(#sz2) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c4_r124_badge"]{padding-top:4.910px!important;padding-bottom:3.490px!important}
+ html:lang(zh-TW)[data-size="line"]:not(#sz):not(#sz2) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c4_r128_badge"]{padding-top:4.900px!important;padding-bottom:3.500px!important}
+ html:lang(zh-TW)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c4_r125_badge"]{padding-top:4.020px!important;padding-bottom:4.380px!important}
+ html:lang(th)[data-size="line"]:not(#sz):not(#sz2) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c4_r116_badge"]{padding-top:4.300px!important;padding-bottom:4.100px!important}
+ html:lang(th)[data-size="line"]:not(#sz):not(#sz2) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c4_r117_badge"]{padding-top:4.410px!important;padding-bottom:3.990px!important}
+ html:lang(th)[data-size="line"]:not(#sz):not(#sz2) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c4_r120_badge"]{padding-top:4.490px!important;padding-bottom:3.910px!important}
+ html:lang(th)[data-size="line"]:not(#sz):not(#sz2) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c4_r121_badge"]{padding-top:4.590px!important;padding-bottom:3.810px!important}
+ html:lang(th)[data-size="line"]:not(#sz):not(#sz2) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c4_r125_badge"]{padding-top:4.840px!important;padding-bottom:3.560px!important}
+ html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c4_r113_badge"]{padding-top:4.368px!important;padding-bottom:4.032px!important}
+ html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c4_r124_badge"]{padding-top:4.000px!important;padding-bottom:4.400px!important}
+ html:lang(th)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c4_r125_badge"]{padding-top:4.830px!important;padding-bottom:3.570px!important}
 /* </lang-center-1119> */

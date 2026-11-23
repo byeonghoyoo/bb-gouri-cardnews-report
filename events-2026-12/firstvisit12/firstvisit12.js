@@ -4,9 +4,14 @@
 const DATA=window.PAGE_COPY;
 if(!DATA||!DATA.locales||!DATA.locales.KO){document.documentElement.dataset.reviewError='copy-data missing';return;}
 const KEYS=Object.keys(DATA.locales.KO);
-const LANG={KO:'ko',TH:'th'};
-/* language versions (2026-11-20 TH): the locale's script font is loaded beside Pretendard; the Korean page loads nothing new */
-const FONT_CSS={TH:'https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap'};
+const LANG={KO:'ko',TH:'th',JP:'ja',CN:'zh-CN',TW:'zh-TW',HK:'zh-HK'};
+/* language versions (2026-11-20 TH, 2026-11-23 JP / CN / TW / HK): the locale's script font is loaded beside Pretendard; the Korean page loads nothing new */
+const FONT_CSS={TH:'https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap',
+ JP:'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap',
+ CN:'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap',
+ TW:'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap',
+ HK:'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap'};
+const CJK=/^(JP|CN|TW|HK)$/;
 /* chat bubble for contact lines that name a chat channel (LINE): same 24x24 box and fill as the phone icon */
 const CHAT_D='M12 3C6.5 3 2 6.6 2 11c0 2.5 1.4 4.7 3.6 6.2L4.8 21l4.2-2.3c1 .2 2 .3 3 .3 5.5 0 10-3.6 10-8s-4.5-8-10-8z';
 const qs=new URLSearchParams(location.search);
@@ -35,6 +40,7 @@ function setFonts(){
 /* money: the number large, the unit small (display only; the stored text stays exactly as typed) */
 function setMoney(el,v){
  el.textContent='';
+ if(CJK.test(locale)&&/\d\D+\d/.test(v||'')){for(const p of String(v).split(/(\d[\d,.]*)/)){if(!p)continue;const s=document.createElement('span');s.className=/^\d/.test(p)?'n':'u';s.textContent=p;el.append(s);}return;} /* CN '9万9千韩元': each number large, each unit small */
  const m=/^(\D*?)(\d[\d,.]*)(.*)$/.exec(v||'');
  if(!m){el.textContent=v||'';return;}
  if(m[1]){const p=document.createElement('span');p.className='u pre';p.textContent=m[1];el.append(p);}
@@ -44,7 +50,7 @@ function setMoney(el,v){
 /* titles: the last word on its own line (display only; the space stays in the text, so the stored value is unchanged) */
 function setTitle(el,v){
  el.textContent='';
- const m=/^(.*\S)(\s+)(\S+)$/.exec(v||'');
+ const m=CJK.test(locale)&&!/\s/.test(v||'')?/^(.+?)()(\u512a\u60e0\u6d3b\u52d5|\u512a\u60e0|\u6d3b\u52d5|\u6d3b\u52a8|\u30ad\u30e3\u30f3\u30da\u30fc\u30f3|\u30a4\u30d9\u30f3\u30c8)$/u.exec(v||''):/^(.*\S)(\s+)(\S+)$/.exec(v||''); /* JP / CN / TW / HK titles have no space: the closing event word ('優惠', '活动', 'キャンペーン' ...) takes the second line, as '이벤트' in Korean */
  if(!m){const a=document.createElement('span');a.className='t1';a.textContent=v||'';el.append(a);return;}
  const a=document.createElement('span');a.className='t1';a.textContent=m[1];
  const b=document.createElement('span');b.className='t2';b.textContent=m[3];
@@ -62,16 +68,18 @@ function setHours(el,v){
 /* care guide contents: each listed treatment stays on one line when it is short enough (display only; phones may still wrap it) */
 function setParts(el,v){
  el.textContent='';
- for(const p of String(v||'').split(/(,\s+)/)){
+ for(const p of String(v||'').split(CJK.test(locale)?/(,\s+|\u3001)/:/(,\s+)/)){ /* JP / CN / TW / HK list their items with '、' */
   if(!p)continue;
-  if(/^,\s+$/.test(p)||p.length>26){el.append(document.createTextNode(p));continue;}
+  if(/^(,\s+|\u3001)$/.test(p)||p.length>26){if(CJK.test(locale))appendKept(el,p);else el.append(document.createTextNode(p));continue;}
+  if(CJK.test(locale)){const s=document.createElement('span');s.className='nw gp';appendKept(s,p);el.append(s);continue;} /* JP / CN / TW / HK: the item span is marked 'gp', so on phones (where items may wrap) the kept words inside stay whole */
   const s=document.createElement('span');s.className='nw';s.textContent=p;el.append(s);
  }
 }
 /* widow guard: the last two words stay together; the phone number never breaks */
 const GUARD='.hook,.c4-a,.c4-tip,.c4-src,.gd-v,.bkl-msg,.spec,.notes [data-copy],.at,.ad,.ab-title,.ab-lead [data-copy],.dr-quote,.way-addr > [data-copy],.hrs-note,.bk-links [data-copy]';
 /* names that must never break inside (display only: wrapped in nowrap spans, the stored text is unchanged) */
-const KEEP=/(Beauty Blossom|BEAUTY::BLOSSOM|\+82-2-336-7511|02-336-7511|'뷰티블라썸의원'|VAT 10%|@beautyblossom_th|\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07)/g; /* TH: the LINE ID, the international number and the station name 'ฮับจอง' never break */
+let KEEP=/(Beauty Blossom|BEAUTY::BLOSSOM|\+82-2-336-7511|02-336-7511|'뷰티블라썸의원'|VAT 10%|@beautyblossom_th|\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07)/g; /* TH: the LINE ID, the international number and the station name 'ฮับจอง' never break */
+const KEEP_TH=KEEP,KEEP_CJK=/(Beauty Blossom|BEAUTY::BLOSSOM|\+82-2-336-7511|02-336-7511|'뷰티블라썸의원'|VAT 10%|@beautyblossom_th|\u0e2e\u0e31\u0e1a\u0e08\u0e2d\u0e07|\+82 10-7215-7511|WhatsApp|@beautyblossom_jp|@beautyblossom_tw|Beautyblossom00|\u300c\ud83c\udf38\u9e97\u6735\u76ae\u819a\u79d1\ud83c\udf38\u300d|QR\u30b3\u30fc\u30c9|\u30d3\u30e5\u30fc\u30c6\u30a3\u30fc\u30d6\u30ed\u30c3\u30b5\u30e0|\u30e1\u30c7\u30a3\u30ef\u30f3\u30e1\u30c7\u30a3\u30ab\u30eb\u30bb\u30f3\u30bf\u30fc|Medi[Oo]ne Medical Center|\u4e8c\u7ef4\u7801|\u4e8c\u7dad\u78bc|QR Code|\d+(?:[\u30fb\u00b7]\d+)?(?:\u697c|\u6a13|\u968e)|\u73bb\u5c3f\u9178)/g; /* JP / CN / TW / HK (render() switches KEEP to this list; Korean and Thai keep KEEP_TH): the WhatsApp number, the LINE / WeChat IDs, the TW LINE name in corner brackets, 'QR' + its katakana, the Chinese words for QR code, the JP clinic and building names, the building's Latin name, a floor number with its unit ('6楼', '6・8階') and '玻尿酸' never break */
 function appendKept(el,s){
  let last=0;
  for(const m of s.matchAll(KEEP)){
@@ -89,7 +97,7 @@ function setText(el,v){
  if(v&&!el.matches(GUARD)&&KEEP.test(v)){KEEP.lastIndex=0;el.textContent='';appendKept(el,v);return;}
  KEEP.lastIndex=0;
  if(!v||!el.matches(GUARD)){el.textContent=v;return;}
- let m=locale==='TH'?null:el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/); /* TH: no Korean two-word rule (Thai spaces mark phrases, not words) */ /* card 5 title: only a very short last word is kept with the previous one */
+ let m=locale==='TH'?null:CJK.test(locale)?v.match(/([^\s]{3}[\u3002\u3001\uff0c\uff0e\uff01\uff1f!?\u2026\uff09)\]\u300d\u00b7]*)$/u):el.matches('.ab-title')?v.match(/(\S+[ \t]+\S{1,3})$/):v.match(/(\S+[ \t]+\S+)$/); /* TH: no Korean two-word rule (Thai spaces mark phrases, not words); JP / CN / TW / HK: the last three characters (and closing punctuation) stay together, as OXM12 */ /* card 5 title: only a very short last word is kept with the previous one */
  if(!m&&/\d{2,3}-\d{3,4}-\d{4}$/.test(v))m=v.match(/(\S*\d{2,3}-\d{3,4}-\d{4})$/);
  if(m){let cut=v.length-m[1].length;for(const k of v.matchAll(KEEP))if(cut>k.index&&cut<k.index+k[0].length)cut=k.index;m=cut>0?[null,v.slice(cut)]:null;} /* never split a kept word at the widow cut */
  if(!m||m[1].length>=v.length){el.textContent='';appendKept(el,v);return;}
@@ -152,7 +160,7 @@ function fit(){
 }
 
 function render(){
- root.lang=LANG[locale]||'ko';root.dataset.locale=locale;setFonts();
+ root.lang=LANG[locale]||'ko';root.dataset.locale=locale;setFonts();KEEP=CJK.test(locale)?KEEP_CJK:KEEP_TH;
  root.classList.toggle('is-editable',editable);
  root.classList.toggle('is-editmode',editable&&editMode);
  for(const el of document.querySelectorAll('[data-copy]')){
@@ -172,6 +180,11 @@ function render(){
   const n=a.dataset.link;const href=CH&&(n in CH)?CH[n]:(DATA.links&&DATA.links[n]);if(href)a.href=href;else a.removeAttribute('href');
   if(n!=='phone'){a.target='_blank';a.rel='noopener noreferrer';}
  }
+ /* 2026-11-23 language versions (BLF11 / CMB12A rule): the card-5 phone line may hold the country's chat ID (TW '@beautyblossom_tw') instead of a number;
+    then the chat bubble and the booking link replace the phone icon and tel:. Korean and every number keep the phone. */
+ for(const p of document.querySelectorAll('.bk-phone')){const sp=p.querySelector('[data-copy]'),v=String((sp&&fields[sp.dataset.copy])??'').trim(),id=locale!=='KO'&&!!v&&!/^\+?\d[\d\s\-().]*$/.test(v);
+  const ico=p.querySelector('svg.ph-ico path');if(ico){if(!ico.dataset.d0)ico.dataset.d0=ico.getAttribute('d');const d=id?CHAT_D:ico.dataset.d0;if(ico.getAttribute('d')!==d)ico.setAttribute('d',d);}
+  const a=p.querySelector('a[data-link]');if(a&&id){const b=CH&&CH.booking;if(b)a.href=b;a.target='_blank';a.rel='noopener noreferrer';}}
  for(const img of document.querySelectorAll('img[data-qr]')){const q=CH&&CH.qr;if(q&&img.getAttribute('src')!==q)img.setAttribute('src',q);}
  /* card-5 Google map: this locale's own capture for every width tier (the picture sources pick the tier) */
  const GM=(DATA.gmap&&DATA.gmap[locale])||null;

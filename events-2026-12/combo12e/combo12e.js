@@ -9,10 +9,11 @@ const KEYS=Object.keys(DATA.locales.KO);
 /* 2026-11-18 language version TH (v4/combo12e/i18n-1118.cjs; copy v4/langverify/out/CMB12E.final.json via v4/combo12e/work/i18n-prep.cjs): <html lang>
    drives the Thai font and layout rules in combo12e-i18n.css (:lang(th)); the Google font of the language is added here (as CMB12I / CMB12H / CMB12D).
    Korean renders exactly as before. */
-const LANG={KO:'ko',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th'};
-const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai'};
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai',HK:'Noto Sans TC'};
 /* 2026-11-20 JP / CN / TW: the Chinese pieces below act only for a CJK locale (as CMB12I / CMB12H / CMB12A) */
-const CJK={JP:1,CN:1,TW:1},SEGS={};
+/* 2026-11-20 HK takes the same Chinese pieces (as CMB12I / CMB12C HK) */
+const CJK={JP:1,CN:1,TW:1,HK:1},SEGS={};
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -57,7 +58,7 @@ function setPlus(el,v){
 /* card 5 hours: the day label and the time are styled apart */
 function setHours(el,v){
  el.textContent='';
- const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
+ const m=/^(.*\S)(\s+)(\d{1,2}:\d{2}(?:\s?[AP]M)?\s*[\u2013\u2014~-]\s*\d{1,2}:\d{2}.*)$/.exec(v||'');
  if(!m){el.textContent=v||'';return;}
  const d=document.createElement('span');d.className='hd';d.textContent=m[1];
  const t=document.createElement('span');t.className='ht';t.textContent=m[3];
@@ -73,7 +74,11 @@ const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|뷰티�
 const KEEP_TH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Medione Medical Center|Beauty Blossom Clinic|Body Contouring|Nefertiti Lift|Beauty Blossom|Blossom Fit|Beauty Fit|Yanghwa-ro|Mapo-gu|'+KEEP.source+'|โบทูลินัมท็อกซิน|สกินโบท็อกซ์|โบท็อกซ์|โปรแกรม|ทรีตเมนต์|แพ็กเกจ|ซาวน่า|แอลกอฮอล์|ค่อย ๆ|ต้นแขน|ต้นขา|กล้ามเนื้อ|ไขมันสะสม|ไขมัน|สลายไขมัน|ปรับสัดส่วน|ประคบเย็น|รองเท้าส้นสูง|รอยช้ำ|ปวดเมื่อย|ใต้ผิวหนัง|ผู้อำนวยการ|รูปร่าง|ส่วนเกิน|เหมาะสม|ขั้นตอน|สุดสัปดาห์|จองคิว|หลังฉีด|ก่อนฉีด|การฉีด|รอยแดง|แตกต่าง|เครื่องมือ|กรุงโซล|เลเซอร์|ตัวเลือก|ตรงจุด|แนวเส้น|หลีกเลี่ยง|เพียงพอ|วันธรรมดา|กลางวัน|ข้อกำหนด|ทางการแพทย์|ขนาดเล็ก|นพ\\. อี กอนโฮ|อี กอนโฮ|\\d[\\d,.:–]*\\s?(?:cc|ครั้ง|นาที|วอน|ยูนิต|สัปดาห์|วัน|บริเวณ|เท่า|น\\.)|(?:ทางออก|เลขที่)\\s\\d+|(?:สาย|ชั้น)\\s\\d+(?:\\sและ\\s\\d+)?','g');
 /* 2026-11-20 JP / CN / TW (as CMB12I / CMB12H / CMB12A): their names kept whole (KEEP_L = the names of v4/combo12e/i18n-1118.cjs LANG_KEEP_L + KEEP) */
 const KEEP_L=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|\\d+[樓楼階號号]|「[^」\\n]{1,16}」|MediOne Medical Center|Medione Medical Center|Beauty Blossom|Beauty Fit|Blossom Fit|QR Code|官方微信|护理|ボディ|スリミング|ボトックス|'+KEEP.source,'g');
-const keepRe=()=>locale==='TH'?KEEP_TH:locale==='KO'?KEEP:KEEP_L;
+/* 2026-11-20 HK: the HK words of v4/combo12e/i18n-1118.cjs LANG_KEEP_HK, then the KEEP_L names (HK only) */
+const KEEP_HK=new RegExp('纖體塑形|肉毒療程|塑形注射|Blossom Fit 注射|Beauty Fit／|'+KEEP_L.source,'g');
+/* 2026-11-23 EN: the EN names of v4/combo12e/i18n-1118.cjs LANG_KEEP_EN, then the KEEP_L names (EN only) */
+const KEEP_EN=new RegExp('Body Beauty Fit|Lee Geon-ho|'+KEEP_L.source,'g');
+const keepRe=()=>locale==='TH'?KEEP_TH:locale==='KO'?KEEP:locale==='HK'?KEEP_HK:locale==='EN'?KEEP_EN:KEEP_L;
 /* 2026-11-20 JP / CN / TW (same as CMB12I / CMB12A / CMB12H TW): the last three characters of a Chinese text stay together, grown back to the start of
    their word (a '・' break or Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside); a '・' inside those last
    characters is a break too when two to five characters follow it */

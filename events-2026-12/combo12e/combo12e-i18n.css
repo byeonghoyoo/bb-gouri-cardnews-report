@@ -412,7 +412,213 @@ html:lang(zh)[data-size]:not(#sz) .K5p3 .way-st{font-size:20px}
 html:lang(zh)[data-size]:not(#sz) .K5p3 .way-addr{font-size:13.5px;line-height:1.4;margin-top:4px}/* TW: 'Beauty Fit/Blossom Fit' (no space around the slash) and 'LINE@beautyblossom_tw' have no break opportunity; a short line may break after the
    slash or before the chat ID instead of running under the list price or out of the corner band */
 html:lang(zh-TW) .pname,html:lang(zh-TW) .band-contact{overflow-wrap:anywhere}
-/* JP-CENTER START */
+
+/* ===== HK (2026-11-20 evening, lead order; HK reviewed 17:37): Traditional Chinese for Hong Kong. The html:lang(zh) rules above (CN / TW) apply to HK
+   as well; this block adds the TC face (as TW) and the HK fit fixes. Every rule names html:lang(zh-HK) ===== */
+html:lang(zh-HK){--f-cjk:'Noto Sans TC';--f-text:var(--f-cjk),'Pretendard Variable',Pretendard,system-ui,sans-serif;--f-script:'Pinyon Script',var(--f-cjk),'Pretendard Variable',cursive;--f-serif:'Cormorant Garamond',var(--f-cjk),'Pretendard Variable',Georgia,serif}
+/* HK prices: the reviewer writes a sale price with thousands in full ('459,000韓元', '89,000韓元'; TW '45萬9千韓元'), so the sale prices are about as wide as
+   the Thai ones; the price rows take the TH arrangement where they ran into each other (rules below, each naming html:lang(zh-HK)) */
+@container (min-width:601px){
+ /* price card B: the list price sits above the sale price at the right of the name (as TH), the sale price 30 */
+ html:lang(zh-HK) .bv.c2:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pl" "pn ps";row-gap:0;align-items:end;padding:calc(12*var(--px)) 0}
+ html:lang(zh-HK) .bv.c2:not([data-size-only]) .prow .pn{grid-area:pn;align-self:center}
+ html:lang(zh-HK) .bv.c2:not([data-size-only]) .prow .plist{grid-area:pl}
+ html:lang(zh-HK) .bv.c2:not([data-size-only]) .prow .psale{grid-area:ps}
+ html:lang(zh-HK) .bv.c2:not([data-size-only]) .psale{font-size:calc(30*var(--px))}
+ /* card 4: the information values '一般可即日恢復日常活動' / '視乎療程部位及劑量而定' were wider than their boxes; the values are 23 */
+ html:lang(zh-HK) .c4:not([data-size-only]) .inf-v{font-size:calc(23*var(--px))}
+}
+/* LINE price card B: stacked prices as TH (sale 26, list 15, tighter rows) */
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .prow,html:lang(zh-HK)[data-size]:not(#sz) .K2b .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pl" "pn ps";row-gap:0;align-items:end}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .prow .pn,html:lang(zh-HK)[data-size]:not(#sz) .K2b .prow .pn{grid-area:pn;align-self:center}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .prow .plist,html:lang(zh-HK)[data-size]:not(#sz) .K2b .prow .plist{grid-area:pl}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .prow .psale,html:lang(zh-HK)[data-size]:not(#sz) .K2b .prow .psale{grid-area:ps}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .psale{font-size:26px}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .plist{font-size:15px}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .prow{padding:5px 0}
+html:lang(zh-HK)[data-size]:not(#sz) .L2b .pg{padding:12px 20px}
+/* LINE price card A: the names are 21, so 'Body Beauty Fit／' keeps its first line and the name breaks as 'Body Beauty Fit／ / Blossom Fit / 塑形注射' */
+html:lang(zh-HK)[data-size]:not(#sz) .L2a .pname{font-size:21px}
+/* LINE card 3: the kinds take their own heights and slightly smaller text, the brand box is tighter (as TH), so the long HK note and the source line stay
+   in the card */
+html:lang(zh-HK)[data-size]:not(#sz) .L3 .kinds{grid-auto-rows:auto;gap:10px}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 .kd{padding:8px 16px 9px}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 .kd-n{font-size:18px}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 .kd-d{font-size:14px;line-height:1.4}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 .pick{padding:14px 24px}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 .pick-t{font-size:21px}
+html:lang(zh-HK)[data-size]:not(#sz) .L3 .pick-d{font-size:16px;line-height:1.5;margin-top:6px}
+/* LINE card 4 part 2: the information values are 22 */
+html:lang(zh-HK)[data-size]:not(#sz) .L4p2 .inf-v{font-size:22px}
+/* KakaoTalk hero 1 A: the right price badge is a little wider and both sale prices 50 (as TH); the long HK VAT note wraps in the corner band at 14 */
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .hb1{width:270px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .hb-sale{font-size:50px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1a [data-copy="c5_vat"]{white-space:normal;font-size:14px}
+/* the two-line VAT note makes the corner band taller, so both price badges start 18 px lower (386), clear of the contact line */
+html:lang(zh-HK)[data-size]:not(#sz) .K1a .hb1,html:lang(zh-HK)[data-size]:not(#sz) .K1a .hb2{top:386px}
+/* KakaoTalk hero 1 B: the one-line title '身體纖體塑形' (six characters; TW four) is set smaller in a wider box (as TH) */
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .c1-title{width:740px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .h-ko{font-size:88px}
+/* the HK sale prices ('89,000韓元') pushed '20cc' under the name and the second badge covered the first; the sale prices are 44, so each name keeps
+   its chip, and the badges start higher (258 / 366), clear of the hook above and of the date band below */
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .hb-sale{font-size:44px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .hb1{top:258px}
+html:lang(zh-HK)[data-size]:not(#sz) .K1b .hb2{top:366px}
+/* LINE hero 1 B: the second badge is taller ('50cc' under the long name) and touched the date band; both badges start 24 px higher (536 / 716) */
+html:lang(zh-HK)[data-size]:not(#sz) .L1b .hb1{top:536px}
+html:lang(zh-HK)[data-size]:not(#sz) .L1b .hb2{top:716px}
+/* KakaoTalk price card A: part 1 title in two lines in a wider box beside the model, the sale prices 30 (as TH) */
+html:lang(zh-HK)[data-size]:not(#sz) .K2ap1 .pt-main{width:400px;font-size:44px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2a .psale{font-size:30px}
+/* KakaoTalk price card B: the sale prices 26 (stacked above), part 1 first box: name, then list and sale (as TH) */
+html:lang(zh-HK)[data-size]:not(#sz) .K2b .psale{font-size:26px}
+html:lang(zh-HK)[data-size]:not(#sz) .K2bp1 .pg1 .prow{grid-template-areas:"pn pn" "pl ps";row-gap:4px;align-items:baseline}
+html:lang(zh-HK)[data-size]:not(#sz) .K2bp1 .pg1 .plist{font-size:13px}
+/* KakaoTalk card 3: the question title (21 characters) keeps one line at 30 */
+html:lang(zh-HK)[data-size]:not(#sz) .K3 .q-title{font-size:30px}
+/* phone hero 1 A: Winter Line sat on the six-character title ('身體纖體塑形'); it starts a little lower (as TH), so it overlaps only the end of the title as
+   in Korean */
+@container (max-width:600px){html:lang(zh-HK) .c1:not(.bv):not([data-size-only]) .h-script{top:40px}}
+
+/* ===== EN layout (2026-11-23, lead order LV_BUILD_1123) ===== The same layout rules as the TH version above (the TH comments explain each one), for
+   the English copy: its prices are short ('89K'), but its names, option, information, note and address lines are much longer than the Korean ones, so
+   the same tighter arrangement (names 22 / 19, the list price above the sale price where the name needs the width, wrapping information values,
+   smaller address and phone) keeps every card in its frame; values that differ for this copy follow after the block. Every rule names html:lang(en). */
+@container (min-width:601px){
+ html:lang(en) .c1:not(.bv):not([data-size-only]) .hb-sale{font-size:calc(58*var(--px))}
+ html:lang(en) .bv.c1:not([data-size-only]) .h-ko{font-size:calc(84*var(--px))}
+ html:lang(en) .cp.c2m:not(.bv):not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) calc(124*var(--px)) calc(170*var(--px))}
+ html:lang(en) .cp.c2m:not(.bv):not([data-size-only]) .psale{font-size:calc(34*var(--px))}
+ html:lang(en) .cp.c2m:not(.bv):not([data-size-only]) .pname{font-size:calc(22*var(--px))}
+ html:lang(en) .cp.c2m:not(.bv):not([data-size-only]) .popt{font-size:calc(19*var(--px))}
+ html:lang(en) .cp.c2m:not(.bv):not([data-size-only]) .st-p1{top:calc(146*var(--px))}
+ html:lang(en) .cp.c2m:not(.bv):not([data-size-only]) .st-p2{top:calc(128*var(--px))}
+ html:lang(en) .bv.c2:not([data-size-only]) .st-p1{top:calc(96*var(--px))}
+ html:lang(en) .bv.c2:not([data-size-only]) .st-p2{top:calc(78*var(--px))}
+ html:lang(en) .bv.c2:not([data-size-only]) .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pl" "pn ps";row-gap:0;align-items:end;padding:calc(12*var(--px)) 0}
+ html:lang(en) .bv.c2:not([data-size-only]) .prow .pn{grid-area:pn;align-self:center}
+ html:lang(en) .bv.c2:not([data-size-only]) .prow .plist{grid-area:pl}
+ html:lang(en) .bv.c2:not([data-size-only]) .prow .psale{grid-area:ps}
+ html:lang(en) .bv.c2:not([data-size-only]) .psale{font-size:calc(30*var(--px))}
+ html:lang(en) .bv.c2:not([data-size-only]) .seg{white-space:normal}
+ html:lang(en) .c4:not([data-size-only]) .inf-v{white-space:normal;font-size:calc(19*var(--px))}
+ html:lang(en) .c4:not([data-size-only]) .inf{padding:calc(20*var(--px)) calc(22*var(--px)) calc(22*var(--px));gap:calc(6*var(--px))}
+ html:lang(en) .c4:not([data-size-only]) .c4-headrow{grid-template-columns:minmax(0,1fr) calc(232*var(--px))}
+ html:lang(en) .c4:not([data-size-only]) .c4-photo{width:calc(232*var(--px))}
+ html:lang(en) .c5c:not([data-size-only]) .bk-phone{font-size:max(17px,calc(25*var(--px)))}
+ html:lang(en) .c5c:not([data-size-only]) .map{aspect-ratio:460/388}
+ html:lang(en) .c5c:not([data-size-only]) .map-img{object-fit:cover;object-position:50% 100%}
+ html:lang(en) .c5c:not([data-size-only]) .way-addr{font-size:max(12px,calc(15*var(--px)))}
+}
+html:lang(en) .c1 .hook{text-wrap:balance}
+@container (max-width:600px){
+ html:lang(en) .c1:not(.bv):not([data-size-only]) .h-ko{font-size:calc(44px*var(--fit,1))}
+ html:lang(en) .c1:not(.bv):not([data-size-only]) .h-script{top:40px}
+ html:lang(en) .bv.c1:not([data-size-only]) .h-ko{font-size:30px}
+}
+html:lang(en)[data-size]:not(#sz) .L1a .hb-sale{font-size:58px}
+html:lang(en)[data-size]:not(#sz) .K1a .h-ko{font-size:calc(136px*var(--fit,1))}
+html:lang(en)[data-size]:not(#sz) .K1a .hb1{width:270px}
+html:lang(en)[data-size]:not(#sz) .K1a .hb-sale{font-size:50px}
+html:lang(en)[data-size]:not(#sz) .K1a .band{width:214px}
+html:lang(en)[data-size]:not(#sz) .K1a .band-contact{font-size:16px}
+html:lang(en)[data-size]:not(#sz) .L1b .h-ko{font-size:88px}
+html:lang(en)[data-size]:not(#sz) .L1b .hb1{top:520px}
+html:lang(en)[data-size]:not(#sz) .L1b .hb2{top:728px}
+html:lang(en)[data-size]:not(#sz) .K1b .c1-title{width:740px}
+html:lang(en)[data-size]:not(#sz) .K1b .h-ko{font-size:76px}
+html:lang(en)[data-size]:not(#sz) .K1b .hb1{top:268px}
+html:lang(en)[data-size]:not(#sz) .K1b .hb2{top:388px}
+html:lang(en)[data-size]:not(#sz) .L2a .prow,html:lang(en)[data-size]:not(#sz) .L2b .prow,html:lang(en)[data-size]:not(#sz) .K2b .prow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"pn pl" "pn ps";row-gap:0;align-items:end}
+html:lang(en)[data-size]:not(#sz) .L2a .prow .pn,html:lang(en)[data-size]:not(#sz) .L2b .prow .pn,html:lang(en)[data-size]:not(#sz) .K2b .prow .pn{grid-area:pn;align-self:center}
+html:lang(en)[data-size]:not(#sz) .L2a .prow .plist,html:lang(en)[data-size]:not(#sz) .L2b .prow .plist,html:lang(en)[data-size]:not(#sz) .K2b .prow .plist{grid-area:pl}
+html:lang(en)[data-size]:not(#sz) .L2a .prow .psale,html:lang(en)[data-size]:not(#sz) .L2b .prow .psale,html:lang(en)[data-size]:not(#sz) .K2b .prow .psale{grid-area:ps}
+html:lang(en)[data-size]:not(#sz) .L2a .seg,html:lang(en)[data-size]:not(#sz) .L2b .seg,html:lang(en)[data-size]:not(#sz) .K2b .seg{white-space:normal}
+html:lang(en)[data-size]:not(#sz) .L2a .psale{font-size:28px}
+html:lang(en)[data-size]:not(#sz) .L2b .psale{font-size:26px}
+html:lang(en)[data-size]:not(#sz) .L2b .plist{font-size:15px}
+html:lang(en)[data-size]:not(#sz) .L2b .prow{padding:5px 0}
+html:lang(en)[data-size]:not(#sz) .L2b .pg{padding:12px 20px}
+html:lang(en)[data-size]:not(#sz) .L2a .pname{font-size:19px}
+html:lang(en)[data-size]:not(#sz) .L2a .popt{font-size:17px}
+html:lang(en)[data-size]:not(#sz) .K2b .psale{font-size:26px}
+html:lang(en)[data-size]:not(#sz) .K2bp1 .pg1 .prow{grid-template-areas:"pn pn" "pl ps";row-gap:4px;align-items:baseline}
+html:lang(en)[data-size]:not(#sz) .K2bp1 .pg1 .plist{font-size:13px}
+html:lang(en)[data-size]:not(#sz) .L2a .st-p1{top:104px}
+html:lang(en)[data-size]:not(#sz) .L2a .st-p2{top:146px}
+html:lang(en)[data-size]:not(#sz) .L2b .st-p1{top:72px}
+html:lang(en)[data-size]:not(#sz) .L2b .st-p2{top:116px}
+html:lang(en)[data-size]:not(#sz) .K2bp1 .st-p1{top:62px}
+html:lang(en)[data-size]:not(#sz) .K2bp1 .st-p2{top:112px}
+html:lang(en)[data-size]:not(#sz) .K2ap1 .pt-main{width:400px;font-size:44px}
+html:lang(en)[data-size]:not(#sz) .K2a .prow{grid-template-columns:minmax(0,1fr) 112px 150px}
+html:lang(en)[data-size]:not(#sz) .K2a .psale{font-size:30px}
+html:lang(en)[data-size]:not(#sz) .K2a .pname{font-size:19px}
+html:lang(en)[data-size]:not(#sz) .K2a .popt{font-size:17px}
+html:lang(en)[data-size]:not(#sz) .L3 .kinds{grid-auto-rows:auto;gap:10px}
+html:lang(en)[data-size]:not(#sz) .L3 .kd{padding:8px 16px 9px}
+html:lang(en)[data-size]:not(#sz) .L3 .kd-n{font-size:18px}
+html:lang(en)[data-size]:not(#sz) .L3 .kd-d{font-size:14px;line-height:1.4}
+html:lang(en)[data-size]:not(#sz) .L3 .pick{padding:14px 24px}
+html:lang(en)[data-size]:not(#sz) .L3 .pick-t{font-size:21px}
+html:lang(en)[data-size]:not(#sz) .L3 .pick-d{font-size:16px;line-height:1.5;margin-top:6px}
+html:lang(en)[data-size]:not(#sz) .K3 .q-title{font-size:26px}
+html:lang(en)[data-size]:not(#sz) .K3p1 .ly,html:lang(en)[data-size]:not(#sz) .K3p1 .lm{font-size:14px}
+html:lang(en)[data-size]:not(#sz) .K3p1 .lm2{top:55%}
+html:lang(en)[data-size]:not(#sz) .K3p1 .lm3{top:93%}
+html:lang(en)[data-size]:not(#sz) .K3p1 .kinds{grid-auto-rows:auto;gap:8px}
+html:lang(en)[data-size]:not(#sz) .K3p1 .kd{padding:6px 12px 7px}
+html:lang(en)[data-size]:not(#sz) .K3p1 .kd-n{font-size:17px}
+html:lang(en)[data-size]:not(#sz) .K3p1 .kd-d{font-size:13.5px;line-height:1.4}
+html:lang(en)[data-size]:not(#sz) .L4p2 .inf-v{white-space:normal;font-size:22px}
+html:lang(en)[data-size]:not(#sz) .K4p3 .inf-v{white-space:normal;font-size:17px}
+html:lang(en)[data-size]:not(#sz) .L5p2 .bk-phone{font-size:26px}
+html:lang(en)[data-size]:not(#sz) .K5p3 .loc-head .bt-t{font-size:24px}
+html:lang(en)[data-size]:not(#sz) .K5p3 .loc-body{padding-top:4px}
+html:lang(en)[data-size]:not(#sz) .K5p3 .way{margin-top:8px;gap:10px}
+html:lang(en)[data-size]:not(#sz) .K5p3 .way-pin{width:36px}
+html:lang(en)[data-size]:not(#sz) .K5p3 .way-st{font-size:18px}
+html:lang(en)[data-size]:not(#sz) .K5p3 .way-addr{font-size:13.5px;line-height:1.4;margin-top:4px}
+/* ----- EN: values that differ from the TH rules above ----- */
+/* card 5 strengths: a title may break inside its kept last two words ('Evening & Weekend Appointments' is wider than its column, as CMB12I / CRF12 /
+   SOF12 EN) */
+html:lang(en) .ab-strengths .at .nw{white-space:normal}
+/* card 3 (1080 / 780): the four kinds take their own heights (as JP), so the long English descriptions keep the brand box and the source line in the card */
+@container (min-width:601px){html:lang(en) .c3:not([data-size-only]) .kinds{grid-auto-rows:auto}}
+/* card 5 (1080 / 780): the about box is taller in English (wrapped strength titles), so the location box is shorter; the map is shorter still (460/340,
+   its top strip cropped as the TH rule), so the three-line English address and the desk line stay inside the location box */
+@container (min-width:601px){html:lang(en) .c5c:not([data-size-only]) .map{aspect-ratio:460/340}}
+/* KakaoTalk hero 1 A: the two-line hook starts higher (as TH / JP), so its second line clears the price badge */
+html:lang(en)[data-size]:not(#sz) .K1a .hook{top:296px}
+/* LINE price card B: the English option lines are long; the rows and the boxes are a little tighter, so the boards end above the 49% line */
+html:lang(en)[data-size]:not(#sz) .L2b .prow{padding:3px 0}
+html:lang(en)[data-size]:not(#sz) .L2b .pg{padding:10px 20px}
+/* LINE card 3 figure: 'Subcutaneous fat' and 'Fat-dissolving injections' sat on one line; the labels are 16 and the method labels move down (as TH / JP
+   KakaoTalk 3-1) */
+html:lang(en)[data-size]:not(#sz) .L3 .ly,html:lang(en)[data-size]:not(#sz) .L3 .lm{font-size:16px}
+html:lang(en)[data-size]:not(#sz) .L3 .lm2{top:55%}
+html:lang(en)[data-size]:not(#sz) .L3 .lm3{top:93%}
+/* KakaoTalk price card A part 3: tighter rows (3 / 2) and boards (as the TH fit fix) and option lines 15, so the second board ends above the 49% line */
+html:lang(en)[data-size]:not(#sz) .K2ap3 .prow{padding-top:3px;padding-bottom:2px}
+html:lang(en)[data-size]:not(#sz) .K2ap3 .pboard{row-gap:6px}
+html:lang(en)[data-size]:not(#sz) .K2a .popt{font-size:15px}
+/* KakaoTalk card 3 part 1: the answer is 18 and the kinds a little tighter, so the source line stays in the card */
+html:lang(en)[data-size]:not(#sz) .K3p1 .q-ans{font-size:18px}
+html:lang(en)[data-size]:not(#sz) .K3p1 .kd{padding:5px 12px 6px}
+/* KakaoTalk card 4: part 2 step titles 21 (one line) and texts 16, part 3 care lines 15 and the alert 16 with the JP spacing, so both parts keep their
+   last lines in the card */
+html:lang(en)[data-size]:not(#sz) .K4p2 .st-t{font-size:21px}
+html:lang(en)[data-size]:not(#sz) .K4p2 .st-d{font-size:16px}
+html:lang(en)[data-size]:not(#sz) .K4p3 .care-l li,html:lang(en)[data-size]:not(#sz) .K4p3 .alert{line-height:1.42}
+html:lang(en)[data-size]:not(#sz) .K4p3 .inf{padding:16px 18px 14px}
+html:lang(en)[data-size]:not(#sz) .K4p3 .care-l li{font-size:15px}
+html:lang(en)[data-size]:not(#sz) .K4p3 .alert{font-size:16px}
+/* KakaoTalk card 5 part 2: the two-line English strengths make the about box taller; strengths 19 / 14 and the hours 26 / 19, so the hours note stays in
+   the card */
+html:lang(en)[data-size]:not(#sz) .K5p2 .at{font-size:19px}
+html:lang(en)[data-size]:not(#sz) .K5p2 .ad{font-size:14px}
+html:lang(en)[data-size]:not(#sz) .K5p2 .bt-hours .bt-t{font-size:26px}
+html:lang(en)[data-size]:not(#sz) .K5p2 .hrs li{font-size:19px}/* JP-CENTER START */
 /* JP chip text centring (2026-11-20): the JP text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
    on real pixels with qa/text-center-check.cjs (?lang=JP), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
 @media (min-width:601px) and (max-width:999px){
@@ -821,3 +1027,182 @@ html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-va
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.lm.lm3{padding-top:2.372px!important;padding-bottom:4.108px!important}
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c5_ab_way_line"]{padding-top:3.304px!important;padding-bottom:3.096px!important}
 /* TW-CENTER END */
+
+/* HK-CENTER START */
+/* HK chip text centring (2026-11-18): the HK text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=HK), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:601px) and (max-width:999px){
+html:lang(zh-HK):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hb-sub[data-copy="c5_hb1_sub"]{padding-top:0.21467em!important;padding-bottom:0.26533em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:0.18439em!important;padding-bottom:0.29561em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hb-sub[data-copy="c5_hb1_sub"]{padding-top:0.19422em!important;padding-bottom:0.28578em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:0.16844em!important;padding-bottom:0.31156em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.period[data-copy="c5_period"]{padding-top:0.25848em!important;padding-bottom:0.32152em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pdet[data-copy="c5_r59_sub"]{padding-top:0.07877em!important;padding-bottom:0.28123em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pdet[data-copy="c5_r60_sub"]{padding-top:0.14390em!important;padding-bottom:0.21610em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c5_r62_tag"]{padding-top:0.11350em!important;padding-bottom:0.12650em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:0.10250em!important;padding-bottom:0.13750em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-n[data-copy="c5_p65_name"]{padding-top:0.14096em!important;padding-bottom:0.19904em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c5_r65_tag"]{padding-top:0.10700em!important;padding-bottom:0.13300em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pdet[data-copy="c5_r59_sub"]{padding-top:0.17107em!important;padding-bottom:0.18893em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pdet[data-copy="c5_r60_sub"]{padding-top:0.16307em!important;padding-bottom:0.19693em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c5_r62_tag"]{padding-top:0.03733em!important;padding-bottom:0.20267em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:0.04187em!important;padding-bottom:0.19813em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:0.05253em!important;padding-bottom:0.18747em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.prod-n[data-copy="c5_p65_name"]{padding-top:0.12504em!important;padding-bottom:0.21496em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag.ot2[data-copy="c5_r66_tag"]{padding-top:0.05360em!important;padding-bottom:0.18640em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.prod-n[data-copy="c5_p67_name"]{padding-top:0.12504em!important;padding-bottom:0.21496em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c5_r61_tag"]{padding-top:0.12550em!important;padding-bottom:0.11450em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:0.10250em!important;padding-bottom:0.13750em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag.ot2[data-copy="c5_r66_tag"]{padding-top:0.10800em!important;padding-bottom:0.13200em!important}
+}
+@media (min-width:1000px){
+html:lang(zh-HK):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hb-sub[data-copy="c5_hb1_sub"]{padding-top:0.17422em!important;padding-bottom:0.30578em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:0.22005em!important;padding-bottom:0.25995em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hb-sub[data-copy="c5_hb1_sub"]{padding-top:0.17422em!important;padding-bottom:0.30578em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:0.19644em!important;padding-bottom:0.28356em!important}
+html:lang(zh-HK):not(#sz) [data-card="1"][data-variant="b"]:not([data-size-only]) span.band-vat[data-copy="c5_vat"]{padding-top:0.11294em!important;padding-bottom:0.18706em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.period[data-copy="c5_period"]{padding-top:0.24360em!important;padding-bottom:0.33640em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pdet[data-copy="c5_r59_sub"]{padding-top:0.14973em!important;padding-bottom:0.21027em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pdet[data-copy="c5_r60_sub"]{padding-top:0.15933em!important;padding-bottom:0.20067em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-n[data-copy="c5_p61_name"]{padding-top:0.15348em!important;padding-bottom:0.18652em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c5_r61_tag"]{padding-top:0.13550em!important;padding-bottom:0.10450em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c5_r62_tag"]{padding-top:0.10250em!important;padding-bottom:0.13750em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:0.06288em!important;padding-bottom:0.17713em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:0.08100em!important;padding-bottom:0.15900em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-n[data-copy="c5_p65_name"]{padding-top:0.15070em!important;padding-bottom:0.18930em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c5_r65_tag"]{padding-top:0.13150em!important;padding-bottom:0.10850em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag.ot2[data-copy="c5_r66_tag"]{padding-top:0.09250em!important;padding-bottom:0.14750em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-n[data-copy="c5_p67_name"]{padding-top:0.11130em!important;padding-bottom:0.22870em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.period[data-copy="c5_period"]{padding-top:0.24984em!important;padding-bottom:0.33016em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pdet[data-copy="c5_r59_sub"]{padding-top:0.15293em!important;padding-bottom:0.20707em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pdet[data-copy="c5_r60_sub"]{padding-top:0.16520em!important;padding-bottom:0.19480em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.prod-n[data-copy="c5_p61_name"]{padding-top:0.15608em!important;padding-bottom:0.18392em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c5_r61_tag"]{padding-top:0.08693em!important;padding-bottom:0.15307em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c5_r62_tag"]{padding-top:0.08693em!important;padding-bottom:0.15307em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:0.09147em!important;padding-bottom:0.14853em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:0.09147em!important;padding-bottom:0.14853em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.prod-n[data-copy="c5_p65_name"]{padding-top:0.15760em!important;padding-bottom:0.18240em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag[data-copy="c5_r65_tag"]{padding-top:0.10560em!important;padding-bottom:0.13440em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.otag.ot2[data-copy="c5_r66_tag"]{padding-top:0.11813em!important;padding-bottom:0.12187em!important}
+html:lang(zh-HK):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.prod-n[data-copy="c5_p67_name"]{padding-top:0.15240em!important;padding-bottom:0.18760em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.ly.ly1{padding-top:0.13022em!important;padding-bottom:0.22978em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.ly.ly2{padding-top:0.15822em!important;padding-bottom:0.20178em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.ly.ly3{padding-top:0.15689em!important;padding-bottom:0.20311em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.lm.lm2{padding-top:0.15822em!important;padding-bottom:0.20178em!important}
+html:lang(zh-HK):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.lm.lm3{padding-top:0.16222em!important;padding-bottom:0.19778em!important}
+html:lang(zh-HK):not(#sz) [data-card="5"]:not([data-variant="b"]):not([data-size-only]) span.way-line[data-copy="c5_ab_way_line"]{padding-top:0.18150em!important;padding-bottom:0.21850em!important}
+}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hb-sub[data-copy="c5_hb1_sub"]{padding-top:3.141px!important;padding-bottom:5.499px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:3.406px!important;padding-bottom:4.025px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.hb-sub[data-copy="c5_hb1_sub"]{padding-top:3.141px!important;padding-bottom:5.499px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:3.541px!important;padding-bottom:5.099px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="line"] span.band-vat[data-copy="c5_vat"]{padding-top:1.929px!important;padding-bottom:3.171px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.period[data-copy="c5_period"]{padding-top:6.438px!important;padding-bottom:8.062px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pdet[data-copy="c5_r59_sub"]{padding-top:2.454px!important;padding-bottom:2.946px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pdet[data-copy="c5_r60_sub"]{padding-top:2.762px!important;padding-bottom:2.638px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.prod-n[data-copy="c5_p61_name"]{padding-top:3.001px!important;padding-bottom:4.819px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag[data-copy="c5_r61_tag"]{padding-top:2.043px!important;padding-bottom:2.797px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag[data-copy="c5_r62_tag"]{padding-top:1.336px!important;padding-bottom:2.504px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:1.359px!important;padding-bottom:2.481px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:1.416px!important;padding-bottom:2.424px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.prod-n[data-copy="c5_p65_name"]{padding-top:2.738px!important;padding-bottom:5.082px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag[data-copy="c5_r65_tag"]{padding-top:1.310px!important;padding-bottom:2.530px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag.ot2[data-copy="c5_r66_tag"]{padding-top:1.190px!important;padding-bottom:2.650px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.prod-n[data-copy="c5_p67_name"]{padding-top:3.001px!important;padding-bottom:4.819px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.period[data-copy="c5_period"]{padding-top:6.251px!important;padding-bottom:8.249px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pdet[data-copy="c5_r59_sub"]{padding-top:2.935px!important;padding-bottom:2.465px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.prod-n[data-copy="c5_p61_name"]{padding-top:3.874px!important;padding-bottom:4.626px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag[data-copy="c5_r61_tag"]{padding-top:1.292px!important;padding-bottom:2.308px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag[data-copy="c5_r62_tag"]{padding-top:1.616px!important;padding-bottom:1.984px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:1.502px!important;padding-bottom:2.098px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:1.184px!important;padding-bottom:2.416px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.prod-n[data-copy="c5_p65_name"]{padding-top:3.903px!important;padding-bottom:4.597px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag[data-copy="c5_r65_tag"]{padding-top:1.381px!important;padding-bottom:2.219px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag.ot2[data-copy="c5_r66_tag"]{padding-top:1.258px!important;padding-bottom:2.342px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.prod-n[data-copy="c5_p67_name"]{padding-top:3.752px!important;padding-bottom:4.748px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.ly.ly1{padding-top:2.860px!important;padding-bottom:3.620px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.ly.ly2{padding-top:2.697px!important;padding-bottom:3.783px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.ly.ly3{padding-top:2.412px!important;padding-bottom:4.068px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.lm.lm2{padding-top:2.697px!important;padding-bottom:3.783px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.lm.lm3{padding-top:2.510px!important;padding-bottom:3.970px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c5_r63_badge"]{padding-top:4.550px!important;padding-bottom:2.950px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.hb-sub[data-copy="c5_hb1_sub"]{padding-top:3.541px!important;padding-bottom:5.099px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:3.410px!important;padding-bottom:4.020px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.band-vat[data-copy="c5_vat"]{padding-top:1.365px!important;padding-bottom:2.835px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.hb-sub[data-copy="c5_hb1_sub"]{padding-top:2.671px!important;padding-bottom:5.969px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:3.392px!important;padding-bottom:3.865px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.band-vat[data-copy="c5_vat"]{padding-top:1.891px!important;padding-bottom:3.209px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.period[data-copy="c5_period"]{padding-top:6.251px!important;padding-bottom:8.249px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pdet[data-copy="c5_r59_sub"]{padding-top:2.092px!important;padding-bottom:3.308px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c5_r59_badge"]{padding-top:4.298px!important;padding-bottom:3.202px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.pdet[data-copy="c5_r60_sub"]{padding-top:3.157px!important;padding-bottom:3.243px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.period[data-copy="c5_period"]{padding-top:6.251px!important;padding-bottom:8.249px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-n[data-copy="c5_p61_name"]{padding-top:3.485px!important;padding-bottom:4.335px!important;position:relative;top:-0.5px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag[data-copy="c5_r61_tag"]{padding-top:1.784px!important;padding-bottom:2.056px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag[data-copy="c5_r62_tag"]{padding-top:1.251px!important;padding-bottom:2.589px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:2.021px!important;padding-bottom:2.819px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c5_r63_badge"]{padding-top:4.216px!important;padding-bottom:3.284px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:1.517px!important;padding-bottom:2.323px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.period[data-copy="c5_period"]{padding-top:6.251px!important;padding-bottom:8.249px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-n[data-copy="c5_p65_name"]{padding-top:2.794px!important;padding-bottom:5.026px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag[data-copy="c5_r65_tag"]{padding-top:1.234px!important;padding-bottom:2.606px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag.ot2[data-copy="c5_r66_tag"]{padding-top:1.671px!important;padding-bottom:2.169px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c5_r66_badge"]{padding-top:4.268px!important;padding-bottom:3.232px!important;position:relative;top:-0.25px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-n[data-copy="c5_p67_name"]{padding-top:3.303px!important;padding-bottom:4.517px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.period[data-copy="c5_period"]{padding-top:6.251px!important;padding-bottom:8.249px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pdet[data-copy="c5_r59_sub"]{padding-top:2.194px!important;padding-bottom:3.206px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pdet[data-copy="c5_r60_sub"]{padding-top:2.779px!important;padding-bottom:2.621px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.prod-n[data-copy="c5_p61_name"]{padding-top:3.975px!important;padding-bottom:4.525px!important;position:relative;top:-0.5px}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.otag[data-copy="c5_r61_tag"]{padding-top:2.191px!important;padding-bottom:2.409px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.otag[data-copy="c5_r62_tag"]{padding-top:1.268px!important;padding-bottom:2.332px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:1.805px!important;padding-bottom:1.795px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:1.479px!important;padding-bottom:2.121px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.period[data-copy="c5_period"]{padding-top:6.251px!important;padding-bottom:8.249px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.prod-n[data-copy="c5_p65_name"]{padding-top:3.997px!important;padding-bottom:4.503px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.otag[data-copy="c5_r65_tag"]{padding-top:1.405px!important;padding-bottom:3.195px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.otag.ot2[data-copy="c5_r66_tag"]{padding-top:1.669px!important;padding-bottom:1.931px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.prod-n[data-copy="c5_p67_name"]{padding-top:2.922px!important;padding-bottom:5.578px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly1{padding-top:2.147px!important;padding-bottom:4.333px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly2{padding-top:2.947px!important;padding-bottom:3.533px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly3{padding-top:2.822px!important;padding-bottom:4.658px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.lm.lm2{padding-top:2.947px!important;padding-bottom:3.533px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.lm.lm3{padding-top:2.520px!important;padding-bottom:3.960px!important}
+html:lang(zh-HK)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c5_ab_way_line"]{padding-top:3.358px!important;padding-bottom:3.042px!important;position:relative;top:-0.5px}
+/* HK-CENTER END */
+
+/* EN-CENTER START */
+/* EN chip text centring (2026-11-18): the EN text is set in its own Noto face, whose glyphs sit differently in the chips than the Korean text; padding measured
+   on real pixels with qa/text-center-check.cjs (?lang=EN), per component and size (home 1080 / board 780 / line / kakao), as the Korean fixpass rules */
+@media (min-width:1000px){
+html:lang(en):not(#sz) [data-card="1"]:not([data-variant="b"]):not([data-size-only]) span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:0.33423em!important;padding-bottom:0.14577em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.pdet[data-copy="c5_r60_sub"]{padding-top:0.19560em!important;padding-bottom:0.16440em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:0.16125em!important;padding-bottom:0.07875em!important}
+html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.otag[data-copy="c5_r65_tag"]{padding-top:0.15750em!important;padding-bottom:0.08250em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pdet[data-copy="c5_r59_sub"]{padding-top:0.20867em!important;padding-bottom:0.15133em!important}
+html:lang(en):not(#sz) [data-card="2"][data-variant="b"]:not([data-size-only]) span.pdet[data-copy="c5_r60_sub"]{padding-top:0.19133em!important;padding-bottom:0.16867em!important}
+}
+html:lang(en)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="line"] span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:5.059px!important;padding-bottom:2.199px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.prod-n[data-copy="c5_p61_name"]{padding-top:3.875px!important;padding-bottom:1.911px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.otag[data-copy="c5_r62_tag"]{padding-top:2.548px!important;padding-bottom:1.292px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.prod-n[data-copy="c5_p65_name"]{padding-top:2.819px!important;padding-bottom:4.063px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"]:not([data-variant="b"])[data-size-only~="line"] span.pbadge[data-copy="c5_r66_badge"]{padding-top:3.654px!important;padding-bottom:3.846px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.pdet[data-copy="c5_r59_sub"]{padding-top:2.903px!important;padding-bottom:2.497px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.prod-n[data-copy="c5_p61_name"]{padding-top:5.371px!important;padding-bottom:3.129px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag[data-copy="c5_r61_tag"]{padding-top:3.205px!important;padding-bottom:0.395px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.prod-n[data-copy="c5_p65_name"]{padding-top:5.402px!important;padding-bottom:3.098px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.otag[data-copy="c5_r65_tag"]{padding-top:3.093px!important;padding-bottom:0.507px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-variant="b"][data-size-only~="line"] span.prod-n[data-copy="c5_p67_name"]{padding-top:5.626px!important;padding-bottom:2.874px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.hb-sub[data-copy="c5_hb2_sub"]{padding-top:4.891px!important;padding-bottom:2.366px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="1"][data-variant="b"][data-size-only~="kakao"] span.band-vat[data-copy="c5_vat"]{padding-top:3.113px!important;padding-bottom:1.987px!important;position:relative;top:-0.5px}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag.ot2[data-copy="c5_r63_tag"]{padding-top:3.711px!important;padding-bottom:1.129px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag.ot2[data-copy="c5_r64_tag"]{padding-top:3.134px!important;padding-bottom:0.706px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.otag[data-copy="c5_r65_tag"]{padding-top:2.852px!important;padding-bottom:0.988px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c5_r66_badge"]{padding-top:3.645px!important;padding-bottom:3.855px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.pbadge[data-copy="c5_r68_badge"]{padding-top:3.675px!important;padding-bottom:3.825px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pdet[data-copy="c5_r59_sub"]{padding-top:3.335px!important;padding-bottom:2.065px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.pdet[data-copy="c5_r60_sub"]{padding-top:3.431px!important;padding-bottom:1.969px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="1"][data-variant="b"][data-size-only~="kakao"] span.prod-n[data-copy="c5_p61_name"]{padding-top:5.357px!important;padding-bottom:3.143px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="2"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.prod-n[data-copy="c5_p67_name"]{padding-top:5.372px!important;padding-bottom:3.128px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.ly.ly1{padding-top:3.754px!important;padding-bottom:1.286px!important}
+html:lang(en)[data-size]:not(#sz) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.lm.lm3{padding-top:3.754px!important;padding-bottom:1.286px!important}
+/* EN-CENTER END */

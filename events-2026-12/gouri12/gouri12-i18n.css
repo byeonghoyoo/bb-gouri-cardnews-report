@@ -444,7 +444,7 @@ html:lang(en)[data-size]:not(#sz) .K5b .q{font-size:calc(60*var(--px)*var(--fit,
    names 34, and the tip takes one line (19); kakao part 2: the two set-ups keep less padding (as HK) */
 html:lang(en)[data-size]:not(#sz) .L4 .wd{font-size:19px;line-height:1.42}
 html:lang(en)[data-size]:not(#sz) .L4 .ws{font-size:18px;line-height:1.45}
-html:lang(en)[data-size]:not(#sz) .K4b .wd{font-size:18.5px;line-height:1.45}
+html:lang(en)[data-size]:not(#sz) .K4b .wd{font-size:17px;line-height:1.45}
 html:lang(en)[data-size]:not(#sz) .L4 .wn{font-size:34px}
 html:lang(en)[data-size]:not(#sz) .L4 .tip{font-size:19px}
 html:lang(en)[data-size]:not(#sz) .K4b .ways{margin-top:10px}
@@ -482,7 +482,8 @@ html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card=
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.c1-contact [data-copy]{position:relative;top:-0.0708em} /* +1.46 */
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.c1-contact [data-copy]{position:relative;top:-0.0708em} /* +1.46 */
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="2"] span.badge[data-copy="gr_r12_badge"]{padding-top:4.47px;padding-bottom:4.53px} /* +0.62 */
-html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="2"] p.gift-band [data-copy]{position:relative;top:0.0473em} /* -0.67 */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="2"] p.gift-band [data-copy]{position:relative;top:-0.0631em} /* -0.67 */ /* 2026-11-23: final copy 'Perfection Cream' (was 0.0473em, +2.76 measured) */
+html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"][data-variant="b"] p.gift-band [data-copy]{position:relative;top:-0.0456em} /* 2026-11-23: final copy 'Perfection Cream' (was 0.03em from the base rule, +1.89 measured) */
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"][data-variant="b"] span.badge[data-copy="gr_r9_badge"]{padding-top:4.44px;padding-bottom:4.56px} /* +0.65 */
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="3"]:not([data-variant="b"]) span.fk[data-copy="gr_c3_f2_k"]{padding-top:3.89px;padding-bottom:2.57px} /* -0.81 */
 html:lang(en)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="3"]:not([data-variant="b"]) span.fk[data-copy="gr_c3_f3_k"]{padding-top:3.76px;padding-bottom:2.70px} /* -0.69 */
@@ -498,35 +499,35 @@ html:lang(en)[data-size]:not(#sz) .K1b2 .c1-contact{padding-top:9.95px;padding-b
 html:lang(en)[data-size]:not(#sz) .K3b .fk[data-copy="gr_c3_f2_k"]{font-size:16.6px}
 /* </en-center> */
 
-/* <gift-center-1120> */
-/* 2026-11-20 (lead order): JP / CN / TW / TH gift line gr_benefit now names 재생크림 (work/stale-drafts.json; JP 再生クリーム, CN 修护霜, TW 修復霜, TH ครีมบำรุงฟื้นฟูผิว). The new
-   words moved the measured letters of the JP / CN / TH gift chips off the chip centre (qa/text-center-check, language JP / CN / TH at 1080 / 780 / line / kakao); each
-   gift text moves by its measured offset (TW measured centred). Only the gift chips of cards 1 and 2 */
-@media (min-width:901px){
- html:lang(ja) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:-0.062em} /* +0.97; the generated -0.0135em left the whole-pixel text where it was, -0.062em measured centred */
- html:lang(ja) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.gift-line [data-copy]{position:relative;top:-0.0633em} /* +1.77 */
-}
-html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:-0.062em} /* +0.95; as the home card (-0.062em measured centred) */
-html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.gift-line [data-copy]{position:relative;top:-0.0629em} /* +1.73 */
-html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"]:not([data-variant="b"])[data-part="2"] p.gift-line [data-copy]{position:relative;top:-0.0261em} /* +1.65 */
-html:lang(ja)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="1"][data-variant="b"][data-part="2"] p.gift-line [data-copy]{position:relative;top:-0.0629em} /* +2.38 */
-@media (min-width:901px){
- html:lang(zh-CN) section.card[data-card="1"]:not([data-size-only])[data-variant="b"] p.gift-line [data-copy]{position:relative;top:-0.0960em} /* +0.72 */
-}
-html:lang(zh-CN)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"][data-variant="b"] p.gift-line [data-copy]{position:relative;top:-0.0962em} /* +0.71 */
-@media (min-width:901px){
- html:lang(th) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:0.0575em} /* +3.09 */
- html:lang(th) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) p.gift-band [data-copy]{position:relative;top:0.0524em} /* +3.44 */
- html:lang(th) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] p.gift-band [data-copy]{position:relative;top:0.075em} /* +3.33; the generated 0.0488em overshot (-0.67), 0.075em */
-}
+/* <en-final-1123> */
+/* 2026-11-23 (lead order, v4/langverify/out/LV_BUILD_1123.md): EN back to the reviewed copy (final.json); gr_p_sub 'Premium anti-aging liquid PCL collagen
+   booster', the option labels gr_a_pre / gr_b_pre / gr_c_pre and the card 4 notes gr_c4_o2_d / o3_d are longer than the 11/19 drafts. Kakao card 4 part 2: the
+   Re2O / Rejuran notes at 17px keep two lines (three lines at 18.5px put the source line on the card edge; rule above). */
+/* kakao 2A-2: the subtitle stays left of the model in two balanced lines (as TH: it ran under the model photo) */
+html:lang(en)[data-size]:not(#sz) .c2.K2a2 .c2-head{padding-right:190px}
+html:lang(en)[data-size]:not(#sz) .K2a2 .c2-sub{text-wrap:balance}
+html:lang(en)[data-size]:not(#sz) .c2.K2a2 .board{margin-top:102px} /* the subtitle's second line comes out of the gap above the board (as TH 104px): the board stays at 236px, as KO */
+/* kakao 2A-3 / 2B-2: the centred header row is wider; the sparkle moves to the left margin (as JP / TH; it sat on 'Premium') */
+html:lang(en)[data-size]:not(#sz) .K2a3 .s3,html:lang(en)[data-size]:not(#sz) .K2b2 .s3{left:12px}
+/* kakao 2B-2: each option label on one line (as JP 16px; the longer EN label needs 15px), so the foot line stays inside the card */
+html:lang(en)[data-size]:not(#sz) .K2b2 .pre{font-size:15px}
+/* option labels that wrap (line 2B, phone) break into balanced lines ('Awaken the collagen / in your skin') */
+html:lang(en) .c2 .pre{text-wrap:balance}
+/* </en-final-1123> */
+
+/* GOU12 TH card 3 fact keys chip text centring (2026-11-20): measured on real pixels with qa/text-center-check.cjs (?lang=TH) per component and size (home 1080 /
+   board 780 / line / kakao), as the Korean fixpass and TH rules; each off-centre pill gets its own padding (a text next to an icon a relative top) */
 @media (min-width:601px) and (max-width:900px){
- html:lang(th) section.card[data-card="1"]:not([data-size-only]):not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:0.0255em} /* +2.53 */
- html:lang(th) section.card[data-card="2"]:not([data-size-only]):not([data-variant="b"]) p.gift-band [data-copy]{position:relative;top:0.0628em} /* +3.68 */
- html:lang(th) section.card[data-card="2"]:not([data-size-only])[data-variant="b"] p.gift-band [data-copy]{position:relative;top:0.0376em} /* +3.31 */
+html:lang(th):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.fk[data-copy="gr_c3_f1_k"]{padding-top:0.30965em!important;padding-bottom:0.07035em!important}
 }
-html:lang(th)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="1"]:not([data-variant="b"]) p.gift-line [data-copy]{position:relative;top:0.0572em} /* +3.04 */
-html:lang(th)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"]:not([data-variant="b"])[data-part="2"] p.gift-band [data-copy]{position:relative;top:0.043em} /* +2.81; the generated 0.0765em left it 0.84 low, 0.043em */
-html:lang(th)[data-size]:not(#sz) section.card[data-size-only="line"][data-card="2"][data-variant="b"] p.gift-band [data-copy]{position:relative;top:0.0519em} /* +2.85 */
-html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"]:not([data-variant="b"])[data-part="2"] p.gift-band [data-copy]{position:relative;top:0.0317em} /* +3.75 */
-html:lang(th)[data-size]:not(#sz) section.card[data-size-only="kakao"][data-card="2"][data-variant="b"][data-part="1"] p.gift-band [data-copy]{position:relative;top:0.0730em} /* +3.92 */
-/* </gift-center-1120> */
+@media (min-width:901px){
+html:lang(th):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.fk[data-copy="gr_c3_f1_k"]{padding-top:0.23976em!important;padding-bottom:0.14024em!important}
+html:lang(th):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.fk[data-copy="gr_c3_f2_k"]{padding-top:0.12212em!important;padding-bottom:0.25788em!important}
+html:lang(th):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.fk[data-copy="gr_c3_f3_k"]{padding-top:0.12941em!important;padding-bottom:0.25059em!important}
+}
+html:lang(th)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.fk[data-copy="gr_c3_f1_k"]{padding-top:4.070px!important;padding-bottom:2.390px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.fk[data-copy="gr_c3_f2_k"]{padding-top:2.618px!important;padding-bottom:3.842px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="3"]:not([data-variant="b"])[data-size-only~="line"] span.fk[data-copy="gr_c3_f3_k"]{padding-top:2.204px!important;padding-bottom:4.256px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.fk[data-copy="gr_c3_f1_k"]{padding-top:4.875px!important;padding-bottom:1.585px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.fk[data-copy="gr_c3_f2_k"]{padding-top:2.070px!important;padding-bottom:4.390px!important}
+html:lang(th)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.fk[data-copy="gr_c3_f3_k"]{padding-top:2.565px!important;padding-bottom:3.895px!important}

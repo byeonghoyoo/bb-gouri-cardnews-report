@@ -9,9 +9,10 @@ const KEYS=Object.keys(DATA.locales.KO);
 /* 2026-11-18 language version TH, 2026-11-20 JP / CN (v4/combo12f/i18n-1120.cjs; copy v4/langverify/out/CMB12F.final.json via
    v4/combo12f/work/i18n-prep.cjs): <html lang> drives the language fonts and layout rules in combo12f-i18n.css (:lang()); the Google font of the language
    is added here (as CMB12A / CMB12B / CMB12D / CMB12G). Korean renders exactly as before. */
-const LANG={KO:'ko',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th'};
-const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai'};
-const CJK={JP:1,CN:1,TW:1},SEGS={};
+/* 2026-11-23 EN: 'Dr. Lee Geon-ho' added to NEW_KEEP (the EN director line broke at its hyphen, as CMB12G EN; no other language has it) */
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'}; /* EN 2026-11-23 */
+const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai',HK:'Noto Sans TC'};
+const CJK={JP:1,CN:1,TW:1,HK:1},SEGS={}; /* HK added 2026-11-20 evening */
 const qs=new URLSearchParams(location.search);
 let locale=String(qs.get('lang')||'KO').toUpperCase();if(!DATA.locales[locale])locale='KO';
 let fields={...DATA.locales[locale]};
@@ -51,7 +52,7 @@ function setPlus(el,v){
  el.textContent='';v=v||'';
  const SP=splitPlus(v);SP.parts.forEach((p,i)=>{
   if(i){const s=document.createElement('span');s.className='plus';s.textContent=SP.seps[i-1];el.append(s);}
-  const c=document.createElement('span');c.className='seg';if(locale==='TH')appendKept(c,p);else c.textContent=p;el.append(c); /* 2026-11-18 TH: its loanwords and number + unit stay whole inside a part (KEEP_TH) */
+  const c=document.createElement('span');c.className='seg';if(locale==='TH'||locale==='HK'||locale==='EN')appendKept(c,p);else c.textContent=p;el.append(c); /* 2026-11-18 TH: its loanwords and number + unit stay whole inside a part (KEEP_TH); 2026-11-20 HK: its words too (KEEP_HK) */
  });
 }
 /* clinic hours: the day label and the time are styled apart */
@@ -74,10 +75,14 @@ const KEEP=/(BEAUTY::BLOSSOM|02-336-7511|'뷰티블라썸의원'|VAT 10%|FX\/포
 const KEEP_TH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Beauty Blossom Clinic|Beauty Blossom|Beauty Fit|Blossom Fit|Medione Medical Center|Yanghwa-ro|Mapo-gu|InMode FX|V-Slim Solution|V-Fit|Juvelook Volume|'+KEEP.source+'|สกินโบท็อกซ์|โบท็อกซ์|โปรแกรม|แบรนด์|หน้าผาก|ขากรรไกร|หางตา|ลำคอ|หว่างคิ้ว|ร่องแก้ม|กรอบหน้า|ริ้วรอย|แตกต่าง|เครื่องมือ|กรุงโซล|เหมาะสม|ขั้นตอน|ผู้อำนวยการ|สุดสัปดาห์|เล็ก ๆ|แรง ๆ|ค่อย ๆ|ช็อต|หย่อนคล้อย|ความมั่นใจ|ยกกระชับ|ประจำวัน|จำนวน|สุดคุ้ม|ความลึก|ความกระชับ|ความหนา|ความเย็น|ความร้อน|เป้าหมาย|เฉพาะบุคคล|ถัดไป|ทั้งสอง|วันหยุด|ฟิลเลอร์|แพ็กเกจ|ซิกเนเจอร์|วอลุ่ม|ของ Beauty Blossom|ไขมัน|รูปทรง|ลดลง|ร่วมกับ|ร่วมกัน|ออกกำลังกาย|วันเดียวกัน|ไม่พักกลางวัน|การรับบริการ|นพ\\. อี กอนโฮ|อี กอนโฮ|\\d[\\d,.:]*(?:[~–-]\\d[\\d,.:]*)?\\s(?:cc|ขวด|ครั้ง|บริเวณ|เท่า|นัด|กลุ่ม|วอน|ยูนิต|ช็อต|kJ|น\\.|เส้น|นาที|สัปดาห์|ชั่วโมง|วัน)|(?:ทางออก|สาย|ชั้น|เลขที่)\\s\\d+(?:[・·]\\d+)*','g');
 /* 2026-11-20 JP / CN: the phone numbers, a chat ID, the Latin names with a space and a number with its unit stay whole (v4/combo12f/i18n-1120.cjs NEW_KEEP;
    KEEP_L = these + KEEP) */
-const KEEP_L=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分鐘|分|本|条|條|小时|小時|時間|週間|週|周|号线|號線|号線|号出口|號出口|番出口|楼|樓|階)|'+KEEP.source,'g');
+const KEEP_L=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Dr\\. Lee Geon-ho|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分鐘|分|本|条|條|小时|小時|時間|週間|週|周|号线|號線|号線|号出口|號出口|番出口|楼|樓|階)|'+KEEP.source,'g');
 /* 2026-11-20 TW: these + a few Traditional Chinese words that broke in the middle (v4/combo12f/i18n-1120.cjs TW_KEEP); JP / CN keep KEEP_L */
-const KEEP_TW=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分鐘|分|本|条|條|小时|小時|時間|週間|週|周|号线|號線|号線|号出口|號出口|番出口|楼|樓|階)|水光肉毒|咀嚼肌肉毒|療程|精選|合集|注射|保養|玻尿酸|'+KEEP.source,'g');
-const keepRe=()=>locale==='TH'?KEEP_TH:(locale==='TW'?KEEP_TW:(locale!=='KO'&&LANG[locale]?KEEP_L:KEEP));
+const KEEP_TW=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Dr\\. Lee Geon-ho|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分鐘|分|本|条|條|小时|小時|時間|週間|週|周|号线|號線|号線|号出口|號出口|番出口|楼|樓|階)|水光肉毒|咀嚼肌肉毒|療程|精選|合集|注射|保養|玻尿酸|'+KEEP.source,'g');
+/* 2026-11-20 evening HK: the new keep list + floor numbers and the Traditional Chinese words of the HK copy (v4/combo12f/i18n-1120.cjs HK_KEEP) */
+const KEEP_HK=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Dr\\. Lee Geon-ho|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分鐘|分|本|条|條|小时|小時|時間|週間|週|周|号线|號線|号線|号出口|號出口|番出口|楼|樓|階)|\\d+(?:[・·、]\\d+)*[樓楼]|肉毒桿菌素|透明質酸|填充劑|廣東話|橙皮紋|咀嚼肌|儀器|效果|精選|緊緻|線條|倒鈎|藥物|需要|主要|皮膚|下巴|配合|療程|日語|填充|輪廓|不同|一起|注射|透過|體積|調節|補充|線材|星期|部位|其他|合集|肉毒|每一天|維持|膚質|唇部|護理|你的|嘴角|溶脂針|法令紋|溶脂|局部|位置|表面|周圍|肌肉|'+KEEP.source,'g');
+/* 2026-11-23 EN: the EN words first, then the new keep list */
+const KEEP_EN=new RegExp('(?:Juvelook Volume|[A-Za-z][\\w.\\-]*) \\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+ [A-Z]{3,} threads|\\d+ minutes|\\d{1,2}:\\d{2} [AP]M|Booking QR|\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|「[^」\\n]{1,16}」|Dr\\. Lee Geon-ho|Beauty Blossom|Beauty Fit|Blossom Fit|InMode FX|MediOne Medical Center|Medione Medical Center|Yanghwa-ro|Mapo-gu|Juvelook Volume|V-Slim Solution|\\d[\\d,.]*\\s?(?:cc|kJ|KJ)\\b|\\d+(?:[~〜～]\\d+)?(?:分钟|分鐘|分|本|条|條|小时|小時|時間|週間|週|周|号线|號線|号線|号出口|號出口|番出口|楼|樓|階)|'+KEEP.source,'g');
+const keepRe=()=>locale==='TH'?KEEP_TH:(locale==='TW'?KEEP_TW:(locale==='HK'?KEEP_HK:(locale==='EN'?KEEP_EN:(locale!=='KO'&&LANG[locale]?KEEP_L:KEEP))));
 /* 2026-11-20 Chinese / Japanese (same as CMB12A / CMB12G): the last three characters stay together, grown back to the start of their word (a '・' break or
    Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside). Thai has no guard (dictionary breaks) */
 function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;

@@ -279,6 +279,99 @@ html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2b .b-ticket .b-family{font-size:13p
 html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2b .b-ticket .popt{font-size:15.5px;line-height:1.35}
 html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2b .b-ticket .plist{font-size:13px}
 html:lang(zh-HK)[data-size]:not(#sz) .p-c .K2b .b-ticket .psale{font-size:30px}
+/* ==== 2026-11-23 language version EN (v4/combo12c/i18n-1118.cjs, LV_BUILD_1123.md). Only en selectors; the other languages' rules are unchanged. The EN
+   copy is set in the page's own Latin fonts; its options, step texts and notes are longer than the Korean ones (as TH / JP / HK), so the same kinds of
+   tighter boxes and smaller text as those pages keep everything inside the cards ==== */
+/* hero (A, home): the hook bubble's text box starts below the orange heart on the bubble's corner, as TH */
+@container (min-width:601px){html:lang(en) .c1:not(.b-split):not([data-size-only]) .bub-box{top:13.5%;height:71.4%}}
+/* kakao 1 part 2 (A, B): as TH, the label on its own row and the chip on the row below, the band a little higher; A: the device photo stands on the
+   band's right part (from x 582), so the text ends before it (486 px): label 18 px, chip 16 px, price 70 px, and the contact takes two rows at its line
+   break ('Bookings & Inquiries' / 'WhatsApp: +82 10-7215-7511') */
+html:lang(en)[data-size="kakao"]:not(#sz) main.p-c .K1a2 .h-band,html:lang(en)[data-size="kakao"]:not(#sz) main.p-c .K1b2 .h-band{top:180px;row-gap:18px;padding-top:34px;padding-bottom:30px}
+html:lang(en)[data-size]:not(#sz) .p-c .K1a2 .tz-top,html:lang(en)[data-size]:not(#sz) .p-c .K1b2 .tz-top{flex-wrap:wrap;row-gap:8px}
+html:lang(en)[data-size]:not(#sz) .p-c .K1a2 .tz{max-width:486px}
+html:lang(en)[data-size]:not(#sz) .p-c .K1a2 .tz-label{font-size:calc(18px*var(--fit,1))}
+html:lang(en)[data-size]:not(#sz) .p-c .K1a2 .tz-opt{font-size:calc(16px*var(--fit,1))}
+html:lang(en)[data-size]:not(#sz) .p-c .K1a2 .tz-price{font-size:70px}
+html:lang(en)[data-size="kakao"]:not(#sz) main.p-c .K1a2 .h-contact{white-space:pre-line;max-width:430px;line-height:1.3}
+/* kakao 1 B part 1: the hook smaller so its lines end above the yellow heart (as JP) */
+html:lang(en)[data-size]:not(#sz) .p-c .K1b1 .b-hook{font-size:17px;line-height:1.45}
+/* line 1 B: the hook smaller so its four lines end above the green heart */
+html:lang(en)[data-size]:not(#sz) .p-c .L1b .b-hook{font-size:20px;line-height:1.5}
+/* price rows: an option part may wrap and the two price columns take their own width (as TH / JP / CN / HK) */
+html:lang(en) .popt .seg{white-space:normal}
+@container (min-width:601px){html:lang(en) .p-c .prow{grid-template-columns:minmax(0,1fr) auto auto}}
+html:lang(en)[data-size="kakao"]:not(#sz) main.p-c .K2a .prow{grid-template-columns:minmax(0,1fr) auto auto}
+/* price card 2 A (home, board): the title ends before the green heart (as TH / JP / HK), the rows tighter and the options a little smaller, so the board,
+   the 49 % line, VAT and the period stay on the card */
+@container (min-width:601px){
+html:lang(en) .p-c .c2:not(.b-tickets) .p-title{max-width:calc(388*var(--px))}
+html:lang(en) .p-c .c2:not(.b-tickets):not([data-size-only]) .prow{padding-top:calc(7*var(--px));padding-bottom:calc(6*var(--px))}
+html:lang(en) .p-c .c2:not(.b-tickets):not([data-size-only]) .popt{font-size:max(11px,calc(17*var(--px)));line-height:1.4}
+}
+/* phones 2 A: the EN 49 % line is longer than the free part of the foot row and ran into VAT: as TH, VAT and the period go one row up and the 49 % line
+   takes its own row below them */
+@container (max-width:600px){html:lang(en) .p-c .c2:not(.b-tickets):not([data-size-only]) .cp-foot{margin-bottom:26px}}
+/* kakao 2 A: the title before the heart; smaller option, tighter rows (as JP / HK), so VAT and the period stay on each part */
+html:lang(en)[data-size="kakao"]:not(#sz) main.p-c .K2a .p-title{max-width:406px}
+html:lang(en)[data-size]:not(#sz) .p-c .K2a .popt{font-size:15.5px;line-height:1.35}
+html:lang(en)[data-size="kakao"]:not(#sz) main.p-c .K2a .prow{padding-top:4px;padding-bottom:3px}
+/* line 2 A: tighter rows and a smaller option, so VAT and the period stay on the card */
+html:lang(en)[data-size]:not(#sz) .p-c .L2a .popt{font-size:16px;line-height:1.35}
+html:lang(en)[data-size]:not(#sz) .p-c .L2a .prow{padding-top:5px;padding-bottom:4px}
+/* line 2 B: the tickets three across: the list price above the sale price, smaller family line and option (as TH / JP / HK) */
+html:lang(en)[data-size]:not(#sz) .p-c .L2b .b-ticket{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto auto;padding:12px 16px;gap:4px}
+html:lang(en)[data-size]:not(#sz) .p-c .L2b .b-ticket .b-family{font-size:14px}
+html:lang(en)[data-size]:not(#sz) .p-c .L2b .b-ticket .popt{font-size:15px;line-height:1.35}
+html:lang(en)[data-size]:not(#sz) .p-c .L2b .b-ticket .plist{grid-column:1;justify-self:start;font-size:15px}
+html:lang(en)[data-size]:not(#sz) .p-c .L2b .b-ticket .psale{grid-column:1;justify-self:start;font-size:30px}
+/* kakao 2 B: smaller family line and option (as JP / HK), so VAT stays on part 2 */
+html:lang(en)[data-size]:not(#sz) .p-c .K2b .b-ticket .b-family{font-size:13px}
+html:lang(en)[data-size]:not(#sz) .p-c .K2b .b-ticket .popt{font-size:15px;line-height:1.35}
+/* card 3 (home, board): the way texts are longer: a little smaller, so the source line stays on the card */
+@container (min-width:601px){
+html:lang(en) .p-c .c3:not([data-size-only]) .way-d{font-size:max(11px,calc(17*var(--px)));line-height:1.45}
+html:lang(en) .p-c .c3:not([data-size-only]) .way-for,html:lang(en) .p-c .c3:not([data-size-only]) .way-pick{font-size:max(10px,calc(16*var(--px)))}
+}
+/* kakao 3 part 1: the way title, its tip chip, text and pick line a little smaller (as TH / JP) */
+html:lang(en)[data-size]:not(#sz) .p-c .K31 .way-t{font-size:23px}
+html:lang(en)[data-size]:not(#sz) .p-c .K31 .way-k{font-size:16px}
+html:lang(en)[data-size]:not(#sz) .p-c .K31 .way-d{font-size:15.5px;line-height:1.45}
+html:lang(en)[data-size]:not(#sz) .p-c .K31 .way-pick{font-size:16px}
+/* card 4 (home, board): the step texts, info values and notes are longer (as CMB12D EN card 5): smaller boxes and text, so the care list and the source
+   line stay on the card */
+@container (min-width:601px){
+html:lang(en) .p-c .c4:not([data-size-only]) .steps{margin-top:calc(20*var(--px))}
+html:lang(en) .p-c .c4:not([data-size-only]) .st{padding-top:calc(22*var(--px));padding-bottom:calc(22*var(--px))}
+html:lang(en) .p-c .c4:not([data-size-only]) .st-t{font-size:max(13px,calc(26*var(--px)))}
+html:lang(en) .p-c .c4:not([data-size-only]) .st-d{margin-top:calc(8*var(--px));font-size:max(11px,calc(18*var(--px)))}
+html:lang(en) .p-c .c4:not([data-size-only]) .inf{padding-top:calc(22*var(--px));padding-bottom:calc(22*var(--px))}
+html:lang(en) .p-c .c4:not([data-size-only]) .inf-v{font-size:max(13px,calc(24*var(--px)))}
+html:lang(en) .p-c .c4:not([data-size-only]) .inf-n{font-size:max(10px,calc(16*var(--px)))}
+html:lang(en) .p-c .c4:not([data-size-only]) .care{margin-top:calc(18*var(--px));gap:calc(10*var(--px))}
+html:lang(en) .p-c .c4:not([data-size-only]) .care li{font-size:max(11px,calc(18*var(--px)))}
+}
+/* kakao 4 part 2: the step texts take two or three rows: smaller step texts and box padding (as TH) */
+html:lang(en)[data-size]:not(#sz) .p-c .K42 .st{padding-top:22px;padding-bottom:24px}
+html:lang(en)[data-size]:not(#sz) .p-c .K42 .st-d{font-size:16px;line-height:1.45}
+/* kakao 4 part 3: the three info boxes and the care list smaller (as TH / JP) */
+html:lang(en)[data-size]:not(#sz) .p-c .K43 .inf-k{font-size:14px}
+html:lang(en)[data-size]:not(#sz) .p-c .K43 .inf-v{font-size:18px;line-height:1.25}
+html:lang(en)[data-size]:not(#sz) .p-c .K43 .inf-n{font-size:13px;line-height:1.4}
+html:lang(en)[data-size]:not(#sz) .p-c .K43 .care li{font-size:15.5px}
+/* card 5 (home, board): the station line and address smaller (lower minimums on the board, as CMB12D EN), the strength titles may fit smaller, the
+   international number a little smaller (as JP / CN) */
+@container (min-width:601px){
+html:lang(en) .c5:not([data-size-only]) .way-st{font-size:max(13px,calc(22*var(--px)))}
+html:lang(en) .c5:not([data-size-only]) .way-addr{font-size:max(10px,calc(14*var(--px)));line-height:1.45}
+html:lang(en) .c5:not([data-size-only]) .at{font-size:max(10px,calc(21*var(--px)*var(--fit,1)))}
+html:lang(en) .c5:not([data-size-only]) .bk-phone{font-size:max(17px,calc(26*var(--px)))}
+}
+/* kakao 5 part 3: the location box keeps its map: the title on one row with its LOCATION label, smaller station line and address (as TH) */
+html:lang(en)[data-size]:not(#sz) .p-c .K53 .loc-head .bt-t{font-size:22px}
+html:lang(en)[data-size]:not(#sz) .p-c .K53 .way-st{font-size:18px}
+html:lang(en)[data-size]:not(#sz) .p-c .K53 .way-addr{font-size:13px;line-height:1.4;margin-top:4px}
+
 /* <lang-center-1120> component text centring per language (generated by v4/filler12a/qa/lang-center.cjs with qa/tc-lang.cjs on real pixels, 2026-11-19):
    the language text is set in Noto Sans Thai / SC / JP, whose letters sit higher or lower in the line than the Korean Pretendard text; each off-centre
    component moves its text by padding (same height) or a relative top next to an icon, per size (home 1080 / board 780 / line / kakao) */
@@ -393,3 +486,26 @@ html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="2"]:not([data-va
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="3"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.dev-e[data-copy="c3_dev_e"]{padding-top:1.020px!important;padding-bottom:2.580px!important}
 html:lang(zh-TW)[data-size]:not(#sz) [data-card="5"][data-part="3"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-line[data-copy="c3_ab_way_line"]{padding-top:2.944px!important;padding-bottom:2.656px!important}
 /* </lang-center-1120> */
+/* <lang-center-1123> */
+/* EN component text centring (2026-11-23, CMB12C EN, measured on real pixels with the lead's language text-centre check, ?lang=<LOC>, home 1080 /
+   board 780 / line / kakao): the language text sits higher or lower in its pill than the Korean text the Korean centring was measured for, so each
+   off-centre pill / chip / badge moves its text by padding (same height) or a relative top next to an icon; these rules come after the TH / TW / JP / CN / HK blocks */
+@container (min-width:601px) and (max-width:800px){
+ html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.way-k[data-copy="c3_w2_k"]{padding-top:0.08274em!important;padding-bottom:0.23726em!important}
+ html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.dev-e[data-copy="c3_dev_e"]{padding-top:0.15075em!important;padding-bottom:0.10925em!important}
+}
+@container (min-width:801px){
+ html:lang(en):not(#sz) [data-card="2"]:not([data-variant="b"]):not([data-size-only]) span.prod-chip[data-copy="c3_p46_chip"]{padding-top:0.14313em!important;padding-bottom:0.13687em!important}
+ html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.way-k[data-copy="c3_w1_k"]{padding-top:0.09452em!important;padding-bottom:0.22548em!important}
+ html:lang(en):not(#sz) [data-card="3"]:not([data-variant="b"]):not([data-size-only]) span.way-k[data-copy="c3_w2_k"]{padding-top:0.13032em!important;padding-bottom:0.18968em!important}
+}
+ html:lang(en)[data-size="line"]:not(#sz):not(#sz2) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.prod-chip[data-copy="c3_p46_chip"]{padding-top:2.163px!important;padding-bottom:2.037px!important}
+ html:lang(en)[data-size="line"]:not(#sz):not(#sz2) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.way-k[data-copy="c3_w1_k"]{padding-top:1.848px!important;padding-bottom:4.232px!important}
+ html:lang(en)[data-size="line"]:not(#sz):not(#sz2) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="line"] span.way-k[data-copy="c3_w2_k"]{padding-top:1.628px!important;padding-bottom:4.452px!important}
+ html:lang(en)[data-size="line"]:not(#sz):not(#sz2) [data-card="5"][data-part="2"]:not([data-variant="b"])[data-size-only~="line"] span.way-line[data-copy="c3_ab_way_line"]{padding-top:3.140px!important;padding-bottom:2.460px!important}
+ html:lang(en)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="1"][data-part="2"][data-variant="b"][data-size-only~="kakao"] span.tz-opt[data-copy="c3_hero_opt"]{padding-top:1.320px!important;padding-bottom:2.760px!important}
+ html:lang(en)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="2"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-chip[data-copy="c3_p46_chip"]{padding-top:2.547px!important;padding-bottom:1.653px!important}
+ html:lang(en)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="2"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.prod-chip[data-copy="c3_p46_chip"]{padding-top:2.115px!important;padding-bottom:2.085px!important}
+ html:lang(en)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="3"][data-part="1"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-k[data-copy="c3_w1_k"]{padding-top:1.648px!important;padding-bottom:3.472px!important}
+ html:lang(en)[data-size="kakao"]:not(#sz):not(#sz2) [data-card="3"][data-part="2"]:not([data-variant="b"])[data-size-only~="kakao"] span.way-k[data-copy="c3_w2_k"]{padding-top:1.884px!important;padding-bottom:4.196px!important}
+/* </lang-center-1123> */

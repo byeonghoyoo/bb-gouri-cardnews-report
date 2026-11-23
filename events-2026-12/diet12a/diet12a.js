@@ -68,11 +68,13 @@ const KEEP=/(\+?82[ -]\d{1,2}[ -]\d{3,4}-\d{4}|[@＠][A-Za-z][\w.]*|Beauty Bloss
 /* TW: the TW names kept whole (KEEP_TW = these + KEEP): a name in corner brackets (the LINE account '「🌸麗朵皮膚科🌸」'), a floor / house number ('6樓',
    '66號') and 'QR Code'; only the TW copy is set with this list (Korean, JP, CN and TH keep KEEP as before) */
 const KEEP_TW=new RegExp('「[^」\\n]{1,16}」|\\d+[樓號]|QR Code|'+KEEP.source,'g');
-const keepRe=()=>locale==='TW'?KEEP_TW:KEEP;
+const keepRe=()=>(locale==='TW'||locale==='HK')?KEEP_TW:KEEP;
 /* TW (as the other TW pages, CMB12A / CMB12H / ULT12 / OND12 TW): the last three characters of a Chinese text stay together, grown back to the start of
    their word (a '・' break or Intl.Segmenter('zh-TW')), so a line never ends inside a word; only in boxes whose text flows inline (in a flex / grid box the
    kept tail would become its own item) and only for text with Chinese characters */
-const CJK={TW:1},SEGS={};
+/* LV-1123 HK language version (v4/diet12a/i18n-1119.cjs) */
+/* HK: the same Chinese last-word guard as TW (Intl.Segmenter('zh-HK')) */
+const CJK={TW:1,HK:1},SEGS={};
 function cjkCut(v,cut){const core=(i)=>v.slice(i).replace(/[。！？，、）)]+$/u,'').length;
  const sep=Math.max(v.lastIndexOf('・'),v.lastIndexOf('·'));if(sep>0&&sep+1<v.length&&core(sep+1)>=2&&core(sep+1)<=5)return sep+1;
  let seg=SEGS[locale];if(seg===undefined){try{seg=SEGS[locale]=new Intl.Segmenter(LANG[locale],{granularity:'word'});}catch(e){seg=SEGS[locale]=null;}}if(!seg)return cut;

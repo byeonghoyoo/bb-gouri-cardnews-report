@@ -9,7 +9,7 @@ const KEYS=Object.keys(DATA.locales.KO);
 /*<lang:CMB12C:1:Y29uc3QgTEFORz17S086J2tvJ307>*//* 2026-11-18 language version TH, 2026-11-20 TW / JP / CN (v4/combo12c/i18n-1118.cjs; copy v4/langverify/out/CMB12C.final.json via
    v4/combo12c/work/i18n-prep.cjs): <html lang> drives the language fonts and layout rules in combo12c-i18n.css (:lang(th) / :lang(ja) / :lang(zh)); the
    Google font of the language is added here (as CMB12A / CMB12B / CMB12D). Korean renders exactly as before. */
-const LANG={KO:'ko',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'};
+const LANG={KO:'ko',EN:'en',JP:'ja',CN:'zh-CN',TW:'zh-TW',TH:'th',HK:'zh-HK'}; /* 2026-11-23 EN added (the page's Latin fonts, no Google font) */
 const FONT_FAMILY={JP:'Noto Sans JP',CN:'Noto Sans SC',TW:'Noto Sans TC',TH:'Noto Sans Thai',HK:'Noto Sans TC'};
 const CJK={TW:1,JP:1,CN:1,HK:1},SEGS={}; /* 2026-11-20 HK added (as CMB12A / CMB12D HK: Noto Sans TC) *//*</lang:CMB12C:1>*/
 const qs=new URLSearchParams(location.search);
@@ -79,7 +79,9 @@ const KEEP_JP=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|LINE：@[\\w.\\-
 const KEEP_ZH=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|Beautyblossom00|@[\\w.\\-]+|\\d+(?:・\\d+)*[樓楼階號号]|（[^（）\\n]{1,8}）|\\([^()\\n]{1,6}\\)|N-25|CP-25|Pumping探头|黄金微针|专场|乔雅露|丽珠兰|Cryo冷却护理|水光产品|丽朵皮肤科|官方微信|面膜|涂抹|\\d+(?:\\.\\d+)?cc|\\d+分钟|\\d+万(?:\\d+千)?韩元|\\d{1,2}:\\d{2}[–-]\\d{1,2}:\\d{2}|Beauty Blossom|MediOne Medical Center|Jeisys Medical|ULTRACOL 100|QR Code|'+KEEP.source,'g');
 /* 2026-11-20 HK: its own keep list (v4/combo12c/i18n-1118.cjs LANG_KEEP_HK); the other languages as before */
 const KEEP_HK=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|@[\\w.\\-]+|Potenza（[^（）\\n]{1,10}）|（[^（）\\n]{1,8}）|\\([^()\\n]{1,6}\\)|\\d+(?:[、・]\\d+)*(?:號[綫線]|[樓楼階號号])|N-25|CP-25|Potenza Pumping|Pumping 探頭|毛孔探頭|黃金微針|Juvelook Skin|ULTRACOL 100|Rejuran 麗珠蘭|Cryo 冷凍舒緩護理|皮膚營養針|精華液|安瓶|療程|規定|面膜|塗抹|\\d+(?:\\.\\d+)?cc|\\d+分鐘|\\d+萬(?:\\d+千)?韓元|\\d[\\d,]*韓元|\\d{1,2}:\\d{2}[–-]\\d{1,2}:\\d{2}|Beauty Blossom|Medione Medical Center|Gangnam Unni|Jeisys Medical|QR Code|'+KEEP.source,'g');
-const keepRe=()=>locale==='TH'?KEEP_TH:locale==='TW'?KEEP_TW:locale==='JP'?KEEP_JP:locale==='CN'?KEEP_ZH:locale==='HK'?KEEP_HK:KEEP;
+/* 2026-11-23 EN: its own keep list (v4/combo12c/i18n-1118.cjs LANG_KEEP_EN); the other languages as before */
+const KEEP_EN=new RegExp('\\+?82[ -]\\d{1,2}[ -]\\d{3,4}-\\d{4}|Beauty Blossom|Gangnam Unni|Jeisys Medical|Medione Medical Center|Dr\\. Lee Geon-ho|Potenza Pumping|Juvelook Skin|Ultracol 100|N-25|CP-25|\\d+(?:\\.\\d+)?cc|\\d+ min|\\d+(?:\\.\\d+)?K\\b|\\d{1,2}:\\d{2} [AP]M|\\d{1,2} [AP]M|VAT 10%|'+KEEP.source,'g');
+const keepRe=()=>locale==='TH'?KEEP_TH:locale==='TW'?KEEP_TW:locale==='JP'?KEEP_JP:locale==='CN'?KEEP_ZH:locale==='HK'?KEEP_HK:locale==='EN'?KEEP_EN:KEEP;
 /* 2026-11-20 Chinese / Japanese (same as CMB12A / CMB12B / CMB12D): the last three characters stay together, grown back to the start of their word
    (a '・' break or Intl.Segmenter) so a short line never splits a word; at most 5 characters (punctuation aside); a '・' inside those last characters is a
    break too when two to five characters follow it. Thai has no guard (dictionary breaks) */
